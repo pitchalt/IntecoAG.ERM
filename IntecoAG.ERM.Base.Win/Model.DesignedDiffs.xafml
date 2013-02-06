@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="crmDealRegistrationStatistics_ChartView" ClassName="IntecoAG.ERM.CRM.Contract.Deal.crmDealRegistrationStatistics" EditorTypeName="DevExpress.ExpressApp.Chart.Win.ChartListEditor" CollectionDataSource="crmDealRegistrationStatistics" IsNewNode="True">
+      <ChartSettings Settings="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;ChartXmlSerializer version=&quot;11.2.8.0&quot;&gt;&#xD;&#xA;  &lt;Chart AppearanceNameSerializable=&quot;Default&quot;&gt;&#xD;&#xA;    &lt;Diagram PerspectiveAngle=&quot;30&quot; TypeNameSerializable=&quot;XYDiagram3D&quot; RotationMatrixSerializable=&quot;0.766044443118978;-0.219846310392954;0.604022773555054;0;0;0.939692620785908;0.342020143325669;0;-0.642787609686539;-0.262002630229385;0.719846310392954;0;0;0;0;1&quot;&gt;&#xD;&#xA;      &lt;AxisX&gt;&#xD;&#xA;        &lt;Range SideMarginsEnabled=&quot;true&quot;&gt;&#xD;&#xA;          &lt;ScrollingRange SideMarginsEnabled=&quot;true&quot; /&gt;&#xD;&#xA;        &lt;/Range&gt;&#xD;&#xA;        &lt;WorkdaysOptions /&gt;&#xD;&#xA;      &lt;/AxisX&gt;&#xD;&#xA;      &lt;AxisY&gt;&#xD;&#xA;        &lt;Range SideMarginsEnabled=&quot;true&quot;&gt;&#xD;&#xA;          &lt;ScrollingRange SideMarginsEnabled=&quot;true&quot; /&gt;&#xD;&#xA;        &lt;/Range&gt;&#xD;&#xA;        &lt;WorkdaysOptions /&gt;&#xD;&#xA;      &lt;/AxisY&gt;&#xD;&#xA;    &lt;/Diagram&gt;&#xD;&#xA;    &lt;FillStyle FillMode=&quot;Gradient&quot; /&gt;&#xD;&#xA;    &lt;SeriesSerializable&gt;&#xD;&#xA;      &lt;Item1 Name=&quot;Series 1&quot; ValueDataMembersSerializable=&quot;ContractCount&quot; ArgumentDataMember=&quot;Staff&quot;&gt;&#xD;&#xA;        &lt;Label LineVisible=&quot;true&quot; TextOrientation=&quot;Horizontal&quot; TypeNameSerializable=&quot;Bar3DSeriesLabel&quot; Visible=&quot;false&quot; /&gt;&#xD;&#xA;        &lt;View TypeNameSerializable=&quot;SideBySideBar3DSeriesView&quot; /&gt;&#xD;&#xA;      &lt;/Item1&gt;&#xD;&#xA;    &lt;/SeriesSerializable&gt;&#xD;&#xA;    &lt;SeriesTemplate&gt;&#xD;&#xA;      &lt;Label LineVisible=&quot;true&quot; TextOrientation=&quot;Horizontal&quot; TypeNameSerializable=&quot;Bar3DSeriesLabel&quot; Visible=&quot;true&quot; /&gt;&#xD;&#xA;      &lt;View TypeNameSerializable=&quot;SideBySideBar3DSeriesView&quot; /&gt;&#xD;&#xA;    &lt;/SeriesTemplate&gt;&#xD;&#xA;  &lt;/Chart&gt;&#xD;&#xA;&lt;/ChartXmlSerializer&gt;" IsNewNode="True" />
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Staff" PropertyName="Staff" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="ContractCount" PropertyName="ContractCount" Width="50" Index="1" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="hrmDepartment_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
+  </Views>
+</Application>

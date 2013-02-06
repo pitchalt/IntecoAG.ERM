@@ -1,0 +1,364 @@
+#region Copyright (c) 2011 INTECOAG.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Copyright (c) 2011 INTECOAG.                                }
+{                                                                   }
+{                                                                   }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2011 INTECOAG.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
+using DevExpress.Persistent.Base;
+using DevExpress.Persistent.BaseImpl;
+using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
+
+using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CS.Country;
+
+namespace IntecoAG.ERM.CRM.Party
+{
+    /// <summary>
+    /// Класс LegalPerson, представляющий юридическое лицо как участника (сторону) Договора
+    /// </summary>
+//    [DefaultClassOptions]
+    [Persistent("crmPartyLegalPerson")]
+    public partial class crmCLegalPerson : csCComponent, crmIParty
+    {
+        public crmCLegalPerson(Session ses) : base(ses) { }
+        
+        public override void AfterConstruction() {
+            base.AfterConstruction();
+            this.Person = new crmCPerson(this.Session);
+            this.Party = new crmPartyRu(this.Session, this.Person);
+            this.ComponentType = this.GetType();
+            this.CID = Guid.NewGuid();
+            this.Person.ComponentType = this.ComponentType;
+            this.Person.CID = this.CID;
+            this.Party.ComponentType = this.ComponentType;
+            this.Party.CID = this.CID;
+            SignChanges();
+        }
+
+        #region ПОЛЯ КЛАССА
+        private crmPartyRu _Party;
+        private crmCPerson _Person;
+        #endregion
+
+
+        #region Component
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        [Aggregated]
+        public crmPartyRu Party {
+            get { return _Party; }
+            set { SetPropertyValue<crmPartyRu>("Party", ref _Party, value); }
+        }
+        //
+        public static explicit operator crmPartyRu ( crmCLegalPerson pers) {
+            return pers.Party;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        [Aggregated]
+        public crmCPerson Person {
+            get { return _Person; }
+            set { SetPropertyValue<crmCPerson>("Person", ref _Person, value); }
+        }
+        //
+        public static explicit operator crmCPerson(crmCLegalPerson pers) {
+            return pers.Person;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inter"></param>
+        /// <returns></returns>
+        public override object GetInterfaceImplementation(Type inter) {
+            return base.GetInterfaceImplementation(inter);
+        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //protected override void OnLoaded() {
+        //    base.OnLoaded();
+        //    OnChanged("AddressFactString");
+        //}
+
+        #endregion
+
+        #region СВОЙСТВА КЛАССА
+        /// <summary>
+        /// 
+        /// </summary>
+        crmIPerson crmIParty.Person {
+            get { return Person; }
+        }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //[Browsable(false)]
+        //[PersistentAlias("pPerson")]
+        //[Aggregated]
+        //public crmCPerson Person {
+        //    get { return pPerson; }
+        //    set { pPerson = (crmCPerson) value; }
+        //}
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        [Browsable(false)]
+        crmPartyRu crmIParty.Party {
+            get { return Party; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Size(20)]
+        [PersistentAlias("Person.RegCode")]
+        public string RegCode {
+            get { return Person == null ? null : Person.RegCode; }
+            set { 
+                value = value == null ? null : value.Trim();
+                String old = RegCode;
+                if (old != value && Person != null) {
+                    this.Person.RegCode = value;
+                    OnChanged("RegCode", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Person.Country")]
+        public csCountry Country {
+            get { return Person == null ? null : Person.Country; }
+            set {
+                csCountry old = this.Country;
+                if (old != value && Person != null) {
+                    this.Person.Country = value;
+                    OnChanged("Country", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Person.PersonType")]
+        public crmPersonType PersonType {
+            get { return Person == null ? null : Person.PersonType; }
+            set {
+                crmPersonType old = this.PersonType;
+                if (old != value && Person != null) {
+                    this.Person.PersonType = value;
+                    OnChanged("PersonType ", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Aggregated]
+        [ExpandObjectMembers(ExpandObjectMembers.Never)]
+        [PersistentAlias("Person.Address")]
+        public csAddress AddressLegal {
+            get { return Person == null ? null : Person.Address; }
+        }
+
+
+        [RuleFromBoolProperty("IntecoAG.ERM.CRM.Party.LegalPerson.AddressLegal.Required",
+                DefaultContexts.Save, UsedProperties = "AddressLegal")]
+        [Browsable(false)]
+        Boolean AddressLegalIsEmpty {
+            get { return Person == null ? false : Person.Address == null ? false : !Person.Address.IsEmpty; }
+        }
+
+        /// <summary>
+        /// AddressFact
+        /// </summary>
+        [Aggregated]
+        [ExpandObjectMembers(ExpandObjectMembers.Never)]
+        [PersistentAlias("Party.AddressFact")]
+        public csAddress AddressFact {
+            get { return Party == null ? null : Party.AddressFact; }
+        }
+        csIAddress crmIParty.AddressFact {
+            get { return AddressFact; }
+        }
+        [VisibleInDetailView(false)]
+        [NonPersistent]
+        public String AddressFactString {
+            get { return AddressFact.AddressString; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Aggregated]
+        [ExpandObjectMembers(ExpandObjectMembers.Never)]
+        [PersistentAlias("Party.AddressPost")]
+        public csAddress AddressPost {
+            get { return Party == null ? null : Party.AddressPost; }
+        }
+        csIAddress crmIParty.AddressPost {
+            get { return AddressPost; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Person.Name")]
+        [RuleRequiredField]
+        [Size(100)]
+        public String Name {
+            get { return Person == null ? null : Person.Name; }
+            set { 
+                String old = this.Name;
+                value = value == null ? null : value.Trim();
+                if (old != value && Person != null) {
+                    this.Person.Name = value;
+                    if (String.IsNullOrEmpty(this.NameFull) || NameFull == old) {
+                        NameFull = value;
+                    }
+                    if (Party != null)
+                        Party.Name = value;
+                    OnChanged("Name", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Person.NameFull")]
+        [Size(250)]
+        public String NameFull {
+            get { return Person == null ? null : Person.NameFull; }
+            set {
+                String old = this.NameFull;
+                value = value == null ? null : value.Trim();
+                if (old != value && Person != null) {
+                    this.Person.NameFull = value;
+                    if (Party != null)
+                        Party.NameFull = value;
+                    OnChanged("NameFull", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Person.Description")]
+        [Size(SizeAttribute.Unlimited)]
+        public String Description {
+            get { return Person == null ? null : Person.Description; }
+            set {
+                String old = this.Description;
+                value = value == null ? null : value.Trim();
+                if (old != value && Person != null) {
+                    this.Person.Description = value;
+                    if (Party != null)
+                        Party.Description = value;
+                    OnChanged("Description", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Size(15)]
+        [PersistentAlias("Person.INN")]
+        // Паша!!! Нужно переделать условие с использованием ссылок на объект 
+        [RuleUniqueValue("IntecoAG.ERM.CRM.Party.LegalPerson.INN.Unique", DefaultContexts.Save, TargetCriteria = "Country.CodeRuAlfa3 == 'РОФ'")]
+        [RuleRequiredField]
+        public String INN {
+            get { return Person == null ? null : Person.INN; }
+            set {
+                String old = this.INN;
+                value = value == null ? null : value.Trim();
+                if (old != value && Person != null) {
+                    this.Person.INN = value;
+                    foreach (crmIParty party in Person.Partys)
+                        party.INN = value;
+                    OnChanged("INN", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Party.KPP")]
+        [Size(15)]
+        [RuleRequiredField]
+        public String KPP {
+            get { return Party == null ? null : Party.KPP; }
+            set {
+                String old = this.KPP;
+                value = value == null ? null : value.Trim();
+                if (old != value && Party != null) {
+                    this.Party.KPP = value;
+                    OnChanged("KPP", old, value);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Party.Code")]
+        [Size(7)]
+        [RuleRequiredField]
+        public String Code {
+            get { return Party == null ? null : Party.Code; }
+            set {
+                String old = this.Code;
+                value = value == null ? null : value.Trim();
+                if (old != value) {
+                    if (this.Person != null)
+                        this.Person.Code = value;
+                    if (this.Party != null)
+                        this.Party.Code = value;
+                    OnChanged("Code", old, value);
+                }
+            }
+        }
+        //
+        [Aggregated]
+        [Association("crmLegalPerson-LegalPersonUnits", typeof(crmLegalPersonUnit))]
+        public XPCollection<crmLegalPersonUnit> LegalPersonUnits {
+            get { return GetCollection<crmLegalPersonUnit>("LegalPersonUnits"); }
+        }
+
+
+        #endregion
+
+
+        #region МЕТОДЫ
+
+        private void SignChanges() {
+            if (this.AddressLegal != null)
+                this.AddressLegal.Changed += OnAddressLegalChanged;
+        }
+
+        protected override void OnLoading() {
+            base.OnLoading();
+            SignChanges();
+        }
+
+        void OnAddressLegalChanged(object sender, ObjectChangeEventArgs e) {
+            OnChanged("Country");
+        }
+
+        #endregion
+
+    }
+
+}

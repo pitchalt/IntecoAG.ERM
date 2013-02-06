@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Company="Inteco AG" Copyright="(c) 2011 Inteco AG">
+  <ActionDesign>
+    <Actions>
+      <Action Id="New" ShowItemsOnClick="True" />
+    </Actions>
+  </ActionDesign>
+  <CreatableItems>
+    <CreatableItem ClassName="IntecoAG.ERM.CRM.Contract.Forms.crmDealRegistrationForm" Visible="False" />
+  </CreatableItems>
+  <Options UIType="TabbedMDI" />
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>

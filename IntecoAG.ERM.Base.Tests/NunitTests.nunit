@@ -1,0 +1,8 @@
+﻿<NUnitProject>
+ <Settings activeconfig="Debug" />
+ <Config name="Debug">
+   <assembly path="bin\Debug\NUnitTestAnalitic.dll" />
+ </Config>
+ <Config name="Release">
+ </Config>
+</NUnitProject>

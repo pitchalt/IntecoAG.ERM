@@ -1,0 +1,229 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Правила составления распечатки 
+\begin_inset Quotes eld
+\end_inset
+
+Список счетов к оплате на дд.мм.гггг
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Этапы формирования разделов.
+\end_layout
+
+\begin_layout Enumerate
+Формируется набор всех заявок, имеющих статус 
+\begin_inset Quotes eld
+\end_inset
+
+К оплате
+\begin_inset Quotes erd
+\end_inset
+
+ и попадающих в заданный интервал дат (начало интервала может быть незаполненным
+)
+\end_layout
+
+\begin_layout Enumerate
+Поля падения.
+ В этот раздел попадают те и только те заявки, которые соотносятся с направление
+м 
+\begin_inset Quotes eld
+\end_inset
+
+ОЗ
+\begin_inset Quotes erd
+\end_inset
+
+ или код заказа которых оканчивается на 
+\begin_inset Quotes eld
+\end_inset
+
+24
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Энергетика включает в себя те заявки, код заказа которых "23220000" или
+ "23210000".
+\end_layout
+
+\begin_layout Enumerate
+ППР.
+ В этот раздел попадают заявки с кодом заказа, оканчивающимся на "05", "09",
+ "10", "11", "12", "13", "22".
+\end_layout
+
+\begin_layout Enumerate
+Из оставшегося множества заявок формируются два подмножества.
+ В первое подмножество попадают заявки, имеющие основанием договор какого-либо
+ типа.
+ Во вторую группу попадают остальные заявки.
+\end_layout
+
+\begin_layout Enumerate
+ПТР.
+ В этот раздел попадают заявки (и договорные и недоговорные) в которых укзан
+ код направления в теме - 
+\begin_inset Quotes eld
+\end_inset
+
+ПТР
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Госзаказ.
+ Сюда включаются заявки, имеющие источником заказа "ГЗ.ГОЗ" или "ГЗ.Прочие".
+\end_layout
+
+\begin_layout Enumerate
+ВЭД.
+ Раздел включает заявки, имеющие источником заказа "ГЗ.ГОЗ.ВТС", "ВЭД.ВТС",
+ "ВЭД.Прочие".
+\end_layout
+
+\begin_layout Enumerate
+Материалы.
+ Этот раздел включает в себя те заявки, у которых код статьи содержится
+ в множестве {"6001", "6002", "6004", ..., 
+\begin_inset Quotes eld
+\end_inset
+
+6009
+\begin_inset Quotes erd
+\end_inset
+
+} (т.е.
+ без "6003").
+\end_layout
+
+\begin_layout Enumerate
+Зарплата.
+ Включает в себя собственно зарплату, а также налоги на неё, т.е.
+ те заявки, у которых код статьи содержится в множестве {"2000", ..., 
+\begin_inset Quotes eld
+\end_inset
+
+2099
+\begin_inset Quotes erd
+\end_inset
+
+, "5002", "5003"}.
+\end_layout
+
+\begin_layout Enumerate
+Налоги.
+ Данный раздел содержит те заявки, у которых код статьи содержится в множестве
+ {"5000", 
+\begin_inset Quotes eld
+\end_inset
+
+5001
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+5004
+\begin_inset Quotes erd
+\end_inset
+
+, ..., 
+\begin_inset Quotes eld
+\end_inset
+
+5100
+\begin_inset Quotes erd
+\end_inset
+
+} (т.е.
+ без "5002" и "5003").
+\end_layout
+
+\begin_layout Enumerate
+Прочие.
+ Включает заявки, не вошедшие ни в один из предыдущих разделов.
+\end_layout
+
+\begin_layout Standard
+Замечание.
+ В каждый следующий раздел попадают заявки из остатка от заявок после отбора
+ в предыдущие разделы.
+ 
+\end_layout
+
+\end_body
+\end_document

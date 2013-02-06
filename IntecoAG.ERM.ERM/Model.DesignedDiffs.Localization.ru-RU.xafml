@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Localization>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="CaptionForFalse" Value="Ложь" />
+      <LocalizationItem Name="CaptionForTrue" Value="Истина" />
+      <LocalizationItem Name="NullValueText" Value="Незадано" />
+    </LocalizationGroup>
+  </Localization>
+  <NavigationItems>
+    <Items>
+      <Item Id="Contract" Caption="Договоры">
+        <Items>
+          <Item Id="Contract Registration Form_Copy" Caption="Новый договор..." />
+          <Item Id="Deal Registration Form" Caption="Новый проект договора..." />
+        </Items>
+      </Item>
+      <Item Id="Partners" Caption="Партнеры">
+        <Items>
+          <Item Id="@9d53cbdf-53c2-4d62-b346-b0deb5d0721c" Caption="Стороны" />
+          <Item Id="@5fa2e245-6b55-4436-a055-4b9bb3c5c214" Caption="Юридические лица" />
+          <Item Id="@51408b76-b9d3-4a05-a491-21b9b09e5a7f" Caption="Предприниматели" />
+          <Item Id="@d5c22a20-c5c9-4ed9-bd99-a138fe94c810" Caption="Физические лица" />
+          <Item Id="@bb695f3e-7fc6-474d-b798-9926cc46696e" Caption="Банки" />
+        </Items>
+      </Item>
+      <Item Id="Finance" Caption="Финансы" />
+      <Item Id="AVT" Caption="НДС" />
+      <Item Id="Sale" Caption="Продажи" />
+      <Item Id="Money" Caption="Деньги" />
+      <Item Id="Settings" Caption="Настройки">
+        <Items>
+          <Item Id="ERMCurrentUser" Caption="Мои данные" />
+          <Item Id="SettingsPartners" Caption="Партнеры" />
+          <Item Id="SettingsContract" Caption="Договора" />
+          <Item Id="SettingsFinance" Caption="Финансы">
+            <Items>
+              <Item Id="FinanceOrderAnalitycs" Caption="Аналитики Заказов" />
+              <Item Id="fmCPaymentBase_ListView_Copy" Caption="Коды основания платежа" />
+              <Item Id="fmCPaymentKBK_ListView" Caption="Справочник КБК" />
+              <Item Id="fmCPaymentKind_ListView" Caption="Типы платежей" />
+              <Item Id="fmCPaymentTaxPeriod_ListView" Caption="Периоды уплаты налога (сбора)" />
+            </Items>
+          </Item>
+          <Item Id="SettingsMaterial" Caption="Объекты" />
+          <Item Id="Staffs" Caption="Кадры" />
+          <Item Id="Administration" Caption="Администрирование">
+            <Items>
+              <Item Id="Security" Caption="Безопасность" />
+              <Item Id="State Machine" Caption="Конечный автомат" />
+              <Item Id="KPI" Caption="КПИ" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

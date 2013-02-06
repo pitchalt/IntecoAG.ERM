@@ -1,0 +1,1335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="xafTabbedMdiManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>357, 17</value>
+  </metadata>
+  <metadata name="actionsContainersManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>521, 17</value>
+  </metadata>
+  <data name="cObjectsCreation.Caption" xml:space="preserve">
+    <value>Objects Creation</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cObjectsCreation.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cFile.Caption" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="cFile.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cSave.Caption" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="cSave.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cPrint.Caption" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="cPrint.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cExport.Caption" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="cExport.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cExit.Caption" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="cExit.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cUndoRedo.Caption" xml:space="preserve">
+    <value>UndoRedo</value>
+  </data>
+  <data name="cUndoRedo.TargetPageGroupCaption" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="cEdit.Caption" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="cEdit.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cRecordEdit.Caption" xml:space="preserve">
+    <value>Record Edit</value>
+  </data>
+  <data name="cRecordEdit.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cOpenObject.Caption" xml:space="preserve">
+    <value>Open Object</value>
+  </data>
+  <data name="cOpenObject.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cPanels.Caption" xml:space="preserve">
+    <value>Panels</value>
+  </data>
+  <data name="cPanels.TargetPageCaption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="cPanels.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cViewsHistoryNavigation.Caption" xml:space="preserve">
+    <value>Views History Navigation</value>
+  </data>
+  <data name="cViewsHistoryNavigation.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cViewsNavigation.Caption" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="cViewsNavigation.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cRecordsNavigation.Caption" xml:space="preserve">
+    <value>Records Navigation</value>
+  </data>
+  <data name="cRecordsNavigation.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cView.Caption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="cView.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cReports.Caption" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="cReports.TargetPageGroupCaption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="cDefault.Caption" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="cDefault.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cSearch.Caption" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="cSearch.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cFilters.Caption" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="cFilters.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cFullTextSearch.Caption" xml:space="preserve">
+    <value>Full Text Search</value>
+  </data>
+  <data name="cFullTextSearch.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cAppearance.Caption" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="cAppearance.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cTools.Caption" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="cTools.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cOptions.Caption" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="cOptions.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cDiagnostic.Caption" xml:space="preserve">
+    <value>Diagnostic</value>
+  </data>
+  <data name="cDiagnostic.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cAbout.Caption" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="cAbout.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="navigation.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="navigation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="navigation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 438</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="navigation.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;navigation.Name" xml:space="preserve">
+    <value>navigation</value>
+  </data>
+  <data name="&gt;&gt;navigation.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.NavigationActionContainer, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;navigation.Parent" xml:space="preserve">
+    <value>dockPanelNavigation_Container</value>
+  </data>
+  <data name="&gt;&gt;navigation.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cMenu.Caption" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="cMenu.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Window.Caption" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="Window.TargetPageCaption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Window.TargetPageGroupCaption" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="cVersionActions.Caption" xml:space="preserve">
+    <value>Version Actions</value>
+  </data>
+  <data name="cVersionActions.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem1.Caption" xml:space="preserve">
+    <value>PRBusinesLogic</value>
+  </data>
+  <data name="actionContainerBarItem1.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="cBusinessLogic.Caption" xml:space="preserve">
+    <value>BusinessLogic</value>
+  </data>
+  <data name="cBusinessLogic.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem2.Caption" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="actionContainerBarItem2.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem3.Caption" xml:space="preserve">
+    <value>Objects Creation</value>
+  </data>
+  <data name="actionContainerBarItem3.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem4.Caption" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="actionContainerBarItem4.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem5.Caption" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="actionContainerBarItem5.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem6.Caption" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="actionContainerBarItem6.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem7.Caption" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="actionContainerBarItem7.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem8.Caption" xml:space="preserve">
+    <value>Open Object</value>
+  </data>
+  <data name="actionContainerBarItem8.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem9.Caption" xml:space="preserve">
+    <value>UndoRedo</value>
+  </data>
+  <data name="actionContainerBarItem9.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerMenuBarItem1.Caption" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="actionContainerMenuBarItem1.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem10.Caption" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="actionContainerBarItem10.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem11.Caption" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="actionContainerBarItem11.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem12.Caption" xml:space="preserve">
+    <value>Record Edit</value>
+  </data>
+  <data name="actionContainerBarItem12.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem13.Caption" xml:space="preserve">
+    <value>Workflow</value>
+  </data>
+  <data name="actionContainerBarItem13.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem14.Caption" xml:space="preserve">
+    <value>Records Navigation</value>
+  </data>
+  <data name="actionContainerBarItem14.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem15.Caption" xml:space="preserve">
+    <value>Views History Navigation</value>
+  </data>
+  <data name="actionContainerBarItem15.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem16.Caption" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="actionContainerBarItem16.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem17.Caption" xml:space="preserve">
+    <value>Full Text Search</value>
+  </data>
+  <data name="actionContainerBarItem17.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem18.Caption" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="actionContainerBarItem18.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem19.Caption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="actionContainerBarItem19.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem20.Caption" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="actionContainerBarItem20.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerMenuBarItem2.Caption" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="actionContainerMenuBarItem2.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerMenuBarItem3.Caption" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="actionContainerMenuBarItem3.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerMenuBarItem4.Caption" xml:space="preserve">
+    <value>Diagnostic</value>
+  </data>
+  <data name="actionContainerMenuBarItem4.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerMenuBarItem5.Caption" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="actionContainerMenuBarItem5.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerMenuBarItem6.Caption" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="actionContainerMenuBarItem6.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerMenuBarItem7.Caption" xml:space="preserve">
+    <value>Panels</value>
+  </data>
+  <data name="actionContainerMenuBarItem7.TargetPageCaption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="actionContainerMenuBarItem7.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem21.Caption" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="actionContainerBarItem21.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="actionContainerBarItem22.Caption" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="actionContainerBarItem22.TargetPageCaption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="actionContainerBarItem22.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <metadata name="modelSynchronizationManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="formStateModelSynchronizerComponent.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 54</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <metadata name="mainBarManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>703, 17</value>
+  </metadata>
+  <data name="barSubItemFile.Caption" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="barSubItemEdit.Caption" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="barSubItemView.Caption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="barSubItemPanels.Caption" xml:space="preserve">
+    <value>Panels</value>
+  </data>
+  <data name="barSubItemTools.Caption" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="barSubItemWindow.Caption" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="cWindows.Caption" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="barMdiChildrenListItem.Caption" xml:space="preserve">
+    <value>Window List</value>
+  </data>
+  <data name="cWindows.TargetPageCaption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="cWindows.TargetPageCategoryCaption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cWindows.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="barSubItemHelp.Caption" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="_mainMenuBar.Text" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="standardToolBar.Text" xml:space="preserve">
+    <value>Main Toolbar</value>
+  </data>
+  <data name="_statusBar.Text" xml:space="preserve">
+    <value>Status Bar</value>
+  </data>
+  <data name="xafBar2.Text" xml:space="preserve">
+    <value>Business Logic</value>
+  </data>
+  <metadata name="mainBarAndDockingController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 54</value>
+  </metadata>
+  <data name="barDockControlTop.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="barDockControlTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="barDockControlTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 78</value>
+  </data>
+  <data name="&gt;&gt;barDockControlTop.Name" xml:space="preserve">
+    <value>barDockControlTop</value>
+  </data>
+  <data name="&gt;&gt;barDockControlTop.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarDockControl, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barDockControlTop.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;barDockControlTop.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="barDockControlBottom.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="barDockControlBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 543</value>
+  </data>
+  <data name="barDockControlBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 23</value>
+  </data>
+  <data name="&gt;&gt;barDockControlBottom.Name" xml:space="preserve">
+    <value>barDockControlBottom</value>
+  </data>
+  <data name="&gt;&gt;barDockControlBottom.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarDockControl, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barDockControlBottom.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;barDockControlBottom.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="barDockControlLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="barDockControlLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 78</value>
+  </data>
+  <data name="barDockControlLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 465</value>
+  </data>
+  <data name="&gt;&gt;barDockControlLeft.Name" xml:space="preserve">
+    <value>barDockControlLeft</value>
+  </data>
+  <data name="&gt;&gt;barDockControlLeft.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarDockControl, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barDockControlLeft.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;barDockControlLeft.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="barDockControlRight.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="barDockControlRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>792, 78</value>
+  </data>
+  <data name="barDockControlRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 465</value>
+  </data>
+  <data name="&gt;&gt;barDockControlRight.Name" xml:space="preserve">
+    <value>barDockControlRight</value>
+  </data>
+  <data name="&gt;&gt;barDockControlRight.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarDockControl, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barDockControlRight.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;barDockControlRight.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="mainDockManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>217, 54</value>
+  </metadata>
+  <data name="dockPanelNavigation_Container.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dockPanelNavigation_Container.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="dockPanelNavigation_Container.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 438</value>
+  </data>
+  <data name="dockPanelNavigation_Container.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation_Container.Name" xml:space="preserve">
+    <value>dockPanelNavigation_Container</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation_Container.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Docking.ControlContainer, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation_Container.Parent" xml:space="preserve">
+    <value>dockPanelNavigation</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation_Container.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dockPanelNavigation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 78</value>
+  </data>
+  <data name="dockPanelNavigation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 465</value>
+  </data>
+  <data name="dockPanelNavigation.Text" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation.Name" xml:space="preserve">
+    <value>dockPanelNavigation</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Docking.DockPanel, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockPanelNavigation.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mainMenuItem1.Caption" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="mainMenuItem2.Caption" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="mainMenuItem3.Caption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="mainMenuItem4.Caption" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="mainMenuItem5.Caption" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="xafBarLinkContainerItem1.Caption" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="xafBarLinkContainerItem1.TargetPageCaption" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="xafBarLinkContainerItem1.TargetPageCategoryCaption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="xafBarLinkContainerItem1.TargetPageGroupCaption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mainMenuItem6.Caption" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="barMdiChildrenListItem1.Caption" xml:space="preserve">
+    <value>Window List</value>
+  </data>
+  <data name="barSubItem1.Caption" xml:space="preserve">
+    <value>Panels</value>
+  </data>
+  <data name="repositoryItemTextEdit1.AutoHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>792, 566</value>
+  </data>
+  <data name="viewSitePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="viewSitePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 78</value>
+  </data>
+  <data name="viewSitePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>592, 465</value>
+  </data>
+  <data name="viewSitePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;viewSitePanel.Name" xml:space="preserve">
+    <value>viewSitePanel</value>
+  </data>
+  <data name="&gt;&gt;viewSitePanel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;viewSitePanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;viewSitePanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="&gt;&gt;xafTabbedMdiManager.Name" xml:space="preserve">
+    <value>xafTabbedMdiManager</value>
+  </data>
+  <data name="&gt;&gt;xafTabbedMdiManager.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.Controls.XafTabbedMdiManager, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionsContainersManager.Name" xml:space="preserve">
+    <value>actionsContainersManager</value>
+  </data>
+  <data name="&gt;&gt;actionsContainersManager.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainersManager, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;modelSynchronizationManager.Name" xml:space="preserve">
+    <value>modelSynchronizationManager</value>
+  </data>
+  <data name="&gt;&gt;modelSynchronizationManager.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ModelSynchronizationManager, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;viewSiteManager.Name" xml:space="preserve">
+    <value>viewSiteManager</value>
+  </data>
+  <data name="&gt;&gt;viewSiteManager.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ViewSiteManager, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainBarManager.Name" xml:space="preserve">
+    <value>mainBarManager</value>
+  </data>
+  <data name="&gt;&gt;mainBarManager.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.Controls.XafBarManager, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;_mainMenuBar.Name" xml:space="preserve">
+    <value>_mainMenuBar</value>
+  </data>
+  <data name="&gt;&gt;_mainMenuBar.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.Controls.XafBar, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItemFile.Name" xml:space="preserve">
+    <value>barSubItemFile</value>
+  </data>
+  <data name="&gt;&gt;barSubItemFile.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cObjectsCreation.Name" xml:space="preserve">
+    <value>cObjectsCreation</value>
+  </data>
+  <data name="&gt;&gt;cObjectsCreation.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cFile.Name" xml:space="preserve">
+    <value>cFile</value>
+  </data>
+  <data name="&gt;&gt;cFile.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cSave.Name" xml:space="preserve">
+    <value>cSave</value>
+  </data>
+  <data name="&gt;&gt;cSave.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cPrint.Name" xml:space="preserve">
+    <value>cPrint</value>
+  </data>
+  <data name="&gt;&gt;cPrint.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cExport.Name" xml:space="preserve">
+    <value>cExport</value>
+  </data>
+  <data name="&gt;&gt;cExport.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cExit.Name" xml:space="preserve">
+    <value>cExit</value>
+  </data>
+  <data name="&gt;&gt;cExit.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItemEdit.Name" xml:space="preserve">
+    <value>barSubItemEdit</value>
+  </data>
+  <data name="&gt;&gt;barSubItemEdit.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cUndoRedo.Name" xml:space="preserve">
+    <value>cUndoRedo</value>
+  </data>
+  <data name="&gt;&gt;cUndoRedo.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cEdit.Name" xml:space="preserve">
+    <value>cEdit</value>
+  </data>
+  <data name="&gt;&gt;cEdit.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cRecordEdit.Name" xml:space="preserve">
+    <value>cRecordEdit</value>
+  </data>
+  <data name="&gt;&gt;cRecordEdit.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cOpenObject.Name" xml:space="preserve">
+    <value>cOpenObject</value>
+  </data>
+  <data name="&gt;&gt;cOpenObject.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem13.Name" xml:space="preserve">
+    <value>actionContainerBarItem13</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem13.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItemView.Name" xml:space="preserve">
+    <value>barSubItemView</value>
+  </data>
+  <data name="&gt;&gt;barSubItemView.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItemPanels.Name" xml:space="preserve">
+    <value>barSubItemPanels</value>
+  </data>
+  <data name="&gt;&gt;barSubItemPanels.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarSubItem, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cPanels.Name" xml:space="preserve">
+    <value>cPanels</value>
+  </data>
+  <data name="&gt;&gt;cPanels.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cViewsHistoryNavigation.Name" xml:space="preserve">
+    <value>cViewsHistoryNavigation</value>
+  </data>
+  <data name="&gt;&gt;cViewsHistoryNavigation.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cViewsNavigation.Name" xml:space="preserve">
+    <value>cViewsNavigation</value>
+  </data>
+  <data name="&gt;&gt;cViewsNavigation.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cRecordsNavigation.Name" xml:space="preserve">
+    <value>cRecordsNavigation</value>
+  </data>
+  <data name="&gt;&gt;cRecordsNavigation.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cView.Name" xml:space="preserve">
+    <value>cView</value>
+  </data>
+  <data name="&gt;&gt;cView.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cReports.Name" xml:space="preserve">
+    <value>cReports</value>
+  </data>
+  <data name="&gt;&gt;cReports.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cDefault.Name" xml:space="preserve">
+    <value>cDefault</value>
+  </data>
+  <data name="&gt;&gt;cDefault.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cSearch.Name" xml:space="preserve">
+    <value>cSearch</value>
+  </data>
+  <data name="&gt;&gt;cSearch.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cFilters.Name" xml:space="preserve">
+    <value>cFilters</value>
+  </data>
+  <data name="&gt;&gt;cFilters.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cFullTextSearch.Name" xml:space="preserve">
+    <value>cFullTextSearch</value>
+  </data>
+  <data name="&gt;&gt;cFullTextSearch.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cAppearance.Name" xml:space="preserve">
+    <value>cAppearance</value>
+  </data>
+  <data name="&gt;&gt;cAppearance.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItemTools.Name" xml:space="preserve">
+    <value>barSubItemTools</value>
+  </data>
+  <data name="&gt;&gt;barSubItemTools.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cTools.Name" xml:space="preserve">
+    <value>cTools</value>
+  </data>
+  <data name="&gt;&gt;cTools.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cOptions.Name" xml:space="preserve">
+    <value>cOptions</value>
+  </data>
+  <data name="&gt;&gt;cOptions.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cDiagnostic.Name" xml:space="preserve">
+    <value>cDiagnostic</value>
+  </data>
+  <data name="&gt;&gt;cDiagnostic.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItemWindow.Name" xml:space="preserve">
+    <value>barSubItemWindow</value>
+  </data>
+  <data name="&gt;&gt;barSubItemWindow.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cWindows.Name" xml:space="preserve">
+    <value>cWindows</value>
+  </data>
+  <data name="&gt;&gt;cWindows.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.XafBarLinkContainerItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barMdiChildrenListItem.Name" xml:space="preserve">
+    <value>barMdiChildrenListItem</value>
+  </data>
+  <data name="&gt;&gt;barMdiChildrenListItem.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarMdiChildrenListItem, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;Window.Name" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="&gt;&gt;Window.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItemHelp.Name" xml:space="preserve">
+    <value>barSubItemHelp</value>
+  </data>
+  <data name="&gt;&gt;barSubItemHelp.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cAbout.Name" xml:space="preserve">
+    <value>cAbout</value>
+  </data>
+  <data name="&gt;&gt;cAbout.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;standardToolBar.Name" xml:space="preserve">
+    <value>standardToolBar</value>
+  </data>
+  <data name="&gt;&gt;standardToolBar.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.Controls.XafBar, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cVersionActions.Name" xml:space="preserve">
+    <value>cVersionActions</value>
+  </data>
+  <data name="&gt;&gt;cVersionActions.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;_statusBar.Name" xml:space="preserve">
+    <value>_statusBar</value>
+  </data>
+  <data name="&gt;&gt;_statusBar.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.Controls.XafBar, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;xafBar2.Name" xml:space="preserve">
+    <value>xafBar2</value>
+  </data>
+  <data name="&gt;&gt;xafBar2.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.Controls.XafBar, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cBusinessLogic.Name" xml:space="preserve">
+    <value>cBusinessLogic</value>
+  </data>
+  <data name="&gt;&gt;cBusinessLogic.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainBarAndDockingController.Name" xml:space="preserve">
+    <value>mainBarAndDockingController</value>
+  </data>
+  <data name="&gt;&gt;mainBarAndDockingController.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarAndDockingController, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainDockManager.Name" xml:space="preserve">
+    <value>mainDockManager</value>
+  </data>
+  <data name="&gt;&gt;mainDockManager.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Docking.DockManager, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cMenu.Name" xml:space="preserve">
+    <value>cMenu</value>
+  </data>
+  <data name="&gt;&gt;cMenu.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem1.Name" xml:space="preserve">
+    <value>actionContainerBarItem1</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem1.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem1.Name" xml:space="preserve">
+    <value>mainMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem1.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem2.Name" xml:space="preserve">
+    <value>mainMenuItem2</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem2.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem3.Name" xml:space="preserve">
+    <value>mainMenuItem3</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem3.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem4.Name" xml:space="preserve">
+    <value>mainMenuItem4</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem4.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem5.Name" xml:space="preserve">
+    <value>mainMenuItem5</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem5.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem2.Name" xml:space="preserve">
+    <value>actionContainerBarItem2</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem2.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem3.Name" xml:space="preserve">
+    <value>actionContainerBarItem3</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem3.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem4.Name" xml:space="preserve">
+    <value>actionContainerBarItem4</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem4.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem5.Name" xml:space="preserve">
+    <value>actionContainerBarItem5</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem5.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem6.Name" xml:space="preserve">
+    <value>actionContainerBarItem6</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem6.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem7.Name" xml:space="preserve">
+    <value>actionContainerBarItem7</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem7.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem8.Name" xml:space="preserve">
+    <value>actionContainerBarItem8</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem8.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem9.Name" xml:space="preserve">
+    <value>actionContainerBarItem9</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem9.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem1.Name" xml:space="preserve">
+    <value>actionContainerMenuBarItem1</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem1.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem10.Name" xml:space="preserve">
+    <value>actionContainerBarItem10</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem10.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem11.Name" xml:space="preserve">
+    <value>actionContainerBarItem11</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem11.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem12.Name" xml:space="preserve">
+    <value>actionContainerBarItem12</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem12.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem14.Name" xml:space="preserve">
+    <value>actionContainerBarItem14</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem14.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem15.Name" xml:space="preserve">
+    <value>actionContainerBarItem15</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem15.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem16.Name" xml:space="preserve">
+    <value>actionContainerBarItem16</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem16.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem17.Name" xml:space="preserve">
+    <value>actionContainerBarItem17</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem17.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem18.Name" xml:space="preserve">
+    <value>actionContainerBarItem18</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem18.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem19.Name" xml:space="preserve">
+    <value>actionContainerBarItem19</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem19.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem20.Name" xml:space="preserve">
+    <value>actionContainerBarItem20</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem20.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem2.Name" xml:space="preserve">
+    <value>actionContainerMenuBarItem2</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem2.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem3.Name" xml:space="preserve">
+    <value>actionContainerMenuBarItem3</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem3.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem4.Name" xml:space="preserve">
+    <value>actionContainerMenuBarItem4</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem4.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem5.Name" xml:space="preserve">
+    <value>actionContainerMenuBarItem5</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem5.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem6.Name" xml:space="preserve">
+    <value>actionContainerMenuBarItem6</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem6.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;xafBarLinkContainerItem1.Name" xml:space="preserve">
+    <value>xafBarLinkContainerItem1</value>
+  </data>
+  <data name="&gt;&gt;xafBarLinkContainerItem1.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.XafBarLinkContainerItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem7.Name" xml:space="preserve">
+    <value>actionContainerMenuBarItem7</value>
+  </data>
+  <data name="&gt;&gt;actionContainerMenuBarItem7.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerMenuBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem21.Name" xml:space="preserve">
+    <value>actionContainerBarItem21</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem21.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem6.Name" xml:space="preserve">
+    <value>mainMenuItem6</value>
+  </data>
+  <data name="&gt;&gt;mainMenuItem6.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainMenuItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barMdiChildrenListItem1.Name" xml:space="preserve">
+    <value>barMdiChildrenListItem1</value>
+  </data>
+  <data name="&gt;&gt;barMdiChildrenListItem1.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarMdiChildrenListItem, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem22.Name" xml:space="preserve">
+    <value>actionContainerBarItem22</value>
+  </data>
+  <data name="&gt;&gt;actionContainerBarItem22.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.ActionContainers.ActionContainerBarItem, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;barSubItem1.Name" xml:space="preserve">
+    <value>barSubItem1</value>
+  </data>
+  <data name="&gt;&gt;barSubItem1.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarSubItem, DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;repositoryItemTextEdit1.Name" xml:space="preserve">
+    <value>repositoryItemTextEdit1</value>
+  </data>
+  <data name="&gt;&gt;repositoryItemTextEdit1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.Repository.RepositoryItemTextEdit, DevExpress.XtraEditors.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;formStateModelSynchronizerComponent.Name" xml:space="preserve">
+    <value>formStateModelSynchronizerComponent</value>
+  </data>
+  <data name="&gt;&gt;formStateModelSynchronizerComponent.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Core.FormStateModelSynchronizer, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;xafBar1.Name" xml:space="preserve">
+    <value>xafBar1</value>
+  </data>
+  <data name="&gt;&gt;xafBar1.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.Controls.XafBar, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>DevExpress.ExpressApp.Win.Templates.MainFormTemplateBase, DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <metadata name="viewSiteManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>221, 17</value>
+  </metadata>
+  <data name="xafBar1.Text" xml:space="preserve">
+    <value>Custom 5</value>
+  </data>
+</root>

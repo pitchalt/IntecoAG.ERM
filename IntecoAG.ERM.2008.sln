@@ -1,0 +1,124 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM", "IntecoAG.ERM\IntecoAG.ERM.csproj", "{0B88798B-F4D2-4122-81CB-78C88062FCB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.Module", "IntecoAG.ERM.Module\IntecoAG.ERM.Module.csproj", "{368E9133-CB2F-4929-92A4-7F047659B03E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.Module.Win", "IntecoAG.ERM.Module.Win\IntecoAG.ERM.Module.Win.csproj", "{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.Win", "IntecoAG.ERM.Win\IntecoAG.ERM.Win.csproj", "{274642DE-3B65-4136-9BC9-A090B1EF4450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.NUnitTests", "IntecoAG.ERM.NUnitTests\IntecoAG.ERM.NUnitTests.csproj", "{32E1DF47-E851-4991-8FEE-9349E0E22363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.Security", "IntecoAG.ERM.Security\IntecoAG.ERM.Security.csproj", "{A1E60A19-8E1F-464B-BD3A-C4BDDD044BF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6CDA044A-C753-4703-B01D-9290BDA1EA65}"
+	ProjectSection(SolutionItems) = preProject
+		Functional Tests\000 - Замеченные ошибки.txt = Functional Tests\000 - Замеченные ошибки.txt
+		Functional Tests\001 - Заполнение данных о собственной организации при входе в систему.ets = Functional Tests\001 - Заполнение данных о собственной организации при входе в систему.ets
+		Functional Tests\002 - Системные - Справочник Категория договора.inc = Functional Tests\002 - Системные - Справочник Категория договора.inc
+		Functional Tests\003 - Системные - Справочник Модель цены.inc = Functional Tests\003 - Системные - Справочник Модель цены.inc
+		Functional Tests\004 - Системные - Справочник Страна.inc = Functional Tests\004 - Системные - Справочник Страна.inc
+		Functional Tests\005 - Системные - Справочник Единица измерения.inc = Functional Tests\005 - Системные - Справочник Единица измерения.inc
+		Functional Tests\006 - Системные - Справочник Тип Номенклатур.inc = Functional Tests\006 - Системные - Справочник Тип Номенклатур.inc
+		Functional Tests\007 - Системные - Справочник csMaterial и ДДС.inc = Functional Tests\007 - Системные - Справочник csMaterial и ДДС.inc
+		Functional Tests\008 - Системные - Справочник csService.inc = Functional Tests\008 - Системные - Справочник csService.inc
+		Functional Tests\009 - Системные - Справочник csValuta.inc = Functional Tests\009 - Системные - Справочник csValuta.inc
+		Functional Tests\010 - Партнёры - Справочник Физические лица.inc = Functional Tests\010 - Партнёры - Справочник Физические лица.inc
+		Functional Tests\011 - Партнёры - Справочник Предприниматели.inc = Functional Tests\011 - Партнёры - Справочник Предприниматели.inc
+		Functional Tests\012 - Партнёры - Справочник Юридические лица.inc = Functional Tests\012 - Партнёры - Справочник Юридические лица.inc
+		Functional Tests\013 - Финансы - Справочник Тематика.inc = Functional Tests\013 - Финансы - Справочник Тематика.inc
+		Functional Tests\014 - Кадры - Справочник Подразделение.inc = Functional Tests\014 - Кадры - Справочник Подразделение.inc
+		Functional Tests\015 - Кадры - Справочник Сотрудник.inc = Functional Tests\015 - Кадры - Справочник Сотрудник.inc
+		Functional Tests\016 - Default - Справочник Role.ets = Functional Tests\016 - Default - Справочник Role.ets
+		Functional Tests\016 - Default - Справочник Role.inc = Functional Tests\016 - Default - Справочник Role.inc
+		Functional Tests\017 - Системные - Справочник Организация пользователя.inc = Functional Tests\017 - Системные - Справочник Организация пользователя.inc
+		Functional Tests\018 - Договоры - Справочник Новый договор (без этапов).inc = Functional Tests\018 - Договоры - Справочник Новый договор (без этапов).inc
+		Functional Tests\019 - Договоры - Утверждение договора (попутно с вводом НДС в справочник).inc = Functional Tests\019 - Договоры - Утверждение договора (попутно с вводом НДС в справочник).inc
+		Functional Tests\019a - Договоры - Утверждение договора.inc = Functional Tests\019a - Договоры - Утверждение договора.inc
+		Functional Tests\020 - Договоры - Создание новой версии простого договора (со сменой значений свойств).inc = Functional Tests\020 - Договоры - Создание новой версии простого договора (со сменой значений свойств).inc
+		Functional Tests\021 - Договоры - Утверждение проектной версии простого договора (со сменой значений свойств).inc = Functional Tests\021 - Договоры - Утверждение проектной версии простого договора (со сменой значений свойств).inc
+		Functional Tests\1 - Создание простого договора с нуля.ets = Functional Tests\1 - Создание простого договора с нуля.ets
+		Functional Tests\2 - Создание версий и утверждение простого договора.ets = Functional Tests\2 - Создание версий и утверждение простого договора.ets
+		Functional Tests\3 - Создание новой версии простого договора, когда есть непервая утверждённая.ets = Functional Tests\3 - Создание новой версии простого договора, когда есть непервая утверждённая.ets
+		Functional Tests\Config.xml.sample = Functional Tests\Config.xml.sample
+		Functional Tests\e002 - Системные - Справочник Категория договора.inc = Functional Tests\e002 - Системные - Справочник Категория договора.inc
+		Functional Tests\e003 - Системные - Справочник Модель цены.inc = Functional Tests\e003 - Системные - Справочник Модель цены.inc
+		Functional Tests\e004 - Системные - Справочник Страна.inc = Functional Tests\e004 - Системные - Справочник Страна.inc
+		Functional Tests\e005 - Системные - Справочник Единица измерения.inc = Functional Tests\e005 - Системные - Справочник Единица измерения.inc
+		Functional Tests\e006 - Системные - Справочник Тип Номенклатур.inc = Functional Tests\e006 - Системные - Справочник Тип Номенклатур.inc
+		Functional Tests\e007 - Системные - Справочник csMaterial и ДДС.inc = Functional Tests\e007 - Системные - Справочник csMaterial и ДДС.inc
+		Functional Tests\e008 - Системные - Справочник csService.inc = Functional Tests\e008 - Системные - Справочник csService.inc
+		Functional Tests\e009 - Системные - Справочник csValuta.inc = Functional Tests\e009 - Системные - Справочник csValuta.inc
+		Functional Tests\e010 - Партнёры - Справочник Физические лица.inc = Functional Tests\e010 - Партнёры - Справочник Физические лица.inc
+		Functional Tests\e011 - Партнёры - Справочник Предприниматели.inc = Functional Tests\e011 - Партнёры - Справочник Предприниматели.inc
+		Functional Tests\e012 - Партнёры - Справочник Юридические лица.inc = Functional Tests\e012 - Партнёры - Справочник Юридические лица.inc
+		Functional Tests\e013 - Финансы - Справочник Тематика.inc = Functional Tests\e013 - Финансы - Справочник Тематика.inc
+		Functional Tests\e014 - Кадры - Справочник Подразделение.inc = Functional Tests\e014 - Кадры - Справочник Подразделение.inc
+		Functional Tests\e015 - Кадры - Справочник Сотрудник.inc = Functional Tests\e015 - Кадры - Справочник Сотрудник.inc
+		Functional Tests\e016 - Default - Справочник Role.ets = Functional Tests\e016 - Default - Справочник Role.ets
+		Functional Tests\e016 - Default - Справочник Role.inc = Functional Tests\e016 - Default - Справочник Role.inc
+		Functional Tests\e017 - Системные - Справочник Организация пользователя.inc = Functional Tests\e017 - Системные - Справочник Организация пользователя.inc
+		Functional Tests\e018 - Договоры - Справочник Новый договор (без этапов).inc = Functional Tests\e018 - Договоры - Справочник Новый договор (без этапов).inc
+		Functional Tests\e018 - Договоры - Справочник Новый договор (С ЭТАПАМИ).inc = Functional Tests\e018 - Договоры - Справочник Новый договор (С ЭТАПАМИ).inc
+		Functional Tests\e019 - Договоры - Утверждение договора (попутно с вводом НДС в справочник).inc = Functional Tests\e019 - Договоры - Утверждение договора (попутно с вводом НДС в справочник).inc
+		Functional Tests\e019a - Договоры - Утверждение договора.inc = Functional Tests\e019a - Договоры - Утверждение договора.inc
+		Functional Tests\e020 - Договоры - Создание новой версии простого договора (со сменой значений свойств).inc = Functional Tests\e020 - Договоры - Создание новой версии простого договора (со сменой значений свойств).inc
+		Functional Tests\e020 - Договоры - Создание новой версии простого договора С ЭТАПАМИ (со сменой значений свойств) и утверждение.inc = Functional Tests\e020 - Договоры - Создание новой версии простого договора С ЭТАПАМИ (со сменой значений свойств) и утверждение.inc
+		Functional Tests\e021 - Договоры - Утверждение проектной версии простого договора (со сменой значений свойств).inc = Functional Tests\e021 - Договоры - Утверждение проектной версии простого договора (со сменой значений свойств).inc
+		Functional Tests\StartScript_Заполнение всего подряд (Имеющаяся локализация).ets = Functional Tests\StartScript_Заполнение всего подряд (Имеющаяся локализация).ets
+		Functional Tests\StartScript_Заполнение всего подряд Без Этапов (English).ets = Functional Tests\StartScript_Заполнение всего подряд Без Этапов (English).ets
+		Functional Tests\StartScript_Заполнение всего подряд С Этапами (English).ets = Functional Tests\StartScript_Заполнение всего подряд С Этапами (English).ets
+		Functional Tests\TimeTestScript.ets = Functional Tests\TimeTestScript.ets
+		Functional Tests\WinSample.ets = Functional Tests\WinSample.ets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		EasyTest|Any CPU = EasyTest|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B88798B-F4D2-4122-81CB-78C88062FCB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B88798B-F4D2-4122-81CB-78C88062FCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B88798B-F4D2-4122-81CB-78C88062FCB8}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{0B88798B-F4D2-4122-81CB-78C88062FCB8}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{0B88798B-F4D2-4122-81CB-78C88062FCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B88798B-F4D2-4122-81CB-78C88062FCB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368E9133-CB2F-4929-92A4-7F047659B03E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368E9133-CB2F-4929-92A4-7F047659B03E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368E9133-CB2F-4929-92A4-7F047659B03E}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{368E9133-CB2F-4929-92A4-7F047659B03E}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{368E9133-CB2F-4929-92A4-7F047659B03E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368E9133-CB2F-4929-92A4-7F047659B03E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274642DE-3B65-4136-9BC9-A090B1EF4450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274642DE-3B65-4136-9BC9-A090B1EF4450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274642DE-3B65-4136-9BC9-A090B1EF4450}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{274642DE-3B65-4136-9BC9-A090B1EF4450}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{274642DE-3B65-4136-9BC9-A090B1EF4450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274642DE-3B65-4136-9BC9-A090B1EF4450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E1DF47-E851-4991-8FEE-9349E0E22363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E1DF47-E851-4991-8FEE-9349E0E22363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E1DF47-E851-4991-8FEE-9349E0E22363}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{32E1DF47-E851-4991-8FEE-9349E0E22363}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{32E1DF47-E851-4991-8FEE-9349E0E22363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E1DF47-E851-4991-8FEE-9349E0E22363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E60A19-8E1F-464B-BD3A-C4BDDD044BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E60A19-8E1F-464B-BD3A-C4BDDD044BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E60A19-8E1F-464B-BD3A-C4BDDD044BF6}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E60A19-8E1F-464B-BD3A-C4BDDD044BF6}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{A1E60A19-8E1F-464B-BD3A-C4BDDD044BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E60A19-8E1F-464B-BD3A-C4BDDD044BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
