@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ComplexContractVersionApprove" Caption="Утвердить" />
+      <Action Id="SimpleContractVersionApprove" Caption="Утвердить" />
+      <Action Id="WizardSupportCompleteAction" Caption="Готово" />
+      <Action Id="WorkPlanVersionApprove" Caption="Утвердить" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="IntecoAG.ERM.CRM.Contract.ComplexContract" Caption="Комплексный договор">
+      <OwnMembers>
+        <Member Name="ComplexContractVersions" Caption="Версии комплексного договора" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.ComplexContractVersion" Caption="Версия комплексного договора">
+      <OwnMembers>
+        <Member Name="ComplexContract" Caption="Общие сведения" />
+        <Member Name="ContractPartys" Caption="Стороны договора" />
+        <Member Name="VersionContractDocument" Caption="Документ данной версии" />
+        <Member Name="WorkPlanVersions" Caption="Ведомости" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.ContractDocument" Caption="Договорной документ">
+      <OwnMembers>
+        <Member Name="Date" Caption="Дата" />
+        <Member Name="DocumentCategory" Caption="Тип документа" />
+        <Member Name="FullName" Caption="Полный номер" />
+        <Member Name="Number" Caption="Номер" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.ContractImplementation">
+      <OwnMembers>
+        <Member Name="Category" Caption="Категория договора" />
+        <Member Name="DateClose" Caption="Дата закрытия" />
+        <Member Name="DateOpen" Caption="Дата открытия" />
+        <Member Name="DateSign" Caption="Дата подписания" />
+        <Member Name="IsClosed" Caption="Закрыт" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.ContractVersion" Caption="Версия договора">
+      <OwnMembers>
+        <Member Name="Category" Caption="Категория договора" />
+        <Member Name="Date" Caption="Дата договора" />
+        <Member Name="DateBegin" Caption="Дата Начала" />
+        <Member Name="DateEnd" Caption="Дата Окончания" />
+        <Member Name="DocumentCategory" Caption="Тип договорного документа" />
+        <Member Name="Number" Caption="Номер договорного документа" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmContractCategory" Caption="Категория договора">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="DownCategorys" Caption="Подкатегории" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="UpCategory" Caption="Верх.Категория" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmContractDocumentCategory" Caption="Тип договорного документа">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Contracts" Caption="Договоры" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmContractNewForm" Caption="Регистрация нового договора">
+      <OwnMembers>
+        <Member Name="Category" Caption="Категория договора" />
+        <Member Name="ContractType" Caption="Тип Договора" />
+        <Member Name="DateBegin" Caption="Дата Начала" />
+        <Member Name="DateEnd" Caption="Дата Окончания" />
+        <Member Name="Document" Caption="Договорной документ" />
+        <Member Name="OurParty" Caption="Наша Сторона" />
+        <Member Name="OurRole" Caption="Наша Роль" />
+        <Member Name="PartnerParty" Caption="Партнерская сторона" />
+        <Member Name="PartnerRole" Caption="Партнерская роль" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmContractParty">
+      <OwnMembers>
+        <Member Name="AddressFact" Caption="Адрес фактический" />
+        <Member Name="AddressLegal" Caption="Адрес юридический" />
+        <Member Name="Bank" Caption="Банк" />
+        <Member Name="BankAccount" Caption="Счет в банке" />
+        <Member Name="BIC" Caption="Swift BIC" />
+        <Member Name="CurrentAcc" Caption="Номер расч.счета " />
+        <Member Name="INN" Caption="ИНН" />
+        <Member Name="KorAcc" Caption="Номер кор.счета" />
+        <Member Name="KPP" Caption="КПП" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="Party" Caption="Сторона" />
+        <Member Name="RCBIC" Caption="БИК" />
+        <Member Name="RegNumber" Caption="Рег.Номер" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmCost" Caption="Стоимость">
+      <OwnMembers>
+        <Member Name="CostModel" Caption="Модель цены" />
+        <Member Name="SummCost" Caption="Стоимость" />
+        <Member Name="SummFull" Caption="Стоимость с НДС" />
+        <Member Name="SummNDS" Caption="НДС" />
+        <Member Name="Valuta" Caption="Валюта" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmCostModel" Caption="Модель цены">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmDeliveryItem">
+      <OwnMembers>
+        <Member Name="CountUnit" Caption="Ед.Изм" />
+        <Member Name="CountValue" Caption="Кол-во" />
+        <Member Name="Date" Caption="Дата" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmDeliveryMaterial" Caption="Поставка МПЗ">
+      <OwnMembers>
+        <Member Name="Material" Caption="Материал" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmDeliveryService" Caption="Выполнение работ/Оказание услуг">
+      <OwnMembers>
+        <Member Name="Service" Caption="Работа/Услуга" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmDeliveryUnit" Caption="Поставка">
+      <OwnMembers>
+        <Member Name="DeliveryItems" Caption="Позиции поставки" />
+        <Member Name="DeliveryPlan" Caption="План поставок" />
+        <Member Name="DeliveryStage" Caption="Этап" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmObligationTransfer">
+      <OwnMembers>
+        <Member Name="Nomenclature" Caption="Номенклатура" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmObligationUnit" Caption="Группа обязательств">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="CostModel" Caption="Модель цены" />
+        <Member Name="Creditor" Caption="Кредитор" />
+        <Member Name="CurrentCost" Caption="Текущая цена" />
+        <Member Name="DateBegin" Caption="Дата с " />
+        <Member Name="DateEnd" Caption="Дата по" />
+        <Member Name="DatePlane" Caption="Плановая дата" />
+        <Member Name="Debitor" Caption="Дебитор" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="fmOrder" Caption="Фин.Заказ" />
+        <Member Name="ObligationUnitCosts" Caption="Модельные Стоимости" />
+        <Member Name="Stage" Caption="Этап" />
+        <Member Name="Valuta" Caption="Валюта" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmPaymentItem" Caption="Платеж">
+      <OwnMembers>
+        <Member Name="AccountSumma" Caption="Сумма платежа" />
+        <Member Name="AccountValuta" Caption="Валюта платежа" />
+        <Member Name="Date" Caption="Дата" />
+        <Member Name="PaymentUnit" Caption="Оплата" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmPaymentMoney" Caption="Денежный платеж" />
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmPaymentUnit" Caption="Оплата">
+      <OwnMembers>
+        <Member Name="PaymentItems" Caption="Платежи" />
+        <Member Name="PaymentStage" Caption="Этап" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmStage" Caption="Этап">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="CostModel" Caption="Модель цены" />
+        <Member Name="DateBegin" Caption="Дата с" />
+        <Member Name="DateEnd" Caption="Дата по" />
+        <Member Name="Delivery" Caption="Поставка" />
+        <Member Name="DeliveryUnits" Caption="Поставки" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="DisplaySummMode" Caption="Тип суммы" />
+        <Member Name="FullCode" Caption="Полный код" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="Payment" Caption="Оплата" />
+        <Member Name="PaymentUnits" Caption="Оплаты" />
+        <Member Name="Price" Caption="Стоимость" />
+        <Member Name="StageCosts" Caption="Модельные цены" />
+        <Member Name="StageType" Caption="Тип этапа" />
+        <Member Name="SubStages" Caption="Под этапы" />
+        <Member Name="Valuta" Caption="Валюта" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.DeliveryPlan">
+      <OwnMembers>
+        <Member Name="DeliveryUnits" Caption="Поставки" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.PaymentPlan">
+      <OwnMembers>
+        <Member Name="PaymentUnits" Caption="Оплаты" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.SimpleContract" Caption="Простой договор">
+      <OwnMembers>
+        <Member Name="SimpleContractVersions" Caption="Версии договора" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.SimpleContractVersion" Caption="Версия простого договора">
+      <OwnMembers>
+        <Member Name="Comment" Caption="Комментарий" />
+        <Member Name="CostModel" Caption="Модель цены" />
+        <Member Name="Customer" Caption="Заказчик" />
+        <Member Name="DeliveryPlan" Caption="План поставок" />
+        <Member Name="fmOrder" Caption="Фин.Заказ" />
+        <Member Name="PaymentPlan" Caption="План оплаты" />
+        <Member Name="SimpleContract" Caption="Договор" />
+        <Member Name="Supplier" Caption="Поставщик" />
+        <Member Name="Valuta" Caption="Валюта" />
+        <Member Name="VersionContractDocument" Caption="Документ версии" />
+        <Member Name="VersionStatus" Caption="Статус версии" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.WorkPlan" Caption="Ведомость">
+      <OwnMembers>
+        <Member Name="WorkPlanVersions" Caption="Версии ведомости" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.WorkPlanVersion" Caption="Версия Ведомости">
+      <OwnMembers>
+        <Member Name="ComplexContractVersion" Caption="Комплексный контракт" />
+        <Member Name="ContractCategory" Caption="Категория договора" />
+        <Member Name="ContractDocument" Caption="Контрактный документ" />
+        <Member Name="CurrentCostModel" Caption="Модель цены" />
+        <Member Name="Customer" Caption="Заказчик" />
+        <Member Name="DeliveryPlan" Caption="План поставок" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="DisplaySummMode" Caption="Отражение стоимости" />
+        <Member Name="fmOrder" Caption="Фин.Заказ" />
+        <Member Name="PaymentPlan" Caption="План оплат" />
+        <Member Name="StageStructure" Caption="Структура этапов" />
+        <Member Name="Supplier" Caption="Поставщик" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmBank">
+      <OwnMembers>
+        <Member Name="BIC" Caption="Swift BIC" />
+        <Member Name="Country" Caption="Страна" />
+        <Member Name="FullName" Caption="Полное имя" />
+        <Member Name="KorAcc" Caption="Кор.Счет" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="Party" Caption="Сторона" />
+        <Member Name="RCBIC" Caption="БИК" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmBankAccount" Caption="Банковский Счет">
+      <OwnMembers>
+        <Member Name="Bank" Caption="Банк" />
+        <Member Name="Number" Caption="Номер счета" />
+        <Member Name="Person" Caption="Лицо" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmBusinessmanRu">
+      <OwnMembers>
+        <Member Name="PhysicalPerson" Caption="Физическое лицо" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmCustomer" Caption="Заказчик" />
+    <Class Name="IntecoAG.ERM.CRM.Party.crmLegalPerson" Caption="Юридическое лицо">
+      <OwnMembers>
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="RegNumber" Caption="Рег. Номер (ОГРЮЛ)" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmParty">
+      <OwnMembers>
+        <Member Name="AddressFact" Caption="Адрес фактический" />
+        <Member Name="AddressLegal" Caption="Адрес юридический" />
+        <Member Name="AddressLegalParty" Caption="Алт. Юридический адрес" />
+        <Member Name="BankAccounts" Caption="Банковские счета" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="PartyName" Caption="Наименование стороны" />
+        <Member Name="Person" Caption="Контрагент" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmPartyRu">
+      <OwnMembers>
+        <Member Name="CodeFA" Caption="Код Регистрации Филиала" />
+        <Member Name="INN" Caption="ИНН" />
+        <Member Name="KPP" Caption="КПП" />
+        <Member Name="RegNumber" Caption="Рег.Номер" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmPerson" Caption="Лицо">
+      <OwnMembers>
+        <Member Name="Address" Caption="Адрес" />
+        <Member Name="BankAccounts" Caption="Банковские счета" />
+        <Member Name="FullName" Caption="Полное наименование" />
+        <Member Name="INN" Caption="ИНН" />
+        <Member Name="Partys" Caption="Стороны" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmPhysicalPerson" Caption="Физическое лицо">
+      <OwnMembers>
+        <Member Name="FirstName" Caption="Имя" />
+        <Member Name="LastName" Caption="Фамилия" />
+        <Member Name="MiddleName" Caption="Отчество" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmSupplier" Caption="Поставщик" />
+    <Class Name="IntecoAG.ERM.CRM.Party.crmUserParty" Caption="Организация пользователя">
+      <OwnMembers>
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="Party" Caption="Сторона" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.Country.csAddress" Caption="Адрес">
+      <OwnMembers>
+        <Member Name="Address" Caption="Адрес текстовый" />
+        <Member Name="AddressString" Caption="Адрес не компонентный" />
+        <Member Name="City" Caption="Город" />
+        <Member Name="Country" Caption="Страна" />
+        <Member Name="Region" Caption="Регион" />
+        <Member Name="StateProvince" Caption="Область(район)" />
+        <Member Name="Street" Caption="Улица, дом" />
+        <Member Name="ZipPostal" Caption="Почтовый индекс" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.Country.csCountry" Caption="Страна">
+      <OwnMembers>
+        <Member Name="CodeAlfa2" Caption="Букв2С" />
+        <Member Name="CodeAlfa3" Caption="Букв3С" />
+        <Member Name="CodeNumeric" Caption="Цифровой" />
+        <Member Name="CodeRuAlfa3" Caption="Рус3C" />
+        <Member Name="Comment" Caption="Комментарий" />
+        <Member Name="NameEnFull" Caption="En Полное имя" />
+        <Member Name="NameEnShortLow" Caption="En Короткое имя" />
+        <Member Name="NameEnShortUp" Caption="En Короткое заглавными" />
+        <Member Name="NameRuFull" Caption="Ru Полное имя" />
+        <Member Name="NameRuShortLow" Caption="Ru Короткое имя" />
+        <Member Name="NameRuShortUp" Caption="Ru Короткое заглавными" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.Measurement.csUnit" Caption="Единица измерения">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.Nomenclature.csNomenclatureType" Caption="Тип Номенклатур">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.Nomenclature.Material" Caption="Номенклатура Материалов" />
+    <Class Name="IntecoAG.ERM.CS.Nomenclature.Nomenclature" Caption="Номенклатура">
+      <OwnMembers>
+        <Member Name="Category" Caption="Категория" />
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="NomenclatureType" Caption="Тип номенклатуры" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.Nomenclature.Service" Caption="Номенклатура Услуг" />
+    <Class Name="IntecoAG.ERM.CS.Nomenclature.Valuta" Caption="Валюта" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmOrder" Caption="Заказ">
+      <OwnMembers>
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="Subject" Caption="Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Subject.fmAbstractSubject" Caption="Тематика">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="DateBegin" Caption="Дата Начала" />
+        <Member Name="DateEnd" Caption="Дата Окончания" />
+        <Member Name="IsClosed" Caption="Закрыт" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Subject.fmDirection" Caption="Направление" />
+    <Class Name="IntecoAG.ERM.FM.Subject.fmSubject" Caption="Тема" />
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.ContractType">
+        <LocalizationItem Name="COMPLEX_CONTRACT" Value="Комплексный контракт" />
+        <LocalizationItem Name="SIMPLE_CONTRACT" Value="Простой контракт" />
+        <LocalizationItem Name="WORK_PLAN" Value="Ведомость" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.DisplaySummMode">
+        <LocalizationItem Name="DISPLAY_COST" Value="Только стоимость" />
+        <LocalizationItem Name="DISPLAY_FULL" Value="Стоимость с налогом" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.PartyRole">
+        <LocalizationItem Name="CUSTOMER" Value="Заказчик/Покупатель" />
+        <LocalizationItem Name="SUPPLIER" Value="Поставщик/Подрядчик" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.StageType">
+        <LocalizationItem Name="AGREGATE" Value="Сводный" />
+        <LocalizationItem Name="FINANCE" Value="Финансовый" />
+        <LocalizationItem Name="TECHNICAL" Value="Технический" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CS.VersionStates">
+        <LocalizationItem Name="CURRENT" Value="Текущая" />
+        <LocalizationItem Name="VERSION_CONSTRACT" Value="В работе" />
+        <LocalizationItem Name="VERSION_CURRENT" Value="Текущая" />
+        <LocalizationItem Name="VERSION_DECLINE" Value="Отклонена" />
+        <LocalizationItem Name="VERSION_NEW" Value="Новая" />
+        <LocalizationItem Name="VERSION_OLD" Value="Старая" />
+        <LocalizationItem Name="VERSION_PROJECT" Value="Проект" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <ListView Id="ContractImplementation_ListView" Caption="Договоры" />
+    <ListView Id="crmBusinessmanRu_ListView" Caption="Список Индивидуальных Предпринимателей" />
+    <DetailView Id="crmContractNewForm_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Contract" Caption="Договор" />
+            <LayoutGroup Id="ContractDocument" Caption="Договорной документ" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmDeliveryMaterial_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmObligation" Caption="Стоимость" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmDeliveryService_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmObligation" Caption="Стоимость" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmDeliveryUnit_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Общие" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmLegalPersonRussianRu_ListView" Caption="Список Юридических лиц" />
+    <ListView Id="crmPartyRu_ListView" Caption="Список Сторон" />
+    <DetailView Id="crmPaymentMoney_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmPaymentItem" Caption="Платеж" />
+            <LayoutGroup Id="crmObligation" Caption="Обязательство" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmPaymentUnit_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Общие" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmPhysicalPersonRu_ListView" Caption="Список Физических лиц" />
+    <DetailView Id="SimpleContract_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Общие" />
+            <LayoutGroup Id="Customer" Caption="Заказчик" />
+            <LayoutGroup Id="Supplier" Caption="Поставщик" />
+            <LayoutGroup Id="Current.DeliveryPlan.DeliveryUnits" Caption="Поставки" />
+            <LayoutGroup Id="Current.PaymentPlan.PaymentUnits" Caption="Оплаты" />
+            <LayoutGroup Id="Contract.ContractDocuments" Caption="Договорные документы" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SimpleContractVersion_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="ContractVersion" Caption="Договор" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Общие" />
+            <LayoutGroup Id="Customer" Caption="Заказчик" />
+            <LayoutGroup Id="Supplier" Caption="Поставщик" />
+            <LayoutGroup Id="DeliveryPlan.DeliveryUnits" Caption="Поставки" />
+            <LayoutGroup Id="PaymentPlan.PaymentUnits" Caption="Оплаты" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="WorkPlan_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Общие" />
+            <LayoutGroup Id="Customer" Caption="Заказчик" />
+            <LayoutGroup Id="Supplier" Caption="Поставщик" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="WorkPlanVersion_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Общие" />
+            <LayoutGroup Id="Customer" Caption="Заказчик" />
+            <LayoutGroup Id="Supplier" Caption="Поставщик" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using IntecoAG.ERM.CS;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РїСЂРѕРµРєС‚РЅРѕР№ СЃС‚СЂСѓРєС‚СѓСЂС‹
+    /// Класс для поддержки проектной структуры
     /// </summary>
     public abstract class ProjectWork : CS.Work.Work
     {

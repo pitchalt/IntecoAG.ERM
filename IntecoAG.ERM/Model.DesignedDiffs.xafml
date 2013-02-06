@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" IsNewNode="True" Version="10.2.8.0" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="SimpleContractVersion_DetailView">
+		<Layout>
+			<LayoutGroup Id="Main">
+				<LayoutGroup Id="SimpleEditors">
+					<LayoutGroup Id="SimpleContractVersion" Direction="Vertical">
+						<LayoutGroup Id="SimpleContractVersion_col1" Direction="Horizontal">
+							<LayoutItem Id="DeliveryPlan.WorkParty" IsNewNode="True" ViewItem="DeliveryPlan.WorkParty" ShowCaption="" Index="10" />
+							<LayoutItem Id="DeliveryPlan.Customer" IsNewNode="True" ViewItem="DeliveryPlan.Customer" ShowCaption="" Index="11" />
+							<LayoutItem Id="DeliveryPlan.Contragent" IsNewNode="True" ViewItem="DeliveryPlan.Contragent" ShowCaption="" Index="12" />
+							<LayoutItem Id="Customer.AddressFact" Removed="True" />
+							<LayoutItem Id="Customer.AddressLegal" Removed="True" />
+							<LayoutItem Id="Customer.Bank" Removed="True" />
+							<LayoutItem Id="Customer.BankAccount" Removed="True" />
+							<LayoutItem Id="Customer.BIC" Removed="True" />
+							<LayoutItem Id="Customer.CurrentAcc" Removed="True" />
+							<LayoutItem Id="Customer.INN" Removed="True" />
+							<LayoutItem Id="Customer.KorAcc" Removed="True" />
+							<LayoutItem Id="Customer.KPP" Removed="True" />
+							<LayoutItem Id="Customer.Name" Removed="True" />
+							<LayoutItem Id="Customer.Party" Removed="True" />
+							<LayoutItem Id="Customer.RCBIC" Removed="True" />
+							<LayoutItem Id="Customer.RegNumber" Removed="True" />
+							<LayoutItem Id="Supplier.INN" Removed="True" />
+							<LayoutItem Id="Supplier.Name" Removed="True" />
+							<LayoutItem Id="Supplier.Party" Removed="True" />
+						</LayoutGroup>
+						<LayoutGroup Id="SimpleContractVersion_col2" Direction="Horizontal">
+							<LayoutItem Id="PaymentPlan.WorkParty" IsNewNode="True" Removed="True" ViewItem="PaymentPlan.WorkParty" ShowCaption="" Index="13" />
+							<LayoutItem Id="PaymentPlan.Recipient" IsNewNode="True" Removed="True" ViewItem="PaymentPlan.Recipient" ShowCaption="" Index="14" />
+							<LayoutItem Id="DeliveryPlan.Contragent" Removed="True" />
+							<LayoutItem Id="DeliveryPlan.Customer" Removed="True" />
+							<LayoutItem Id="DeliveryPlan.WorkParty" Removed="True" />
+							<LayoutItem Id="Supplier.AddressFact" Removed="True" />
+							<LayoutItem Id="Supplier.AddressLegal" Removed="True" />
+							<LayoutItem Id="Supplier.Bank" Removed="True" />
+							<LayoutItem Id="Supplier.BankAccount" Removed="True" />
+							<LayoutItem Id="Supplier.BIC" Removed="True" />
+							<LayoutItem Id="Supplier.CurrentAcc" Removed="True" />
+							<LayoutItem Id="Supplier.KorAcc" Removed="True" />
+							<LayoutItem Id="Supplier.KPP" Removed="True" />
+							<LayoutItem Id="Supplier.RCBIC" Removed="True" />
+							<LayoutItem Id="Supplier.RegNumber" Removed="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+				<TabbedGroup Id="Tabs">
+					<LayoutGroup Id="Customer" IsNewNode="True" Index="0">
+						<LayoutItem Id="Customer.Party" IsNewNode="True" ViewItem="Customer.Party" ShowCaption="" Index="0" />
+						<LayoutItem Id="Customer.Name" IsNewNode="True" ViewItem="Customer.Name" ShowCaption="" Index="1" />
+						<LayoutItem Id="Customer.INN" IsNewNode="True" ViewItem="Customer.INN" ShowCaption="" Index="2" />
+						<LayoutItem Id="Customer.KPP" IsNewNode="True" ViewItem="Customer.KPP" ShowCaption="" Index="3" />
+						<LayoutItem Id="Customer.RegNumber" IsNewNode="True" ViewItem="Customer.RegNumber" ShowCaption="" Index="4" />
+						<LayoutItem Id="Customer.AddressLegal" IsNewNode="True" ViewItem="Customer.AddressLegal" ShowCaption="" Index="5" />
+						<LayoutItem Id="Customer.AddressFact" IsNewNode="True" ViewItem="Customer.AddressFact" ShowCaption="" Index="6" />
+						<LayoutItem Id="Customer.BankAccount" IsNewNode="True" ViewItem="Customer.BankAccount" ShowCaption="" Index="7" />
+						<LayoutItem Id="Customer.Bank" IsNewNode="True" ViewItem="Customer.Bank" ShowCaption="" Index="8" />
+						<LayoutItem Id="Customer.CurrentAcc" IsNewNode="True" ViewItem="Customer.CurrentAcc" ShowCaption="" Index="9" />
+						<LayoutItem Id="Customer.BIC" IsNewNode="True" ViewItem="Customer.BIC" ShowCaption="" Index="10" />
+						<LayoutItem Id="Customer.RCBIC" IsNewNode="True" ViewItem="Customer.RCBIC" ShowCaption="" Index="11" />
+						<LayoutItem Id="Customer.KorAcc" IsNewNode="True" ViewItem="Customer.KorAcc" ShowCaption="" Index="12" />
+					</LayoutGroup>
+					<LayoutGroup Id="Supplier" IsNewNode="True" Index="1">
+						<LayoutItem Id="Supplier.Party" IsNewNode="True" ViewItem="Supplier.Party" ShowCaption="" Index="0" />
+						<LayoutItem Id="Supplier.Name" IsNewNode="True" ViewItem="Supplier.Name" ShowCaption="" Index="1" />
+						<LayoutItem Id="Supplier.INN" IsNewNode="True" ViewItem="Supplier.INN" ShowCaption="" Index="2" />
+						<LayoutItem Id="Supplier.KPP" IsNewNode="True" ViewItem="Supplier.KPP" ShowCaption="" Index="3" />
+						<LayoutItem Id="Supplier.RegNumber" IsNewNode="True" ViewItem="Supplier.RegNumber" ShowCaption="" Index="4" />
+						<LayoutItem Id="Supplier.AddressLegal" IsNewNode="True" ViewItem="Supplier.AddressLegal" ShowCaption="" Index="5" />
+						<LayoutItem Id="Supplier.AddressFact" IsNewNode="True" ViewItem="Supplier.AddressFact" ShowCaption="" Index="6" />
+						<LayoutItem Id="Supplier.BankAccount" IsNewNode="True" ViewItem="Supplier.BankAccount" ShowCaption="" Index="7" />
+						<LayoutItem Id="Supplier.Bank" IsNewNode="True" ViewItem="Supplier.Bank" ShowCaption="" Index="8" />
+						<LayoutItem Id="Supplier.CurrentAcc" IsNewNode="True" ViewItem="Supplier.CurrentAcc" ShowCaption="" Index="9" />
+						<LayoutItem Id="Supplier.BIC" IsNewNode="True" ViewItem="Supplier.BIC" ShowCaption="" Index="10" />
+						<LayoutItem Id="Supplier.RCBIC" IsNewNode="True" ViewItem="Supplier.RCBIC" ShowCaption="" Index="11" />
+						<LayoutItem Id="Supplier.KorAcc" IsNewNode="True" ViewItem="Supplier.KorAcc" ShowCaption="" Index="12" />
+					</LayoutGroup>
+					<LayoutGroup Id="DeliveryPlan.DeliveryUnits" Index="2" />
+					<LayoutGroup Id="PaymentPlan.PaymentUnits" Index="3" />
+				</TabbedGroup>
+			</LayoutGroup>
+		</Layout>
+	 </DetailView>
+  </Views>
+</Application>

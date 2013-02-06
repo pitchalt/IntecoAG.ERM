@@ -1,4 +1,4 @@
-﻿namespace IntecoAG.ERM.CRM
+namespace IntecoAG.ERM.CRM
 {
     partial class CRMModule
     {

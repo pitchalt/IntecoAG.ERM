@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -17,7 +17,7 @@ namespace IntecoAG.ERM.CRM
 {
 
     /// <summary>
-    /// РњР°СЃС‚РµСЂ-РєР»Р°СЃСЃ
+    /// Мастер-класс
     /// </summary>
     public partial class Contract
     {

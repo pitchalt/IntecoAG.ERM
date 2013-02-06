@@ -1,4 +1,4 @@
-﻿namespace IntecoAG.ERM.PM
+namespace IntecoAG.ERM.PM
 {
     partial class PMModule
     {

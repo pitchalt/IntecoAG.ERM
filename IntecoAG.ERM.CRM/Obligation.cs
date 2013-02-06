@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ Obligation, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РѕР±СЏР·Р°С‚РµР»СЊСЃС‚РІР° РїРѕ Р”РѕРіРѕРІРѕСЂР°
+    /// Класс Obligation, представляющий обязательства по Договора
     /// </summary>
     [Persistent("crmObligation")]
     public abstract partial class Obligation : XPObject

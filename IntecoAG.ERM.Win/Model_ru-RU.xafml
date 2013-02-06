@@ -1,2 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application />
+<Application>
+  <Localization>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="CaptionForFalse" Value="Ложь" />
+      <LocalizationItem Name="CaptionForTrue" Value="Истина" />
+      <LocalizationItem Name="NullValueText" Value="Незадано" />
+    </LocalizationGroup>
+  </Localization>
+  <NavigationItems>
+    <Items>
+      <Item Id="Contract" Caption="Договоры">
+        <Items>
+          <Item Id="@e40a6480-57c0-4f5a-b0b4-3bdc8652dc57" Caption="Договоры" />
+          <Item Id="@1a9219ab-d0f9-41e3-ad69-4d887bfa934c" Caption="Регистрация..." />
+          <Item Id="@a4aabbbc-6efb-4f16-9b48-27b65632f742" Caption="Ведомости" />
+        </Items>
+      </Item>
+      <Item Id="Partners" Caption="Партнеры">
+        <Items>
+          <Item Id="@bb695f3e-7fc6-474d-b798-9926cc46696e" Caption="Банки" />
+          <Item Id="@9d53cbdf-53c2-4d62-b346-b0deb5d0721c" Caption="Стороны" />
+          <Item Id="@5fa2e245-6b55-4436-a055-4b9bb3c5c214" Caption="Юридические лица" />
+          <Item Id="@51408b76-b9d3-4a05-a491-21b9b09e5a7f" Caption="Предприниматели" />
+          <Item Id="@d5c22a20-c5c9-4ed9-bd99-a138fe94c810" Caption="Физические лица" />
+        </Items>
+      </Item>
+      <Item Id="Finance" Caption="Финансы">
+        <Items>
+          <Item Id="@ff94211e-ff25-4708-8a02-94079624dc42" Caption="Заказы" />
+        </Items>
+      </Item>
+      <Item Id="System" Caption="Системные" />
+    </Items>
+  </NavigationItems>
+</Application>

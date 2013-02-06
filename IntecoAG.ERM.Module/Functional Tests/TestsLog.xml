@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Date="13.06.2011">
+  <Test Name="TimeTestScript1" Result="Failed" Elapsed="00:00:00.1093750" Started="20:55:37.7812500" MachineName="VB_ANGARA">
+    <Error Type="DevExpress.EasyTest.Framework.ParserException">
+      <Message><![CDATA[Incorrect prefix detected: ' ', line 16]]></Message>
+    </Error>
+  </Test>
+</Tests>

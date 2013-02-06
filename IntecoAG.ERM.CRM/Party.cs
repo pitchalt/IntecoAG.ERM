@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ Party, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ СѓС‡Р°СЃС‚РЅРёРєР° (РєР°Рє СЃС‚РѕСЂРѕРЅСѓ) Р”РѕРіРѕРІРѕСЂР°
+    /// Класс Party, представляющий участника (как сторону) Договора
     /// </summary>
     [Persistent("crmParty")]
     public class Party : XPObject

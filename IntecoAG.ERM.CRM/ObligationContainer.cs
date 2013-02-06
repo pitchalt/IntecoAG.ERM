@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ ObligationTransfer, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ С‚СЂР°РЅСЃС„РµСЂС‹ РѕР±СЏР·Р°С‚РµР»СЊСЃС‚РІР°Рј Р”РѕРіРѕРІРѕСЂР°
+    /// Класс ObligationTransfer, представляющий трансферы обязательствам Договора
     /// </summary>
     [Persistent("crmObligationTransfer")]
     public class ObligationTransfer : Obligation

@@ -1,16 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application Company="Inteco AG" Copyright="(c) 2011 Inteco AG">
-  <ActionDesign>
-    <Actions>
-      <Action Id="New" ShowItemsOnClick="True" />
-    </Actions>
-  </ActionDesign>
-  <CreatableItems>
-    <CreatableItem ClassName="IntecoAG.ERM.CRM.Contract.Forms.crmDealRegistrationForm" Visible="False" />
-  </CreatableItems>
+<Application>
+  <NavigationItems>
+    <Items>
+      <Item Id="Contract" IsNewNode="True" Index="0">
+        <Items IsNewNode="True">
+          <Item Id="@e40a6480-57c0-4f5a-b0b4-3bdc8652dc57" IsNewNode="True" Index="0" ViewId="ContractImplementation_ListView" />
+          <Item Id="@1a9219ab-d0f9-41e3-ad69-4d887bfa934c" IsNewNode="True" Index="1" ViewId="crmContractNewForm_DetailView" />
+          <Item Id="@a4aabbbc-6efb-4f16-9b48-27b65632f742" IsNewNode="True" ViewId="WorkPlan_ListView" Index="4" />
+        </Items>
+      </Item>
+      <Item Id="Partners" IsNewNode="True" Index="1">
+        <Items IsNewNode="True">
+          <Item Id="@bb695f3e-7fc6-474d-b798-9926cc46696e" IsNewNode="True" ViewId="crmBank_ListView" Index="0" />
+          <Item Id="@9d53cbdf-53c2-4d62-b346-b0deb5d0721c" IsNewNode="True" ViewId="crmParty_ListView" Index="1" />
+          <Item Id="@5fa2e245-6b55-4436-a055-4b9bb3c5c214" IsNewNode="True" ViewId="crmLegalPersonRussianRu_ListView" Index="2" />
+          <Item Id="@51408b76-b9d3-4a05-a491-21b9b09e5a7f" IsNewNode="True" ViewId="crmBusinessmanRu_ListView" Index="3" />
+          <Item Id="@d5c22a20-c5c9-4ed9-bd99-a138fe94c810" IsNewNode="True" ViewId="crmPhysicalPersonRu_ListView" Index="4" />
+        </Items>
+      </Item>
+      <Item Id="Finance" IsNewNode="True" Index="2">
+        <Items IsNewNode="True">
+          <Item Id="@ff94211e-ff25-4708-8a02-94079624dc42" IsNewNode="True" ViewId="fmOrder_ListView" Index="3" />
+          <Item Id="@f5053178-b2a7-4d60-9fe3-b0b272b806a9" IsNewNode="True" ViewId="fmAbstractSubject_ListView" />
+        </Items>
+      </Item>
+      <Item Id="System" IsNewNode="True" Index="3">
+        <Items IsNewNode="True">
+          <Item Id="@b7ca4a47-5926-4e58-8c64-8dfd166c08cd" IsNewNode="True" ViewId="crmContractCategory_ListView" Index="0" />
+          <Item Id="@e3f81ccb-685f-4ace-b548-99e107196c3e" IsNewNode="True" ViewId="crmContractDocumentCategory_ListView" Index="1" />
+          <Item Id="@607afae9-4d47-4700-873f-5e9fd64237dd" IsNewNode="True" ViewId="crmCostModel_ListView" Index="2" />
+          <Item Id="@5159ae03-efa5-448c-b3a0-9cb5d13a8ec4" IsNewNode="True" ViewId="csCountry_ListView" Index="3" />
+          <Item Id="@7686ec51-3a7c-40a3-aab8-1ba5a3a60773" IsNewNode="True" ViewId="csUnit_ListView" Index="4" />
+          <Item Id="@a7da6e0c-fce2-4ca0-9e4a-8f8521f1cb9f" IsNewNode="True" ViewId="Valuta_ListView" Index="5" />
+          <Item Id="@c133b279-1a66-4452-ba6e-aea8bb10fa95" IsNewNode="True" ViewId="csNomenclatureType_ListView" Index="6" />
+          <Item Id="@7d60a80f-d5c2-41f1-92ea-a23c369b82d9" IsNewNode="True" ViewId="Material_ListView" Index="7" />
+          <Item Id="@aca427d0-1eae-4b06-b0b6-a3349cd037cb" IsNewNode="True" ViewId="Service_ListView" Index="8" />
+          <Item Id="@f4bd15b9-b209-4137-8721-f8d23f34a2eb" IsNewNode="True" ViewId="crmUserParty_ListView" Index="9" />
+        </Items>
+      </Item>
+      <Item Id="Default" Index="4" />
+    </Items>
+  </NavigationItems>
   <Options UIType="TabbedMDI" />
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" IsNewNode="True" Version="10.2.8.0" />
+    <SchemaModule Name="SystemWindowsFormsModule" IsNewNode="True" Version="10.2.8.0" />
   </SchemaModules>
+  <Views>
+    <ListView Id="fmSubject_LookupListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
+    <ListView Id="Valuta_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
+    <ListView Id="Valuta_LookupListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
+  </Views>
 </Application>

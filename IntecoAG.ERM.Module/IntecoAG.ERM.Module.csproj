@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{368E9133-CB2F-4929-92A4-7F047659B03E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntecoAG.ERM.Module</RootNamespace>
+    <AssemblyName>IntecoAG.ERM.Module</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>http://localhost/IntecoAG.ERM.Module/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v10.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ConditionalEditorState.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ConditionalEditorState.Win.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Win.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.v10.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Objects.v10.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v10.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\WINDOWS\assembly\GAC_MSIL\DevExpress.ExpressApp.ViewVariantsModule.v10.2\10.2.8.0__b88d1754d700e49a\DevExpress.ExpressApp.ViewVariantsModule.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Win.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Persistent.Base.v10.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v10.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v10.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.2.Design, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.Build.Conversion.v3.5" />
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApproveVersionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ApproveVersionController.Designer.cs">
+      <DependentUpon>ApproveVersionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonMethods.cs" />
+    <Compile Include="CustomActionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomActionController.Designer.cs">
+      <DependentUpon>CustomActionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomShowNavigationItemController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomShowNavigationItemController.Designer.cs">
+      <DependentUpon>CustomShowNavigationItemController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomNewActionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomNewActionController.Designer.cs">
+      <DependentUpon>CustomNewActionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorStateCustomizationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EditorStateCustomizationController.Designer.cs">
+      <DependentUpon>EditorStateCustomizationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImmediateValidationOnLostFocusController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImmediateValidationOnLostFocusController.Designer.cs">
+      <DependentUpon>ImmediateValidationOnLostFocusController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinkWorkPlanToComplexContractController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LinkWorkPlanToComplexContractController.Designer.cs">
+      <DependentUpon>LinkWorkPlanToComplexContractController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NestedFarme\IMasterDetailViewInfo.cs" />
+    <Compile Include="NestedFarme\MasterDetailViewControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NestedFarme\MasterDetailViewControllerBase.Designer.cs">
+      <DependentUpon>MasterDetailViewControllerBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NestedFarme\OnShowListPropertyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NestedFarme\OnShowListPropertyController.Designer.cs">
+      <DependentUpon>OnShowListPropertyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RefreshMDITabsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RefreshMDITabsController.Designer.cs">
+      <DependentUpon>RefreshMDITabsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowRootObjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShowRootObjectController.Designer.cs">
+      <DependentUpon>ShowRootObjectController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewVersionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NewVersionController.Designer.cs">
+      <DependentUpon>NewVersionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewProcessController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListViewProcessController.Designer.cs">
+      <DependentUpon>ListViewProcessController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReadOnlyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReadOnlyController.Designer.cs">
+      <DependentUpon>ReadOnlyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.Designer.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Updater.cs" />
+    <Compile Include="WizardSupportController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WizardSupportController.Designer.cs">
+      <DependentUpon>WizardSupportController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApproveVersionController.resx">
+      <DependentUpon>ApproveVersionController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LinkWorkPlanToComplexContractController.resx">
+      <DependentUpon>LinkWorkPlanToComplexContractController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NestedFarme\MasterDetailViewControllerBase.resx">
+      <DependentUpon>MasterDetailViewControllerBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NestedFarme\OnShowListPropertyController.resx">
+      <DependentUpon>OnShowListPropertyController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowRootObjectController.resx">
+      <DependentUpon>ShowRootObjectController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewVersionController.resx">
+      <DependentUpon>NewVersionController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Functional Tests\Config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Functional Tests\TimeTestScript.ets" />
+    <None Include="Functional Tests\WinSample.ets" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru-RU.xafml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardSupportController.resx">
+      <DependentUpon>WizardSupportController.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IntecoAG.ERM\IntecoAG.ERM.csproj">
+      <Project>{0B88798B-F4D2-4122-81CB-78C88062FCB8}</Project>
+      <Name>IntecoAG.ERM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
