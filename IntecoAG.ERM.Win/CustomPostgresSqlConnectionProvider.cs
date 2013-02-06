@@ -67,6 +67,12 @@ namespace IntecoAG.ERM.Win {
         }
 
 
+//        public new static string GetConnectionString(string database, string userid, string password) {
+//            return String.Format("{3}={4};Provider=Microsoft.Jet.OLEDB.4.0;Mode=Share Deny None;data source={0};user id={1};password={2};",
+//                    database, userid, password, DataStoreBase.XpoProviderTypeParameterName, XpoProviderTypeString);
+//        }
+
+
         public new static string GetConnectionString(string server, string userid, string password, string database) {
             return String.Format("{4}={5};Server={0};User Id={1};Password={2};Database={3};Encoding=UNICODE;",
                 server, userid, password, database, DataStoreBase.XpoProviderTypeParameterName, XpoProviderTypeString);
@@ -81,7 +87,7 @@ namespace IntecoAG.ERM.Win {
             try {
                 DataStoreBase.RegisterDataStoreProvider(XpoProviderTypeString, new  DataStoreCreationFromStringDelegate(CreateProviderFromString));
             } catch (ArgumentException e) {
-                Tracing.Tracer.LogError(e);
+                //Tracing.Tracer.LogText(e.Message);
                 //Tracing.Tracer.LogText("A connection provider with the same name ( {0} ) has already been registered", XpoProviderTypeString);
             }
 
@@ -102,11 +108,10 @@ namespace IntecoAG.ERM.Win {
                 if (whereSql.Contains("(Strpos(")) {
 
                     string[] delimiter = { "(Strpos(" };
-                    string[] mWhereSql = ("WHERE"+whereSql).Split(delimiter, StringSplitOptions.None);
+                    string[] mWhereSql = whereSql.Split(delimiter, StringSplitOptions.None);
 
-                    whereSqlNew = mWhereSql[0].Substring(5);
                     // Теперь в начале каждого элемента массива находится выражение "(Strpos(" (а может и не находится)
-                    for (int i = 1; i < mWhereSql.Length; i++) {
+                    for (int i = 0; i < mWhereSql.Length; i++) {
                         string elem = mWhereSql[i];
 
                         //if (elem.StartsWith("(Strpos(")) {

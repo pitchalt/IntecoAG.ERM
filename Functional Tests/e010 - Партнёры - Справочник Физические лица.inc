@@ -1,57 +1,50 @@
-*Action Navigation(Partners.crm CPhysical Party)
-*Action New
-*Action CommonGroup
+*Action Navigation(Partners.Физическое лицо)
+*Action New(Физическое лицо)
 *FillForm
  Last Name = Иванов
  First Name = Иван
  Middle Name = Иванович
- Name Handmake = Иван Иваныч Иваноff
- INN = 121212
- Description = Иванов & сыновья
-
-*ExecuteEditorAction Address Legal
+*ExecuteEditorAction Address
 *FillForm
+ Country  = RUS
+ Zip Postal = 100000
  Region = Московский
+ State Province = Московская провинция
  City = Москва
- Zip Postal = 111222
- State Province = Иваново
- Street = Крокодилов, 1
+ Street = Профсоюзная, 1
+ Address String = стр. 1
 *Action OK
-
-*Action Save and New
+*FillForm
+ INN = 1234567890
+*Action Save and New(Физическое лицо)
 *FillForm
  Last Name = Петров
  First Name = Пётр
  Middle Name = Петрович
- Name Handmake = Петросян 
- INN = 232323
- Description = Предалагает разные товары, по хозяйству ненужные.
-*ExecuteEditorAction Address Fact
+*ExecuteEditorAction Address
 *FillForm
- Country = УКР
- Region = Киiв
- City = Киiв
- Zip Postal = 878787
- State Province = Киiв регион
- Street = Подол, 111
+ Country  = RUS
+ Zip Postal = Петербург
+ Region = Северо-западный
+ State Province = Московская провинция
+ City = Санкт-Петербург
+ Street = Невский, 5
+; Address String = 
 *Action OK
-*Action Save and New
-
+*Action Save and New(Физическое лицо)
 *FillForm
  Last Name = Сидоров
  First Name = Сидор
  Middle Name = Сидорович
- Name Handmake = Сидорыч 
- INN = 343434
- Description = Строгий и честный товаропроизводитель
-*ExecuteEditorAction Address Fact
+*ExecuteEditorAction Address
 *FillForm
- Country = РБ
- Region = Минский
- City = Минск
- Zip Postal = 191919
- State Province = Минск
- Street = Лукашенко, 1
+ Country  = RUS
+ Zip Postal = 143900
+ Region = Центральный
+ State Province = Московская
+ City = Балашиха
+ Street = Флёрова, 1
+; Address String = 
 *Action OK
-
+*Action Save
 *Action Save and Close

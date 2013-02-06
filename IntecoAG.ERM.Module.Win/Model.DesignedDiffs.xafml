@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" IsNewNode="True" Version="10.2.8.0" />
+    <SchemaModule Name="SystemWindowsFormsModule" IsNewNode="True" Version="10.2.8.0" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="hrmDepartment_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
+  </Views>
+</Application>

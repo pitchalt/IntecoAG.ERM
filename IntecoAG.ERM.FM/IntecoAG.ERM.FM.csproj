@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{462EF986-C1A4-45A0-8374-4ACC462A6874}</ProjectGuid>
+    <ProjectGuid>{03B397B2-8611-4092-A924-423BDB008ED1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IntecoAG.ERM.FM</RootNamespace>
@@ -15,11 +15,11 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <PublishUrl>publish\</PublishUrl>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/IntecoAG.ERM.FM/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -28,15 +28,16 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,142 +46,45 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\bin\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.ExpressApp.Chart.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v11.1.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Data.v11.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.PivotGrid.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.v11.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Reports.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Objects.v11.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Validation.v11.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.StateMachine.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Persistent.Base.v11.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Persistent.BaseImpl.v11.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpo.v11.1">
       <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Win.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.PivotGrid.v11.2.Core, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v11.2.Core">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Data.v11.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.v11.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Objects.v11.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v11.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v11.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v11.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Reports.v11.2.Designer, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Xpo.v11.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraBars.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v11.2.UI, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraGrid.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraLayout.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraReports.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraReports.v11.2.Extensions, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="FileHelpers">
-      <HintPath>..\..\FileHelpers 2.0\FileHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="FileHelpers.ExcelStorage">
-      <HintPath>..\..\FileHelpers 2.0\FileHelpers.ExcelStorage.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.Excel">
-      <HintPath>..\..\FileHelpers 2.0\Interop.Excel.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Interop.Office">
-      <HintPath>..\..\FileHelpers 2.0\Interop.Office.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Data">
       <Name>System.Data</Name>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms">
       <Name>System.Windows.Forms</Name>
       <Private>False</Private>
@@ -191,400 +95,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookVATLogic.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookVAT.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookVATRecord.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookBuhImportController.cs">
+    <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookBuhImportController.Designer.cs">
-      <DependentUpon>fmCAVTBookBuhImportController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookBuhRecord.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookBuhImport.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookVATViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BusinessObjects\AVT\fmCAVTBookVATViewController.Designer.cs">
-      <DependentUpon>fmCAVTBookVATViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceOperationType.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceRegister.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceRegisterLine.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceRegisterLogic.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceRegisterViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceRegisterViewController.Designer.cs">
-      <DependentUpon>fmCAVTInvoiceRegisterViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceTransferType.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCache.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheIn.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealPrepareLine.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheJournal.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheJournalLine.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheLine.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheOut.cs" />
-    <Compile Include="BusinessObjects\Docs\fmIDocument.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealFinal.cs" />
-    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealPrepare.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestMemorandumPeson.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRRegistratorFilter01.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestBusinesLogic.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestFilter01.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestObligationFilter01.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestFinOrder.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRRepaymentTaskLine.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRRepaymentTask.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRRegistrator.cs" />
-    <Compile Include="BusinessObjects\Account\fmAccountSingle.cs" />
-    <Compile Include="BusinessObjects\Account\fmAccountBase.cs" />
-    <Compile Include="BusinessObjects\Account\fmAccountContract.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceJurnalLine.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRRepaymentTaskFilter01.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestMemorandumCreator.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHPayedRequest.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHPayedRequestNonPersistent.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHPayedRequestReportParameters.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequestResultByValuta.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequestValutaCourseList.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequestNonPersistent.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequest.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequestContractLine.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequestContractList.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequestReportParameters.cs" />
-    <Compile Include="BusinessObjects\ReportHelper\fmCRHUnpayedRequestValutaCourse.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAImporter1CGazPromBank.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAImportResultFilter01.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAStatementAccountFilter01.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAOperationJournal.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceBase.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceLine.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceNumberGenerator.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceType.cs" />
-    <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceVersion.cs" />
-    <Compile Include="BusinessObjects\AVT\fmIAVTInvoice.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCBAkkreditivRequest.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCBInkassOrder.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCBOthers.cs" />
-    <Compile Include="BusinessObjects\FinJurnal\fmCFJSaleJurnalLine.cs" />
-    <Compile Include="BusinessObjects\FinJurnal\fmCFJSaleDoc.cs" />
-    <Compile Include="BusinessObjects\FinJurnal\fmCFJSaleOperation.cs" />
-    <Compile Include="BusinessObjects\FinJurnal\fmCFJSaleDocLine.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAMapDocs.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAOperationJournalFilter01.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAStatementAccountDoc.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestObligation.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRRepaymentJurnal.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestMemorandum.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestSingle.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequest.cs" />
-    <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestContract.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAStatementAccountImportLogic.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSATaskImporterFile.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAImportResult.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAImporter.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSATaskImporter.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAImporter1C.cs" />
-    <Compile Include="BusinessObjects\StatementAccount\fmCSAStatementAccount.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCB.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCBBudgetPaymentOrder.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCBPaymentOrder.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCBPaymentRequest.cs" />
-    <Compile Include="BusinessObjects\Docs\fmCDocRCBRequisites.cs" />
-    <Compile Include="BusinessObjects\Order\fmCOrderManageDoc.cs" />
-    <Compile Include="BusinessObjects\Order\fmCOrderManageDocSM.cs" />
-    <Compile Include="BusinessObjects\Order\fmIOrderManageDoc.cs" />
-    <Compile Include="BusinessObjects\FinIndex\fmCFinIndexStructureItem.cs" />
-    <Compile Include="BusinessObjects\FinIndex\fmCFinIndexStructure.cs" />
-    <Compile Include="BusinessObjects\FinIndex\fmIFinIndexStructure.cs" />
-    <Compile Include="BusinessObjects\FinIndex\fmIFinIndexStructureItem.cs" />
-    <Compile Include="BusinessObjects\Order\fmCOrderExt.cs" />
-    <Compile Include="BusinessObjects\FinIndex\fmCFinIndex.cs" />
-    <Compile Include="BusinessObjects\Order\fmIOrderExt.cs" />
-    <Compile Include="BusinessObjects\Subject\fmCSubjectExt.cs" />
-    <Compile Include="BusinessObjects\Subject\fmISubjectExt.cs" />
-    <Compile Include="Controllers\fmCPRPaymentRequestMemorandumCreatorViewControllerr.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCPRPaymentRequestMemorandumCreatorViewControllerr.Designer.cs">
-      <DependentUpon>fmCPRPaymentRequestMemorandumCreatorViewControllerr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCPRPaymentRequestMemorandumViewControllerr.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCPRPaymentRequestMemorandumViewControllerr.Designer.cs">
-      <DependentUpon>fmCPRPaymentRequestMemorandumViewControllerr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCPRPaymentRequestViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCPRPaymentRequestViewController.Designer.cs">
-      <DependentUpon>fmCPRPaymentRequestViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCRHPayedReqReportParamsViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCRHPayedReqReportParamsViewController.Designer.cs">
-      <DependentUpon>fmCRHPayedReqReportParamsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCRHUnpayedReqReportParamsViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCRHUnpayedReqReportParamsViewController.Designer.cs">
-      <DependentUpon>fmCRHUnpayedReqReportParamsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCPRPaymentRequestListItemViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCPRPaymentRequestListItemViewController.Designer.cs">
-      <DependentUpon>fmCPRPaymentRequestListItemViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCPRRepaymentTaskViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCPRRepaymentTaskViewController.Designer.cs">
-      <DependentUpon>fmCPRRepaymentTaskViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCSAStatementAccountDocViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCSAStatementAccountDocViewController.Designer.cs">
-      <DependentUpon>fmCSAStatementAccountDocViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCSAStatementAccountViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCSAStatementAccountViewController.Designer.cs">
-      <DependentUpon>fmCSAStatementAccountViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCDocRCBImportResultViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCDocRCBImportResultViewController.Designer.cs">
-      <DependentUpon>fmCDocRCBImportResultViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCDocRCBImportViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCDocRCBImportViewController.Designer.cs">
-      <DependentUpon>fmCDocRCBImportViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmCDocRCBPaymentOrdeEditorViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmCDocRCBPaymentOrdeEditorViewController.Designer.cs">
-      <DependentUpon>fmCDocRCBPaymentOrdeEditorViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmComponentViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmComponentViewController.Designer.cs">
-      <DependentUpon>fmComponentViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmFinIndexStructureViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmFinIndexStructureViewController.Designer.cs">
-      <DependentUpon>fmFinIndexStructureViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmFJSaleDocViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmFJSaleDocViewController.Designer.cs">
-      <DependentUpon>fmFJSaleDocViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmIDocCacheInRealPrepareController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmIDocCacheInRealPrepareController.Designer.cs">
-      <DependentUpon>fmIDocCacheInRealPrepareController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\fmRepaymentTaskLineViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
-      <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DatabaseUpdate\AVTInvoiceAnalyticUpdater.cs" />
-    <Compile Include="DatabaseUpdate\AVTInvoiceUpdaterFix01.cs" />
-    <Compile Include="DatabaseUpdate\CashFlowRegisterUpdater.cs" />
-    <Compile Include="DatabaseUpdate\fmSaleDocUpdater01.cs" />
-    <Compile Include="DatabaseUpdate\UpdaterTaxReference.cs" />
-    <Compile Include="DatabaseUpdate\fmAutoBindingUpdater.cs" />
-    <Compile Include="DatabaseUpdate\RequestAutoBindingUpdater.cs" />
-    <Compile Include="DatabaseUpdate\UpdaterVaultaCourse.cs" />
-    <Compile Include="ERMFinancialModule.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ERMFinancialModule.Designer.cs">
-      <DependentUpon>ERMFinancialModule.cs</DependentUpon>
+    <Compile Include="Module.Designer.cs">
+      <DependentUpon>Module.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatabaseUpdate\Updater.cs" />
-    <Compile Include="SessionHelper.cs" />
-    <Compile Include="SumInWord.cs" />
+    <Compile Include="Updater.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BusinessObjects\AVT\fmCAVTBookBuhImportController.resx">
-      <DependentUpon>fmCAVTBookBuhImportController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BusinessObjects\AVT\fmCAVTBookVATViewController.resx">
-      <DependentUpon>fmCAVTBookVATViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BusinessObjects\AVT\fmCAVTInvoiceRegisterViewController.resx">
-      <DependentUpon>fmCAVTInvoiceRegisterViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCPRPaymentRequestMemorandumCreatorViewControllerr.resx">
-      <DependentUpon>fmCPRPaymentRequestMemorandumCreatorViewControllerr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCPRPaymentRequestMemorandumViewControllerr.resx">
-      <DependentUpon>fmCPRPaymentRequestMemorandumViewControllerr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCPRPaymentRequestViewController.resx">
-      <DependentUpon>fmCPRPaymentRequestViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCPRPaymentRequestListItemViewController.resx">
-      <DependentUpon>fmCPRPaymentRequestListItemViewController.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCPRRepaymentTaskViewController.resx">
-      <DependentUpon>fmCPRRepaymentTaskViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCDocRCBImportResultViewController.resx">
-      <DependentUpon>fmCDocRCBImportResultViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCDocRCBImportViewController.resx">
-      <DependentUpon>fmCDocRCBImportViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCDocRCBPaymentOrdeEditorViewController.resx">
-      <DependentUpon>fmCDocRCBPaymentOrdeEditorViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmComponentViewController.resx">
-      <DependentUpon>fmComponentViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCRHPayedReqReportParamsViewController.resx">
-      <DependentUpon>fmCRHPayedReqReportParamsViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCRHUnpayedReqReportParamsViewController.resx">
-      <DependentUpon>fmCRHUnpayedReqReportParamsViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCSAStatementAccountDocViewController.resx">
-      <DependentUpon>fmCSAStatementAccountDocViewController.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmCSAStatementAccountViewController.resx">
-      <DependentUpon>fmCSAStatementAccountViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmFinIndexStructureViewController.resx">
-      <DependentUpon>fmFinIndexStructureViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmFJSaleDocViewController.resx">
-      <DependentUpon>fmFJSaleDocViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmIDocCacheInRealPrepareController.resx">
-      <DependentUpon>fmIDocCacheInRealPrepareController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controllers\fmRepaymentTaskLineViewController.resx">
-      <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ERMFinancialModule.resx">
-      <DependentUpon>ERMFinancialModule.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+    <EmbeddedResource Include="Module.resx">
+      <DependentUpon>Module.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BusinessObjects\ReadMe.txt" />
-    <None Include="Controllers\ReadMe.txt" />
-    <None Include="DatabaseUpdate\ReadMe.txt" />
-    <None Include="Documentation\ERM_FM_Stage4.vsd" />
-    <None Include="Documentation\ERM_FM_ObjectModel.vsd" />
-    <None Include="Documentation\ERM_FM_Requirements.lyx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru-RU.xafml">
-      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="Documentation\ERM_FM_Requirements.uxf" />
-    <None Include="Documentation\По итогам обсуждения.lyx" />
-    <None Include="Documentation\Подсистема сопоставления расчётных документов.lyx" />
-    <None Include="Documentation\Подсистема учёта разовых платежей.lyx" />
-    <None Include="Documentation\Правила составления распечатки “Список счетов к оплате на дд.мм.гггг”.lyx" />
-    <None Include="Documentation\Рукописная бумага от 2012-02-29.yx.lyx" />
-    <None Include="Import\fmCAVTInvoiceOperationType.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Import\fmCAVTInvoiceTransferType.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe.txt" />
-    <None Include="ReportLayouts\fmAVTBookVAT01.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\fmAVTBookVAT02.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ReportLayouts\fmAVTInvoice02.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\fmAVTInvoice01.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\fmAVTInvoice03.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\fmAVTInvoiceRegister01.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\fmCRHPayedRequestReport.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\fmCRHUnpayedRequestLine.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\fmPaymentRequestContractReport01.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\Служебная записка на оплату %28краткая%29.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\Служебная записка на оплату %28по персоналу%29.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\Служебная записка на оплату %28Подотчётники%29.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\Служебная записка на оплату без Банка получателя.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\Служебная записка на оплату без Заказа.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\Служебная записка на оплату.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ReportLayouts\Список оплаченных счетов.repx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IntecoAG.ERM\IntecoAG.ERM.csproj">
+      <Project>{4FA381D5-8866-475A-A7F6-7B32B15004B9}</Project>
+      <Name>IntecoAG.ERM</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -603,20 +136,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IntecoAG.ERM.Base.Impl\IntecoAG.ERM.Base.Impl.csproj">
-      <Project>{0B88798B-F4D2-4122-81CB-78C88062FCB8}</Project>
-      <Name>IntecoAG.ERM.Base.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IntecoAG.ERM.Base\IntecoAG.ERM.Base.csproj">
-      <Project>{368E9133-CB2F-4929-92A4-7F047659B03E}</Project>
-      <Name>IntecoAG.ERM.Base</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BusinessObjects\StatementAccount\ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

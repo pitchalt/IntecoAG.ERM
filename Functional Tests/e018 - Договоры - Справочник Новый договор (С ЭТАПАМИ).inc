@@ -1,113 +1,82 @@
 *Action Navigation(Contract.crm Contract Registration Form)
 *FillForm
- New Number Required = True
- Price = 1000
- Category = КатДог 1
- Date Begin = 24.12.2011
- Date End = 28.12.2011
- Description Short = Опытный договор с этапами
- Kind Of Deal = DEAL_WITH_STAGE
  User Registrator = Медведев Дмитрий Анатольевич
- Our Role = CUSTOMER
-
-; Valuta = EUR
-
-*ExecuteEditorAction Valuta
-*Action New
-*FillForm
- Code = RUR
- Name Short = RUR
- Name Full = Рубль
-*ExecuteEditorAction Base Unit
-*Action New
-*FillForm
- Code = Money
- Name = Money
- Description = Денежки
-*Action Save and Close
-*ExecuteEditorAction Cost Item
-*Action New
-*FillForm
- Code = Cost It 1
- Name = Cost Item 1
- Description = Cost Item 1
-*Action Save and Close
-*ExecuteEditorAction Nomenclature Type
-*Action New
-*FillForm
- Code = NomType1
- Name = Nomenclature type 1
-*Action Save and Close
-*Action Save and Close
-
-*ExecuteEditorAction Curator Department
-*Action Filter by Text()
-*ProcessRecord hrm Department
- Code = ЦПП
-
 *ExecuteEditorAction Document Category
 *Action New
 *FillForm
- Code = CDT
- Name = Contract Doc Type 1
+ Code = Doc Type 1
+ Name = Document Type 1
 *Action Save and Close
-
-*ExecuteEditorAction Partner Party
-*Action New(crm CPhysical Party)
-*Action CommonGroup
 *FillForm
- First Name = Сурен
- Last Name = Гаспарян
- Middle Name = Автандилович
- Name Handmake = Гаспарян
- INN = 444444444
-
-*ExecuteEditorAction Address Legal
-*FillForm
- Region = Московский
- City = Москва
- Zip Postal = 111000
- State Province = ВАО
- Street = Купавинский проезд, 1
-*Action OK
-*ExecuteEditorAction Address Fact
-*FillForm
- Region = Московский
- City = Москва
- Zip Postal = 111222
- State Province = СВАО
- Street = 1500-й проектируемый пр., 15
-*Action OK
-*Action Save and Close
-*Action Save and Close
-*Action Close
-
+ New Number Required = True
+ Kind Of Deal = DEAL_WITH_STAGE
+ Category = Кат. дог. 1
+ Curator Department = ЦПП
+ Price = 1110
+ Valuta = Руб
+ Date Begin = 19.10.2011
+ Description Short = Договор с этапами 1
+ Our Role = CUSTOMER
+ Our Party = ИнтекоАГ
+ Partner Party = ИнтекоАГ
 *Action Wizard Support Complete Action
 
-*ReopenApplication IntecoAG.ERM.Win
-*Action OK
-
-*ProcessRecord 
- Категория = КатДог 1
+*Action Common
+*FillForm
+ Cost Model = Мод цены 1
+*ExecuteEditorAction NDSRate
+*Action New
+*FillForm
+ Numerator = 20
+ Denominator = 100
+ Code = 20/100
+ Name = 20/100
+*Action Save and Close
+*FillForm
+ Cost Item = Ст ДДС 1
+ Description Long = Догоовр с этапами
 *Action Stages
 *Action Stages.New
+*FillForm
+ Stage Type = AGREGATE
+ Code = AGR 1
 *Action Common
 *FillForm
- Description Short = First Stage
- Description Long = First Stage
- Code = FS1
- Cost Item = Ст ДДС 1
+ Description Short = ОБщий этап 1
+ Description Long = Общие данные
+;*Action Validate
 *Action Save and Close
-
-*Action Approve
-*HandleDialog
- Respond = Yes
-
-*Action Create Version
+*Action Stages.New
+*FillForm
+ Stage Type = FINANCE
+ Code = FIN 1
 *Action Common
 *FillForm
- Date Finish = 31.12.2011
-
+ Description Short = Этап для учёта карбованцев
+ Description Long = Этап для активизации армии финансистов и бухгалтеров
+*Action Save and Close
+*Action Stages.New
+*FillForm
+ Stage Type = AGREGATE
+ Code = TECH 1
+*Action Common
+*FillForm
+ Description Short = Мелкие технические манипуляции 1
+ Description Long = Этап для полёта фантазии инженеров 1
+*Action Save and Close
+*Action Stages.New
+*FillForm
+ Stage Type = AGREGATE
+ Code = TECH 2
+*Action Common
+*FillForm
+ Description Short = Технические специалисты не нарадуются
+ Description Long = Задействование технических гениев.
+*Action Save and Close
+*Action Save
+*Action Save and Close
+*ProcessRecord 
+ Состояние = DEAL_PROJECT
 *Action Approve
 *HandleDialog
  Respond = Yes

@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{368E9133-CB2F-4929-92A4-7F047659B03E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntecoAG.ERM.Module</RootNamespace>
+    <AssemblyName>IntecoAG.ERM.Base.Module</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>http://localhost/IntecoAG.ERM.Module/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v11.1.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ConditionalEditorState.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ConditionalEditorState.Win.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Demos.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.PivotChart.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.PivotChart.Win.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.Win.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Reports.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Win.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.v11.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Objects.v11.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v11.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Win.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Persistent.Base.v11.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v11.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v11.1.Core, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v11.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v11.1.Design, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v11.1.Core, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v11.1.UI, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v11.1.Design, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Reports.v11.1.Designer, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v11.1.Extensions, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.Build.Conversion.v3.5" />
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChangeLanguageController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChangeLanguageController.Designer.cs">
+      <DependentUpon>ChangeLanguageController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionSource.cs" />
+    <Compile Include="CommonConstants.cs" />
+    <Compile Include="CommonMethods.cs" />
+    <Compile Include="ContractVersionsReportParametersObject.cs" />
+    <Compile Include="CRM\Party\PartyViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\Party\PartyViewController.Designer.cs">
+      <DependentUpon>PartyViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\CommitInfoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CS\CommitInfoController.Designer.cs">
+      <DependentUpon>CommitInfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterAndParamForms\crmPlaneFactRegisterFilter01.cs" />
+    <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs" />
+    <Compile Include="FilterAndParamForms\crmCashFlowRegisterFilter01.cs" />
+    <Compile Include="FilterAndParamForms\crmContractDealFilter01.cs" />
+    <Compile Include="FilterAndParamForms\crmContractRegistrationLogFilter01.cs" />
+    <Compile Include="CustomNewActionViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomNewActionViewController.Designer.cs">
+      <DependentUpon>CustomNewActionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomShowNavigationItemController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomShowNavigationItemController.Designer.cs">
+      <DependentUpon>CustomShowNavigationItemController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorStateCustomizationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EditorStateCustomizationController.Designer.cs">
+      <DependentUpon>EditorStateCustomizationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterAndParamForms\FilteringCriterion.cs" />
+    <Compile Include="FilterAndParamForms\FilteringLikeCriterion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IModelMiniNavigation.cs" />
+    <Compile Include="ListViewFilterPanelController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListViewFilterPanelController.Designer.cs">
+      <DependentUpon>ListViewFilterPanelController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LongOperationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImmediateValidationOnLostFocusController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImmediateValidationOnLostFocusController.Designer.cs">
+      <DependentUpon>ImmediateValidationOnLostFocusController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiniNavigationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MiniNavigationController.Designer.cs">
+      <DependentUpon>MiniNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NestedFarme\IMasterDetailViewInfo.cs" />
+    <Compile Include="NestedFarme\MasterDetailViewControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NestedFarme\MasterDetailViewControllerBase.Designer.cs">
+      <DependentUpon>MasterDetailViewControllerBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NestedFarme\OnShowListPropertyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NestedFarme\OnShowListPropertyController.Designer.cs">
+      <DependentUpon>OnShowListPropertyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressForm.cs" />
+    <Compile Include="RefreshMDITabsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RefreshMDITabsController.Designer.cs">
+      <DependentUpon>RefreshMDITabsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReadOnlyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReadOnlyController.Designer.cs">
+      <DependentUpon>ReadOnlyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.Designer.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleBusinessActionGridListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SimpleBusinessActionGridListViewController.Designer.cs">
+      <DependentUpon>SimpleBusinessActionGridListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskAnalysis1LayoutUpdaterBase.cs" />
+    <Compile Include="Updater.cs" />
+    <Compile Include="UserApp\AppBase.cs" />
+    <Compile Include="UserApp\AppGroup.cs" />
+    <Compile Include="UserApp\AppPersistentPermissionObject.cs" />
+    <Compile Include="UserApp\AppUser.cs" />
+    <Compile Include="UserApp\AppUserActivity.cs" />
+    <Compile Include="UserApp\AppUserPhoneNumber.cs" />
+    <Compile Include="VersionServiceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VersionServiceController.Designer.cs">
+      <DependentUpon>VersionServiceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WizardSupportController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WizardSupportController.Designer.cs">
+      <DependentUpon>WizardSupportController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChangeLanguageController.resx">
+      <DependentUpon>ChangeLanguageController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRM\Party\PartyViewController.resx">
+      <DependentUpon>PartyViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListViewFilterPanelController.resx">
+      <DependentUpon>ListViewFilterPanelController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiniNavigationController.resx">
+      <DependentUpon>MiniNavigationController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NestedFarme\MasterDetailViewControllerBase.resx">
+      <DependentUpon>MasterDetailViewControllerBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NestedFarme\OnShowListPropertyController.resx">
+      <DependentUpon>OnShowListPropertyController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Functional Tests\Config.xml" />
+    <Content Include="Images\about_kde_24x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\about_kde_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\auction_hammer_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\binoculars_32x32.png" />
+    <Content Include="Images\BO_Appointment.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\dialog-apply_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\dialog-apply_24x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\edit-clear_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\edit-clear_24x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\edit-clear_32x32.png" />
+    <EmbeddedResource Include="Images\find_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Images\folder_txt_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\kappfinderClose_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\kappfinder_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\kappfinder_24x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\starthere_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\viewmag+_32x32.png" />
+    <Content Include="Images\web_layout_search_32x32.png" />
+    <None Include="Functional Tests\WinSample.ets" />
+    <None Include="Reports\Просмотр журнала регистраций договоров.repx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru-RU.xafml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="SimpleBusinessActionGridListViewController.resx">
+      <DependentUpon>SimpleBusinessActionGridListViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VersionServiceController.resx">
+      <DependentUpon>VersionServiceController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardSupportController.resx">
+      <DependentUpon>WizardSupportController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Раб. план 2.repx" />
+    <None Include="Reports\Contract Versions.repx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IntecoAG.ERM\IntecoAG.ERM.csproj">
+      <Project>{0B88798B-F4D2-4122-81CB-78C88062FCB8}</Project>
+      <Name>IntecoAG.ERM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

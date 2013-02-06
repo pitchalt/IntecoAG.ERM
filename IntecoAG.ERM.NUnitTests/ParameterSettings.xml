@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<appSettings>
+  <!--"Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;Data Source=IntecoAG.ERM.mdb;Mode=Share Deny None;"-->
+  <!--InMemory-->
+  <ConnectionString Comment="Строка подключения">
+    <Value>InMemory</Value>
+  </ConnectionString>
+  <CheckValidationRule Comment="Включить проверку правил валидации (F - выключить, Y - включить)">
+    <Value>Y</Value>
+  </CheckValidationRule>
+</appSettings>

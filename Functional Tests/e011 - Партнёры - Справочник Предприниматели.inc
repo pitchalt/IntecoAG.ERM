@@ -1,39 +1,39 @@
-*Action Navigation(Partners.crm CBusinessman)
-*Action New
-*Action CommonGroup
+*Action Navigation(Partners.Предприниматель)
+*Action New(Предприниматель)
 *FillForm
- First Name = Мебель
- Last Name = Мебель
- Middle Name = Мебелевич
- Name Handmake = Табуреткин
- INN = 45454545
- Reg Code = 45
- Description = Делает табуретки на коленках
-*ExecuteEditorAction Address Legal
+ Physical Person = Иванов Иван Иванович
+*ExecuteEditorAction Address
 *FillForm
- Region = Питерский
- City = Питер
- Zip Postal = 200000
- State Province = Центр
- Street = Фонтанка, 1
+ Country  = RUS
+ Zip Postal = 111000
+ Region = Центральный
+ State Province = Московская провинция
+ City = Москва
+ Street = Ленинский проспект, 4
+; Address String = 
 *Action OK
-*Action Save and New
-
-*Action CommonGroup
 *FillForm
- First Name = Застройщик
- Last Name = Застройкин
- Middle Name = Застроевич
- Name Handmake = Землекоп
- INN = 56565656
- Reg Code = 56
- Description = Роет носом как настоящая ищейка
-*ExecuteEditorAction Address Fact
+ INN = 1234567
+ Name = Рыночник Иванов
+ Reg Number = Рег Ном 1
+ Name Full = Иванов & Ко
+*Action Save and New(Предприниматель)
 *FillForm
- Region = Сибирь
- City = Новосибирск
- Zip Postal = 56565
- State Province = Окраина
- Street = Центральная, 10
+ Physical Person = Петров Пётр Петрович
+*ExecuteEditorAction Address
+*FillForm
+ Country  = RUS
+ Zip Postal = 122000
+ Region = Центральный
+ State Province = Московская провинция
+ City = Москва
+ Street = Зелёный проспю, 2
+; Address String = 
 *Action OK
+*FillForm
+ INN = 33333333333333
+ Name = Бизнесмен Петров
+ Name Full = Петров & Ко
+ Reg Number = ааа111
+*Action Save
 *Action Save and Close

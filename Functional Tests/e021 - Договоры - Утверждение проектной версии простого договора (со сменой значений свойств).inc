@@ -1,8 +1,9 @@
 *ProcessRecord 
- Категория = ConCat 1
-*FillForm
- Advance Summ = 3220
- Advance Date = 25.12.2011
+ Состояние = DEAL_PROJECT
+*Action Deal Versions
+*ProcessRecord Deal Versions
+ Deal State = DEAL_PROJECT
+ Show Version State = VERSION_PROJECT
 *Action Approve
 *HandleDialog
  Respond = Yes
