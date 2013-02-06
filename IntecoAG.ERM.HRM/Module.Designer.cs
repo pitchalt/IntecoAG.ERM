@@ -1,4 +1,4 @@
-﻿namespace IntecoAG.ERM.HRM
+namespace IntecoAG.ERM.HRM
 {
     partial class HRMModule
     {

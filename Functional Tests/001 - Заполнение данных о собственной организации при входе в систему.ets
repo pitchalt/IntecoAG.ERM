@@ -1,50 +1,86 @@
 
 #Application IntecoAG.ERM.Win
 
-*Action Создать
+*Action New(Организация пользователя)
 *ExecuteEditorAction Сторона
-*Action Создать
+*Action New
+*ExecuteEditorAction Контрагент
+*Action New(Предприниматель)
+*ExecuteEditorAction Физическое лицо
+*Action New
 *FillForm
- Наименование = Иванов & Ко
- Наим. Полное = Иванов и сыновья
- ИНН = 1111111111
- КПП = 2222222222
-
-*ExecuteEditorAction Адрес Факт.
+ Фамилия = Иванов
+ Имя = Иван
+ Отчество = Иванович
+*ExecuteEditorAction Адрес
 *ExecuteEditorAction Страна
-*Action Создать
+*Action New
 *FillForm
- En Короткое имя = Ru
+ En Короткое имя = RUS
  En Полное имя = Russia
  Ru Короткое имя = Рус
  Ru Полное имя = РОССИЯ
  Букв2С = RU
  Букв3С = Rus
- Рус3C = Рус
- Цифровой = 01
- Комментарий = Российская Федерация
-*Action Сохранить и закрыть
+ Рус3C = Рос
+ Цифровой = 001
+ Комментарий = Россия
+*Action Save and Close
 *FillForm
+ Почтовый индекс = 100000
+ Регион = Москва
  Регион = Московский
  Город = Москва
- Почтовый индекс = 100000
- Район = Зябликово
- Улица, дом = Балбесов, 12
-*Action ОК
-
-; Закомментаренное даёт ошибку, разбор - на потом
-;*ExecuteEditorAction Адрес Почт.
-;*FillForm
-; Страна = Рус
-; Регион = Московский
-; Город = Москва
-; Почтовый индекс = 111000
-; Район = Строгино
-; Улица, дом = Остолопов, 40
-;*Action ОК
-
+ Улица, дом = Правды, 1
+ Адрес не компонентный = корп. 2, стр. 3
+*Action OK
 *FillForm
- Описание = Фирма торгует барахлом
-*Action Сохранить и закрыть
-*Action Сохранить и закрыть
+ ИНН = 1111111111
+*Action Банковские счета
+*Action Банковские счета.New
+*ExecuteEditorAction Банк
+*Action New
+*Action Стороны
+*Action Стороны.Link
+*Action Cancel
+*Action Стороны.New
+*FillForm
+ Наименование стороны = Предприниматель Иванов
+ КПП = 123
+ Код Регистрации Филиала = 456
+*Action Банковские счета.New
+*Action Save and Close
+*Action Банковские счета
+*Action Банковские счета.New
+*ExecuteEditorAction Банк
+*Action New
+*FillForm
+ Сторона = Предприниматель Иванов
+ Страна = RU - Рус
+ Наименование = РастратБанк
+ Swift BIC = 111
+ БИК = 222
+ Кор.Счет = 333333333333333
+*Action Save and Close
+*FillForm
+ Номер счета = 666
+*Action Save and Close
+*Action Save and Close
+*ExecuteEditorAction Адрес
+*FillForm
+ Почтовый индекс = 101000
+ Регион = Московский
+ Город = Москва
+ Улица, дом = ш. Энтузиастов, 1
+*Action OK
+*FillForm
+ ИНН = 1111111111
+ Наименование = ПБОЮЛ Иванов & Ko
+ Рег. Номер (ОГРЮЛ) = 5555555555555
+ Name Full = Компания Иванова и его друзей
+*Action Save and Close
+*FillForm
+ Наименование стороны = Бизнесмен Иванов
+*Action Save and Close
+*Action Save and Close
 *Action OK

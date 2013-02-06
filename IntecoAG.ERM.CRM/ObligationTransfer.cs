@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ ObligationContainer, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РїР°РєРµС‚С‹ РѕР±СЏР·Р°С‚РµР»СЊСЃС‚РІ РїРѕ Р”РѕРіРѕРІРѕСЂР°
+    /// Класс ObligationContainer, представляющий пакеты обязательств по Договора
     /// </summary>
     [Persistent("crmObligationContainer")]
     public partial class ObligationContainer : Obligation

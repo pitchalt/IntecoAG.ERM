@@ -8,9 +8,73 @@
   <CreatableItems>
     <CreatableItem ClassName="IntecoAG.ERM.CRM.Contract.Forms.crmDealRegistrationForm" Visible="False" />
   </CreatableItems>
+  <NavigationItems>
+    <Items>
+      <Item Id="Contract" IsNewNode="True" Index="0">
+        <Items IsNewNode="True">
+          <Item Id="crmContractDeal_ListView" IsNewNode="True" ViewId="crmContractDeal_ListView" ObjectKey="" Index="2" />
+          <Item Id="Contract Registration Form_Copy" IsNewNode="True" Index="3" ViewId="crmContractRegistrationForm_DetailView" />
+          <Item Id="Deal Registration Form" IsNewNode="True" Index="4" ViewId="crmDealRegistrationForm_DetailView" Visible="False" />
+          <Item Id="crmContract_ListView" IsNewNode="True" ViewId="crmContract_ListView" ObjectKey="" Index="5" />
+          <Item Id="@2439d31c-034e-43e1-8383-3129a85e45bf" IsNewNode="True" ViewId="crmContractRegistrationLog_ListView" Index="6" />
+        </Items>
+      </Item>
+      <Item Id="Partners" IsNewNode="True" Index="1">
+        <Items IsNewNode="True">
+          <Item Id="@9d53cbdf-53c2-4d62-b346-b0deb5d0721c" IsNewNode="True" Index="0" ViewId="crmPartyRu_ListView" />
+          <Item Id="@5fa2e245-6b55-4436-a055-4b9bb3c5c214" IsNewNode="True" Index="1" ViewId="crmCLegalPerson_ListView" />
+          <Item Id="@51408b76-b9d3-4a05-a491-21b9b09e5a7f" IsNewNode="True" Index="2" ViewId="crmCBusinessman_ListView" />
+          <Item Id="@d5c22a20-c5c9-4ed9-bd99-a138fe94c810" IsNewNode="True" Index="3" ViewId="crmCPhysicalParty_ListView" />
+          <Item Id="@bb695f3e-7fc6-474d-b798-9926cc46696e" IsNewNode="True" ViewId="crmBank_ListView" Index="4" />
+        </Items>
+      </Item>
+      <Item Id="Finance" IsNewNode="True" Index="2">
+        <Items IsNewNode="True">
+          <Item Id="@f5053178-b2a7-4d60-9fe3-b0b272b806a9" IsNewNode="True" ViewId="DirectionClass_ListView" Index="0" />
+          <Item Id="@f4501d5b-066e-4823-9d7b-f44ec270efdf" IsNewNode="True" ViewId="SubjectClass_ListView" Index="1" />
+          <Item Id="@ff94211e-ff25-4708-8a02-94079624dc42" IsNewNode="True" ViewId="fmOrder_ListView" Index="2" />
+          <Item Id="@a10cd647-5cb9-4332-ac1d-cabff80532e8" IsNewNode="True" ViewId="AbstractAnaliticClass_ListView" />
+        </Items>
+      </Item>
+      <Item Id="Analitica" IsNewNode="True" Index="3">
+        <Items IsNewNode="True">
+          <Item Id="crmCashFlowRegister_ListView" IsNewNode="True" ViewId="crmCashFlowRegister_ListView" ObjectKey="" />
+          <Item Id="crmDebtorCreditorDebtRegister_ListView" IsNewNode="True" ViewId="crmDebtorCreditorDebtRegister_ListView" ObjectKey="" />
+          <Item Id="crmPlaneFactRegister_ListView" IsNewNode="True" ViewId="crmPlaneFactRegister_ListView" ObjectKey="" />
+        </Items>
+      </Item>
+      <Item Id="Reports" Index="4" />
+      <Item Id="Staffs" IsNewNode="True" Index="5">
+        <Items IsNewNode="True">
+          <Item Id="@a134f28b-a60a-4755-8b99-4bda0267e32b" IsNewNode="True" ViewId="hrmDepartment_ListView" />
+          <Item Id="@f05e03db-f3df-4852-8c79-45ab69c9e6b9" IsNewNode="True" ViewId="hrmStaff_ListView" />
+        </Items>
+      </Item>
+      <Item Id="System" IsNewNode="True" Index="6">
+        <Items IsNewNode="True">
+          <Item Id="@b7ca4a47-5926-4e58-8c64-8dfd166c08cd" IsNewNode="True" ViewId="crmContractCategory_ListView" Index="0" />
+          <Item Id="@607afae9-4d47-4700-873f-5e9fd64237dd" IsNewNode="True" ViewId="crmCostModel_ListView" Index="1" />
+          <Item Id="@5159ae03-efa5-448c-b3a0-9cb5d13a8ec4" IsNewNode="True" ViewId="csCountry_ListView" Index="2" />
+          <Item Id="@7686ec51-3a7c-40a3-aab8-1ba5a3a60773" IsNewNode="True" ViewId="csUnit_ListView" Index="3" />
+          <Item Id="@c133b279-1a66-4452-ba6e-aea8bb10fa95" IsNewNode="True" ViewId="csNomenclatureType_ListView" Index="4" />
+          <Item Id="@b2dbc45e-53f1-47af-a1df-3304957bdc09" IsNewNode="True" ViewId="csMaterial_ListView" Index="5" />
+          <Item Id="@cb3d8043-8a9d-4c84-b858-ae274de608ac" IsNewNode="True" ViewId="csService_ListView" Index="6" />
+          <Item Id="@d2c03cc9-f929-4fa1-beb5-66b70582fa6a" IsNewNode="True" Index="7" ViewId="csValuta_ListView" />
+          <Item Id="@f4bd15b9-b209-4137-8721-f8d23f34a2eb" IsNewNode="True" ViewId="crmUserParty_ListView" Index="8" />
+        </Items>
+      </Item>
+      <Item Id="Default" Index="7">
+        <Items>
+          <Item Id="crmCashFlowRegister_ListView" Removed="True" />
+          <Item Id="crmDebtorCreditorDebtRegister_ListView" Removed="True" />
+          <Item Id="crmPlaneFactRegister_ListView" Removed="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Options UIType="TabbedMDI" />
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" IsNewNode="True" Version="10.2.8.0" />
+    <SchemaModule Name="SystemWindowsFormsModule" IsNewNode="True" Version="10.2.8.0" />
   </SchemaModules>
 </Application>

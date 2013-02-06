@@ -1,4 +1,4 @@
-﻿namespace IntecoAG.ERM.Security {
+namespace IntecoAG.ERM.Security {
     partial class SecurityExtModule {
         /// <summary> 
         /// Required designer variable.

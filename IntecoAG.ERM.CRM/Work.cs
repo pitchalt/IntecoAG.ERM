@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё СЃС‚СЂСѓРєС‚СѓСЂС‹ СЌС‚Р°РїРѕРІ РїСЂРѕРµРєС‚Р°
+    /// Класс для поддержки структуры этапов проекта
     /// </summary>
     [Persistent("crmWork")]
     public partial class Work : Stage

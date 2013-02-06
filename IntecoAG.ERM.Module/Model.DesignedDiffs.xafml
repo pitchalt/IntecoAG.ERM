@@ -1,0 +1,1918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="IntecoAG ERM" Logo="ExpressAppLogo">
+  <ActionDesign>
+    <Actions>
+      <Action Id="ListViewApplyFilter" Index="0" />
+      <Action Id="ListViewClearFilter" Index="1" />
+      <Action Id="About Info" Index="2" />
+      <Action Id="BindAnalysisData" Index="3" />
+      <Action Id="Cancel" Index="4" />
+      <Action Id="ChangeVariant" Index="5" />
+      <Action Id="ChartWizard" Index="6" />
+      <Action Id="ChooseFormattingCulture" Index="7" />
+      <Action Id="ChooseLanguage" Index="8" />
+      <Action Id="ChooseSkin" Index="9" />
+      <Action Id="Clear" Index="10" />
+      <Action Id="Close" Index="11" />
+      <Action Id="CloseAllMdiChildWindowsAction" Index="12" />
+      <Action Id="CopyCellValue" Index="13" />
+      <Action Id="CreateDashboard" Index="14" />
+      <Action Id="crmDealWithoutStageVersion.UpdatePaymentsAction" Index="15" />
+      <Action Id="crmStage.UpdatePaymentsAction" Index="17" />
+      <Action Id="Delete" Index="18" />
+      <Action Id="Delete Item" Index="19" />
+      <Action Id="Diagnostic Info" Index="20" />
+      <Action Id="DialogCancel" Index="21" />
+      <Action Id="DialogOK" Index="22" />
+      <Action Id="EditModel" Index="23" />
+      <Action Id="Exit" Index="24" />
+      <Action Id="Export" Index="25" />
+      <Action Id="FilteringCriterionListAction" Index="26" />
+      <Action Id="FullTextSearch" Index="28" />
+      <Action Id="HideItemsFromDashboard" Index="29" />
+      <Action Id="Link" Index="30" />
+      <Action Id="ListViewShowObject" Index="31" />
+      <Action Id="Logoff" Index="32" />
+      <Action Id="Logon" Index="33" />
+      <Action Id="MiniNavigationAction" Index="34" />
+      <Action Id="NavigateBack" Index="35" />
+      <Action Id="NavigateForward" Index="36" />
+      <Action Id="New" Index="37" />
+      <Action Id="NewVersionAction" Index="38" />
+      <Action Id="NextObject" Index="39" />
+      <Action Id="OpenObject" Index="40" />
+      <Action Id="OrganizeDashboard" Index="41" />
+      <Action Id="PreviousObject" Index="42" />
+      <Action Id="PrintChart" Index="43" />
+      <Action Id="PrintPreviewPivotGrid" Index="44" />
+      <Action Id="Refresh" Index="45" />
+      <Action Id="Save" ValidationContexts="Next;Complete;Save" Index="46" />
+      <Action Id="SaveAndClose" ValidationContexts="Next;Complete;Save" Index="47" />
+      <Action Id="SaveAndNew" ValidationContexts="Next;Complete;Save" Index="48" />
+      <Action Id="SetFilter" Index="49" />
+      <Action Id="ShowAllContexts" Index="50" />
+      <Action Id="ShowItemsOnDashboard" Index="51" />
+      <Action Id="ShowNavigationItem" Index="52" />
+      <Action Id="ToggleToolbarVisibility" Index="53" />
+      <Action Id="UnbindAnalysisData" Index="54" />
+      <Action Id="Unlink" Index="55" />
+      <Action Id="VersionApprove" Index="56" />
+      <Action Id="WizardSupportCompleteAction" ValidationContexts="Next; Save; Complete" Index="57" />
+    </Actions>
+    <ActionToContainerMapping>
+      <ActionContainer Id="FullTextSearch">
+        <ActionLink ActionId="FullTextSearch" Index="0" />
+        <ActionLink ActionId="FilteringCriterionListAction" Index="1" />
+        <ActionLink ActionId="ListViewApplyFilter" Index="2" />
+        <ActionLink ActionId="ListViewClearFilter" Index="3" />
+      </ActionContainer>
+      <ActionContainer Id="Payments" IsNewNode="True">
+        <ActionLink ActionId="crmDealWithoutStageVersion.UpdatePaymentsAction" IsNewNode="True" />
+        <ActionLink ActionId="crmStage.UpdatePaymentsAction" IsNewNode="True" />
+      </ActionContainer>
+      <ActionContainer Id="VersionActions">
+        <ActionLink ActionId="VersionApprove" Index="0" />
+        <ActionLink ActionId="NewVersionAction" Index="1" />
+      </ActionContainer>
+      <ActionContainer Id="VersionWorking" Removed="True">
+        <ActionLink ActionId="NewVersionAction" Removed="True" />
+        <ActionLink ActionId="VersionApprove" Removed="True" />
+      </ActionContainer>
+      <ActionContainer Id="View">
+        <ActionLink ActionId="ChangeVariant" Index="0" />
+        <ActionLink ActionId="MiniNavigationAction" Index="1" />
+        <ActionLink ActionId="PrintChart" Index="2" />
+        <ActionLink ActionId="PrintPreviewPivotGrid" Index="3" />
+        <ActionLink ActionId="Refresh" Index="4" />
+        <ActionLink ActionId="NewVersionAction" IsNewNode="True" Index="5" />
+        <ActionLink ActionId="VersionApprove" IsNewNode="True" Index="6" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+    <Controllers>
+      <ViewController Name="IntecoAG.ERM.Module.ListViewFilterPanelController">
+        <Actions>
+          <ActionLink ActionId="FilteringCriterionListAction" Index="0" />
+          <ActionLink ActionId="ListViewApplyFilter" Index="1" />
+          <ActionLink ActionId="ListViewClearFilter" Index="2" />
+        </Actions>
+      </ViewController>
+    </Controllers>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmContractCategory" DefaultLookupEditorMode="AllItems" />
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmContractDocumentType" DefaultLookupEditorMode="AllItems" />
+    <Class Name="IntecoAG.ERM.CRM.Contract.crmStage">
+      <OwnMembers>
+        <Member Name="DeliveryItem" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmDealVersion">
+      <OwnMembers>
+        <Member Name="Category" LookupProperty="FullCode" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmDealWithoutStageVersion">
+      <OwnMembers>
+        <Member Name="DeliveryItem" Caption="Единичная позиция" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" />
+        <Member Name="DeliveryMethod" Caption="Тип поставки" />
+        <Member Name="ItemShedules" Caption="Номенклатурный График" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryPlanItemShedule">
+      <OwnMembers>
+        <Member Name="CountValue" AllowEdit="False" />
+        <Member Name="SummCost" AllowEdit="False" />
+        <Member Name="SummFull" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmBank" Caption="Банк" />
+    <Class Name="IntecoAG.ERM.CRM.Party.crmCBusinessman">
+      <OwnMembers>
+        <Member Name="Code" AllowEdit="False" />
+        <Member Name="Name" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmCLegalPerson">
+      <OwnMembers>
+        <Member Name="Code" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmCLegalPersonUnit">
+      <OwnMembers>
+        <Member Name="Code" AllowEdit="False" />
+        <Member Name="INN" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmCParty">
+      <OwnMembers>
+        <Member Name="Code" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmCPhysicalParty">
+      <OwnMembers>
+        <Member Name="Code" AllowEdit="False" />
+        <Member Name="Name" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmIParty">
+      <OwnMembers>
+        <Member Name="AddressFact" AllowEdit="False" />
+        <Member Name="AddressPost" AllowEdit="False" />
+        <Member Name="Code" AllowEdit="False" />
+        <Member Name="ComponentObject" AllowEdit="False" />
+        <Member Name="ComponentType" AllowEdit="False" />
+        <Member Name="Country" AllowEdit="False" />
+        <Member Name="Description" AllowEdit="False" />
+        <Member Name="INN" AllowEdit="False" />
+        <Member Name="KPP" AllowEdit="False" />
+        <Member Name="Name" AllowEdit="False" />
+        <Member Name="NameFull" AllowEdit="False" />
+        <Member Name="Party" AllowEdit="False" />
+        <Member Name="Person" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Party.crmPartyRu" DefaultLookupEditorMode="Search" />
+    <Class Name="IntecoAG.ERM.CS.Country.csAddress">
+      <OwnMembers>
+        <Member Name="City" DataSourceCriteria="" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.Country.csCountry">
+      <OwnMembers>
+        <Member Name="CodeNumeric" EditMask="" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CS.csCComponent">
+      <OwnMembers>
+        <Member Name="ComponentType" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.HRM.Organization.hrmDepartment" Caption="hrm Department" DefaultLookupEditorMode="Search" />
+  </BOModel>
+  <CreatableItems>
+    <CreatableItem ClassName="IntecoAG.ERM.CRM.Contract.Forms.crmContractRegistrationForm" IsNewNode="True" Index="0" />
+    <CreatableItem ClassName="IntecoAG.ERM.CRM.Contract.Forms.crmDealRegistrationForm" IsNewNode="True" Index="1" />
+  </CreatableItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" IsNewNode="True" Version="10.2.8.0" />
+    <SchemaModule Name="SystemWindowsFormsModule" IsNewNode="True" Version="10.2.8.0" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="AAA_ListView">
+      <Filters>
+        <Filter Id="@1cafddfb-007f-4806-ae26-e3dae6d8afc5" IsNewNode="True" />
+      </Filters>
+      <MiniNavigations DefaultMiniNavigationNode="" />
+    </ListView>
+    <ListView Id="crmCashFlowRegister_ListView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" AllowDelete="False" AllowNew="False" IsGroupPanelVisible="True" />
+    <DetailView Id="crmCBusinessman_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" IsNewNode="True" Index="0" Direction="Vertical" ShowCaption="False" Removed="True">
+          <LayoutGroup Id="SimpleEditors" IsNewNode="True" Index="0" Direction="Horizontal" ShowCaption="False">
+            <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutItem Id="Country" IsNewNode="True" ViewItem="Country" Index="2" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutItem Id="Name" IsNewNode="True" ViewItem="Name" Index="3" CaptionLocation="Top" RelativeSize="70" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" IsNewNode="True">
+            <LayoutGroup Id="CommonGroup" IsNewNode="True" Index="0">
+              <LayoutGroup Id="CommonSimpleGroup" IsNewNode="True" Index="0">
+                <LayoutGroup Id="StatusGroup" IsNewNode="True" Index="0" RelativeSize="20" Direction="Horizontal">
+                  <LayoutItem Id="IsClosed" IsNewNode="True" ViewItem="IsClosed" Index="0" />
+                  <LayoutItem Id="PersonType" IsNewNode="True" Index="1" ViewItem="PersonType" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutGroup Id="NameGroup" IsNewNode="True" Index="2" Direction="Horizontal">
+                  <LayoutItem Id="FirstName" IsNewNode="True" ViewItem="FirstName" Index="4" CaptionLocation="Top" />
+                  <LayoutItem Id="LastName" IsNewNode="True" ViewItem="LastName" Index="7" CaptionLocation="Top" />
+                  <LayoutItem Id="MiddleName" IsNewNode="True" ViewItem="MiddleName" Index="8" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutItem Id="NameHandmake" IsNewNode="True" ViewItem="NameHandmake" Index="3" />
+                <LayoutGroup Id="CodeGroup" IsNewNode="True" Index="4" Direction="Horizontal">
+                  <LayoutItem Id="INN" IsNewNode="True" ViewItem="INN" Index="0" />
+                  <LayoutItem Id="RegCode" IsNewNode="True" ViewItem="RegCode" Index="2" />
+                </LayoutGroup>
+                <LayoutItem Id="AddressLegal" IsNewNode="True" ViewItem="AddressLegal" Index="5" />
+                <LayoutItem Id="AddressFact" IsNewNode="True" ViewItem="AddressFact" Index="6" />
+                <LayoutItem Id="AddressPost" IsNewNode="True" ViewItem="AddressPost" Index="7" />
+              </LayoutGroup>
+              <LayoutGroup Id="SizeableEditors" IsNewNode="True" Index="1" Direction="Vertical" ShowCaption="False">
+                <LayoutItem Id="Description" IsNewNode="True" ViewItem="Description" Index="0" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="BankAccountsGroup" IsNewNode="True" Index="1" Direction="Horizontal" ShowCaption="True">
+              <LayoutItem Id="BankAccounts" IsNewNode="True" ViewItem="BankAccounts" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmCLegalPerson_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" IsNewNode="True" Index="0" Direction="Vertical" ShowCaption="False" Removed="True">
+          <LayoutGroup Id="SimpleEditors" IsNewNode="True" Index="0" Direction="Horizontal" ShowCaption="False">
+            <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutItem Id="Country" IsNewNode="True" ViewItem="Country" Index="2" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutItem Id="Name" IsNewNode="True" ViewItem="Name" Index="3" CaptionLocation="Top" RelativeSize="70" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" IsNewNode="True">
+            <LayoutGroup Id="CommonGroup" IsNewNode="True" Index="0">
+              <LayoutGroup Id="CommonSimpleGroup" IsNewNode="True" Index="0">
+                <LayoutGroup Id="StatusGroup" IsNewNode="True" Index="0">
+                  <LayoutItem Id="IsClosed" IsNewNode="True" ViewItem="IsClosed" Index="0" RelativeSize="20" />
+                  <LayoutItem Id="PersonType" IsNewNode="True" ViewItem="PersonType" Index="1" />
+                </LayoutGroup>
+                <LayoutItem Id="NameFull" IsNewNode="True" ViewItem="NameFull" Index="1" />
+                <LayoutGroup Id="CodeGroup" IsNewNode="True" Index="2" Direction="Horizontal">
+                  <LayoutItem Id="INN" IsNewNode="True" ViewItem="INN" Index="0" />
+                  <LayoutItem Id="KPP" IsNewNode="True" ViewItem="KPP" Index="1" />
+                  <LayoutItem Id="RegCode" IsNewNode="True" ViewItem="RegCode" Index="2" />
+                </LayoutGroup>
+                <LayoutItem Id="AddressLegal" IsNewNode="True" ViewItem="AddressLegal" Index="3" />
+                <LayoutItem Id="AddressFact" IsNewNode="True" ViewItem="AddressFact" Index="4" />
+                <LayoutItem Id="AddressPost" IsNewNode="True" ViewItem="AddressPost" Index="5" />
+              </LayoutGroup>
+              <LayoutGroup Id="SizeableEditors" IsNewNode="True" Index="1" Direction="Vertical" ShowCaption="False">
+                <LayoutItem Id="Description" IsNewNode="True" ViewItem="Description" Index="0" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="BankAccountsGroup" IsNewNode="True" Index="1" Direction="Horizontal" ShowCaption="True">
+              <LayoutItem Id="BankAccounts" IsNewNode="True" ViewItem="BankAccounts" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="LegalPersonUnitsGroup" IsNewNode="True">
+              <LayoutItem Id="LegalPersonUnits" IsNewNode="True" ViewItem="LegalPersonUnits" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmCLegalPerson_LegalPersonUnits_ListView">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="IsClosed" Index="1" />
+        <ColumnInfo Id="INN" Index="2" />
+        <ColumnInfo Id="KPP" Index="3" />
+        <ColumnInfo Id="Name" Index="4" />
+        <ColumnInfo Id="AddressFact" Index="5" />
+        <ColumnInfo Id="NameFull" Index="6" Removed="True" />
+        <ColumnInfo Id="AddressLegal" Index="7" Removed="True" />
+        <ColumnInfo Id="AddressFactString" Removed="True" />
+        <ColumnInfo Id="AddressPost" Removed="True" />
+        <ColumnInfo Id="Country" Removed="True" />
+        <ColumnInfo Id="Description" Removed="True" />
+        <ColumnInfo Id="LegalPersonManage" Removed="True" />
+        <ColumnInfo Id="RegCode" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="crmCLegalPersonUnit_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" IsNewNode="True" Index="0" Direction="Vertical" ShowCaption="False" Removed="True">
+          <LayoutGroup Id="SimpleEditors" IsNewNode="True" Index="0" Direction="Horizontal" ShowCaption="False">
+            <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutItem Id="Country" IsNewNode="True" ViewItem="Country" Index="2" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutItem Id="Name" IsNewNode="True" ViewItem="Name" Index="3" CaptionLocation="Top" RelativeSize="70" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" IsNewNode="True">
+            <LayoutGroup Id="CommonGroup" IsNewNode="True" Index="0">
+              <LayoutGroup Id="CommonSimpleGroup" IsNewNode="True" Index="0">
+                <LayoutItem Id="LegalPersonManage" IsNewNode="True" ViewItem="LegalPersonManage" Index="0" />
+                <LayoutGroup Id="StatusGroup" IsNewNode="True" Index="0">
+                  <LayoutItem Id="IsClosed" IsNewNode="True" ViewItem="IsClosed" Index="0" RelativeSize="20" />
+                </LayoutGroup>
+                <LayoutGroup Id="NameGroup" IsNewNode="True" Index="1" Direction="Vertical">
+                  <LayoutItem Id="NameFull" IsNewNode="True" ViewItem="NameFull" />
+                </LayoutGroup>
+                <LayoutGroup Id="CodeGroup" IsNewNode="True" Index="2" Direction="Horizontal">
+                  <LayoutItem Id="INN" IsNewNode="True" ViewItem="INN" Index="0" />
+                  <LayoutItem Id="KPP" IsNewNode="True" ViewItem="KPP" Index="1" />
+                  <LayoutItem Id="RegCode" IsNewNode="True" ViewItem="RegCode" Index="2" />
+                </LayoutGroup>
+                <LayoutItem Id="AddressLegal" IsNewNode="True" ViewItem="AddressLegal" Index="3" />
+                <LayoutItem Id="AddressFact" IsNewNode="True" ViewItem="AddressFact" Index="4" />
+                <LayoutItem Id="AddressPost" IsNewNode="True" ViewItem="AddressPost" Index="5" />
+              </LayoutGroup>
+              <LayoutGroup Id="SizeableEditors" IsNewNode="True" Index="1" Direction="Vertical" ShowCaption="False">
+                <LayoutItem Id="Description" IsNewNode="True" ViewItem="Description" Index="0" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmContract_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Common" IsNewNode="True" Index="0" Direction="Horizontal">
+              <LayoutItem Id="ContractCategory" IsNewNode="True" ViewItem="ContractCategory" Index="0" CaptionLocation="Top" />
+              <LayoutItem Id="UserRegistrator" IsNewNode="True" ViewItem="UserRegistrator" Index="1" CaptionLocation="Top" />
+              <LayoutItem Id="DepartmentRegistrator" IsNewNode="True" ViewItem="DepartmentRegistrator" Index="2" CaptionLocation="Top" />
+            </LayoutGroup>
+            <LayoutGroup Id="crmContract" Caption="" Index="1" Removed="True">
+              <LayoutGroup Id="crmContract_col1" Removed="True">
+                <LayoutItem Id="ContractDocument.Date" Removed="True" ViewItem="ContractDocument.Date" />
+                <LayoutItem Id="ContractDocument.DocumentCategory" Removed="True" ViewItem="ContractDocument.DocumentCategory" />
+                <LayoutItem Id="ContractDocument.Number" Removed="True" ViewItem="ContractDocument.Number" />
+                <LayoutItem Id="Description" Removed="True" ViewItem="Description" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmContract_col2" Removed="True">
+                <LayoutItem Id="ContractCategory" Removed="True" ViewItem="ContractCategory" />
+                <LayoutItem Id="ContractDocument.FullName" Removed="True" ViewItem="ContractDocument.FullName" />
+                <LayoutItem Id="DepartmentRegistrator" Removed="True" ViewItem="DepartmentRegistrator" />
+                <LayoutItem Id="UserRegistrator" Removed="True" ViewItem="UserRegistrator" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Document" IsNewNode="True" Index="2">
+              <LayoutGroup Id="DocumentFields" IsNewNode="True" Direction="Horizontal" Index="0">
+                <LayoutItem Id="ContractDocument.DocumentCategory" IsNewNode="True" ViewItem="ContractDocument.DocumentCategory" Index="0" CaptionLocation="Top" />
+                <LayoutItem Id="ContractDocument.Number" IsNewNode="True" ViewItem="ContractDocument.Number" Index="1" CaptionLocation="Top" />
+                <LayoutItem Id="ContractDocument.Date" IsNewNode="True" ViewItem="ContractDocument.Date" Index="2" CaptionLocation="Top" />
+              </LayoutGroup>
+              <LayoutItem Id="ContractDocument.FullName" IsNewNode="True" ViewItem="ContractDocument.FullName" Index="1" />
+            </LayoutGroup>
+            <LayoutItem Id="Description" IsNewNode="True" ViewItem="Description" Index="3" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="ContractDeals" Index="0" />
+            <LayoutGroup Id="ContractDocuments" Index="1" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmContractDeal_ListView" AllowDelete="False" AllowNew="False" AllowEdit="False">
+      <Columns>
+        <ColumnInfo Id="Category" Index="0" AllowEdit="False" LookupProperty="FullCode" />
+        <ColumnInfo Id="State" Index="1" AllowEdit="False" />
+        <ColumnInfo Id="ContractKind" Index="2" AllowEdit="False" />
+        <ColumnInfo Id="ContractDocument.DocumentCategory" Index="3" Removed="True" />
+        <ColumnInfo Id="ContractDocument.FullName" Index="3" />
+        <ColumnInfo Id="ContractDocument.Number" Index="4" Removed="True" />
+        <ColumnInfo Id="Customer" Index="4" AllowEdit="False" />
+        <ColumnInfo Id="ContractDocument.Date" Index="5" Removed="True" />
+        <ColumnInfo Id="Supplier" Index="5" AllowEdit="False" />
+        <ColumnInfo Id="CuratorDepartment" Index="6" AllowEdit="False" />
+        <ColumnInfo Id="DateRegistration" Index="7" AllowEdit="False" />
+        <ColumnInfo Id="DepartmentRegistrator" Index="8" Removed="True" />
+        <ColumnInfo Id="UserRegistrator" Index="9" AllowEdit="False" />
+        <ColumnInfo Id="Current" Index="11" Removed="True" />
+        <ColumnInfo Id="ContractDocument.Contract" Removed="True" />
+        <ColumnInfo Id="Name" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="crmContractRegistrationForm_DetailView">
+      <Items>
+        <PropertyEditor Id="OurParty" LookupEditorMode="Search" />
+        <PropertyEditor Id="PartnerParty" LookupEditorMode="Search" />
+        <ActionContainerViewItem Id="WizardSupport" IsNewNode="True" ActionContainer="Wizard" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" Caption="Main" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="AlignLocal" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" Caption="SimpleEditors" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="93">
+            <LayoutGroup Id="Common" IsNewNode="True" Index="0" ShowCaption="True" Caption="Common" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical" RelativeSize="26">
+              <LayoutGroup Id="Registration" IsNewNode="True" Index="0" Direction="Horizontal" ShowCaption="False" Caption="Registration" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="26">
+                <LayoutItem Id="RegistrationKind" IsNewNode="True" Index="0" RelativeSize="22" TextAlignMode="UseParentOptions" ViewItem="RegistrationKind" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+                <LayoutItem Id="DateRegistration" IsNewNode="True" Index="1" TextAlignMode="UseParentOptions" ViewItem="DateRegistration" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="26" />
+                <LayoutItem Id="ContractDeal" IsNewNode="True" Index="2" TextAlignMode="UseParentOptions" ViewItem="ContractDeal" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="15" />
+              </LayoutGroup>
+              <LayoutGroup Id="RegUser" IsNewNode="True" Index="1" Direction="Horizontal" ShowCaption="False" Caption="RegUser" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="22">
+                <LayoutItem Id="UserRegistrator" IsNewNode="True" Index="0" RelativeSize="40" TextAlignMode="UseParentOptions" ViewItem="UserRegistrator" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+                <LayoutItem Id="DepartmentRegistrator" IsNewNode="True" Index="1" RelativeSize="59" TextAlignMode="UseParentOptions" ViewItem="DepartmentRegistrator" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+              </LayoutGroup>
+              <LayoutGroup Id="Contract" IsNewNode="True" Index="2" Direction="Horizontal" ShowCaption="False" Caption="Contract" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="26">
+                <LayoutItem Id="ContractKind" IsNewNode="True" Index="0" RelativeSize="20" TextAlignMode="UseParentOptions" ViewItem="ContractKind" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+                <LayoutItem Id="Contract" IsNewNode="True" Index="1" TextAlignMode="UseParentOptions" ViewItem="Contract" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="79" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmContractRegistrationForm" Direction="Vertical" Index="1" Removed="True">
+              <LayoutGroup Id="crmContractRegistrationForm_col1" Direction="Horizontal">
+                <LayoutItem Id="Contract" Removed="True" ViewItem="Contract" />
+                <LayoutItem Id="ContractDeal" Removed="True" ViewItem="ContractDeal" />
+                <LayoutItem Id="ContractKind" Removed="True" ViewItem="ContractKind" />
+                <LayoutItem Id="RegistrationKind" RelativeSize="20" Removed="True" ViewItem="RegistrationKind" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmContractRegistrationForm_col2" Direction="Horizontal">
+                <LayoutItem Id="RegistrationNumber" Index="2" Removed="True" ViewItem="RegistrationNumber" />
+                <LayoutItem Id="DepartmentRegistrator" Removed="True" ViewItem="DepartmentRegistrator" />
+                <LayoutItem Id="NewNumberRequired" Removed="True" ViewItem="NewNumberRequired" />
+                <LayoutItem Id="UserRegistrator" Removed="True" ViewItem="UserRegistrator" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Document" IsNewNode="True" Direction="Horizontal" Index="1" ShowCaption="True" Caption="Document" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="13">
+              <LayoutItem Id="DocumentCategory" IsNewNode="True" Index="0" RelativeSize="24" TextAlignMode="UseParentOptions" ViewItem="DocumentCategory" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+              <LayoutItem Id="NewNumberRequired" IsNewNode="True" Index="1" RelativeSize="23" TextAlignMode="UseParentOptions" ViewItem="NewNumberRequired" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+              <LayoutItem Id="Number" IsNewNode="True" Index="2" RelativeSize="23" TextAlignMode="UseParentOptions" ViewItem="Number" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+              <LayoutItem Id="Date" IsNewNode="True" Index="3" RelativeSize="24" TextAlignMode="UseParentOptions" ViewItem="Date" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" />
+            </LayoutGroup>
+            <LayoutGroup Id="Deal" IsNewNode="True" ShowCaption="True" Caption="Deal" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical" Index="2" RelativeSize="40">
+              <LayoutGroup Id="crmDealRegistrationForm_col1" IsNewNode="True" Index="1" ShowCaption="False" Direction="Horizontal" Caption="crmDealRegistrationForm_col1" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="16">
+                <LayoutItem Id="KindOfDeal" IsNewNode="True" Index="0" TextAlignMode="UseParentOptions" ViewItem="KindOfDeal" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" />
+                <LayoutItem Id="Category" IsNewNode="True" Index="1" TextAlignMode="UseParentOptions" ViewItem="Category" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" />
+                <LayoutItem Id="CuratorDepartment" IsNewNode="True" TextAlignMode="UseParentOptions" ViewItem="CuratorDepartment" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="2" RelativeSize="33" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDealRegistrationForm_col2" IsNewNode="True" Index="2" ShowCaption="False" Direction="Horizontal" Caption="crmDealRegistrationForm_col2" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="14">
+                <LayoutItem Id="Price" IsNewNode="True" Index="0" TextAlignMode="UseParentOptions" ViewItem="Price" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="46" />
+                <LayoutItem Id="Valuta" IsNewNode="True" Index="1" TextAlignMode="UseParentOptions" ViewItem="Valuta" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="22" />
+                <LayoutItem Id="Item2" IsNewNode="True" ShowCaption="False" TextAlignMode="UseParentOptions" ViewItem="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="2" RelativeSize="30" />
+              </LayoutGroup>
+              <LayoutGroup Id="Dates" IsNewNode="True" Direction="Horizontal" Index="3" ShowCaption="False" Caption="Dates" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="16">
+                <LayoutItem Id="DateBegin" IsNewNode="True" Index="0" TextAlignMode="UseParentOptions" ViewItem="DateBegin" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" />
+                <LayoutItem Id="DateEnd" IsNewNode="True" Index="1" TextAlignMode="UseParentOptions" ViewItem="DateEnd" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" />
+                <LayoutItem Id="DateFinish" IsNewNode="True" Index="2" TextAlignMode="UseParentOptions" ViewItem="DateFinish" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" />
+              </LayoutGroup>
+              <LayoutItem Id="DescriptionShort" IsNewNode="True" Index="4" CaptionLocation="Top" TextAlignMode="UseParentOptions" ViewItem="DescriptionShort" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="24" />
+            </LayoutGroup>
+            <LayoutGroup Id="Partys" IsNewNode="True" Direction="Horizontal" ShowCaption="True" Caption="Partys" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Index="3" RelativeSize="19">
+              <LayoutGroup Id="PartyRole" IsNewNode="True" Index="0" RelativeSize="33" ShowCaption="False" Caption="PartyRole" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical">
+                <LayoutItem Id="OurRole" IsNewNode="True" Index="0" TextAlignMode="UseParentOptions" ViewItem="OurRole" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="50" />
+                <LayoutItem Id="PartnerRole" IsNewNode="True" Index="1" TextAlignMode="UseParentOptions" ViewItem="PartnerRole" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="50" />
+              </LayoutGroup>
+              <LayoutGroup Id="PartyPerson" IsNewNode="True" Index="1" RelativeSize="63" ShowCaption="False" Caption="PartyPerson" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical">
+                <LayoutItem Id="OurParty" IsNewNode="True" Index="0" TextAlignMode="UseParentOptions" ViewItem="OurParty" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="50" />
+                <LayoutItem Id="PartnerParty" IsNewNode="True" Index="1" TextAlignMode="UseParentOptions" ViewItem="PartnerParty" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="50" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmDealRegistrationForm" Index="5" Direction="Vertical" Removed="True">
+              <LayoutGroup Id="crmDealRegistrationForm_col1" Index="1" Direction="Horizontal" Removed="True">
+                <LayoutItem Id="KindOfDeal" Index="0" ViewItem="KindOfDeal" />
+                <LayoutItem Id="Category" Index="1" ViewItem="Category" />
+                <LayoutItem Id="Curator" Index="2" ViewItem="Curator" />
+                <LayoutItem Id="Date" Removed="True" ViewItem="Date" />
+                <LayoutItem Id="DateBegin" Removed="True" ViewItem="DateBegin" />
+                <LayoutItem Id="DateEnd" Removed="True" ViewItem="DateEnd" />
+                <LayoutItem Id="DateFinish" Removed="True" ViewItem="DateFinish" />
+                <LayoutItem Id="DateRegistration" Removed="True" ViewItem="DateRegistration" />
+                <LayoutItem Id="Number" Removed="True" ViewItem="Number" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDealRegistrationForm_col2" Index="2" Direction="Horizontal" Removed="True">
+                <LayoutItem Id="DescriptionShort" Removed="True" ViewItem="DescriptionShort" />
+                <LayoutItem Id="DocumentCategory" Removed="True" ViewItem="DocumentCategory" />
+                <LayoutItem Id="OurParty" Removed="True" ViewItem="OurParty" />
+                <LayoutItem Id="OurRole" Removed="True" ViewItem="OurRole" />
+                <LayoutItem Id="PartnerParty" Removed="True" ViewItem="PartnerParty" />
+                <LayoutItem Id="PartnerRole" Removed="True" ViewItem="PartnerRole" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmCommonRegistrationForm" Removed="True" />
+          </LayoutGroup>
+          <LayoutItem Id="WizardSupport" IsNewNode="True" HorizontalAlign="Right" TextAlignMode="UseParentOptions" ViewItem="WizardSupport" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="1" RelativeSize="6" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmContractRegistrationLog_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmContractRegistrationLog">
+              <LayoutGroup Id="crmContractRegistrationLog_col1">
+                <LayoutItem Id="DocNumberYear" Index="0" ViewItem="DocNumberYear" />
+                <LayoutItem Id="Date" Index="1" ViewItem="Date" />
+                <LayoutItem Id="DocNumber" Index="2" ViewItem="DocNumber" />
+                <LayoutItem Id="SortNumber" Index="3" ViewItem="SortNumber" />
+                <LayoutItem Id="CurrentUser" Index="4" Removed="True" ViewItem="CurrentUser" />
+                <LayoutItem Id="DealState" Index="4" Removed="True" ViewItem="DealState" />
+                <LayoutItem Id="ContractDeal" Removed="True" ViewItem="ContractDeal" />
+                <LayoutItem Id="ContractDocument" Removed="True" ViewItem="ContractDocument" />
+                <LayoutItem Id="Customer" Removed="True" ViewItem="Customer" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmContractRegistrationLog_col2">
+                <LayoutItem Id="CurrentUser" IsNewNode="True" Index="0" ViewItem="CurrentUser" />
+                <LayoutItem Id="UserRegistrator" Index="1" ViewItem="UserRegistrator" />
+                <LayoutItem Id="DateEnd" Index="2" Removed="True" ViewItem="DateEnd" />
+                <LayoutItem Id="DepartmentRegistrator" Index="2" ViewItem="DepartmentRegistrator" />
+                <LayoutItem Id="Curator" Index="3" ViewItem="Curator" />
+                <LayoutItem Id="DescriptionShort" Removed="True" ViewItem="DescriptionShort" />
+                <LayoutItem Id="Price" Removed="True" ViewItem="Price" />
+                <LayoutItem Id="Supplier" Removed="True" ViewItem="Supplier" />
+                <LayoutItem Id="Valuta" Removed="True" ViewItem="Valuta" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Contract" IsNewNode="True" ShowCaption="True">
+              <LayoutItem Id="DealState" IsNewNode="True" Index="0" ViewItem="DealState" />
+              <LayoutItem Id="ContractDocument" IsNewNode="True" ViewItem="ContractDocument" Index="1" />
+              <LayoutItem Id="DateEnd" IsNewNode="True" Index="2" ViewItem="DateEnd" />
+              <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="2" />
+              <LayoutItem Id="Price" IsNewNode="True" ViewItem="Price" Index="3" />
+              <LayoutItem Id="DescriptionShort" IsNewNode="True" ViewItem="DescriptionShort" Index="4" />
+            </LayoutGroup>
+            <LayoutGroup Id="Partys" IsNewNode="True" ShowCaption="True" VerticalAlign="Top">
+              <LayoutItem Id="Customer" IsNewNode="True" ViewItem="Customer" Index="0" />
+              <LayoutItem Id="Supplier" IsNewNode="True" ViewItem="Supplier" Index="1" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmContractRegistrationLog_ListView">
+      <Columns Index="0">
+        <ColumnInfo Id="DocNumberYear" Index="0" />
+        <ColumnInfo Id="DepartmentRegistrator" Index="1" />
+        <ColumnInfo Id="Date" Index="2" />
+        <ColumnInfo Id="DocNumber" Index="3" />
+        <ColumnInfo Id="DealState" Index="4" />
+        <ColumnInfo Id="ContractDocument" Index="5" />
+        <ColumnInfo Id="Curator" Index="6" />
+        <ColumnInfo Id="Customer" Index="7" />
+        <ColumnInfo Id="Supplier" Index="8" />
+        <ColumnInfo Id="Valuta" Index="9" />
+        <ColumnInfo Id="Price" Index="10" />
+        <ColumnInfo Id="DateEnd" Index="11" Removed="True" />
+        <ColumnInfo Id="DescriptionShort" Index="11" />
+        <ColumnInfo Id="UserRegistrator" Index="13" Removed="True" />
+        <ColumnInfo Id="ContractDeal" Removed="True" />
+        <ColumnInfo Id="CurrentUser" Removed="True" />
+        <ColumnInfo Id="DealVersion" Removed="True" />
+        <ColumnInfo Id="SortNumber" Removed="True" />
+      </Columns>
+      <Filters Index="1" />
+      <HiddenActions Index="2" />
+      <MiniNavigations Index="3" DefaultMiniNavigationNode="crmContractRegistrationLog.This">
+        <MiniNavigationItem Name="crmContractRegistrationLog.This" IsNewNode="True" NavigationCaption="Карточка записи журнала" NavigationPath="This" Index="0" />
+        <MiniNavigationItem Name="crmContractRegistrationLog.ContractDeal.Contract" IsNewNode="True" NavigationCaption="Договор" NavigationPath="ContractDeal.Contract" Index="1" TargetWindow="NewModalWindow" View="" />
+        <MiniNavigationItem Name="crmContractRegistrationLog.ContractDeal.Current" IsNewNode="True" NavigationPath="ContractDeal.Current" NavigationCaption="Простой договор" Index="2" />
+      </MiniNavigations>
+      <PivotSettings Index="4" />
+      <Sorting Index="5">
+        <SortProperty Id="Year" IsNewNode="True" PropertyName="DocNumberYear" Index="0" />
+        <SortProperty Id="Date" IsNewNode="True" PropertyName="Date" Direction="Descending" Index="1" />
+        <SortProperty Id="Department" IsNewNode="True" PropertyName="DepartmentRegistrator" />
+      </Sorting>
+      <SplitLayout Index="6" />
+      <Variants Index="7" />
+    </ListView>
+    <DetailView Id="crmContractRegistrationLogFilter01_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Caption="Main" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" Caption="SimpleEditors" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="100" Direction="Horizontal">
+            <LayoutGroup Id="crmContractRegistrationLogFilter01" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Caption="Поиск по значениям" RelativeSize="67">
+              <LayoutGroup Id="crmContractRegistrationLogFilter01_col1" Caption="crmContractRegistrationLogFilter01_col1" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="47">
+                <LayoutItem Id="DateBegin" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="9" ViewItem="DateBegin" />
+                <LayoutItem Id="DealState" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="1" RelativeSize="6" ViewItem="DealState" />
+                <LayoutItem Id="Customer" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="2" RelativeSize="6" ViewItem="Customer" />
+                <LayoutItem Id="PersonOfCustomer" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="3" RelativeSize="6" Removed="True" ViewItem="PersonOfCustomer" />
+                <LayoutItem Id="Supplier" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="3" RelativeSize="6" ViewItem="Supplier" />
+                <LayoutItem Id="Curator" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="4" RelativeSize="71" Removed="True" ViewItem="Curator" />
+                <LayoutItem Id="Department" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="4" RelativeSize="6" ViewItem="Department" />
+                <LayoutItem Id="PersonOfSupplier" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="4" RelativeSize="6" Removed="True" ViewItem="PersonOfSupplier" />
+                <LayoutItem Id="PriceFrom" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="5" RelativeSize="6" ViewItem="PriceFrom" />
+                <LayoutItem Id="Valuta" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="6" RelativeSize="55" ViewItem="Valuta" />
+                <LayoutItem Id="DateEnd" Removed="True" ViewItem="DateEnd" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmContractRegistrationLogFilter01_col2" Caption="crmContractRegistrationLogFilter01_col2" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="47">
+                <LayoutItem Id="DateEnd" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="0" RelativeSize="9" ViewItem="DateEnd" />
+                <LayoutItem Id="Curator" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="1" RelativeSize="6" ViewItem="Curator" />
+                <LayoutItem Id="PersonOfCustomer" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="2" RelativeSize="6" ViewItem="PersonOfCustomer" />
+                <LayoutItem Id="PersonOfSupplier" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="3" RelativeSize="6" ViewItem="PersonOfSupplier" />
+                <LayoutItem Id="UserRegistrator" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="4" RelativeSize="6" ViewItem="UserRegistrator" />
+                <LayoutItem Id="Department" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="5" RelativeSize="6" Removed="True" ViewItem="Department" />
+                <LayoutItem Id="PriceFrom" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="5" RelativeSize="6" Removed="True" ViewItem="PriceFrom" />
+                <LayoutItem Id="PriceTo" IsNewNode="True" Removed="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="5" RelativeSize="62" ViewItem="PriceTo" />
+                <LayoutItem Id="Valuta" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="5" RelativeSize="6" Removed="True" ViewItem="Valuta" />
+                <LayoutItem Id="Description" Removed="True" TextAlignMode="UseParentOptions" ViewItem="Description" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="6" RelativeSize="55" />
+                <LayoutItem Id="DocumentNumber" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="6" RelativeSize="11" Removed="True" ViewItem="DocumentNumber" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="LikePanelGroup" IsNewNode="True" RelativeSize="32">
+              <LayoutGroup Id="LikePanel" IsNewNode="True" ShowCaption="True" Caption="Поиск по части значения" Index="2" RelativeSize="45" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical">
+                <LayoutGroup Id="DescriptionPanel" IsNewNode="True" ShowCaption="False" Caption="Описание" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical" Index="0" RelativeSize="9">
+                  <LayoutItem Id="Description" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="0" RelativeSize="100" ViewItem="Description" />
+                </LayoutGroup>
+                <LayoutGroup Id="DocNumberPanel" IsNewNode="True" ShowCaption="False" Caption="Номер документа" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical" Index="1" RelativeSize="80">
+                  <LayoutItem Id="DocumentNumber" IsNewNode="True" TextAlignMode="UseParentOptions" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="0" RelativeSize="100" ViewItem="DocumentNumber" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmCPhysicalParty_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Direction="Horizontal">
+            <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutGroup Id="crmCPhysicalParty" Index="1" Removed="True">
+              <LayoutGroup Id="crmCPhysicalParty_col1">
+                <LayoutItem Id="Code" Removed="True" ViewItem="Code" />
+                <LayoutItem Id="Country" Removed="True" ViewItem="Country" />
+                <LayoutItem Id="FirstName" Removed="True" ViewItem="FirstName" />
+                <LayoutItem Id="LastName" Removed="True" ViewItem="LastName" />
+                <LayoutItem Id="MiddleName" Removed="True" ViewItem="MiddleName" />
+                <LayoutItem Id="Name" Removed="True" ViewItem="Name" />
+                <LayoutItem Id="NameFull" Removed="True" ViewItem="NameFull" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmCPhysicalParty_col2">
+                <LayoutItem Id="AddressFact" Removed="True" ViewItem="AddressFact" />
+                <LayoutItem Id="AddressLegal" Removed="True" ViewItem="AddressLegal" />
+                <LayoutItem Id="AddressPost" Removed="True" ViewItem="AddressPost" />
+                <LayoutItem Id="INN" Removed="True" ViewItem="INN" />
+                <LayoutItem Id="PersonType" Removed="True" ViewItem="PersonType" />
+                <LayoutItem Id="RegCode" Removed="True" ViewItem="RegCode" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutItem Id="Country" IsNewNode="True" ViewItem="Country" Index="2" CaptionLocation="Top" RelativeSize="15" />
+            <LayoutItem Id="Name" IsNewNode="True" ViewItem="Name" Index="3" CaptionLocation="Top" RelativeSize="70" />
+          </LayoutGroup>
+          <LayoutGroup Id="BankAccounts_Group" Removed="True" />
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+          <TabbedGroup Id="Tabs" IsNewNode="True">
+            <LayoutGroup Id="CommonGroup" IsNewNode="True" Index="0">
+              <LayoutGroup Id="CommonSimpleGroup" IsNewNode="True" Index="0">
+                <LayoutGroup Id="NameGroup" IsNewNode="True" Index="0" Direction="Horizontal">
+                  <LayoutItem Id="FirstName" IsNewNode="True" ViewItem="FirstName" Index="4" CaptionLocation="Top" />
+                  <LayoutItem Id="LastName" IsNewNode="True" ViewItem="LastName" Index="7" CaptionLocation="Top" />
+                  <LayoutItem Id="MiddleName" IsNewNode="True" ViewItem="MiddleName" Index="8" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutItem Id="NameHandmake" IsNewNode="True" Index="1" ViewItem="NameHandmake" />
+                <LayoutGroup Id="StatusGroup" IsNewNode="True" Index="2">
+                  <LayoutItem Id="IsClosed" IsNewNode="True" ViewItem="IsClosed" Index="0" RelativeSize="20" />
+                </LayoutGroup>
+                <LayoutGroup Id="CodeGroup" IsNewNode="True" Index="3" Direction="Horizontal">
+                  <LayoutItem Id="INN" IsNewNode="True" ViewItem="INN" Index="6" />
+                </LayoutGroup>
+                <LayoutItem Id="AddressLegal" IsNewNode="True" ViewItem="AddressLegal" Index="4" />
+                <LayoutItem Id="AddressFact" IsNewNode="True" ViewItem="AddressFact" Index="5" />
+                <LayoutItem Id="AddressPost" IsNewNode="True" ViewItem="AddressPost" Index="6" />
+              </LayoutGroup>
+              <LayoutGroup Id="SizeableEditors" IsNewNode="True" Index="1" Direction="Vertical" ShowCaption="False">
+                <LayoutItem Id="Description" IsNewNode="True" ViewItem="Description" Index="0" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="BankAccountsGroup" IsNewNode="True" Index="1" Direction="Horizontal" ShowCaption="True">
+              <LayoutItem Id="BankAccounts" IsNewNode="True" ViewItem="BankAccounts" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmDealRegistrationForm_DetailView">
+      <Items>
+        <ActionContainerViewItem Id="WizardSupport" IsNewNode="True" ActionContainer="Wizard" />
+      </Items>
+      <Layout>
+        <LayoutItem Id="WizardSupport" IsNewNode="True" ViewItem="WizardSupport" />
+      </Layout>
+    </DetailView>
+    <ListView Id="crmDealVersion_DealVersions_ListView" AllowDelete="False" AllowNew="False">
+      <Columns>
+        <ColumnInfo Id="DealState" Index="0" Removed="True" />
+        <ColumnInfo Id="ShowVersionState" Index="1" />
+        <ColumnInfo Id="DealCode" Index="2" />
+        <ColumnInfo Id="ContractDocument" Index="3" />
+        <ColumnInfo Id="DescriptionShort" Index="4" />
+        <ColumnInfo Id="DateBegin" Index="5" />
+        <ColumnInfo Id="DateFinish" Index="5" Removed="True" />
+        <ColumnInfo Id="DateEnd" Index="6" />
+        <ColumnInfo Id="Price" Index="7" />
+        <ColumnInfo Id="NDSRate" Index="8" Removed="True" />
+        <ColumnInfo Id="Valuta" Index="8" />
+        <ColumnInfo Id="Curator" Index="9" />
+        <ColumnInfo Id="Registrator" Index="10" Removed="True" />
+        <ColumnInfo Id="CostModel" Index="13" Removed="True" />
+        <ColumnInfo Id="Order" Index="14" Removed="True" />
+        <ColumnInfo Id="CostItem" Index="15" Removed="True" />
+        <ColumnInfo Id="DealDocument" Index="16" Removed="True" />
+        <ColumnInfo Id="Category" Removed="True" />
+        <ColumnInfo Id="Customer" Removed="True" />
+        <ColumnInfo Id="DescriptionLong" Removed="True" />
+        <ColumnInfo Id="FinancialStructure" Removed="True" />
+        <ColumnInfo Id="IsLoading" Removed="True" />
+        <ColumnInfo Id="PaymentValuta" Removed="True" />
+        <ColumnInfo Id="Supplier" Removed="True" />
+      </Columns>
+      <MiniNavigations DefaultMiniNavigationNode="crmDealVersion_DealVersions_ListView.This">
+        <MiniNavigationItem Name="crmDealVersion_DealVersions_ListView.This" IsNewNode="True" NavigationCaption="This" NavigationPath="This" TargetWindow="Current" />
+      </MiniNavigations>
+    </ListView>
+    <ListView Id="crmDealVersion_DeliveryItems_ListView" IsNewNode="True" ClassName="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryItem">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Order" IsNewNode="True" PropertyName="Order" Width="70" Index="-1" />
+        <ColumnInfo Id="NomenclatureName" IsNewNode="True" PropertyName="NomenclatureName" Width="400" SortIndex="0" SortOrder="Ascending" Index="0" />
+        <ColumnInfo Id="CountValue" IsNewNode="True" PropertyName="CountValue" Width="50" Index="1" />
+        <ColumnInfo Id="CountUnit" IsNewNode="True" PropertyName="CountUnit" Width="70" Index="2" />
+        <ColumnInfo Id="CostModel" IsNewNode="True" PropertyName="CostModel" Width="70" Index="3" />
+        <ColumnInfo Id="SummCost" IsNewNode="True" PropertyName="SummCost" Width="50" Index="4" />
+        <ColumnInfo Id="NDSRate" IsNewNode="True" PropertyName="NDSRate" Width="70" Index="5" />
+        <ColumnInfo Id="SummNDS" IsNewNode="True" PropertyName="SummNDS" Width="50" Index="6" />
+        <ColumnInfo Id="SummFull" IsNewNode="True" PropertyName="SummFull" Width="50" Index="7" />
+        <ColumnInfo Id="Valuta" IsNewNode="True" PropertyName="Valuta" Width="70" Index="8" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmDealVersion_DeliveryUnits_ListView" IsNewNode="True" ClassName="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryUnit">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="DatePlane" IsNewNode="True" PropertyName="DatePlane" Width="70" Index="0" />
+        <ColumnInfo Id="Code" IsNewNode="True" PropertyName="Code" Width="400" SortIndex="0" SortOrder="Ascending" Index="1" />
+        <ColumnInfo Id="CostModel" IsNewNode="True" PropertyName="CostModel" Width="70" Index="2" />
+        <ColumnInfo Id="SummCost" IsNewNode="True" PropertyName="SummCost" Width="50" Index="3" />
+        <ColumnInfo Id="SummFull" IsNewNode="True" PropertyName="SummFull" Width="50" Index="4" />
+        <ColumnInfo Id="Valuta" IsNewNode="True" PropertyName="Valuta" Width="70" Index="5" />
+        <ColumnInfo Id="Sender" IsNewNode="True" PropertyName="Sender" View="" Width="70" Index="6" />
+        <ColumnInfo Id="Receiver" IsNewNode="True" PropertyName="Receiver" View="" Width="70" Index="7" />
+        <ColumnInfo Id="Order" IsNewNode="True" PropertyName="Order" Width="70" Index="8" />
+        <ColumnInfo Id="Name" IsNewNode="True" PropertyName="Name" Width="70" Index="9" />
+      </Columns>
+      <Sorting IsNewNode="True">
+        <SortProperty Id="DatePlane" IsNewNode="True" PropertyName="DatePlane" />
+      </Sorting>
+    </ListView>
+    <ListView Id="crmDealVersion_ItemShedules_ListView" IsNewNode="True" ClassName="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryPlanItemShedule">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="NomenclatureName" IsNewNode="True" PropertyName="NomenclatureName" Width="400" SortIndex="0" SortOrder="Ascending" Index="0" />
+        <ColumnInfo Id="CountValue" IsNewNode="True" PropertyName="CountValue" Width="50" Index="1" />
+        <ColumnInfo Id="CountUnit" IsNewNode="True" PropertyName="CountUnit" Width="70" Index="2" />
+        <ColumnInfo Id="SummCost" IsNewNode="True" PropertyName="SummCost" Width="50" Index="4" />
+        <ColumnInfo Id="SummFull" IsNewNode="True" PropertyName="SummFull" Width="50" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmDealVersion_ObligationUnits_ListView" AllowDelete="False" AllowNew="False">
+      <Columns>
+        <ColumnInfo Id="Stage" Index="0" LookupProperty="FullCode" />
+        <ColumnInfo Id="DatePlane" Index="1" />
+        <ColumnInfo Id="Code" Index="2" />
+        <ColumnInfo Id="Valuta" Index="3" />
+        <ColumnInfo Id="CostModel" Index="4" />
+        <ColumnInfo Id="SummFull" Index="5" />
+        <ColumnInfo Id="Debitor" Index="6" />
+        <ColumnInfo Id="Creditor" Index="7" />
+        <ColumnInfo Id="NDSRate" Index="8" />
+        <ColumnInfo Id="SummCost" Index="9" />
+        <ColumnInfo Id="Order" Index="10" />
+        <ColumnInfo Id="SummNDS" Index="11" />
+        <ColumnInfo Id="CostItem" Index="12" />
+        <ColumnInfo Id="Name" Index="13" />
+        <ColumnInfo Id="DateBegin" Removed="True" />
+        <ColumnInfo Id="DateEnd" Removed="True" />
+        <ColumnInfo Id="DealVersion" Removed="True" />
+        <ColumnInfo Id="Description" Removed="True" />
+        <ColumnInfo Id="IsLoading" Removed="True" />
+        <ColumnInfo Id="Receiver" Removed="True" />
+        <ColumnInfo Id="Sender" Removed="True" />
+      </Columns>
+      <Sorting>
+        <SortProperty Id="DatePlane" IsNewNode="True" PropertyName="DatePlane" />
+      </Sorting>
+    </ListView>
+    <DetailView Id="crmDealWithoutStageVersion_DetailView">
+      <Items>
+        <PropertyEditor Id="CurrentCost.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentCost.SummNDS" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummNDS" AllowEdit="False" />
+        <PropertyEditor Id="DealVersions" AllowEdit="False" />
+        <PropertyEditor Id="DeliveryItems" View="crmDealVersion_DeliveryItems_ListView" />
+        <PropertyEditor Id="DeliveryUnits" View="crmDealVersion_DeliveryUnits_ListView" />
+        <PropertyEditor Id="ItemShedules" View="crmDealVersion_ItemShedules_ListView" />
+        <ActionContainerViewItem Id="PaymentActions" IsNewNode="True" ActionContainer="Payments" />
+        <PropertyEditor Id="Valuta_Common" IsNewNode="True" PropertyName="Valuta" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" IsNewNode="True" Index="0" Direction="Horizontal">
+            <LayoutItem Id="DealState" IsNewNode="True" ViewItem="DealState" Index="0" RelativeSize="15" CaptionLocation="Top" />
+            <LayoutItem Id="DealDocument" IsNewNode="True" ViewItem="DealDocument" Index="1" CaptionLocation="Top" RelativeSize="35" />
+            <LayoutItem Id="ShowVersionState" IsNewNode="True" ViewItem="ShowVersionState" Index="2" RelativeSize="15" CaptionLocation="Top" />
+            <LayoutItem Id="ContractDocument" IsNewNode="True" ViewItem="ContractDocument" Index="3" RelativeSize="35" CaptionLocation="Top" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Direction="Horizontal" Index="1" Removed="True">
+            <LayoutGroup Id="crmDealByPayVersion" Index="1" Removed="True" />
+            <LayoutGroup Id="crmDealVersion" Removed="True">
+              <LayoutGroup Id="crmDealVersion_col1">
+                <LayoutItem Id="Category" Removed="True" ViewItem="Category" />
+                <LayoutItem Id="ContractDocument" Removed="True" ViewItem="ContractDocument" />
+                <LayoutItem Id="Curator" Removed="True" ViewItem="Curator" />
+                <LayoutItem Id="Customer.AddressFact" Removed="True" ViewItem="Customer.AddressFact" />
+                <LayoutItem Id="Customer.AddressLegal" Removed="True" ViewItem="Customer.AddressLegal" />
+                <LayoutItem Id="Customer.AddressPost" Removed="True" ViewItem="Customer.AddressPost" />
+                <LayoutItem Id="Customer.Bank" Removed="True" ViewItem="Customer.Bank" />
+                <LayoutItem Id="Customer.BankAccount" Removed="True" ViewItem="Customer.BankAccount" />
+                <LayoutItem Id="Customer.INN" Removed="True" ViewItem="Customer.INN" />
+                <LayoutItem Id="Customer.KPP" Removed="True" ViewItem="Customer.KPP" />
+                <LayoutItem Id="Customer.Name" Removed="True" ViewItem="Customer.Name" />
+                <LayoutItem Id="Customer.Party" Removed="True" ViewItem="Customer.Party" />
+                <LayoutItem Id="Customer.RegNumber" Removed="True" ViewItem="Customer.RegNumber" />
+                <LayoutItem Id="DateBegin" Removed="True" ViewItem="DateBegin" />
+                <LayoutItem Id="DateEnd" Removed="True" ViewItem="DateEnd" />
+                <LayoutItem Id="DateFinish" Removed="True" ViewItem="DateFinish" />
+                <LayoutItem Id="DealState" Removed="True" ViewItem="DealState" />
+                <LayoutItem Id="DescriptionShort" Removed="True" ViewItem="DescriptionShort" />
+                <LayoutItem Id="Price" Removed="True" ViewItem="Price" />
+                <LayoutItem Id="Registrator" Removed="True" ViewItem="Registrator" />
+                <LayoutItem Id="Valuta" Removed="True" ViewItem="Valuta" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDealVersion_col2" Removed="True">
+                <LayoutItem Id="CostItem" Removed="True" ViewItem="CostItem" />
+                <LayoutItem Id="CostModel" Removed="True" ViewItem="CostModel" />
+                <LayoutItem Id="Customer.BIC" Removed="True" ViewItem="Customer.BIC" />
+                <LayoutItem Id="Customer.CurrentAcc" Removed="True" ViewItem="Customer.CurrentAcc" />
+                <LayoutItem Id="Customer.KorAcc" Removed="True" ViewItem="Customer.KorAcc" />
+                <LayoutItem Id="Customer.RCBIC" Removed="True" ViewItem="Customer.RCBIC" />
+                <LayoutItem Id="Order" Removed="True" ViewItem="Order" />
+                <LayoutItem Id="Supplier.AddressFact" Removed="True" ViewItem="Supplier.AddressFact" />
+                <LayoutItem Id="Supplier.AddressLegal" Removed="True" ViewItem="Supplier.AddressLegal" />
+                <LayoutItem Id="Supplier.AddressPost" Removed="True" ViewItem="Supplier.AddressPost" />
+                <LayoutItem Id="Supplier.Bank" Removed="True" ViewItem="Supplier.Bank" />
+                <LayoutItem Id="Supplier.BankAccount" Removed="True" ViewItem="Supplier.BankAccount" />
+                <LayoutItem Id="Supplier.BIC" Removed="True" ViewItem="Supplier.BIC" />
+                <LayoutItem Id="Supplier.CurrentAcc" Removed="True" ViewItem="Supplier.CurrentAcc" />
+                <LayoutItem Id="Supplier.INN" Removed="True" ViewItem="Supplier.INN" />
+                <LayoutItem Id="Supplier.KorAcc" Removed="True" ViewItem="Supplier.KorAcc" />
+                <LayoutItem Id="Supplier.KPP" Removed="True" ViewItem="Supplier.KPP" />
+                <LayoutItem Id="Supplier.Name" Removed="True" ViewItem="Supplier.Name" />
+                <LayoutItem Id="Supplier.Party" Removed="True" ViewItem="Supplier.Party" />
+                <LayoutItem Id="Supplier.RCBIC" Removed="True" ViewItem="Supplier.RCBIC" />
+                <LayoutItem Id="Supplier.RegNumber" Removed="True" ViewItem="Supplier.RegNumber" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmDealWithoutStageVersion" Removed="True">
+              <LayoutGroup Id="crmDealWithoutStageVersion_col1">
+                <LayoutItem Id="DealCode" Removed="True" ViewItem="DealCode" />
+                <LayoutItem Id="NDSRate" Removed="True" ViewItem="NDSRate" />
+                <LayoutItem Id="PaymentMethod" Removed="True" ViewItem="PaymentMethod" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDealWithoutStageVersion_col2">
+                <LayoutItem Id="AdvanceDate" Removed="True" ViewItem="AdvanceDate" />
+                <LayoutItem Id="AdvancePercentage" Removed="True" ViewItem="AdvancePercentage" />
+                <LayoutItem Id="AdvanceSumm" Removed="True" ViewItem="AdvanceSumm" />
+                <LayoutItem Id="SettlementDate" Removed="True" ViewItem="SettlementDate" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" IsNewNode="True" Index="0">
+              <LayoutItem Id="DescriptionShort" IsNewNode="True" ViewItem="DescriptionShort" Index="0" />
+              <LayoutGroup Id="CommonDeal" IsNewNode="True" Index="1" Direction="Horizontal">
+                <LayoutItem Id="Category" IsNewNode="True" ViewItem="Category" Index="1" RelativeSize="60" />
+                <LayoutItem Id="DealCode" IsNewNode="True" ViewItem="DealCode" Index="2" RelativeSize="40" />
+              </LayoutGroup>
+              <LayoutGroup Id="Dates" IsNewNode="True" Direction="Horizontal" Index="2">
+                <LayoutItem Id="DateBegin" IsNewNode="True" ViewItem="DateBegin" Index="4" />
+                <LayoutItem Id="DateEnd" IsNewNode="True" ViewItem="DateEnd" Index="5" />
+                <LayoutItem Id="DateFinish" IsNewNode="True" ViewItem="DateFinish" Index="6" />
+              </LayoutGroup>
+              <LayoutGroup Id="FinancialDeal" IsNewNode="True" Direction="Horizontal" Index="3">
+                <LayoutItem Id="Price" IsNewNode="True" ViewItem="Price" Index="0" RelativeSize="35" CaptionLocation="Top" />
+                <LayoutItem Id="Valuta_Common" IsNewNode="True" ViewItem="Valuta_Common" Index="1" RelativeSize="15" CaptionLocation="Top" />
+                <LayoutItem Id="Order" IsNewNode="True" ViewItem="Order" Index="2" RelativeSize="25" CaptionLocation="Top" />
+                <LayoutItem Id="CostItem" IsNewNode="True" ViewItem="CostItem" Index="3" RelativeSize="25" CaptionLocation="Top" />
+              </LayoutGroup>
+              <LayoutItem Id="DescriptionLong" IsNewNode="True" ViewItem="DescriptionLong" Index="4" CaptionLocation="Top" />
+            </LayoutGroup>
+            <LayoutGroup Id="Obligations" IsNewNode="True" Index="1">
+              <LayoutGroup Id="ObligationData" IsNewNode="True" Index="0">
+                <LayoutGroup Id="DeliveryData" IsNewNode="True" Index="0" Direction="Horizontal">
+                  <LayoutItem Id="DeliveryMethod" IsNewNode="True" Index="0" ViewItem="DeliveryMethod" CaptionLocation="Top" RelativeSize="40" />
+                  <LayoutItem Id="DeliveryDate" IsNewNode="True" ViewItem="DeliveryDate" Index="1" CaptionLocation="Top" RelativeSize="20" />
+                  <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="2" CaptionLocation="Top" RelativeSize="10" />
+                  <LayoutItem Id="CostModel" IsNewNode="True" ViewItem="CostModel" Index="3" CaptionLocation="Top" RelativeSize="20" />
+                  <LayoutItem Id="NDSRate" IsNewNode="True" ViewItem="NDSRate" Index="4" CaptionLocation="Top" RelativeSize="10" />
+                </LayoutGroup>
+                <LayoutGroup Id="CurrentCostData" IsNewNode="True" Direction="Horizontal">
+                  <LayoutItem Id="CurrentCost.SummCost" IsNewNode="True" ViewItem="CurrentCost.SummCost" Index="0" CaptionLocation="Top" />
+                  <LayoutItem Id="CurrentCost.SummNDS" IsNewNode="True" ViewItem="CurrentCost.SummNDS" Index="1" CaptionLocation="Top" />
+                  <LayoutItem Id="CurrentCost.SummFull" IsNewNode="True" ViewItem="CurrentCost.SummFull" Index="2" CaptionLocation="Top" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="DeliveryTypes" IsNewNode="True">
+                <LayoutGroup Id="DeliveryItemAtTheEnd" IsNewNode="True" Index="0">
+                  <LayoutItem Id="DeliveryItem" IsNewNode="True" ViewItem="DeliveryItem" CaptionLocation="Top" ShowCaption="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="DeliveryUnitAtTheEnd" IsNewNode="True" Index="1">
+                  <LayoutItem Id="DeliveryItems" IsNewNode="True" ViewItem="DeliveryItems" ShowCaption="True" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutGroup Id="DeliveryItemsShedule" IsNewNode="True" Index="2">
+                  <LayoutItem Id="ItemShedules" IsNewNode="True" ViewItem="ItemShedules" ShowCaption="True" Index="0" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutGroup Id="DeliveryUnitsShedule" IsNewNode="True" Index="3">
+                  <LayoutItem Id="DeliveryUnits" IsNewNode="True" ViewItem="DeliveryUnits" CaptionLocation="Top" ShowCaption="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Payments" IsNewNode="True" Index="2">
+              <LayoutGroup Id="PaymentParams" IsNewNode="True" Direction="Horizontal" Index="0">
+                <LayoutItem Id="PaymentMethod" IsNewNode="True" ViewItem="PaymentMethod" Index="0" CaptionLocation="Top" />
+                <LayoutItem Id="AdvancePercentage" IsNewNode="True" ViewItem="AdvancePercentage" Index="1" CaptionLocation="Top" />
+                <LayoutItem Id="AdvanceDate" IsNewNode="True" ViewItem="AdvanceDate" Index="2" CaptionLocation="Top" />
+                <LayoutItem Id="SettlementDate" IsNewNode="True" ViewItem="SettlementDate" Index="3" CaptionLocation="Top" />
+              </LayoutGroup>
+              <LayoutGroup Id="PaymentSumm" IsNewNode="True" Index="1" Direction="Horizontal">
+                <LayoutItem Id="PaymentSummCost" IsNewNode="True" ViewItem="CurrentPayment.SummCost" Index="0" CaptionLocation="Top" />
+                <LayoutItem Id="PaymentSummNDS" IsNewNode="True" Index="1" ViewItem="CurrentPayment.SummNDS" CaptionLocation="Top" />
+                <LayoutItem Id="PaymentSummFull" IsNewNode="True" ViewItem="CurrentPayment.SummFull" CaptionLocation="Top" Index="2" />
+                <LayoutItem Id="PaymentActions" IsNewNode="True" Index="3" ViewItem="PaymentActions" />
+              </LayoutGroup>
+              <LayoutItem Id="PaymentUnits" IsNewNode="True" ViewItem="PaymentUnits" ShowCaption="True" Index="2" CaptionLocation="Top" />
+            </LayoutGroup>
+            <LayoutGroup Id="SheduleUnits" IsNewNode="True" Index="3">
+              <LayoutItem Id="ObligationUnits" IsNewNode="True" ViewItem="ObligationUnits" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="DeliveryItems" Index="4" Removed="True">
+              <LayoutItem Id="DeliveryItems" Removed="True" ViewItem="DeliveryItems" />
+            </LayoutGroup>
+            <LayoutGroup Id="Partys" IsNewNode="True" Index="4">
+              <TabbedGroup Id="PartysTabs" IsNewNode="True">
+                <LayoutGroup Id="Customer" IsNewNode="True" Index="5">
+                  <LayoutItem Id="Customer.Party" IsNewNode="True" ViewItem="Customer.Party" Index="0" />
+                  <LayoutItem Id="Customer.Name" IsNewNode="True" ViewItem="Customer.Name" Index="1" />
+                  <LayoutItem Id="Customer.INN" IsNewNode="True" ViewItem="Customer.INN" Index="2" />
+                  <LayoutItem Id="Customer.KPP" IsNewNode="True" ViewItem="Customer.KPP" Index="3" />
+                  <LayoutItem Id="Customer.RegNumber" IsNewNode="True" ViewItem="Customer.RegNumber" Index="4" />
+                  <LayoutItem Id="Customer.AddressLegal" IsNewNode="True" ViewItem="Customer.AddressLegal" Index="5" />
+                  <LayoutItem Id="Customer.AddressFact" IsNewNode="True" ViewItem="Customer.AddressFact" Index="6" />
+                  <LayoutItem Id="Customer.AddressPost" IsNewNode="True" ViewItem="Customer.AddressPost" Index="7" />
+                  <LayoutItem Id="Customer.BankAccount" IsNewNode="True" ViewItem="Customer.BankAccount" Index="8" />
+                  <LayoutItem Id="Customer.Bank" IsNewNode="True" ViewItem="Customer.Bank" Index="9" />
+                  <LayoutItem Id="Customer.CurrentAcc" IsNewNode="True" ViewItem="Customer.CurrentAcc" Index="10" />
+                  <LayoutItem Id="Customer.BIC" IsNewNode="True" ViewItem="Customer.BIC" Index="11" />
+                  <LayoutItem Id="Customer.RCBIC" IsNewNode="True" ViewItem="Customer.RCBIC" Index="12" />
+                  <LayoutItem Id="Customer.KorAcc" IsNewNode="True" ViewItem="Customer.KorAcc" Index="13" />
+                </LayoutGroup>
+                <LayoutGroup Id="Supplier" IsNewNode="True" Index="6">
+                  <LayoutItem Id="Supplier.Party" IsNewNode="True" ViewItem="Supplier.Party" Index="4" />
+                  <LayoutItem Id="Supplier.Name" IsNewNode="True" ViewItem="Supplier.Name" Index="5" />
+                  <LayoutItem Id="Supplier.INN" IsNewNode="True" ViewItem="Supplier.INN" Index="6" />
+                  <LayoutItem Id="Supplier.KPP" IsNewNode="True" ViewItem="Supplier.KPP" Index="7" />
+                  <LayoutItem Id="Supplier.RegNumber" IsNewNode="True" ViewItem="Supplier.RegNumber" Index="8" />
+                  <LayoutItem Id="Supplier.AddressLegal" IsNewNode="True" ViewItem="Supplier.AddressLegal" Index="9" />
+                  <LayoutItem Id="Supplier.AddressFact" IsNewNode="True" ViewItem="Supplier.AddressFact" Index="10" />
+                  <LayoutItem Id="Supplier.AddressPost" IsNewNode="True" ViewItem="Supplier.AddressPost" Index="11" />
+                  <LayoutItem Id="Supplier.BankAccount" IsNewNode="True" ViewItem="Supplier.BankAccount" Index="12" />
+                  <LayoutItem Id="Supplier.Bank" IsNewNode="True" ViewItem="Supplier.Bank" Index="13" />
+                  <LayoutItem Id="Supplier.CurrentAcc" IsNewNode="True" ViewItem="Supplier.CurrentAcc" Index="14" />
+                  <LayoutItem Id="Supplier.BIC" IsNewNode="True" ViewItem="Supplier.BIC" Index="15" />
+                  <LayoutItem Id="Supplier.RCBIC" IsNewNode="True" ViewItem="Supplier.RCBIC" Index="16" />
+                  <LayoutItem Id="Supplier.KorAcc" IsNewNode="True" ViewItem="Supplier.KorAcc" Index="17" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="DeliveryUnits" Index="5" Removed="True" />
+            <LayoutGroup Id="PaymentUnits" Index="6" Removed="True" />
+            <LayoutGroup Id="ObligationUnits" Index="7" Removed="True">
+              <LayoutItem Id="ObligationUnits" Removed="True" ViewItem="ObligationUnits" />
+            </LayoutGroup>
+            <LayoutGroup Id="DealVersions" Index="8" />
+            <LayoutGroup Id="ContractDocuments" Index="9">
+              <LayoutGroup Id="DocumentManagement" IsNewNode="True" Index="0">
+                <LayoutItem Id="Registrator" IsNewNode="True" ViewItem="Registrator" Index="2" />
+                <LayoutItem Id="Curator" IsNewNode="True" ViewItem="Curator" Index="11" />
+              </LayoutGroup>
+              <LayoutItem Id="ContractDocuments" Index="1" ViewItem="ContractDocuments" />
+            </LayoutGroup>
+            <LayoutGroup Id="CurrentCost.CostItems" Removed="True" />
+            <LayoutGroup Id="CurrentCost.DownCols" Removed="True" />
+            <LayoutGroup Id="CurrentPayment.CostItems" Removed="True" />
+            <LayoutGroup Id="CurrentPayment.DownCols" Removed="True" />
+            <LayoutGroup Id="DealNomenclatures" Removed="True" />
+            <LayoutGroup Id="DeliveryPlan.DeliveryUnit.DeliveryItems" Removed="True">
+              <LayoutItem Id="DeliveryPlan.DeliveryUnit.DeliveryItems" Removed="True" ViewItem="DeliveryPlan.DeliveryUnit.DeliveryItems" />
+            </LayoutGroup>
+            <LayoutGroup Id="DeliveryPlan.DeliveryUnits" Removed="True">
+              <LayoutItem Id="DeliveryPlan.DeliveryUnits" Removed="True" ViewItem="DeliveryPlan.DeliveryUnits" />
+            </LayoutGroup>
+            <LayoutGroup Id="ItemShedules" Removed="True">
+              <LayoutItem Id="ItemShedules" Removed="True" ViewItem="ItemShedules" />
+            </LayoutGroup>
+            <LayoutGroup Id="PaymentPlan.PaymentUnits" Removed="True">
+              <LayoutItem Id="PaymentPlan.PaymentUnits" Removed="True" ViewItem="PaymentPlan.PaymentUnits" />
+            </LayoutGroup>
+          </TabbedGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="DescriptionLong" Removed="True" ViewItem="DescriptionLong" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmDealWithoutStageVersion_LookupListView" ActiveFilterString="" />
+    <ListView Id="crmDealWithoutStageVersion_PaymentUnits_ListView">
+      <Columns>
+        <ColumnInfo Id="DatePlane" Index="0" />
+        <ColumnInfo Id="Code" Index="1" />
+        <ColumnInfo Id="CostModel" Index="2" />
+        <ColumnInfo Id="PaymentStage" Index="2" Removed="True" />
+        <ColumnInfo Id="Order" Index="3" />
+        <ColumnInfo Id="PaymentPlan" Index="3" Removed="True" />
+        <ColumnInfo Id="CostItem" Index="4" />
+        <ColumnInfo Id="SummCost" Index="5" />
+        <ColumnInfo Id="SummNDS" Index="6" />
+        <ColumnInfo Id="SummFull" Index="7" />
+        <ColumnInfo Id="Valuta" Index="8" />
+        <ColumnInfo Id="Debitor" Index="9" />
+        <ColumnInfo Id="Creditor" Index="10" />
+        <ColumnInfo Id="DateBegin" Removed="True" />
+        <ColumnInfo Id="DateEnd" Removed="True" />
+        <ColumnInfo Id="DealVersion" Removed="True" />
+        <ColumnInfo Id="Description" Removed="True" />
+        <ColumnInfo Id="IsLoading" Removed="True" />
+        <ColumnInfo Id="Name" Removed="True" />
+        <ColumnInfo Id="NDSRate" Removed="True" />
+        <ColumnInfo Id="Receiver" Removed="True" />
+        <ColumnInfo Id="Sender" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="crmDealWithStageVersion_DetailView">
+      <Items>
+        <PropertyEditor Id="CurrentCost.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentCost.SummNDS" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummNDS" AllowEdit="False" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" IsNewNode="True" Index="0" Direction="Horizontal">
+            <LayoutItem Id="DealState" IsNewNode="True" ViewItem="DealState" Index="0" CaptionLocation="Top" />
+            <LayoutItem Id="DealDocument" IsNewNode="True" ViewItem="DealDocument" Index="1" CaptionLocation="Top" />
+            <LayoutItem Id="ShowVersionState" IsNewNode="True" ViewItem="ShowVersionState" Index="2" CaptionLocation="Top" />
+            <LayoutItem Id="ContractDocument" IsNewNode="True" ViewItem="ContractDocument" Index="3" CaptionLocation="Top" />
+            <LayoutItem Id="DealCode" IsNewNode="True" ViewItem="DealCode" Index="4" CaptionLocation="Top" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="crmDealVersion">
+              <LayoutGroup Id="crmDealVersion_col1">
+                <LayoutItem Id="Category" Removed="True" ViewItem="Category" />
+                <LayoutItem Id="ContractDocument" Removed="True" ViewItem="ContractDocument" />
+                <LayoutItem Id="Curator" Removed="True" ViewItem="Curator" />
+                <LayoutItem Id="Customer.AddressFact" Removed="True" ViewItem="Customer.AddressFact" />
+                <LayoutItem Id="Customer.AddressLegal" Removed="True" ViewItem="Customer.AddressLegal" />
+                <LayoutItem Id="Customer.AddressPost" Removed="True" ViewItem="Customer.AddressPost" />
+                <LayoutItem Id="Customer.BankAccount" Removed="True" ViewItem="Customer.BankAccount" />
+                <LayoutItem Id="Customer.INN" Removed="True" ViewItem="Customer.INN" />
+                <LayoutItem Id="Customer.KPP" Removed="True" ViewItem="Customer.KPP" />
+                <LayoutItem Id="Customer.Name" Removed="True" ViewItem="Customer.Name" />
+                <LayoutItem Id="Customer.Party" Removed="True" ViewItem="Customer.Party" />
+                <LayoutItem Id="Customer.RegNumber" Removed="True" ViewItem="Customer.RegNumber" />
+                <LayoutItem Id="DateBegin" Removed="True" ViewItem="DateBegin" />
+                <LayoutItem Id="DateEnd" Removed="True" ViewItem="DateEnd" />
+                <LayoutItem Id="DateFinish" Removed="True" ViewItem="DateFinish" />
+                <LayoutItem Id="DealCode" Removed="True" ViewItem="DealCode" />
+                <LayoutItem Id="DealState" Removed="True" ViewItem="DealState" />
+                <LayoutItem Id="DescriptionShort" Removed="True" ViewItem="DescriptionShort" />
+                <LayoutItem Id="NDSRate" Removed="True" ViewItem="NDSRate" />
+                <LayoutItem Id="PaymentValuta" Removed="True" ViewItem="PaymentValuta" />
+                <LayoutItem Id="Price" Removed="True" ViewItem="Price" />
+                <LayoutItem Id="Registrator" Removed="True" ViewItem="Registrator" />
+                <LayoutItem Id="ShowVersionState" Removed="True" ViewItem="ShowVersionState" />
+                <LayoutItem Id="Valuta" Removed="True" ViewItem="Valuta" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDealVersion_col2" Removed="True">
+                <LayoutItem Id="CostItem" Removed="True" ViewItem="CostItem" />
+                <LayoutItem Id="CostModel" Removed="True" ViewItem="CostModel" />
+                <LayoutItem Id="Customer.Bank" Removed="True" ViewItem="Customer.Bank" />
+                <LayoutItem Id="Customer.BIC" Removed="True" ViewItem="Customer.BIC" />
+                <LayoutItem Id="Customer.CurrentAcc" Removed="True" ViewItem="Customer.CurrentAcc" />
+                <LayoutItem Id="Customer.KorAcc" Removed="True" ViewItem="Customer.KorAcc" />
+                <LayoutItem Id="Customer.RCBIC" Removed="True" ViewItem="Customer.RCBIC" />
+                <LayoutItem Id="Order" Removed="True" ViewItem="Order" />
+                <LayoutItem Id="Supplier.AddressFact" Removed="True" ViewItem="Supplier.AddressFact" />
+                <LayoutItem Id="Supplier.AddressLegal" Removed="True" ViewItem="Supplier.AddressLegal" />
+                <LayoutItem Id="Supplier.AddressPost" Removed="True" ViewItem="Supplier.AddressPost" />
+                <LayoutItem Id="Supplier.Bank" Removed="True" ViewItem="Supplier.Bank" />
+                <LayoutItem Id="Supplier.BankAccount" Removed="True" ViewItem="Supplier.BankAccount" />
+                <LayoutItem Id="Supplier.BIC" Removed="True" ViewItem="Supplier.BIC" />
+                <LayoutItem Id="Supplier.CurrentAcc" Removed="True" ViewItem="Supplier.CurrentAcc" />
+                <LayoutItem Id="Supplier.INN" Removed="True" ViewItem="Supplier.INN" />
+                <LayoutItem Id="Supplier.KorAcc" Removed="True" ViewItem="Supplier.KorAcc" />
+                <LayoutItem Id="Supplier.KPP" Removed="True" ViewItem="Supplier.KPP" />
+                <LayoutItem Id="Supplier.Name" Removed="True" ViewItem="Supplier.Name" />
+                <LayoutItem Id="Supplier.Party" Removed="True" ViewItem="Supplier.Party" />
+                <LayoutItem Id="Supplier.RCBIC" Removed="True" ViewItem="Supplier.RCBIC" />
+                <LayoutItem Id="Supplier.RegNumber" Removed="True" ViewItem="Supplier.RegNumber" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmDealWithStageVersion" Removed="True">
+              <LayoutGroup Id="crmDealWithStageVersion_col1">
+                <LayoutItem Id="CurrentCost.CostModel" Removed="True" ViewItem="CurrentCost.CostModel" />
+                <LayoutItem Id="CurrentCost.NDSRate" Removed="True" ViewItem="CurrentCost.NDSRate" />
+                <LayoutItem Id="CurrentCost.SummCost" Removed="True" ViewItem="CurrentCost.SummCost" />
+                <LayoutItem Id="CurrentCost.SummNDS" Removed="True" ViewItem="CurrentCost.SummNDS" />
+                <LayoutItem Id="CurrentCost.Valuta" Removed="True" ViewItem="CurrentCost.Valuta" />
+                <LayoutItem Id="StageCode" Removed="True" ViewItem="StageCode" />
+                <LayoutItem Id="StageType" Removed="True" ViewItem="StageType" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDealWithStageVersion_col2">
+                <LayoutItem Id="CurrentCost.SummFull" Removed="True" ViewItem="CurrentCost.SummFull" />
+                <LayoutItem Id="CurrentPayment.CostModel" Removed="True" ViewItem="CurrentPayment.CostModel" />
+                <LayoutItem Id="CurrentPayment.NDSRate" Removed="True" ViewItem="CurrentPayment.NDSRate" />
+                <LayoutItem Id="CurrentPayment.SummCost" Removed="True" ViewItem="CurrentPayment.SummCost" />
+                <LayoutItem Id="CurrentPayment.SummFull" Removed="True" ViewItem="CurrentPayment.SummFull" />
+                <LayoutItem Id="CurrentPayment.SummNDS" Removed="True" ViewItem="CurrentPayment.SummNDS" />
+                <LayoutItem Id="CurrentPayment.Valuta" Removed="True" ViewItem="CurrentPayment.Valuta" />
+              </LayoutGroup>
+              <LayoutItem Id="StageCode" Removed="True" ViewItem="StageCode" />
+              <LayoutItem Id="StageType" Removed="True" ViewItem="StageType" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" IsNewNode="True" Index="0">
+              <LayoutItem Id="DescriptionShort" IsNewNode="True" ViewItem="DescriptionShort" Index="0" />
+              <LayoutItem Id="Category" IsNewNode="True" ViewItem="Category" Index="1" />
+              <LayoutItem Id="DateBegin" IsNewNode="True" ViewItem="DateBegin" Index="2" />
+              <LayoutItem Id="DateEnd" IsNewNode="True" ViewItem="DateEnd" Index="3" />
+              <LayoutItem Id="DateFinish" IsNewNode="True" ViewItem="DateFinish" Index="4" />
+              <LayoutItem Id="CostModel" IsNewNode="True" ViewItem="CostModel" Index="5" />
+              <LayoutItem Id="NDSRate" IsNewNode="True" ViewItem="NDSRate" Index="6" />
+              <LayoutItem Id="Price" IsNewNode="True" ViewItem="Price" Index="7" />
+              <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="8" />
+              <LayoutItem Id="PaymentValuta" IsNewNode="True" ViewItem="PaymentValuta" Index="9" />
+              <LayoutItem Id="Order" IsNewNode="True" ViewItem="Order" Index="10" />
+              <LayoutItem Id="CostItem" IsNewNode="True" ViewItem="CostItem" Index="11" />
+              <LayoutItem Id="DescriptionLong" IsNewNode="True" ViewItem="DescriptionLong" Index="12" />
+            </LayoutGroup>
+            <LayoutGroup Id="Stages" Index="1" />
+            <LayoutGroup Id="SheduleUnits" IsNewNode="True" Removed="True" Index="2">
+              <LayoutGroup Id="DeliveryParams" IsNewNode="True" Index="0" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top">
+                <LayoutItem Id="CurrentCost.SummCost" IsNewNode="True" ViewItem="CurrentCost.SummCost" Index="0" />
+                <LayoutItem Id="CurrentCost.SummNDS" IsNewNode="True" ViewItem="CurrentCost.SummNDS" Index="1" />
+                <LayoutItem Id="CurrentCost.SummFull" IsNewNode="True" ViewItem="CurrentCost.SummFull" Index="2" />
+              </LayoutGroup>
+              <LayoutGroup Id="PaymentParams" IsNewNode="True" Index="1" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top">
+                <LayoutItem Id="CurrentPayment.SummCost" IsNewNode="True" ViewItem="CurrentPayment.SummCost" Index="4" />
+                <LayoutItem Id="CurrentPayment.SummNDS" IsNewNode="True" ViewItem="CurrentPayment.SummNDS" Index="5" />
+                <LayoutItem Id="CurrentPayment.SummFull" IsNewNode="True" ViewItem="CurrentPayment.SummFull" Index="6" />
+              </LayoutGroup>
+              <LayoutItem Id="ObligationUnits" IsNewNode="True" ViewItem="ObligationUnits" Index="2" CaptionLocation="Top" />
+            </LayoutGroup>
+            <LayoutGroup Id="CurrentCost.CostItems" Index="3" Removed="True" />
+            <LayoutGroup Id="CurrentCost.DownCols" Index="4" Removed="True" />
+            <LayoutGroup Id="Partys" IsNewNode="True" Index="5">
+              <TabbedGroup Id="PartysTabs" IsNewNode="True">
+                <LayoutGroup Id="Customer" IsNewNode="True">
+                  <LayoutItem Id="Customer.Party" IsNewNode="True" ViewItem="Customer.Party" Index="0" />
+                  <LayoutItem Id="Customer.Name" IsNewNode="True" ViewItem="Customer.Name" Index="1" />
+                  <LayoutItem Id="Customer.INN" IsNewNode="True" ViewItem="Customer.INN" Index="2" />
+                  <LayoutItem Id="Customer.KPP" IsNewNode="True" ViewItem="Customer.KPP" Index="3" />
+                  <LayoutItem Id="Customer.RegNumber" IsNewNode="True" ViewItem="Customer.RegNumber" Index="4" />
+                  <LayoutItem Id="Customer.AddressLegal" IsNewNode="True" ViewItem="Customer.AddressLegal" Index="5" />
+                  <LayoutItem Id="Customer.AddressFact" IsNewNode="True" ViewItem="Customer.AddressFact" Index="6" />
+                  <LayoutItem Id="Customer.AddressPost" IsNewNode="True" ViewItem="Customer.AddressPost" Index="7" />
+                  <LayoutItem Id="Customer.BankAccount" IsNewNode="True" ViewItem="Customer.BankAccount" Index="8" />
+                  <LayoutItem Id="Customer.Bank" IsNewNode="True" ViewItem="Customer.Bank" Index="9" />
+                  <LayoutItem Id="Customer.CurrentAcc" IsNewNode="True" ViewItem="Customer.CurrentAcc" Index="10" />
+                  <LayoutItem Id="Customer.BIC" IsNewNode="True" ViewItem="Customer.BIC" Index="11" />
+                  <LayoutItem Id="Customer.RCBIC" IsNewNode="True" ViewItem="Customer.RCBIC" Index="12" />
+                  <LayoutItem Id="Customer.KorAcc" IsNewNode="True" ViewItem="Customer.KorAcc" Index="13" />
+                </LayoutGroup>
+                <LayoutGroup Id="Supplier" IsNewNode="True">
+                  <LayoutItem Id="Supplier.Party" IsNewNode="True" ViewItem="Supplier.Party" Index="5" />
+                  <LayoutItem Id="Supplier.Name" IsNewNode="True" ViewItem="Supplier.Name" Index="6" />
+                  <LayoutItem Id="Supplier.INN" IsNewNode="True" ViewItem="Supplier.INN" Index="7" />
+                  <LayoutItem Id="Supplier.KPP" IsNewNode="True" ViewItem="Supplier.KPP" Index="8" />
+                  <LayoutItem Id="Supplier.RegNumber" IsNewNode="True" ViewItem="Supplier.RegNumber" Index="9" />
+                  <LayoutItem Id="Supplier.AddressLegal" IsNewNode="True" ViewItem="Supplier.AddressLegal" Index="10" />
+                  <LayoutItem Id="Supplier.AddressFact" IsNewNode="True" ViewItem="Supplier.AddressFact" Index="11" />
+                  <LayoutItem Id="Supplier.AddressPost" IsNewNode="True" ViewItem="Supplier.AddressPost" Index="12" />
+                  <LayoutItem Id="Supplier.BankAccount" IsNewNode="True" ViewItem="Supplier.BankAccount" Index="13" />
+                  <LayoutItem Id="Supplier.Bank" IsNewNode="True" ViewItem="Supplier.Bank" Index="14" />
+                  <LayoutItem Id="Supplier.CurrentAcc" IsNewNode="True" ViewItem="Supplier.CurrentAcc" Index="15" />
+                  <LayoutItem Id="Supplier.BIC" IsNewNode="True" ViewItem="Supplier.BIC" Index="16" />
+                  <LayoutItem Id="Supplier.RCBIC" IsNewNode="True" ViewItem="Supplier.RCBIC" Index="17" />
+                  <LayoutItem Id="Supplier.KorAcc" IsNewNode="True" ViewItem="Supplier.KorAcc" Index="18" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="DealVersions" Index="6" />
+            <LayoutGroup Id="ContractDocuments" Index="7">
+              <LayoutItem Id="Registrator" IsNewNode="True" ViewItem="Registrator" Index="0" />
+              <LayoutItem Id="Curator" IsNewNode="True" ViewItem="Curator" Index="1" />
+              <LayoutItem Id="ContractDocuments" Index="2" ViewItem="ContractDocuments" />
+            </LayoutGroup>
+            <LayoutGroup Id="CurrentPayment.CostItems" Removed="True" />
+            <LayoutGroup Id="CurrentPayment.DownCols" Removed="True" />
+            <LayoutGroup Id="DealNomenclatures" Removed="True" />
+            <LayoutGroup Id="ObligationUnits" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="DescriptionLong" Removed="True" ViewItem="DescriptionLong" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmDealWithStageVersion_Stages_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="StageType" Index="1" />
+        <ColumnInfo Id="DateBegin" Index="2" />
+        <ColumnInfo Id="DateEnd" Index="3" />
+        <ColumnInfo Id="CostModel" Index="4" />
+        <ColumnInfo Id="DateFinish" Index="4" Removed="True" />
+        <ColumnInfo Id="SummFull" IsNewNode="True" PropertyName="CurrentCost.SummFull" Index="5" />
+        <ColumnInfo Id="DescriptionShort" Index="6" />
+        <ColumnInfo Id="DeliveryDate" Index="7" Removed="True" />
+        <ColumnInfo Id="Order" Index="7" />
+        <ColumnInfo Id="CostItem" Index="8" Removed="True" />
+        <ColumnInfo Id="CurrentCost" Index="8" Removed="True" />
+        <ColumnInfo Id="FullCode" Index="8" />
+        <ColumnInfo Id="NDSRate" Index="8" Removed="True" />
+        <ColumnInfo Id="CurrentPayment" Index="9" Removed="True" />
+        <ColumnInfo Id="Valuta" Index="9" Removed="True" />
+        <ColumnInfo Id="PaymentValuta" Index="10" Removed="True" />
+        <ColumnInfo Id="AdvanceDate" Removed="True" />
+        <ColumnInfo Id="AdvancePercentage" Removed="True" />
+        <ColumnInfo Id="AdvanceSumm" Removed="True" />
+        <ColumnInfo Id="DeliveryItem" Removed="True" />
+        <ColumnInfo Id="DeliveryMethod" Removed="True" />
+        <ColumnInfo Id="DescriptionLong" Removed="True" />
+        <ColumnInfo Id="IsLoading" Removed="True" />
+        <ColumnInfo Id="PaymentMethod" Removed="True" />
+        <ColumnInfo Id="PaymentPlan" Removed="True" />
+        <ColumnInfo Id="SettlementDate" Removed="True" />
+        <ColumnInfo Id="StageMain" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmDebtorCreditorDebtRegister_ListView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" AllowDelete="False" AllowNew="False" IsGroupPanelVisible="True" />
+    <DetailView Id="crmDeliveryMaterial_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmDeliveryMaterial">
+              <LayoutItem Id="Material" Index="0" ViewItem="Material" />
+              <LayoutItem Id="NomenclatureName" IsNewNode="True" ViewItem="NomenclatureName" Index="1" />
+            </LayoutGroup>
+            <LayoutGroup Id="crmDeliveryItem" Direction="Vertical" ShowCaption="False">
+              <LayoutGroup Id="Stages" IsNewNode="True" Index="0" Direction="Horizontal">
+                <LayoutItem Id="Stage" IsNewNode="True" ViewItem="Stage" Index="1" />
+                <LayoutItem Id="Order" IsNewNode="True" ViewItem="Order" Index="3" />
+                <LayoutItem Id="CostItem" IsNewNode="True" ViewItem="CostItem" Index="4" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDeliveryItem_col1" Direction="Horizontal" Index="2" Removed="True">
+                <LayoutItem Id="Date" Index="0" CaptionLocation="Top" RelativeSize="15" ViewItem="Date" />
+                <LayoutItem Id="CountValue" Index="1" CaptionLocation="Top" RelativeSize="20" ViewItem="CountValue" />
+                <LayoutItem Id="CountUnit" Index="2" CaptionLocation="Top" RelativeSize="10" ViewItem="CountUnit" />
+                <LayoutItem Id="Order" IsNewNode="True" ViewItem="Order" Index="3" RelativeSize="30" CaptionLocation="Top" />
+                <LayoutItem Id="CostItem" IsNewNode="True" ViewItem="CostItem" Index="4" RelativeSize="25" CaptionLocation="Top" />
+                <LayoutItem Id="CostCalculateMethod" Removed="True" ViewItem="CostCalculateMethod" />
+                <LayoutItem Id="Price" Removed="True" ViewItem="Price" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDeliveryItem_col2" Index="3" Removed="True">
+                <LayoutItem Id="CostItem" Removed="True" ViewItem="CostItem" />
+                <LayoutItem Id="NomenclatureName" Removed="True" ViewItem="NomenclatureName" />
+                <LayoutItem Id="Stage" Removed="True" ViewItem="Stage" />
+                <LayoutItem Id="TotalSumm" Removed="True" ViewItem="TotalSumm" />
+              </LayoutGroup>
+              <LayoutGroup Id="WhatCount" IsNewNode="True" Index="3" Direction="Horizontal" ShowCaption="False">
+                <LayoutItem Id="CountValue" IsNewNode="True" ViewItem="CountValue" Index="0" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="CountUnit" IsNewNode="True" ViewItem="CountUnit" Index="1" CaptionLocation="Top" RelativeSize="10" />
+                <LayoutItem Id="Price" IsNewNode="True" ViewItem="Price" Index="2" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="3" CaptionLocation="Top" RelativeSize="10" />
+                <LayoutItem Id="CostModel" IsNewNode="True" ViewItem="CostModel" Index="4" CaptionLocation="Top" RelativeSize="20" />
+              </LayoutGroup>
+              <LayoutGroup Id="CostFull" IsNewNode="True" Index="5" Direction="Horizontal">
+                <LayoutItem Id="SummCost" IsNewNode="True" ViewItem="SummCost" Index="0" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="NDSRate" IsNewNode="True" ViewItem="NDSRate" Index="1" CaptionLocation="Top" RelativeSize="10" />
+                <LayoutItem Id="SummNDS" IsNewNode="True" ViewItem="SummNDS" Index="2" CaptionLocation="Top" RelativeSize="25" />
+                <LayoutItem Id="SummFull" IsNewNode="True" ViewItem="SummFull" Index="3" CaptionLocation="Top" RelativeSize="35" />
+              </LayoutGroup>
+              <LayoutGroup Id="CostMethods" IsNewNode="True" Direction="Horizontal">
+                <LayoutGroup Id="IsGroup" IsNewNode="True" Index="0" RelativeSize="10">
+                  <LayoutItem Id="IsNoCount" IsNewNode="True" ViewItem="IsNoCount" Index="0" />
+                  <LayoutItem Id="IsNoCost" IsNewNode="True" ViewItem="IsNoCost" Index="1" />
+                </LayoutGroup>
+                <LayoutItem Id="CostCalculateMethod" IsNewNode="True" ViewItem="CostCalculateMethod" Index="1" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="NDSCalculateMethod" IsNewNode="True" ViewItem="NDSCalculateMethod" RelativeSize="30" CaptionLocation="Top" Index="2" />
+                <LayoutItem Id="FullCalculateMethod" IsNewNode="True" ViewItem="FullCalculateMethod" Index="3" CaptionLocation="Top" RelativeSize="30" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmObligation" Removed="True">
+              <LayoutGroup Id="crmObligation_col1" Removed="True">
+                <LayoutItem Id="Order" Index="0" Removed="True" ViewItem="Order" />
+                <LayoutItem Id="CostModel" Removed="True" ViewItem="CostModel" />
+                <LayoutItem Id="NDSRate" Removed="True" ViewItem="NDSRate" />
+                <LayoutItem Id="Valuta" Removed="True" ViewItem="Valuta" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmObligation_col2" Removed="True">
+                <LayoutItem Id="FinancialDeal" Removed="True" ViewItem="FinancialDeal" />
+                <LayoutItem Id="SummCost" Removed="True" ViewItem="SummCost" />
+                <LayoutItem Id="SummFull" Removed="True" ViewItem="SummFull" />
+                <LayoutItem Id="SummNDS" Removed="True" ViewItem="SummNDS" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmObligationTransfer" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors">
+            <LayoutItem Id="Description" CaptionLocation="Top" ViewItem="Description" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmDeliveryPlanItemShedule_DeliveryPlanUnitShedules_ListView" NewItemRowPosition="Bottom">
+      <Columns>
+        <ColumnInfo Id="DatePlane" Index="0" />
+        <ColumnInfo Id="CountValue" Index="1" />
+        <ColumnInfo Id="SummCost" Index="2" />
+        <ColumnInfo Id="SummFull" Index="3" />
+        <ColumnInfo Id="DeliveryPlanItemShedule" Removed="True" />
+        <ColumnInfo Id="IsLoading" Removed="True" />
+      </Columns>
+      <Sorting>
+        <SortProperty Id="DatePlane" IsNewNode="True" PropertyName="DatePlane" />
+      </Sorting>
+    </ListView>
+    <DetailView Id="crmDeliveryPlanItemShedule_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" IsNewNode="True" Index="0">
+            <LayoutItem Id="Nomenclature" IsNewNode="True" ViewItem="Nomenclature" Index="1" />
+            <LayoutItem Id="NomenclatureName" IsNewNode="True" ViewItem="NomenclatureName" Index="2" />
+            <LayoutGroup Id="PriceCount" IsNewNode="True" Direction="Horizontal">
+              <LayoutItem Id="Price" IsNewNode="True" ViewItem="Price" Index="0" CaptionLocation="Top" RelativeSize="25" />
+              <LayoutItem Id="CountValue" IsNewNode="True" ViewItem="CountValue" Index="1" CaptionLocation="Top" RelativeSize="15" />
+              <LayoutItem Id="CountUnit" IsNewNode="True" ViewItem="CountUnit" Index="2" CaptionLocation="Top" RelativeSize="10" />
+              <LayoutItem Id="SummCost" IsNewNode="True" ViewItem="SummCost" Index="3" CaptionLocation="Top" RelativeSize="25" />
+              <LayoutItem Id="SummFull" IsNewNode="True" ViewItem="SummFull" Index="4" CaptionLocation="Top" RelativeSize="25" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="crmDeliveryPlanItemShedule">
+              <LayoutGroup Id="crmDeliveryPlanItemShedule_col1">
+                <LayoutItem Id="CountValue" Removed="True" ViewItem="CountValue" />
+                <LayoutItem Id="Price" Removed="True" ViewItem="Price" />
+                <LayoutItem Id="SummCost" Removed="True" ViewItem="SummCost" />
+                <LayoutItem Id="SummFull" Removed="True" ViewItem="SummFull" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDeliveryPlanItemShedule_col2">
+                <LayoutItem Id="CountUnit" Removed="True" ViewItem="CountUnit" />
+                <LayoutItem Id="Nomenclature" Removed="True" ViewItem="Nomenclature" />
+                <LayoutItem Id="NomenclatureName" Removed="True" ViewItem="NomenclatureName" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmDeliveryService_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" IsNewNode="True" Index="0" Direction="Vertical" ShowCaption="False" Removed="True">
+          <LayoutGroup Id="SimpleEditors" IsNewNode="True" Index="0" Direction="Vertical" ShowCaption="False">
+            <LayoutGroup Id="crmDeliveryMaterial" IsNewNode="True" Index="0" Direction="Vertical">
+              <LayoutItem Id="Service" IsNewNode="True" Index="0" ViewItem="Service" />
+              <LayoutItem Id="NomenclatureName" IsNewNode="True" ViewItem="NomenclatureName" Index="1" />
+            </LayoutGroup>
+            <LayoutGroup Id="crmDeliveryItem" IsNewNode="True" Direction="Vertical" Index="1">
+              <LayoutGroup Id="Stages" IsNewNode="True" Index="0" Direction="Horizontal">
+                <LayoutItem Id="Stage" IsNewNode="True" ViewItem="Stage" Index="1" />
+                <LayoutItem Id="Order" IsNewNode="True" ViewItem="Order" Index="3" />
+                <LayoutItem Id="CostItem" IsNewNode="True" ViewItem="CostItem" Index="4" />
+              </LayoutGroup>
+              <LayoutGroup Id="WhatCount" IsNewNode="True" Index="3" Direction="Horizontal" ShowCaption="False">
+                <LayoutItem Id="CountValue" IsNewNode="True" ViewItem="CountValue" Index="0" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="CountUnit" IsNewNode="True" ViewItem="CountUnit" Index="1" CaptionLocation="Top" RelativeSize="10" />
+                <LayoutItem Id="Price" IsNewNode="True" ViewItem="Price" Index="2" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="3" CaptionLocation="Top" RelativeSize="10" />
+                <LayoutItem Id="CostModel" IsNewNode="True" ViewItem="CostModel" Index="4" CaptionLocation="Top" RelativeSize="20" />
+              </LayoutGroup>
+              <LayoutGroup Id="CostFull" IsNewNode="True" Index="5" Direction="Horizontal">
+                <LayoutItem Id="SummCost" IsNewNode="True" ViewItem="SummCost" Index="0" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="NDSRate" IsNewNode="True" ViewItem="NDSRate" Index="1" CaptionLocation="Top" RelativeSize="10" />
+                <LayoutItem Id="SummNDS" IsNewNode="True" ViewItem="SummNDS" Index="2" CaptionLocation="Top" RelativeSize="25" />
+                <LayoutItem Id="SummFull" IsNewNode="True" ViewItem="SummFull" Index="3" CaptionLocation="Top" RelativeSize="35" />
+              </LayoutGroup>
+              <LayoutGroup Id="CostMethods" IsNewNode="True" Direction="Horizontal">
+                <LayoutGroup Id="IsGroup" IsNewNode="True" Index="0" RelativeSize="10">
+                  <LayoutItem Id="IsNoCount" IsNewNode="True" ViewItem="IsNoCount" Index="0" />
+                  <LayoutItem Id="IsNoCost" IsNewNode="True" ViewItem="IsNoCost" Index="1" />
+                </LayoutGroup>
+                <LayoutItem Id="CostCalculateMethod" IsNewNode="True" ViewItem="CostCalculateMethod" Index="1" CaptionLocation="Top" RelativeSize="30" />
+                <LayoutItem Id="NDSCalculateMethod" IsNewNode="True" ViewItem="NDSCalculateMethod" RelativeSize="30" CaptionLocation="Top" Index="2" />
+                <LayoutItem Id="FullCalculateMethod" IsNewNode="True" ViewItem="FullCalculateMethod" Index="3" CaptionLocation="Top" RelativeSize="30" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" IsNewNode="True" Index="1" Direction="Vertical" ShowCaption="False">
+            <LayoutItem Id="Description" IsNewNode="True" Index="0" CaptionLocation="Top" ViewItem="Description" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmDeliveryUnit_DeliveryItems_ListView">
+      <Columns>
+        <ColumnInfo Id="Valuta" Index="-1" />
+        <ColumnInfo Id="CountValue" Index="3" />
+        <ColumnInfo Id="CountUnit" Index="4" />
+        <ColumnInfo Id="Nomenclature" Index="5" />
+        <ColumnInfo Id="CostModel" Index="6" />
+        <ColumnInfo Id="DeliveryUnit" Index="7" Removed="True" />
+        <ColumnInfo Id="Creditor" Removed="True" />
+        <ColumnInfo Id="Debitor" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="crmDeliveryUnit_DetailView">
+      <Items>
+        <PropertyEditor Id="Creditor" AllowEdit="False" />
+        <PropertyEditor Id="DatePlane" ImmediatePostData="True" />
+        <PropertyEditor Id="Debitor" AllowEdit="False" />
+        <PropertyEditor Id="DeliveryItems" View="crmDealVersion_DeliveryItems_ListView" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmObligationUnit" IsNewNode="True" Index="0" Direction="Horizontal" ShowCaption="False" Removed="True">
+              <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="0" CaptionLocation="Top" />
+              <LayoutItem Id="DatePlane" IsNewNode="True" ViewItem="DatePlane" Index="1" CaptionLocation="Top" />
+              <LayoutItem Id="DateBegin" IsNewNode="True" ViewItem="DateBegin" Index="2" CaptionLocation="Top" />
+              <LayoutItem Id="DateEnd" IsNewNode="True" ViewItem="DateEnd" Index="3" CaptionLocation="Top" />
+            </LayoutGroup>
+            <LayoutGroup Id="crmDeliveryUnit" Removed="True">
+              <LayoutItem Id="DeliveryStage" Removed="True" ViewItem="DeliveryStage" />
+            </LayoutGroup>
+            <LayoutItem Id="Receiver" IsNewNode="True" ViewItem="Receiver" />
+            <LayoutItem Id="Sender" IsNewNode="True" ViewItem="Sender" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Description" CaptionLocation="Top" ViewItem="Description" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmIParty_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="INN" Index="1" />
+        <ColumnInfo Id="KPP" Index="2" />
+        <ColumnInfo Id="Name" Index="3" />
+        <ColumnInfo Id="AddressFactString" Index="4" />
+        <ColumnInfo Id="ComponentType" Index="6" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmIParty_LookupListView" Criteria="IsClosed = False" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="INN" Index="1" />
+        <ColumnInfo Id="KPP" Index="2" />
+        <ColumnInfo Id="Name" Index="3" />
+        <ColumnInfo Id="AddressFactString" Index="4" />
+      </Columns>
+    </ListView>
+    <DetailView Id="crmPartyRu_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmPartyRu" Index="2" Direction="Horizontal" CaptionLocation="Top" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmPartyRu_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="IsClosed" AllowEdit="False" Index="1" />
+        <ColumnInfo Id="INN" AllowEdit="False" Index="2" />
+        <ColumnInfo Id="KPP" AllowEdit="False" Index="3" />
+        <ColumnInfo Id="Name" AllowEdit="False" Index="4" />
+        <ColumnInfo Id="Country" AllowEdit="False" Index="5" />
+        <ColumnInfo Id="AddressFact" AllowEdit="False" Index="6" />
+        <ColumnInfo Id="ComponentType" Index="7" MaxLength="0" />
+        <ColumnInfo Id="RegCode" Index="7" Removed="True" />
+        <ColumnInfo Id="PersonType" AllowEdit="False" Index="8" Removed="True" />
+        <ColumnInfo Id="AddressFactString" Index="9" Removed="True" />
+        <ColumnInfo Id="AddressPost" AllowEdit="False" Index="10" Removed="True" />
+        <ColumnInfo Id="AddressLegal" AllowEdit="False" Removed="True" />
+        <ColumnInfo Id="Description" AllowEdit="False" Removed="True" />
+        <ColumnInfo Id="NameFull" AllowEdit="False" Removed="True" />
+      </Columns>
+      <Filters CurrentFilterId="OnlyOpen">
+        <Filter Id="OnlyOpen" IsNewNode="True" Criteria="IsClosed = False" />
+        <Filter Id="ShowAll" IsNewNode="True" />
+      </Filters>
+      <Sorting>
+        <SortProperty Id="Code" IsNewNode="True" PropertyName="Code" Index="1" />
+      </Sorting>
+    </ListView>
+    <DetailView Id="crmPaymentCasheLess_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Payment" IsNewNode="True" Index="0">
+              <LayoutGroup Id="CostParams" IsNewNode="True" Index="0" Direction="Horizontal">
+                <LayoutItem Id="DatePlane" IsNewNode="True" ViewItem="DatePlane" Index="0" CaptionLocation="Top" />
+                <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="1" CaptionLocation="Top" />
+                <LayoutItem Id="CostModel" IsNewNode="True" ViewItem="CostModel" Index="2" CaptionLocation="Top" />
+                <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="3" CaptionLocation="Top" />
+                <LayoutItem Id="Payment.AccountValuta" IsNewNode="True" ViewItem="Payment.AccountValuta" Index="4" CaptionLocation="Top" />
+              </LayoutGroup>
+              <LayoutGroup Id="CostValue" IsNewNode="True" Direction="Horizontal">
+                <LayoutItem Id="SummFull" IsNewNode="True" ViewItem="SummFull" Index="0" CaptionLocation="Top" />
+                <LayoutItem Id="SummCost" IsNewNode="True" ViewItem="SummCost" Index="1" CaptionLocation="Top" />
+                <LayoutItem Id="NDSRate" IsNewNode="True" ViewItem="NDSRate" Index="2" CaptionLocation="Top" />
+                <LayoutItem Id="SummNDS" IsNewNode="True" ViewItem="SummNDS" Index="3" CaptionLocation="Top" />
+                <LayoutItem Id="Payment.AccountSumma" IsNewNode="True" ViewItem="Payment.AccountSumma" Index="5" CaptionLocation="Top" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmPaymentCasheLess" Index="1" Removed="True">
+              <LayoutGroup Id="crmPaymentCasheLess_col1" Removed="True">
+                <LayoutItem Id="Payment.AccountSumma" Removed="True" ViewItem="Payment.AccountSumma" />
+                <LayoutItem Id="Payment.AccountValuta" Removed="True" ViewItem="Payment.AccountValuta" />
+                <LayoutItem Id="Payment.CostItem" Removed="True" ViewItem="Payment.CostItem" />
+                <LayoutItem Id="Payment.Date" Removed="True" ViewItem="Payment.Date" />
+                <LayoutItem Id="Payment.Nomenclature" Removed="True" ViewItem="Payment.Nomenclature" />
+                <LayoutItem Id="Payment.Order" Removed="True" ViewItem="Payment.Order" />
+                <LayoutItem Id="Payment.Stage" Removed="True" ViewItem="Payment.Stage" />
+                <LayoutItem Id="Payment.TotalSumm" Removed="True" ViewItem="Payment.TotalSumm" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmPaymentCasheLess_col2" Removed="True">
+                <LayoutItem Id="Payment.CostModel" Removed="True" ViewItem="Payment.CostModel" />
+                <LayoutItem Id="Payment.FinancialDeal" Removed="True" ViewItem="Payment.FinancialDeal" />
+                <LayoutItem Id="Payment.NDSRate" Removed="True" ViewItem="Payment.NDSRate" />
+                <LayoutItem Id="Payment.SummCost" Removed="True" ViewItem="Payment.SummCost" />
+                <LayoutItem Id="Payment.SummFull" Removed="True" ViewItem="Payment.SummFull" />
+                <LayoutItem Id="Payment.SummNDS" Removed="True" ViewItem="Payment.SummNDS" />
+                <LayoutItem Id="Payment.Valuta" Removed="True" ViewItem="Payment.Valuta" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmPaymentUnit" Index="2" Removed="True" />
+            <LayoutGroup Id="crmObligationUnit" Index="3" Removed="True">
+              <LayoutGroup Id="crmObligationUnit_col1">
+                <LayoutItem Id="Code" Removed="True" ViewItem="Code" />
+                <LayoutItem Id="CostItem" Removed="True" ViewItem="CostItem" />
+                <LayoutItem Id="Creditor" Removed="True" ViewItem="Creditor" />
+                <LayoutItem Id="DatePlane" Removed="True" ViewItem="DatePlane" />
+                <LayoutItem Id="Debitor" Removed="True" ViewItem="Debitor" />
+                <LayoutItem Id="Order" Removed="True" ViewItem="Order" />
+                <LayoutItem Id="Sender" Removed="True" ViewItem="Sender" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmObligationUnit_col2">
+                <LayoutItem Id="Receiver" Index="1" Removed="True" ViewItem="Receiver" />
+                <LayoutItem Id="DealVersion" Index="2" ViewItem="DealVersion" />
+                <LayoutItem Id="CostModel" Removed="True" ViewItem="CostModel" />
+                <LayoutItem Id="NDSRate" Removed="True" ViewItem="NDSRate" />
+                <LayoutItem Id="Stage" Removed="True" ViewItem="Stage" />
+                <LayoutItem Id="SummCost" Removed="True" ViewItem="SummCost" />
+                <LayoutItem Id="SummFull" Removed="True" ViewItem="SummFull" />
+                <LayoutItem Id="SummNDS" Removed="True" ViewItem="SummNDS" />
+                <LayoutItem Id="Valuta" Removed="True" ViewItem="Valuta" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="FinAnalitic" IsNewNode="True">
+              <LayoutItem Id="Order" IsNewNode="True" ViewItem="Order" Index="1" />
+              <LayoutItem Id="CostItem" IsNewNode="True" ViewItem="CostItem" Index="2" />
+              <LayoutItem Id="Debitor" IsNewNode="True" ViewItem="Debitor" Index="3" />
+              <LayoutItem Id="Creditor" IsNewNode="True" ViewItem="Creditor" Index="4" />
+              <LayoutItem Id="Sender" IsNewNode="True" ViewItem="Sender" Index="5" />
+              <LayoutItem Id="Receiver" IsNewNode="True" Index="6" ViewItem="Receiver" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="PaymentItems_Group" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmPaymentMoney_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmObligation">
+              <LayoutItem Id="CostModel" IsNewNode="True" ViewItem="CostModel" Index="0" CaptionLocation="Top" />
+              <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="1" CaptionLocation="Top" />
+              <LayoutGroup Id="crmObligation_col1" Removed="True">
+                <LayoutItem Id="CostModel" Removed="True" ViewItem="CostModel" />
+                <LayoutItem Id="CurrentCost.CostModel" Removed="True" ViewItem="CurrentCost.CostModel" />
+                <LayoutItem Id="CurrentCost.SummCost" Removed="True" ViewItem="CurrentCost.SummCost" />
+                <LayoutItem Id="fmOrder" Removed="True" ViewItem="fmOrder" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmObligation_col2" Removed="True">
+                <LayoutItem Id="CurrentCost.SummFull" Removed="True" ViewItem="CurrentCost.SummFull" />
+                <LayoutItem Id="CurrentCost.SummNDS" Removed="True" ViewItem="CurrentCost.SummNDS" />
+                <LayoutItem Id="CurrentCost.Valuta" Removed="True" ViewItem="CurrentCost.Valuta" />
+                <LayoutItem Id="Valuta" Removed="True" ViewItem="Valuta" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmObligationTransfer" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="crmPaymentUnit_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="crmObligationUnit" IsNewNode="True" Removed="True" Index="0" Direction="Horizontal" ShowCaption="False">
+              <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="0" CaptionLocation="Top" />
+              <LayoutItem Id="DatePlane" IsNewNode="True" ViewItem="DatePlane" Index="1" CaptionLocation="Top" />
+              <LayoutItem Id="DateBegin" IsNewNode="True" ViewItem="DateBegin" Index="2" CaptionLocation="Top" />
+              <LayoutItem Id="DateEnd" IsNewNode="True" ViewItem="DateEnd" Index="3" CaptionLocation="Top" />
+            </LayoutGroup>
+            <LayoutGroup Id="crmPaymentUnit" Removed="True">
+              <LayoutItem Id="PaymentStage" Removed="True" ViewItem="PaymentStage" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmPaymentUnit_PaymentItems_ListView">
+      <Columns>
+        <ColumnInfo Id="AccountValuta" Index="-1" />
+        <ColumnInfo Id="Date" Index="0" />
+        <ColumnInfo Id="CostModel" Index="1" />
+        <ColumnInfo Id="Valuta" Index="2" />
+        <ColumnInfo Id="AccountSumma" Index="4" />
+        <ColumnInfo Id="CurrentCost.CostModel" Removed="True" />
+        <ColumnInfo Id="CurrentCost.Valuta" Removed="True" />
+        <ColumnInfo Id="PaymentUnit" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmPlaneFactRegister_ListView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" AllowDelete="False" AllowNew="False" IsGroupPanelVisible="True" />
+    <DetailView Id="crmStage_DetailView">
+      <Items>
+        <PropertyEditor Id="CurrentCost.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentCost.SummNDS" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummNDS" AllowEdit="False" />
+        <PropertyEditor Id="DeliveryItems" View="crmDealVersion_DeliveryItems_ListView" />
+        <PropertyEditor Id="DeliveryUnits" View="crmDealVersion_DeliveryUnits_ListView" />
+        <PropertyEditor Id="ItemShedules" View="crmDealVersion_ItemShedules_ListView" />
+        <ActionContainerViewItem Id="PaymentActions" IsNewNode="True" ActionContainer="Payments" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" IsNewNode="True" Index="0" Direction="Horizontal" ShowCaption="True" Caption="crm Stage">
+            <LayoutItem Id="StageType" IsNewNode="True" ViewItem="StageType" Index="0" />
+            <LayoutItem Id="Code" IsNewNode="True" ViewItem="Code" Index="1" />
+            <LayoutItem Id="FullCode" IsNewNode="True" ViewItem="FullCode" Index="2" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" IsNewNode="True" Index="0">
+              <LayoutItem Id="DateBegin" IsNewNode="True" ViewItem="DateBegin" Index="0" />
+              <LayoutItem Id="DateEnd" IsNewNode="True" ViewItem="DateEnd" Index="1" />
+              <LayoutItem Id="DateFinish" IsNewNode="True" ViewItem="DateFinish" Index="2" />
+              <LayoutItem Id="DescriptionShort" IsNewNode="True" ViewItem="DescriptionShort" Index="3" />
+              <LayoutItem Id="Order" IsNewNode="True" Index="8" ViewItem="Order" />
+              <LayoutItem Id="CostItem" IsNewNode="True" ViewItem="CostItem" Index="9" />
+              <LayoutItem Id="DescriptionLong" IsNewNode="True" ViewItem="DescriptionLong" Index="10" />
+            </LayoutGroup>
+            <LayoutGroup Id="Obligations" IsNewNode="True" Index="1">
+              <LayoutGroup Id="ObligationData" IsNewNode="True" Index="0">
+                <LayoutGroup Id="DeliveryData" IsNewNode="True" Index="0" Direction="Horizontal">
+                  <LayoutItem Id="DeliveryMethod" IsNewNode="True" Index="0" ViewItem="DeliveryMethod" CaptionLocation="Top" RelativeSize="40" />
+                  <LayoutItem Id="DeliveryDate" IsNewNode="True" ViewItem="DeliveryDate" Index="1" CaptionLocation="Top" RelativeSize="20" />
+                  <LayoutItem Id="Valuta" IsNewNode="True" ViewItem="Valuta" Index="2" CaptionLocation="Top" RelativeSize="10" />
+                  <LayoutItem Id="CostModel" IsNewNode="True" ViewItem="CostModel" Index="3" CaptionLocation="Top" RelativeSize="20" />
+                  <LayoutItem Id="NDSRate" IsNewNode="True" ViewItem="NDSRate" Index="4" CaptionLocation="Top" RelativeSize="10" />
+                </LayoutGroup>
+                <LayoutGroup Id="CurrentCostData" IsNewNode="True" Direction="Horizontal">
+                  <LayoutItem Id="CurrentCost.SummCost" IsNewNode="True" ViewItem="CurrentCost.SummCost" Index="0" CaptionLocation="Top" />
+                  <LayoutItem Id="CurrentCost.SummNDS" IsNewNode="True" ViewItem="CurrentCost.SummNDS" Index="1" CaptionLocation="Top" />
+                  <LayoutItem Id="CurrentCost.SummFull" IsNewNode="True" ViewItem="CurrentCost.SummFull" Index="2" CaptionLocation="Top" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="DeliveryTypes" IsNewNode="True">
+                <LayoutGroup Id="DeliveryItemAtTheEnd" IsNewNode="True" Index="0">
+                  <LayoutItem Id="DeliveryItem" IsNewNode="True" ViewItem="DeliveryItem" ShowCaption="True" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutGroup Id="DeliveryUnitAtTheEnd" IsNewNode="True" Index="1">
+                  <LayoutItem Id="DeliveryItems" IsNewNode="True" ViewItem="DeliveryItems" ShowCaption="True" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutGroup Id="DeliveryItemsShedule" IsNewNode="True" Index="2">
+                  <LayoutItem Id="ItemShedules" IsNewNode="True" ViewItem="ItemShedules" ShowCaption="False" Index="0" />
+                </LayoutGroup>
+                <LayoutGroup Id="DeliveryUnitsShedule" IsNewNode="True" Index="3">
+                  <LayoutItem Id="DeliveryUnits" IsNewNode="True" ViewItem="DeliveryUnits" CaptionLocation="Top" ShowCaption="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="SubStages" Index="1" Removed="True" />
+            <LayoutGroup Id="Payments" IsNewNode="True" Index="2">
+              <LayoutGroup Id="PaymentParams" IsNewNode="True" Index="0" Direction="Horizontal">
+                <LayoutItem Id="PaymentMethod" IsNewNode="True" ViewItem="PaymentMethod" Index="0" CaptionLocation="Top" />
+                <LayoutItem Id="AdvancePercentage" IsNewNode="True" ViewItem="AdvancePercentage" Index="1" CaptionLocation="Top" />
+                <LayoutItem Id="AdvanceDate" IsNewNode="True" ViewItem="AdvanceDate" Index="2" CaptionLocation="Top" />
+                <LayoutItem Id="SettlementDate" IsNewNode="True" ViewItem="SettlementDate" Index="3" CaptionLocation="Top" />
+                <LayoutItem Id="PaymentValuta" IsNewNode="True" ViewItem="PaymentValuta" Index="4" CaptionLocation="Top" />
+              </LayoutGroup>
+              <LayoutGroup Id="PaymentSumm" IsNewNode="True" Index="1" Direction="Horizontal">
+                <LayoutItem Id="PaySummCost" IsNewNode="True" ViewItem="CurrentPayment.SummCost" Index="2" CaptionLocation="Top" />
+                <LayoutItem Id="PaySummNDS" IsNewNode="True" ViewItem="CurrentPayment.SummNDS" Index="3" CaptionLocation="Top" />
+                <LayoutItem Id="PaySummFull" IsNewNode="True" Index="4" ViewItem="CurrentPayment.SummFull" CaptionLocation="Top" />
+                <LayoutItem Id="PaymentActions" IsNewNode="True" ViewItem="PaymentActions" />
+              </LayoutGroup>
+              <LayoutItem Id="PaymentUnits" IsNewNode="True" ViewItem="PaymentUnits" ShowCaption="False" Index="5" />
+            </LayoutGroup>
+            <LayoutGroup Id="Delivery.DeliveryItems" Index="3" Removed="True" />
+            <LayoutGroup Id="Payment.PaymentItems" Index="4" Removed="True" />
+            <LayoutGroup Id="DeliveryUnits" Index="5" Removed="True">
+              <LayoutItem Id="DeliveryUnits" Removed="True" ViewItem="DeliveryUnits" />
+            </LayoutGroup>
+            <LayoutGroup Id="PaymentUnits" Index="6" Removed="True">
+              <LayoutItem Id="PaymentUnits" Removed="True" ViewItem="PaymentUnits" />
+            </LayoutGroup>
+            <LayoutGroup Id="CurrentCost.CostItems" Removed="True" />
+            <LayoutGroup Id="CurrentCost.DownCols" Removed="True" />
+            <LayoutGroup Id="CurrentPayment.CostItems" Removed="True" />
+            <LayoutGroup Id="CurrentPayment.DownCols" Removed="True" />
+            <LayoutGroup Id="Delivery.ObligationUnitCosts" Removed="True" />
+            <LayoutGroup Id="DeliveryItems" Removed="True" />
+            <LayoutGroup Id="DeliveryPlan.DeliveryUnit.DeliveryItems" Removed="True" />
+            <LayoutGroup Id="DeliveryPlan.DeliveryUnits" Removed="True" />
+            <LayoutGroup Id="DeliveryPlan.ItemShedules" Removed="True" />
+            <LayoutGroup Id="ItemShedules" Removed="True" />
+            <LayoutGroup Id="Payment.ObligationUnitCosts" Removed="True" />
+            <LayoutGroup Id="PaymentPlan.PaymentUnits" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmStage_SubStages_ListView">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="FullCode" Index="1" />
+        <ColumnInfo Id="StageType" Index="2" />
+        <ColumnInfo Id="DateBegin" Index="3" />
+        <ColumnInfo Id="DateEnd" Index="4" />
+        <ColumnInfo Id="CostModel" Index="5" />
+        <ColumnInfo Id="Description" Index="5" Removed="True" />
+        <ColumnInfo Id="Valuta" Index="6" />
+        <ColumnInfo Id="Delivery" Index="9" Removed="True" />
+        <ColumnInfo Id="Payment" Index="10" Removed="True" />
+        <ColumnInfo Id="IsLoading" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmUserParty_ListView">
+      <Columns>
+        <ColumnInfo Id="Party" Removed="True" />
+        <ColumnInfo Id="PartyView.AddressFact" Removed="True" />
+        <ColumnInfo Id="PartyView.AddressLegalParty" Removed="True" />
+        <ColumnInfo Id="PartyView.CodeFA" Removed="True" />
+        <ColumnInfo Id="PartyView.Description" Removed="True" />
+        <ColumnInfo Id="PartyView.KPP" Removed="True" />
+        <ColumnInfo Id="PartyView.Name" Removed="True" />
+        <ColumnInfo Id="PartyView.PartyName" Removed="True" />
+        <ColumnInfo Id="PartyView.Person" Removed="True" />
+        <ColumnInfo Id="PartyView.RegNumber" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="csAddress_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="csAddress">
+              <LayoutGroup Id="csAddress_col1">
+                <LayoutItem Id="Country" Index="0" ViewItem="Country" />
+                <LayoutItem Id="Region" Index="1" ViewItem="Region" />
+                <LayoutItem Id="City" Index="2" ViewItem="City" />
+                <LayoutItem Id="StateProvince" Removed="True" ViewItem="StateProvince" />
+                <LayoutItem Id="ZipPostal" Removed="True" ViewItem="ZipPostal" />
+              </LayoutGroup>
+              <LayoutGroup Id="csAddress_col2" Index="1">
+                <LayoutItem Id="ZipPostal" IsNewNode="True" ViewItem="ZipPostal" Index="0" />
+                <LayoutItem Id="StateProvince" IsNewNode="True" ViewItem="StateProvince" Index="1" />
+                <LayoutItem Id="Street" Index="2" ViewItem="Street" />
+                <LayoutItem Id="AddressComponent" Removed="True" ViewItem="AddressComponent" />
+                <LayoutItem Id="AddressHandmake" Removed="True" ViewItem="AddressHandmake" />
+                <LayoutItem Id="AddressString" Removed="True" ViewItem="AddressString" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutItem Id="AddressComponent" IsNewNode="True" ViewItem="AddressComponent" Index="2" />
+            <LayoutItem Id="AddressHandmake" IsNewNode="True" ViewItem="AddressHandmake" Index="3" />
+            <LayoutItem Id="AddressString" IsNewNode="True" ViewItem="AddressString" Index="4" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="csCountry_DetailView">
+      <Items>
+        <PropertyEditor Id="CodeNumeric" EditMask="" />
+      </Items>
+    </DetailView>
+    <ListView Id="csNomenclature_LookupListView">
+      <Columns>
+        <ColumnInfo Id="NomenclatureType" IsNewNode="True" PropertyName="NomenclatureType" Width="70" Index="0" />
+        <ColumnInfo Id="Code" IsNewNode="True" PropertyName="Code" Width="70" Index="1" />
+        <ColumnInfo Id="NameShort" Index="2" />
+      </Columns>
+    </ListView>
+    <DetailView Id="csNomenclatureType_DetailView">
+      <Items>
+        <PropertyEditor Id="TopType.Code" Caption="Top Code" />
+        <PropertyEditor Id="TopType.Name" Caption="Top Name" />
+      </Items>
+    </DetailView>
+    <ListView Id="csValuta_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="NameShort" IsNewNode="True" PropertyName="NameShort" Width="400" Index="1" />
+      </Columns>
+    </ListView>
+    <ListView Id="DirectionClass_ListView">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="Name" Index="1" />
+        <ColumnInfo Id="DateBegin" Index="2" />
+        <ColumnInfo Id="DateEnd" Index="3" />
+        <ColumnInfo Id="IsClosed" Index="4" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmOrder_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors">
+            <LayoutItem Id="Description" CaptionLocation="Top" ViewItem="Description" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmOrder_ListView" AllowNew="True" AllowDelete="True" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor">
+      <Columns>
+        <ColumnInfo Id="Subject" Index="0" />
+      </Columns>
+      <Filters CurrentFilterId="@8b08ab63-6f64-49df-8a94-52a1761e79ee">
+        <Filter Id="@8b08ab63-6f64-49df-8a94-52a1761e79ee" IsNewNode="True" Criteria="IsClosed = false" Caption="Only Open" Index="0" />
+        <Filter Id="@f966f0f4-d52d-4242-a187-0e4c377c9549" IsNewNode="True" Index="1" Criteria="true" Caption="All Order" />
+      </Filters>
+    </ListView>
+    <ListView Id="hrmDepartment_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="30" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <ListView Id="hrmDepartment_Staffs_ListView">
+      <Columns>
+        <ColumnInfo Id="FullName" Removed="True" />
+        <ColumnInfo Id="PhysicalPerson.Address" Removed="True" />
+        <ColumnInfo Id="PhysicalPerson.FullName" Removed="True" />
+        <ColumnInfo Id="PhysicalPerson.INN" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="hrmStaff_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="hrmStaff" Direction="Vertical" ImageName="">
+              <LayoutGroup Id="DepartmentG" IsNewNode="True" Index="2" Direction="Horizontal">
+                <LayoutItem Id="Department" IsNewNode="True" Removed="True" ViewItem="Department" Index="0" />
+                <LayoutItem Id="Level" IsNewNode="True" ViewItem="Level" Index="0" />
+              </LayoutGroup>
+              <LayoutGroup Id="FIOG" IsNewNode="True" Index="3" Direction="Horizontal">
+                <LayoutItem Id="LastName" IsNewNode="True" ViewItem="LastName" Index="0" CaptionLocation="Top" />
+                <LayoutItem Id="FirstName" IsNewNode="True" ViewItem="FirstName" Index="1" CaptionLocation="Top" />
+                <LayoutItem Id="MiddleName" IsNewNode="True" ViewItem="MiddleName" Index="2" CaptionLocation="Top" />
+              </LayoutGroup>
+              <LayoutItem Id="NameFull" IsNewNode="True" ViewItem="NameFull" Index="4" />
+              <LayoutGroup Id="hrmStaff_col1" Removed="True">
+                <LayoutItem Id="FirstName" Removed="True" ViewItem="FirstName" />
+                <LayoutItem Id="LastName" Removed="True" ViewItem="LastName" />
+                <LayoutItem Id="Level" Removed="True" ViewItem="Level" />
+                <LayoutItem Id="PhysicalPerson.Address" Removed="True" ViewItem="PhysicalPerson.Address" />
+              </LayoutGroup>
+              <LayoutGroup Id="hrmStaff_col2" Removed="True">
+                <LayoutItem Id="Department" Removed="True" Index="0" ViewItem="Department" />
+                <LayoutItem Id="PhysicalPerson.Address" Index="2" Removed="True" ViewItem="PhysicalPerson.Address" />
+                <LayoutItem Id="PhysicalPerson.INN" Index="3" Removed="True" ViewItem="PhysicalPerson.INN" />
+                <LayoutItem Id="FullName" Removed="True" ViewItem="FullName" />
+                <LayoutItem Id="MiddleName" Removed="True" ViewItem="MiddleName" />
+                <LayoutItem Id="NameFull" Removed="True" ViewItem="NameFull" />
+                <LayoutItem Id="PhysicalPerson.FullName" Removed="True" ViewItem="PhysicalPerson.FullName" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="SubjectClass_ListView">
+      <Columns>
+        <ColumnInfo Id="Direction" Index="0" />
+        <ColumnInfo Id="Code" Index="1" />
+        <ColumnInfo Id="Name" Index="2" />
+        <ColumnInfo Id="DateBegin" Index="3" />
+        <ColumnInfo Id="DateEnd" Index="4" />
+        <ColumnInfo Id="IsClosed" Index="5" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

@@ -14,22 +14,13 @@
 #IncludeFile e010 - Партнёры - Справочник Физические лица.inc
 #IncludeFile e011 - Партнёры - Справочник Предприниматели.inc
 #IncludeFile e012 - Партнёры - Справочник Юридические лица.inc
-
-*ReopenApplication IntecoAG.ERM.Win
-*Action OK
-
 #IncludeFile e013 - Финансы - Справочник Тематика.inc
 #IncludeFile e014 - Кадры - Справочник Подразделение.inc
 #IncludeFile e015 - Кадры - Справочник Сотрудник.inc
 ;#IncludeFile e016 - Default - Справочник Role.ets
 #IncludeFile e017 - Системные - Справочник Организация пользователя.inc
 
-*ReopenApplication IntecoAG.ERM.Win
-*Action OK
 
 #IncludeFile e018 - Договоры - Справочник Новый договор (С ЭТАПАМИ).inc
 
-;*ReopenApplication IntecoAG.ERM.Win
-;*Action OK
-
-;#IncludeFile e020 - Договоры - Создание новой версии простого договора С ЭТАПАМИ (со сменой значений свойств) и утверждение.inc
+#IncludeFile e020 - Договоры - Создание новой версии простого договора С ЭТАПАМИ (со сменой значений свойств) и утверждение.inc

@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ Side, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ СЃС‚РѕСЂРѕРЅС‹ Р”РѕРіРѕРІРѕСЂР°
+    /// Класс Side, представляющий стороны Договора
     /// </summary>
     [Persistent("crmSide")]
     public partial class Side : XPObject
@@ -33,15 +33,15 @@ namespace IntecoAG.ERM.CRM
         }
 
 
-        #region РџРћР›РЇ РљР›РђРЎРЎРђ
+        #region ПОЛЯ КЛАССА
 
         #endregion
 
 
-        #region РЎР’РћР™РЎРўР’Рђ РљР›РђРЎРЎРђ
+        #region СВОЙСТВА КЛАССА
 
         /// <summary>
-        /// Party, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ СЃС‚РѕСЂРѕРЅСѓ
+        /// Party, представляющий сторону
         /// </summary>
         private Party _Party;
         public Party Party {

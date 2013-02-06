@@ -1,4 +1,4 @@
-п»ї#region Copyright (c) 2011 INTECOAG.
+#region Copyright (c) 2011 INTECOAG.
 /*
 {*******************************************************************}
 {                                                                   }
@@ -21,7 +21,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM
 {
     /// <summary>
-    /// РљР»Р°СЃСЃ Contract, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РѕР±СЉРµРєС‚ Р”РѕРіРѕРІРѕСЂР°
+    /// Класс Contract, представляющий объект Договора
     /// </summary>
     [Persistent("crmContract")]
     public partial class Contract : XPObject

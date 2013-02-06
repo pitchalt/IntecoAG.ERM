@@ -1,4 +1,4 @@
-﻿namespace IntecoAG.ERM.GFM
+namespace IntecoAG.ERM.GFM
 {
     partial class GFMModule
     {

@@ -1,4 +1,4 @@
-﻿namespace IntecoAG.ERM.CS
+namespace IntecoAG.ERM.CS
 {
     partial class CSModule
     {

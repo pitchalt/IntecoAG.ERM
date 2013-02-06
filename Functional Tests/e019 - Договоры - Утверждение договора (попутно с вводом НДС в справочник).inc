@@ -1,27 +1,32 @@
+*Action Navigation(Contract.crm Contract Deal)
+
 *ProcessRecord 
- Категория = ConCat 1
-*FillForm
- Advance Percentage = 1110
- Advance Summ = 2220
+ Док.Наим. = Тип дог 1 № 1/******-2011 от 19.10.2011
 
-*Action Delivery Items
-*Action Delivery Items.New(crm Delivery Material)
-*FillForm
- Nomenclature Name = Железо
- Summ Full = 3330
- Price = 10
- Summ Cost = 3300
- Cost Item = Cost It 1
- Count Unit = Money
+;*Sleep 10000
 
-*ExecuteEditorAction Cost Model
+;*Action Mini Navigation Action(Действующая редакция)
+*Action Common
+*FillForm
+ Deal Code = Сделка 1
+ Cost Item = Ст ДДС 1
+ Description Long = Опытный договор без этапов
+*Action Validate
+*Action Close
+*Action Obligations
+*ExecuteEditorAction NDSRate
 *Action New
 *FillForm
- Code = CM1
- Name = CM1
+ Numerator = 18
+ Denominator = 118
+ Code = 18/118
+ Name = 18/118
 *Action Save and Close
+*FillForm
+ Cost Model = Мод цены 1
 
-*Action Save and Close
+;*Sleep 10000
+
 
 *Action Approve
 *HandleDialog

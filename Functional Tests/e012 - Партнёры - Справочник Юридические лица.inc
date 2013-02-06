@@ -1,67 +1,32 @@
-*Action Navigation(Partners.crm CLegal Person)
-*Action New
+*Action Navigation(Partners.Юридическое лицо)
+*Action New(Юридическое лицо)
 *FillForm
  Name = Асфальто-бетонный завод
-*Action CommonGroup
+*ExecuteEditorAction Address
 *FillForm
- INN = 1111111111
- KPP = аааааааааа
- Reg Code = РК 1а
- Description = Асфальто-бетонный завод по производству асфальта и бетона, отгрохотки и прочего*ExecuteEditorAction Person Type
-*ExecuteEditorAction Person Type
-*Action New
-*FillForm
- Code = ООО
- Name = Открытое Общество
-*Action Save and Close
-*ExecuteEditorAction Address Legal
-*FillForm
- Region = Московский
- City = Москва
- Zip Postal = 101000
- State Province = ЮВАО
- Street = Мусорная, 100
+ Zip Postal = 234000
+ State Province = Северо-западный
+ City = Чехов
+ Street = Белые столбы
+ Region = Чеховский
 *Action OK
-;*Action Close
-*ExecuteEditorAction Address Fact
 *FillForm
- Region = Московский
- City = Москва
- Zip Postal = 101111
- State Province = ЗАО
- Street = Грязевая, 100
-*Action OK
-*Action Save and New
-
-
+ INN = 333444555
+ Reg Number = а234
+ Name Full = Асфальто-бетонный завод по производству асфальта и бетона, отгрохотки и прочего
+*Action Save and New(Юридическое лицо)
 *FillForm
- Name = Завод по выделке кирпичей
-*Action CommonGroup
-*FillForm
- INN = 2222222222
- KPP = бббббббббб
- Reg Code = 2б
- Description = ИнтекоАГ
-*ExecuteEditorAction Person Type
-*Action New
-*FillForm
- Code = ЗАО
  Name = ИнтекоАГ
-*Action Save and Close
-*ExecuteEditorAction Address Legal
+*ExecuteEditorAction Address
 *FillForm
- Region = Москва
- City = Москва
  Zip Postal = 333000
  State Province = Москва
- Street = Портовая, 1
-*Action OK
-*ExecuteEditorAction Address Fact
-*FillForm
- Region = Дальний восток
- City = Владивосток
- Zip Postal = 676767
- State Province = Савёла
+ City = Москва
  Street = Бумажный проезд, 4
 *Action OK
+*FillForm
+ INN = 1212312
+ Reg Number = 3434
+ Name Full = ИнтекоАГ
+*Action Save
 *Action Save and Close
