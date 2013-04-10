@@ -561,6 +561,9 @@
     <None Include="ReportLayouts\fmCRHUnpayedRequestLine.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ReportLayouts\fmIDocCacheIn01.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ReportLayouts\fmPaymentRequestContractReport01.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
