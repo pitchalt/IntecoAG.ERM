@@ -207,9 +207,54 @@ namespace IntecoAG.ERM.FM.Subject
             get { return _AnalitycFinanceSource; }
             set { SetPropertyValue<fmСOrderAnalitycFinanceSource>("AnalitycFinanceSource", ref _AnalitycFinanceSource, value); }
         }
+        private fmСOrderAnalitycAccouterType _AnalitycAccouterType;
+        public fmСOrderAnalitycAccouterType AnalitycAccouterType {
+            get { return _AnalitycAccouterType; }
+            set { SetPropertyValue<fmСOrderAnalitycAccouterType>("AnalitycAccouterType", ref _AnalitycAccouterType, value); }
+        }
+
+        private fmСOrderAnalitycAVT _AnalitycAVT;
+        public fmСOrderAnalitycAVT AnalitycAVT {
+            get { return _AnalitycAVT; }
+            set { SetPropertyValue<fmСOrderAnalitycAVT>("AnalitycAccouterType", ref _AnalitycAVT, value); }
+        }
+
+        private fmСOrderAnalitycOrderSource _AnalitycOrderSource;
+        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        public fmСOrderAnalitycOrderSource AnalitycOrderSource {
+            get { return _AnalitycOrderSource; }
+            set { SetPropertyValue<fmСOrderAnalitycOrderSource>("AnalitycOrderSource", ref _AnalitycOrderSource, value); }
+        }
+
+        private fmСOrderAnalitycMilitary _AnalitycMilitary;
+        //        [RuleRequiredField]
+        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        public fmСOrderAnalitycMilitary AnalitycMilitary {
+            get { return _AnalitycMilitary; }
+            set { SetPropertyValue<fmСOrderAnalitycMilitary>("AnalitycMilitary", ref _AnalitycMilitary, value); }
+        }
+        private fmСOrderAnalitycFedProg _AnalitycFedProg;
+        public fmСOrderAnalitycFedProg AnalitycFedProg {
+            get { return _AnalitycFedProg; }
+            set { SetPropertyValue<fmСOrderAnalitycFedProg>("AnalitycFedProg", ref _AnalitycFedProg, value); }
+        }
+        private fmСOrderAnalitycOKVED _AnalitycOKVED;
+        public fmСOrderAnalitycOKVED AnalitycOKVED {
+            get { return _AnalitycOKVED; }
+            set { SetPropertyValue<fmСOrderAnalitycOKVED>("AnalitycOKVED", ref _AnalitycOKVED, value); }
+        }
+        private fmСOrderAnalitycRegion _AnalitycRegion;
+        public fmСOrderAnalitycRegion AnalitycRegion {
+            get { return _AnalitycRegion; }
+            set { SetPropertyValue<fmСOrderAnalitycRegion>("AnalitycRegion", ref _AnalitycRegion, value); }
+        }
+        private fmСOrderAnalitycBigCustomer _AnalitycBigCustomer;
+        public fmСOrderAnalitycBigCustomer AnalitycBigCustomer {
+            get { return _AnalitycBigCustomer; }
+            set { SetPropertyValue<fmСOrderAnalitycBigCustomer>("AnalitycBigCustomer", ref _AnalitycBigCustomer, value); }
+        }
 
         #endregion
-
     }
 
 }

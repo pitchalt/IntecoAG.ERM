@@ -698,11 +698,29 @@
     <Class Name="IntecoAG.ERM.FM.Order.fmIOrder" Caption="Заказ" />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycAccouterType" Caption="Тип Бухгалтерский " />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycAVT" Caption="Режим НДС" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycBigCustomer" Caption="Крупные заказчики">
+      <OwnMembers>
+        <Member Name="Group" Caption="Группа" />
+        <Member Name="Region" Caption="Регион" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycFedProg" Caption="Фед.Программы" />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycFinanceSource" Caption="Источник финансирования" />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycMilitary" Caption="Военный" />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycOKVED" Caption="ОКВЭД" />
-    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycOrderSource" Caption="Источник заказа" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycOrderSource" Caption="Источник заказа">
+      <OwnMembers>
+        <Member Name="IsGOZ" Caption="ГОЗ" />
+        <Member Name="IsGZ" Caption="ГЗ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycRegion" Caption="Регион">
+      <OwnMembers>
+        <Member Name="BigCustomers" Caption="Большие заказчики" />
+        <Member Name="IsSNG" Caption="СНГ" />
+        <Member Name="IsVED" Caption="ВЭД" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycWorkType" Caption="Тип работы" />
     <Class Name="IntecoAG.ERM.FM.Subject.fmCDirection" Caption="Направление">
       <OwnMembers>

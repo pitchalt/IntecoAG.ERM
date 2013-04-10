@@ -201,6 +201,7 @@
         <Member Name="ManagerGroupOfSignPlanDepartment" DataSourcePropertyIsNullCriteria="" DataSourceCriteria="" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycBigCustomer" Caption="fmСOrderAnalitycBigCustomer" />
     <Class Name="IntecoAG.ERM.FM.Subject.fmCSubject">
       <OwnMembers>
         <Member Name="Direction" AllowEdit="False" />

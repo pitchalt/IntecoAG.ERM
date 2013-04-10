@@ -15,6 +15,11 @@ using IntecoAG.ERM.HRM.Organization;
 //
 namespace IntecoAG.ERM.FM.Subject {
 //
+    public enum fmSubjectSourceType { 
+        SOURCE_TYPE_CONTRACT = 1,
+        SOURCE_TYPE_OTHER = 2
+    }
+
     [DC.DomainComponent]
     public interface fmISubject: gfmIAnalytic {
         hrmIStaff Manager { get; set; }
@@ -32,5 +37,11 @@ namespace IntecoAG.ERM.FM.Subject {
         
         fmСOrderAnalitycWorkType AnalitycWorkType { get; set; }
         fmСOrderAnalitycFinanceSource AnalitycFinanceSource { get; set; }
+        fmСOrderAnalitycOrderSource AnalitycOrderSource { get; set; }
+        fmСOrderAnalitycMilitary AnalitycMilitary { get; set; }
+        fmСOrderAnalitycOKVED AnalitycOKVED { get; set; }
+        fmСOrderAnalitycFedProg AnalitycFedProg { get; set; }
+        fmСOrderAnalitycRegion AnalitycRegion { get; set; }
+        fmСOrderAnalitycBigCustomer AnalitycBigCustomer { get; set; }
     }
 }

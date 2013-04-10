@@ -41,6 +41,8 @@ namespace IntecoAG.ERM.FM.Order {
         fmСOrderAnalitycMilitary AnalitycMilitary { get; set;}
         fmСOrderAnalitycOKVED AnalitycOKVED { get; set; }
         fmСOrderAnalitycFedProg AnalitycFedProg { get; set; }
+        fmСOrderAnalitycRegion AnalitycRegion { get; set; }
+        fmСOrderAnalitycBigCustomer AnalitycBigCustomer { get; set; }
 
         void CopyTo(fmIOrder to);
     }
@@ -71,6 +73,8 @@ namespace IntecoAG.ERM.FM.Order {
             to.AnalitycWorkType = from.AnalitycWorkType;
             to.AnalitycOKVED = from.AnalitycOKVED;
             to.AnalitycFedProg = from.AnalitycFedProg;
+            to.AnalitycRegion = from.AnalitycRegion;
+            to.AnalitycBigCustomer = from.AnalitycBigCustomer;
         }
     }
 }

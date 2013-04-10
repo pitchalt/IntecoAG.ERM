@@ -62,6 +62,8 @@
                   <Item Id="@49b449aa-5659-4502-a3f2-0ca3972733b3" ViewId="fmСOrderAnalitycAccouterType_ListView" Index="4" IsNewNode="True" />
                   <Item Id="@151cb20e-28be-43e8-9ee6-0b95ca0f3b1e" ViewId="fmСOrderAnalitycAVT_ListView" IsNewNode="True" />
                   <Item Id="@176eaa21-54ee-4a0f-b755-1b075ee64994" ViewId="fmСOrderAnalitycOKVED_ListView" IsNewNode="True" />
+                  <Item Id="@2dbbc2c3-7d2b-4197-9d8e-2d25b0538dff" ViewId="fmСOrderAnalitycRegion_ListView" IsNewNode="True" />
+                  <Item Id="@78056f42-59be-451d-bec7-465dab6d6752" ViewId="fmСOrderAnalitycBigCustomer_ListView" IsNewNode="True" />
                   <Item Id="@a740df57-69ca-49c4-887b-d0804d14cd88" ViewId="fmСOrderAnalitycFedProg_ListView" IsNewNode="True" />
                 </Items>
               </Item>

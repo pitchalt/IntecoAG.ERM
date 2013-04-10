@@ -287,6 +287,16 @@ namespace IntecoAG.ERM.FM.Order
             get { return _AnalitycOKVED; }
             set { SetPropertyValue<fmСOrderAnalitycOKVED>("AnalitycOKVED", ref _AnalitycOKVED, value); }
         }
+        private fmСOrderAnalitycRegion _AnalitycRegion;
+        public fmСOrderAnalitycRegion AnalitycRegion {
+            get { return _AnalitycRegion; }
+            set { SetPropertyValue<fmСOrderAnalitycRegion>("AnalitycRegion", ref _AnalitycRegion, value); }
+        }
+        private fmСOrderAnalitycBigCustomer _AnalitycBigCustomer;
+        public fmСOrderAnalitycBigCustomer AnalitycBigCustomer {
+            get { return _AnalitycBigCustomer; }
+            set { SetPropertyValue<fmСOrderAnalitycBigCustomer>("AnalitycBigCustomer", ref _AnalitycBigCustomer, value); }
+        }
 
         #endregion
 
