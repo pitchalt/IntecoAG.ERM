@@ -724,7 +724,8 @@
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycWorkType" Caption="Тип работы" />
     <Class Name="IntecoAG.ERM.FM.Subject.fmCDirection" Caption="Направление">
       <OwnMembers>
-        <Member Name="Manager" Caption="Директор" />
+        <Member Name="Manager" Caption="Руководитель" />
+        <Member Name="Status" Caption="Статус" />
         <Member Name="Subjects" Caption="Темы" />
       </OwnMembers>
     </Class>
@@ -744,16 +745,25 @@
     </Class>
     <Class Name="IntecoAG.ERM.FM.Subject.fmIDirection" Caption="Направление" />
     <Class Name="IntecoAG.ERM.FM.Subject.fmISubject" Caption="Тема" />
-    <Class Name="IntecoAG.ERM.GFM.gfmCAnalytic" Caption="Фин.Аналитика" />
+    <Class Name="IntecoAG.ERM.GFM.gfmCAnalytic" Caption="Фин.Аналитика">
+      <OwnMembers>
+        <Member Name="DateBegin" Caption="ДатаС" />
+        <Member Name="DateEnd" Caption="ДатаПо" />
+        <Member Name="IsClosed" Caption="Закрыта" />
+        <Member Name="IsPeriodUnlimited" Caption="БесСрочная" />
+        <Member Name="NameFull" Caption="Наимен.Полное" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.GFM.gfmCAnalyticBase" Caption="Базовая Фин.Аналитика">
       <OwnMembers>
         <Member Name="Code" Caption="Код" />
-        <Member Name="DateBegin" Caption="Дата С" />
-        <Member Name="DateEnd" Caption="Дата По" />
+        <Member Name="DateBegin" Caption="ДатаС" />
+        <Member Name="DateEnd" Caption="ДатаПо" />
         <Member Name="Description" Caption="Описание" />
-        <Member Name="IsClosed" Caption="Закрыт" />
+        <Member Name="IsClosed" Caption="Закрыта" />
+        <Member Name="IsPeriodUnlimited" Caption="Бессрочная" />
         <Member Name="Name" Caption="Наименование" />
-        <Member Name="NameFull" Caption="Наименование полное" />
+        <Member Name="NameFull" Caption="Наимен.Полное" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.GFM.gfmIAnalytic" Caption="Фин. Аналитика" />

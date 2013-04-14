@@ -1951,15 +1951,19 @@
     <ListView Id="fmCDirection_ListView">
       <Columns>
         <ColumnInfo Id="Code" Index="0" />
-        <ColumnInfo Id="Name" Index="1" />
-        <ColumnInfo Id="Manager" Index="2" />
+        <ColumnInfo Id="IsClosed" Index="1" />
+        <ColumnInfo Id="Name" Index="2" />
         <ColumnInfo Id="DateBegin" Index="3" />
         <ColumnInfo Id="DateEnd" Index="4" />
-        <ColumnInfo Id="IsClosed" Index="5" />
+        <ColumnInfo Id="IsPeriodUnlimited" Index="5" />
+        <ColumnInfo Id="Manager" Index="6" />
       </Columns>
-      <Filters>
-        <Filter Id="ByManagerNameBunak" Criteria="StartsWith([Manager.LastName], 'Бунак')" IsNewNode="True" />
-      </Filters>
+    </ListView>
+    <ListView Id="fmCDirection_LookupListView">
+      <Columns>
+        <ColumnInfo Id="IsClosed" PropertyName="IsClosed" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Name" Index="2" />
+      </Columns>
     </ListView>
     <ListView Id="fmCOrder_LookupListView">
       <Columns>

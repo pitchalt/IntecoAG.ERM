@@ -31,7 +31,7 @@ namespace IntecoAG.ERM.HRM.Organization
     /// <summary>
     /// Класс Department, представляющий подразделение
     /// </summary>
-    [DefaultProperty("NameFull")]
+    [DefaultProperty("FamalyIO")]
     //[DefaultClassOptions]
     [Persistent("hrmStaff")]
     //[MiniNavigation("PhysicalPerson", "Физическое лицо", TargetWindow.NewModalWindow, 1)]

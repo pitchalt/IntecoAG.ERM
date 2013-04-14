@@ -44,9 +44,11 @@ namespace IntecoAG.ERM.FM.Subject
 
         public override void AfterConstruction() {
             base.AfterConstruction();
+            Status = fmISubjectStatus.PROJECT;
         }
 
         #region ПОЛЯ КЛАССА
+        private fmISubjectStatus _Status;
         private fmCDirection _Direction;
         private fmСOrderAnalitycWorkType _AnalitycWorkType;
         private fmСOrderAnalitycFinanceSource _AnalitycFinanceSource;
@@ -57,6 +59,7 @@ namespace IntecoAG.ERM.FM.Subject
         private String _SourceName;
         private hrmStaff _Manager;
         private hrmStaff _ManagerPlanDepartment;
+        private fmSubjectSourceType _SourceType;
         #endregion
 
         #region Associations
@@ -69,6 +72,9 @@ namespace IntecoAG.ERM.FM.Subject
         fmIDirection fmISubject.Direction {
             get {
                 return this.Direction;
+            }
+            set {
+                this.Direction = (fmCDirection) value;
             }
         }
         //
@@ -158,6 +164,22 @@ namespace IntecoAG.ERM.FM.Subject
         #endregion
 
         #region СВОЙСТВА КЛАССА
+
+        public fmISubjectStatus Status {
+            get { return _Status; }
+            set {
+                SetPropertyValue<fmISubjectStatus>("Status", ref _Status, value);
+            }
+        }
+
+        public fmSubjectSourceType SourceType {
+            get {
+                return _SourceType;
+            }
+            set {
+                SetPropertyValue<fmSubjectSourceType>("SourceType", ref _SourceType, value);
+            }
+        }
 
         public crmContractDeal SourceDeal {
             get { return _SourceDeal; }
@@ -255,6 +277,7 @@ namespace IntecoAG.ERM.FM.Subject
         }
 
         #endregion
+
     }
 
 }

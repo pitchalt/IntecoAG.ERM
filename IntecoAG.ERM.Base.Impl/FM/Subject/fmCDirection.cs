@@ -12,8 +12,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 //
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.StateMachine;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Base.General;
@@ -34,7 +38,8 @@ namespace IntecoAG.ERM.FM.Subject
     [Persistent("fmDirection")]
     [FriendlyKeyProperty("Code")]
     [DefaultProperty("Name")]
-    public partial class fmCDirection : gfmCAnalyticBase, fmIDirection
+    [Appearance("", AppearanceItemType.ViewItem, "", Enabled=false, TargetItems="IsClosed")]
+    public partial class fmCDirection : gfmCAnalyticBase, fmIDirection, IStateMachineProvider
     {
         public fmCDirection(Session ses) : base(ses) { }
 
@@ -42,12 +47,13 @@ namespace IntecoAG.ERM.FM.Subject
             this.ComponentType = typeof(fmCDirection);
             this.CID = Guid.NewGuid();
             base.AfterConstruction();
+            Status = fmIDirectionStatus.PROJECT;
         }
 
         #region ПОЛЯ КЛАССА
         private hrmStaff _Manager;
+        private fmIDirectionStatus _Status; 
         #endregion
-
 
         [Aggregated]
         [Association("fmDirection-Subjects", typeof(fmCSubject))]
@@ -62,6 +68,33 @@ namespace IntecoAG.ERM.FM.Subject
             get {
                 //                return new ListConverter<fmISubject, fmCSubject>(this.Subjects);
                 return new ListConverter<fmISubject, fmCSubject>(this.Subjects);
+            }
+        }
+        //
+        public fmIDirectionStatus Status {
+            get { return _Status; }
+            set {
+                fmIDirectionStatus old = _Status;
+                if (old != value) {
+                    _Status = value;
+                    if (!IsLoading) {
+                        OnChanged("Status", old, value);
+                        if (value == fmIDirectionStatus.CLOSED)
+                            IsClosed = true;
+                    }
+                }
+            }
+        }
+        [Browsable(false)]
+        public Boolean IsStatusOpenedAllow {
+            get {
+                return true;
+            }
+        }
+        [Browsable(false)]
+        public Boolean IsStatusClosedAllow {
+            get {
+                return this.Subjects.Aggregate(true, (x, subj) => x && subj.IsClosed);
             }
         }
         //
@@ -87,6 +120,11 @@ namespace IntecoAG.ERM.FM.Subject
             }
         }
 
+        public IList<IStateMachine> GetStateMachines() {
+            List<IStateMachine> result = new List<IStateMachine>();
+            result.Add(new fmCDirectionSM());
+            return result;
+        }
     }
 
 }

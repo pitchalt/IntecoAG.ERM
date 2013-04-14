@@ -25,9 +25,6 @@ namespace IntecoAG.ERM.HRM.Organization {
 
         [RuleUniqueValue("", DefaultContexts.Save)]
         public override string Code {
-            get {
-                return base.Code;
-            }
             set {
                 base.Code = value;
             }

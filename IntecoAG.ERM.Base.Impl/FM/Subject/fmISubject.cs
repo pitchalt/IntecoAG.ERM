@@ -15,6 +15,14 @@ using IntecoAG.ERM.HRM.Organization;
 //
 namespace IntecoAG.ERM.FM.Subject {
 //
+    public enum fmISubjectStatus {
+        LOADED = 0,
+        PROJECT = 1,
+        OPENED = 2,
+        CLOSED = 3,
+        DELETE = 9
+    }
+
     public enum fmSubjectSourceType { 
         SOURCE_TYPE_CONTRACT = 1,
         SOURCE_TYPE_OTHER = 2
@@ -22,13 +30,17 @@ namespace IntecoAG.ERM.FM.Subject {
 
     [DC.DomainComponent]
     public interface fmISubject: gfmIAnalytic {
+
+        fmISubjectStatus Status { get; set; } 
+
         hrmIStaff Manager { get; set; }
         hrmIStaff ManagerPlanDepartment { get; set; }
 
 
         IList<fmIOrder> Orders { get; }
-        fmIDirection Direction { get; }
+        fmIDirection Direction { get; set; }
 
+        fmSubjectSourceType SourceType { get; set; }
         crmContractDeal SourceDeal { get; set; }
         String SourceOther { get; set; }
         String SourceName { get; }

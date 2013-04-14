@@ -61,7 +61,7 @@ namespace IntecoAG.ERM.GFM
 
         #region СВОЙСТВА КЛАССА
         [PersistentAlias("Analytic.Code")]
-        [Size(15)]
+        [Size(14)]
         [RuleRequiredField]
         public String Code {
             get { return Analytic.Code; }
@@ -75,9 +75,9 @@ namespace IntecoAG.ERM.GFM
         //
         //[VisibleInLookupListView(true)]
         [PersistentAlias("Analytic.Name")]
-        [Size(80)]
+        [Size(60)]
         [RuleRequiredField]
-        public string Name {
+        public virtual String Name {
             get { return Analytic.Name; }
             set {
                 String old = Analytic.Name;
@@ -89,7 +89,7 @@ namespace IntecoAG.ERM.GFM
         //[VisibleInLookupListView(true)]
         [PersistentAlias("Analytic.NameFull")]
         [VisibleInListView(false)]
-        [Size(250)]
+        [Size(240)]
         public String NameFull {
             get { return Analytic.NameFull; }
             set {
@@ -124,7 +124,20 @@ namespace IntecoAG.ERM.GFM
             }
         }
         //
+        [ImmediatePostData]
+        [PersistentAlias("Analytic.IsPeriodUnlimited")]
+        public Boolean IsPeriodUnlimited {
+            get { return Analytic.IsPeriodUnlimited; }
+            set {
+                Boolean old = Analytic.IsPeriodUnlimited;
+                if (old == value) return;
+                Analytic.IsPeriodUnlimited = value;
+                OnChanged("IsPeriodUnlimited", old, value);
+            }
+        }
+        //
         [PersistentAlias("Analytic.DateBegin")]
+        [RuleRequiredField]
         public DateTime DateBegin {
             get { return Analytic.DateBegin; }
             set {
@@ -136,6 +149,8 @@ namespace IntecoAG.ERM.GFM
         }
         //
         [PersistentAlias("Analytic.DateEnd")]
+        [RuleRequiredField]
+        [Appearance("", AppearanceItemType.ViewItem, "IsPeriodUnlimited", Enabled = false)]
         public DateTime DateEnd {
             get { return Analytic.DateEnd; }
             set {

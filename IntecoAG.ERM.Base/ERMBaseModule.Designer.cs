@@ -131,8 +131,6 @@
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Security.csCSecurityUser));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Nomenclature.csCNMCourseEditor));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Security.csCSecurityRole));
-            //this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Security.ActionExecutePermissionDescriptor));
-            //this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Security.ActionOperationPermissionData));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase));
@@ -145,6 +143,7 @@
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Security.SecurityModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Kpi.KpiModule));
             this.RequiredModuleTypes.Add(typeof(IntecoAG.XAFExt.CDS.XAFExtCDSModule));
+            this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.StateMachine.StateMachineModule));
 
         }
 

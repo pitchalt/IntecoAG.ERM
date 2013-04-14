@@ -421,6 +421,7 @@
     <Compile Include="DatabaseUpdate\AVTInvoiceUpdaterFix01.cs" />
     <Compile Include="DatabaseUpdate\CashFlowRegisterUpdater.cs" />
     <Compile Include="DatabaseUpdate\fmSaleDocUpdater01.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterFmAnalitic01.cs" />
     <Compile Include="DatabaseUpdate\UpdaterTaxReference.cs" />
     <Compile Include="DatabaseUpdate\fmAutoBindingUpdater.cs" />
     <Compile Include="DatabaseUpdate\RequestAutoBindingUpdater.cs" />

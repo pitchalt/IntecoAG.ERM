@@ -12,8 +12,16 @@ using IntecoAG.ERM.HRM.Organization;
 //
 namespace IntecoAG.ERM.FM.Subject {
 
+    public enum fmIDirectionStatus {
+        LOADED = 0,
+        PROJECT = 1,
+        OPENED = 2,
+        CLOSED = 3
+    }
+
     [DC.DomainComponent]
     public interface fmIDirection: gfmIAnalytic {
+        fmIDirectionStatus Status { get; }
         hrmIStaff Manager { get; set;  }
         IList<fmISubject> Subjects { get; }
     }

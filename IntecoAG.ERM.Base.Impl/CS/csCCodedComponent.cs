@@ -27,14 +27,14 @@ namespace IntecoAG.ERM.CS {
         private String _Name;
         private String _Description;
 
-        [Size(15)]
+        [Size(14)]
         [RuleRequiredField]
         public virtual String Code {
             get { return _Code; }
             set { SetPropertyValue<String>("Code", ref _Code, value); }
         }
 
-        [Size(80)]
+        [Size(60)]
         [RuleRequiredField]
         public virtual String Name {
             get { return _Name; }
