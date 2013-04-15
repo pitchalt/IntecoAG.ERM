@@ -204,7 +204,7 @@
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycBigCustomer" Caption="fmСOrderAnalitycBigCustomer" />
     <Class Name="IntecoAG.ERM.FM.Subject.fmCSubject">
       <OwnMembers>
-        <Member Name="Direction" AllowEdit="False" />
+        <Member Name="Direction" AllowEdit="True" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.HRM.Organization.hrmDepartment" Caption="hrm Department" DefaultLookupEditorMode="Search" />
@@ -2070,12 +2070,340 @@
         <Filter Id="ByManagerNameBunak" Criteria="StartsWith([Manager.LastName], 'Бунак')" IsNewNode="True" />
       </Filters>
     </ListView>
-    <ListView Id="fmСOrderAnalitycAccouterType_ListView" AllowEdit="True" AllowDelete="False" NewItemRowPosition="Top" />
-    <ListView Id="fmСOrderAnalitycAVT_ListView" AllowDelete="False" AllowEdit="True" NewItemRowPosition="Top" />
-    <ListView Id="fmСOrderAnalitycFinanceSource_ListView" AllowDelete="False" AllowEdit="True" NewItemRowPosition="Top" />
-    <ListView Id="fmСOrderAnalitycMilitary_ListView" AllowDelete="False" AllowEdit="True" NewItemRowPosition="Top" />
-    <ListView Id="fmСOrderAnalitycOrderSource_ListView" AllowDelete="False" AllowEdit="True" NewItemRowPosition="Top" />
-    <ListView Id="fmСOrderAnalitycWorkType_ListView" AllowDelete="False" AllowEdit="True" NewItemRowPosition="Top" />
+    <DetailView Id="fmСOrderAnalitycAccouterType_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="fmCOrderAnalityc">
+              <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
+              <LayoutItem Id="Name" ViewItem="Name" Removed="True" />
+              <LayoutItem Id="SortOrder" ViewItem="SortOrder" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2">
+            <LayoutItem Id="Description" CaptionLocation="Top" ViewItem="Description" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" CaptionLocation="Top">
+            <LayoutItem Id="AuditTrail" ShowCaption="False" ViewItem="AuditTrail" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycAccouterType_ListView" AllowEdit="False" AllowDelete="False" NewItemRowPosition="None">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycAccouterType_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycAVT_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycAVT_ListView" AllowDelete="False" AllowEdit="True" NewItemRowPosition="None">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycAVT_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycBigCustomer_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="BigCustAttributes" Index="1" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Group" ViewItem="Group" Index="0" RelativeSize="40" IsNewNode="True" />
+            <LayoutItem Id="Region" ViewItem="Region" RelativeSize="60" Index="1" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycBigCustomer_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Group" Width="30" />
+        <ColumnInfo Id="Region" Width="100" />
+        <ColumnInfo Id="Name" Width="200" />
+        <ColumnInfo Id="SortOrder" Index="5" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycBigCustomer_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycFedProg_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycFedProg_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycFedProg_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycFinanceSource_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycFinanceSource_ListView" AllowDelete="False" AllowEdit="False" NewItemRowPosition="None">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycFinanceSource_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycMilitary_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="MilitaryAttributes" Index="1" IsNewNode="True">
+            <LayoutItem Id="ProductType" ViewItem="ProductType" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycMilitary_ListView" AllowDelete="False" AllowEdit="False" NewItemRowPosition="None">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="ProductType" Width="100" />
+        <ColumnInfo Id="Name" Width="200" />
+        <ColumnInfo Id="SortOrder" Index="4" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycMilitary_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycOKVED_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycOKVED_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycOKVED_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycOrderSource_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="OrderSourceAttributes" Direction="Horizontal" Index="1" IsNewNode="True">
+            <LayoutItem Id="IsGOZ" ViewItem="IsGOZ" IsNewNode="True" />
+            <LayoutItem Id="IsGZ" ViewItem="IsGZ" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycOrderSource_ListView" AllowDelete="False" AllowEdit="False" NewItemRowPosition="None">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="IsGOZ" Width="20" />
+        <ColumnInfo Id="IsGZ" Width="20" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycOrderSource_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycRegion_BigCustomers_ListView" AllowDelete="True" AllowNew="False" />
+    <DetailView Id="fmСOrderAnalitycRegion_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main_Copy" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="RegionAttributes" Index="1" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="IsVED" ViewItem="IsVED" Index="1" IsNewNode="True" />
+            <LayoutItem Id="IsSNG" ViewItem="IsSNG" Index="2" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="BigCustList" Index="2" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="BigCustomers" ViewItem="BigCustomers" ShowCaption="False" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="3" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="4" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+        <LayoutGroup Id="Main" Removed="True" />
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycRegion_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="IsVED" Width="20" />
+        <ColumnInfo Id="IsSNG" Width="20" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycRegion_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmСOrderAnalitycWorkType_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmСOrderAnalitycWorkType_ListView" AllowDelete="False" AllowEdit="False" NewItemRowPosition="None">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+        <ColumnInfo Id="SortOrder" Width="20" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmСOrderAnalitycWorkType_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Code" Width="100" />
+        <ColumnInfo Id="Name" Width="300" />
+      </Columns>
+    </ListView>
     <DetailView Id="hrmCStaffGroup_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

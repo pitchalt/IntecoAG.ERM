@@ -53,7 +53,8 @@
               <Item Id="csValuta" ViewId="csValuta_ListView" ObjectKey="" Index="0" IsNewNode="True" />
               <Item Id="csNDSRate" ViewId="csNDSRate_ListView" Index="1" IsNewNode="True" />
               <Item Id="@a4916bb2-719d-4b3f-ade2-15c6a52be58b" ViewId="fmCFinIndexStructure_ListView" Index="2" IsNewNode="True" />
-              <Item Id="FinanceOrderAnalitycs" Index="3" IsNewNode="True">
+              <Item Id="@2cb4cf35-a232-4f3e-8ca5-301e76e1acb2" ViewId="fmCSubjectGroup_ListView" Index="3" IsNewNode="True" />
+              <Item Id="FinanceOrderAnalitycs" Index="4" IsNewNode="True">
                 <Items IsNewNode="True">
                   <Item Id="@38c47a8b-46d0-4693-9843-6f60595741f3" ViewId="fmСOrderAnalitycWorkType_ListView" Index="0" IsNewNode="True" />
                   <Item Id="@13b62973-46d3-458a-8a18-ba1c9712d00a" ViewId="fmСOrderAnalitycFinanceSource_ListView" Index="1" IsNewNode="True" />
@@ -67,12 +68,12 @@
                   <Item Id="@a740df57-69ca-49c4-887b-d0804d14cd88" ViewId="fmСOrderAnalitycFedProg_ListView" IsNewNode="True" />
                 </Items>
               </Item>
-              <Item Id="@70817e2f-c52a-4a2b-9873-1fcc15810bf5" ViewId="fmCFinIndex_ListView" Index="4" IsNewNode="True" />
-              <Item Id="fmCostItem_Copy" ViewId="fmCostItem_ListView" Index="5" IsNewNode="True" />
-              <Item Id="fmCPaymentBase_ListView_Copy" Caption="fm CPayment Base" ViewId="fmCPaymentBase_ListView" Index="6" IsNewNode="True" />
-              <Item Id="fmCPaymentKBK_ListView" ViewId="fmCPaymentKBK_ListView" ObjectKey="" Index="7" IsNewNode="True" />
-              <Item Id="fmCPaymentKind_ListView" ViewId="fmCPaymentKind_ListView" ObjectKey="" Index="8" IsNewNode="True" />
-              <Item Id="fmCPaymentTaxPeriod_ListView" ViewId="fmCPaymentTaxPeriod_ListView" ObjectKey="" Index="9" IsNewNode="True" />
+              <Item Id="@70817e2f-c52a-4a2b-9873-1fcc15810bf5" ViewId="fmCFinIndex_ListView" Index="5" IsNewNode="True" />
+              <Item Id="fmCostItem_Copy" ViewId="fmCostItem_ListView" Index="6" IsNewNode="True" />
+              <Item Id="fmCPaymentBase_ListView_Copy" Caption="fm CPayment Base" ViewId="fmCPaymentBase_ListView" Index="7" IsNewNode="True" />
+              <Item Id="fmCPaymentKBK_ListView" ViewId="fmCPaymentKBK_ListView" ObjectKey="" Index="8" IsNewNode="True" />
+              <Item Id="fmCPaymentKind_ListView" ViewId="fmCPaymentKind_ListView" ObjectKey="" Index="9" IsNewNode="True" />
+              <Item Id="fmCPaymentTaxPeriod_ListView" ViewId="fmCPaymentTaxPeriod_ListView" ObjectKey="" Index="10" IsNewNode="True" />
             </Items>
           </Item>
           <Item Id="SettingsMaterial" Index="4" IsNewNode="True">
@@ -121,6 +122,7 @@
       <Item Id="State Machine" Removed="True" />
     </Items>
   </NavigationItems>
+  <Options UIType="TabbedMDI" UseServerMode="True" LookupSmallCollectionItemCount="100" GroupShortcut="Control+Alt+T" />
   <SchemaModules>
     <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
     <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />

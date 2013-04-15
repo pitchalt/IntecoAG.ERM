@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 //
@@ -13,6 +14,7 @@ using IntecoAG.ERM.CS;
 namespace IntecoAG.ERM.FM.Order {
 
     [Persistent("fmOrderAnalityc")]
+    [DefaultProperty("Code")]
     [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
     public abstract class fmCOrderAnalityc : csCComponent {
         public fmCOrderAnalityc(Session session) 
@@ -35,8 +37,10 @@ namespace IntecoAG.ERM.FM.Order {
             set { SetPropertyValue<String>("Code", ref _Code, value); }
         }
 
-        [Size(70)]
+        [Size(60)]
         [RuleRequiredField]
+        [VisibleInListView(true)]
+        [VisibleInLookupListView(true)]
         public virtual String Name {
             get { return _Name; }
             set { SetPropertyValue<String>("Name", ref _Name, value); }

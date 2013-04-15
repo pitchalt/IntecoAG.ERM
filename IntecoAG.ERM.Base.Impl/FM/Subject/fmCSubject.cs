@@ -14,6 +14,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 //
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.StateMachine;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Base.General;
@@ -38,7 +41,9 @@ namespace IntecoAG.ERM.FM.Subject
     [FriendlyKeyProperty("Code")]
     [DefaultProperty("Name")]
     [Persistent("fmSubject")]
-    public abstract class fmCSubject : gfmCAnalyticBase, fmISubject
+    [Appearance("", AppearanceItemType.ViewItem, "", Enabled = false, TargetItems = "IsClosed")]
+    [Appearance("", AppearanceItemType.Action, "Status != 'PROJECT' || !IsDeleteAllow", Enabled = false, TargetItems = "Delete")]
+    public abstract class fmCSubject : gfmCAnalyticBase, fmISubject, IStateMachineProvider
     {
         public fmCSubject(Session ses) : base(ses) { }
 
@@ -47,8 +52,15 @@ namespace IntecoAG.ERM.FM.Subject
             Status = fmISubjectStatus.PROJECT;
         }
 
+        protected override void OnDeleting() {
+            if (this.IsSaving && (Status != fmISubjectStatus.PROJECT || !IsDeleteAllow)) {
+                throw new InvalidOperationException("Delete is not allowed");
+            }
+        }
+
         #region ПОЛЯ КЛАССА
         private fmISubjectStatus _Status;
+        private fmCSubjectGroup _SubjectGroup;
         private fmCDirection _Direction;
         private fmСOrderAnalitycWorkType _AnalitycWorkType;
         private fmСOrderAnalitycFinanceSource _AnalitycFinanceSource;
@@ -58,6 +70,7 @@ namespace IntecoAG.ERM.FM.Subject
         [Persistent("SourceName")]
         private String _SourceName;
         private hrmStaff _Manager;
+        private hrmStaff _ManagerCurator;
         private hrmStaff _ManagerPlanDepartment;
         private fmSubjectSourceType _SourceType;
         #endregion
@@ -67,7 +80,13 @@ namespace IntecoAG.ERM.FM.Subject
         [Association("fmDirection-Subjects")]
         public fmCDirection Direction {
             get { return _Direction; }
-            set { SetPropertyValue<fmCDirection>("Direction", ref _Direction, value); }
+            set { 
+                SetPropertyValue<fmCDirection>("Direction", ref _Direction, value);
+                if (!IsLoading && value != null) {
+                    this.ManagerCurator = value.Manager;
+                    this.Manager = value.Manager;
+                }
+            }
         }
         fmIDirection fmISubject.Direction {
             get {
@@ -75,6 +94,14 @@ namespace IntecoAG.ERM.FM.Subject
             }
             set {
                 this.Direction = (fmCDirection) value;
+            }
+        }
+        [RuleRequiredField]
+        [Association("fmCSubject-fmCSubjectGroup")]
+        public fmCSubjectGroup SubjectGroup {
+            get { return _SubjectGroup; }
+            set {
+                SetPropertyValue<fmCSubjectGroup>("SubjectGroup", ref _SubjectGroup, value);
             }
         }
         //
@@ -104,8 +131,23 @@ namespace IntecoAG.ERM.FM.Subject
 
         public void OrdersRemove(fmCOrder order) { 
         }
+        [Browsable(false)]
+        public Boolean IsDeleteAllow {
+            get {
+                return Orders.Count == 0;
+            }
+        }
 
         [DataSourceProperty("ManagerSource")]
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
+        public hrmStaff ManagerCurator {
+            get { return _ManagerCurator; }
+            set {
+                SetPropertyValue<hrmStaff>("ManagerCurator", ref _ManagerCurator, value);
+            }
+        }
+        [DataSourceProperty("ManagerSource")]
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public hrmStaff Manager {
             get { return _Manager; }
             set {
@@ -128,6 +170,7 @@ namespace IntecoAG.ERM.FM.Subject
         }
 
         [DataSourceProperty("ManagerPlanDepartmentSource")]
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public hrmStaff ManagerPlanDepartment {
             get { return _ManagerPlanDepartment; }
             set {
@@ -165,13 +208,21 @@ namespace IntecoAG.ERM.FM.Subject
 
         #region СВОЙСТВА КЛАССА
 
+        [RuleRequiredField]
         public fmISubjectStatus Status {
             get { return _Status; }
             set {
                 SetPropertyValue<fmISubjectStatus>("Status", ref _Status, value);
+                if (!IsLoading) {
+                    if (value == fmISubjectStatus.CLOSED) 
+                        IsClosed = true;
+                    else
+                        IsClosed = false;
+                }
             }
         }
 
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmSubjectSourceType SourceType {
             get {
                 return _SourceType;
@@ -193,6 +244,7 @@ namespace IntecoAG.ERM.FM.Subject
             }
         }
 
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED' && SourceType == 'SOURCE_TYPE_OTHER'")]
         public String SourceOther {
             get { return _SourceOther ; }
             set { 
@@ -220,29 +272,33 @@ namespace IntecoAG.ERM.FM.Subject
             }
         }
 
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmСOrderAnalitycWorkType AnalitycWorkType {
             get { return _AnalitycWorkType; }
             set { SetPropertyValue<fmСOrderAnalitycWorkType>("AnalitycWorkType", ref _AnalitycWorkType, value); }
         }
 
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmСOrderAnalitycFinanceSource AnalitycFinanceSource {
             get { return _AnalitycFinanceSource; }
             set { SetPropertyValue<fmСOrderAnalitycFinanceSource>("AnalitycFinanceSource", ref _AnalitycFinanceSource, value); }
         }
-        private fmСOrderAnalitycAccouterType _AnalitycAccouterType;
-        public fmСOrderAnalitycAccouterType AnalitycAccouterType {
-            get { return _AnalitycAccouterType; }
-            set { SetPropertyValue<fmСOrderAnalitycAccouterType>("AnalitycAccouterType", ref _AnalitycAccouterType, value); }
-        }
 
         private fmСOrderAnalitycAVT _AnalitycAVT;
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmСOrderAnalitycAVT AnalitycAVT {
             get { return _AnalitycAVT; }
             set { SetPropertyValue<fmСOrderAnalitycAVT>("AnalitycAccouterType", ref _AnalitycAVT, value); }
         }
+        private fmСOrderAnalitycCoperatingType _AnalitycCoperatingType;
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
+        public fmСOrderAnalitycCoperatingType AnalitycCoperatingType {
+            get { return _AnalitycCoperatingType; }
+            set { SetPropertyValue<fmСOrderAnalitycCoperatingType>("AnalitycCoperatingType", ref _AnalitycCoperatingType, value); }
+        }
 
         private fmСOrderAnalitycOrderSource _AnalitycOrderSource;
-        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmСOrderAnalitycOrderSource AnalitycOrderSource {
             get { return _AnalitycOrderSource; }
             set { SetPropertyValue<fmСOrderAnalitycOrderSource>("AnalitycOrderSource", ref _AnalitycOrderSource, value); }
@@ -250,33 +306,49 @@ namespace IntecoAG.ERM.FM.Subject
 
         private fmСOrderAnalitycMilitary _AnalitycMilitary;
         //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmСOrderAnalitycMilitary AnalitycMilitary {
             get { return _AnalitycMilitary; }
             set { SetPropertyValue<fmСOrderAnalitycMilitary>("AnalitycMilitary", ref _AnalitycMilitary, value); }
         }
         private fmСOrderAnalitycFedProg _AnalitycFedProg;
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmСOrderAnalitycFedProg AnalitycFedProg {
             get { return _AnalitycFedProg; }
             set { SetPropertyValue<fmСOrderAnalitycFedProg>("AnalitycFedProg", ref _AnalitycFedProg, value); }
         }
-        private fmСOrderAnalitycOKVED _AnalitycOKVED;
-        public fmСOrderAnalitycOKVED AnalitycOKVED {
-            get { return _AnalitycOKVED; }
-            set { SetPropertyValue<fmСOrderAnalitycOKVED>("AnalitycOKVED", ref _AnalitycOKVED, value); }
-        }
         private fmСOrderAnalitycRegion _AnalitycRegion;
+        [RuleRequiredField(TargetCriteria = "Status == 'OPENED'")]
         public fmСOrderAnalitycRegion AnalitycRegion {
             get { return _AnalitycRegion; }
-            set { SetPropertyValue<fmСOrderAnalitycRegion>("AnalitycRegion", ref _AnalitycRegion, value); }
+            set { 
+                SetPropertyValue<fmСOrderAnalitycRegion>("AnalitycRegion", ref _AnalitycRegion, value);
+                if (!IsLoading && value != null) {
+                    if (value.BigCustomers.Count == 1) {
+                        AnalitycBigCustomer = value.BigCustomers[0];
+                    }
+                }
+            }
         }
         private fmСOrderAnalitycBigCustomer _AnalitycBigCustomer;
+        [RuleRequiredField(TargetCriteria="Status == 'OPENED'")]
         public fmСOrderAnalitycBigCustomer AnalitycBigCustomer {
             get { return _AnalitycBigCustomer; }
-            set { SetPropertyValue<fmСOrderAnalitycBigCustomer>("AnalitycBigCustomer", ref _AnalitycBigCustomer, value); }
+            set { 
+                SetPropertyValue<fmСOrderAnalitycBigCustomer>("AnalitycBigCustomer", ref _AnalitycBigCustomer, value);
+                if (!IsLoading && value != null && value.Region != null) {
+                    AnalitycRegion = value.Region;
+                }
+            }
         }
 
         #endregion
+
+        public IList<IStateMachine> GetStateMachines() {
+            List<IStateMachine> result = new List<IStateMachine>();
+            result.Add(new fmCSubjectSM());
+            return result;
+        }
 
     }
 

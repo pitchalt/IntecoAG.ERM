@@ -616,9 +616,9 @@
         <ColumnInfo Id="LineType" Removed="True" />
       </Columns>
     </ListView>
-    <DetailView Id="fmCDirection_DetailView" AllowDelete="False" AllowNew="False">
-      <Layout>
-        <LayoutGroup Id="Main">
+    <DetailView Id="fmCDirection_DetailView" AllowDelete="False" AllowNew="False" FreezeLayout="True">
+      <Layout IsNewNode="True" Removed="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
           <LayoutGroup Id="Header" Direction="Horizontal" Index="0" IsNewNode="True">
             <LayoutItem Id="Code" ViewItem="Code" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
             <LayoutItem Id="Status" ViewItem="Status" Index="1" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
@@ -627,46 +627,61 @@
           <TabbedGroup Id="Tabs" Index="1" IsNewNode="True">
             <LayoutGroup Id="Common" Index="0" IsNewNode="True">
               <LayoutItem Id="NameFull" ViewItem="NameFull" Index="0" IsNewNode="True" />
-              <LayoutItem Id="Manager" ViewItem="Manager" Index="1" IsNewNode="True" />
               <LayoutGroup Id="gfmCAnalyticBase_col2" Index="2" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="0" IsNewNode="True" />
-                <LayoutItem Id="IsPeriodUnlimited" ViewItem="IsPeriodUnlimited" Index="1" IsNewNode="True" />
-                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="2" IsNewNode="True" />
-                <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="3" IsNewNode="True" />
+                <LayoutItem Id="Manager" ViewItem="Manager" Index="0" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
+                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+                <LayoutItem Id="IsPeriodUnlimited" ViewItem="IsPeriodUnlimited" Index="2" RelativeSize="15" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="3" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+                <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="4" CaptionLocation="Top" RelativeSize="15" IsNewNode="True" />
               </LayoutGroup>
               <LayoutGroup Id="SizeableEditors" Index="3" ShowCaption="False" IsNewNode="True">
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
             </LayoutGroup>
+            <LayoutGroup Id="Subjects" Index="0" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="Subjects" ViewItem="Subjects" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="1" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
           </TabbedGroup>
-          <LayoutGroup Id="SimpleEditors" Removed="True">
-            <LayoutGroup Id="csCComponent" Removed="True" />
-            <LayoutGroup Id="fmCDirection">
-              <LayoutItem Id="Manager" ViewItem="Manager" Removed="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="gfmCAnalyticBase">
-              <LayoutGroup Id="gfmCAnalyticBase_col1">
-                <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
-                <LayoutItem Id="Name" ViewItem="Name" Removed="True" />
-                <LayoutItem Id="NameFull" ViewItem="NameFull" Removed="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="gfmCAnalyticBase_col2" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="SizeableEditors" Removed="True" />
-          <LayoutGroup Id="Subjects_Group" Removed="True" />
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="fmCDirection_Subjects_ListView">
+    <ListView Id="fmCDirection_Subjects_ListView" FreezeColumnIndices="True">
       <Columns>
+        <ColumnInfo Id="AnalitycAVT" Index="-1" />
+        <ColumnInfo Id="AnalitycBigCustomer" Index="-1" />
+        <ColumnInfo Id="AnalitycCoperatingType" Index="-1" />
+        <ColumnInfo Id="AnalitycFedProg" Index="-1" />
+        <ColumnInfo Id="AnalitycFinanceSource" Index="-1" />
+        <ColumnInfo Id="AnalitycMilitary" Index="-1" />
+        <ColumnInfo Id="AnalitycOrderSource" Index="-1" />
+        <ColumnInfo Id="AnalitycRegion" Index="-1" />
+        <ColumnInfo Id="ComponentType" Index="-1" />
+        <ColumnInfo Id="Description" Index="-1" />
+        <ColumnInfo Id="Direction" Index="-1" />
+        <ColumnInfo Id="NameFull" Index="-1" />
+        <ColumnInfo Id="SourceDeal" Index="-1" />
+        <ColumnInfo Id="SourceName" Index="-1" />
+        <ColumnInfo Id="SourceOther" Index="-1" />
+        <ColumnInfo Id="SourceParty" Index="-1" />
+        <ColumnInfo Id="SourceType" Index="-1" />
         <ColumnInfo Id="Code" Index="0" />
-        <ColumnInfo Id="Name" Index="1" />
-        <ColumnInfo Id="Manager" Index="2" />
-        <ColumnInfo Id="DateBegin" Index="3" />
-        <ColumnInfo Id="DateEnd" Index="4" />
-        <ColumnInfo Id="IsClosed" Index="5" />
+        <ColumnInfo Id="Status" Index="1" />
+        <ColumnInfo Id="Name" Index="2" />
+        <ColumnInfo Id="ManagerCurator" Index="3" />
+        <ColumnInfo Id="Manager" Index="4" />
+        <ColumnInfo Id="ManagerPlanDepartment" Index="5" />
+        <ColumnInfo Id="DateBegin" Index="6" />
+        <ColumnInfo Id="IsPeriodUnlimited" Index="7" />
+        <ColumnInfo Id="DateEnd" Index="8" />
+        <ColumnInfo Id="IsClosed" Index="9" />
+        <ColumnInfo Id="AnalitycWorkType" Index="10" />
       </Columns>
+      <Sorting>
+        <SortProperty Id="Code" PropertyName="Code" Index="1" IsNewNode="True" />
+      </Sorting>
     </ListView>
     <ListView Id="fmCDocRCB_ListView" AllowEdit="False">
       <Columns>
@@ -2843,95 +2858,176 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="fmCSubject_ListView">
+    <ListView Id="fmCSubject_ListView" FreezeColumnIndices="True">
       <Columns>
+        <ColumnInfo Id="ComponentType" Index="-1" />
+        <ColumnInfo Id="Description" Index="-1" />
+        <ColumnInfo Id="IsPeriodUnlimited" Index="-1" />
+        <ColumnInfo Id="NameFull" Index="-1" />
         <ColumnInfo Id="Direction" Index="0" LookupProperty="Code" />
         <ColumnInfo Id="Code" Index="1" />
+        <ColumnInfo Id="ManagerCurator" Index="2" />
         <ColumnInfo Id="Name" Index="2" />
         <ColumnInfo Id="Manager" Index="3" />
         <ColumnInfo Id="DateBegin" Index="4" />
+        <ColumnInfo Id="ManagerPlanDepartment" Index="4" />
         <ColumnInfo Id="DateEnd" Index="5" />
+        <ColumnInfo Id="SourceParty" Index="5" />
+        <ColumnInfo Id="Status" Index="6" />
         <ColumnInfo Id="IsClosed" Index="7" />
+        <ColumnInfo Id="SourceType" Index="7" />
+        <ColumnInfo Id="SourceDeal" Index="8" />
+        <ColumnInfo Id="SourceOther" Index="9" />
+        <ColumnInfo Id="SourceName" Index="10" />
+        <ColumnInfo Id="AnalitycWorkType" Index="11" />
+        <ColumnInfo Id="AnalitycFinanceSource" Index="12" />
+        <ColumnInfo Id="AnalitycAVT" Index="13" />
+        <ColumnInfo Id="AnalitycCoperatingType" Index="14" />
+        <ColumnInfo Id="AnalitycOrderSource" Index="15" />
+        <ColumnInfo Id="AnalitycMilitary" Index="16" />
+        <ColumnInfo Id="AnalitycFedProg" Index="17" />
+        <ColumnInfo Id="AnalitycRegion" Index="18" />
+        <ColumnInfo Id="AnalitycBigCustomer" Index="19" />
       </Columns>
     </ListView>
     <ListView Id="fmCSubject_Orders_ListView">
       <Columns>
+        <ColumnInfo Id="AnalitycAccouterType" Index="-1" />
+        <ColumnInfo Id="AnalitycAVT" Index="-1" />
+        <ColumnInfo Id="AnalitycBigCustomer" Index="-1" />
+        <ColumnInfo Id="AnalitycFedProg" Index="-1" />
+        <ColumnInfo Id="AnalitycFinanceSource" Index="-1" />
+        <ColumnInfo Id="AnalitycMilitary" Index="-1" />
+        <ColumnInfo Id="AnalitycOKVED" Index="-1" />
+        <ColumnInfo Id="AnalitycOrderSource" Index="-1" />
+        <ColumnInfo Id="AnalitycRegion" Index="-1" />
+        <ColumnInfo Id="AVTRate" Index="-1" />
+        <ColumnInfo Id="BuhAccount" Index="-1" />
+        <ColumnInfo Id="KoeffKB" Index="-1" />
+        <ColumnInfo Id="KoeffOZM" Index="-1" />
+        <ColumnInfo Id="NameAndCode" Index="-1" />
+        <ColumnInfo Id="SourceDeal" Index="-1" />
+        <ColumnInfo Id="SourceName" Index="-1" />
+        <ColumnInfo Id="SourceOther" Index="-1" />
+        <ColumnInfo Id="SourceParty" Index="-1" />
         <ColumnInfo Id="Code" Index="0" />
         <ColumnInfo Id="Name" Index="1" />
         <ColumnInfo Id="Manager" Index="2" />
-        <ColumnInfo Id="DateBegin" Index="3" />
-        <ColumnInfo Id="DateEnd" Index="4" />
+        <ColumnInfo Id="ManagerPlanDepartment" Index="3" />
+        <ColumnInfo Id="AnalitycWorkType" Index="4" />
+        <ColumnInfo Id="DateBegin" Index="5" />
+        <ColumnInfo Id="IsPeriodUnlimited" Index="6" />
+        <ColumnInfo Id="DateEnd" Index="7" />
+        <ColumnInfo Id="IsClosed" Index="20" />
       </Columns>
     </ListView>
-    <DetailView Id="fmCSubjectExt_DetailView" AllowDelete="False" AllowNew="False">
+    <DetailView Id="fmCSubjectExt_DetailView" AllowDelete="False" AllowNew="False" FreezeLayout="True">
       <Items>
         <PropertyEditor Id="Direction" PropertyName="Direction" LookupProperty="Code" IsNewNode="True" />
       </Items>
-      <Layout>
-        <LayoutGroup Id="Main">
+      <Layout IsNewNode="True" Removed="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
             <LayoutItem Id="Direction" ViewItem="Direction" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
             <LayoutItem Id="Code" ViewItem="Code" Index="1" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="Name" ViewItem="Name" Index="2" RelativeSize="60" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Status" ViewItem="Status" Index="2" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="3" RelativeSize="50" CaptionLocation="Top" IsNewNode="True" />
           </LayoutGroup>
           <TabbedGroup Id="Tabs" Index="1" IsNewNode="True">
             <LayoutGroup Id="Common" Index="0" IsNewNode="True">
-              <LayoutItem Id="NameFull" ViewItem="NameFull" Index="0" IsNewNode="True" />
-              <LayoutGroup Id="Managers" Index="1" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="Manager" ViewItem="Manager" Index="2" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="ManagerPlanDepartment" ViewItem="ManagerPlanDepartment" Index="3" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutGroup Id="Line1" Index="0" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="NameFull" ViewItem="NameFull" Index="1" CaptionLocation="Top" RelativeSize="80" IsNewNode="True" />
+                <LayoutItem Id="SubjectGroup" ViewItem="SubjectGroup" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="gfmCAnalyticBase_col2" Index="2" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="0" IsNewNode="True" />
-                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="1" IsNewNode="True" />
-                <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="2" IsNewNode="True" />
+              <LayoutGroup Id="Managers" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="ManagerCurator" ViewItem="ManagerCurator" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="Manager" ViewItem="Manager" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="ManagerPlanDepartment" ViewItem="ManagerPlanDepartment" Index="2" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutItem Id="SourceParty" ViewItem="SourceParty" Index="3" IsNewNode="True" />
-              <LayoutGroup Id="Source" Index="4" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="SourceDeal" ViewItem="SourceDeal" Index="5" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="SourceOther" ViewItem="SourceOther" Index="6" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="SourceName" ViewItem="SourceName" Index="7" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutGroup Id="gfmCAnalyticBase_col2" Index="3" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="IsPeriodUnlimited" ViewItem="IsPeriodUnlimited" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="3" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="Analytics" Index="5" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="AnalitycWorkType" ViewItem="AnalitycWorkType" Index="0" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="AnalitycFinanceSource" ViewItem="AnalitycFinanceSource" Index="1" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutItem Id="SourceParty" ViewItem="SourceParty" Index="4" IsNewNode="True" />
+              <LayoutGroup Id="Source" Index="5" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="SourceType" ViewItem="SourceType" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="SourceDeal" ViewItem="SourceDeal" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="SourceOther" ViewItem="SourceOther" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="SourceName" ViewItem="SourceName" Index="3" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="SizeableEditors" Index="8" ShowCaption="False" IsNewNode="True">
+              <LayoutGroup Id="Analytics" Index="6" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="Analityc_Col1" Index="0" IsNewNode="True">
+                  <LayoutItem Id="AnalitycWorkType" ViewItem="AnalitycWorkType" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycCoperatingType" ViewItem="AnalitycCoperatingType" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycFedProg" ViewItem="AnalitycFedProg" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycMoilitary" ViewItem="AnalitycMilitary" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycOrderSource" ViewItem="AnalitycOrderSource" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="Analityc_Col2" IsNewNode="True">
+                  <LayoutItem Id="AnalitycFinanceSource" ViewItem="AnalitycFinanceSource" Index="2" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycAVT" ViewItem="AnalitycAVT" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycBigCustomer" ViewItem="AnalitycBigCustomer" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycRegion" ViewItem="AnalitycRegion" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="SizeableEditors" Index="7" ShowCaption="False" IsNewNode="True">
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
             </LayoutGroup>
+            <LayoutGroup Id="Orders" Index="0" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="Orders" ViewItem="Orders" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="1" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
           </TabbedGroup>
-          <LayoutGroup Id="Orders_Group" Removed="True" />
-          <LayoutGroup Id="SimpleEditors" Removed="True">
-            <LayoutGroup Id="csCComponent" Removed="True" />
-            <LayoutGroup Id="fmCSubject">
-              <LayoutItem Id="Manager" ViewItem="Manager" Removed="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="gfmCAnalyticBase">
-              <LayoutGroup Id="gfmCAnalyticBase_col1">
-                <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
-                <LayoutItem Id="Name" ViewItem="Name" Removed="True" />
-                <LayoutItem Id="NameFull" ViewItem="NameFull" Removed="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="gfmCAnalyticBase_col2" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="SizeableEditors" Removed="True" />
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="fmCSubjectExt_ListView" AllowDelete="False" AllowNew="False">
+    <ListView Id="fmCSubjectExt_ListView" AllowDelete="False" AllowNew="True" FreezeColumnIndices="True">
       <Columns>
+        <ColumnInfo Id="AnalitycAVT" Index="-1" />
+        <ColumnInfo Id="AnalitycBigCustomer" Index="-1" />
+        <ColumnInfo Id="AnalitycCoperatingType" Index="-1" />
+        <ColumnInfo Id="AnalitycFedProg" Index="-1" />
+        <ColumnInfo Id="AnalitycFinanceSource" Index="-1" />
+        <ColumnInfo Id="AnalitycMilitary" Index="-1" />
+        <ColumnInfo Id="AnalitycOrderSource" Index="-1" />
+        <ColumnInfo Id="AnalitycRegion" Index="-1" />
+        <ColumnInfo Id="AnalitycWorkType" Index="-1" />
+        <ColumnInfo Id="ComponentType" Index="-1" />
+        <ColumnInfo Id="Description" Index="-1" />
+        <ColumnInfo Id="NameFull" Index="-1" />
+        <ColumnInfo Id="SourceDeal" Index="-1" />
+        <ColumnInfo Id="SourceName" Index="-1" />
+        <ColumnInfo Id="SourceOther" Index="-1" />
+        <ColumnInfo Id="SourceParty" Index="-1" />
+        <ColumnInfo Id="SourceType" Index="-1" />
         <ColumnInfo Id="Direction" Index="0" LookupProperty="Code" />
         <ColumnInfo Id="Code" Index="1" />
-        <ColumnInfo Id="Name" Index="2" />
-        <ColumnInfo Id="Manager" Index="3" />
-        <ColumnInfo Id="DateBegin" Index="4" />
-        <ColumnInfo Id="DateEnd" Index="5" />
-        <ColumnInfo Id="IsClosed" Index="6" />
+        <ColumnInfo Id="Status" Index="2" />
+        <ColumnInfo Id="Name" Index="3" />
+        <ColumnInfo Id="ManagerCurator" Index="4" />
+        <ColumnInfo Id="Manager" Index="5" />
+        <ColumnInfo Id="ManagerPlanDepartment" Index="6" />
+        <ColumnInfo Id="DateBegin" Index="7" />
+        <ColumnInfo Id="IsPeriodUnlimited" Index="8" />
+        <ColumnInfo Id="DateEnd" Index="9" />
+        <ColumnInfo Id="IsClosed" Index="10" />
+      </Columns>
+      <Filters CurrentFilterId="All">
+        <Filter Id="All" Index="0" IsNewNode="True" />
+        <Filter Id="Working" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,OPENED# Or [Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,PROJECT#" Index="1" IsNewNode="True" />
+      </Filters>
+    </ListView>
+    <ListView Id="fmCSubjectExt_LookupListView" AllowDelete="False" AllowNew="False" FreezeColumnIndices="True">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="Name" Index="1" />
       </Columns>
     </ListView>
-    <ListView Id="fmCSubjectExt_LookupListView" AllowDelete="False" AllowNew="False" />
     <DetailView Id="fmIDocCacheInRealPrepare_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
@@ -3020,53 +3116,6 @@
         <SortProperty Id="DocNumber" PropertyName="DocNumber" IsNewNode="True" />
       </Sorting>
     </ListView>
-    <DetailView Id="fmIOrderExt_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <TabbedGroup Id="Tabs" IsNewNode="True">
-            <LayoutGroup Id="Common" Index="0" IsNewNode="True">
-              <LayoutItem Id="NameFull" ViewItem="NameFull" Index="0" IsNewNode="True" />
-              <LayoutGroup Id="fmIOrder" Index="1" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="Subject" ViewItem="Subject" Index="0" IsNewNode="True" />
-                <LayoutItem Id="Manager" ViewItem="Manager" Index="1" IsNewNode="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="gfmIAnalytic" Index="2" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="1" IsNewNode="True" />
-                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="2" IsNewNode="True" />
-                <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="3" IsNewNode="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="SizeableEditors" Index="3" ShowCaption="False" IsNewNode="True">
-                <LayoutItem Id="Description" ViewItem="Description" Index="0" IsNewNode="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-            <LayoutGroup Id="ManageDocs_Group" Index="1" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
-              <LayoutItem Id="ManageDocs" ViewItem="ManageDocs" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-          </TabbedGroup>
-          <LayoutGroup Id="Header" IsNewNode="True">
-            <LayoutGroup Id="csICodedComponent" Index="3" ShowCaption="False" IsNewNode="True">
-              <LayoutItem Id="Status" ViewItem="Status" Index="0" IsNewNode="True" />
-              <LayoutItem Id="Code" ViewItem="Code" Index="1" IsNewNode="True" />
-              <LayoutItem Id="Name" ViewItem="Name" Index="2" IsNewNode="True" />
-              <LayoutItem Id="ComponentType" ViewItem="ComponentType" Index="3" IsNewNode="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="ManageDocs_Group" Removed="True" />
-          <LayoutGroup Id="SimpleEditors" Removed="True">
-            <LayoutGroup Id="csICodedComponent" Removed="True" />
-            <LayoutGroup Id="csIComponent">
-              <LayoutItem Id="ComponentType" ViewItem="ComponentType" Removed="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="fmIOrder" Removed="True" />
-            <LayoutGroup Id="fmIOrderExt" Removed="True">
-              <LayoutItem Id="Status" ViewItem="Status" Removed="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="gfmIAnalytic" Removed="True" />
-          </LayoutGroup>
-          <LayoutGroup Id="SizeableEditors" Removed="True" />
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
     <DetailView Id="fmPaymentRequestMemorandum_DetailView">
       <HiddenActions Index="0" />
       <Items Index="1">
@@ -3438,18 +3487,6 @@
         <ColumnInfo Id="Requester" PropertyName="Requester" Index="2" IsNewNode="True" />
         <ColumnInfo Id="Comment" PropertyName="Comment" Index="3" IsNewNode="True" />
         <ColumnInfo Id="TemplateName" PropertyName="TemplateName" SortIndex="1" Width="260" Index="4" LookupEditorMode="AllItemsWithSearch" IsNewNode="True" />
-      </Columns>
-    </ListView>
-    <ListView Id="fmСOrderAnalitycFedProg_ListView">
-      <Columns>
-        <ColumnInfo Id="Code" Index="0" Width="20" />
-        <ColumnInfo Id="Name" Index="1" Width="80" />
-      </Columns>
-    </ListView>
-    <ListView Id="fmСOrderAnalitycOKVED_ListView">
-      <Columns>
-        <ColumnInfo Id="Code" Index="0" Width="20" />
-        <ColumnInfo Id="Name" Index="1" Width="80" />
       </Columns>
     </ListView>
   </Views>

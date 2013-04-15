@@ -318,6 +318,8 @@
     <Compile Include="FM\Order\fmIOrderOverheadStandart.cs" />
     <Compile Include="FM\Order\fmCOrderOverheadStandart.cs" />
     <Compile Include="FM\Order\fmIOrderOverheadStandartValue.cs" />
+    <Compile Include="FM\Subject\fmCSubjectGroup.cs" />
+    <Compile Include="FM\Subject\fmCSubjectSM.cs" />
     <Compile Include="FM\Subject\fmCDirectionSM.cs" />
     <Compile Include="FM\Subject\fmISubject.cs" />
     <Compile Include="FM\Subject\fmIDirection.cs" />

@@ -694,7 +694,14 @@
         <Member Name="Subject" Caption="Тема" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderAnalityc" Caption="Аналитика Заказов" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderAnalityc" Caption="Аналитика Заказов">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="SortOrder" Caption="Сортировка" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmIOrder" Caption="Заказ" />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycAccouterType" Caption="Тип Бухгалтерский " />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycAVT" Caption="Режим НДС" />
@@ -704,11 +711,15 @@
         <Member Name="Region" Caption="Регион" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycFedProg" Caption="Фед.Программы" />
-    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycFinanceSource" Caption="Источник финансирования" />
-    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycMilitary" Caption="Военный" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycFedProg" Caption="Программа финансирования" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycFinanceSource" Caption="Назначение заказа" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycMilitary" Caption="Вид продукции">
+      <OwnMembers>
+        <Member Name="ProductType" Caption="ТипПрод" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycOKVED" Caption="ОКВЭД" />
-    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycOrderSource" Caption="Источник заказа">
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycOrderSource" Caption="Государственный заказ">
       <OwnMembers>
         <Member Name="IsGOZ" Caption="ГОЗ" />
         <Member Name="IsGZ" Caption="ГЗ" />
@@ -721,7 +732,7 @@
         <Member Name="IsVED" Caption="ВЭД" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycWorkType" Caption="Тип работы" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycWorkType" Caption="Вид работ" />
     <Class Name="IntecoAG.ERM.FM.Subject.fmCDirection" Caption="Направление">
       <OwnMembers>
         <Member Name="Manager" Caption="Руководитель" />
@@ -731,16 +742,34 @@
     </Class>
     <Class Name="IntecoAG.ERM.FM.Subject.fmCSubject" Caption="Тема">
       <OwnMembers>
-        <Member Name="AnalitycFinanceSource" Caption="Источник финансирования" />
-        <Member Name="AnalitycWorkType" Caption="Тип Работы" />
+        <Member Name="AnalitycAVT" Caption="Режим НДС" />
+        <Member Name="AnalitycBigCustomer" Caption="Ген.Заказчик" />
+        <Member Name="AnalitycCoperatingType" Caption="Генеральный/Соисполнитель" />
+        <Member Name="AnalitycFedProg" Caption="Фин.Программа" />
+        <Member Name="AnalitycFinanceSource" Caption="Назнач.Работ" />
+        <Member Name="AnalitycMilitary" Caption="ВидПродукции" />
+        <Member Name="AnalitycOrderSource" Caption="Гоз.Заказ" />
+        <Member Name="AnalitycRegion" Caption="Регион" />
+        <Member Name="AnalitycWorkType" Caption="ВидРабот" />
         <Member Name="Direction" Caption="Направление" />
         <Member Name="Manager" Caption="Ведущий" />
-        <Member Name="ManagerPlanDepartment" Caption="Менеджер Планового отдела" />
+        <Member Name="ManagerCurator" Caption="Отв.Рук-ль" />
+        <Member Name="ManagerPlanDepartment" Caption="Экономист" />
         <Member Name="Orders" Caption="Заказы" />
-        <Member Name="SourceDeal" Caption="Основание Договор" />
+        <Member Name="SourceDeal" Caption="Договор" />
         <Member Name="SourceName" Caption="Основание" />
-        <Member Name="SourceOther" Caption="Основание Прочие" />
-        <Member Name="SourceParty" Caption="Заказчик" />
+        <Member Name="SourceOther" Caption="Распоряжение" />
+        <Member Name="SourceParty" Caption="Юр.Заказчик" />
+        <Member Name="SourceType" Caption="ТипОснования" />
+        <Member Name="Status" Caption="Статус" />
+        <Member Name="SubjectGroup" Caption="ГруппаПО" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Subject.fmCSubjectGroup" Caption="ГруппаПО">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="Subjects" Caption="Темы" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Subject.fmIDirection" Caption="Направление" />
@@ -897,6 +926,10 @@
         <LocalizationItem Name="FINANCE" Value="Финансовый" />
         <LocalizationItem Name="TECHNICAL" Value="Технический" />
       </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Party.crmPhysicalPersonSex">
+        <LocalizationItem Name="FEMALE" Value="Женщина" />
+        <LocalizationItem Name="MALE" Value="Мужчина" />
+      </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.CRM.Party.ManualCheckStateEnum">
         <LocalizationItem Name="IS_CHECKED" Value="Проверено" />
         <LocalizationItem Name="NO_CHECKED" Value="Не проверенео" />
@@ -911,6 +944,33 @@
         <LocalizationItem Name="VERSION_NEW" Value="Новая" />
         <LocalizationItem Name="VERSION_OLD" Value="Старая" />
         <LocalizationItem Name="VERSION_PROJECT" Value="Проект" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycMilitaryProductType">
+        <LocalizationItem Name="PRODUCT_CIVIL" Value="ГП" />
+        <LocalizationItem Name="PRODUCT_MILITARY" Value="ВП" />
+        <LocalizationItem Name="PRODUCT_OTHER" Value="Прочие" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.fmIDirectionStatus">
+        <LocalizationItem Name="CLOSED" Value="Закрыто" />
+        <LocalizationItem Name="LOADED" Value="Загружено" />
+        <LocalizationItem Name="OPENED" Value="Открыто" />
+        <LocalizationItem Name="PROJECT" Value="Проект" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.fmISubjectStatus" Value="Статус Заказа">
+        <LocalizationItem Name="CLOSED" Value="Закрыта" />
+        <LocalizationItem Name="DELETE" Value="Удалена" />
+        <LocalizationItem Name="LOADED" Value="Загружена" />
+        <LocalizationItem Name="OPENED" Value="Открыта" />
+        <LocalizationItem Name="PROJECT" Value="Проект" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.fmSubjectSourceType" Value="ТипОснования">
+        <LocalizationItem Name="SOURCE_TYPE_CONTRACT" Value="Договор" />
+        <LocalizationItem Name="SOURCE_TYPE_OTHER" Value="Распоряжение" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.fmСOrderAnalitycCoperatingType" Value="ТипКооперации">
+        <LocalizationItem Name="COPERATING_GENERAL" Value="Головной" />
+        <LocalizationItem Name="COPERATING_INTERNAL" Value="Внутренний" />
+        <LocalizationItem Name="COPERATING_SUPPLIER" Value="Соисполнитель" />
       </LocalizationGroup>
     </LocalizationGroup>
     <LocalizationGroup Name="Namespaces">

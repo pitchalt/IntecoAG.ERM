@@ -954,6 +954,15 @@
         <ColumnInfo Id="DateTransfer" Caption="Дата получения" />
       </Columns>
     </ListView>
+    <DetailView Id="fmCDirection_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Описание" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="fmCDocRCB_ListView">
       <Columns>
         <ColumnInfo Id="PayerBankAccount" Caption="Плат. Банк. счёт" />
@@ -1166,7 +1175,21 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="fmCSubjectExt_ListView" Caption="Список Тем" />
+    <DetailView Id="fmCSubjectExt_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Описание" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmCSubjectExt_ListView" Caption="Список Тем">
+      <Filters>
+        <Filter Id="All" Caption="Все" />
+        <Filter Id="Working" Caption="Действующие" />
+      </Filters>
+    </ListView>
     <ListView Id="fmCSubjectExt_LookupListView" Caption="Выбор Темы" />
     <DetailView Id="fmIDocCacheInRealPrepare_DetailView">
       <Layout>

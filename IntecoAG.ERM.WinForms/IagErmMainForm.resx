@@ -291,7 +291,7 @@
     <value>0, 0</value>
   </data>
   <data name="navigation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 405</value>
+    <value>192, 561</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="navigation.TabIndex" type="System.Int32, mscorlib">
@@ -400,7 +400,7 @@
     <value>0, 0</value>
   </data>
   <data name="barDockControlTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1284, 51</value>
+    <value>1008, 51</value>
   </data>
   <data name="&gt;&gt;barDockControlTop.Name" xml:space="preserve">
     <value>barDockControlTop</value>
@@ -418,10 +418,10 @@
     <value>Bottom</value>
   </data>
   <data name="barDockControlBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 483</value>
+    <value>0, 639</value>
   </data>
   <data name="barDockControlBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1284, 23</value>
+    <value>1008, 23</value>
   </data>
   <data name="&gt;&gt;barDockControlBottom.Name" xml:space="preserve">
     <value>barDockControlBottom</value>
@@ -442,7 +442,7 @@
     <value>0, 51</value>
   </data>
   <data name="barDockControlLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 432</value>
+    <value>0, 588</value>
   </data>
   <data name="&gt;&gt;barDockControlLeft.Name" xml:space="preserve">
     <value>barDockControlLeft</value>
@@ -460,10 +460,10 @@
     <value>Right</value>
   </data>
   <data name="barDockControlRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1284, 51</value>
+    <value>1008, 51</value>
   </data>
   <data name="barDockControlRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 432</value>
+    <value>0, 588</value>
   </data>
   <data name="&gt;&gt;barDockControlRight.Name" xml:space="preserve">
     <value>barDockControlRight</value>
@@ -487,7 +487,7 @@
     <value>4, 23</value>
   </data>
   <data name="dockPanelNavigation_Container.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 405</value>
+    <value>192, 561</value>
   </data>
   <data name="dockPanelNavigation_Container.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -508,7 +508,7 @@
     <value>0, 51</value>
   </data>
   <data name="dockPanelNavigation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 432</value>
+    <value>200, 588</value>
   </data>
   <data name="dockPanelNavigation.Text" xml:space="preserve">
     <value>Navigation</value>
@@ -523,7 +523,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dockPanelNavigation.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="actionContainerBarItem1.Caption" xml:space="preserve">
     <value>BusinessLogic</value>
@@ -532,7 +532,7 @@
     <value />
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1284, 506</value>
+    <value>1008, 662</value>
   </data>
   <data name="viewSitePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -541,7 +541,7 @@
     <value>200, 51</value>
   </data>
   <data name="viewSitePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1084, 432</value>
+    <value>808, 588</value>
   </data>
   <data name="viewSitePanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>

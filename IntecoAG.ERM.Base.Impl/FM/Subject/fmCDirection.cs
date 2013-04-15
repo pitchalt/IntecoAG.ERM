@@ -39,6 +39,7 @@ namespace IntecoAG.ERM.FM.Subject
     [FriendlyKeyProperty("Code")]
     [DefaultProperty("Name")]
     [Appearance("", AppearanceItemType.ViewItem, "", Enabled=false, TargetItems="IsClosed")]
+    [Appearance("", AppearanceItemType.Action, "Status != 'PROJECT' || !IsDeleteAllow", Enabled = false, TargetItems = "Delete")]
     public partial class fmCDirection : gfmCAnalyticBase, fmIDirection, IStateMachineProvider
     {
         public fmCDirection(Session ses) : base(ses) { }
@@ -50,12 +51,18 @@ namespace IntecoAG.ERM.FM.Subject
             Status = fmIDirectionStatus.PROJECT;
         }
 
+        protected override void OnDeleting() {
+            if (this.IsSaving && (Status != fmIDirectionStatus.PROJECT || !IsDeleteAllow)) {
+                throw new InvalidOperationException("Delete is not allowed");
+            }
+        }
+
         #region ПОЛЯ КЛАССА
         private hrmStaff _Manager;
         private fmIDirectionStatus _Status; 
         #endregion
 
-        [Aggregated]
+//        [Aggregated]
         [Association("fmDirection-Subjects", typeof(fmCSubject))]
         public XPCollection<fmCSubject> Subjects {
             get {
@@ -63,7 +70,7 @@ namespace IntecoAG.ERM.FM.Subject
             }
         }
 
-        [Aggregated]
+//        [Aggregated]
         IList<fmISubject> fmIDirection.Subjects {
             get {
                 //                return new ListConverter<fmISubject, fmCSubject>(this.Subjects);
@@ -81,8 +88,16 @@ namespace IntecoAG.ERM.FM.Subject
                         OnChanged("Status", old, value);
                         if (value == fmIDirectionStatus.CLOSED)
                             IsClosed = true;
+                        else
+                            IsClosed = false;
                     }
                 }
+            }
+        }
+        [Browsable(false)]
+        public Boolean IsDeleteAllow {
+            get {
+                return Subjects.Count == 0;
             }
         }
         [Browsable(false)]
