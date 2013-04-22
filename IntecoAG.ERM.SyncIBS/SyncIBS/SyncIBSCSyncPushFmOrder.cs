@@ -28,10 +28,10 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
             msg_in.ZKFULLNAME = order.NameFull;
             msg_in.ZKDESCRIPTION = order.Description;
             Decimal acccode = 0;
-            Decimal.TryParse(order.BuhAccount, out acccode);
+            Decimal.TryParse(order.BuhAccountCode, out acccode);
             msg_in.ZKACBUHCODE = acccode;
-            msg_in.ZKKOEFFKB = order.KoeffKB;
-            msg_in.ZKKOEFFOZM = order.KoeffOZM;
+            msg_in.ZKKOEFFKB = order.FixKoeff;
+            msg_in.ZKKOEFFOZM = order.FixKoeffOZM;
             if (order.Status == fmIOrderStatus.BuhClosed)
                 msg_in.ZKISCLOSED = true;
             else
@@ -42,7 +42,7 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
 
         public override bool CheckSyncRequired(IObjectSpace os, fmCOrderExt order) {
             if (os.IsNewObject(order) || os.IsObjectToSave(order) || os.IsObjectToDelete(order)) 
-                if (order.Status == fmIOrderStatus.Accepted || 
+                if (order.Status == fmIOrderStatus.FinOpened || 
                     order.Status == fmIOrderStatus.FinClosed ||
                     order.Status == fmIOrderStatus.BuhClosed)
                     order.IsSyncRequired = true;

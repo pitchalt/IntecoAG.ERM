@@ -41,6 +41,7 @@ namespace IntecoAG.ERM.FM.Subject
     [FriendlyKeyProperty("Code")]
     [DefaultProperty("Name")]
     [Persistent("fmSubject")]
+    [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "Code")]
     [Appearance("", AppearanceItemType.ViewItem, "", Enabled = false, TargetItems = "IsClosed")]
     [Appearance("", AppearanceItemType.Action, "Status != 'PROJECT' || !IsDeleteAllow", Enabled = false, TargetItems = "Delete")]
     public abstract class fmCSubject : gfmCAnalyticBase, fmISubject, IStateMachineProvider

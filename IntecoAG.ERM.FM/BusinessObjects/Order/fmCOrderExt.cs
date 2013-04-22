@@ -24,7 +24,7 @@ namespace IntecoAG.ERM.FM.Order {
     [MapInheritance(MapInheritanceType.ParentTable)]
     //    [Appearance("", AppearanceItemType.ViewItem, "Status != 'Project'", TargetItems="*", Enabled=false)]
     [NavigationItem("Finance")]
-    [DefaultProperty("NameAndCode")]
+//    [DefaultProperty("Name")]
     [VisibleInReports]
     public class fmCOrderExt : fmCOrder, fmIOrderExt, SyncISyncObject {
 
@@ -34,7 +34,6 @@ namespace IntecoAG.ERM.FM.Order {
             this.ComponentType = typeof(fmCOrderExt);
             this.CID = Guid.NewGuid();
             base.AfterConstruction();
-            this.Status = fmIOrderStatus.Project;
         }
 
         #region fmCOrderFinIndexStructureItem
@@ -80,8 +79,8 @@ namespace IntecoAG.ERM.FM.Order {
 
 
         #region ПОЛЯ КЛАССА
-        private fmIOrderStatus _Status;
         private Boolean _IsSyncRequired;
+        private DateTime _ProjectOrderPayDate;
 
         [Persistent("ManageDocCurrent")]
         private fmCOrderManageDoc _ManageDocCurrent;
@@ -92,25 +91,18 @@ namespace IntecoAG.ERM.FM.Order {
         #endregion
 
         #region СВОЙСТВА КЛАССА
-        public fmIOrderStatus Status {
-            get { return _Status; }
-            set {
-                SetPropertyValue<fmIOrderStatus>("Status", ref _Status, value);
-                ReadOnlyUpdate();
-            }
-        }
         [Action(Caption="Утвердить", AutoCommit = true, TargetObjectsCriteria="Status == 'Loaded'" )]
         public void Confirm() {
             if (Status == fmIOrderStatus.Loaded) {
                 if (IsClosed)
                     Status = fmIOrderStatus.FinClosed;
-                else
-                    Status = fmIOrderStatus.Accepted;
+//                else
+//                    Status = fmIOrderStatus.Accepted;
             }
         }
-        public override Boolean ReadOnlyGet() {
-            return Status != fmIOrderStatus.Project && Status != fmIOrderStatus.Loaded;
-        }
+//        public override Boolean ReadOnlyGet() {
+//            return Status != fmIOrderStatus.Project && Status != fmIOrderStatus.Loaded;
+//        }
 
         [PersistentAlias("_ManageDocCurrent")]
         public fmCOrderManageDoc ManageDocCurrent {
@@ -124,51 +116,52 @@ namespace IntecoAG.ERM.FM.Order {
         }
 
         public void ManageDocNew(fmCOrderManageDoc doc) {
-            if (Status == fmIOrderStatus.Project && _ManageDocProject == null)
-                Status = fmIOrderStatus.Opening;
-            else {
-                if (Status == fmIOrderStatus.Accepted && _ManageDocProject == null)
-                    Status = fmIOrderStatus.Changes;
-                else
-                    throw new InvalidOperationException("Invalid ManageDocProject and status: " + Status.ToString());
-            } 
-            _ManageDocProject = doc;
-            OnChanged("ManageDocProject", null, doc);
+//            if (Status == fmIOrderStatus.Project && _ManageDocProject == null)
+//                Status = fmIOrderStatus.FinOpened;
+//            else {
+////                if (Status == fmIOrderStatus.FinOpened && _ManageDocProject == null)
+////                    Status = fmIOrderStatus.Changes;
+////                else
+////                    throw new InvalidOperationException("Invalid ManageDocProject and status: " + Status.ToString());
+//            } 
+//            _ManageDocProject = doc;
+//            OnChanged("ManageDocProject", null, doc);
         }
 
         public void ManageDocCancel(fmCOrderManageDoc doc) {
-            if (_ManageDocProject == doc) {
-                if (Status == fmIOrderStatus.Opening || Status == fmIOrderStatus.Changes) {
-                    if (Status == fmIOrderStatus.Opening)
-                        Status = fmIOrderStatus.Project;
-                    if (Status == fmIOrderStatus.Changes)
-                        Status = fmIOrderStatus.Accepted;
-                    _ManageDocProject = null;
-                    OnChanged("ManageDocProject", doc, null);
-                } else
-                    throw new InvalidOperationException("Invalid status: " + Status.ToString());
-            } else
-                throw new InvalidOperationException("Invalid Doc ManageDocCurrent");
+            //if (_ManageDocProject == doc) {
+            //    if (Status == fmIOrderStatus.Opening || Status == fmIOrderStatus.Changes) {
+            //        if (Status == fmIOrderStatus.Opening)
+            //            Status = fmIOrderStatus.Project;
+            //        if (Status == fmIOrderStatus.Changes)
+            //            Status = fmIOrderStatus.Accepted;
+            //        _ManageDocProject = null;
+            //        OnChanged("ManageDocProject", doc, null);
+            //    } else
+            //        throw new InvalidOperationException("Invalid status: " + Status.ToString());
+            //} else
+            //    throw new InvalidOperationException("Invalid Doc ManageDocCurrent");
         }
 
         public void ManageDocComplete(fmCOrderManageDoc doc) {
-            if (_ManageDocProject == doc) {
-                if (Status == fmIOrderStatus.Opening || Status == fmIOrderStatus.Changes) {
-                     Status = fmIOrderStatus.Accepted;
-                     CopyFrom(doc);
-                     fmCOrderManageDoc old = _ManageDocCurrent;
-                     _ManageDocCurrent = doc;
-                     _ManageDocProject = null;
-                     OnChanged("ManageDocCurrent", old, doc);
-                     OnChanged("ManageDocProject", doc, null);
-                } else
-                    throw new InvalidOperationException("Invalid status: " + Status.ToString());
-            } else
-                throw new InvalidOperationException("Invalid Doc ManageDocCurrent");
+            //if (_ManageDocProject == doc) {
+            //    if (Status == fmIOrderStatus.Opening || Status == fmIOrderStatus.Changes) {
+            //         Status = fmIOrderStatus.Accepted;
+            //         CopyFrom(doc);
+            //         fmCOrderManageDoc old = _ManageDocCurrent;
+            //         _ManageDocCurrent = doc;
+            //         _ManageDocProject = null;
+            //         OnChanged("ManageDocCurrent", old, doc);
+            //         OnChanged("ManageDocProject", doc, null);
+            //    } else
+            //        throw new InvalidOperationException("Invalid status: " + Status.ToString());
+            //} else
+            //    throw new InvalidOperationException("Invalid Doc ManageDocCurrent");
         }
 
         [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
-        [Appearance("", AppearanceItemType.Action, "ManageDocProject != null", TargetItems = "New", Enabled = false)]
+//        [Appearance("", AppearanceItemType.Action, "ManageDocProject != null", TargetItems = "New", Enabled = false)]
+        [Appearance("", AppearanceItemType.Action, "", TargetItems = "New", Enabled = false)]
         [Aggregated]
         [Association("fmOrder-OrderManageDoc", typeof(fmCOrderManageDoc))]
         public XPCollection<fmCOrderManageDoc> ManageDocs {
@@ -198,7 +191,15 @@ namespace IntecoAG.ERM.FM.Order {
                 return col;
             }
         }
-        
+
+        public DateTime ProjectOrderPayDate {
+            get {
+                return _ProjectOrderPayDate;
+            }
+            set {
+                SetPropertyValue<DateTime>("ProjectOrderPayDate", ref _ProjectOrderPayDate, value);
+            }
+        }
         #endregion
 
 

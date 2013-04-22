@@ -27,6 +27,7 @@
             // ERMSyncIBSModule
             // 
             this.RequiredModuleTypes.Add(typeof(IntecoAG.ERM.Sync.ERMSyncModule));
+            this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.StateMachine.StateMachineModule));
 
         }
 

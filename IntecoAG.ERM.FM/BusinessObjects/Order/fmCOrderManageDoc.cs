@@ -197,9 +197,9 @@ namespace IntecoAG.ERM.FM.Order {
         }
 
         [Size(30)]
-        public String BuhAccount {
+        public String BuhAccountCode {
             get { return _BuhAccount; }
-            set { SetPropertyValue<String>("BuhAccount", ref _BuhAccount, value); }
+            set { SetPropertyValue<String>("BuhAccountCode", ref _BuhAccount, value); }
         }
 
         public csNDSRate AVTRate {
@@ -213,14 +213,14 @@ namespace IntecoAG.ERM.FM.Order {
             set { SetPropertyValue<Int32>("BuhIntNum", ref _BuhIntNum, value); }
         }
 
-        public Decimal KoeffKB {
+        public Decimal FixKoeff {
             get { return _KoeffKB; }
-            set { SetPropertyValue<Decimal>("KoeffKB", ref _KoeffKB, value); }
+            set { SetPropertyValue<Decimal>("FixKoeff", ref _KoeffKB, value); }
         }
 
-        public Decimal KoeffOZM {
+        public Decimal FixKoeffOZM {
             get { return _KoeffOZM; }
-            set { SetPropertyValue<Decimal>("KoeffOZM", ref _KoeffOZM, value); }
+            set { SetPropertyValue<Decimal>("FixKoeffOZM", ref _KoeffOZM, value); }
         }
 
         [DataSourceProperty("ManagerSource")]
@@ -492,5 +492,43 @@ namespace IntecoAG.ERM.FM.Order {
 
         #endregion
 
+
+
+        public fmIOrderOverheadType OverheadType {
+            get {
+                throw new NotImplementedException();
+            }
+            set {
+                throw new NotImplementedException();
+            }
+        }
+
+        public fmIOrderOverheadStandart OverheadStandart {
+            get {
+                throw new NotImplementedException();
+            }
+            set {
+                throw new NotImplementedException();
+            }
+        }
+
+        public fmIOrderOverheadValueType PlanOverheadType {
+            get {
+                throw new NotImplementedException();
+            }
+            set {
+                throw new NotImplementedException();
+            }
+        }
+
+
+        public fmIOrderOverheadValueType BuhOverheadType {
+            get {
+                throw new NotImplementedException();
+            }
+            set {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

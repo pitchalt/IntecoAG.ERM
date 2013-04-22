@@ -84,7 +84,6 @@
       <OwnMembers>
         <Member Name="AnalitycAccouterType" AllowEdit="False" />
         <Member Name="AnalitycAVT" AllowEdit="False" />
-        <Member Name="BuhAccount" AllowEdit="False" />
         <Member Name="Manager" Caption="Ответственный" />
         <Member Name="Subject" Caption="Тема" AllowEdit="False" />
       </OwnMembers>
@@ -92,7 +91,6 @@
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderExt">
       <OwnMembers>
         <Member Name="ManageDocs" Caption="Заказ-Наряды" />
-        <Member Name="Status" Caption="Статус" AllowEdit="False" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderManageDoc">
@@ -1450,40 +1448,62 @@
           <TabbedGroup Id="Tabs" Index="1" IsNewNode="True">
             <LayoutGroup Id="Common" Index="0" Caption="Общие" IsNewNode="True">
               <LayoutItem Id="NameFull" ViewItem="NameFull" Index="0" IsNewNode="True" />
-              <LayoutGroup Id="TwoColumn" Index="1" Direction="Horizontal" IsNewNode="True">
+              <LayoutGroup Id="TimeProperty" Index="1" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="DateG" Index="1" RelativeSize="70" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="0" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutGroup Id="DateFlags" Index="1" IsNewNode="True">
+                    <LayoutItem Id="IsPeriodUnlimited" ViewItem="IsPeriodUnlimited" Index="1" CaptionLocation="Default" IsNewNode="True" />
+                    <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="3" RelativeSize="20" CaptionLocation="Default" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="2" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="SpaceG" Index="2" RelativeSize="30" IsNewNode="True">
+                  <LayoutItem Id="ProjectOrderPayDate" ViewItem="ProjectOrderPayDate" CaptionLocation="Top" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="Managers" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Manager" ViewItem="Manager" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="ManagerPlanDepartment" ViewItem="ManagerPlanDepartment" Index="0" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="TwoColumn" Index="3" Direction="Horizontal" IsNewNode="True">
                 <LayoutGroup Id="Col_1" Index="0" IsNewNode="True">
-                  <LayoutItem Id="Manager" ViewItem="Manager" Index="0" IsNewNode="True" />
                   <LayoutItem Id="AnalitycWorkType" ViewItem="AnalitycWorkType" Index="1" IsNewNode="True" />
                   <LayoutItem Id="AnalitycFinanceSource" ViewItem="AnalitycFinanceSource" Index="2" IsNewNode="True" />
                   <LayoutItem Id="AnalitycOrderSource" ViewItem="AnalitycOrderSource" Index="3" IsNewNode="True" />
                   <LayoutItem Id="AnalitycFedProg" ViewItem="AnalitycFedProg" Index="4" IsNewNode="True" />
-                  <LayoutItem Id="AnalitycOKVED" ViewItem="AnalitycOKVED" IsNewNode="True" />
                 </LayoutGroup>
                 <LayoutGroup Id="Col_2" Index="1" IsNewNode="True">
-                  <LayoutItem Id="ManagerPlanDepartment" ViewItem="ManagerPlanDepartment" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="AnalitycMilitary" ViewItem="AnalitycMilitary" Index="1" IsNewNode="True" />
-                  <LayoutItem Id="AnalitycAccounterType" ViewItem="AnalitycAccouterType" Index="2" IsNewNode="True" />
-                  <LayoutItem Id="AnalitycAVT" ViewItem="AnalitycAVT" Index="3" IsNewNode="True" />
-                  <LayoutItem Id="AVTRate" ViewItem="AVTRate" Index="4" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycMilitary" ViewItem="AnalitycMilitary" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycOKVED" ViewItem="AnalitycOKVED" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="AnaliticBigCustomer" ViewItem="AnalitycBigCustomer" Index="2" IsNewNode="True" />
+                  <LayoutItem Id="AnaliticRegion" ViewItem="AnalitycRegion" IsNewNode="True" />
                 </LayoutGroup>
               </LayoutGroup>
-              <LayoutGroup Id="gfmCAnalyticBase_col2" Index="2" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="1" RelativeSize="40" IsNewNode="True" />
-                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="2" RelativeSize="40" IsNewNode="True" />
-                <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="3" RelativeSize="20" IsNewNode="True" />
+              <LayoutGroup Id="Overheads" Index="4" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="OverheadTypeG" Index="0" RelativeSize="50" IsNewNode="True">
+                  <LayoutItem Id="OverheadType" Index="0" ViewItem="OverheadType" IsNewNode="True" />
+                  <LayoutItem Id="OverheadStandart" ViewItem="OverheadStandart" Index="1" CaptionLocation="Default" RelativeSize="50" MaxSize="300, 0" MinSize="50, 0" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="PlanOverheadType" Index="1" RelativeSize="20" CaptionLocation="Top" ViewItem="PlanOverheadType" IsNewNode="True" />
+                <LayoutGroup Id="KoeffG" RelativeSize="30" IsNewNode="True">
+                  <LayoutItem Id="FixKoeff" Index="0" RelativeSize="0" CaptionLocation="Default" ViewItem="FixKoeff" IsNewNode="True" />
+                  <LayoutItem Id="FixKoeffOZM" RelativeSize="0" CaptionLocation="Default" Index="1" ViewItem="FixKoeffOZM" IsNewNode="True" />
+                </LayoutGroup>
               </LayoutGroup>
-              <LayoutGroup Id="BuhAnal" Index="3" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="BuhAccount" ViewItem="BuhAccount" CaptionLocation="Top" Index="0" IsNewNode="True" />
-                <LayoutItem Id="KoeffKB" ViewItem="KoeffKB" CaptionLocation="Top" Index="1" IsNewNode="True" />
-                <LayoutItem Id="KoeffOZM" ViewItem="KoeffOZM" Index="2" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutGroup Id="BuhAnal" Index="5" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="AnalitycAccounterType" ViewItem="AnalitycAccouterType" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="BuhAccountCode" CaptionLocation="Top" Index="1" ViewItem="BuhAccountCode" IsNewNode="True" />
+                <LayoutItem Id="BuhOverheadType" ViewItem="BuhOverheadType" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="AnalitycAVT" ViewItem="AnalitycAVT" Index="3" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutItem Id="SourceParty" ViewItem="SourceParty" Index="4" IsNewNode="True" />
-              <LayoutGroup Id="Source" Index="5" Direction="Horizontal" IsNewNode="True">
+              <LayoutItem Id="SourceParty" ViewItem="SourceParty" Index="6" IsNewNode="True" />
+              <LayoutGroup Id="Source" Index="7" Direction="Horizontal" IsNewNode="True">
                 <LayoutItem Id="SourceDeal" ViewItem="SourceDeal" Index="5" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="SourceOther" ViewItem="SourceOther" Index="6" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="SourceName" ViewItem="SourceName" Index="7" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="SourceType" ViewItem="SourceType" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="SizeableEditors" Index="6" ShowCaption="False" IsNewNode="True">
+              <LayoutGroup Id="SizeableEditors" Index="8" ShowCaption="False" IsNewNode="True">
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
             </LayoutGroup>
@@ -2902,9 +2922,6 @@
         <ColumnInfo Id="AnalitycOrderSource" Index="-1" />
         <ColumnInfo Id="AnalitycRegion" Index="-1" />
         <ColumnInfo Id="AVTRate" Index="-1" />
-        <ColumnInfo Id="BuhAccount" Index="-1" />
-        <ColumnInfo Id="KoeffKB" Index="-1" />
-        <ColumnInfo Id="KoeffOZM" Index="-1" />
         <ColumnInfo Id="NameAndCode" Index="-1" />
         <ColumnInfo Id="SourceDeal" Index="-1" />
         <ColumnInfo Id="SourceName" Index="-1" />

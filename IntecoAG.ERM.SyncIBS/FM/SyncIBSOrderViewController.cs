@@ -38,8 +38,8 @@ namespace IntecoAG.ERM.SyncIBS.FM {
                     fmCOrderExt order = orders.First(item => item.Code == short_order.Code);
                     if (order == null) continue;
                     if (!short_order.IsClosed) {
-                        if (order.Status == fmIOrderStatus.Project)
-                            order.Status = fmIOrderStatus.Accepted;
+                        if (order.Status == fmIOrderStatus.Project || order.Status == fmIOrderStatus.FinOpened)
+                            order.Status = fmIOrderStatus.BuhOpened;
                     }
                     else {
                         order.Status = fmIOrderStatus.BuhClosed;

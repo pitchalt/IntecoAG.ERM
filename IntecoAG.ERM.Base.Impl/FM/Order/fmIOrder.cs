@@ -16,8 +16,27 @@ using IntecoAG.ERM.HRM.Organization;
 //
 namespace IntecoAG.ERM.FM.Order {
 
+    public enum fmIOrderStatus {
+        Loaded = 0,
+        Project = 1,
+        FinOpened = 2,
+        BuhOpened = 4,
+//        Opening = 2,
+//        Changes = 3,
+//        Accepted = 4,
+        FinClosed = 5,
+        BuhClosed = 6,
+
+        Deleting = 10
+    };
+
+    public enum fmIOrderOverheadType { 
+        Standart = 0,
+        Individual = 2
+    }
+
     [DC.DomainComponent]
-    public interface fmIOrder: gfmIAnalytic {
+    public interface fmIOrder: gfmIAnalytic, fmIOrderOverhead {
         hrmIStaff Manager { get; set;  }
         hrmIStaff ManagerPlanDepartment { get; set; }
         fmISubject Subject { get; }
@@ -28,12 +47,14 @@ namespace IntecoAG.ERM.FM.Order {
         String SourceName { get; }
 
         Int32 BuhIntNum { get; set; }
-        String BuhAccount { get; set; }
+        String BuhAccountCode { get; set; }
         fmСOrderAnalitycAccouterType AnalitycAccouterType { get; set; }
         fmСOrderAnalitycAVT AnalitycAVT { get; set; }
         csNDSRate AVTRate { get; set; }
-        Decimal KoeffKB { get; set; }
-        Decimal KoeffOZM { get; set; }
+        fmIOrderOverheadType OverheadType { get; set; }
+        fmIOrderOverheadStandart OverheadStandart {get; set;}
+//        Decimal FixKoeff { get; set; }
+//        Decimal FixKoeffOZM { get; set; }
 
         fmСOrderAnalitycWorkType AnalitycWorkType { get; set; }
         fmСOrderAnalitycOrderSource AnalitycOrderSource { get; set; }
@@ -55,11 +76,11 @@ namespace IntecoAG.ERM.FM.Order {
 //            to.Subject = from.Subject as fmCSubjectExt;
             to.DateBegin = from.DateBegin;
             to.DateEnd = from.DateEnd;
-            to.BuhAccount = from.BuhAccount;
+            to.BuhAccountCode = from.BuhAccountCode;
             to.BuhIntNum = from.BuhIntNum;
             to.AVTRate = from.AVTRate;
-            to.KoeffKB = from.KoeffKB;
-            to.KoeffOZM = from.KoeffOZM;
+            to.FixKoeff = from.FixKoeff;
+            to.FixKoeffOZM = from.FixKoeffOZM;
             to.Manager = from.Manager;
             to.ManagerPlanDepartment = from.ManagerPlanDepartment;
             to.SourceParty = from.SourceParty;

@@ -19,7 +19,7 @@ namespace IntecoAG.ERM.FM.Subject {
     [Persistent("fmSubjectGroup")]
     [DefaultProperty("Code")]
     [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
-    public abstract class fmCSubjectGroup : csCComponent {
+    public class fmCSubjectGroup : csCComponent {
         public fmCSubjectGroup(Session session)
             : base(session) {
         }

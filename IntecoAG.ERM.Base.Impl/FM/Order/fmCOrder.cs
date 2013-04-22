@@ -14,11 +14,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 //
-using DevExpress.Xpo;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.StateMachine;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
 //
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Finance;
@@ -36,13 +39,22 @@ namespace IntecoAG.ERM.FM.Order
     //[DefaultClassOptions]
     [Persistent("fmOrder")]
     [FriendlyKeyProperty("Code")]
-    [DefaultProperty("NameAndCode")]
+    [DefaultProperty("Name")]
     [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "Code")]
-    public abstract class fmCOrder : gfmCAnalyticBase, fmIOrder
+    [Appearance("", AppearanceItemType.ViewItem, "", Enabled = false, TargetItems = "IsClosed")]
+    [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
+    public abstract class fmCOrder : gfmCAnalyticBase, fmIOrder, IStateMachineProvider
     {
         public fmCOrder(Session ses) : base(ses) { }
 
+        public override void AfterConstruction() {
+            base.AfterConstruction();
+            this.OverheadType = fmIOrderOverheadType.Standart;
+            this.Status = fmIOrderStatus.Project;
+        }
+
         #region ПОЛЯ КЛАССА
+        private fmSubjectSourceType _SourceType;
         private fmCSubject _Subject;
         private hrmStaff _Manager;
         private hrmStaff _ManagerPlanDepartment;
@@ -56,11 +68,26 @@ namespace IntecoAG.ERM.FM.Order
         private Int32 _BuhIntNum;
         private Decimal _KoeffKB;
         private Decimal _KoeffOZM;
+        private fmIOrderStatus _Status;
         #endregion
 
         #region СВОЙСТВА КЛАССА
 
-        //[Browsable(false)]
+        public fmIOrderStatus Status {
+            get { return _Status; }
+            set {
+                SetPropertyValue<fmIOrderStatus>("Status", ref _Status, value);
+                if (!IsLoading) {
+                    if (value == fmIOrderStatus.BuhClosed)
+                        IsClosed = true;
+                    else
+                        IsClosed = false;
+                    ReadOnlyUpdate();
+                }
+            }
+        }
+
+        [VisibleInListView(false)]
         public string NameAndCode {
             get {
                 if (Name != null && Name.Trim() != "")
@@ -110,12 +137,14 @@ namespace IntecoAG.ERM.FM.Order
         //}
 
         [DataSourceProperty("ManagerSource")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public hrmStaff Manager {
             get { return _Manager; }
             set {
                 SetPropertyValue<hrmStaff>("Manager", ref _Manager, value);
             }
         }
+
         [Browsable(false)]
         public XPCollection<hrmStaff> ManagerSource {
             get { return fmCSettingsFinance.GetInstance(this.Session).ManagerGroupOfOrderStaffs; }
@@ -132,6 +161,7 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         [DataSourceProperty("ManagerPlanDepartmentSource")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public hrmStaff ManagerPlanDepartment {
             get { return _ManagerPlanDepartment; }
             set {
@@ -153,6 +183,17 @@ namespace IntecoAG.ERM.FM.Order
                     OnChanged("Manager", old, Manager);
             }
         }
+//
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        public fmSubjectSourceType SourceType {
+            get {
+                return _SourceType;
+            }
+            set {
+                SetPropertyValue<fmSubjectSourceType>("SourceType", ref _SourceType, value);
+            }
+        }
+
         public crmContractDeal SourceDeal {
             get { return _SourceDeal; }
             set {
@@ -165,6 +206,7 @@ namespace IntecoAG.ERM.FM.Order
             }
         }
 
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && SourceType == 'SOURCE_TYPE_OTHER'")]
         public String SourceOther {
             get { return _SourceOther; }
             set {
@@ -178,7 +220,8 @@ namespace IntecoAG.ERM.FM.Order
         public void SourceNameUpdate() {
             if (SourceDeal != null) {
                 _SourceName = SourceDeal.Name;
-            } else {
+            }
+            else {
                 _SourceName = _SourceOther;
             }
         }
@@ -191,6 +234,44 @@ namespace IntecoAG.ERM.FM.Order
                 return _SourceName;
             }
         }
+        //public crmContractDeal SourceDeal {
+        //    get { return _SourceDeal; }
+        //    set {
+        //        SetPropertyValue<crmContractDeal>("SourceDeal", ref _SourceDeal, value);
+        //        if (!IsLoading) {
+        //            if (value != null)
+        //                SourceParty = value.Customer;
+        //            SourceNameUpdate();
+        //        }
+        //    }
+        //}
+
+        //public String SourceOther {
+        //    get { return _SourceOther; }
+        //    set {
+        //        SetPropertyValue<String>("SourceOther", ref _SourceOther, value);
+        //        if (!IsLoading) {
+        //            SourceNameUpdate();
+        //        }
+        //    }
+        //}
+
+        //public void SourceNameUpdate() {
+        //    if (SourceDeal != null) {
+        //        _SourceName = SourceDeal.Name;
+        //    } else {
+        //        _SourceName = _SourceOther;
+        //    }
+        //}
+
+        //[PersistentAlias("_SourceName")]
+        //public String SourceName {
+        //    get {
+        //        if (_SourceName == null)
+        //            SourceNameUpdate();
+        //        return _SourceName;
+        //    }
+        //}
 
         //[RuleRequiredField]
         public crmCParty SourceParty {
@@ -207,9 +288,9 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         [Size(30)]
-        public String BuhAccount {
+        public String BuhAccountCode {
             get { return _BuhAccount; }
-            set { SetPropertyValue<String>("BuhAccount", ref _BuhAccount, value); }
+            set { SetPropertyValue<String>("BuhAccountCode", ref _BuhAccount, value); }
         }
 
         public csNDSRate AVTRate {
@@ -224,14 +305,11 @@ namespace IntecoAG.ERM.FM.Order
             set { SetPropertyValue<Int32>("BuhIntNum", ref _BuhIntNum, value); }
         }
 
-        public Decimal KoeffKB {
-            get { return _KoeffKB; }
-            set { SetPropertyValue<Decimal>("KoeffKB", ref _KoeffKB, value); }
-        }
-
-        public Decimal KoeffOZM {
-            get { return _KoeffOZM; }
-            set { SetPropertyValue<Decimal>("KoeffOZM", ref _KoeffOZM, value); }
+        private fmСOrderAnalitycCoperatingType _AnalitycCoperatingType;
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        public fmСOrderAnalitycCoperatingType AnalitycCoperatingType {
+            get { return _AnalitycCoperatingType; }
+            set { SetPropertyValue<fmСOrderAnalitycCoperatingType>("AnalitycCoperatingType", ref _AnalitycCoperatingType, value); }
         }
 
         private fmСOrderAnalitycAccouterType _AnalitycAccouterType;
@@ -248,7 +326,7 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycWorkType _AnalitycWorkType;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmСOrderAnalitycWorkType AnalitycWorkType {
             get { return _AnalitycWorkType; }
             set { SetPropertyValue<fmСOrderAnalitycWorkType>("AnalitycWorkType", ref _AnalitycWorkType, value); }
@@ -256,7 +334,7 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycOrderSource _AnalitycOrderSource;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmСOrderAnalitycOrderSource AnalitycOrderSource {
             get { return _AnalitycOrderSource; }
             set { SetPropertyValue<fmСOrderAnalitycOrderSource>("AnalitycOrderSource", ref _AnalitycOrderSource, value); }
@@ -264,7 +342,7 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycFinanceSource _AnalitycFinanceSource;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmСOrderAnalitycFinanceSource AnalitycFinanceSource {
             get { return _AnalitycFinanceSource; }
             set { SetPropertyValue<fmСOrderAnalitycFinanceSource>("AnalitycFinanceSource", ref _AnalitycFinanceSource, value); }
@@ -272,12 +350,13 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycMilitary _AnalitycMilitary;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "!IsClosed")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmСOrderAnalitycMilitary AnalitycMilitary {
             get { return _AnalitycMilitary; }
             set { SetPropertyValue<fmСOrderAnalitycMilitary>("AnalitycMilitary", ref _AnalitycMilitary, value); }
         }
         private fmСOrderAnalitycFedProg _AnalitycFedProg;
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmСOrderAnalitycFedProg AnalitycFedProg {
             get { return _AnalitycFedProg; }
             set { SetPropertyValue<fmСOrderAnalitycFedProg>("AnalitycFedProg", ref _AnalitycFedProg, value); }
@@ -288,11 +367,13 @@ namespace IntecoAG.ERM.FM.Order
             set { SetPropertyValue<fmСOrderAnalitycOKVED>("AnalitycOKVED", ref _AnalitycOKVED, value); }
         }
         private fmСOrderAnalitycRegion _AnalitycRegion;
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmСOrderAnalitycRegion AnalitycRegion {
             get { return _AnalitycRegion; }
             set { SetPropertyValue<fmСOrderAnalitycRegion>("AnalitycRegion", ref _AnalitycRegion, value); }
         }
         private fmСOrderAnalitycBigCustomer _AnalitycBigCustomer;
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmСOrderAnalitycBigCustomer AnalitycBigCustomer {
             get { return _AnalitycBigCustomer; }
             set { SetPropertyValue<fmСOrderAnalitycBigCustomer>("AnalitycBigCustomer", ref _AnalitycBigCustomer, value); }
@@ -307,6 +388,170 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         #endregion
+
+        private fmIOrderOverheadType _OverheadType;
+        private fmCOrderOverheadIndividual _OverheadIndividual;
+        private fmCOrderOverheadStandart _OverheadStandart;
+
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        public fmIOrderOverheadType OverheadType {
+            get {
+                return _OverheadType;
+            }
+            set {
+                SetPropertyValue("OverheadType", ref _OverheadType, value);
+                if (!IsLoading) {
+                    fmCOrderOverheadIndividual oldind = OverheadIndividual;
+                    if (value == fmIOrderOverheadType.Standart) {
+                        OverheadIndividual = null;
+                        if (oldind != null)
+                            oldind.Delete();
+                    }
+                    if (value == fmIOrderOverheadType.Individual) {
+                        OverheadStandart = null;
+                        if (oldind == null)
+                            OverheadIndividual = new fmCOrderOverheadIndividual(Session);
+                    }
+                }
+            }
+        }
+
+        [Browsable(false)]
+        [Aggregated]
+        [RuleRequiredField(TargetCriteria = "OverheadType == 'OverheadIndividual'")]
+        public fmCOrderOverheadIndividual OverheadIndividual {
+            get {
+                return _OverheadIndividual;
+            }
+            set {
+                if (!IsLoading) {
+                    if (OverheadType == fmIOrderOverheadType.Individual && value != null ||
+                        OverheadType == fmIOrderOverheadType.Standart && value == null) {
+                        SetPropertyValue<fmCOrderOverheadIndividual>("OverheadIndividual", ref _OverheadIndividual, value);
+                    }
+                    else
+                        throw new InvalidOperationException("Overhead Type not is Individual");
+                }
+            }
+        }
+
+        [NonPersistent]
+        public fmCOrderOverhead Overhead {
+            get {
+                if (OverheadType == fmIOrderOverheadType.Individual)
+                    return OverheadIndividual;
+                if (OverheadType == fmIOrderOverheadType.Standart)
+                    return OverheadStandart;
+                return null;
+            }
+        }
+
+        fmIOrderOverheadStandart fmIOrder.OverheadStandart {
+            get {
+                return OverheadStandart;
+            }
+            set {
+                OverheadStandart = (fmCOrderOverheadStandart) value;
+            }
+        }
+
+        [ExplicitLoading(1)]
+        [RuleRequiredField(TargetCriteria = "OverheadType == 'OverheadStandart'")]
+        public fmCOrderOverheadStandart OverheadStandart {
+            get {
+                return _OverheadStandart;
+            }
+            set {
+                if (!IsLoading) {
+                    if (OverheadType == fmIOrderOverheadType.Standart && value != null ||
+                        OverheadType == fmIOrderOverheadType.Individual && value == null) {
+                        SetPropertyValue<fmCOrderOverheadStandart>("OverheadStandart", ref _OverheadStandart, value);
+                    }
+                    else 
+                        throw new InvalidOperationException("Overhead Type not is Standart");
+                }
+            }
+        }
+
+        [NonPersistent]
+        [RuleRequiredField(TargetCriteria = "OverheadType == 'OverheadIndividual'")]
+        public fmIOrderOverheadValueType PlanOverheadType {
+            get { return Overhead == null ? 0 : Overhead.PlanOverheadType; }
+            set {
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    fmIOrderOverheadValueType old = Overhead.PlanOverheadType;
+                    Overhead.PlanOverheadType = value;
+                    OnChanged("PlanOverheadType", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual");
+            }
+        }
+
+        [NonPersistent]
+        [RuleRequiredField(TargetCriteria = "OverheadType == 'OverheadIndividual'")]
+        public fmIOrderOverheadValueType BuhOverheadType {
+            get { return Overhead == null ? 0 : Overhead.BuhOverheadType; }
+            set {
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    fmIOrderOverheadValueType old = Overhead.BuhOverheadType;
+                    Overhead.BuhOverheadType = value;
+                    OnChanged("BuhOverheadType", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual or Overhead is null");
+            }
+        }
+
+        [Browsable(false)]
+        public Decimal KoeffKB {
+            get { return _KoeffKB; }
+            set { SetPropertyValue<Decimal>("KoeffKB", ref _KoeffKB, value); }
+        }
+
+        [Browsable(false)]
+        public Decimal KoeffOZM {
+            get { return _KoeffOZM; }
+            set { SetPropertyValue<Decimal>("KoeffOZM", ref _KoeffOZM, value); }
+        }
+
+        [NonPersistent]
+        [RuleRequiredField(TargetCriteria = "OverheadType == 'OverheadIndividual'")]
+        public Decimal FixKoeff {
+            get { return Overhead == null ? 0 : Overhead.FixKoeff; }
+            set {
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    Decimal old = Overhead.FixKoeff;
+                    Overhead.FixKoeff = value;
+                    OnChanged("FixKoeff", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual or Overhead is null");
+            }
+        }
+
+        [NonPersistent]
+        [RuleRequiredField(TargetCriteria = "OverheadType == 'OverheadIndividual'")]
+        public Decimal FixKoeffOZM {
+            get { return Overhead == null ? 0 : Overhead.FixKoeffOZM; }
+            set {
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    Decimal old = Overhead.FixKoeffOZM;
+                    Overhead.FixKoeffOZM = value;
+                    OnChanged("FixKoeffOZM", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual or Overhead is null");
+            }
+        }
+
+        public IList<IStateMachine> GetStateMachines() {
+            List<IStateMachine> result = new List<IStateMachine>();
+            result.Add(new fmCOrderSM());
+            return result;
+        }
+
+
     }
 
 }

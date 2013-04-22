@@ -12,16 +12,6 @@ using IntecoAG.ERM.FM.Order;
 //
 namespace IntecoAG.ERM.FM.Order {
 
-    public enum fmIOrderStatus {
-        Project = 1,
-        Opening = 2,
-        Changes = 3,
-        Accepted = 4,
-        FinClosed = 5,
-        BuhClosed = 6,
-        Loaded = 7
-    };
-
     [DC.DomainComponent]
     public interface fmIOrderExt : fmIOrder, fmIFinIndexStructure {
         fmIOrderStatus Status { get; }

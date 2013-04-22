@@ -468,10 +468,11 @@
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderExt" Caption="Заказ">
       <OwnMembers>
         <Member Name="FinIndexes" Caption="Структура Цены" />
+        <Member Name="IsSyncRequired" Caption="Треб.Синхр." />
         <Member Name="ManageDocCurrent" Caption="Действующий Заказ-Наряд" />
         <Member Name="ManageDocProject" Caption="Проект Заказ-Наряда" />
         <Member Name="ManageDocs" Caption="Заказ-Наряды" />
-        <Member Name="Status" Caption="Статус" />
+        <Member Name="ProjectOrderPayDate" Caption="Разреш.Оплата" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderManageDoc" Caption="Заказ-Наряд">
@@ -831,10 +832,7 @@
         <LocalizationItem Name="Rejected" Value="Отменен" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderStatus">
-        <LocalizationItem Name="Accepted" Value="Действует" />
-        <LocalizationItem Name="Changes" Value="Изменение" />
         <LocalizationItem Name="FinClosed" Value="Закрыт Плановым" />
-        <LocalizationItem Name="Opening" Value="Открытие" />
         <LocalizationItem Name="Project" Value="Проект" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.PaymentRequest.FinRequestKind">

@@ -671,26 +671,37 @@
         <Member Name="ManagerGroupOfSubject" Caption="Менеджеры тем" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.Order.fmCOrder" Caption="Заказ">
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrder" Caption="Заказ" ObjectCaptionFormat="({0:Code}) {0:Name}">
       <OwnMembers>
-        <Member Name="AnalitycAccouterType" Caption="Тип Бухгалтерский " />
+        <Member Name="AnalitycAccouterType" Caption="Бухг.Тип" />
         <Member Name="AnalitycAVT" Caption="Режим НДС" />
-        <Member Name="AnalitycFedProg" Caption="Фед. Программа" />
-        <Member Name="AnalitycFinanceSource" Caption="Источник финансирования" />
-        <Member Name="AnalitycMilitary" Caption="Военный" />
+        <Member Name="AnalitycBigCustomer" Caption="Ген.Заказчик" />
+        <Member Name="AnalitycCoperatingType" Caption="ТипИсполнителя" />
+        <Member Name="AnalitycFedProg" Caption="Фин. Программа" />
+        <Member Name="AnalitycFinanceSource" Caption="НазначениеРабот" />
+        <Member Name="AnalitycMilitary" Caption="ВидПродукции" />
         <Member Name="AnalitycOKVED" Caption="Код ОКВЭД" />
-        <Member Name="AnalitycOrderSource" Caption="Источник заказа" />
-        <Member Name="AnalitycWorkType" Caption="Тип работы" />
+        <Member Name="AnalitycOrderSource" Caption="Гоз.Заказ" />
+        <Member Name="AnalitycRegion" Caption="Регион" />
+        <Member Name="AnalitycWorkType" Caption="ВидРабот" />
         <Member Name="AVTRate" Caption="Ставка НДС" />
-        <Member Name="BuhAccount" Caption="СубСчет" />
-        <Member Name="KoeffKB" Caption="КоэфНакКБ" />
-        <Member Name="KoeffOZM" Caption="КоэфНакОЗМ" />
+        <Member Name="BuhAccountCode" Caption="Субсчет" />
+        <Member Name="BuhOverheadType" Caption="Накл.Бухг.Режим" />
+        <Member Name="FixKoeff" Caption="КоэфКБ" />
+        <Member Name="FixKoeffOZM" Caption="КоэфОЗМ" />
         <Member Name="Manager" Caption="Ведущий" />
-        <Member Name="ManagerPlanDepartment" Caption="Ответственный Плановый" />
+        <Member Name="ManagerPlanDepartment" Caption="Экономист" />
+        <Member Name="NameAndCode" Caption="КодИНаименование" />
+        <Member Name="Overhead" Caption="Накладные" />
+        <Member Name="OverheadStandart" Caption="Накл.Стандарт." />
+        <Member Name="OverheadType" Caption="Накл.Способ" />
+        <Member Name="PlanOverheadType" Caption="Накл.План.Режим" />
         <Member Name="SourceDeal" Caption="Основание Договор" />
         <Member Name="SourceName" Caption="Основание" />
         <Member Name="SourceOther" Caption="Основание Прочие" />
-        <Member Name="SourceParty" Caption="Заказчик" />
+        <Member Name="SourceParty" Caption="Юр.Заказчик" />
+        <Member Name="SourceType" Caption="ТипОснования" />
+        <Member Name="Status" Caption="Статус" />
         <Member Name="Subject" Caption="Тема" />
       </OwnMembers>
     </Class>
@@ -744,7 +755,7 @@
       <OwnMembers>
         <Member Name="AnalitycAVT" Caption="Режим НДС" />
         <Member Name="AnalitycBigCustomer" Caption="Ген.Заказчик" />
-        <Member Name="AnalitycCoperatingType" Caption="Генеральный/Соисполнитель" />
+        <Member Name="AnalitycCoperatingType" Caption="ТипИсполнителя" />
         <Member Name="AnalitycFedProg" Caption="Фин.Программа" />
         <Member Name="AnalitycFinanceSource" Caption="Назнач.Работ" />
         <Member Name="AnalitycMilitary" Caption="ВидПродукции" />
@@ -783,7 +794,7 @@
         <Member Name="NameFull" Caption="Наимен.Полное" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.GFM.gfmCAnalyticBase" Caption="Базовая Фин.Аналитика">
+    <Class Name="IntecoAG.ERM.GFM.gfmCAnalyticBase" Caption="Базовая Фин.Аналитика" ObjectCaptionFormat="({0:Code}) {0:Name}">
       <OwnMembers>
         <Member Name="Code" Caption="Код" />
         <Member Name="DateBegin" Caption="ДатаС" />

@@ -314,10 +314,10 @@
     <Compile Include="FM\Docs\csCDocRCB.cs" />
     <Compile Include="FM\fmSettingsFinance.cs" />
     <Compile Include="FM\Order\fmCOrderAnalityc.cs" />
+    <Compile Include="FM\Order\fmCOrderSM.cs" />
     <Compile Include="FM\Order\fmIOrder.cs" />
-    <Compile Include="FM\Order\fmIOrderOverheadStandart.cs" />
-    <Compile Include="FM\Order\fmCOrderOverheadStandart.cs" />
-    <Compile Include="FM\Order\fmIOrderOverheadStandartValue.cs" />
+    <Compile Include="FM\Order\fmIOrderOverhead.cs" />
+    <Compile Include="FM\Order\fmCOrderOverhead.cs" />
     <Compile Include="FM\Subject\fmCSubjectGroup.cs" />
     <Compile Include="FM\Subject\fmCSubjectSM.cs" />
     <Compile Include="FM\Subject\fmCDirectionSM.cs" />
