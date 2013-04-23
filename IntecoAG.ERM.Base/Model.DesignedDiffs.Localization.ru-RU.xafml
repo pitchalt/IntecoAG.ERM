@@ -713,6 +713,22 @@
         <Member Name="SortOrder" Caption="Сортировка" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderOverhead" Caption="Зак.Накладные">
+      <OwnMembers>
+        <Member Name="BuhOverheadType" Caption="Бух.РежимНакл." />
+        <Member Name="FixKoeff" Caption="Фикс.ПроцентКБ" />
+        <Member Name="FixKoeffOZM" Caption="Фикс.ПроцентОЗМ" />
+        <Member Name="PlanOverheadType" Caption="План.РежимНакл." />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderOverheadIndividual" Caption="Зак.Накл.Индивидуальные" />
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderOverheadStandart" Caption="Зак.Накл.Стандарт">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Description" Caption="Описание" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmIOrder" Caption="Заказ" />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycAccouterType" Caption="Тип Бухгалтерский " />
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycAVT" Caption="Режим НДС" />
@@ -955,6 +971,25 @@
         <LocalizationItem Name="VERSION_NEW" Value="Новая" />
         <LocalizationItem Name="VERSION_OLD" Value="Старая" />
         <LocalizationItem Name="VERSION_PROJECT" Value="Проект" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderOverheadType">
+        <LocalizationItem Name="Individual" Value="Индивидуальный" />
+        <LocalizationItem Name="Standart" Value="Стандартный" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderOverheadValueType">
+        <LocalizationItem Name="FIX_NPO" Value="Фикс.КБ_ОЗМ" />
+        <LocalizationItem Name="FIX_SINGLE" Value="Фиксированные" />
+        <LocalizationItem Name="NO_OVERHEAD" Value="БезНакладный" />
+        <LocalizationItem Name="VARIABLE" Value="Переменные" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderStatus">
+        <LocalizationItem Name="BuhClosed" Value="Закрыт" />
+        <LocalizationItem Name="BuhOpened" Value="Открыт" />
+        <LocalizationItem Name="Deleting" Value="Удалить" />
+        <LocalizationItem Name="FinClosed" Value="ЗакрытПО" />
+        <LocalizationItem Name="FinOpened" Value="ОткрытПО" />
+        <LocalizationItem Name="Loaded" Value="Загружен" />
+        <LocalizationItem Name="Project" Value="Проект" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycMilitaryProductType">
         <LocalizationItem Name="PRODUCT_CIVIL" Value="ГП" />

@@ -31,7 +31,7 @@ namespace IntecoAG.ERM.FM.Order {
     };
 
     public enum fmIOrderOverheadType { 
-        Standart = 0,
+        Standart = 1,
         Individual = 2
     }
 

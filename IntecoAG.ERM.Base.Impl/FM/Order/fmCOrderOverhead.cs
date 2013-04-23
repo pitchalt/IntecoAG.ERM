@@ -42,6 +42,7 @@ namespace IntecoAG.ERM.FM.Order {
     }
 
     [MapInheritance(MapInheritanceType.ParentTable)]
+    [FriendlyKeyProperty("Code")]
     public class fmCOrderOverheadStandart : fmCOrderOverhead, fmIOrderOverheadStandart { 
         public fmCOrderOverheadStandart(Session session): base(session) { 
 

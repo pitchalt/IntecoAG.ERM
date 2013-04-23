@@ -201,6 +201,18 @@
         <Member Name="ManagerGroupOfSignPlanDepartment" DataSourcePropertyIsNullCriteria="" DataSourceCriteria="" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrder">
+      <OwnMembers>
+        <Member Name="FixKoeff" EditMask="P4" />
+        <Member Name="FixKoeffOZM" EditMask="P4" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderOverhead">
+      <OwnMembers>
+        <Member Name="FixKoeff" DisplayFormat="P4" EditMask="P4" />
+        <Member Name="FixKoeffOZM" DisplayFormat="P4" EditMask="P4" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycBigCustomer" Caption="fmСOrderAnalitycBigCustomer" />
     <Class Name="IntecoAG.ERM.FM.Subject.fmCSubject">
       <OwnMembers>
@@ -1969,6 +1981,48 @@
       <Columns>
         <ColumnInfo Id="Name" PropertyName="Name" IsNewNode="True" />
         <ColumnInfo Id="NameAndCode" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmCOrderOverheadStandart_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="1" RelativeSize="80" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="ColumnAttr" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutGroup Id="OverheadCol" Index="2" ShowCaption="False" IsNewNode="True">
+              <LayoutItem Id="PlanOverheadType" ViewItem="PlanOverheadType" Index="0" IsNewNode="True" />
+              <LayoutItem Id="BuhOverheadType" ViewItem="BuhOverheadType" Index="1" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="KoeffCol" ShowCaption="False" IsNewNode="True">
+              <LayoutItem Id="FixKoeff" ViewItem="FixKoeff" Index="2" IsNewNode="True" />
+              <LayoutItem Id="FixKoeffOZM" ViewItem="FixKoeffOZM" Index="3" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="csCComponent" Removed="True" />
+            <LayoutGroup Id="fmCOrderOverhead" Removed="True" />
+            <LayoutGroup Id="fmCOrderOverheadStandart">
+              <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
+              <LayoutItem Id="Name" ViewItem="Name" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="3" />
+          <LayoutGroup Id="AuditTrail_Group" Index="4" ShowCaption="True">
+            <LayoutItem Id="AuditTrail" ShowCaption="False" ViewItem="AuditTrail" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmCOrderOverheadStandart_ListView">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="Name" Index="1" />
+        <ColumnInfo Id="PlanOverheadType" Index="2" />
+        <ColumnInfo Id="BuhOverheadType" Index="3" />
+        <ColumnInfo Id="FixKoeff" Index="4" />
+        <ColumnInfo Id="FixKoeffOZM" Index="5" />
       </Columns>
     </ListView>
     <DetailView Id="fmCSettingsFinance_DetailView">
