@@ -27,18 +27,42 @@ namespace IntecoAG.ERM.FM.DatabaseUpdate {
                 foreach (fmCOrderExt order in os.GetObjects<fmCOrderExt>(null, true)) {
                     if (order.DateEnd < gfmCAnalytic.DateMinValue)
                         order.IsPeriodUnlimited = true;
-                    if (order.Status == fmIOrderStatus.BuhClosed)
+                    if (order.Status == fmIOrderStatus.Closed)
                         order.Status = fmIOrderStatus.FinClosed;
-                    if (order.Status == fmIOrderStatus.BuhOpened ||
+                    if (order.Status == fmIOrderStatus.Opened ||
                         order.Status == fmIOrderStatus.FinOpened ||
                         order.Status == fmIOrderStatus.Project)
                         order.Status = fmIOrderStatus.Loaded;
-                    if (order.Status == fmIOrderStatus.FinClosed)
-                        order.IsClosed = true;
-                    if (order.OverheadType != fmIOrderOverheadType.Standart) {
+                    if (order.IsClosed)
+                        order.Status = fmIOrderStatus.FinClosed;
+                    if (order.Status == fmIOrderStatus.Loaded)
+                        order.OverheadType = fmIOrderOverheadType.Standart;
+                    else {
                         order.OverheadType = fmIOrderOverheadType.Individual;
                         order.FixKoeff = order.KoeffKB;
                         order.FixKoeffOZM = order.KoeffOZM;
+                        if (order.FixKoeff == -1) {
+                            order.PlanOverheadType = fmIOrderOverheadValueType.NO_OVERHEAD;
+                            order.BuhOverheadType = fmIOrderOverheadValueType.NO_OVERHEAD;
+                        }
+                        else if (order.FixKoeff == 0 && order.FixKoeffOZM == 0) {
+                            order.PlanOverheadType = fmIOrderOverheadValueType.VARIABLE;
+                            order.BuhOverheadType = fmIOrderOverheadValueType.VARIABLE;
+                        }
+                        else {
+                            order.PlanOverheadType = fmIOrderOverheadValueType.FIX_NPO;
+                            order.BuhOverheadType = fmIOrderOverheadValueType.FIX_NPO;
+                        }
+                    }
+                    if (order.Code.Length == 4)
+                        order.Code = "00" + order.Code;
+                    order.BuhAccountCode = order.BuhAccount;
+                    if (order.Subject != null && 
+                        order.Subject.AnalitycAVT != null  &&
+                        order.AnalitycAVT != null &&
+                        order.Subject.AnalitycAVT.Code == "Э" &&
+                        order.AnalitycAVT.Code == "О") {
+                            order.AnalitycAVT = order.Subject.AnalitycAVT;
                     }
                 }
                 os.CommitChanges();

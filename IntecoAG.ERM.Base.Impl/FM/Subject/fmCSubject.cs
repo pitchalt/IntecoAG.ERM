@@ -121,11 +121,19 @@ namespace IntecoAG.ERM.FM.Subject
         }
 
         public void OrdersAdd(fmCOrder order) {
+            order.SourceType = this.SourceType;
             order.SourceDeal = this.SourceDeal;
             order.SourceOther = this.SourceOther;
             order.SourceParty = this.SourceParty;
             order.AnalitycWorkType = this.AnalitycWorkType;
             order.AnalitycFinanceSource = this.AnalitycFinanceSource;
+            order.AnalitycAVT = this.AnalitycAVT;
+            order.AnalitycBigCustomer = this.AnalitycBigCustomer;
+            order.AnalitycCoperatingType = this.AnalitycCoperatingType;
+            order.AnalitycFedProg = this.AnalitycFedProg;
+            order.AnalitycMilitary = this.AnalitycMilitary;
+            order.AnalitycOrderSource = this.AnalitycOrderSource;
+            order.AnalitycRegion = this.AnalitycRegion;
             order.Manager = this.Manager;
             order.ManagerPlanDepartment = this.ManagerPlanDepartment;
         }

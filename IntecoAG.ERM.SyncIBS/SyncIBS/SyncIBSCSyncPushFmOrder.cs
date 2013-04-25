@@ -32,7 +32,7 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
             msg_in.ZKACBUHCODE = acccode;
             msg_in.ZKKOEFFKB = order.FixKoeff;
             msg_in.ZKKOEFFOZM = order.FixKoeffOZM;
-            if (order.Status == fmIOrderStatus.BuhClosed)
+            if (order.Status == fmIOrderStatus.Closed)
                 msg_in.ZKISCLOSED = true;
             else
                 msg_in.ZKISCLOSED = false;
@@ -44,7 +44,7 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
             if (os.IsNewObject(order) || os.IsObjectToSave(order) || os.IsObjectToDelete(order)) 
                 if (order.Status == fmIOrderStatus.FinOpened || 
                     order.Status == fmIOrderStatus.FinClosed ||
-                    order.Status == fmIOrderStatus.BuhClosed)
+                    order.Status == fmIOrderStatus.Closed)
                     order.IsSyncRequired = true;
             return order.IsSyncRequired;
         }

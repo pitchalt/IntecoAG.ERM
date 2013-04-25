@@ -84,6 +84,7 @@
       <OwnMembers>
         <Member Name="AnalitycAccouterType" AllowEdit="False" />
         <Member Name="AnalitycAVT" AllowEdit="False" />
+        <Member Name="BuhAccountCode" AllowEdit="False" />
         <Member Name="Manager" Caption="Ответственный" />
         <Member Name="Subject" Caption="Тема" AllowEdit="False" />
       </OwnMembers>
@@ -1467,8 +1468,9 @@
               </LayoutGroup>
               <LayoutGroup Id="TwoColumn" Index="3" Direction="Horizontal" IsNewNode="True">
                 <LayoutGroup Id="Col_1" Index="0" IsNewNode="True">
-                  <LayoutItem Id="AnalitycWorkType" ViewItem="AnalitycWorkType" Index="1" IsNewNode="True" />
-                  <LayoutItem Id="AnalitycFinanceSource" ViewItem="AnalitycFinanceSource" Index="2" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycWorkType" ViewItem="AnalitycWorkType" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycFinanceSource" ViewItem="AnalitycFinanceSource" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="AnalitycCoperatingType" ViewItem="AnalitycCoperatingType" Index="2" IsNewNode="True" />
                   <LayoutItem Id="AnalitycOrderSource" ViewItem="AnalitycOrderSource" Index="3" IsNewNode="True" />
                   <LayoutItem Id="AnalitycFedProg" ViewItem="AnalitycFedProg" Index="4" IsNewNode="True" />
                 </LayoutGroup>
@@ -1498,10 +1500,10 @@
               </LayoutGroup>
               <LayoutItem Id="SourceParty" ViewItem="SourceParty" Index="6" IsNewNode="True" />
               <LayoutGroup Id="Source" Index="7" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="SourceDeal" ViewItem="SourceDeal" Index="5" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="SourceOther" ViewItem="SourceOther" Index="6" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="SourceName" ViewItem="SourceName" Index="7" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="SourceType" ViewItem="SourceType" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="SourceType" ViewItem="SourceType" CaptionLocation="Top" Index="0" IsNewNode="True" />
+                <LayoutItem Id="SourceDeal" ViewItem="SourceDeal" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="SourceOther" ViewItem="SourceOther" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="SourceName" ViewItem="SourceName" Index="3" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
               <LayoutGroup Id="SizeableEditors" Index="8" ShowCaption="False" IsNewNode="True">
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
@@ -1538,14 +1540,20 @@
     <ListView Id="fmCOrderExt_FinIndexes_ListView" AllowEdit="True" />
     <ListView Id="fmCOrderExt_ListView" AllowNew="False" AllowDelete="False">
       <Columns>
+        <ColumnInfo Id="ManageDocCurrent" Index="-1" />
+        <ColumnInfo Id="ManageDocProject" Index="-1" />
+        <ColumnInfo Id="ProjectOrderPayDate" Index="-1" />
         <ColumnInfo Id="Subject" Index="0" LookupProperty="Code" />
-        <ColumnInfo Id="Status" Index="1" />
-        <ColumnInfo Id="Code" Index="2" />
+        <ColumnInfo Id="Code" Index="1" />
+        <ColumnInfo Id="Status" Index="2" />
         <ColumnInfo Id="Name" Index="3" />
         <ColumnInfo Id="Manager" Index="4" />
-        <ColumnInfo Id="DateBegin" Index="5" />
-        <ColumnInfo Id="DateEnd" Index="6" />
-        <ColumnInfo Id="IsClosed" Index="7" />
+        <ColumnInfo Id="ManagerPlanDepartment" Index="5" />
+        <ColumnInfo Id="DateBegin" Index="6" />
+        <ColumnInfo Id="IsPeriodUnlimited" Index="7" />
+        <ColumnInfo Id="DateEnd" Index="8" />
+        <ColumnInfo Id="IsClosed" Index="9" />
+        <ColumnInfo Id="IsSyncRequired" Index="10" />
       </Columns>
     </ListView>
     <ListView Id="fmCOrderExt_LookupListView" AllowDelete="False" AllowNew="False" />

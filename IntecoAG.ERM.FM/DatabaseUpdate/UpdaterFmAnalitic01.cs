@@ -20,7 +20,7 @@ namespace IntecoAG.ERM.FM.DatabaseUpdate {
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
 
-            if (this.CurrentDBVersion > new Version("1.1.1.218"))   // Поправить на правильный номер!
+            if (this.CurrentDBVersion > new Version("1.1.1.218"))   
                 return;
 
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {

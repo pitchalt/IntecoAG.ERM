@@ -19,12 +19,16 @@ using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM.Docs;
 
 namespace IntecoAG.ERM.FM {
-    public class RequestAutoBindingUpdater : ModuleUpdater {
-        public RequestAutoBindingUpdater(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) {
+    public class UpdaterRequestAutoBinding : ModuleUpdater {
+        public UpdaterRequestAutoBinding(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) {
         }
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
+            // Disable version
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
+                return;
+            //
 
             IObjectSpace os = ObjectSpace;
             Session ssn = ((ObjectSpace)os).Session;

@@ -39,10 +39,10 @@ namespace IntecoAG.ERM.SyncIBS.FM {
                     if (order == null) continue;
                     if (!short_order.IsClosed) {
                         if (order.Status == fmIOrderStatus.Project || order.Status == fmIOrderStatus.FinOpened)
-                            order.Status = fmIOrderStatus.BuhOpened;
+                            order.Status = fmIOrderStatus.Opened;
                     }
                     else {
-                        order.Status = fmIOrderStatus.BuhClosed;
+                        order.Status = fmIOrderStatus.Closed;
                         order.IsClosed = true;
                     }
                     os.CommitChanges();

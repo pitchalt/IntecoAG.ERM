@@ -15,8 +15,8 @@ using IntecoAG.ERM.CS;
 using IntecoAG.ERM.FM.AVT;
 
 namespace IntecoAG.ERM.FM {
-    public class AVTInvoiceAnalyticUpdater : ModuleUpdater {
-        public AVTInvoiceAnalyticUpdater(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
+    public class UpdaterAVTInvoiceAnalytic : ModuleUpdater {
+        public UpdaterAVTInvoiceAnalytic(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
 
         [DelimitedRecord(";")]
         public class SimpleAnalyticImport {
@@ -40,6 +40,10 @@ namespace IntecoAG.ERM.FM {
         
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
+            // Disable version
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
+                return;
+            //
             FileInfo fi = new FileInfo(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
             String dir = fi.Directory.FullName+"\\Import\\";
             //

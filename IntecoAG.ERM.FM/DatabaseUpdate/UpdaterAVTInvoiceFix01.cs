@@ -16,11 +16,15 @@ using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.FM.AVT;
 //
 namespace IntecoAG.ERM.FM.DatabaseUpdate {
-    public class AVTInvoiceUpdaterFix01 : ModuleUpdater {
-        public AVTInvoiceUpdaterFix01(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
+    public class UpdaterAVTInvoiceFix01 : ModuleUpdater {
+        public UpdaterAVTInvoiceFix01(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
+            // Disable version
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
+                return;
+            //
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
                 csValuta val_rub = os.FindObject<csValuta>(
                     XPQuery<csValuta>.TransformExpression(((ObjectSpace)os).Session,

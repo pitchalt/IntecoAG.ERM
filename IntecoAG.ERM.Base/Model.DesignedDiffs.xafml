@@ -203,14 +203,14 @@
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrder">
       <OwnMembers>
-        <Member Name="FixKoeff" EditMask="P4" />
-        <Member Name="FixKoeffOZM" EditMask="P4" />
+        <Member Name="FixKoeff" EditMask="p2" />
+        <Member Name="FixKoeffOZM" EditMask="p2" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderOverhead">
       <OwnMembers>
-        <Member Name="FixKoeff" DisplayFormat="P4" EditMask="P4" />
-        <Member Name="FixKoeffOZM" DisplayFormat="P4" EditMask="P4" />
+        <Member Name="FixKoeff" DisplayFormat="" EditMask="p2" />
+        <Member Name="FixKoeffOZM" DisplayFormat="" EditMask="p2" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycBigCustomer" Caption="fmСOrderAnalitycBigCustomer" />

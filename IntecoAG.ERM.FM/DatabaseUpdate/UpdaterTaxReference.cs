@@ -13,6 +13,9 @@ using IntecoAG.ERM.CS.Settings;
 using IntecoAG.ERM.CS;
 
 namespace IntecoAG.ERM.FM {
+    /// <summary>
+    /// Disable
+    /// </summary>
     public class UpdaterTaxReference : ModuleUpdater {
         public UpdaterTaxReference(IObjectSpace objectSpace, Version currentDBVersion)
             : base(objectSpace, currentDBVersion) {
@@ -20,10 +23,10 @@ namespace IntecoAG.ERM.FM {
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
-
-            if (this.CurrentDBVersion.ToString() != "1.1.1.160")   // Поправить на правильный номер!
+            // Disable version
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
                 return;
-
+            //
             IObjectSpace os = ObjectSpace;
 
             // Справочник Оснований платежа

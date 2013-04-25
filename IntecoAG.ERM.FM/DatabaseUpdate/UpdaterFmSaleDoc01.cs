@@ -10,16 +10,18 @@ using IntecoAG.ERM.FM.FinJurnal;
 
 namespace IntecoAG.ERM.FM.DatabaseUpdate {
 
-    public class fmSaleDocUpdater01 : ModuleUpdater {
-        public fmSaleDocUpdater01(IObjectSpace objectSpace, Version currentDBVersion)
+    public class UpdaterFmSaleDoc01 : ModuleUpdater {
+        public UpdaterFmSaleDoc01(IObjectSpace objectSpace, Version currentDBVersion)
             : base(objectSpace, currentDBVersion) {
         }
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
 
-            if (this.CurrentDBVersion.ToString() != "1.1.1.163")   // Поправить на правильный номер!
+            // Disable version
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
                 return;
+            //
 
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
                 IList<fmCFJSaleDoc> doc_col = os.GetObjects<fmCFJSaleDoc>();

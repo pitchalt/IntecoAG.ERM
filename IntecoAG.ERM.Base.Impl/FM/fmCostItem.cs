@@ -17,6 +17,7 @@ using DevExpress.Xpo;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 
+using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Party;
 //using IntecoAG.ERM.HRM.Organization;
 

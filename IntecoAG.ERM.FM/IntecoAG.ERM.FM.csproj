@@ -417,15 +417,15 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseUpdate\AVTInvoiceAnalyticUpdater.cs" />
-    <Compile Include="DatabaseUpdate\AVTInvoiceUpdaterFix01.cs" />
-    <Compile Include="DatabaseUpdate\CashFlowRegisterUpdater.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceAnalytic.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceFix01.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterCashFlowRegister.cs" />
     <Compile Include="DatabaseUpdate\UpdaterFmAnalitic02.cs" />
-    <Compile Include="DatabaseUpdate\fmSaleDocUpdater01.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterFmSaleDoc01.cs" />
     <Compile Include="DatabaseUpdate\UpdaterFmAnalitic01.cs" />
     <Compile Include="DatabaseUpdate\UpdaterTaxReference.cs" />
     <Compile Include="DatabaseUpdate\fmAutoBindingUpdater.cs" />
-    <Compile Include="DatabaseUpdate\RequestAutoBindingUpdater.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterRequestAutoBinding.cs" />
     <Compile Include="DatabaseUpdate\UpdaterVaultaCourse.cs" />
     <Compile Include="ERMFinancialModule.cs">
       <SubType>Component</SubType>
@@ -434,7 +434,7 @@
       <DependentUpon>ERMFinancialModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatabaseUpdate\Updater.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterFirstBase.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="SumInWord.cs" />
   </ItemGroup>

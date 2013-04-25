@@ -979,16 +979,16 @@
       <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderOverheadValueType">
         <LocalizationItem Name="FIX_NPO" Value="Фикс.КБ_ОЗМ" />
         <LocalizationItem Name="FIX_SINGLE" Value="Фиксированные" />
-        <LocalizationItem Name="NO_OVERHEAD" Value="БезНакладный" />
+        <LocalizationItem Name="NO_OVERHEAD" Value="БезНакладных" />
         <LocalizationItem Name="VARIABLE" Value="Переменные" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderStatus">
-        <LocalizationItem Name="BuhClosed" Value="Закрыт" />
-        <LocalizationItem Name="BuhOpened" Value="Открыт" />
+        <LocalizationItem Name="Closed" Value="Закрыт" />
         <LocalizationItem Name="Deleting" Value="Удалить" />
         <LocalizationItem Name="FinClosed" Value="ЗакрытПО" />
         <LocalizationItem Name="FinOpened" Value="ОткрытПО" />
         <LocalizationItem Name="Loaded" Value="Загружен" />
+        <LocalizationItem Name="Opened" Value="Открыт" />
         <LocalizationItem Name="Project" Value="Проект" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmСOrderAnalitycMilitaryProductType">

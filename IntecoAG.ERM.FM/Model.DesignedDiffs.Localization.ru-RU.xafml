@@ -831,10 +831,6 @@
         <LocalizationItem Name="Execution" Value="Формирование" />
         <LocalizationItem Name="Rejected" Value="Отменен" />
       </LocalizationGroup>
-      <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderStatus">
-        <LocalizationItem Name="FinClosed" Value="Закрыт Плановым" />
-        <LocalizationItem Name="Project" Value="Проект" />
-      </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.PaymentRequest.FinRequestKind">
         <LocalizationItem Name="BANK_COMISSION" Value="Комиссия банка" />
         <LocalizationItem Name="INTERNAL_TRANSFER_MONEY" Value="Внутренний перевод денег" />

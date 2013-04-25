@@ -12,6 +12,9 @@ using IntecoAG.ERM.FM.StatementAccount;
 using IntecoAG.ERM.CS.Nomenclature;
 
 namespace IntecoAG.ERM.FM {
+    /// <summary>
+    /// Disable
+    /// </summary>
     public class UpdaterVaultaCourse {
 
         public UpdaterVaultaCourse() {}

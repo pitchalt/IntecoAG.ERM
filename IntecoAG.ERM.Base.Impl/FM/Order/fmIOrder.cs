@@ -20,12 +20,12 @@ namespace IntecoAG.ERM.FM.Order {
         Loaded = 0,
         Project = 1,
         FinOpened = 2,
-        BuhOpened = 4,
+        Opened = 4,
 //        Opening = 2,
 //        Changes = 3,
 //        Accepted = 4,
         FinClosed = 5,
-        BuhClosed = 6,
+        Closed = 6,
 
         Deleting = 10
     };

@@ -245,7 +245,7 @@
     <Compile Include="FM\fmCPaymentKBK.cs" />
     <Compile Include="FM\fmCPaymentBase.cs" />
     <Compile Include="FM\fmCPaymentKind.cs" />
-    <Compile Include="FM\CostItem.cs" />
+    <Compile Include="FM\fmCostItem.cs" />
     <Compile Include="CRM\Contract\Deal\ContractDeal-DealVersions.cs">
       <SubType>Code</SubType>
     </Compile>

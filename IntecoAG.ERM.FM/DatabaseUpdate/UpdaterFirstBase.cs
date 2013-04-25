@@ -13,10 +13,14 @@ using IntecoAG.ERM.FM.StatementAccount;
 using IntecoAG.ERM.FM.PaymentRequest;
 
 namespace IntecoAG.ERM.FM {
-    public class Updater : ModuleUpdater {
-        public Updater(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
+    public class UpdaterFirstBase : ModuleUpdater {
+        public UpdaterFirstBase(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
+            // Disable version
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))  
+                return;
+            //
             try {
                 fmCSAImporter1C.GetInstance(((ObjectSpace)ObjectSpace).Session);
             } catch {

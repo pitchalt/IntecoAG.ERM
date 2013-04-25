@@ -37,6 +37,7 @@ namespace IntecoAG.ERM.FM.Order {
         }
 
         #region fmCOrderFinIndexStructureItem
+
         [MapInheritance(MapInheritanceType.ParentTable)]
         public class fmCOrderFinIndexStructureItem : fmCFinIndexStructureItem {
             public fmCOrderFinIndexStructureItem(Session session)
@@ -50,6 +51,7 @@ namespace IntecoAG.ERM.FM.Order {
                 get { return _Order; }
                 set { SetPropertyValue<fmCOrderExt>("Order", ref _Order, value); }
             }
+
         }
 
         //public class fmCOrderManageDocCollection : XPCollection<fmCOrderManageDoc> {

@@ -47,6 +47,11 @@ namespace IntecoAG.ERM.FM.Order
             TargetItems="PlanOverheadType,BuhOverheadType,FixKoeff,FixKoeffOZM", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "OverheadType == 'Individual'",
             TargetItems = "OverheadStandart", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "PlanOverheadType == 'NO_OVERHEAD' || PlanOverheadType == 'VARIABLE'",
+            TargetItems = "FixKoeff,FixKoeffOZM", Enabled = false)]
+//    [RuleCriteria("", DefaultContexts.Save, "FixKoeff == 0 && FixKoeffOZM == 0",
+//            TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual' && PlanOverheadType != 'VARIABLE' && PlanOverheadType != 'NO_OVERHEAD'",
+//            UsedProperties = "FixKoeff,FixKoeffOZM")]
     public abstract class fmCOrder : gfmCAnalyticBase, fmIOrder, IStateMachineProvider
     {
         public fmCOrder(Session ses) : base(ses) { }
@@ -67,6 +72,7 @@ namespace IntecoAG.ERM.FM.Order
         private crmCParty _SourceParty;
         [Persistent("SourceName")]
         private String _SourceName;
+        private String _BuhAccountCode;
         private String _BuhAccount;
         private csNDSRate _AVTRate;
         private Int32 _BuhIntNum;
@@ -82,7 +88,7 @@ namespace IntecoAG.ERM.FM.Order
             set {
                 SetPropertyValue<fmIOrderStatus>("Status", ref _Status, value);
                 if (!IsLoading) {
-                    if (value == fmIOrderStatus.BuhClosed)
+                    if (value == fmIOrderStatus.Closed)
                         IsClosed = true;
                     else
                         IsClosed = false;
@@ -255,8 +261,15 @@ namespace IntecoAG.ERM.FM.Order
 
         [Size(30)]
         public String BuhAccountCode {
+            get { return _BuhAccountCode; }
+            set { SetPropertyValue<String>("BuhAccountCode", ref _BuhAccountCode, value); }
+        }
+
+        [Size(30)]
+        [Browsable(false)]
+        public String BuhAccount {
             get { return _BuhAccount; }
-            set { SetPropertyValue<String>("BuhAccountCode", ref _BuhAccount, value); }
+            set { SetPropertyValue<String>("BuhAccount", ref _BuhAccount, value); }
         }
 
         public csNDSRate AVTRate {
@@ -370,6 +383,7 @@ namespace IntecoAG.ERM.FM.Order
                 return _OverheadType;
             }
             set {
+                fmIOrderOverheadType old = OverheadType;
                 SetPropertyValue("OverheadType", ref _OverheadType, value);
                 if (!IsLoading) {
                     fmCOrderOverheadIndividual oldind = OverheadIndividual;
@@ -382,6 +396,12 @@ namespace IntecoAG.ERM.FM.Order
                         OverheadStandart = null;
                         if (oldind == null)
                             OverheadIndividual = new fmCOrderOverheadIndividual(Session);
+                    }
+                    if (old != value) {
+                        OnChanged("FixKoeff");
+                        OnChanged("FixKoeffOZM");
+                        OnChanged("PlanOverheadType");
+                        OnChanged("BuhOverheadType");
                     }
                 }
             }
@@ -449,7 +469,7 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         [NonPersistent]
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs = "Save")]
+        //[RuleCriteria("", DefaultContexts.Save, "PlanOverheadType == 0", TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'")]
         public fmIOrderOverheadValueType PlanOverheadType {
             get { return Overhead == null ? 0 : Overhead.PlanOverheadType; }
             set {
@@ -464,7 +484,8 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         [NonPersistent]
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs = "Save")]
+//        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs = "Save")]
+        //[RuleCriteria("", DefaultContexts.Save, "BuhOverheadType == 0", TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'")]
         public fmIOrderOverheadValueType BuhOverheadType {
             get { return Overhead == null ? 0 : Overhead.BuhOverheadType; }
             set {
@@ -491,7 +512,7 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         [NonPersistent]
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs="Save")]
+//        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs="Save")]
         public Decimal FixKoeff {
             get { return Overhead == null ? 0 : Overhead.FixKoeff; }
             set {
@@ -518,6 +539,39 @@ namespace IntecoAG.ERM.FM.Order
                 else
                     throw new InvalidOperationException("Overhead Type not is Individual or Overhead is null");
             }
+        }
+
+        [Action( PredefinedCategory.RecordEdit, Caption="КакВТеме")]
+        public void ActionSetAsSubject() {
+            this.SourceType = Subject.SourceType;
+            if (this.SourceDeal == null)
+                this.SourceDeal = Subject.SourceDeal;
+            if (String.IsNullOrEmpty(this.SourceOther))
+                this.SourceOther = Subject.SourceOther;
+            if (this.SourceParty == null)
+                this.SourceParty = Subject.SourceParty;
+            if (this.AnalitycWorkType == null)
+                this.AnalitycWorkType = Subject.AnalitycWorkType;
+            if (this.AnalitycFinanceSource == null)
+                this.AnalitycFinanceSource = Subject.AnalitycFinanceSource;
+            if (this.AnalitycAVT == null)
+                this.AnalitycAVT = Subject.AnalitycAVT;
+            if (this.AnalitycBigCustomer == null)
+                this.AnalitycBigCustomer = Subject.AnalitycBigCustomer;
+            if (this.AnalitycCoperatingType == 0)
+                this.AnalitycCoperatingType = Subject.AnalitycCoperatingType;
+            if (this.AnalitycFedProg == null)
+                this.AnalitycFedProg = Subject.AnalitycFedProg;
+            if (this.AnalitycMilitary == null)
+                this.AnalitycMilitary = Subject.AnalitycMilitary;
+            if (this.AnalitycOrderSource == null)
+                this.AnalitycOrderSource = Subject.AnalitycOrderSource;
+            if (this.AnalitycRegion == null)
+                this.AnalitycRegion = Subject.AnalitycRegion;
+            if (this.Manager == null)
+                this.Manager = Subject.Manager;
+            if (this.ManagerPlanDepartment == null)
+                this.ManagerPlanDepartment = Subject.ManagerPlanDepartment;
         }
 
         public IList<IStateMachine> GetStateMachines() {

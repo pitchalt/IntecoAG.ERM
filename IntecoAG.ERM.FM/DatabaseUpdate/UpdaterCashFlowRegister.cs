@@ -32,17 +32,18 @@ namespace IntecoAG.ERM.FM {
     /// 4. В то же время суммы в задаче привязки вычисляются по CashFlow, а для старых привязок их там нет.
     /// Данный updater призван исправить этот недочёт.
     /// </summary>
-    public class CashFlowRegisterUpdater : ModuleUpdater {
-        public CashFlowRegisterUpdater(IObjectSpace objectSpace, Version currentDBVersion)
+    public class UpdaterCashFlowRegister : ModuleUpdater {
+        public UpdaterCashFlowRegister(IObjectSpace objectSpace, Version currentDBVersion)
             : base(objectSpace, currentDBVersion) {
         }
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
 
-            if (this.CurrentDBVersion.ToString() != "1.1.1.137")   // Поправить на правильный номер!
+            // Disable version
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
                 return;
-
+            //
             IObjectSpace os = ObjectSpace;
             Session ssn = ((ObjectSpace)os).Session;
 

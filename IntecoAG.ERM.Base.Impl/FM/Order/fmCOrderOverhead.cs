@@ -18,10 +18,17 @@ namespace IntecoAG.ERM.FM.Order {
 
         }
 
+        public override void AfterConstruction() {
+            base.AfterConstruction();
+            PlanOverheadType = fmIOrderOverheadValueType.NO_OVERHEAD;
+            BuhOverheadType = fmIOrderOverheadValueType.NO_OVERHEAD;
+            FixKoeff = 0;
+            FixKoeffOZM = 0;
+        }
         private fmIOrderOverheadValueType _PlanOverheadType;
         private fmIOrderOverheadValueType _BuhOverheadType;
-        private Decimal _KoeffKB;
-        private Decimal _KoeffOZM;
+        private Decimal _FixKoeff;
+        private Decimal _FixKoeffOZM;
 
         public fmIOrderOverheadValueType PlanOverheadType {
             get { return _PlanOverheadType; }
@@ -32,12 +39,12 @@ namespace IntecoAG.ERM.FM.Order {
             set { SetPropertyValue<fmIOrderOverheadValueType>("BuhOverheadType", ref _BuhOverheadType, value); }
         }
         public Decimal FixKoeff {
-            get { return _KoeffKB; }
-            set { SetPropertyValue("FixKoeff", ref _KoeffKB, value); }
+            get { return _FixKoeff; }
+            set { SetPropertyValue("FixKoeff", ref _FixKoeff, value); }
         }
         public Decimal FixKoeffOZM {
-            get { return _KoeffOZM; }
-            set { SetPropertyValue("FixKoeff", ref _KoeffOZM, value); }
+            get { return _FixKoeffOZM; }
+            set { SetPropertyValue("FixKoeff", ref _FixKoeffOZM, value); }
         }
     }
 
