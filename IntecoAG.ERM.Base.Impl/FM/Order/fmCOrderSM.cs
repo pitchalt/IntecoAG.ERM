@@ -31,6 +31,7 @@ namespace IntecoAG.ERM.FM.Order {
             StateProject.Transitions.Add(new Transition(StateClosed, "Закрыть", 2));
             StateOpened.Transitions.Add(new Transition(StateClosed, "Закрыть", 1));
             StateOpened.Transitions.Add(new Transition(StateProject, "Проект", 2));
+            StateOpened.Transitions.Add(new Transition(StateDelete, "Удалить", 4));
 
             StateClosed.Transitions.Add(new Transition(StateOpened, "Повт.Открыть", 1));
             StateDelete.Transitions.Add(new Transition(StateOpened, "Повт.Открыть", 1));
