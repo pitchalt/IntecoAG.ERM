@@ -349,8 +349,10 @@ namespace IntecoAG.ERM.FM.AVT {
                 line.Invoice = invoice;
                 line.TransferType = inv_transfer_types.Where(rec => rec.Code == "1").FirstOrDefault();
                 line.DateTransfer = invrec.Select(rec => rec.BuhDocDate).Min();
-                if (line.DateTransfer < DateTime.ParseExact("20120401", "yyyyMMdd", null))
-                    line.DateTransfer = DateTime.ParseExact("20120430", "yyyyMMdd", null);
+                if (line.DateTransfer < DateTime.ParseExact("20130101", "yyyyMMdd", null))
+                    line.DateTransfer = DateTime.ParseExact("20130131", "yyyyMMdd", null);
+                if (line.DateTransfer < line.Invoice.Date)
+                    line.DateTransfer = line.Invoice.Date;
                 if (invrec.Key.AVTInvoiceType == "явт")
                     line.OperationType = inv_oper_types.Where(rec => rec.Code == "01").FirstOrDefault();
                 if (invrec.Key.AVTInvoiceType == "ятб") {
@@ -369,6 +371,9 @@ namespace IntecoAG.ERM.FM.AVT {
             foreach (fmCAVTInvoiceRegisterLine line in sort_lines) {
                 number++;
                 line.SequenceNumber = number;
+                if (line.Invoice.Valuta == null) {
+                    line.Invoice.Valuta = os.FindObject<CS.Nomenclature.csValuta>(new BinaryOperator("Code", "RUB"));
+                }
             }
         }
     }

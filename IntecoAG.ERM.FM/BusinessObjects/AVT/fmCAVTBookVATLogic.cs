@@ -80,6 +80,9 @@ namespace IntecoAG.ERM.FM.AVT {
                     rec.SummCost_10 = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "3").Sum(buhrec => buhrec.SummAll) - rec.SummVAT_10;
                 else
                     rec.SummCost_10 = Decimal.Round(rec.SummVAT_10 * 100m / 10m, 2);
+                if (rec.SummCost_10 < 0) {
+                    rec.SummCost_10 = Decimal.Round(rec.SummVAT_10 * 100m / 10m, 2);
+                }
                 rec.SummCost_0 = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "4").Sum(buhrec => buhrec.SummAll);
                 rec.SummCost_NoVAT = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "5").Sum(buhrec => buhrec.SummAll);
                 if (rec.SummVAT_18 == 0 && rec.SummVAT_10 == 0 && rec.SummCost_0 == 0 && rec.SummCost_NoVAT == 0) {
