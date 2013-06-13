@@ -122,6 +122,7 @@
       <Item Id="GeneralCompanyReports" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="@48daa127-5acd-4748-acac-c1ffa2efdd99" ViewId="gcrCodifDeal_ListView" IsNewNode="True" />
+          <Item Id="@799f8a80-f3ff-4950-9c9c-5fbced783aaf" ViewId="fmCSubjectExt_TRV_ListView" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="KPI" Removed="True" />
@@ -166,6 +167,48 @@
         <ColumnInfo Id="Name" Index="0" />
         <ColumnInfo Id="Description" PropertyName="Description" Index="1" IsNewNode="True" />
       </Columns>
+    </ListView>
+    <ListView Id="fmCSubjectExt_TRV_ListView" ClassName="IntecoAG.ERM.FM.Subject.fmCSubjectExt" FreezeColumnIndices="True" AllowDelete="False" AllowNew="False" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="AnalitycAVT" View="" PropertyName="AnalitycAVT" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycBigCustomer" View="" PropertyName="AnalitycBigCustomer" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycCoperatingType" View="" PropertyName="AnalitycCoperatingType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycFedProg" View="" PropertyName="AnalitycFedProg" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycFinanceSource" View="" PropertyName="AnalitycFinanceSource" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycMilitary" View="" PropertyName="AnalitycMilitary" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycOrderSource" View="" PropertyName="AnalitycOrderSource" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycRegion" View="" PropertyName="AnalitycRegion" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycWorkType" View="" PropertyName="AnalitycWorkType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ComponentType" View="" PropertyName="ComponentType" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Description" View="" PropertyName="Description" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Direction" View="" Index="-1" PropertyName="Direction" Width="70" LookupProperty="Code" IsNewNode="True" />
+        <ColumnInfo Id="IsClosed" View="" Index="-1" PropertyName="IsClosed" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="IsPeriodUnlimited" View="" Index="-1" PropertyName="IsPeriodUnlimited" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="Manager" View="" Index="-1" PropertyName="Manager" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="ManagerCurator" View="" Index="-1" PropertyName="ManagerCurator" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="ManagerPlanDepartment" View="" Index="-1" PropertyName="ManagerPlanDepartment" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Name" View="" Index="-1" PropertyName="Name" Width="400" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+        <ColumnInfo Id="NameFull" View="" PropertyName="NameFull" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="SourceDeal" View="" PropertyName="SourceDeal" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceName" View="" PropertyName="SourceName" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceOther" View="" PropertyName="SourceOther" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceParty" View="" PropertyName="SourceParty" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceType" View="" PropertyName="SourceType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Status" View="" Index="-1" PropertyName="Status" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="SubjectGroup" PropertyName="SubjectGroup" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Code" View="" Index="1" PropertyName="Code" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Code2" PropertyName="Code" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="ContractNumber" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="ContractNumber2" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ContractNumber3" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="DateBegin" View="" Index="5" PropertyName="DateBegin" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="DateEnd" View="" Index="6" PropertyName="DateEnd" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="DateEnd2" View="" Index="6" PropertyName="DateEnd" Width="70" IsNewNode="True" />
+      </Columns>
+      <Filters CurrentFilterId="All" IsNewNode="True">
+        <Filter Id="All" Index="0" IsNewNode="True" />
+        <Filter Id="Working" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,OPENED# Or [Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,PROJECT#" Index="1" IsNewNode="True" />
+      </Filters>
     </ListView>
     <ListView Id="gcrCodifDeal_ListView" CollectionDataSource="gcrCodifDeal">
       <Columns>

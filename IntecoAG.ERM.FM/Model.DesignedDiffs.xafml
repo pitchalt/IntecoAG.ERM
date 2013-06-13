@@ -2886,6 +2886,25 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="fmCSubject_Deals_ListView">
+      <Columns>
+        <ColumnInfo Id="Category" Index="-1" />
+        <ColumnInfo Id="Contract" Index="-1" />
+        <ColumnInfo Id="ContractDocument.Date" Index="-1" />
+        <ColumnInfo Id="ContractDocument.DocumentCategory" Index="-1" />
+        <ColumnInfo Id="ContractDocument.Number" Index="-1" />
+        <ColumnInfo Id="Current" Index="-1" />
+        <ColumnInfo Id="DateRegistration" Index="-1" />
+        <ColumnInfo Id="Delo" Index="-1" />
+        <ColumnInfo Id="DepartmentRegistrator" Index="-1" />
+        <ColumnInfo Id="State" Index="-1" />
+        <ColumnInfo Id="ContractKind" GroupIndex="0" />
+        <ColumnInfo Id="Name" Index="2" Width="100" />
+        <ColumnInfo Id="Customer" Width="150" />
+        <ColumnInfo Id="Supplier" Width="150" />
+        <ColumnInfo Id="UserRegistrator" Index="6" />
+      </Columns>
+    </ListView>
     <ListView Id="fmCSubject_ListView" FreezeColumnIndices="True">
       <Columns>
         <ColumnInfo Id="ComponentType" Index="-1" />
@@ -3001,10 +3020,13 @@
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
             </LayoutGroup>
-            <LayoutGroup Id="Orders" Index="0" ShowCaption="True" IsNewNode="True">
+            <LayoutGroup Id="Orders" Index="1" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="Orders" ViewItem="Orders" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="AuditTrail" Index="1" ShowCaption="True" IsNewNode="True">
+            <LayoutGroup Id="DealsGroup" Index="2" IsNewNode="True">
+              <LayoutItem Id="Deals" ViewItem="Deals" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="3" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>

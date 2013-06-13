@@ -165,6 +165,7 @@
         <Member Name="DepartmentRegistrator" Caption="Рег.Подр." />
         <Member Name="Name" Caption="Наименование" />
         <Member Name="State" Caption="Состояние" />
+        <Member Name="Subjects" Caption="Тематика" />
         <Member Name="Supplier" Caption="Исполнитель" />
         <Member Name="UserRegistrator" Caption="Рег.Польз." />
       </OwnMembers>
@@ -202,6 +203,7 @@
         <Member Name="Price" Caption="Стоимость" />
         <Member Name="Registrator" Caption="Рег.Подр." />
         <Member Name="ShowVersionState" Caption="Статус Редак." />
+        <Member Name="Subjects" Caption="Тематика" />
         <Member Name="Supplier" Caption="Исполнитель" />
         <Member Name="Valuta" Caption="Валюта" />
       </OwnMembers>
@@ -778,6 +780,7 @@
         <Member Name="AnalitycOrderSource" Caption="Гоз.Заказ" />
         <Member Name="AnalitycRegion" Caption="Регион" />
         <Member Name="AnalitycWorkType" Caption="ВидРабот" />
+        <Member Name="Deals" Caption="Сделки" />
         <Member Name="Direction" Caption="Направление" />
         <Member Name="Manager" Caption="Ведущий" />
         <Member Name="ManagerCurator" Caption="Отв.Рук-ль" />
@@ -1142,8 +1145,8 @@
               <LayoutGroup Id="SizeableEditors" Caption="Описание" />
             </LayoutGroup>
             <LayoutGroup Id="BankAccounts" Caption="Банковские счета" />
-            <LayoutGroup Id="AuditTrail" Caption="Журнал изменений" />
             <LayoutGroup Id="BankAccountsGroup" Caption="Банковские счета" />
+            <LayoutGroup Id="AuditTrail" Caption="Журнал изменений" />
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
@@ -1165,7 +1168,12 @@
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="Common" Caption="Общие" />
             <LayoutGroup Id="Stages" Caption="Этапы" />
-            <LayoutGroup Id="Partys" Caption="Стороны" />
+            <LayoutGroup Id="Partys" Caption="Стороны">
+              <TabbedGroup Id="PartysTabs">
+                <LayoutGroup Id="Customer" Caption="Заказчик" />
+                <LayoutGroup Id="Supplier" Caption="Исполнитель" />
+              </TabbedGroup>
+            </LayoutGroup>
             <LayoutGroup Id="ContractDocuments" Caption="Документооборот" />
           </TabbedGroup>
         </LayoutGroup>
@@ -1187,13 +1195,6 @@
           <LayoutGroup Id="SimpleEditors">
             <LayoutGroup Id="crmDeliveryItem" Caption="crm Delivery Item" />
           </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="crmDeliveryUnit_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="DeliveryItems_Group" Caption="Позиции поставки" />
         </LayoutGroup>
       </Layout>
     </DetailView>

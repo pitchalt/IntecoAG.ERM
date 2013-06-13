@@ -31,6 +31,7 @@ using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.HRM.Organization;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.CRM.Contract.Obligation;
 
 namespace IntecoAG.ERM.CRM.Contract.Deal
@@ -71,6 +72,10 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         // Список всех версий. Получаем из головного объекта примерно таким обращением: .Current.Versions
         public XPCollection<crmDealVersion> DealVersions {
             get { return this.ContractDeal.DealVersions; }
+        }
+
+        public XPCollection<fmCSubject> Subjects {
+            get { return this.ContractDeal.Subjects; }
         }
 
         [Aggregated]

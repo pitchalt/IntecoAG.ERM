@@ -314,6 +314,9 @@
             <LayoutGroup Id="BankAccountsGroup" Index="1" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" Index="0" IsNewNode="True" />
             </LayoutGroup>
+            <LayoutGroup Id="AuditTrailGroup" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" IsNewNode="True" />
+            </LayoutGroup>
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
@@ -351,8 +354,11 @@
             <LayoutGroup Id="BankAccountsGroup" Index="1" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" Index="0" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="LegalPersonUnitsGroup" IsNewNode="True">
+            <LayoutGroup Id="LegalPersonUnitsGroup" Index="2" IsNewNode="True">
               <LayoutItem Id="LegalPersonUnits" ViewItem="LegalPersonUnits" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrailGroup" Index="3" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>
         </LayoutGroup>
@@ -407,6 +413,9 @@
               <LayoutGroup Id="SizeableEditors" Index="1" Direction="Vertical" ShowCaption="False" IsNewNode="True">
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" IsNewNode="True" />
               </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrailGroup" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>
         </LayoutGroup>
@@ -510,6 +519,7 @@
         <Filter Id="All" Index="2" IsNewNode="True" />
       </Filters>
     </ListView>
+    <ListView Id="crmContractDeal_Subjects_ListView" AllowDelete="False" AllowNew="False" />
     <DetailView Id="crmContractRegistrationForm_DetailView" AllowDelete="False" AllowNew="False" CustomizationEnabled="False">
       <Items>
         <PropertyEditor Id="OurParty" LookupEditorMode="Search" />
@@ -800,14 +810,14 @@
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" RelativeSize="100" IsNewNode="True" />
               </LayoutGroup>
             </LayoutGroup>
-            <LayoutGroup Id="BankAccounts" Index="1" ImageName="BO_Unknown" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="AlignLocal" RelativeSize="100" IsNewNode="True">
+            <LayoutGroup Id="BankAccounts" Index="1" ImageName="BO_Unknown" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="AlignLocal" RelativeSize="100" IsNewNode="True" Removed="True">
               <LayoutItem Id="BankAccounts" TextAlignMode="AutoSize" RelativeSize="100" ViewItem="BankAccounts" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="AuditTrail" Index="2" ImageName="BO_Audit_ChangeHistory" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="AlignLocal" RelativeSize="100" IsNewNode="True">
-              <LayoutItem Id="AuditTrail" TextAlignMode="AutoSize" RelativeSize="100" ViewItem="AuditTrail" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="BankAccountsGroup" Index="3" Direction="Vertical" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+            <LayoutGroup Id="BankAccountsGroup" Index="2" Direction="Vertical" ShowCaption="True" RelativeSize="100" IsNewNode="True">
               <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" Index="0" ShowCaption="True" TextAlignMode="AutoSize" RelativeSize="100" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="3" ImageName="BO_Audit_ChangeHistory" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="AlignLocal" RelativeSize="100" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" TextAlignMode="AutoSize" RelativeSize="100" ViewItem="AuditTrail" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>
           <LayoutGroup Id="BankAccounts_Group" Removed="True" />
@@ -925,7 +935,33 @@
         <SortProperty Id="DatePlane" PropertyName="DatePlane" IsNewNode="True" />
       </Sorting>
     </ListView>
-    <DetailView Id="crmDealWithoutStageVersion_DetailView">
+    <ListView Id="crmDealVersion_Subjects_ListView" AllowDelete="False" AllowNew="False">
+      <Columns>
+        <ColumnInfo Id="AnalitycAVT" Index="-1" />
+        <ColumnInfo Id="AnalitycBigCustomer" Index="-1" />
+        <ColumnInfo Id="AnalitycCoperatingType" Index="-1" />
+        <ColumnInfo Id="AnalitycFedProg" Index="-1" />
+        <ColumnInfo Id="AnalitycFinanceSource" Index="-1" />
+        <ColumnInfo Id="AnalitycMilitary" Index="-1" />
+        <ColumnInfo Id="AnalitycOrderSource" Index="-1" />
+        <ColumnInfo Id="AnalitycRegion" Index="-1" />
+        <ColumnInfo Id="AnalitycWorkType" Index="-1" />
+        <ColumnInfo Id="ManagerCurator" Index="-1" />
+        <ColumnInfo Id="SourceDeal" Index="-1" />
+        <ColumnInfo Id="SourceName" Index="-1" />
+        <ColumnInfo Id="SourceOther" Index="-1" />
+        <ColumnInfo Id="SourceParty" Index="-1" />
+        <ColumnInfo Id="SourceType" Index="-1" />
+        <ColumnInfo Id="Status" Index="-1" />
+        <ColumnInfo Id="SubjectGroup" Index="-1" />
+        <ColumnInfo Id="Direction" Index="0" />
+        <ColumnInfo Id="Code" Index="1" />
+        <ColumnInfo Id="Name" Index="2" />
+        <ColumnInfo Id="Manager" Index="3" />
+        <ColumnInfo Id="ManagerPlanDepartment" Index="5" />
+      </Columns>
+    </ListView>
+    <DetailView Id="crmDealWithoutStageVersion_DetailView" InvisibleGroupVerticalDistance="10">
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
@@ -1042,6 +1078,12 @@
               <LayoutItem Id="Registrator" ViewItem="Registrator" Index="0" IsNewNode="True" />
               <LayoutItem Id="Curator" ViewItem="Curator" Index="1" IsNewNode="True" />
               <LayoutItem Id="ContractDocuments" ViewItem="ContractDocuments" ShowCaption="False" Index="2" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrailGroup" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="SubjectsGroup" IsNewNode="True">
+              <LayoutItem Id="Subjects" ViewItem="Subjects" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>
           <LayoutGroup Id="SimpleEditors" Removed="True" />
@@ -1198,8 +1240,7 @@
               <LayoutItem Id="ObligationUnits" ViewItem="ObligationUnits" Index="2" CaptionLocation="Top" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="CurrentCost.CostItems" Index="3" Removed="True" />
-            <LayoutGroup Id="CurrentCost.DownCols" Index="4" Removed="True" />
-            <LayoutGroup Id="Partys" Index="5" IsNewNode="True">
+            <LayoutGroup Id="Partys" Index="3" IsNewNode="True">
               <TabbedGroup Id="PartysTabs" IsNewNode="True">
                 <LayoutGroup Id="Customer" IsNewNode="True">
                   <LayoutItem Id="Customer.Party" ViewItem="Customer.Party" Index="0" IsNewNode="True" />
@@ -1235,16 +1276,34 @@
                 </LayoutGroup>
               </TabbedGroup>
             </LayoutGroup>
-            <LayoutGroup Id="DealVersions" Index="6" />
-            <LayoutGroup Id="ContractDocuments" Index="7">
+            <LayoutGroup Id="CurrentCost.DownCols" Index="4" Removed="True" />
+            <LayoutGroup Id="DealVersions" Index="4" />
+            <LayoutGroup Id="ContractDocuments" Index="5">
               <LayoutItem Id="Registrator" ViewItem="Registrator" Index="0" IsNewNode="True" />
               <LayoutItem Id="Curator" ViewItem="Curator" Index="1" IsNewNode="True" />
               <LayoutItem Id="ContractDocuments" Index="2" ViewItem="ContractDocuments" />
             </LayoutGroup>
+            <LayoutGroup Id="Subjects" Index="6" Removed="True">
+              <LayoutItem Id="Subjects" ViewItem="Subjects" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="SubjectsGroup" Index="6" IsNewNode="True">
+              <LayoutItem Id="Subjects" ViewItem="Subjects" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrailGroup" Index="7" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Removed="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="CurrentCost.AuditTrail" Removed="True" />
+            <LayoutGroup Id="CurrentPayment.AuditTrail" Removed="True" />
             <LayoutGroup Id="CurrentPayment.CostItems" Removed="True" />
             <LayoutGroup Id="CurrentPayment.DownCols" Removed="True" />
+            <LayoutGroup Id="Customer.AuditTrail" Removed="True" />
             <LayoutGroup Id="DealNomenclatures" Removed="True" />
+            <LayoutGroup Id="FinancialStructure.AuditTrail" Removed="True" />
             <LayoutGroup Id="ObligationUnits" Removed="True" />
+            <LayoutGroup Id="Supplier.AuditTrail" Removed="True" />
           </TabbedGroup>
           <LayoutGroup Id="SizeableEditors" Removed="True">
             <LayoutItem Id="DescriptionLong" ViewItem="DescriptionLong" Removed="True" />

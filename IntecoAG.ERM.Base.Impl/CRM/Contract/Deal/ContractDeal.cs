@@ -29,7 +29,7 @@ using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Forms;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Analitic;
-
+using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.HRM.Organization;
 
 namespace IntecoAG.ERM.CRM.Contract.Deal
@@ -75,7 +75,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     [DefaultProperty("Name")]
     [VisibleInReports]
     [Persistent("crmDeal")]
-    public partial class crmContractDeal : BaseObject
+    public partial class crmContractDeal : csCComponent
         //, ICategorizedItem
     {
         public crmContractDeal(Session ses) : base(ses) { }
@@ -260,6 +260,12 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 SetPropertyValue<crmDealVersion>("Current", ref _Current, value); }
         }
 
+        [Association("fmSubjects-crmDeals")]
+        public XPCollection<fmCSubject> Subjects {
+            get {
+                return GetCollection<fmCSubject>("Subjects");
+            }
+        }
 
         [RuleFromBoolProperty("ContractUnique", DefaultContexts.Save, "Contract with this <Customer, Supplier, DateRegistration, Number> already exists")]
         protected bool IsContractUnique {

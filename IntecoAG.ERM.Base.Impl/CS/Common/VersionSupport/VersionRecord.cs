@@ -13,7 +13,7 @@ namespace IntecoAG.ERM.CS
     /// Набор наиболее общих технических характеристик любого объекта системы
     /// </summary>
     [NonPersistent]
-    public abstract partial class VersionRecord : BaseObject, IVersionSupport
+    public abstract partial class VersionRecord : csCComponent, IVersionSupport
     {
         protected VersionRecord(Session session): base(session) { }
         protected VersionRecord(Session session, VersionStates state): base(session) {

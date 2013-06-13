@@ -140,6 +140,14 @@ namespace IntecoAG.ERM.FM.Subject
 
         public void OrdersRemove(fmCOrder order) { 
         }
+
+        [Association("fmSubjects-crmDeals")]
+        public XPCollection<crmContractDeal> Deals {
+            get {
+                return GetCollection<crmContractDeal>("Deals");
+            }
+        }
+
         [Browsable(false)]
         public Boolean IsDeleteAllow {
             get {

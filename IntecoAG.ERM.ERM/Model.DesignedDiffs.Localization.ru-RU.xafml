@@ -85,7 +85,19 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="GeneralCompanyReports" Caption="ТРВ Отчеты" />
+      <Item Id="GeneralCompanyReports" Caption="ТРВ Отчеты">
+        <Items>
+          <Item Id="@799f8a80-f3ff-4950-9c9c-5fbced783aaf" Caption="ТРВ Заказы" />
+        </Items>
+      </Item>
     </Items>
   </NavigationItems>
+  <Views>
+    <ListView Id="fmCSubjectExt_TRV_ListView" Caption="Список Тем">
+      <Filters>
+        <Filter Id="All" Caption="Все" />
+        <Filter Id="Working" Caption="Действующие" />
+      </Filters>
+    </ListView>
+  </Views>
 </Application>
