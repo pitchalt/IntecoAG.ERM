@@ -119,6 +119,11 @@
           <Item Id="fmCPaymentTaxPeriod_ListView" IsNewNode="True" Removed="True" />
         </Items>
       </Item>
+      <Item Id="GeneralCompanyReports" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@48daa127-5acd-4748-acac-c1ffa2efdd99" ViewId="gcrCodifDeal_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
       <Item Id="KPI" Removed="True" />
       <Item Id="State Machine" Removed="True" />
     </Items>
@@ -160,6 +165,36 @@
         <ColumnInfo Id="Code" Index="-1" />
         <ColumnInfo Id="Name" Index="0" />
         <ColumnInfo Id="Description" PropertyName="Description" Index="1" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="gcrCodifDeal_ListView" CollectionDataSource="gcrCodifDeal">
+      <Columns>
+        <ColumnInfo Id="Contract" Index="-1" />
+        <ColumnInfo Id="Deal" Index="-1" />
+        <ColumnInfo Id="Party" Index="-1" />
+        <ColumnInfo Id="ContractNumberInternal" Index="0" />
+        <ColumnInfo Id="ContractNumberOrganization" Index="1" />
+        <ColumnInfo Id="ContractNumberIn" Index="2" />
+        <ColumnInfo Id="PartyINN" Index="3" />
+        <ColumnInfo Id="PartyKPP" Index="4" />
+        <ColumnInfo Id="PartyName" Index="5" />
+        <ColumnInfo Id="GeneralCustomer" Index="6" />
+        <ColumnInfo Id="ContractCategory" Index="7" />
+        <ColumnInfo Id="ContractDescription" Index="8" />
+        <ColumnInfo Id="ContractDateSign" Index="9" />
+        <ColumnInfo Id="ContractDateLegal" Index="10" />
+        <ColumnInfo Id="DealDateBegin" Index="11" />
+        <ColumnInfo Id="DealDateEnd" Index="12" />
+        <ColumnInfo Id="DealValutaObligation" Index="13" />
+        <ColumnInfo Id="DealValutaPayments" Index="14" />
+        <ColumnInfo Id="DealPrice" Index="15" />
+        <ColumnInfo Id="NDSRate" Index="16" />
+        <ColumnInfo Id="Order" Index="17" />
+        <ColumnInfo Id="AppendixNumber" Index="18" />
+        <ColumnInfo Id="AppendixDescription" Index="19" />
+        <ColumnInfo Id="AppendixDate" Index="20" />
+        <ColumnInfo Id="AppendixType" Index="21" />
+        <ColumnInfo Id="AppendixComment" Index="22" />
       </Columns>
     </ListView>
   </Views>

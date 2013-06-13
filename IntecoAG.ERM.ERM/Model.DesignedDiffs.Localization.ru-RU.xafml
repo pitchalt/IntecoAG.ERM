@@ -1,5 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Company="АОЗТ Интеко АГ" Copyright="(c) 2008-2014 ОАО ВПК НПО машиностроения, АОЗТ Интеко АГ" Title="Интеко АГ ФПиК">
+  <BOModel>
+    <Class Name="IntecoAG.ERM.GCR.Codif.gcrCodifDeal" Caption="ТРВ Договора">
+      <OwnMembers>
+        <Member Name="AppendixComment" Caption="Прил.Комментарий" />
+        <Member Name="AppendixDate" Caption="Прил.Дата" />
+        <Member Name="AppendixDescription" Caption="Прил.Наименование" />
+        <Member Name="AppendixNumber" Caption="Прил.Номер" />
+        <Member Name="AppendixType" Caption="Прил.Тип" />
+        <Member Name="Contract" Caption="Договор" />
+        <Member Name="ContractCategory" Caption="Категория договора" />
+        <Member Name="ContractDateLegal" Caption="Дата вступления в силу" />
+        <Member Name="ContractDateSign" Caption="Дата подписания" />
+        <Member Name="ContractDescription" Caption="Предмет договора" />
+        <Member Name="ContractNumberIn" Caption="Прописанный номер" />
+        <Member Name="ContractNumberInternal" Caption="Номер порядковый" />
+        <Member Name="ContractNumberOrganization" Caption="Номер договора" />
+        <Member Name="Deal" Caption="Простой договор" />
+        <Member Name="DealDateBegin" Caption="Дата начала работ" />
+        <Member Name="DealDateEnd" Caption="Дата завершения работ" />
+        <Member Name="DealPrice" Caption="Сумма" />
+        <Member Name="DealValutaObligation" Caption="Валюта договора" />
+        <Member Name="DealValutaPayments" Caption="Валюта платежа" />
+        <Member Name="GeneralCustomer" Caption="Генеральный заказчик" />
+        <Member Name="NDSRate" Caption="Ставка НДС" />
+        <Member Name="Order" Caption="Заказ" />
+        <Member Name="Party" Caption="Партнер" />
+        <Member Name="PartyINN" Caption="Контр.ИНН" />
+        <Member Name="PartyKPP" Caption="Контр.КПП" />
+        <Member Name="PartyName" Caption="Контр.Наименование" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
   <Localization>
     <LocalizationGroup Name="Texts">
       <LocalizationItem Name="CaptionForFalse" Value="Ложь" />
@@ -53,6 +85,7 @@
           </Item>
         </Items>
       </Item>
+      <Item Id="GeneralCompanyReports" Caption="ТРВ Отчеты" />
     </Items>
   </NavigationItems>
 </Application>

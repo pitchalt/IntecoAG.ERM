@@ -56,7 +56,6 @@ namespace IntecoAG.ERM.Module
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(crmDealRegistrationForm));
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(crmContractRegistrationForm));
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(crmDealRegistrationStatistics));
-            SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(crmDealRegistrationStatistics));
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(csCNMCourseEditor));
             //
             //SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(ActionExecutePermissionDescriptor));

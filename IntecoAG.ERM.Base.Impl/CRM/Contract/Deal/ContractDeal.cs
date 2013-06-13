@@ -253,6 +253,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         private crmDealVersion _Current;
         //[Aggregated]
         [ExpandObjectMembers(ExpandObjectMembers.InDetailView)]
+        [ExplicitLoading(2)]
         public crmDealVersion Current {
             get { return _Current; }
             set {

@@ -98,8 +98,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.ERM", "IntecoA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.WinForms", "IntecoAG.ERM.WinForms\IntecoAG.ERM.WinForms.csproj", "{7AC25A27-AA4A-4192-8DC8-BB903AFB32A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntecoAG.ERM.Imports", "IntecoAG.ERM.Imports\IntecoAG.ERM.Imports.csproj", "{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -477,31 +475,6 @@ Global
 		{7AC25A27-AA4A-4192-8DC8-BB903AFB32A6}.Test|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7AC25A27-AA4A-4192-8DC8-BB903AFB32A6}.Test|Mixed Platforms.Build.0 = Release|Any CPU
 		{7AC25A27-AA4A-4192-8DC8-BB903AFB32A6}.Test|x86.ActiveCfg = Release|Any CPU
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Debug|x86.ActiveCfg = Debug|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Debug|x86.Build.0 = Debug|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.EasyTest|Any CPU.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.EasyTest|Mixed Platforms.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.EasyTest|Mixed Platforms.Build.0 = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.EasyTest|x86.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.EasyTest|x86.Build.0 = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Prod|Any CPU.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Prod|Mixed Platforms.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Prod|Mixed Platforms.Build.0 = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Prod|x86.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Prod|x86.Build.0 = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Release|Any CPU.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Release|Mixed Platforms.Build.0 = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Release|x86.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Release|x86.Build.0 = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Test|Any CPU.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Test|Mixed Platforms.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Test|Mixed Platforms.Build.0 = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Test|x86.ActiveCfg = Release|x86
-		{8CFB430A-1E21-4514-8CEF-A30CFE24BEF4}.Test|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
