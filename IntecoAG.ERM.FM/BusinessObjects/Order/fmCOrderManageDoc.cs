@@ -39,7 +39,7 @@ namespace IntecoAG.ERM.FM.Order {
 
         #region fmCOrderManageDocFinIndexStructureItem
 
-        [VisibleInReports(true)]
+//        [VisibleInReports(true)]
         [MapInheritance(MapInheritanceType.ParentTable)]
         public class fmCOrderManageDocFinIndexStructureItem : fmCFinIndexStructureItem {
             public fmCOrderManageDocFinIndexStructureItem(Session session)
@@ -79,8 +79,8 @@ namespace IntecoAG.ERM.FM.Order {
         //
         private String _BuhAccount;
         private Int32 _BuhIntNum;
-        private Decimal _KoeffKB;
-        private Decimal _KoeffOZM;
+        //private Decimal _KoeffKB;
+        //private Decimal _KoeffOZM;
         //        [Persistent("DocName")]
 //        private DateTime _DocName;
         #endregion
@@ -211,16 +211,6 @@ namespace IntecoAG.ERM.FM.Order {
         public Int32 BuhIntNum {
             get { return _BuhIntNum; }
             set { SetPropertyValue<Int32>("BuhIntNum", ref _BuhIntNum, value); }
-        }
-
-        public Decimal FixKoeff {
-            get { return _KoeffKB; }
-            set { SetPropertyValue<Decimal>("FixKoeff", ref _KoeffKB, value); }
-        }
-
-        public Decimal FixKoeffOZM {
-            get { return _KoeffOZM; }
-            set { SetPropertyValue<Decimal>("FixKoeffOZM", ref _KoeffOZM, value); }
         }
 
         [DataSourceProperty("ManagerSource")]
@@ -493,42 +483,209 @@ namespace IntecoAG.ERM.FM.Order {
         #endregion
 
 
+        private fmIOrderOverheadType _OverheadType;
+        private fmCOrderOverheadIndividual _OverheadIndividual;
+        private fmCOrderOverheadStandart _OverheadStandart;
 
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmIOrderOverheadType OverheadType {
             get {
-                throw new NotImplementedException();
+                return _OverheadType;
             }
             set {
-                throw new NotImplementedException();
+                fmIOrderOverheadType old = OverheadType;
+                SetPropertyValue("OverheadType", ref _OverheadType, value);
+                if (!IsLoading) {
+                    fmCOrderOverheadIndividual oldind = OverheadIndividual;
+                    if (value == fmIOrderOverheadType.Standart) {
+                        OverheadIndividual = null;
+                        if (oldind != null)
+                            oldind.Delete();
+                    }
+                    if (value == fmIOrderOverheadType.Individual) {
+                        OverheadStandart = null;
+                        if (oldind == null)
+                            OverheadIndividual = new fmCOrderOverheadIndividual(Session);
+                    }
+                    if (old != value) {
+                        OnChanged("FixKoeff");
+                        OnChanged("FixKoeffOZM");
+                        OnChanged("PlanOverheadType");
+                        OnChanged("BuhOverheadType");
+                    }
+                }
             }
         }
 
-        public fmIOrderOverheadStandart OverheadStandart {
+        [Browsable(false)]
+        [Aggregated]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'")]
+        public fmCOrderOverheadIndividual OverheadIndividual {
             get {
-                throw new NotImplementedException();
+                return _OverheadIndividual;
             }
             set {
-                throw new NotImplementedException();
+                if (!IsLoading) {
+                    if (OverheadType == fmIOrderOverheadType.Individual && value != null ||
+                        OverheadType == fmIOrderOverheadType.Standart && value == null) {
+                        SetPropertyValue<fmCOrderOverheadIndividual>("OverheadIndividual", ref _OverheadIndividual, value);
+                    }
+                    else
+                        throw new InvalidOperationException("Overhead Type not is Individual");
+                }
+                else
+                    _OverheadIndividual = value;
             }
         }
 
+        [NonPersistent]
+        public fmCOrderOverhead Overhead {
+            get {
+                if (OverheadType == fmIOrderOverheadType.Individual)
+                    return OverheadIndividual;
+                if (OverheadType == fmIOrderOverheadType.Standart)
+                    return OverheadStandart;
+                return null;
+            }
+        }
+
+        fmIOrderOverheadStandart fmIOrder.OverheadStandart {
+            get {
+                return OverheadStandart;
+            }
+            set {
+                OverheadStandart = (fmCOrderOverheadStandart)value;
+            }
+        }
+
+        [ExplicitLoading(1)]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Standart'")]
+        public fmCOrderOverheadStandart OverheadStandart {
+            get {
+                return _OverheadStandart;
+            }
+            set {
+                if (!IsLoading) {
+                    if (OverheadType == fmIOrderOverheadType.Standart && value != null ||
+                        OverheadType == fmIOrderOverheadType.Individual && value == null) {
+                        SetPropertyValue<fmCOrderOverheadStandart>("OverheadStandart", ref _OverheadStandart, value);
+                    }
+                    else
+                        throw new InvalidOperationException("Overhead Type not is Standart");
+                }
+                else
+                    _OverheadStandart = value;
+            }
+        }
+
+        [NonPersistent]
+        //[RuleCriteria("", DefaultContexts.Save, "PlanOverheadType == 0", TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'")]
         public fmIOrderOverheadValueType PlanOverheadType {
-            get {
-                throw new NotImplementedException();
-            }
+            get { return Overhead == null ? 0 : Overhead.PlanOverheadType; }
             set {
-                throw new NotImplementedException();
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    fmIOrderOverheadValueType old = Overhead.PlanOverheadType;
+                    Overhead.PlanOverheadType = value;
+                    OnChanged("PlanOverheadType", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual");
             }
         }
 
-
+        [NonPersistent]
+        //        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs = "Save")]
+        //[RuleCriteria("", DefaultContexts.Save, "BuhOverheadType == 0", TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'")]
         public fmIOrderOverheadValueType BuhOverheadType {
-            get {
-                throw new NotImplementedException();
-            }
+            get { return Overhead == null ? 0 : Overhead.BuhOverheadType; }
             set {
-                throw new NotImplementedException();
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    fmIOrderOverheadValueType old = Overhead.BuhOverheadType;
+                    Overhead.BuhOverheadType = value;
+                    OnChanged("BuhOverheadType", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual or Overhead is null");
             }
         }
+
+        //[Browsable(false)]
+        //public Decimal KoeffKB {
+        //    get { return _KoeffKB; }
+        //    set { SetPropertyValue<Decimal>("KoeffKB", ref _KoeffKB, value); }
+        //}
+
+        //[Browsable(false)]
+        //public Decimal KoeffOZM {
+        //    get { return _KoeffOZM; }
+        //    set { SetPropertyValue<Decimal>("KoeffOZM", ref _KoeffOZM, value); }
+        //}
+
+        [NonPersistent]
+        //        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs="Save")]
+        public Decimal FixKoeff {
+            get { return Overhead == null ? 0 : Overhead.FixKoeff; }
+            set {
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    Decimal old = Overhead.FixKoeff;
+                    Overhead.FixKoeff = value;
+                    OnChanged("FixKoeff", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual or Overhead is null");
+            }
+        }
+
+        [NonPersistent]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual'", TargetContextIDs = "Save")]
+        public Decimal FixKoeffOZM {
+            get { return Overhead == null ? 0 : Overhead.FixKoeffOZM; }
+            set {
+                if (OverheadType == fmIOrderOverheadType.Individual && Overhead != null) {
+                    Decimal old = Overhead.FixKoeffOZM;
+                    Overhead.FixKoeffOZM = value;
+                    OnChanged("FixKoeffOZM", old, value);
+                }
+                else
+                    throw new InvalidOperationException("Overhead Type not is Individual or Overhead is null");
+            }
+        }
+
+        //public fmIOrderOverheadType OverheadType {
+        //    get {
+        //        throw new NotImplementedException();
+        //    }
+        //    set {
+        //        throw new NotImplementedException();
+        //    }
+        //}
+
+        //public fmIOrderOverheadStandart OverheadStandart {
+        //    get {
+        //        throw new NotImplementedException();
+        //    }
+        //    set {
+        //        throw new NotImplementedException();
+        //    }
+        //}
+
+        //public fmIOrderOverheadValueType PlanOverheadType {
+        //    get {
+        //        throw new NotImplementedException();
+        //    }
+        //    set {
+        //        throw new NotImplementedException();
+        //    }
+        //}
+
+
+        //public fmIOrderOverheadValueType BuhOverheadType {
+        //    get {
+        //        throw new NotImplementedException();
+        //    }
+        //    set {
+        //        throw new NotImplementedException();
+        //    }
+        //}
     }
 }

@@ -63,7 +63,11 @@ namespace IntecoAG.ERM.FM.FinIndex {
                     item_to = to.FinIndexesCreateItem(item_from.FinIndex);
                 else
                     to_list.Remove(item_to);
-                item_to.Value = item_from.Value;
+                item_to.SummKB = item_from.SummKB;
+                item_to.SummOZM = item_from.SummOZM;
+                item_to.SummOrion = item_from.SummOrion;
+                item_to.SummPersonalContract = item_from.SummPersonalContract;
+                item_to.SummOther = item_from.SummOther;
             }
             foreach (fmIFinIndexStructureItem item_to in to_list) {
                 to.FinIndexes.Remove(item_to);

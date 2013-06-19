@@ -313,7 +313,6 @@
     <Compile Include="BusinessObjects\Order\fmCOrderManageDocSM.cs" />
     <Compile Include="BusinessObjects\Order\fmIOrderManageDoc.cs" />
     <Compile Include="BusinessObjects\FinIndex\fmCFinIndexStructureItem.cs" />
-    <Compile Include="BusinessObjects\FinIndex\fmCFinIndexStructure.cs" />
     <Compile Include="BusinessObjects\FinIndex\fmIFinIndexStructure.cs" />
     <Compile Include="BusinessObjects\FinIndex\fmIFinIndexStructureItem.cs" />
     <Compile Include="BusinessObjects\Order\fmCOrderExt.cs" />
@@ -423,6 +422,7 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\UpdaterFinIndexes.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceAnalytic.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceFix01.cs" />
     <Compile Include="DatabaseUpdate\UpdaterCashFlowRegister.cs" />
@@ -511,7 +511,6 @@
       <DependentUpon>ERMFinancialModule.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml">
@@ -541,6 +540,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Import\fmCAVTInvoiceTransferType.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Import\fmCFinIndex.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Import\fmCFinIndexItem.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ReadMe.txt" />

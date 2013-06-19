@@ -40,7 +40,11 @@ namespace IntecoAG.ERM.FM.FinIndex {
         }
 
         private fmCFinIndexStructureItemType _FinIndexStructureItemType;
-        private Decimal _Value;
+        private Decimal _SummKB;
+        private Decimal _SummOZM;
+        private Decimal _SummOrion;
+        private Decimal _SummPersonalContract;
+        private Decimal _SummOther;
         private fmCFinIndex _FinIndex;
 
         public fmCFinIndexStructureItemType FinIndexStructureItemType {
@@ -82,9 +86,25 @@ namespace IntecoAG.ERM.FM.FinIndex {
             }
         }
 
-        public Decimal Value {
-            get { return _Value; }
-            set { SetPropertyValue<Decimal>("Value", ref _Value, value); }
+        public Decimal SummKB {
+            get { return _SummKB; }
+            set { SetPropertyValue<Decimal>("SummKB", ref _SummKB, value); }
+        }
+        public Decimal SummOZM {
+            get { return _SummOZM; }
+            set { SetPropertyValue<Decimal>("SummOZM", ref _SummOZM, value); }
+        }
+        public Decimal SummOrion {
+            get { return _SummOrion; }
+            set { SetPropertyValue<Decimal>("SummOrion", ref _SummOrion, value); }
+        }
+        public Decimal SummPersonalContract {
+            get { return _SummPersonalContract; }
+            set { SetPropertyValue<Decimal>("SummPersonalContract", ref _SummPersonalContract, value); }
+        }
+        public Decimal SummOther {
+            get { return _SummOther; }
+            set { SetPropertyValue<Decimal>("SummOther", ref _SummOther, value); }
         }
 
         [Association("fmFinStructureItem-fmFinStructureItemCalculated", typeof(fmCFinIndexStructureItemCalculated))]
