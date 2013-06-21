@@ -131,6 +131,12 @@
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Security.csCSecurityUser));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Nomenclature.csCNMCourseEditor));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Security.csCSecurityRole));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Settings.fmCPaymentBase));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Settings.fmCPaymentKBK));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Settings.fmCPaymentKind));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Settings.fmCPaymentTaxPeriod));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.FM.FinAccount.fmCFAAccount));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.HRM.Organization.hrmCStaffPost));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase));

@@ -30,7 +30,7 @@ namespace IntecoAG.ERM.SyncIBS {
                     if (curline.SaleJurnalLine == null) continue;
                     curline.SaleJurnalLine.SyncIBS();
                     //            User currentUser = null;
-                    ISyncService syncservice = new HTTPSyncService(ConfigurationManager.AppSettings["IBS.SyncService"]);
+                    IIBSSyncService syncservice = new HTTPSyncService(ConfigurationManager.AppSettings["IBS.SyncService"]);
 
                     FWSJXMIA msg_in = new FWSJXMIA();
                     msg_in.CMD = "UPDATE";

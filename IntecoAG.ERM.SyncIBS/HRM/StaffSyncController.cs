@@ -24,17 +24,17 @@ namespace IntecoAG.ERM.HRM {
         }
         protected class StaffSyncLongOperation : LongOperation {
             public StaffSyncLongOperation(  LongOperationDelegate longOperationDelegate, 
-                                            ISyncService sync_service, 
+                                            IIBSSyncService sync_service, 
                                             XWTBXCOA staff_list) : base(longOperationDelegate) 
             {
                 _SyncService = sync_service;
                 _StaffList = staff_list;
             }
             //            public StaffSyncLongOperation(LongOperationParametrizedDelegate longOperationParametrizedDelegate);
-            private ISyncService _SyncService;
+            private IIBSSyncService _SyncService;
             private XWTBXCOA _StaffList;
 
-            public ISyncService SyncService {
+            public IIBSSyncService SyncService {
                 get { return _SyncService; }
             }
             public XWTBXCOA StaffList {

@@ -652,6 +652,8 @@
     <Class Name="IntecoAG.ERM.CS.Work.csEvent" Caption="Событие" />
     <Class Name="IntecoAG.ERM.CS.Work.csWork" Caption="Работа" />
     <Class Name="IntecoAG.ERM.FM.Docs.csCDocRCB" Caption="Платежный документ" />
+    <Class Name="IntecoAG.ERM.FM.FinAccount.fmCFAAccount" Caption="Фин.Счет" />
+    <Class Name="IntecoAG.ERM.FM.FinAccount.fmCFAAccountSystem" Caption="План счетов" />
     <Class Name="IntecoAG.ERM.FM.fmCostItem" Caption="Статья ДДС">
       <OwnMembers>
         <Member Name="Code" Caption="Код" />

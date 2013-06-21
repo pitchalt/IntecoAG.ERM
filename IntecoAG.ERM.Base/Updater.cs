@@ -49,8 +49,8 @@ namespace IntecoAG.ERM.Module {
                 fmCSettingsFinance.GetInstance(((ObjectSpace)ObjectSpace).Session);
                 crmCSettingsContract.GetInstance(((ObjectSpace)ObjectSpace).Session);
                 //
-                UpdateParty();
-                UpdateStaff();
+                //UpdateParty();
+                //UpdateStaff();
             }
             catch {
             }

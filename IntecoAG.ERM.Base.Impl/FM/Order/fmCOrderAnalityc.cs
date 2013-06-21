@@ -10,6 +10,7 @@ using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 //
 using IntecoAG.ERM.CS;
+using IntecoAG.ERM.FM.FinAccount;
 //
 namespace IntecoAG.ERM.FM.Order {
 
@@ -64,6 +65,20 @@ namespace IntecoAG.ERM.FM.Order {
     public class fm—OrderAnalitycAccouterType : fmCOrderAnalityc {
         public fm—OrderAnalitycAccouterType(Session session)
             : base(session) {
+        }
+
+        private String _BuhCode;
+        private fmCFAAccount _DefaultAccount;
+
+        [Size(1)]
+        public String BuhCode {
+            get { return _BuhCode; }
+            set { SetPropertyValue<String>("BuhCode", ref _BuhCode, value); }
+        }
+        [DataSourceCriteria("AccountSystem.Code == '1000' && IsSelectabled")]
+        public fmCFAAccount DefaultAccount {
+            get { return _DefaultAccount; }
+            set { SetPropertyValue<fmCFAAccount>("DefaultAccount", ref _DefaultAccount, value); }
         }
     }
 

@@ -52,7 +52,6 @@
             <Items IsNewNode="True">
               <Item Id="csValuta" ViewId="csValuta_ListView" ObjectKey="" Index="0" IsNewNode="True" />
               <Item Id="csNDSRate" ViewId="csNDSRate_ListView" Index="1" IsNewNode="True" />
-              <Item Id="@a4916bb2-719d-4b3f-ade2-15c6a52be58b" ViewId="fmCFinIndexStructure_ListView" Index="2" IsNewNode="True" />
               <Item Id="@2cb4cf35-a232-4f3e-8ca5-301e76e1acb2" ViewId="fmCSubjectGroup_ListView" Index="3" IsNewNode="True" />
               <Item Id="@89f1d7dd-7be8-4094-ba4e-605b770fa1c3" ViewId="fmCOrderOverheadStandart_ListView" Index="4" IsNewNode="True" />
               <Item Id="FinanceOrderAnalitycs" Index="5" IsNewNode="True">
@@ -75,6 +74,7 @@
               <Item Id="fmCPaymentKBK_ListView" ViewId="fmCPaymentKBK_ListView" ObjectKey="" Index="9" IsNewNode="True" />
               <Item Id="fmCPaymentKind_ListView" ViewId="fmCPaymentKind_ListView" ObjectKey="" Index="10" IsNewNode="True" />
               <Item Id="fmCPaymentTaxPeriod_ListView" ViewId="fmCPaymentTaxPeriod_ListView" ObjectKey="" Index="11" IsNewNode="True" />
+              <Item Id="@bd2942b7-a18e-47f8-97cc-c8c9385c72e2" ViewId="fmCFAAccountSystem_ListView" IsNewNode="True" />
             </Items>
           </Item>
           <Item Id="SettingsMaterial" Index="4" IsNewNode="True">
@@ -131,8 +131,8 @@
   </NavigationItems>
   <Options UIType="TabbedMDI" UseServerMode="True" LookupSmallCollectionItemCount="100" GroupShortcut="Control+Alt+T" />
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="11.2.14.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.14.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
     <DetailView Id="crmBank_DetailView">

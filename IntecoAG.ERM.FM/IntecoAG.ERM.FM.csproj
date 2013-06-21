@@ -422,6 +422,7 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\UpdaterFAAccount.cs" />
     <Compile Include="DatabaseUpdate\UpdaterFinIndexes.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceAnalytic.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceFix01.cs" />
@@ -546,6 +547,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Import\fmCFinIndexItem.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Import\fmCFAAccount.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ReadMe.txt" />

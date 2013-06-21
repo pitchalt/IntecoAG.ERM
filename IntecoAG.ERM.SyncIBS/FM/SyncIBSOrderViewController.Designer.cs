@@ -23,9 +23,34 @@ namespace IntecoAG.ERM.SyncIBS.FM {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
+            this.SyncOrderListAction = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
+            // 
+            // SyncOrderListAction
+            // 
+            this.SyncOrderListAction.Caption = null;
+            this.SyncOrderListAction.ConfirmationMessage = null;
+            this.SyncOrderListAction.Id = "d67412b9-482f-4bb9-9687-77f16483e22a";
+            this.SyncOrderListAction.ImageName = null;
+            this.SyncOrderListAction.Shortcut = null;
+            this.SyncOrderListAction.Tag = null;
+            this.SyncOrderListAction.TargetObjectsCriteria = null;
+            this.SyncOrderListAction.TargetViewId = null;
+            this.SyncOrderListAction.ToolTip = null;
+            this.SyncOrderListAction.TypeOfView = null;
+            this.SyncOrderListAction.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.SyncOrderListAction_Execute);
+            // 
+            // SyncIBSOrderViewController
+            // 
+            this.TargetObjectType = typeof(IntecoAG.ERM.FM.Order.fmCOrderExt);
+            this.TargetViewNesting = DevExpress.ExpressApp.Nesting.Root;
+            this.TargetViewType = DevExpress.ExpressApp.ViewType.ListView;
+            this.TypeOfView = typeof(DevExpress.ExpressApp.ListView);
+
         }
 
         #endregion
+
+        private DevExpress.ExpressApp.Actions.SimpleAction SyncOrderListAction;
     }
 }

@@ -20,6 +20,19 @@ namespace IntecoAG.ERM.FM.DatabaseUpdate {
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
 
+            // Disable
+            if (this.CurrentDBVersion == new Version("1.1.1.224")) {
+                using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
+                    foreach (fmCOrderExt order in os.GetObjects<fmCOrderExt>(null, true)) {
+                        order.IsSyncRequired = false;
+                    }
+                    os.CommitChanges();
+                }
+            }
+
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
+                return;
+
             if (this.CurrentDBVersion > new Version("1.1.1.220"))   // Поправить на правильный номер!
                 return;
 
@@ -56,18 +69,18 @@ namespace IntecoAG.ERM.FM.DatabaseUpdate {
                     }
                     if (order.Code.Length == 4)
                         order.Code = "00" + order.Code;
-                    order.BuhAccountCode = order.BuhAccount;
-                    if (order.Subject != null && 
-                        order.Subject.AnalitycAVT != null  &&
+                    //order.BuhAccountCode = order.BuhAccount;
+                    if (order.Subject != null &&
+                        order.Subject.AnalitycAVT != null &&
                         order.AnalitycAVT != null &&
                         order.Subject.AnalitycAVT.Code == "Э" &&
                         order.AnalitycAVT.Code == "О") {
-                            order.AnalitycAVT = order.Subject.AnalitycAVT;
+                        order.AnalitycAVT = order.Subject.AnalitycAVT;
                     }
                 }
                 os.CommitChanges();
             }
-       }
+        }
     }
 
 }

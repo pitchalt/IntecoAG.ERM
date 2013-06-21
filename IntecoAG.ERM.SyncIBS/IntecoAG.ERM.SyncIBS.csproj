@@ -127,6 +127,10 @@
     <Compile Include="Updater.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FM\SyncIBSOrderViewController.resx">
+      <DependentUpon>SyncIBSOrderViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="SyncIBS\SyncIBSViewController.resx">
       <DependentUpon>SyncIBSViewController.cs</DependentUpon>
     </EmbeddedResource>

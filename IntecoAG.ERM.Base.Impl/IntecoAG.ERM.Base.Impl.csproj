@@ -244,6 +244,8 @@
     <Compile Include="CS\Security\csCSecurityUserLogic.cs" />
     <Compile Include="CS\Security\csCSecurityUserOperators.cs" />
     <Compile Include="CS\Settings\csCSettingsBase.cs" />
+    <Compile Include="FM\FinAccount\fmCFAAccount.cs" />
+    <Compile Include="FM\FinAccount\fmCFAAccountSystem.cs" />
     <Compile Include="FM\fmCPaymentKBK.cs" />
     <Compile Include="FM\fmCPaymentBase.cs" />
     <Compile Include="FM\fmCPaymentKind.cs" />

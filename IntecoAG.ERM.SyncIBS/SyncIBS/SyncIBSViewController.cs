@@ -43,7 +43,7 @@ namespace IntecoAG.ERM.SyncIBS {
         }
 
         //private void OrderCatalog_Execute(object sender, SimpleActionExecuteEventArgs e) {
-        //    foreach (var item in OrderExchangeLogic.Catalog(this.ObjectSpace)) {
+        //    foreach (var item in SynIBSOrderExchangeLogic.Catalog(this.ObjectSpace)) {
         //        Debug.WriteLine(item.UserOrgCode + " - " + item.SubjectCode + " - " + item.Code + " - " + 
         //                    item.DateOpen.ToString() + " - " + item.DateClose.ToString());
         //    }

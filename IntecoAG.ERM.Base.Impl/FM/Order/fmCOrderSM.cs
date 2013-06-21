@@ -16,31 +16,36 @@ namespace IntecoAG.ERM.FM.Order {
         public fmCOrderSM() {
             StateLoaded = new State(this, fmIOrderStatus.Loaded);
             State StateProject = new State(this, fmIOrderStatus.Project);
-            State StateOpened = new State(this, fmIOrderStatus.FinOpened);
-            State StateClosed = new State(this, fmIOrderStatus.FinClosed);
-            State StateDelete = new State(this, fmIOrderStatus.Deleting);
-
+            State StateFinOpened = new State(this, fmIOrderStatus.FinOpened);
+            State StateFinClosed = new State(this, fmIOrderStatus.FinClosed);
+            State StateOpened = new State(this, fmIOrderStatus.Opened);
+            State StateClosed = new State(this, fmIOrderStatus.Closed);
+//            State StateDelete = new State(this, fmIOrderStatus.Deleting);
 //            StateClosed.TargetObjectCriteria = "IsStatusClosedAllow";
 
             StateLoaded.Transitions.Add(new Transition(StateProject, "Проект", 1));
-            StateLoaded.Transitions.Add(new Transition(StateOpened, "Открыть", 2));
-            StateLoaded.Transitions.Add(new Transition(StateClosed, "Закрыть", 3));
-            StateLoaded.Transitions.Add(new Transition(StateDelete, "Удалить", 4));
+            StateLoaded.Transitions.Add(new Transition(StateFinOpened, "Открыть", 2));
+            StateLoaded.Transitions.Add(new Transition(StateFinClosed, "Закрыть", 3));
 
-            StateProject.Transitions.Add(new Transition(StateOpened, "Открыть", 1));
-            StateProject.Transitions.Add(new Transition(StateClosed, "Закрыть", 2));
-            StateOpened.Transitions.Add(new Transition(StateClosed, "Закрыть", 1));
-            StateOpened.Transitions.Add(new Transition(StateProject, "Проект", 2));
-            StateOpened.Transitions.Add(new Transition(StateDelete, "Удалить", 4));
+            StateProject.Transitions.Add(new Transition(StateFinOpened, "Открыть", 1));
 
-            StateClosed.Transitions.Add(new Transition(StateOpened, "Повт.Открыть", 1));
-            StateDelete.Transitions.Add(new Transition(StateOpened, "Повт.Открыть", 1));
+            StateOpened.Transitions.Add(new Transition(StateFinClosed, "Закрыть", 1));
+            StateOpened.Transitions.Add(new Transition(StateFinOpened, "Редактировать", 2));
+
+            StateClosed.Transitions.Add(new Transition(StateFinOpened, "Редактировать", 1));
+
+            StateFinClosed.Transitions.Add(new Transition(StateClosed, "Закрыть", 1));
+            StateFinClosed.Transitions.Add(new Transition(StateProject, "Отклонить", 2));
+
+            StateFinOpened.Transitions.Add(new Transition(StateOpened, "Открыть", 1));
+            StateFinOpened.Transitions.Add(new Transition(StateProject, "Отклонить", 2));
 
             States.Add(StateLoaded);
             States.Add(StateProject);
+            States.Add(StateFinOpened);
             States.Add(StateOpened);
+            States.Add(StateFinClosed);
             States.Add(StateClosed);
-            States.Add(StateDelete);
         }
 
         public override IState StartState {

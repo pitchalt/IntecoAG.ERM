@@ -238,6 +238,7 @@
     </Class>
     <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCache" Caption="Кассовый документ">
       <OwnMembers>
+        <Member Name="Account" Caption="Субсчет" />
         <Member Name="CashierStaff" Caption="Кассир" />
         <Member Name="DescriptionAppendix" Caption="Приложение" />
         <Member Name="DescriptionBase" Caption="Основание" />
@@ -354,7 +355,6 @@
         <Member Name="Code" Caption="Код" />
         <Member Name="Name" Caption="Наименование" />
         <Member Name="SortOrder" Caption="Порядок сортировки" />
-        <Member Name="Value" Caption="Значение" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.FinIndex.fmCFinIndexStructureItem+fmCFinIndexStructureItemCalculated">

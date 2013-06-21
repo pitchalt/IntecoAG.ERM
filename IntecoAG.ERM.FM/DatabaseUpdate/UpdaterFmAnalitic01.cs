@@ -19,8 +19,11 @@ namespace IntecoAG.ERM.FM.DatabaseUpdate {
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
+            // Disable
+            if (this.CurrentDBVersion != new Version("0.0.0.0"))
+                return;
 
-            if (this.CurrentDBVersion > new Version("1.1.1.218"))   
+            if (this.CurrentDBVersion > new Version("1.1.1.218"))
                 return;
 
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
@@ -43,7 +46,7 @@ namespace IntecoAG.ERM.FM.DatabaseUpdate {
                 }
                 os.CommitChanges();
             }
-       }
+        }
     }
 
 }

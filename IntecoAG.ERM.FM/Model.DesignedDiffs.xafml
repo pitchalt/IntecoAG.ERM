@@ -266,8 +266,8 @@
     </Items>
   </NavigationItems>
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="11.2.14.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.14.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
     <DetailView Id="crmBank_DetailView">
@@ -1494,7 +1494,7 @@
               </LayoutGroup>
               <LayoutGroup Id="BuhAnal" Index="5" Direction="Horizontal" IsNewNode="True">
                 <LayoutItem Id="AnalitycAccounterType" ViewItem="AnalitycAccouterType" Index="0" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="BuhAccountCode" CaptionLocation="Top" Index="1" ViewItem="BuhAccountCode" IsNewNode="True" />
+                <LayoutItem Id="BuhAccount" ViewItem="BuhAccount" Index="1" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="BuhOverheadType" ViewItem="BuhOverheadType" Index="2" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="AnalitycAVT" ViewItem="AnalitycAVT" Index="3" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
@@ -3125,8 +3125,11 @@
               </LayoutGroup>
               <LayoutGroup Id="Texts" Index="2" Direction="Vertical" ShowCaption="True" Caption="fm IDoc Cache In Real Prepare" IsNewNode="True">
                 <LayoutItem Id="DescriptionBase" ViewItem="DescriptionBase" Index="1" CaptionLocation="Left" IsNewNode="True" />
-                <LayoutItem Id="DescriptionContent" ViewItem="DescriptionContent" Index="2" CaptionLocation="Left" IsNewNode="True" />
-                <LayoutItem Id="DescriptionAppendix" ViewItem="DescriptionAppendix" Index="3" CaptionLocation="Left" IsNewNode="True" />
+                <LayoutGroup Id="TextsCommon" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="Account" ViewItem="Account" CaptionLocation="Top" Index="0" RelativeSize="20" IsNewNode="True" />
+                  <LayoutItem Id="DescriptionContent" ViewItem="DescriptionContent" Index="1" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
+                  <LayoutItem Id="DescriptionAppendix" ViewItem="DescriptionAppendix" Index="2" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
+                </LayoutGroup>
               </LayoutGroup>
               <LayoutGroup Id="Signers" Direction="Horizontal" Index="3" IsNewNode="True">
                 <LayoutItem Id="GrossAccountStaff" ViewItem="GrossAccountStaff" Index="4" CaptionLocation="Top" IsNewNode="True" />

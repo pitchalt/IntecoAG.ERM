@@ -14,7 +14,7 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
 
     public class SyncIBSCSyncPushCrmParty : SyncIBSCSyncPush<crmCParty> {
 
-        public SyncIBSCSyncPushCrmParty(ISyncService syncservice) : base(syncservice) { }
+        public SyncIBSCSyncPushCrmParty(IIBSSyncService syncservice) : base(syncservice) { }
 
         public override void Send(IObjectSpace os, crmCParty comp) {
             crmCParty party = ((crmIParty)comp).Party;

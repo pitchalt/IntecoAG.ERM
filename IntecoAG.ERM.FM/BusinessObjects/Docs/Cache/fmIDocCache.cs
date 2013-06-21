@@ -10,6 +10,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 //
 using IntecoAG.ERM.CS.Security;
+using IntecoAG.ERM.FM.FinAccount;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.HRM.Organization;
 //
@@ -45,6 +46,10 @@ namespace IntecoAG.ERM.FM.Docs.Cache {
         hrmStaff PayPartyStaff { get; set; }
         [FieldSize(60)]
         String AnaliticCode { get; }
+
+        [DataSourceCriteria("AccountSystem.Code == '1000' && IsSelectabled")]
+        fmCFAAccount Account { get; set; } 
+
         Decimal Summa { get; set; }
         Int64 SummaSenior { get; }
         [FieldSize(120)]

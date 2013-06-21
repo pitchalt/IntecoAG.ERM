@@ -1,7 +1,9 @@
 using System;
 using System.Security.Principal;
+using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Windows.Forms;
 
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Updating;
@@ -62,13 +64,20 @@ namespace IntecoAG.ERM.FM {
             public void Import(IObjectSpace os, String file_name) {
                 DelimitedFileEngine engine = new DelimitedFileEngine(typeof(FinIndexItemImport));
                 FinIndexItemImport[] records = (FinIndexItemImport[])engine.ReadFile(file_name);
+                IList<fmCFinIndex> indexes = os.GetObjects<fmCFinIndex>(null, true);
+                fmCOrderExt order = null;
                 foreach (FinIndexItemImport rec in records) {
-                    fmCFinIndex index = os.GetObjects<fmCFinIndex>(new BinaryOperator("Code", rec.IndexCode),true).FirstOrDefault();
+                    fmCFinIndex index = indexes.FirstOrDefault(x => x.Code == rec.IndexCode);
+//                        os.GetObjects<fmCFinIndex>(new BinaryOperator("Code", rec.IndexCode),true).FirstOrDefault();
                     if (index == null)
                         throw new InvalidDataException("Unknow Index: " + rec.IndexCode);
-                    fmCOrderExt order = os.GetObjects<fmCOrderExt>(new BinaryOperator("Code", rec.OrderCode),true).FirstOrDefault();
-                    if (order == null)
-                        throw new InvalidDataException("Unknow Order: " + rec.OrderCode);
+                    if (order == null || order.Code != rec.OrderCode)
+                        order = os.GetObjects<fmCOrderExt>(new BinaryOperator("Code", rec.OrderCode),true).FirstOrDefault();
+                    if (order == null) {
+//                        DialogResult result = MessageBox.Show("Unknow Order: " + rec.OrderCode);
+//                        throw new InvalidDataException("Unknow Order: " + rec.OrderCode);
+                        continue;
+                    }
                     fmIFinIndexStructureItem item = order.FinIndexes.FirstOrDefault(x => x.FinIndex == index);
                     if (item == null)
                         item = order.FinIndexesCreateItem(index);

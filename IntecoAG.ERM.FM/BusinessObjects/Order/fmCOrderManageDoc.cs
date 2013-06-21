@@ -18,6 +18,7 @@ using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.GFM;
+using IntecoAG.ERM.FM.FinAccount;
 using IntecoAG.ERM.FM.FinIndex;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.HRM.Organization;
@@ -57,6 +58,8 @@ namespace IntecoAG.ERM.FM.Order {
         #endregion
 
         #region ПОЛЯ КЛАССА
+        private fmCFAAccount _BuhAccount;
+        private String _BuhAccountCode;
         private fmIOrderManageDocStatus _Status;
         private fmCSubjectExt _Subject;
         private fmCOrderExt _Order;
@@ -77,7 +80,6 @@ namespace IntecoAG.ERM.FM.Order {
         [Persistent("SourceName")]
         private String _SourceName;
         //
-        private String _BuhAccount;
         private Int32 _BuhIntNum;
         //private Decimal _KoeffKB;
         //private Decimal _KoeffOZM;
@@ -92,6 +94,13 @@ namespace IntecoAG.ERM.FM.Order {
         //        }
 
         #region СВОЙСТВА КЛАССА
+
+        [DataSourceCriteria("AccountSystem.Code == '1000' && IsSelectabled")]
+        [RuleRequiredField(TargetCriteria = "Status == 'Opened'")]
+        public fmCFAAccount BuhAccount {
+            get { return _BuhAccount; }
+            set { SetPropertyValue<fmCFAAccount>("BuhAccount", ref _BuhAccount, value); }
+        }
 
         public override String Code {
             get { return base.Code; }
@@ -198,8 +207,8 @@ namespace IntecoAG.ERM.FM.Order {
 
         [Size(30)]
         public String BuhAccountCode {
-            get { return _BuhAccount; }
-            set { SetPropertyValue<String>("BuhAccountCode", ref _BuhAccount, value); }
+            get { return _BuhAccountCode; }
+            set { SetPropertyValue<String>("BuhAccountCode", ref _BuhAccountCode, value); }
         }
 
         public csNDSRate AVTRate {

@@ -14,10 +14,11 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
 
     public class SyncIBSCSyncPushFmOrder : SyncIBSCSyncPush<fmCOrderExt> {
 
-        public SyncIBSCSyncPushFmOrder(ISyncService syncservice) : base(syncservice) { }
+        public SyncIBSCSyncPushFmOrder(IIBSSyncService syncservice) : base(syncservice) { }
 
         public override void Send(IObjectSpace os, fmCOrderExt order) {
             XWZKXMIA msg_in = new XWZKXMIA();
+            throw new NotImplementedException();
             XWZKXMOA msg_out;
             msg_in.CMD = "SET";
             msg_in.UUID = order.Oid.ToString();
@@ -42,10 +43,11 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
 
         public override bool CheckSyncRequired(IObjectSpace os, fmCOrderExt order) {
             if (os.IsNewObject(order) || os.IsObjectToSave(order) || os.IsObjectToDelete(order)) 
-                if (order.Status == fmIOrderStatus.FinOpened || 
-                    order.Status == fmIOrderStatus.FinClosed ||
+                if (order.Status == fmIOrderStatus.Opened || 
                     order.Status == fmIOrderStatus.Closed)
                     order.IsSyncRequired = true;
+                else
+                    order.IsSyncRequired = false;
             return order.IsSyncRequired;
         }
     }

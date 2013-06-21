@@ -242,8 +242,8 @@
     <LayoutManagerOptions CustomizationEnabled="False" />
   </Options>
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="11.2.14.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.14.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
     <ListView Id="crmBank_LookupListView">
@@ -2036,6 +2036,80 @@
         <ColumnInfo Id="Name" Index="2" />
       </Columns>
     </ListView>
+    <DetailView Id="fmCFAAccount_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="1" RelativeSize="80" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="IsSelectabled" ViewItem="IsSelectabled" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True" />
+          <LayoutGroup Id="SizeableEditors" Index="2" Removed="True" />
+          <TabbedGroup Id="Tabs" Index="3">
+            <LayoutGroup Id="SubAccounts" Index="0" />
+            <LayoutGroup Id="Common" Index="1" IsNewNode="True">
+              <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="Description" ViewItem="Description" Index="0" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="OtherData" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="BuhCode" ViewItem="BuhCode" Index="0" IsNewNode="True" />
+                <LayoutItem Id="ComponentType" ViewItem="ComponentType" Index="0" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="2" />
+            <LayoutGroup Id="Children" Index="2" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmCFAAccount_LookupListView" Criteria="[IsSelectabled] = True">
+      <Columns>
+        <ColumnInfo Id="Code" Width="20" Index="0" />
+        <ColumnInfo Id="Name" PropertyName="Name" Index="1" Width="40" IsNewNode="True" />
+        <ColumnInfo Id="TopAccount" PropertyName="TopAccount" Index="2" Width="20" IsNewNode="True" />
+        <ColumnInfo Id="BuhCode" PropertyName="BuhCode" Width="20" View="" SortIndex="0" SortOrder="Ascending" Index="3" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="fmCFAAccount_SubAccounts_ListView">
+      <Columns>
+        <ColumnInfo Id="AccountSystem" Index="-1" />
+        <ColumnInfo Id="Parent" Index="-1" />
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="BuhCode" Index="1" />
+        <ColumnInfo Id="Name" Index="2" />
+        <ColumnInfo Id="IsSelectabled" Index="3" Width="10" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmCFAAccountSystem_DetailView">
+      <Items>
+        <PropertyEditor Id="Accounts" View="fmCFAAccount_SubAccounts_ListView" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="1" CaptionLocation="Top" RelativeSize="80" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="csCCodedComponent">
+              <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
+              <LayoutItem Id="Name" ViewItem="Name" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" Removed="True" />
+          <TabbedGroup Id="Tabs" Index="3">
+            <LayoutGroup Id="Common" Index="1" IsNewNode="True">
+              <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="Description" ViewItem="Description" Index="0" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="ComponentType" ViewItem="ComponentType" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="2" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="fmCOrder_LookupListView">
       <Columns>
         <ColumnInfo Id="Name" PropertyName="Name" IsNewNode="True" />
@@ -2191,6 +2265,10 @@
             <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
             <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
           </LayoutGroup>
+          <LayoutGroup Id="Common" Index="1" IsNewNode="True">
+            <LayoutItem Id="BuhCode" ViewItem="BuhCode" Index="0" IsNewNode="True" />
+            <LayoutItem Id="DefaultAccount" ViewItem="DefaultAccount" Index="1" IsNewNode="True" />
+          </LayoutGroup>
           <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
             <LayoutGroup Id="fmCOrderAnalityc">
               <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
@@ -2209,9 +2287,9 @@
     </DetailView>
     <ListView Id="fmСOrderAnalitycAccouterType_ListView" AllowEdit="False" AllowDelete="False" NewItemRowPosition="None">
       <Columns>
+        <ColumnInfo Id="SortOrder" Width="20" />
         <ColumnInfo Id="Code" Width="100" />
         <ColumnInfo Id="Name" Width="300" />
-        <ColumnInfo Id="SortOrder" Width="20" />
       </Columns>
     </ListView>
     <ListView Id="fmСOrderAnalitycAccouterType_LookupListView">

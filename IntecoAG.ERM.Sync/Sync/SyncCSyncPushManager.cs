@@ -59,16 +59,18 @@ namespace IntecoAG.ERM.Sync {
 
         public void Send(DevExpress.ExpressApp.IObjectSpace os, SyncISyncObject obj) {
             Type type = obj.GetType();
-            Boolean is_fail = false;
+            Boolean is_complet = true;
+            Boolean is_enter = false;
             foreach (SyncISyncPush type_sync in this.GetTypeSyncImpls(type)) {
+                is_enter = true;
                 try {
                     type_sync.Send(os, obj);
                 } catch (Exception e) {
-                    is_fail = true;
+                    is_complet = false;
                     Tracing.Tracer.LogError(e);
                 }
             }
-            if (!is_fail)
+            if (is_enter && is_complet)
                 obj.IsSyncRequired = false;
         }
     }

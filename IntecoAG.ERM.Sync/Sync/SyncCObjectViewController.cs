@@ -15,20 +15,21 @@ namespace IntecoAG.ERM.Sync {
             RegisterActions(components);
         }
 
-        protected Boolean _IsActivated = false;
+//        protected Boolean _IsActivated = false;
 
         protected override void OnActivated() {
             base.OnActivated();
-            if (! (this.View.CurrentObject is SyncISyncObject)) return;
-            _IsActivated = true;
-            this.View.CurrentObjectChanged += new EventHandler(View_CurrentObjectChanged);
-
+//            if (! (this.View.CurrentObject is SyncISyncObject)) return;
+//            _IsActivated = true;
+            View.CurrentObjectChanged += new EventHandler(View_CurrentObjectChanged);
+            SyncActionStateUpdate();
         }
 
         protected override void OnDeactivated() {
-            if (_IsActivated)
-                this.View.CurrentObjectChanged -= new EventHandler(View_CurrentObjectChanged);
-            _IsActivated = false;
+//            if (_IsActivated)
+            View.CurrentObjectChanged -= new EventHandler(View_CurrentObjectChanged);
+            View.ObjectSpace.ObjectChanged -= new EventHandler<ObjectChangedEventArgs>(ObjectSpace_ObjectChanged);
+            //            _IsActivated = false;
             base.OnDeactivated();
         }
 
@@ -42,18 +43,35 @@ namespace IntecoAG.ERM.Sync {
         private void SyncAction_Execute(object sender, SimpleActionExecuteEventArgs e) {
             if (!(this.View.CurrentObject is SyncISyncObject)) return;
             SyncISyncObject obj = (SyncISyncObject) this.View.CurrentObject;
-//            this.ObjectSpace.SetModified(obj);
+            this.ObjectSpace.SetModified(obj);
             this.ObjectSpace.CommitChanges();
             SyncActionStateUpdate();
         }
 
         protected void SyncActionStateUpdate() {
-            if (!(this.View.CurrentObject is SyncISyncObject)) return;
-            SyncISyncObject obj = (SyncISyncObject)this.View.CurrentObject;
-            if (obj.IsSyncRequired)
+            if (this.View.CurrentObject is SyncISyncObject) {
                 SyncAction.Active.SetItemValue("SyncCObjectViewController", true);
-            else
+                View.ObjectSpace.ObjectChanged += new EventHandler<ObjectChangedEventArgs>(ObjectSpace_ObjectChanged);
+                SyncActionEnabledUpdate();
+            }
+            else {
                 SyncAction.Active.SetItemValue("SyncCObjectViewController", false);
+                View.ObjectSpace.ObjectChanged -= new EventHandler<ObjectChangedEventArgs>(ObjectSpace_ObjectChanged);
+            }
         }
+
+        protected void SyncActionEnabledUpdate() {
+            if (this.View.CurrentObject is SyncISyncObject) {
+                SyncISyncObject obj = (SyncISyncObject)this.View.CurrentObject;
+                if (obj.IsSyncRequired)
+                    SyncAction.Enabled.SetItemValue("SyncCObjectViewController", true);
+                else
+                    SyncAction.Enabled.SetItemValue("SyncCObjectViewController", false);
+            }
+        }
+        void ObjectSpace_ObjectChanged(object sender, ObjectChangedEventArgs e) {
+            SyncActionEnabledUpdate();
+        }
+
     }
 }

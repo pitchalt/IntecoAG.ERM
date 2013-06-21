@@ -10,8 +10,10 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Demos;
 using DevExpress.Persistent.Base;
+using DevExpress.Data.Filtering;
 //
 using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.FM.FinAccount;
 using IntecoAG.IBS.SyncService;
 using IntecoAG.IBS.SyncService.Messages.XZK;
 //
@@ -22,7 +24,8 @@ namespace IntecoAG.ERM.SyncIBS.FM {
             InitializeComponent();
             RegisterActions(components);
         }
-        private void SyncDepartmentListAction_Execute(object sender, SimpleActionExecuteEventArgs e) {
+
+        private void SyncOrderListAction_Execute(object sender, SimpleActionExecuteEventArgs e) {
             StartLongOperation(new LongOperation(DoWorkCore));
         }
 
@@ -32,23 +35,38 @@ namespace IntecoAG.ERM.SyncIBS.FM {
             //            IList<FullyAuditedBatchCreationObject> collection = updatingObjectSpace.GetObjects<FullyAuditedBatchCreationObject>();
             int index = 0;
             try {
-                IList<OrderExchangeLogic.OrderShort> short_orders = OrderExchangeLogic.Catalog(os);
+                XWZKXCOA short_orders = SynIBSOrderExchangeLogic.Catalog(os);
                 IList<fmCOrderExt> orders = os.GetObjects<fmCOrderExt>();
-                foreach (OrderExchangeLogic.OrderShort short_order in short_orders) {
-                    fmCOrderExt order = orders.First(item => item.Code == short_order.Code);
-                    if (order == null) continue;
-                    if (!short_order.IsClosed) {
-                        if (order.Status == fmIOrderStatus.Project || order.Status == fmIOrderStatus.FinOpened)
+                IList<fm—OrderAnalitycAccouterType> acc_types = os.GetObjects<fm—OrderAnalitycAccouterType>();
+                IList<fmCFAAccount> accounts = os.GetObjects<fmCFAAccount>(new BinaryOperator("AccountSystem.Code", "1000"));
+                foreach (XWZKXCOAZKLIST short_order in short_orders.ZKLIST) {
+                    fmCOrderExt order = orders.First(item => item.Code == short_order.ZKCODE);
+                    if (order == null) {
+                        Trace.TraceWarning("IBSOrderSyncAll: Order >" + short_order.ZKCODE + "< not found");
+                        continue;
+                    }
+                    if (!short_order.ZKISCLOSED) {
+                        if (order.Status == fmIOrderStatus.Project || order.Status == fmIOrderStatus.FinOpened) {
                             order.Status = fmIOrderStatus.Opened;
+                            order.IsClosed = false;
+                        }
                     }
                     else {
-                        order.Status = fmIOrderStatus.Closed;
-                        order.IsClosed = true;
+                        if (order.Status == fmIOrderStatus.Project || order.Status == fmIOrderStatus.FinClosed) {
+                            order.Status = fmIOrderStatus.Closed;
+                            order.IsClosed = true;
+                        }
+                    }
+                    if (!String.IsNullOrEmpty(short_order.ZKACCOUNTTYPE)) {
+                        order.AnalitycAccouterType = acc_types.FirstOrDefault(x => x.Code == short_order.ZKACCOUNTTYPE);
+                    }
+                    if (!String.IsNullOrEmpty(short_order.ZKACCOUNTCODE)) {
+                        order.BuhAccount = accounts.FirstOrDefault(x => x.BuhCode == short_order.ZKACCOUNTCODE);
                     }
                     os.CommitChanges();
                     //
                     if (longOperation.Status == LongOperationStatus.InProgress) {
-                        longOperation.RaiseProgressChanged((int)((++index * 100) / short_orders.Count), "Update Departnent " + index.ToString() + " from " + short_orders.Count.ToString());
+                        longOperation.RaiseProgressChanged((int)((++index * 100) / short_orders.ZKLIST.Count), "Œ·ÌÓ‚ÎˇÂÏ Á‡Í‡Á " + index.ToString() + " ËÁ " + short_orders.ZKLIST.Count.ToString());
                     }
                     if (longOperation.Status == LongOperationStatus.Cancelling) {
                         return;
@@ -68,7 +86,7 @@ namespace IntecoAG.ERM.SyncIBS.FM {
         }
 
         protected override IProgressControl CreateProgressControl() {
-            return new ProgressForm("Update department List", 0, 100);
+            return new ProgressForm("Œ·ÌÓ‚ÎˇÂÏ ÒÔËÒÓÍ Á‡Í‡ÁÓ‚", 0, 100);
         }
     }
 }

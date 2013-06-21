@@ -8,13 +8,13 @@ using IntecoAG.IBS.SyncService;
 namespace IntecoAG.ERM.Sync.SyncIBS {
 
     public abstract class SyncIBSCSyncPush<T> : SyncCSyncPush<T> where T : SyncISyncObject {
-        protected ISyncService _SyncService = null;
+        protected IIBSSyncService _SyncService = null;
 
-        public SyncIBSCSyncPush(ISyncService syncservice) {
+        public SyncIBSCSyncPush(IIBSSyncService syncservice) {
             _SyncService = syncservice;
         }
 
-        public ISyncService SyncService {
+        public IIBSSyncService SyncService {
             get { return _SyncService; }
         }
     }

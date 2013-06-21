@@ -28,6 +28,7 @@ using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.GFM;
+using IntecoAG.ERM.FM.FinAccount;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.HRM.Organization;
 
@@ -73,7 +74,7 @@ namespace IntecoAG.ERM.FM.Order
         [Persistent("SourceName")]
         private String _SourceName;
         private String _BuhAccountCode;
-        private String _BuhAccount;
+//        private String _BuhAccount;
         private csNDSRate _AVTRate;
         private Int32 _BuhIntNum;
         private Decimal _KoeffKB;
@@ -265,12 +266,12 @@ namespace IntecoAG.ERM.FM.Order
             set { SetPropertyValue<String>("BuhAccountCode", ref _BuhAccountCode, value); }
         }
 
-        [Size(30)]
-        [Browsable(false)]
-        public String BuhAccount {
-            get { return _BuhAccount; }
-            set { SetPropertyValue<String>("BuhAccount", ref _BuhAccount, value); }
-        }
+        //[Size(30)]
+        //[Browsable(false)]
+        //public String BuhAccount {
+        //    get { return _BuhAccount; }
+        //    set { SetPropertyValue<String>("BuhAccount", ref _BuhAccount, value); }
+        //}
 
         public csNDSRate AVTRate {
             get { return _AVTRate; }
@@ -294,7 +295,12 @@ namespace IntecoAG.ERM.FM.Order
         private fmСOrderAnalitycAccouterType _AnalitycAccouterType;
         public fmСOrderAnalitycAccouterType AnalitycAccouterType {
             get { return _AnalitycAccouterType; }
-            set { SetPropertyValue<fmСOrderAnalitycAccouterType>("AnalitycAccouterType", ref _AnalitycAccouterType, value); }
+            set { 
+                SetPropertyValue<fmСOrderAnalitycAccouterType>("AnalitycAccouterType", ref _AnalitycAccouterType, value);
+                if (!IsLoading && value != null) {
+                    BuhAccount = value.DefaultAccount;
+                }
+            }
         }
 
         private fmСOrderAnalitycAVT _AnalitycAVT;
@@ -376,6 +382,15 @@ namespace IntecoAG.ERM.FM.Order
         private fmIOrderOverheadType _OverheadType;
         private fmCOrderOverheadIndividual _OverheadIndividual;
         private fmCOrderOverheadStandart _OverheadStandart;
+        private fmCFAAccount _BuhAccount;
+
+        [DataSourceCriteria("AccountSystem.Code == '1000' && IsSelectabled")]
+        [RuleRequiredField(TargetCriteria = "Status == 'Opened'")]
+        [Persistent("BuhAccountRef")]
+        public fmCFAAccount BuhAccount {
+            get { return _BuhAccount; }
+            set { SetPropertyValue<fmCFAAccount>("BuhAccount", ref _BuhAccount, value); }
+        }
 
         [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
         public fmIOrderOverheadType OverheadType {

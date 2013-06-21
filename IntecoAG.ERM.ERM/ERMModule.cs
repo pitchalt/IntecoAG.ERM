@@ -25,6 +25,7 @@ namespace IntecoAG.ERM.ERM {
             if (sync_module == null) return;
             HTTPSyncService sync_service = new HTTPSyncService(ConfigurationManager.AppSettings["IBS.SyncService"]);
             sync_module.SyncPushManager.Register(new SyncIBSCSyncPushCrmParty(sync_service));
+            sync_module.SyncPushManager.Register(new SyncIBSCSyncPushFmOrder(sync_service));
 
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(GCR.Codif.gcrCodifDeal));
 

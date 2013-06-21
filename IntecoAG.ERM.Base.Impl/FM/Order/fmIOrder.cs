@@ -12,6 +12,7 @@ using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.FM.Subject;
+using IntecoAG.ERM.FM.FinAccount;
 using IntecoAG.ERM.HRM.Organization;
 //
 namespace IntecoAG.ERM.FM.Order {
@@ -48,6 +49,7 @@ namespace IntecoAG.ERM.FM.Order {
 
         Int32 BuhIntNum { get; set; }
         String BuhAccountCode { get; set; }
+        fmCFAAccount BuhAccount { get; set; }
         fmСOrderAnalitycAccouterType AnalitycAccouterType { get; set; }
         fmСOrderAnalitycAVT AnalitycAVT { get; set; }
         csNDSRate AVTRate { get; set; }
