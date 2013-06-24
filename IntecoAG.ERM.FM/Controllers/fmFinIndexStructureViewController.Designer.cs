@@ -28,9 +28,9 @@ namespace IntecoAG.ERM.FM.Controllers {
             // 
             // UpdateFinStructureAction
             // 
-            this.UpdateFinStructureAction.Caption = "Update Fin Structure Action";
+            this.UpdateFinStructureAction.Caption = "fmFinIndexStructureViewController_UpdateFinStructureAction";
             this.UpdateFinStructureAction.ConfirmationMessage = null;
-            this.UpdateFinStructureAction.Id = "UpdateFinStructureAction";
+            this.UpdateFinStructureAction.Id = "fmFinIndexStructureViewController_UpdateFinStructureAction";
             this.UpdateFinStructureAction.ImageName = null;
             this.UpdateFinStructureAction.Shortcut = null;
             this.UpdateFinStructureAction.Tag = null;

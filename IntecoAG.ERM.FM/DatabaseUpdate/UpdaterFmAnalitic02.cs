@@ -19,17 +19,6 @@ namespace IntecoAG.ERM.FM.DatabaseUpdate {
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
-
-            // Disable
-            if (this.CurrentDBVersion == new Version("1.1.1.224")) {
-                using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
-                    foreach (fmCOrderExt order in os.GetObjects<fmCOrderExt>(null, true)) {
-                        order.IsSyncRequired = false;
-                    }
-                    os.CommitChanges();
-                }
-            }
-
             if (this.CurrentDBVersion != new Version("0.0.0.0"))
                 return;
 

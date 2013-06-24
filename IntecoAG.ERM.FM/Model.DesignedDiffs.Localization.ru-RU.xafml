@@ -24,6 +24,7 @@
       <Action Id="fmCSARepaymentStatementAccountViewController_Open" ToolTip="Открыть документ" Caption="Открыть документ" />
       <Action Id="fmCSAStatementAccountDocViewController_AutoBinding" ToolTip="Автопривязка" Caption="Автопривязка" />
       <Action Id="fmCSAStatementAccountDocViewController_ManualBinding" ToolTip="Привязать заявку" Caption="Привязать" />
+      <Action Id="fmFinIndexStructureViewController_UpdateFinStructureAction" Caption="Обнов.Струк.Цены" />
       <Action Id="fmFJSaleDocViewController_ApproveAction" ToolTip="Утвердить" Caption="Утвердить" />
       <Action Id="fmFJSaleDocViewController_ImportAction" ToolTip="Импорт" Caption="Импорт" />
       <Action Id="PayerEdit" Caption="Редактировать" />

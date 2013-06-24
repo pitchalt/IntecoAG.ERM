@@ -82,8 +82,8 @@
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrder">
       <OwnMembers>
-        <Member Name="AnalitycAccouterType" AllowEdit="False" />
-        <Member Name="AnalitycAVT" AllowEdit="False" />
+        <Member Name="AnalitycAccouterType" AllowEdit="True" />
+        <Member Name="AnalitycAVT" AllowEdit="True" />
         <Member Name="BuhAccountCode" AllowEdit="False" />
         <Member Name="Manager" Caption="Ответственный" />
         <Member Name="Subject" Caption="Тема" AllowEdit="False" />

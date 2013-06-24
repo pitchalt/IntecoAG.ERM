@@ -93,15 +93,15 @@ namespace IntecoAG.ERM.FM.Order {
         #endregion
 
         #region СВОЙСТВА КЛАССА
-        [Action(Caption="Утвердить", AutoCommit = true, TargetObjectsCriteria="Status == 'Loaded'" )]
-        public void Confirm() {
-            if (Status == fmIOrderStatus.Loaded) {
-                if (IsClosed)
-                    Status = fmIOrderStatus.FinClosed;
+//        [Action(Caption="Утвердить", AutoCommit = true, TargetObjectsCriteria="Status == 'Loaded'" )]
+//        public void Confirm() {
+//            if (Status == fmIOrderStatus.Loaded) {
+//                if (IsClosed)
+//                    Status = fmIOrderStatus.FinClosed;
 //                else
 //                    Status = fmIOrderStatus.Accepted;
-            }
-        }
+//            }
+//        }
 //        public override Boolean ReadOnlyGet() {
 //            return Status != fmIOrderStatus.Project && Status != fmIOrderStatus.Loaded;
 //        }

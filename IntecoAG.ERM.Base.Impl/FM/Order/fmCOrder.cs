@@ -50,7 +50,10 @@ namespace IntecoAG.ERM.FM.Order
             TargetItems = "OverheadStandart", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "PlanOverheadType == 'NO_OVERHEAD' || PlanOverheadType == 'VARIABLE'",
             TargetItems = "FixKoeff,FixKoeffOZM", Enabled = false)]
-//    [RuleCriteria("", DefaultContexts.Save, "FixKoeff == 0 && FixKoeffOZM == 0",
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'Opened' || Status == 'Closed'", TargetItems="*", Enabled=false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened'", TargetItems = "*,BuhAccount,AnalitycAVT,AnalitycAccouterType", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinClosed'", TargetItems = "*,DateEnd", Enabled = false)]
+    //    [RuleCriteria("", DefaultContexts.Save, "FixKoeff == 0 && FixKoeffOZM == 0",
 //            TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual' && PlanOverheadType != 'VARIABLE' && PlanOverheadType != 'NO_OVERHEAD'",
 //            UsedProperties = "FixKoeff,FixKoeffOZM")]
     public abstract class fmCOrder : gfmCAnalyticBase, fmIOrder, IStateMachineProvider
@@ -556,38 +559,38 @@ namespace IntecoAG.ERM.FM.Order
             }
         }
 
-        [Action( PredefinedCategory.RecordEdit, Caption="КакВТеме")]
-        public void ActionSetAsSubject() {
-            this.SourceType = Subject.SourceType;
-            if (this.SourceDeal == null)
-                this.SourceDeal = Subject.SourceDeal;
-            if (String.IsNullOrEmpty(this.SourceOther))
-                this.SourceOther = Subject.SourceOther;
-            if (this.SourceParty == null)
-                this.SourceParty = Subject.SourceParty;
-            if (this.AnalitycWorkType == null)
-                this.AnalitycWorkType = Subject.AnalitycWorkType;
-            if (this.AnalitycFinanceSource == null)
-                this.AnalitycFinanceSource = Subject.AnalitycFinanceSource;
-            if (this.AnalitycAVT == null)
-                this.AnalitycAVT = Subject.AnalitycAVT;
-            if (this.AnalitycBigCustomer == null)
-                this.AnalitycBigCustomer = Subject.AnalitycBigCustomer;
-            if (this.AnalitycCoperatingType == 0)
-                this.AnalitycCoperatingType = Subject.AnalitycCoperatingType;
-            if (this.AnalitycFedProg == null)
-                this.AnalitycFedProg = Subject.AnalitycFedProg;
-            if (this.AnalitycMilitary == null)
-                this.AnalitycMilitary = Subject.AnalitycMilitary;
-            if (this.AnalitycOrderSource == null)
-                this.AnalitycOrderSource = Subject.AnalitycOrderSource;
-            if (this.AnalitycRegion == null)
-                this.AnalitycRegion = Subject.AnalitycRegion;
-            if (this.Manager == null)
-                this.Manager = Subject.Manager;
-            if (this.ManagerPlanDepartment == null)
-                this.ManagerPlanDepartment = Subject.ManagerPlanDepartment;
-        }
+        //[Action( PredefinedCategory.RecordEdit, Caption="КакВТеме")]
+        //public void ActionSetAsSubject() {
+        //    this.SourceType = Subject.SourceType;
+        //    if (this.SourceDeal == null)
+        //        this.SourceDeal = Subject.SourceDeal;
+        //    if (String.IsNullOrEmpty(this.SourceOther))
+        //        this.SourceOther = Subject.SourceOther;
+        //    if (this.SourceParty == null)
+        //        this.SourceParty = Subject.SourceParty;
+        //    if (this.AnalitycWorkType == null)
+        //        this.AnalitycWorkType = Subject.AnalitycWorkType;
+        //    if (this.AnalitycFinanceSource == null)
+        //        this.AnalitycFinanceSource = Subject.AnalitycFinanceSource;
+        //    if (this.AnalitycAVT == null)
+        //        this.AnalitycAVT = Subject.AnalitycAVT;
+        //    if (this.AnalitycBigCustomer == null)
+        //        this.AnalitycBigCustomer = Subject.AnalitycBigCustomer;
+        //    if (this.AnalitycCoperatingType == 0)
+        //        this.AnalitycCoperatingType = Subject.AnalitycCoperatingType;
+        //    if (this.AnalitycFedProg == null)
+        //        this.AnalitycFedProg = Subject.AnalitycFedProg;
+        //    if (this.AnalitycMilitary == null)
+        //        this.AnalitycMilitary = Subject.AnalitycMilitary;
+        //    if (this.AnalitycOrderSource == null)
+        //        this.AnalitycOrderSource = Subject.AnalitycOrderSource;
+        //    if (this.AnalitycRegion == null)
+        //        this.AnalitycRegion = Subject.AnalitycRegion;
+        //    if (this.Manager == null)
+        //        this.Manager = Subject.Manager;
+        //    if (this.ManagerPlanDepartment == null)
+        //        this.ManagerPlanDepartment = Subject.ManagerPlanDepartment;
+        //}
 
         public IList<IStateMachine> GetStateMachines() {
             List<IStateMachine> result = new List<IStateMachine>();

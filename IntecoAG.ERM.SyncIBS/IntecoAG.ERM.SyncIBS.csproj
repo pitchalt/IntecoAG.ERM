@@ -86,12 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseUpdate\Updater.cs" />
-    <Compile Include="FM\SyncIBSOrderViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FM\SyncIBSOrderViewController.Designer.cs">
-      <DependentUpon>SyncIBSOrderViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="SyncIBS\OrderExchangeLogic.cs" />
     <Compile Include="SyncIBS\SyncIBSCSyncPush.cs" />
     <Compile Include="SyncIBS\SyncIBSCSyncPushFmOrder.cs">
@@ -127,9 +121,6 @@
     <Compile Include="Updater.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FM\SyncIBSOrderViewController.resx">
-      <DependentUpon>SyncIBSOrderViewController.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="SyncIBS\SyncIBSViewController.resx">
       <DependentUpon>SyncIBSViewController.cs</DependentUpon>
@@ -187,7 +178,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FM\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
