@@ -1434,6 +1434,64 @@
         <ColumnInfo Id="Code" Index="1" />
       </Columns>
     </ListView>
+    <ListView Id="fmCOrderExt_BuhManage_ListView" ClassName="IntecoAG.ERM.FM.Order.fmCOrderExt" AllowNew="False" AllowDelete="False" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="AnalitycAccouterType" PropertyName="AnalitycAccouterType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycAVT" PropertyName="AnalitycAVT" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycBigCustomer" PropertyName="AnalitycBigCustomer" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycCoperatingType" PropertyName="AnalitycCoperatingType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycFedProg" PropertyName="AnalitycFedProg" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycFinanceSource" PropertyName="AnalitycFinanceSource" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycMilitary" PropertyName="AnalitycMilitary" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycOKVED" PropertyName="AnalitycOKVED" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycOrderSource" PropertyName="AnalitycOrderSource" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycRegion" PropertyName="AnalitycRegion" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AnalitycWorkType" PropertyName="AnalitycWorkType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AVTRate" PropertyName="AVTRate" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="BuhAccount" PropertyName="BuhAccount" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="BuhAccountCode" PropertyName="BuhAccountCode" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="BuhOverheadType" PropertyName="BuhOverheadType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ComponentType" PropertyName="ComponentType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="FixKoeff" PropertyName="FixKoeff" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="FixKoeffOZM" PropertyName="FixKoeffOZM" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ManageDocCurrent" PropertyName="ManageDocCurrent" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ManageDocProject" PropertyName="ManageDocProject" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="NameAndCode" PropertyName="NameAndCode" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="NameFull" PropertyName="NameFull" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Overhead" PropertyName="Overhead" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="OverheadStandart" PropertyName="OverheadStandart" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="OverheadType" PropertyName="OverheadType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="PlanOverheadType" PropertyName="PlanOverheadType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ProjectOrderPayDate" PropertyName="ProjectOrderPayDate" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceDeal" PropertyName="SourceDeal" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceName" PropertyName="SourceName" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceOther" PropertyName="SourceOther" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceParty" PropertyName="SourceParty" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SourceType" PropertyName="SourceType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" View="" Width="70" Index="0" LookupProperty="Code" IsNewNode="True" />
+        <ColumnInfo Id="Code" PropertyName="Code" View="" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Status" PropertyName="Status" View="" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" View="" Width="400" SortIndex="0" SortOrder="Ascending" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Manager" PropertyName="Manager" View="" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ManagerPlanDepartment" PropertyName="ManagerPlanDepartment" View="" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="DateBegin" PropertyName="DateBegin" View="" Width="70" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="IsPeriodUnlimited" PropertyName="IsPeriodUnlimited" View="" Width="50" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="DateEnd" PropertyName="DateEnd" View="" Width="70" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="IsClosed" PropertyName="IsClosed" View="" Width="50" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="IsSyncRequired" PropertyName="IsSyncRequired" View="" Width="50" Index="10" IsNewNode="True" />
+      </Columns>
+      <Filters CurrentFilterId="@68aeffe8-a656-4472-a1f6-028feeb29cf3" IsNewNode="True">
+        <Filter Id="@68aeffe8-a656-4472-a1f6-028feeb29cf3" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,FinOpened# Or [Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,FinClosed# Or [IsSyncRequired] = True" Index="0" IsNewNode="True" />
+        <Filter Id="@7a6a5f79-0e27-4988-9317-ed996b1c6993" Criteria="[DateEnd] &lt;= LocalDateTimeToday()" Index="1" IsNewNode="True" />
+        <Filter Id="@dcbde953-edaf-416b-b00e-95f4f12c206b" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,Opened#" Index="2" IsNewNode="True" />
+        <Filter Id="@9025fb88-4073-42fa-b214-5835cfdceefd" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,Project#" Index="3" IsNewNode="True" />
+        <Filter Id="@aad0eba9-2441-4b3d-aab5-c11e775cc8fe" Index="4" IsNewNode="True" />
+      </Filters>
+      <Sorting IsNewNode="True">
+        <SortProperty Id="Code" PropertyName="Code" IsNewNode="True" />
+      </Sorting>
+    </ListView>
     <DetailView Id="fmCOrderExt_DetailView" AllowDelete="False" AllowNew="False">
       <Items>
         <PropertyEditor Id="Subject" PropertyName="Subject" LookupProperty="Code" AllowEdit="True" IsNewNode="True" />

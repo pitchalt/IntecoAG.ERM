@@ -1030,6 +1030,15 @@
       </Layout>
     </DetailView>
     <ListView Id="fmCDocRCBPaymentRequest_ListView" Caption="Платёжное требование" />
+    <ListView Id="fmCOrderExt_BuhManage_ListView" Caption="Список Заказов">
+      <Filters>
+        <Filter Id="@68aeffe8-a656-4472-a1f6-028feeb29cf3" Caption="Требуют проработки" />
+        <Filter Id="@7a6a5f79-0e27-4988-9317-ed996b1c6993" Caption="Просроченные" />
+        <Filter Id="@dcbde953-edaf-416b-b00e-95f4f12c206b" Caption="Действующие" />
+        <Filter Id="@9025fb88-4073-42fa-b214-5835cfdceefd" Caption="В проекте" />
+        <Filter Id="@aad0eba9-2441-4b3d-aab5-c11e775cc8fe" Caption="Все" />
+      </Filters>
+    </ListView>
     <DetailView Id="fmCOrderExt_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

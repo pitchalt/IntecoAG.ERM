@@ -20,7 +20,8 @@ namespace IntecoAG.ERM.FM.Order {
             State StateFinClosed = new State(this, fmIOrderStatus.FinClosed);
             State StateOpened = new State(this, fmIOrderStatus.Opened);
             State StateClosed = new State(this, fmIOrderStatus.Closed);
-//            State StateDelete = new State(this, fmIOrderStatus.Deleting);
+            State StateBlocked = new State(this, fmIOrderStatus.Blocked);
+            //            State StateDelete = new State(this, fmIOrderStatus.Deleting);
 //            StateClosed.TargetObjectCriteria = "IsStatusClosedAllow";
 
             StateLoaded.Transitions.Add(new Transition(StateProject, "Проект", 1));
@@ -30,7 +31,8 @@ namespace IntecoAG.ERM.FM.Order {
             StateProject.Transitions.Add(new Transition(StateFinOpened, "Открыть", 1));
 
             StateOpened.Transitions.Add(new Transition(StateFinClosed, "Закрыть", 1));
-            StateOpened.Transitions.Add(new Transition(StateFinOpened, "Редактировать", 2));
+            StateOpened.Transitions.Add(new Transition(StateProject, "Редактировать", 2));
+            StateOpened.Transitions.Add(new Transition(StateBlocked, "Блокировать", 3));
 
             StateClosed.Transitions.Add(new Transition(StateFinOpened, "Редактировать", 1));
 
@@ -40,12 +42,15 @@ namespace IntecoAG.ERM.FM.Order {
             StateFinOpened.Transitions.Add(new Transition(StateOpened, "Открыть", 1));
             StateFinOpened.Transitions.Add(new Transition(StateProject, "Отклонить", 2));
 
+            StateBlocked.Transitions.Add(new Transition(StateOpened, "Разблокировать", 1));
+
             States.Add(StateLoaded);
             States.Add(StateProject);
             States.Add(StateFinOpened);
             States.Add(StateOpened);
             States.Add(StateFinClosed);
             States.Add(StateClosed);
+            States.Add(StateBlocked);
         }
 
         public override IState StartState {

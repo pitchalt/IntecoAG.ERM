@@ -100,6 +100,7 @@ namespace IntecoAG.ERM.FM {
                             order.Status = fmIOrderStatus.FinClosed;
                         orders.Add(order);
                     }
+                    order.BuhIntNum = rec.Oid;
                     if (rec.IsClosed != "X") {
                         if (order.Status == fmIOrderStatus.Project || order.Status == fmIOrderStatus.FinOpened) {
                             order.Status = fmIOrderStatus.Opened;

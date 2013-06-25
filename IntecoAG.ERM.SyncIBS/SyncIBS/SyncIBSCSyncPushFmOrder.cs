@@ -18,33 +18,61 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
 
         public override void Send(IObjectSpace os, fmCOrderExt order) {
             XWZKXMIA msg_in = new XWZKXMIA();
-            throw new NotImplementedException();
+//            throw new NotImplementedException();
             XWZKXMOA msg_out;
-            msg_in.CMD = "SET";
             msg_in.UUID = order.Oid.ToString();
             msg_in.OGCODE = 1000;
+            msg_in.ZKINTNUM = order.BuhIntNum;
             msg_in.ZKCODE = order.Code;
+            msg_in.ZKDTOPEN = order.DateBegin;
+            msg_in.ZKDTCLOSE = order.DateEnd;
+            msg_in.ZKISCLOSED = order.IsClosed;
             msg_in.ZKBUHTYPE = order.AnalitycAccouterType.Code;
-            msg_in.ZKSHORTNAME = order.Name;
-            msg_in.ZKFULLNAME = order.NameFull;
-            msg_in.ZKDESCRIPTION = order.Description;
-            Decimal acccode = 0;
-            Decimal.TryParse(order.BuhAccountCode, out acccode);
-            msg_in.ZKACBUHCODE = acccode;
-            msg_in.ZKKOEFFKB = order.FixKoeff;
-            msg_in.ZKKOEFFOZM = order.FixKoeffOZM;
-            if (order.Status == fmIOrderStatus.Closed)
-                msg_in.ZKISCLOSED = true;
-            else
-                msg_in.ZKISCLOSED = false;
-            msg_out = SyncService.XWZKXM0N(msg_in);
-            order.BuhIntNum = msg_out.ZKINTNUM;
+            if (String.IsNullOrEmpty(msg_in.ZKBUHTYPE))
+                msg_in.ZKBUHTYPE = "0";
+            if (order.Status == fmIOrderStatus.Opened) {
+                msg_in.CMD = "OPEN";
+                msg_in.ZKSHORTNAME = order.Name;
+                msg_in.ZKFULLNAME = order.NameFull;
+                msg_in.ZKDESCRIPTION = order.Description;
+                Decimal acccode = 0;
+                Decimal.TryParse(order.BuhAccount.BuhCode, out acccode);
+                msg_in.ZKNDSMODE = order.AnalitycAVT.Code;
+                msg_in.ZKACBUHCODE = acccode;
+                if (order.BuhOverheadType == fmIOrderOverheadValueType.FIX_NPO) {
+                    msg_in.ZKKOEFFKB = order.FixKoeff;
+                    msg_in.ZKKOEFFOZM = order.FixKoeffOZM;
+                }
+                else if (order.BuhOverheadType == fmIOrderOverheadValueType.FIX_SINGLE) {
+                    msg_in.ZKKOEFFKB = -1;
+                    msg_in.ZKKOEFFOZM = order.FixKoeff;
+                }
+                else if (order.BuhOverheadType == fmIOrderOverheadValueType.NO_OVERHEAD) {
+                    msg_in.ZKKOEFFKB = -1;
+                    msg_in.ZKKOEFFOZM = -1;
+                }
+                else if (order.BuhOverheadType == fmIOrderOverheadValueType.VARIABLE) {
+                    msg_in.ZKKOEFFKB = 0;
+                    msg_in.ZKKOEFFOZM = 0;
+                }
+                msg_out = SyncService.XWZKXM0N(msg_in);
+                order.BuhIntNum = msg_out.ZKINTNUM;
+            }
+            if (order.Status == fmIOrderStatus.Closed) {
+                msg_in.CMD = "CLOSE";
+                msg_out = SyncService.XWZKXM0N(msg_in);
+            }
+            if (order.Status == fmIOrderStatus.Blocked) {
+                msg_in.CMD = "BLOCK";
+                msg_out = SyncService.XWZKXM0N(msg_in);
+            }
         }
 
         public override bool CheckSyncRequired(IObjectSpace os, fmCOrderExt order) {
             if (os.IsNewObject(order) || os.IsObjectToSave(order) || os.IsObjectToDelete(order)) 
                 if (order.Status == fmIOrderStatus.Opened || 
-                    order.Status == fmIOrderStatus.Closed)
+                    order.Status == fmIOrderStatus.Closed ||
+                    order.Status == fmIOrderStatus.Blocked)
                     order.IsSyncRequired = true;
                 else
                     order.IsSyncRequired = false;

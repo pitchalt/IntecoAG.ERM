@@ -223,16 +223,19 @@ namespace IntecoAG.ERM.FM.ReportHelper {
             // Только договорные!
             var querySecContract_Without_PTR = querySecContract.Except(querySec10);
             var querySec11 = from paymentRequestObligation in querySecContract_Without_PTR
-                            where (paymentRequestObligation.Order.AnalitycOrderSource.Code == "ГЗ.ГОЗ" || paymentRequestObligation.Order.AnalitycOrderSource.Code == "ГЗ.Прочие")
+                             where (paymentRequestObligation.Order.AnalitycOrderSource.IsGZ && !paymentRequestObligation.Order.AnalitycRegion.IsVED)
                             select paymentRequestObligation;
             ByAnalitycSourceCode(Session, 1, "Счета по договорам", 1, "Госзаказ", ourParty, querySec11);
 
             // Формирвоание 1-го раздела, 2-го подраздела ВЭД. В него входят все заявки, источник заказа которых ГЗ.ГОЗ.ВТС, а также источник заказа (fmCOrderAnalitycOrderSource) - ВЭД.ВТС, ВЭД.Прочие
             // Только договорные!
             var querySec12 = from paymentRequestObligation in querySecContract_Without_PTR
-                            where (paymentRequestObligation.Order.AnalitycOrderSource.Code == "ГЗ.ГОЗ.ВТС"
-                                || paymentRequestObligation.Order.AnalitycOrderSource.Code == "ВЭД.ВТС"
-                                || paymentRequestObligation.Order.AnalitycOrderSource.Code == "ВЭД.Прочие")
+                            where (
+                                  paymentRequestObligation.Order.AnalitycRegion.IsVED
+//                                  paymentRequestObligation.Order.AnalitycOrderSource.Code == "ГЗ.ГОЗ.ВТС"
+//                                || paymentRequestObligation.Order.AnalitycOrderSource.Code == "ВЭД.ВТС"
+//                                || paymentRequestObligation.Order.AnalitycOrderSource.Code == "ВЭД.Прочие"
+                                )
                             select paymentRequestObligation;
             ByAnalitycSourceCode(Session, 1, "Счета по договорам", 2, "ВЭД", ourParty, querySec12);
 

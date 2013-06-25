@@ -24,7 +24,14 @@
       </Item>
       <Item Id="Finance" Index="2" IsNewNode="True" />
       <Item Id="AVT" Index="3" IsNewNode="True" />
-      <Item Id="Sale" Index="4" />
+      <Item Id="Sale" Index="4">
+        <Items>
+          <Item Id="fmCFJSaleOperation_ListView" Index="0" />
+          <Item Id="fmCFJSaleJurnalLine_ListView" Index="1" />
+          <Item Id="fmCFJSaleDoc_ListView" Index="2" />
+          <Item Id="@eb4264f9-7246-4b24-88a9-3e1336549ddd" Index="3" ViewId="fmCOrderExt_BuhManage_ListView" Visible="True" IsNewNode="True" />
+        </Items>
+      </Item>
       <Item Id="Money" Index="5" />
       <Item Id="Reports" Index="6">
         <Items>
@@ -210,7 +217,7 @@
         <Filter Id="Working" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,OPENED# Or [Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,PROJECT#" Index="1" IsNewNode="True" />
       </Filters>
     </ListView>
-    <ListView Id="gcrCodifDeal_ListView" CollectionDataSource="gcrCodifDeal">
+    <ListView Id="gcrCodifDeal_ListView" CollectionDataSource="">
       <Columns>
         <ColumnInfo Id="Contract" Index="-1" />
         <ColumnInfo Id="Deal" Index="-1" />

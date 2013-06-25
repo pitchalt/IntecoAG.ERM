@@ -237,6 +237,12 @@
     <Compile Include="BusinessObjects\Docs\fmIDocument.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealFinal.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealPrepare.cs" />
+    <Compile Include="BusinessObjects\Order\fmCOrderExViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\Order\fmCOrderExViewController.Designer.cs">
+      <DependentUpon>fmCOrderExViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestMemorandumPeson.cs" />
     <Compile Include="BusinessObjects\PaymentRequest\fmCPRRegistratorFilter01.cs" />
     <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestBusinesLogic.cs" />
@@ -422,6 +428,7 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_225.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_220.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceAnalytic.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceFix01.cs" />
@@ -453,6 +460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BusinessObjects\AVT\fmCAVTInvoiceRegisterViewController.resx">
       <DependentUpon>fmCAVTInvoiceRegisterViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusinessObjects\Order\fmCOrderExViewController.resx">
+      <DependentUpon>fmCOrderExViewController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controllers\fmCPRPaymentRequestMemorandumCreatorViewControllerr.resx">
       <DependentUpon>fmCPRPaymentRequestMemorandumCreatorViewControllerr.cs</DependentUpon>

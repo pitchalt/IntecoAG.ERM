@@ -47,6 +47,8 @@ namespace IntecoAG.ERM.GFM
             base.AfterConstruction();
             this.ComponentType = typeof(gfmCAnalytic);
             this.CID = Guid.NewGuid();
+            this.DateBegin = DateMinValue;
+            this.DateEnd = DateMinValue;
         }
 
         #region ПОЛЯ КЛАССА

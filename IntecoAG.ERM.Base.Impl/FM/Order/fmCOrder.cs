@@ -50,9 +50,11 @@ namespace IntecoAG.ERM.FM.Order
             TargetItems = "OverheadStandart", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "PlanOverheadType == 'NO_OVERHEAD' || PlanOverheadType == 'VARIABLE'",
             TargetItems = "FixKoeff,FixKoeffOZM", Enabled = false)]
-    [Appearance("", AppearanceItemType.ViewItem, "Status == 'Opened' || Status == 'Closed'", TargetItems="*", Enabled=false)]
-    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened'", TargetItems = "*,BuhAccount,AnalitycAVT,AnalitycAccouterType", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'Opened' || Status == 'Closed' || Status == 'Blocked'", TargetItems = "*", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened'", TargetItems = "*,BuhAccount,AnalitycAVT,AnalitycAccouterType,BuhOverheadType", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened' && OverheadType != 'Individual'", TargetItems = "BuhOverheadType", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinClosed'", TargetItems = "*,DateEnd", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "DateEnd <= LocalDateTimeToday()", TargetItems ="Code,Name", BackColor="Blue" )]
     //    [RuleCriteria("", DefaultContexts.Save, "FixKoeff == 0 && FixKoeffOZM == 0",
 //            TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual' && PlanOverheadType != 'VARIABLE' && PlanOverheadType != 'NO_OVERHEAD'",
 //            UsedProperties = "FixKoeff,FixKoeffOZM")]
@@ -112,7 +114,7 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         [Association("fmSubject-Orders")]
-        [RuleRequiredField]
+        [RuleRequiredField(TargetCriteria = "Status != 'FinClosed' && Status != 'Closed'")]
         public fmCSubject Subject {
             get { return _Subject; }
             set {
@@ -289,13 +291,14 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         private fmСOrderAnalitycCoperatingType _AnalitycCoperatingType;
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycCoperatingType AnalitycCoperatingType {
             get { return _AnalitycCoperatingType; }
             set { SetPropertyValue<fmСOrderAnalitycCoperatingType>("AnalitycCoperatingType", ref _AnalitycCoperatingType, value); }
         }
 
         private fmСOrderAnalitycAccouterType _AnalitycAccouterType;
+        [RuleRequiredField(TargetCriteria = "Status == 'Opened'")]
         public fmСOrderAnalitycAccouterType AnalitycAccouterType {
             get { return _AnalitycAccouterType; }
             set { 
@@ -307,6 +310,7 @@ namespace IntecoAG.ERM.FM.Order
         }
 
         private fmСOrderAnalitycAVT _AnalitycAVT;
+        [RuleRequiredField(TargetCriteria = "Status == 'Opened'")]
         public fmСOrderAnalitycAVT AnalitycAVT {
             get { return _AnalitycAVT; }
             set { SetPropertyValue<fmСOrderAnalitycAVT>("AnalitycAccouterType", ref _AnalitycAVT, value); }
@@ -314,7 +318,7 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycWorkType _AnalitycWorkType;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycWorkType AnalitycWorkType {
             get { return _AnalitycWorkType; }
             set { SetPropertyValue<fmСOrderAnalitycWorkType>("AnalitycWorkType", ref _AnalitycWorkType, value); }
@@ -322,7 +326,7 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycOrderSource _AnalitycOrderSource;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycOrderSource AnalitycOrderSource {
             get { return _AnalitycOrderSource; }
             set { SetPropertyValue<fmСOrderAnalitycOrderSource>("AnalitycOrderSource", ref _AnalitycOrderSource, value); }
@@ -330,7 +334,7 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycFinanceSource _AnalitycFinanceSource;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycFinanceSource AnalitycFinanceSource {
             get { return _AnalitycFinanceSource; }
             set { SetPropertyValue<fmСOrderAnalitycFinanceSource>("AnalitycFinanceSource", ref _AnalitycFinanceSource, value); }
@@ -338,13 +342,13 @@ namespace IntecoAG.ERM.FM.Order
 
         private fmСOrderAnalitycMilitary _AnalitycMilitary;
 //        [RuleRequiredField]
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycMilitary AnalitycMilitary {
             get { return _AnalitycMilitary; }
             set { SetPropertyValue<fmСOrderAnalitycMilitary>("AnalitycMilitary", ref _AnalitycMilitary, value); }
         }
         private fmСOrderAnalitycFedProg _AnalitycFedProg;
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycFedProg AnalitycFedProg {
             get { return _AnalitycFedProg; }
             set { SetPropertyValue<fmСOrderAnalitycFedProg>("AnalitycFedProg", ref _AnalitycFedProg, value); }
@@ -355,13 +359,13 @@ namespace IntecoAG.ERM.FM.Order
             set { SetPropertyValue<fmСOrderAnalitycOKVED>("AnalitycOKVED", ref _AnalitycOKVED, value); }
         }
         private fmСOrderAnalitycRegion _AnalitycRegion;
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycRegion AnalitycRegion {
             get { return _AnalitycRegion; }
             set { SetPropertyValue<fmСOrderAnalitycRegion>("AnalitycRegion", ref _AnalitycRegion, value); }
         }
         private fmСOrderAnalitycBigCustomer _AnalitycBigCustomer;
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmСOrderAnalitycBigCustomer AnalitycBigCustomer {
             get { return _AnalitycBigCustomer; }
             set { 
@@ -395,7 +399,7 @@ namespace IntecoAG.ERM.FM.Order
             set { SetPropertyValue<fmCFAAccount>("BuhAccount", ref _BuhAccount, value); }
         }
 
-        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened'")]
+        [RuleRequiredField(TargetCriteria = "Status == 'FinOpened' || Status == 'Opened'")]
         public fmIOrderOverheadType OverheadType {
             get {
                 return _OverheadType;

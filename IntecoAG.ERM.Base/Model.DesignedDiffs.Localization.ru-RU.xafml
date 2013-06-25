@@ -988,6 +988,7 @@
         <LocalizationItem Name="VARIABLE" Value="Переменные" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderStatus">
+        <LocalizationItem Name="Blocked" Value="Заблокирован" />
         <LocalizationItem Name="Closed" Value="Закрыт" />
         <LocalizationItem Name="Deleting" Value="Удалить" />
         <LocalizationItem Name="FinClosed" Value="ЗакрытПО" />

@@ -28,7 +28,8 @@ namespace IntecoAG.ERM.FM.Order {
         FinClosed = 5,
         Closed = 6,
 
-        Deleting = 10
+        Deleting = 10,
+        Blocked = 16
     };
 
     public enum fmIOrderOverheadType { 
