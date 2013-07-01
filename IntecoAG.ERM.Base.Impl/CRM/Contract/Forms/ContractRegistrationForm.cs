@@ -15,10 +15,14 @@ using DevExpress.ExpressApp.Editors;
 
 using IntecoAG.ERM.CS.Common;
 using IntecoAG.ERM.CS.Security;
+using IntecoAG.ERM.CS.Nomenclature;
+using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.HRM.Organization;
+using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.Order;
 
 namespace IntecoAG.ERM.CRM.Contract.Forms {
 
@@ -119,6 +123,11 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
                         //this.PartnerRole = ;
                         this.Price = this.ContractDeal.Current.Price;
                         this.Valuta = this.ContractDeal.Current.Valuta;
+                        this.PaymentValuta = this.ContractDeal.Current.PaymentValuta;
+                        this.NDSRate = this.ContractDeal.Current.NDSRate;
+                        this.CostModel = this.ContractDeal.Current.CostModel;
+                        this.CostItem = this.ContractDeal.Current.CostItem;
+                        this.Order = this.ContractDeal.Current.Order;
 
                         this.NewNumberRequired = false;
                     } else {
@@ -363,6 +372,63 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
 
         #endregion
 
+        private crmContractDealTRVType _TRVType;
+        [RuleRequiredField]
+        public crmContractDealTRVType TRVType {
+            get { return _TRVType; }
+            set { SetPropertyValue<crmContractDealTRVType>("TRVType", ref _TRVType, value); }
+        }
+        private crmContractDealTRVContractor _TRVContractor;
+        [RuleRequiredField]
+        public crmContractDealTRVContractor TRVContractor {
+            get { return _TRVContractor; }
+            set { SetPropertyValue<crmContractDealTRVContractor>("TRVContractor", ref _TRVContractor, value); }
+        }
+
+        /// <summary>
+        /// csValuta
+        /// </summary>
+        private csValuta _PaymentValuta;
+        public virtual csValuta PaymentValuta {
+            get { return _PaymentValuta; }
+            set {
+                SetPropertyValue<csValuta>("PaymentValuta", ref _PaymentValuta, value);
+            }
+        }
+
+        // Ставка НДС (VAT Rate)
+        private csNDSRate _NDSRate;
+        public virtual csNDSRate NDSRate {
+            get { return _NDSRate; }
+            set { SetPropertyValue<csNDSRate>("NDSRate", ref _NDSRate, value); }
+        }
+
+        /// <summary>
+        /// CostItem
+        /// </summary>
+        private fmCostItem _CostItem;
+        public virtual fmCostItem CostItem {
+            get { return _CostItem; }
+            set { SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value); }
+        }
+
+        /// <summary>
+        /// CostModel
+        /// </summary>
+        private crmCostModel _CostModel;
+        public virtual crmCostModel CostModel {
+            get { return _CostModel; }
+            set { SetPropertyValue<crmCostModel>("CostModel", ref _CostModel, value); }
+        }
+
+        /// <summary>
+        /// Order
+        /// </summary>
+        private fmCOrder _Order;
+        public virtual fmCOrder Order {
+            get { return _Order; }
+            set { SetPropertyValue<fmCOrder>("Order", ref _Order, value); }
+        }
 
         #region IWizardSupport Members
 
@@ -392,9 +458,18 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
             deal.DateRegistration = this.DateRegistration;
             deal.UserRegistrator = this.UserRegistrator;
             deal.Delo = this.Delo;
+//
+            deal.TRVType = this.TRVType;
+            deal.TRVContractor = this.TRVContractor;
+//
             deal.DepartmentRegistrator = this.DepartmentRegistrator;
             deal.ContractDocument = this.ContractDocument;
             deal.Current.ContractDocument = this.ContractDocument;
+            deal.Current.CostModel = this.CostModel;
+            deal.Current.NDSRate = this.NDSRate;
+            deal.Current.CostItem = this.CostItem;
+            deal.Current.Order = this.Order;
+            deal.Current.PaymentValuta = this.PaymentValuta;
             // Разбор другого выпадающего списка
             if (ContractKind == ContractKind.CONTRACT) {
                 // Создаём контракт (объект crmContract) 

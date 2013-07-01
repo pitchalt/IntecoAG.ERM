@@ -180,20 +180,14 @@
   </BOModel>
   <NavigationItems>
     <Items>
-      <Item Id="Finance" ChildItemsDisplayStyle="List">
+      <Item Id="Finance" ChildItemsDisplayStyle="LargeIcons">
         <Items>
-          <Item Id="FinanceAnalitics" Index="0" IsNewNode="True">
-            <Items IsNewNode="True">
-              <Item Id="fmCDirection_ListView" Index="0" ViewId="fmCDirection_ListView" ObjectKey="" IsNewNode="True" />
-              <Item Id="fmCSubjectExt_ListView" Index="1" ViewId="fmCSubjectExt_ListView" ObjectKey="" IsNewNode="True" />
-              <Item Id="fmCOrderExt_ListView" Index="2" ViewId="fmCOrderExt_ListView" ObjectKey="" IsNewNode="True" />
-              <Item Id="fmCOrderManageDoc_ListView" Index="3" ViewId="fmCOrderManageDoc_ListView" ObjectKey="" IsNewNode="True" />
-            </Items>
-          </Item>
-          <Item Id="fmCDirection_ListView" Index="1" Removed="True" />
-          <Item Id="fmCOrderExt_ListView" Index="2" Removed="True" />
-          <Item Id="fmCOrderManageDoc_ListView" Index="3" Removed="True" />
-          <Item Id="fmCSubjectExt_ListView" Index="4" Removed="True" />
+          <Item Id="@f61035f0-2cfe-41c4-b625-bbc2d43e27ec" Index="-1" ViewId="fmCPRPaymentRequestObligationIn_ListView" IsNewNode="True" />
+          <Item Id="fmCDirection_ListView" Index="0" ViewId="fmCDirection_ListView" ObjectKey="" IsNewNode="True" Removed="True" />
+          <Item Id="fmCSubjectExt_ListView" Index="1" ViewId="fmCSubjectExt_ListView" ObjectKey="" IsNewNode="True" Removed="True" />
+          <Item Id="fmCOrderExt_ListView" Index="2" ViewId="fmCOrderExt_ListView" ObjectKey="" IsNewNode="True" Removed="True" />
+          <Item Id="fmCOrderManageDoc_ListView" Index="3" ViewId="fmCOrderManageDoc_ListView" ObjectKey="" IsNewNode="True" Removed="True" />
+          <Item Id="@280da940-4c2e-469a-847a-897f0a02a38a" ViewId="fmCPRPaymentRequestSingleIn_ListView" Index="5" IsNewNode="True" />
           <Item Id="fmImporter_ListView" Index="11" Removed="True">
             <Items>
               <Item Id="@1d392693-1a2f-4969-ac00-6f649b3b22ab" IsNewNode="True">
@@ -205,12 +199,6 @@
           </Item>
           <Item Id="fmStatementAccount1CFileImporter_ListView" ViewId="fmStatementAccount1CFileImporter_DetailView" Removed="True" />
           <Item Id="fmTaskImporterFile_ListView" Removed="True" />
-          <Item Id="Платежи по разовым счетам" IsNewNode="True">
-            <Items IsNewNode="True">
-              <Item Id="@280da940-4c2e-469a-847a-897f0a02a38a" ViewId="fmCPRPaymentRequestSingleIn_ListView" Index="0" IsNewNode="True" />
-              <Item Id="@f61035f0-2cfe-41c4-b625-bbc2d43e27ec" Index="1" ViewId="fmCPRPaymentRequestObligationIn_ListView" IsNewNode="True" />
-            </Items>
-          </Item>
         </Items>
       </Item>
       <Item Id="Money" ChildItemsDisplayStyle="List">
@@ -1483,7 +1471,7 @@
       </Columns>
       <Filters CurrentFilterId="@68aeffe8-a656-4472-a1f6-028feeb29cf3" IsNewNode="True">
         <Filter Id="@68aeffe8-a656-4472-a1f6-028feeb29cf3" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,FinOpened# Or [Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,FinClosed# Or [IsSyncRequired] = True" Index="0" IsNewNode="True" />
-        <Filter Id="@7a6a5f79-0e27-4988-9317-ed996b1c6993" Criteria="[DateEnd] &lt;= LocalDateTimeToday()" Index="1" IsNewNode="True" />
+        <Filter Id="@7a6a5f79-0e27-4988-9317-ed996b1c6993" Criteria="[DateEnd] &lt;= LocalDateTimeToday() And [Status] &lt;&gt; ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,FinClosed# And [Status] &lt;&gt; ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,Closed#" Index="1" IsNewNode="True" />
         <Filter Id="@dcbde953-edaf-416b-b00e-95f4f12c206b" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,Opened#" Index="2" IsNewNode="True" />
         <Filter Id="@9025fb88-4073-42fa-b214-5835cfdceefd" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,Project#" Index="3" IsNewNode="True" />
         <Filter Id="@aad0eba9-2441-4b3d-aab5-c11e775cc8fe" Index="4" IsNewNode="True" />
@@ -1613,6 +1601,11 @@
         <ColumnInfo Id="IsClosed" Index="9" />
         <ColumnInfo Id="IsSyncRequired" Index="10" />
       </Columns>
+      <Filters CurrentFilterId="@8692268e-5932-47a8-b308-24737678851d">
+        <Filter Id="@8692268e-5932-47a8-b308-24737678851d" Criteria="[Status] &lt;&gt; ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,Closed#" Index="0" IsNewNode="True" />
+        <Filter Id="@3bef8bcf-d57f-4961-a5dd-705f1859e962" Index="1" Criteria="[DateEnd] &lt;= LocalDateTimeToday() And [Status] &lt;&gt; ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,Closed# And [Status] &lt;&gt; ##Enum#IntecoAG.ERM.FM.Order.fmIOrderStatus,FinClosed#" IsNewNode="True" />
+        <Filter Id="@81dac46a-4e6d-4267-8346-a0f4ce4d50a9" IsNewNode="True" />
+      </Filters>
     </ListView>
     <ListView Id="fmCOrderExt_LookupListView" AllowDelete="False" AllowNew="False" />
     <DetailView Id="fmCOrderManageDoc_DetailView" AllowDelete="False" AllowNew="False" CustomizationEnabled="True">

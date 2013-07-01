@@ -28,7 +28,7 @@ namespace IntecoAG.ERM.Sync {
         protected override void OnDeactivated() {
 //            if (_IsActivated)
             View.CurrentObjectChanged -= new EventHandler(View_CurrentObjectChanged);
-            View.ObjectSpace.ObjectChanged -= new EventHandler<ObjectChangedEventArgs>(ObjectSpace_ObjectChanged);
+//            View.ObjectSpace.Committed -= new EventHandler(ObjectSpace_Committed);
             //            _IsActivated = false;
             base.OnDeactivated();
         }
@@ -51,13 +51,17 @@ namespace IntecoAG.ERM.Sync {
         protected void SyncActionStateUpdate() {
             if (this.View.CurrentObject is SyncISyncObject) {
                 SyncAction.Active.SetItemValue("SyncCObjectViewController", true);
-                View.ObjectSpace.ObjectChanged += new EventHandler<ObjectChangedEventArgs>(ObjectSpace_ObjectChanged);
+//                View.ObjectSpace.Committed +=new EventHandler(ObjectSpace_Committed); 
                 SyncActionEnabledUpdate();
             }
             else {
                 SyncAction.Active.SetItemValue("SyncCObjectViewController", false);
-                View.ObjectSpace.ObjectChanged -= new EventHandler<ObjectChangedEventArgs>(ObjectSpace_ObjectChanged);
+//                View.ObjectSpace.Committed -= new EventHandler(ObjectSpace_Committed);
             }
+        }
+
+        void ObjectSpace_Committed2(object sender, EventArgs e) {
+            SyncActionEnabledUpdate();
         }
 
         protected void SyncActionEnabledUpdate() {
@@ -68,9 +72,6 @@ namespace IntecoAG.ERM.Sync {
                 else
                     SyncAction.Enabled.SetItemValue("SyncCObjectViewController", false);
             }
-        }
-        void ObjectSpace_ObjectChanged(object sender, ObjectChangedEventArgs e) {
-            SyncActionEnabledUpdate();
         }
 
     }

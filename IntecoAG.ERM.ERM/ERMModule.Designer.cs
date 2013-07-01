@@ -28,12 +28,12 @@ namespace IntecoAG.ERM.ERM {
             // 
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.GCR.Codif.gcrCodifDeal));
             this.RequiredModuleTypes.Add(typeof(IntecoAG.ERM.Module.ERMBaseModule));
-            this.RequiredModuleTypes.Add(typeof(IntecoAG.ERM.FM.Win.ERMFinancialWinModule));
             this.RequiredModuleTypes.Add(typeof(IntecoAG.XAFExt.CDS.XAFExtCDSModule));
             this.RequiredModuleTypes.Add(typeof(IntecoAG.ERM.SyncIBS.ERMSyncIBSModule));
             this.RequiredModuleTypes.Add(typeof(IntecoAG.ERM.Sync.ERMSyncModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Security.SecurityModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.StateMachine.StateMachineModule));
+            this.RequiredModuleTypes.Add(typeof(IntecoAG.ERM.FM.ERMFinancialModule));
 
         }
 

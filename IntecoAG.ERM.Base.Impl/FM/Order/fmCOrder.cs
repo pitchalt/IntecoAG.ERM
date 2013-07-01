@@ -54,7 +54,7 @@ namespace IntecoAG.ERM.FM.Order
     [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened'", TargetItems = "*,BuhAccount,AnalitycAVT,AnalitycAccouterType,BuhOverheadType", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened' && OverheadType != 'Individual'", TargetItems = "BuhOverheadType", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinClosed'", TargetItems = "*,DateEnd", Enabled = false)]
-    [Appearance("", AppearanceItemType.ViewItem, "DateEnd <= LocalDateTimeToday()", TargetItems ="Code,Name", BackColor="Blue" )]
+    [Appearance("", AppearanceItemType.ViewItem, "DateEnd <= LocalDateTimeToday() && Status != 'FinClosed' && Status != 'Closed'", TargetItems = "Code,Name", BackColor = "Blue")]
     //    [RuleCriteria("", DefaultContexts.Save, "FixKoeff == 0 && FixKoeffOZM == 0",
 //            TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual' && PlanOverheadType != 'VARIABLE' && PlanOverheadType != 'NO_OVERHEAD'",
 //            UsedProperties = "FixKoeff,FixKoeffOZM")]

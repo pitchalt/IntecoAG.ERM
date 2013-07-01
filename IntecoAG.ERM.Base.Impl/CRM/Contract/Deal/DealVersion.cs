@@ -237,6 +237,30 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             set { SetPropertyValue<crmFinancialStructure>("FinancialStructure", ref _FinancialStructure, value); }
         }
 
+        [RuleRequiredField(TargetCriteria = "ContractDeal.State != 'DEAL_CLOSED' && ContractDeal.State != 'DEAL_DELETED'")]
+        [PersistentAlias("ContractDeal.TRVType")]
+        public crmContractDealTRVType TRVType {
+            get { return this.ContractDeal.TRVType; }
+            set {
+                crmContractDealTRVType old = this.ContractDeal.TRVType;
+                this.ContractDeal.TRVType = value;
+                if (old != value)
+                    OnChanged("TRVType", old, value);
+            }
+        }
+
+        [RuleRequiredField(TargetCriteria = "ContractDeal.State != 'DEAL_CLOSED' && ContractDeal.State != 'DEAL_DELETED'")]
+        [PersistentAlias("ContractDeal.TRVContractor")]
+        public crmContractDealTRVContractor TRVContractor {
+            get { return this.ContractDeal.TRVContractor; }
+            set {
+                crmContractDealTRVContractor old = this.ContractDeal.TRVContractor;
+                this.ContractDeal.TRVContractor = value;
+                if (old != value)
+                    OnChanged("TRVContractor", old, value);
+            }
+        }
+
         /// <summary>
         /// Registrator
         /// </summary>

@@ -230,7 +230,7 @@ namespace IntecoAG.ERM.FM.ReportHelper {
             // Формирвоание 1-го раздела, 2-го подраздела ВЭД. В него входят все заявки, источник заказа которых ГЗ.ГОЗ.ВТС, а также источник заказа (fmCOrderAnalitycOrderSource) - ВЭД.ВТС, ВЭД.Прочие
             // Только договорные!
             var querySec12 = from paymentRequestObligation in querySecContract_Without_PTR
-                            where (
+                            where (paymentRequestObligation.Order.AnalitycRegion != null &&
                                   paymentRequestObligation.Order.AnalitycRegion.IsVED
 //                                  paymentRequestObligation.Order.AnalitycOrderSource.Code == "ГЗ.ГОЗ.ВТС"
 //                                || paymentRequestObligation.Order.AnalitycOrderSource.Code == "ВЭД.ВТС"

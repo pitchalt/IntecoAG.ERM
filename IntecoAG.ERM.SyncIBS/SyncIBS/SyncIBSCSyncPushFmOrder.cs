@@ -27,14 +27,17 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
             msg_in.ZKDTOPEN = order.DateBegin;
             msg_in.ZKDTCLOSE = order.DateEnd;
             msg_in.ZKISCLOSED = order.IsClosed;
-            msg_in.ZKBUHTYPE = order.AnalitycAccouterType.Code;
+            if (order.AnalitycAccouterType != null)
+                msg_in.ZKBUHTYPE = order.AnalitycAccouterType.BuhCode;
             if (String.IsNullOrEmpty(msg_in.ZKBUHTYPE))
                 msg_in.ZKBUHTYPE = "0";
             if (order.Status == fmIOrderStatus.Opened) {
                 msg_in.CMD = "OPEN";
+                msg_in.ZKSUBJECTCODE = order.Subject.Code;
                 msg_in.ZKSHORTNAME = order.Name;
                 msg_in.ZKFULLNAME = order.NameFull;
                 msg_in.ZKDESCRIPTION = order.Description;
+                msg_in.ZKSOURCE = order.SourceName;
                 Decimal acccode = 0;
                 Decimal.TryParse(order.BuhAccount.BuhCode, out acccode);
                 msg_in.ZKNDSMODE = order.AnalitycAVT.Code;

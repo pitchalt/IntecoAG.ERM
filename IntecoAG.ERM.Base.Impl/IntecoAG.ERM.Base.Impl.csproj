@@ -91,6 +91,7 @@
     <Reference Include="DevExpress.Persistent.BaseImpl.v11.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v11.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -138,6 +139,13 @@
     <Compile Include="CRM\Contract\CostCol.cs" />
     <Compile Include="CRM\Contract\Counters\RegistrationLogDocNumberCounter.cs" />
     <Compile Include="CRM\Contract\Counters\RegistrationLogISNCounter.cs" />
+    <Compile Include="CRM\Contract\Deal\crmContractDealSM.cs" />
+    <Compile Include="CRM\Contract\Deal\crmContractDealTRVContractor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CRM\Contract\Deal\crmContractDealTRVType.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CRM\Contract\Deal\crmDealRegistrationStatistics.cs" />
     <Compile Include="CRM\Contract\Deal\ContractDeal-ObligationUnitMains.cs" />
     <Compile Include="CRM\Contract\Deal\ContractDeal-StageMains.cs" />

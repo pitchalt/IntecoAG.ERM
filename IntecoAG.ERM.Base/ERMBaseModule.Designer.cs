@@ -91,7 +91,6 @@
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.HRM.Organization.hrmStaff));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Language.csLanguage));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Document.csDocument));
-            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CRM.Contract.Deal.crmDealWithStageVersion));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CRM.Contract.crmFinancialDeal));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Measurement.csTimeUnit));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CRM.Party.crmCLegalPersonUnit));
@@ -137,6 +136,7 @@
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Settings.fmCPaymentTaxPeriod));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.FM.FinAccount.fmCFAAccount));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.HRM.Organization.hrmCStaffPost));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CRM.Contract.Deal.crmDealWithStageVersion));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase));

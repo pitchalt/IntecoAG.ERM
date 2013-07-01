@@ -567,22 +567,30 @@
               <LayoutItem Id="IsRegRequired" ViewItem="IsRegRequired" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Deal" ShowCaption="True" Caption="Deal" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical" Index="2" RelativeSize="40" IsNewNode="True">
-              <LayoutGroup Id="crmDealRegistrationForm_col1" Index="1" ShowCaption="False" Direction="Horizontal" Caption="crmDealRegistrationForm_col1" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="16" IsNewNode="True">
-                <LayoutItem Id="KindOfDeal" Index="0" TextAlignMode="UseParentOptions" ViewItem="KindOfDeal" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" IsNewNode="True" />
-                <LayoutItem Id="Category" Index="1" TextAlignMode="UseParentOptions" ViewItem="Category" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" IsNewNode="True" />
-                <LayoutItem Id="CuratorDepartment" TextAlignMode="UseParentOptions" ViewItem="CuratorDepartment" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="2" RelativeSize="33" IsNewNode="True" />
+              <LayoutGroup Id="crmDealRegistrationForm_col1" Index="0" ShowCaption="False" Direction="Horizontal" Caption="crmDealRegistrationForm_col1" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="16" IsNewNode="True">
+                <LayoutItem Id="KindOfDeal" Index="0" TextAlignMode="UseParentOptions" ViewItem="KindOfDeal" CaptionLocation="Top" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="0" IsNewNode="True" />
+                <LayoutItem Id="Category" Index="1" TextAlignMode="UseParentOptions" ViewItem="Category" CaptionLocation="Top" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="0" IsNewNode="True" />
+                <LayoutItem Id="TRVType" ViewItem="TRVType" Index="2" CaptionLocation="Top" RelativeSize="0" IsNewNode="True" />
+                <LayoutItem Id="TRVContractor" ViewItem="TRVContractor" CaptionLocation="Top" RelativeSize="0" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="crmDealRegistrationForm_col2" Index="2" ShowCaption="False" Direction="Horizontal" Caption="crmDealRegistrationForm_col2" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="14" IsNewNode="True">
-                <LayoutItem Id="Price" Index="0" TextAlignMode="UseParentOptions" ViewItem="Price" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="46" IsNewNode="True" />
-                <LayoutItem Id="Valuta" Index="1" TextAlignMode="UseParentOptions" ViewItem="Valuta" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="22" IsNewNode="True" />
-                <LayoutItem Id="Item2" ShowCaption="False" TextAlignMode="UseParentOptions" ViewItem="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" Index="2" RelativeSize="30" IsNewNode="True" />
+              <LayoutGroup Id="crmDealRegistrationForm_col2" Index="1" ShowCaption="False" Direction="Horizontal" Caption="crmDealRegistrationForm_col2" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="14" IsNewNode="True">
+                <LayoutItem Id="Price" Index="0" ViewItem="Price" RelativeSize="50" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="Valuta" Index="1" ViewItem="Valuta" RelativeSize="10" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="2" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+                <LayoutItem Id="NDSRate" ViewItem="NDSRate" Index="3" RelativeSize="10" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CostModel" ViewItem="CostModel" Index="4" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="FinAnalitycs" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="CuratorDepartment" ViewItem="CuratorDepartment" Index="1" IsNewNode="True" />
+                <LayoutItem Id="Order" ViewItem="Order" Index="2" IsNewNode="True" />
+                <LayoutItem Id="CostItem" ViewItem="CostItem" IsNewNode="True" />
               </LayoutGroup>
               <LayoutGroup Id="Dates" Direction="Horizontal" Index="3" ShowCaption="False" Caption="Dates" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" RelativeSize="16" IsNewNode="True">
                 <LayoutItem Id="DateBegin" Index="0" TextAlignMode="UseParentOptions" ViewItem="DateBegin" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" IsNewNode="True" />
                 <LayoutItem Id="DateEnd" Index="1" TextAlignMode="UseParentOptions" ViewItem="DateEnd" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" IsNewNode="True" />
                 <LayoutItem Id="DateFinish" Index="2" TextAlignMode="UseParentOptions" ViewItem="DateFinish" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="33" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutItem Id="DescriptionShort" Index="4" CaptionLocation="Top" TextAlignMode="UseParentOptions" ViewItem="DescriptionShort" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="24" IsNewNode="True" />
+              <LayoutItem Id="DescriptionShort" Index="4" CaptionLocation="Left" TextAlignMode="UseParentOptions" ViewItem="DescriptionShort" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" SizeConstraintsType="Default" RelativeSize="24" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Partys" Direction="Horizontal" ShowCaption="True" Caption="Partys" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Index="3" RelativeSize="19" IsNewNode="True">
               <LayoutGroup Id="PartyRole" Index="0" RelativeSize="33" ShowCaption="False" Caption="PartyRole" ImageName="" CaptionLocation="Default" CaptionWordWrap="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" TextAlignMode="UseParentOptions" Direction="Vertical" IsNewNode="True">
@@ -835,7 +843,7 @@
         <LayoutItem Id="WizardSupport" ViewItem="WizardSupport" IsNewNode="True" />
       </Layout>
     </DetailView>
-    <ListView Id="crmDealRegistrationStatistics_ListView" CollectionDataSource="" />
+    <ListView Id="crmDealRegistrationStatistics_ListView" CollectionDataSource="crmDealRegistrationStatistics" />
     <ListView Id="crmDealVersion_DealVersions_ListView" AllowDelete="False" AllowNew="False">
       <Columns>
         <ColumnInfo Id="DealState" Index="0" Removed="True" />
@@ -974,18 +982,28 @@
           <TabbedGroup Id="Tabs" Index="2" IsNewNode="True" Removed="True">
             <LayoutGroup Id="Common" Index="0" IsNewNode="True">
               <LayoutItem Id="DescriptionShort" ViewItem="DescriptionShort" Index="0" IsNewNode="True" />
-              <LayoutItem Id="Category" ViewItem="Category" Index="1" IsNewNode="True" />
-              <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="2" IsNewNode="True" />
-              <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="3" IsNewNode="True" />
-              <LayoutItem Id="DateFinish" ViewItem="DateFinish" Index="4" IsNewNode="True" />
-              <LayoutItem Id="CostModel" ViewItem="CostModel" Index="5" IsNewNode="True" />
-              <LayoutItem Id="NDSRate" ViewItem="NDSRate" Index="6" IsNewNode="True" />
-              <LayoutItem Id="Price" ViewItem="Price" Index="7" IsNewNode="True" />
-              <LayoutItem Id="Valuta" ViewItem="Valuta" Index="8" IsNewNode="True" />
-              <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="9" IsNewNode="True" />
-              <LayoutItem Id="Order" ViewItem="Order" Index="10" IsNewNode="True" />
-              <LayoutItem Id="CostItem" ViewItem="CostItem" Index="11" IsNewNode="True" />
-              <LayoutItem Id="DescriptionLong" ViewItem="DescriptionLong" Index="12" IsNewNode="True" />
+              <LayoutGroup Id="Classification" Index="1" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Category" ViewItem="Category" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TRVType" ViewItem="TRVType" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TRVContractor" ViewItem="TRVContractor" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Periods" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="3" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="4" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="DateFinish" ViewItem="DateFinish" Index="5" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Prices" Index="3" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="CostModel" ViewItem="CostModel" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="Price" ViewItem="Price" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="Valuta" ViewItem="Valuta" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="NDSRate" ViewItem="NDSRate" Index="3" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="4" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="FinPlaning" Index="4" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Order" ViewItem="Order" Index="5" IsNewNode="True" />
+                <LayoutItem Id="CostItem" ViewItem="CostItem" Index="6" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="DescriptionLong" ViewItem="DescriptionLong" Index="7" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Obligations" Index="1" IsNewNode="True">
               <LayoutGroup Id="ObligationData" Index="0" IsNewNode="True">
@@ -1212,18 +1230,28 @@
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="Common" Index="0" IsNewNode="True">
               <LayoutItem Id="DescriptionShort" ViewItem="DescriptionShort" Index="0" IsNewNode="True" />
-              <LayoutItem Id="Category" ViewItem="Category" Index="1" IsNewNode="True" />
-              <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="2" IsNewNode="True" />
-              <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="3" IsNewNode="True" />
-              <LayoutItem Id="DateFinish" ViewItem="DateFinish" Index="4" IsNewNode="True" />
-              <LayoutItem Id="CostModel" ViewItem="CostModel" Index="5" IsNewNode="True" />
-              <LayoutItem Id="NDSRate" ViewItem="NDSRate" Index="6" IsNewNode="True" />
-              <LayoutItem Id="Price" ViewItem="Price" Index="7" IsNewNode="True" />
-              <LayoutItem Id="Valuta" ViewItem="Valuta" Index="8" IsNewNode="True" />
-              <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="9" IsNewNode="True" />
-              <LayoutItem Id="Order" ViewItem="Order" Index="10" IsNewNode="True" />
-              <LayoutItem Id="CostItem" ViewItem="CostItem" Index="11" IsNewNode="True" />
-              <LayoutItem Id="DescriptionLong" ViewItem="DescriptionLong" Index="12" IsNewNode="True" />
+              <LayoutGroup Id="Classification" Index="1" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Category" ViewItem="Category" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TRVType" ViewItem="TRVType" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TRVContractor" ViewItem="TRVContractor" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Periods" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="DateBegin" ViewItem="DateBegin" Index="3" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="DateEnd" ViewItem="DateEnd" Index="4" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="DateFinish" ViewItem="DateFinish" Index="5" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Prices" Index="3" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="CostModel" ViewItem="CostModel" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="Price" ViewItem="Price" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="Valuta" ViewItem="Valuta" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="NDSRate" ViewItem="NDSRate" Index="3" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="4" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="FinPlaning" Index="4" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Order" ViewItem="Order" Index="5" IsNewNode="True" />
+                <LayoutItem Id="CostItem" ViewItem="CostItem" Index="6" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="DescriptionLong" ViewItem="DescriptionLong" Index="7" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Stages" Index="1" />
             <LayoutGroup Id="SheduleUnits" Index="2" IsNewNode="True" Removed="True">

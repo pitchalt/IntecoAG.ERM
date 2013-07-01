@@ -30,6 +30,7 @@ namespace IntecoAG.ERM.ERM {
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(GCR.Codif.gcrCodifDeal));
 
             CustomCollectionSourceManager.Register(typeof(GCR.Codif.gcrCodifDeal));
+
         }
     }
 }

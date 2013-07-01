@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Linq;
 
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.StateMachine;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
@@ -42,7 +43,8 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         DEAL_FORMATION = 2,  // Оформление
         DEAL_RESOLVED = 3,  // Урегулирование
         DEAL_CONCLUDED = 4,  // Заключён
-        DEAL_CLOSED = 5  // Закрыт
+        DEAL_CLOSED = 5,  // Закрыт
+        DEAL_DELETED = 10  // Удален
     }
 
     public enum KindOfDeal {
@@ -75,7 +77,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     [DefaultProperty("Name")]
     [VisibleInReports]
     [Persistent("crmDeal")]
-    public partial class crmContractDeal : csCComponent
+    public partial class crmContractDeal : csCComponent, IStateMachineProvider
         //, ICategorizedItem
     {
         public crmContractDeal(Session ses) : base(ses) { }
@@ -229,6 +231,20 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             set { SetPropertyValue<crmContractCategory>("Category", ref _Category, value); }
         }
 
+        private crmContractDealTRVType _TRVType;
+        [RuleRequiredField(TargetCriteria = "State != 'DEAL_CLOSED' && State != 'DEAL_DELETED'")]
+        public crmContractDealTRVType TRVType {
+            get { return _TRVType; }
+            set { SetPropertyValue<crmContractDealTRVType>("TRVType", ref _TRVType, value); }
+        }
+
+        private crmContractDealTRVContractor _TRVContractor;
+        [RuleRequiredField(TargetCriteria = "State != 'DEAL_CLOSED' && State != 'DEAL_DELETED'")]
+        public crmContractDealTRVContractor TRVContractor {
+            get { return _TRVContractor; }
+            set { SetPropertyValue<crmContractDealTRVContractor>("TRVContractor", ref _TRVContractor, value); }
+        }
+
         private crmContractDocument _ContractDocument;
         [ExpandObjectMembers(ExpandObjectMembers.Always)]
         [DataSourceProperty("ContractDocuments")]
@@ -373,6 +389,12 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         #endregion
 
+
+        public IList<IStateMachine> GetStateMachines() {
+            IList<IStateMachine> sml = new List<IStateMachine>(1);
+            sml.Add(new crmContractDealSM());
+            return sml;
+        }
     }
 
 }

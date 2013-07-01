@@ -167,7 +167,22 @@
         <Member Name="State" Caption="Состояние" />
         <Member Name="Subjects" Caption="Тематика" />
         <Member Name="Supplier" Caption="Исполнитель" />
+        <Member Name="TRVContractor" Caption="ТРВ Ген.Заказчик" />
+        <Member Name="TRVType" Caption="ТРВ ТипДоговора" />
         <Member Name="UserRegistrator" Caption="Рег.Польз." />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmContractDealTRVContractor" Caption="ТРВ Ген.Заказчик">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmContractDealTRVType" Caption="ТРВ Тип Договора">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="TRVSuperType" Caption="Тип договора" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmDealNomenclature" Caption="Номенклатура сделки" />
@@ -205,6 +220,8 @@
         <Member Name="ShowVersionState" Caption="Статус Редак." />
         <Member Name="Subjects" Caption="Тематика" />
         <Member Name="Supplier" Caption="Исполнитель" />
+        <Member Name="TRVContractor" Caption="ТРВ Ген.Заказчик" />
+        <Member Name="TRVType" Caption="ТРВ ТипДоговора" />
         <Member Name="Valuta" Caption="Валюта" />
       </OwnMembers>
     </Class>
@@ -252,14 +269,21 @@
         <Member Name="Contract" Caption="Договор" />
         <Member Name="ContractDeal" Caption="Проект Дог." />
         <Member Name="ContractKind" Caption="Дог./Доп." />
+        <Member Name="CostItem" Caption="Фин.Статья" />
+        <Member Name="CostModel" Caption="МодельЦены" />
         <Member Name="Date" Caption="Док. Дата" />
         <Member Name="Delo" Caption="Папка" />
         <Member Name="DepartmentRegistrator" Caption="Рег.Подр." />
         <Member Name="DocumentCategory" Caption="Док. Тип" />
         <Member Name="IsRegRequired" Caption="Журнал" />
+        <Member Name="NDSRate" Caption="Ставка НДС" />
         <Member Name="NewNumberRequired" Caption="Новый Ном." />
         <Member Name="Number" Caption="Док.Номер" />
+        <Member Name="Order" Caption="Заказ" />
+        <Member Name="PaymentValuta" Caption="Платеж.Валюта" />
         <Member Name="RegistrationKind" Caption="Тип Рег." />
+        <Member Name="TRVContractor" Caption="ТРВ Ген.Заказчик" />
+        <Member Name="TRVType" Caption="ТРВ ТипДоговора" />
         <Member Name="UserRegistrator" Caption="Рег.Польз." />
       </OwnMembers>
     </Class>
@@ -1048,6 +1072,7 @@
       <LocalizationItem Name="IntecoAG.ERM.CS.Work" Value="ERM.CS.Работы" />
       <LocalizationItem Name="IntecoAG.ERM.FM" Value="ERM.FM" />
       <LocalizationItem Name="IntecoAG.ERM.FM.Docs" Value="ERM.FM.Документы" />
+      <LocalizationItem Name="IntecoAG.ERM.FM.FinAccount" Value="ERM.FM.ФинСчета" />
       <LocalizationItem Name="IntecoAG.ERM.FM.Order" Value="ERM.FM.Заказ" />
       <LocalizationItem Name="IntecoAG.ERM.FM.Subject" Value="ERM.FM.Тема" />
       <LocalizationItem Name="IntecoAG.ERM.GFM" Value="ERM.GFM" />

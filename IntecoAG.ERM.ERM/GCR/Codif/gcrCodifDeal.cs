@@ -90,11 +90,11 @@ namespace IntecoAG.ERM.GCR.Codif {
         }
 
         public String GeneralCustomer {
-            get { return String.Empty; }
+            get { return Deal.TRVContractor != null ? Deal.TRVContractor.Code : String.Empty; }
         }
 
         public String ContractCategory {
-            get { return String.Empty; }
+            get { return Deal.TRVType != null ? Deal.TRVType.Code : String.Empty; }
         }
 
         public String ContractDescription {

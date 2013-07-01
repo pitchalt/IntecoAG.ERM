@@ -184,6 +184,10 @@
       <Project>{0F3EF47E-54C9-47BE-B96C-ED9E89DF1F08}</Project>
       <Name>IntecoAG.ERM.FM.Win</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IntecoAG.ERM.FM\IntecoAG.ERM.FM.csproj">
+      <Project>{462EF986-C1A4-45A0-8374-4ACC462A6874}</Project>
+      <Name>IntecoAG.ERM.FM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IntecoAG.ERM.SyncIBS\IntecoAG.ERM.SyncIBS.csproj">
       <Project>{C2BB8FF6-26E4-461E-A7F6-ADAD9C794523}</Project>
       <Name>IntecoAG.ERM.SyncIBS</Name>

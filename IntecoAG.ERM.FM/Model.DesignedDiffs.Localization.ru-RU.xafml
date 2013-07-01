@@ -885,7 +885,6 @@
     <Items>
       <Item Id="Finance">
         <Items>
-          <Item Id="FinanceAnalitics" Caption="Финансовая аналитика" />
           <Item Id="fmImporter_ListView" Caption="Алгоритмы загрузки" />
         </Items>
       </Item>
@@ -1048,7 +1047,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="fmCOrderExt_ListView" Caption="Список Заказов" />
+    <ListView Id="fmCOrderExt_ListView" Caption="Список Заказов">
+      <Filters>
+        <Filter Id="@8692268e-5932-47a8-b308-24737678851d" Caption="Действующие" />
+        <Filter Id="@3bef8bcf-d57f-4961-a5dd-705f1859e962" Caption="Просроченные" />
+        <Filter Id="@81dac46a-4e6d-4267-8346-a0f4ce4d50a9" Caption="Все" />
+      </Filters>
+    </ListView>
     <ListView Id="fmCOrderExt_LookupListView" Caption="Выбор Заказа" />
     <ListView Id="fmCPRPaymentRequest_ListView" Caption="Заявки на оплату">
       <Filters>
