@@ -10,7 +10,7 @@ using DevExpress.Xpo;
 namespace IntecoAG.ERM.CRM.Party {
 
     [FriendlyKeyProperty("Code")]
-    [DefaultProperty("Name")]
+    [DefaultProperty("Code")]
     [Persistent("crmPartyPersonType")]
     public class crmPersonType : BaseObject {
         public crmPersonType(Session session)
@@ -38,6 +38,8 @@ namespace IntecoAG.ERM.CRM.Party {
         /// Name
         /// </summary>
         [Size(70)]
+        [VisibleInListView(true)]
+        [VisibleInLookupListView(true)]
         public string Name {
             get { return _Name; }
             set { 

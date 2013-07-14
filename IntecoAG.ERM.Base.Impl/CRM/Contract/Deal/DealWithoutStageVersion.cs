@@ -182,9 +182,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                     using (NestedUnitOfWork uow = this.Session.BeginNestedUnitOfWork()) {
                         crmDealWithoutStageVersion deal_version = uow.GetNestedObject<crmDealWithoutStageVersion>(this);
                         if (deal_version.DeliveryPlan != null)
-                            deal_version.DeliveryPlan.Valuta = uow.GetNestedObject<csValuta>(value);
+                            deal_version.DeliveryPlan.Valuta = value == null ? null : uow.GetNestedObject<csValuta>(value);
                         if (deal_version.PaymentPlan != null)
-                            deal_version.PaymentPlan.Valuta = uow.GetNestedObject<csValuta>(value);
+                            deal_version.PaymentPlan.Valuta = value == null ? null : uow.GetNestedObject<csValuta>(value);
                         uow.CommitChanges();
                     }
                 }
@@ -202,9 +202,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                     using (NestedUnitOfWork uow = this.Session.BeginNestedUnitOfWork()) {
                         crmDealWithoutStageVersion deal_version = uow.GetNestedObject<crmDealWithoutStageVersion>(this);
                         if (deal_version.DeliveryPlan != null)
-                            deal_version.DeliveryPlan.CostModel = uow.GetNestedObject<crmCostModel>(value);
+                            deal_version.DeliveryPlan.CostModel = value == null ? null : uow.GetNestedObject<crmCostModel>(value);
                         if (deal_version.PaymentPlan != null)
-                            deal_version.PaymentPlan.CostModel = uow.GetNestedObject<crmCostModel>(value);
+                            deal_version.PaymentPlan.CostModel = value == null ? null : uow.GetNestedObject<crmCostModel>(value);
                         uow.CommitChanges();
                     }
                 }
@@ -220,9 +220,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                     using (NestedUnitOfWork uow = this.Session.BeginNestedUnitOfWork()) {
                         crmDealWithoutStageVersion deal_version = uow.GetNestedObject<crmDealWithoutStageVersion>(this);
                         if (deal_version.DeliveryPlan != null)
-                            deal_version.DeliveryPlan.CostItem = uow.GetNestedObject<fmCostItem>(value);
+                            deal_version.DeliveryPlan.CostItem = value == null ? null : uow.GetNestedObject<fmCostItem>(value);
                         if (deal_version.PaymentPlan != null)
-                            deal_version.PaymentPlan.CostItem = uow.GetNestedObject<fmCostItem>(value);
+                            deal_version.PaymentPlan.CostItem = value == null ? null : uow.GetNestedObject<fmCostItem>(value);
                         uow.CommitChanges();
                     }
                 }
@@ -238,9 +238,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                     using (NestedUnitOfWork uow = this.Session.BeginNestedUnitOfWork()) {
                         crmDealWithoutStageVersion deal_version = uow.GetNestedObject<crmDealWithoutStageVersion>(this);
                         if (deal_version.DeliveryPlan != null)
-                            deal_version.DeliveryPlan.Order = uow.GetNestedObject<fmCOrder>(value);
+                            deal_version.DeliveryPlan.Order = value == null ? null : uow.GetNestedObject<fmCOrder>(value);
                         if (deal_version.PaymentPlan != null)
-                            deal_version.PaymentPlan.Order = uow.GetNestedObject<fmCOrder>(value);
+                            deal_version.PaymentPlan.Order = value == null ? null : uow.GetNestedObject<fmCOrder>(value);
                         uow.CommitChanges();
                     }
                 }
@@ -254,9 +254,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                     using (NestedUnitOfWork uow = this.Session.BeginNestedUnitOfWork()) {
                         crmDealWithoutStageVersion deal_version = uow.GetNestedObject<crmDealWithoutStageVersion>(this);
                         if (deal_version.DeliveryPlan != null)
-                            deal_version.DeliveryPlan.NDSRate = uow.GetNestedObject<csNDSRate>(value);
+                            deal_version.DeliveryPlan.NDSRate = value == null ? null : uow.GetNestedObject<csNDSRate>(value);
                         if (deal_version.PaymentPlan != null)
-                            deal_version.PaymentPlan.NDSRate = uow.GetNestedObject<csNDSRate>(value);
+                            deal_version.PaymentPlan.NDSRate = value == null ? null : uow.GetNestedObject<csNDSRate>(value);
                         uow.CommitChanges();
                     }
                 }

@@ -49,6 +49,7 @@ namespace IntecoAG.ERM.CS.Country
         private String _ZipPostal;
         private String _Region;
         private String _StateProvince;
+        private String _CityType;
         private String _City;
         private String _Street;
         //
@@ -114,11 +115,24 @@ namespace IntecoAG.ERM.CS.Country
         /// <summary>
         /// Description - описание
         /// </summary>
+        [Size(5)]
+        [RuleRequiredField(TargetCriteria = "!IsEmpty")]
+        public string CityType {
+            get { return _CityType == null ? String.Empty : _CityType; }
+            set {
+                SetPropertyValue<string>("CityType", ref _CityType, value);
+                if (!IsLoading)
+                    UpdateCalcField();
+            }
+        }
+        /// <summary>
+        /// Description - описание
+        /// </summary>
         [Size(30)]
-        [RuleRequiredField(TargetCriteria="!IsEmpty")]
+        [RuleRequiredField(TargetCriteria = "!IsEmpty")]
         public string City {
             get { return _City == null ? String.Empty : _City; }
-            set { 
+            set {
                 SetPropertyValue<string>("City", ref _City, value);
                 if (!IsLoading)
                     UpdateCalcField();
@@ -200,11 +214,10 @@ namespace IntecoAG.ERM.CS.Country
                     sb.Append(this.StateProvince);
                     sb.Append(", ");
                 }
+                sb.Append(this.CityType);
+                sb.Append(" ");
                 sb.Append(this.City);
-                if (String.IsNullOrEmpty(this.StateProvince))
-                    sb.Append(" г., ");
-                else
-                    sb.Append(", ");
+                sb.Append(", ");
                 sb.Append(this.Street);
                 this._AddressComponent = sb.ToString();
             }

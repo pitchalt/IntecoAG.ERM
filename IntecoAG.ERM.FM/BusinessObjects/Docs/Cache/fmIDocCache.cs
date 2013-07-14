@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+//
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.ConditionalAppearance;
@@ -48,7 +50,9 @@ namespace IntecoAG.ERM.FM.Docs.Cache {
         String AnaliticCode { get; }
 
         [DataSourceCriteria("AccountSystem.Code == '1000' && IsSelectabled")]
-        fmCFAAccount Account { get; set; } 
+        fmCFAAccount AccountDebit { get; set; }
+        [DataSourceCriteria("AccountSystem.Code == '1000' && IsSelectabled")]
+        fmCFAAccount AccountCredit { get; set; }
 
         Decimal Summa { get; set; }
         Int64 SummaSenior { get; }
@@ -63,6 +67,8 @@ namespace IntecoAG.ERM.FM.Docs.Cache {
         String DescriptionContent { get; set; }
         [FieldSize(60)]
         String DescriptionAppendix { get; set; }
+        [FieldSize(1)]
+        String AVTMode { get; set; }
 
         [Aggregated]
         [NonPersistentDc]
@@ -194,7 +200,18 @@ namespace IntecoAG.ERM.FM.Docs.Cache {
             if (user != null && user.Staff != null) {
                 instance.DocPartyDepartment = user.Staff.Department;
             }
-
+            
+            instance.AccountDebit = os.FindObject<fmCFAAccount>(
+                CriteriaOperator.And( 
+                    new BinaryOperator("AccountSystem.Code", "1000"),
+                    new BinaryOperator("BuhCode", "5011")
+                    ));
+            instance.AccountCredit = os.FindObject<fmCFAAccount>(
+                CriteriaOperator.And( 
+                    new BinaryOperator("AccountSystem.Code", "1000"),
+                    new BinaryOperator("BuhCode", "6242")
+                    ));
+            instance.AVTMode = "1";
         }
     //    public static int SumMethod(fmIDocCache instance, int val1, int val2) {
     //        // You can also define custom methods.

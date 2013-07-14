@@ -444,7 +444,7 @@
         <ColumnInfo Id="ContractDocument.FullName" Removed="True" />
       </Columns>
     </ListView>
-    <DetailView Id="crmContract_DetailView">
+    <DetailView Id="crmContract_DetailView" AllowDelete="False" AllowNew="False">
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="SimpleEditors">
@@ -484,6 +484,7 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="crmContract_ListView" AllowDelete="False" AllowNew="False" />
     <ListView Id="crmContractDeal_ListView" AllowDelete="False" AllowNew="False" AllowEdit="False" Criteria="" UseServerMode="True" ShowFindPanel="False">
       <Columns>
         <ColumnInfo Id="Delo" Index="0" />
@@ -843,7 +844,7 @@
         <LayoutItem Id="WizardSupport" ViewItem="WizardSupport" IsNewNode="True" />
       </Layout>
     </DetailView>
-    <ListView Id="crmDealRegistrationStatistics_ListView" CollectionDataSource="crmDealRegistrationStatistics" />
+    <ListView Id="crmDealRegistrationStatistics_ListView" CollectionDataSource="" />
     <ListView Id="crmDealVersion_DealVersions_ListView" AllowDelete="False" AllowNew="False">
       <Columns>
         <ColumnInfo Id="DealState" Index="0" Removed="True" />
@@ -969,7 +970,7 @@
         <ColumnInfo Id="ManagerPlanDepartment" Index="5" />
       </Columns>
     </ListView>
-    <DetailView Id="crmDealWithoutStageVersion_DetailView" InvisibleGroupVerticalDistance="10">
+    <DetailView Id="crmDealWithoutStageVersion_DetailView" InvisibleGroupVerticalDistance="10" AllowDelete="False" AllowNew="False">
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
@@ -1135,7 +1136,7 @@
         <ColumnInfo Id="Sender" Removed="True" />
       </Columns>
     </ListView>
-    <DetailView Id="crmDealWithStageVersion_DetailView">
+    <DetailView Id="crmDealWithStageVersion_DetailView" AllowDelete="False" AllowNew="False">
       <Items>
         <PropertyEditor Id="CurrentCost.SummCost" AllowEdit="False" />
         <PropertyEditor Id="CurrentCost.SummNDS" AllowEdit="False" />

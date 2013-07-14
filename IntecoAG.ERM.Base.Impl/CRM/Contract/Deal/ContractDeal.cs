@@ -104,6 +104,18 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         //}
         // Тип договорного документа: Договор/Дополнительное соглашение
 
+        //[Action(Caption = "Validate")]
+        //public void Validate() {
+        //    IList<crmContractDeal> deals = new List<crmContractDeal>( new XPCollection<crmContractDeal>(this.Session, new BinaryOperator("ContractDocument.Number", "Р/935612111785-413902")));
+        //    foreach (crmContractDeal deal in deals.Where(x => x.Contract == null)) {
+        //        System.Diagnostics.Debug.Print("Deal: " + deal.ContractDocument.Number);
+        //        Session.Delete(deal);
+        //    }
+        //    if (deals.Count != 0) {
+        //        this.Session.CommitTransaction();
+        //    }
+        //}
+
         [Browsable(false)]
         public crmDealVersion Project {
             get { 

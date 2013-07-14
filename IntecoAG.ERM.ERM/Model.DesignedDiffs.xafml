@@ -147,12 +147,19 @@
           <Item Id="fmCPaymentTaxPeriod_ListView" IsNewNode="True" Removed="True" />
         </Items>
       </Item>
-      <Item Id="GeneralCompanyReports" IsNewNode="True">
+      <Item Id="GeneralCompanyReports" ChildItemsDisplayStyle="List" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="@48daa127-5acd-4748-acac-c1ffa2efdd99" ViewId="gcrCodifDeal_ListView" Index="0" IsNewNode="True" />
           <Item Id="@799f8a80-f3ff-4950-9c9c-5fbced783aaf" ViewId="fmCSubjectExt_TRV_ListView" Index="1" IsNewNode="True" />
-          <Item Id="@9ef1a0ba-d22b-4d6c-941a-e3c9c999c330" ViewId="crmContractDealTRVType_ListView" Index="2" IsNewNode="True" />
-          <Item Id="@e39889c0-538b-4436-a7f6-99bf823fb976" ViewId="crmContractDealTRVContractor_ListView" Index="3" IsNewNode="True" />
+          <Item Id="@733110e6-63f1-4b7b-9b69-f542862c6166" ViewId="TrwPartyParty_ListView" IsNewNode="True" />
+          <Item Id="References" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="@9ef1a0ba-d22b-4d6c-941a-e3c9c999c330" ViewId="crmContractDealTRVType_ListView" Index="0" IsNewNode="True" />
+              <Item Id="@e39889c0-538b-4436-a7f6-99bf823fb976" ViewId="crmContractDealTRVContractor_ListView" Index="1" IsNewNode="True" />
+              <Item Id="@6a114b11-97c9-4544-ae4b-3a1dcbf8b311" ViewId="TrwPartyType_ListView" Index="2" IsNewNode="True" />
+              <Item Id="@4287d253-d1a4-4316-84e7-8c1ad96b0628" ViewId="TrwPartyMarket_ListView" IsNewNode="True" />
+            </Items>
+          </Item>
         </Items>
       </Item>
       <Item Id="KPI" Removed="True" />
@@ -240,7 +247,7 @@
         <Filter Id="Working" Criteria="[Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,OPENED# Or [Status] = ##Enum#IntecoAG.ERM.FM.Subject.fmISubjectStatus,PROJECT#" Index="1" IsNewNode="True" />
       </Filters>
     </ListView>
-    <ListView Id="gcrCodifDeal_ListView" CollectionDataSource="gcrCodifDeal">
+    <ListView Id="gcrCodifDeal_ListView" CollectionDataSource="">
       <Columns>
         <ColumnInfo Id="Contract" Index="-1" />
         <ColumnInfo Id="Deal" Index="-1" />

@@ -355,6 +355,9 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
+    <Compile Include="Trw\Party\TrwPartyType.cs" />
+    <Compile Include="Trw\Party\TrwPartyMarket.cs" />
+    <Compile Include="Trw\Party\TrwPartyParty.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

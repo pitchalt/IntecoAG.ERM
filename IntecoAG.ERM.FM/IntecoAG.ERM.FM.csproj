@@ -243,6 +243,7 @@
     <Compile Include="BusinessObjects\Order\fmCOrderExViewController.Designer.cs">
       <DependentUpon>fmCOrderExViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="BusinessObjects\Order\fmCOrderIBSSystemsProtect.cs" />
     <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestMemorandumPeson.cs" />
     <Compile Include="BusinessObjects\PaymentRequest\fmCPRRegistratorFilter01.cs" />
     <Compile Include="BusinessObjects\PaymentRequest\fmCPRPaymentRequestBusinesLogic.cs" />
@@ -428,6 +429,7 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_227.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_225.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_220.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceAnalytic.cs" />
@@ -593,6 +595,7 @@
     </None>
     <None Include="ReportLayouts\fmIDocCacheIn01.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="ReportLayouts\fmPaymentRequestContractReport01.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

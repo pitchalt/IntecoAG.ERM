@@ -94,6 +94,15 @@
         <Member Name="ManageDocs" Caption="Заказ-Наряды" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderIBSSystemsProtect">
+      <OwnMembers>
+        <Member Name="ProtectString" AllowEdit="False" />
+        <Member Name="SysASRZ" ImmediatePostData="True" />
+        <Member Name="SysASUM" ImmediatePostData="True" />
+        <Member Name="SysKOM" ImmediatePostData="True" />
+        <Member Name="SysUOC" ImmediatePostData="True" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderManageDoc">
       <OwnMembers>
         <Member Name="AnalitycAccouterType" Caption="Бухгалтерский тип" />
@@ -1543,6 +1552,7 @@
                 <LayoutItem Id="BuhAccount" ViewItem="BuhAccount" Index="1" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="BuhOverheadType" ViewItem="BuhOverheadType" Index="2" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="AnalitycAVT" ViewItem="AnalitycAVT" Index="3" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="IBSSystemsProtect" ViewItem="IBSSystemsProtect" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
               <LayoutItem Id="SourceParty" ViewItem="SourceParty" Index="6" IsNewNode="True" />
               <LayoutGroup Id="Source" Index="7" Direction="Horizontal" IsNewNode="True">
@@ -1584,11 +1594,42 @@
       </Layout>
     </DetailView>
     <ListView Id="fmCOrderExt_FinIndexes_ListView" AllowEdit="True" />
-    <ListView Id="fmCOrderExt_ListView" AllowNew="False" AllowDelete="False">
+    <ListView Id="fmCOrderExt_ListView" AllowNew="False" AllowDelete="False" FreezeColumnIndices="True">
       <Columns>
+        <ColumnInfo Id="AnalitycAccouterType" Index="-1" />
+        <ColumnInfo Id="AnalitycAVT" Index="-1" />
+        <ColumnInfo Id="AnalitycBigCustomer" Index="-1" />
+        <ColumnInfo Id="AnalitycCoperatingType" Index="-1" />
+        <ColumnInfo Id="AnalitycFedProg" Index="-1" />
+        <ColumnInfo Id="AnalitycFinanceSource" Index="-1" />
+        <ColumnInfo Id="AnalitycMilitary" Index="-1" />
+        <ColumnInfo Id="AnalitycOKVED" Index="-1" />
+        <ColumnInfo Id="AnalitycOrderSource" Index="-1" />
+        <ColumnInfo Id="AnalitycRegion" Index="-1" />
+        <ColumnInfo Id="AnalitycWorkType" Index="-1" />
+        <ColumnInfo Id="AVTRate" Index="-1" />
+        <ColumnInfo Id="BuhAccount" Index="-1" />
+        <ColumnInfo Id="BuhAccountCode" Index="-1" />
+        <ColumnInfo Id="BuhOverheadType" Index="-1" />
+        <ColumnInfo Id="ComponentType" Index="-1" />
+        <ColumnInfo Id="Description" Index="-1" />
+        <ColumnInfo Id="FixKoeff" Index="-1" />
+        <ColumnInfo Id="FixKoeffOZM" Index="-1" />
+        <ColumnInfo Id="IBSSystemsProtect" Index="-1" />
         <ColumnInfo Id="ManageDocCurrent" Index="-1" />
         <ColumnInfo Id="ManageDocProject" Index="-1" />
+        <ColumnInfo Id="NameAndCode" Index="-1" />
+        <ColumnInfo Id="NameFull" Index="-1" />
+        <ColumnInfo Id="Overhead" Index="-1" />
+        <ColumnInfo Id="OverheadStandart" Index="-1" />
+        <ColumnInfo Id="OverheadType" Index="-1" />
+        <ColumnInfo Id="PlanOverheadType" Index="-1" />
         <ColumnInfo Id="ProjectOrderPayDate" Index="-1" />
+        <ColumnInfo Id="SourceDeal" Index="-1" />
+        <ColumnInfo Id="SourceName" Index="-1" />
+        <ColumnInfo Id="SourceOther" Index="-1" />
+        <ColumnInfo Id="SourceParty" Index="-1" />
+        <ColumnInfo Id="SourceType" Index="-1" />
         <ColumnInfo Id="Subject" Index="0" LookupProperty="Code" />
         <ColumnInfo Id="Code" Index="1" />
         <ColumnInfo Id="Status" Index="2" />
@@ -1607,7 +1648,38 @@
         <Filter Id="@81dac46a-4e6d-4267-8346-a0f4ce4d50a9" IsNewNode="True" />
       </Filters>
     </ListView>
-    <ListView Id="fmCOrderExt_LookupListView" AllowDelete="False" AllowNew="False" />
+    <ListView Id="fmCOrderExt_LookupListView" AllowDelete="False" AllowNew="False" FreezeColumnIndices="True">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="Name" Index="1" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Index="3" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="BuhAccount" PropertyName="BuhAccount" Index="4" Width="50" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fmCOrderIBSSystemsProtect_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fmCOrderIBSSystemsProtect" Direction="Vertical">
+              <LayoutItem Id="SysASRZ" ViewItem="SysASRZ" Index="0" IsNewNode="True" />
+              <LayoutItem Id="SysASUM" ViewItem="SysASUM" Index="1" IsNewNode="True" />
+              <LayoutItem Id="SysKOM" ViewItem="SysKOM" Index="2" IsNewNode="True" />
+              <LayoutItem Id="SysUOC" ViewItem="SysUOC" Index="3" IsNewNode="True" />
+              <LayoutItem Id="ProtectString" ViewItem="ProtectString" Index="4" IsNewNode="True" />
+              <LayoutGroup Id="fmCOrderIBSSystemsProtect_col1" Removed="True">
+                <LayoutItem Id="ProtectString" ViewItem="ProtectString" Removed="True" />
+                <LayoutItem Id="SysASRZ" ViewItem="SysASRZ" Removed="True" />
+                <LayoutItem Id="SysASUM" ViewItem="SysASUM" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="fmCOrderIBSSystemsProtect_col2" Removed="True">
+                <LayoutItem Id="SysKOM" ViewItem="SysKOM" Removed="True" />
+                <LayoutItem Id="SysUOC" ViewItem="SysUOC" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="fmCOrderManageDoc_DetailView" AllowDelete="False" AllowNew="False" CustomizationEnabled="True">
       <Items>
         <PropertyEditor Id="Order" PropertyName="Order" IsNewNode="True" />
@@ -3159,27 +3231,31 @@
                 </LayoutGroup>
               </LayoutGroup>
               <LayoutGroup Id="fmIDocCache" Index="1" Direction="Vertical" ShowCaption="True" Caption="fm IDoc Cache" IsNewNode="True">
-                <LayoutGroup Id="@6bd534bc-dff1-4697-ab12-39f921476254" Index="0" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="PartyGroup" Index="0" Direction="Horizontal" IsNewNode="True">
                   <LayoutItem Id="PayPartyParty" ViewItem="PayPartyParty" Index="0" CaptionLocation="Top" IsNewNode="True" />
                   <LayoutItem Id="PayPartyName" ViewItem="PayPartyName" Index="1" CaptionLocation="Top" IsNewNode="True" />
                 </LayoutGroup>
-                <LayoutGroup Id="fmIDocCache_col1" Index="1" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="SummGroup" Index="1" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
                   <LayoutItem Id="Summa" ViewItem="Summa" Index="0" CaptionLocation="Top" IsNewNode="True" />
                   <LayoutItem Id="SummaSeniorString" ViewItem="SummaSeniorString" Index="1" CaptionLocation="Top" IsNewNode="True" />
                   <LayoutItem Id="SummaJuniorString" ViewItem="SummaJuniorString" Index="2" CaptionLocation="Top" IsNewNode="True" />
                 </LayoutGroup>
-                <LayoutGroup Id="AVT" Index="2" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="AVTGroup" Index="2" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
                   <LayoutItem Id="AVTRate" ViewItem="AVTRate" Index="0" CaptionLocation="Top" IsNewNode="True" />
                   <LayoutItem Id="AVTSumma" ViewItem="AVTSumma" Index="1" CaptionLocation="Top" IsNewNode="True" />
-                  <LayoutItem Id="Order" ViewItem="Order" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutItem Id="AVTMode" ViewItem="AVTMode" Index="2" RelativeSize="10" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutItem Id="Order" ViewItem="Order" Index="3" CaptionLocation="Top" IsNewNode="True" />
                 </LayoutGroup>
               </LayoutGroup>
               <LayoutGroup Id="Texts" Index="2" Direction="Vertical" ShowCaption="True" Caption="fm IDoc Cache In Real Prepare" IsNewNode="True">
-                <LayoutItem Id="DescriptionBase" ViewItem="DescriptionBase" Index="1" CaptionLocation="Left" IsNewNode="True" />
+                <LayoutGroup Id="Texts2" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="DescriptionBase" ViewItem="DescriptionBase" Index="1" CaptionLocation="Left" RelativeSize="90" IsNewNode="True" />
+                </LayoutGroup>
                 <LayoutGroup Id="TextsCommon" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="Account" ViewItem="Account" CaptionLocation="Top" Index="0" RelativeSize="20" IsNewNode="True" />
-                  <LayoutItem Id="DescriptionContent" ViewItem="DescriptionContent" Index="1" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
-                  <LayoutItem Id="DescriptionAppendix" ViewItem="DescriptionAppendix" Index="2" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
+                  <LayoutItem Id="AccountDebit" CaptionLocation="Top" Index="0" RelativeSize="10" ViewItem="AccountDebit" IsNewNode="True" />
+                  <LayoutItem Id="AccountCredit" Index="1" ViewItem="AccountCredit" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+                  <LayoutItem Id="DescriptionContent" ViewItem="DescriptionContent" Index="2" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
+                  <LayoutItem Id="DescriptionAppendix" ViewItem="DescriptionAppendix" Index="3" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
                 </LayoutGroup>
               </LayoutGroup>
               <LayoutGroup Id="Signers" Direction="Horizontal" Index="3" IsNewNode="True">

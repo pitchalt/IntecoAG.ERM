@@ -239,7 +239,10 @@
     </Class>
     <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCache" Caption="Кассовый документ">
       <OwnMembers>
-        <Member Name="Account" Caption="Субсчет" />
+        <Member Name="AccountCredit" Caption="Субсчет Кредита" />
+        <Member Name="AccountDebit" Caption="Субсчет Дебета" />
+        <Member Name="AnaliticCode" Caption="Код аналитики" />
+        <Member Name="AVTMode" Caption="Режим" />
         <Member Name="CashierStaff" Caption="Кассир" />
         <Member Name="DescriptionAppendix" Caption="Приложение" />
         <Member Name="DescriptionBase" Caption="Основание" />
@@ -462,6 +465,8 @@
     <Class Name="IntecoAG.ERM.FM.fmAutoBindingUpdater" Caption="Признак выполнения автоматического биндинга" />
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrder" Caption="ЗаказБаз">
       <OwnMembers>
+        <Member Name="BuhAccount" Caption="Бух.Субсчет" />
+        <Member Name="BuhAccountCode" Caption="СубсчетКод" />
         <Member Name="Manager" Caption="Ведущий" />
         <Member Name="Subject" Caption="Тема" />
       </OwnMembers>
@@ -469,11 +474,21 @@
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderExt" Caption="Заказ">
       <OwnMembers>
         <Member Name="FinIndexes" Caption="Структура Цены" />
+        <Member Name="IBSSystemsProtect" Caption="СистемаИБС" />
         <Member Name="IsSyncRequired" Caption="Треб.Синхр." />
         <Member Name="ManageDocCurrent" Caption="Действующий Заказ-Наряд" />
         <Member Name="ManageDocProject" Caption="Проект Заказ-Наряда" />
         <Member Name="ManageDocs" Caption="Заказ-Наряды" />
         <Member Name="ProjectOrderPayDate" Caption="Разреш.Оплата" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Order.fmCOrderIBSSystemsProtect" Caption="СистемаИБС">
+      <OwnMembers>
+        <Member Name="ProtectString" Caption="СтрокаЗащиты" />
+        <Member Name="SysASRZ" Caption="Зарплата" />
+        <Member Name="SysASUM" Caption="Материалы" />
+        <Member Name="SysKOM" Caption="Командировки" />
+        <Member Name="SysUOC" Caption="Фонды" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrderManageDoc" Caption="Заказ-Наряд">
@@ -1055,6 +1070,15 @@
       </Filters>
     </ListView>
     <ListView Id="fmCOrderExt_LookupListView" Caption="Выбор Заказа" />
+    <DetailView Id="fmCOrderIBSSystemsProtect_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fmCOrderIBSSystemsProtect" Caption="Начислять затраты по системам" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="fmCPRPaymentRequest_ListView" Caption="Заявки на оплату">
       <Filters>
         <Filter Id="FilterPlan" Caption="В регистрации" />
@@ -1207,8 +1231,8 @@
             <LayoutGroup Id="Common">
               <LayoutGroup Id="fmIDocument" Caption="Организация" />
               <LayoutGroup Id="fmIDocCache" Caption="Платеж">
-                <LayoutGroup Id="fmIDocCache_col1" Caption="Платеж" />
-                <LayoutGroup Id="AVT" Caption="НДС" />
+                <LayoutGroup Id="SummGroup" Caption="Платеж" />
+                <LayoutGroup Id="AVTGroup" Caption="НДС" />
               </LayoutGroup>
               <LayoutGroup Id="Texts" Caption="Тексты" />
               <LayoutGroup Id="Signers" Caption="Подписи" />

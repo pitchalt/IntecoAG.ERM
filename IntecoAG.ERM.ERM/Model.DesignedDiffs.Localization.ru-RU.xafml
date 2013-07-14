@@ -88,6 +88,7 @@
       <Item Id="GeneralCompanyReports" Caption="ТРВ Отчеты">
         <Items>
           <Item Id="@799f8a80-f3ff-4950-9c9c-5fbced783aaf" Caption="ТРВ Заказы" />
+          <Item Id="References" Caption="Справочники" />
         </Items>
       </Item>
     </Items>

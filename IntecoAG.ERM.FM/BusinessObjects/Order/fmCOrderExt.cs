@@ -26,6 +26,10 @@ namespace IntecoAG.ERM.FM.Order {
     [NavigationItem("Finance")]
 //    [DefaultProperty("Name")]
     [VisibleInReports]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'Closed' || Status == 'Blocked'", TargetItems = "*", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'Opened'", TargetItems = "*,IBSSystemsProtect", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened'", TargetItems = "*,BuhAccount,AnalitycAVT,AnalitycAccouterType,BuhOverheadType,IBSSystemsProtect", Enabled = false)]
+    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinClosed'", TargetItems = "*,DateEnd", Enabled = false)]
     public class fmCOrderExt : fmCOrder, fmIOrderExt, SyncISyncObject {
 
         public fmCOrderExt(Session ses) : base(ses) { }
@@ -34,6 +38,7 @@ namespace IntecoAG.ERM.FM.Order {
             this.ComponentType = typeof(fmCOrderExt);
             this.CID = Guid.NewGuid();
             base.AfterConstruction();
+            this.IBSSystemsProtect = new fmCOrderIBSSystemsProtect(this.Session);
         }
 
         #region fmCOrderFinIndexStructureItem
@@ -105,6 +110,26 @@ namespace IntecoAG.ERM.FM.Order {
 //        public override Boolean ReadOnlyGet() {
 //            return Status != fmIOrderStatus.Project && Status != fmIOrderStatus.Loaded;
 //        }
+        private String _IBSSystemsProtectString;
+        [Browsable(false)]
+        [Size(5)]
+        public String IBSSystemsProtectString {
+            get { return _IBSSystemsProtectString; }
+            set { SetPropertyValue<String>("IBSSystemsProtectString", ref _IBSSystemsProtectString, value); }
+        }
+        private fmCOrderIBSSystemsProtect _IBSSystemsProtect;
+        [Aggregated]
+        [ExpandObjectMembers(ExpandObjectMembers.Never)]
+        public fmCOrderIBSSystemsProtect IBSSystemsProtect {
+            get { return _IBSSystemsProtect; }
+            set {
+                fmCOrderIBSSystemsProtect old = _IBSSystemsProtect;
+                SetPropertyValue<fmCOrderIBSSystemsProtect>("IBSSystemsProtect", ref _IBSSystemsProtect, value);
+                if (!IsLoading && old != value && value != null) {
+                    value.Order = this;
+                }
+            }
+        }
 
         [PersistentAlias("_ManageDocCurrent")]
         public fmCOrderManageDoc ManageDocCurrent {

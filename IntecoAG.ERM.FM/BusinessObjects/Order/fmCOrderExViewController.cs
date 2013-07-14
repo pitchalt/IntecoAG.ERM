@@ -21,8 +21,10 @@ namespace IntecoAG.ERM.FM.Order {
         protected override void OnActivated() {
             base.OnActivated();
             Frame.GetController<StateMachineController>().TransitionExecuted += OnTransitionExecuted;
+//            UfroProtectEditAction.CustomizePopupWindowParams += new CustomizePopupWindowParamsEventHandler(UfroProtectEditAction_CustomizePopupWindowParams);
 //            Frame.GetController<StateMachineController>().TransitionExecuting += OnTransitionExecuting;
         }
+
         void OnTransitionExecuting(object sender, ExecuteTransitionEventArgs e) {
             fmCOrderExt order = e.TargetObject as fmCOrderExt;
             if (order != null) {
@@ -32,10 +34,12 @@ namespace IntecoAG.ERM.FM.Order {
         void OnTransitionExecuted(object sender, ExecuteTransitionEventArgs e) {
             View.ObjectSpace.CommitChanges();
         }
+
         protected override void OnDeactivated() {
             Frame.GetController<StateMachineController>().TransitionExecuted -= OnTransitionExecuted;
             base.OnDeactivated();
         }
+
 
     }
 }

@@ -58,7 +58,7 @@ namespace IntecoAG.ERM.CRM.Contract
         //[RuleRequiredField("crmContractDocument.Number.Required.Immediate", "Immediate")]
         [RuleRequiredField("crmContractDocument.Number.Required", "Save")]
         [Appearance("crmContractDocument.Number.Caption.Bold", AppearanceItemType = "LayoutItem", FontColor = "Red", FontStyle = FontStyle.Bold)]
-        [Size(30)]
+        [Size(50)]
         //[ImmediatePostData]
         public string Number {
             get { return _Number; }

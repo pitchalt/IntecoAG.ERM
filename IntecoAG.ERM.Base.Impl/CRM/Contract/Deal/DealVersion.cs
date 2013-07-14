@@ -95,6 +95,25 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         public virtual DealStates DealState {
             get { return this.ContractDeal.State; }
         }
+        //
+        [Action(Caption = "Закрыть", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_FORMATION'",
+                AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
+        public void DealClose() {
+            this.ContractDeal.State = DealStates.DEAL_CLOSED;
+            OnChanged("DealState");
+        }
+        [Action(Caption = "Удалить", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_FORMATION'", 
+                AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
+        public void DealDelete() {
+            this.ContractDeal.State = DealStates.DEAL_DELETED;
+            OnChanged("DealState");
+        }
+        [Action(Caption = "Оформление", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_CLOSED' || ContractDeal.State == 'DEAL_DELETED' ",
+                AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
+        public void DealReFormat() {
+            this.ContractDeal.State = DealStates.DEAL_FORMATION;
+            OnChanged("DealState");
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -137,6 +137,7 @@
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.FM.FinAccount.fmCFAAccount));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.HRM.Organization.hrmCStaffPost));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CRM.Contract.Deal.crmDealWithStageVersion));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Party.TrwPartyParty));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase));

@@ -50,10 +50,7 @@ namespace IntecoAG.ERM.FM.Order
             TargetItems = "OverheadStandart", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "PlanOverheadType == 'NO_OVERHEAD' || PlanOverheadType == 'VARIABLE'",
             TargetItems = "FixKoeff,FixKoeffOZM", Enabled = false)]
-    [Appearance("", AppearanceItemType.ViewItem, "Status == 'Opened' || Status == 'Closed' || Status == 'Blocked'", TargetItems = "*", Enabled = false)]
-    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened'", TargetItems = "*,BuhAccount,AnalitycAVT,AnalitycAccouterType,BuhOverheadType", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinOpened' && OverheadType != 'Individual'", TargetItems = "BuhOverheadType", Enabled = false)]
-    [Appearance("", AppearanceItemType.ViewItem, "Status == 'FinClosed'", TargetItems = "*,DateEnd", Enabled = false)]
     [Appearance("", AppearanceItemType.ViewItem, "DateEnd <= LocalDateTimeToday() && Status != 'FinClosed' && Status != 'Closed'", TargetItems = "Code,Name", BackColor = "Blue")]
     //    [RuleCriteria("", DefaultContexts.Save, "FixKoeff == 0 && FixKoeffOZM == 0",
 //            TargetCriteria = "Status == 'FinOpened' && OverheadType == 'Individual' && PlanOverheadType != 'VARIABLE' && PlanOverheadType != 'NO_OVERHEAD'",

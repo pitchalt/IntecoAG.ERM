@@ -33,6 +33,7 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
                 msg_in.ZKBUHTYPE = "0";
             if (order.Status == fmIOrderStatus.Opened) {
                 msg_in.CMD = "OPEN";
+                msg_in.ZKIBSSYSTEMPROTECT = order.IBSSystemsProtectString != null ? order.IBSSystemsProtectString : "     ";
                 msg_in.ZKSUBJECTCODE = order.Subject.Code;
                 msg_in.ZKSHORTNAME = order.Name;
                 msg_in.ZKFULLNAME = order.NameFull;

@@ -327,7 +327,7 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
         [Appearance("crmContractRegistrationForm.Number.Caption.Regular", AppearanceItemType = "LayoutItem", Criteria = "NewNumberRequired OR ApplyTopAppearance", FontStyle = FontStyle.Regular)]
         [Appearance("crmContractRegistrationForm.Number.Desable", Criteria = "NewNumberRequired OR ApplyTopAppearance", Enabled = false)]
         [Appearance("crmContractRegistrationForm.Number.Enable", Criteria = "not NewNumberRequired AND not ApplyTopAppearance", Enabled = true)]  //, BackColor = "16772085")]
-        [Size(30)]
+        [Size(50)]
         //[ImmediatePostData]
         public string Number {
             get { return this.ContractDocument.Number; }
