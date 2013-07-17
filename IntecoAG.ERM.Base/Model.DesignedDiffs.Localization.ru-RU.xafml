@@ -566,6 +566,7 @@
         <Member Name="AddressHandmake" Caption="Адрес Задать" />
         <Member Name="AddressString" Caption="Адрес текст" />
         <Member Name="City" Caption="Город" />
+        <Member Name="CityType" Caption="Тип Поселения" />
         <Member Name="Country" Caption="Страна" />
         <Member Name="Region" Caption="Регион" />
         <Member Name="StateProvince" Caption="Район" />
@@ -580,6 +581,9 @@
         <Member Name="CodeNumeric" Caption="Цифровой" />
         <Member Name="CodeRuAlfa3" Caption="Рус3C" />
         <Member Name="Comment" Caption="Комментарий" />
+        <Member Name="IsUIG" Caption="СНГ" />
+        <Member Name="IsVED" Caption="ВЭД" />
+        <Member Name="IsVedNoUIG" Caption="ВЭДБезСНГ" />
         <Member Name="NameEnFull" Caption="En Полное имя" />
         <Member Name="NameEnShortLow" Caption="En Короткое имя" />
         <Member Name="NameEnShortUp" Caption="En Короткое заглавными" />
@@ -911,6 +915,36 @@
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0104" Caption="Справка 0104" />
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0105" Caption="Справка 0105" />
     <Class Name="IntecoAG.ERM.PM.pmProjectWork" Caption="Проектная работа" />
+    <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyMarket" Caption="ТРВ Рынок персоны" />
+    <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyParty" Caption="ТРВ Контрагент">
+      <OwnMembers>
+        <Member Name="AddressLegalString" Caption="Юр.Адрес" />
+        <Member Name="BankAccounts" Caption="Расчетные Счета" />
+        <Member Name="City" Caption="Поселение" />
+        <Member Name="CityType" Caption="Тип Поселения" />
+        <Member Name="Country" Caption="Страна" />
+        <Member Name="INN" Caption="ТРВ ИНН" />
+        <Member Name="INNCur" Caption="Тек.ИНН" />
+        <Member Name="IsDeal" Caption="Договор" />
+        <Member Name="IsPay" Caption="Оплата2013" />
+        <Member Name="KPP" Caption="ТРВ КПП" />
+        <Member Name="KPPCur" Caption="Тек.КПП" />
+        <Member Name="Market" Caption="Рынок" />
+        <Member Name="Name" Caption="ТРВ Наимен." />
+        <Member Name="NameCur" Caption="Тек.Наимен." />
+        <Member Name="Party" Caption="Партнер" />
+        <Member Name="PartyLegalType" Caption="Юр/Физ Лицо" />
+        <Member Name="PartyLegalTypeCode" Caption="Код Юр/Физ лица" />
+        <Member Name="PartyType" Caption="Тип партнера" />
+        <Member Name="Person" Caption="Персона" />
+        <Member Name="State" Caption="Статус" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyType" Caption="ТРВ Тип персоны">
+      <OwnMembers>
+        <Member Name="TrwType" Caption="ТРВ Тип персоны" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.XAFExt.XafExtAnalysis" Caption="Справка" />
     <Class Name="IntecoAG.ERM.XAFExt.XafExtReportData" Caption="Отчет" />
   </BOModel>
@@ -1241,6 +1275,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="csCountry_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Codes" Caption="" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="csNomenclatureType_DetailView">
       <Items>
         <PropertyEditor Id="TopType.Code" Caption="Код вышестоящий" />
@@ -1279,6 +1320,21 @@
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="TrwPartyParty_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common">
+              <LayoutGroup Id="TrwAnalGroup" Caption="ТРВ Аналитика" />
+              <LayoutGroup Id="Attributes">
+                <LayoutGroup Id="TrwAttrGroup" Caption="ТРВ Сведения" />
+                <LayoutGroup Id="CurAttrGroup" Caption="Тек. Сведения" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>

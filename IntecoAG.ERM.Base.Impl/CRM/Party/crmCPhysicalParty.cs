@@ -23,6 +23,7 @@ using System.ComponentModel;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CRM.Party;
+using IntecoAG.ERM.Trw.Party;
 
 namespace IntecoAG.ERM.CRM.Party
 {
@@ -395,6 +396,67 @@ namespace IntecoAG.ERM.CRM.Party
 
         public void OnCommited() {
             return;
+        }
+
+        [Browsable(false)]
+        [PersistentAlias("Person.IsGovermentCustomer")]
+        public Boolean IsGovermentCustomer {
+            get { return Person.IsGovermentCustomer; }
+            set {
+                Boolean old = IsGovermentCustomer;
+                if (old != value) {
+                    Person.IsGovermentCustomer = value;
+                    OnChanged("IsGovermentCustomer", old, value);
+                }
+            }
+        }
+        [Browsable(false)]
+        [PersistentAlias("Person.IsTrwCorporation")]
+        public Boolean IsTrwCorporation {
+            get { return Person.IsTrwCorporation; }
+            set {
+                Boolean old = IsTrwCorporation;
+                if (old != value) {
+                    Person.IsTrwCorporation = value;
+                    OnChanged("IsTrwCorporation", old, value);
+                }
+            }
+        }
+        [Browsable(false)]
+        [PersistentAlias("Person.IsNpoCorporation")]
+        public Boolean IsNpoCorporation {
+            get { return Person.IsNpoCorporation; }
+            set {
+                Boolean old = IsNpoCorporation;
+                if (old != value) {
+                    Person.IsNpoCorporation = value;
+                    OnChanged("IsNpoCorporation", old, value);
+                }
+            }
+        }
+        [Browsable(false)]
+        [PersistentAlias("Person.TrwPartyMarket")]
+        public TrwPartyMarket TrwPartyMarket {
+            get { return Person.TrwPartyMarket; }
+            set {
+                TrwPartyMarket old = TrwPartyMarket;
+                if (old != value) {
+                    Person.TrwPartyMarket = value;
+                    OnChanged("TrwPartyMarket", old, value);
+                }
+            }
+        }
+        [Browsable(false)]
+        [PersistentAlias("Person.TrwPartyType")]
+        public TrwPartyType TrwPartyType {
+            get { return Person.TrwPartyType; }
+            set {
+                TrwPartyType old = TrwPartyType;
+                if (old != value) {
+                    Person.TrwPartyType = value;
+                    OnChanged("TrwPartyType", old, value);
+                }
+            }
         }
     }
 

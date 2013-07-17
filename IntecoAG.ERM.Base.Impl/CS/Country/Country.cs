@@ -19,6 +19,8 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using System.ComponentModel;
 
+using IntecoAG.ERM.Trw.Party;
+
 namespace IntecoAG.ERM.CS.Country
 {
     /// <summary>
@@ -64,6 +66,12 @@ namespace IntecoAG.ERM.CS.Country
 
         #region СВОЙСТВА КЛАССА
 
+        public Boolean IsUIG;
+        public Boolean IsVED;
+
+        public Boolean IsVedNoUIG {
+            get { return IsVED && !IsUIG; }
+        }
         /// <summary>
         /// Description - описание
         /// </summary>

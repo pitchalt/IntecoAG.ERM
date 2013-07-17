@@ -429,6 +429,7 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_228.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_227.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_225.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_220.cs" />

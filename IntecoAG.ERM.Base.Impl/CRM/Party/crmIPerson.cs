@@ -9,6 +9,8 @@ using DC = DevExpress.ExpressApp.DC;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
 
+using IntecoAG.ERM.Trw.Party;
+
 namespace IntecoAG.ERM.CRM.Party {
 
     [DC.DomainComponent]
@@ -34,6 +36,12 @@ namespace IntecoAG.ERM.CRM.Party {
 
         [DC.FieldSize(15)]
         String INN { get; set; }
-        
+
+        Boolean IsGovermentCustomer { get; set; }
+        Boolean IsTrwCorporation {get; set; }
+        Boolean IsNpoCorporation {get; set; }
+
+        TrwPartyMarket TrwPartyMarket { get; set; }
+        TrwPartyType   TrwPartyType { get; set; }
     }
 }

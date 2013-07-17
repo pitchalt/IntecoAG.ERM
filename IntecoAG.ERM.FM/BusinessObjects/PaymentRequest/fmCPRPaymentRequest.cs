@@ -18,6 +18,7 @@ using IntecoAG.ERM.CS.Common;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CS.Security;
 using IntecoAG.ERM.HRM.Organization;
+using IntecoAG.ERM.Trw.Party;
 
 namespace IntecoAG.ERM.FM.PaymentRequest {
 
@@ -232,8 +233,26 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
                 PaymentRequestStates old = _State;
                 SetPropertyValue<PaymentRequestStates>("State", ref _State, value);
                 if (!IsLoading) {
-                    if (value == PaymentRequestStates.ACCEPTED)
+                    if (value == PaymentRequestStates.ACCEPTED) {
                         UseCounter++;
+                        TrwPartyParty trw_party;
+                        trw_party = TrwPartyParty.LocateTrwParty(ObjectSpace.FindObjectSpaceByObject(this), 
+                            this.PartyPayCreditor);
+                        if (trw_party != null)
+                            trw_party.IsPay = true;
+                        trw_party = TrwPartyParty.LocateTrwParty(ObjectSpace.FindObjectSpaceByObject(this), 
+                            this.PartyPayDebitor);
+                        if (trw_party != null)
+                            trw_party.IsPay = true;
+                        trw_party = TrwPartyParty.LocateTrwParty(ObjectSpace.FindObjectSpaceByObject(this), 
+                            this.PartyPayReceiver);
+                        if (trw_party != null)
+                            trw_party.IsPay = true;
+                        trw_party = TrwPartyParty.LocateTrwParty(ObjectSpace.FindObjectSpaceByObject(this), 
+                            this.PartyPaySender);
+                        if (trw_party != null)
+                            trw_party.IsPay = true;
+                    }
                     ReadOnlyUpdate();
                 }
             }

@@ -23,6 +23,7 @@ using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.HRM.Organization;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.Trw.Party;
 
 namespace IntecoAG.ERM.CRM.Contract.Forms {
 
@@ -500,6 +501,15 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
             }
             contract.ContractDocuments.Add(this.ContractDocument);
             // SHU 2011-10-03 this.Session.CommitTransaction();
+            TrwPartyParty trw_party;
+            trw_party = TrwPartyParty.LocateTrwParty(ObjectSpace.FindObjectSpaceByObject(this),
+                this.OurParty.Party);
+            if (trw_party != null)
+                trw_party.IsDeal = true;
+            trw_party = TrwPartyParty.LocateTrwParty(ObjectSpace.FindObjectSpaceByObject(this),
+                this.PartnerParty.Party);
+            if (trw_party != null)
+                trw_party.IsDeal = true;
             return deal.Current;
         }
 

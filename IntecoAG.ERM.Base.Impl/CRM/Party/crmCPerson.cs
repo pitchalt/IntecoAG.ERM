@@ -15,12 +15,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 using DevExpress.Xpo;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Persistent.BaseImpl;
 
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
+using IntecoAG.ERM.Trw.Party;
 
 namespace IntecoAG.ERM.CRM.Party
 {
@@ -29,15 +31,18 @@ namespace IntecoAG.ERM.CRM.Party
     /// </summary>
     [DefaultProperty("Name")]
     [Persistent("crmPartyPerson")]
+    [Appearance("", AppearanceItemType.ViewItem, "", TargetItems="TrwParty", Enabled = false)]
     public partial class crmCPerson : csCComponent, crmIPerson
     {
         public crmCPerson(Session ses) : base(ses) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
-            this.Address = new csAddress(this.Session);
             this.ComponentType = typeof(crmCPerson);
             this.CID = Guid.NewGuid();
+            TrwPartyMarket = TrwPartyMarket.MARKET_UNKNOW;
+            TrwPartyType = TrwPartyType.PARTY_UNKNOW;
+            this.Address = new csAddress(this.Session);
         }
 
         #region ПОЛЯ КЛАССА
@@ -48,11 +53,19 @@ namespace IntecoAG.ERM.CRM.Party
         private String _NameFull;
         private String _RegCode;
         private String _INN;
+        private TrwPartyParty _TrwParty;
         //
         #endregion
 
 
         #region СВОЙСТВА КЛАССА
+        /// <summary>
+        /// 
+        /// </summary>
+        public TrwPartyParty TrwParty {
+            get { return _TrwParty; }
+            set { SetPropertyValue<TrwPartyParty>("TrwParty", ref _TrwParty, value); }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -82,7 +95,12 @@ namespace IntecoAG.ERM.CRM.Party
         // SHU!!! 2011-08-24 Временно убрал проверку [RuleRequiredField("crmPerson.RequiredAddress", "Save")]
         public csAddress Address {
             get { return _Address; }
-            set { SetPropertyValue<csAddress>("Address", ref _Address, value); }
+            set { 
+                SetPropertyValue<csAddress>("Address", ref _Address, value);
+                if (!IsLoading && value != null) {
+                    UpdateCalcFields();
+                }
+            }
         }
         /// <summary>
         /// 
@@ -155,6 +173,71 @@ namespace IntecoAG.ERM.CRM.Party
         #region МЕТОДЫ
 
         #endregion
+
+
+        Boolean _IsGovermentCustomer; 
+        public Boolean IsGovermentCustomer {
+            get { return _IsGovermentCustomer; }
+            set { SetPropertyValue<Boolean>("IsGovermentCustomer", ref _IsGovermentCustomer, value); }
+        }
+
+        Boolean _IsTrwCorporation;
+        public Boolean IsTrwCorporation {
+            get { return _IsTrwCorporation; }
+            set { 
+                SetPropertyValue<Boolean>("IsTrwCorporation", ref _IsTrwCorporation, value);
+                if (!IsLoading && !value) {
+                    IsNpoCorporation = false;
+                    UpdateCalcFields();
+                }
+            }
+        }
+
+        Boolean _IsNpoCorporation;
+        public Boolean IsNpoCorporation {
+            get { return _IsNpoCorporation; }
+            set { 
+                SetPropertyValue<Boolean>("IsNpoCorporation", ref _IsNpoCorporation, value);
+                if (!IsLoading && value)
+                    IsTrwCorporation = true;
+            }
+        }
+
+        TrwPartyMarket _TrwPartyMarket;
+        public TrwPartyMarket TrwPartyMarket {
+            get { return _TrwPartyMarket; }
+            set { SetPropertyValue<TrwPartyMarket>("TrwPartyMarket", ref _TrwPartyMarket, value); }
+        }
+
+        TrwPartyType _TrwPartyType;
+        public TrwPartyType TrwPartyType {
+            get { return _TrwPartyType; }
+            set { SetPropertyValue<TrwPartyType>("TrwPartyType", ref _TrwPartyType, value); }
+        }
+
+        public void UpdateCalcFields() {
+            if (IsTrwCorporation)
+                TrwPartyMarket = TrwPartyMarket.MARKET_TRW;
+            else {
+                if (!Country.IsVED) {
+                    TrwPartyMarket = TrwPartyMarket.MARKET_RUSSIA;
+                }
+                else {
+                    if (Country.IsUIG)
+                        TrwPartyMarket = TrwPartyMarket.MARKET_UIG;
+                    else
+                        TrwPartyMarket = TrwPartyMarket.MARKET_VED;
+                }
+            }
+            if (TrwPartyType == TrwPartyType.PARTY_UNKNOW) {
+                if (Country.IsVED) {
+                    if (Country.IsUIG)
+                        TrwPartyType = TrwPartyType.PARTY_UIG;
+                    else
+                        TrwPartyType = TrwPartyType.PARTY_VED;
+                }
+            }
+        }
     }
 
 }

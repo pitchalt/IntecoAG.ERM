@@ -355,8 +355,6 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
-    <Compile Include="Trw\Party\TrwPartyType.cs" />
-    <Compile Include="Trw\Party\TrwPartyMarket.cs" />
     <Compile Include="Trw\Party\TrwPartyParty.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -387,7 +385,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
+    <Content Include="Trw\Party\TrwPartyUseCase.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -192,6 +192,24 @@
     <Reference Include="DevExpress.XtraTreeList.v11.2, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="FileHelpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\FileHelpers\Binaries\DotNet 2.0\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers.ExcelStorage, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\FileHelpers\Binaries\DotNet 2.0\FileHelpers.ExcelStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Excel, Version=1.3.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\FileHelpers\Binaries\DotNet 2.0\Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Office, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\FileHelpers\Binaries\DotNet 2.0\Interop.Office.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Conversion.v3.5" />
     <Reference Include="System">
       <Name>System</Name>
@@ -266,6 +284,7 @@
     <Compile Include="CS\Security\csCSecurityUserListController.Designer.cs">
       <DependentUpon>csCSecurityUserListController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_202.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -579,6 +598,12 @@
     <Content Include="ReportLayouts\ForPivotReport1.xml" />
     <None Include="Documentation\ActionPermissionSystem.vsd" />
     <None Include="Documentation\Последовательность действий по обновлению системы на продуктовом сервере.docx" />
+    <None Include="Import\TrwPartyMarket.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Import\TrwPartyType.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ReportLayouts\crmContractRegistrationJurnal.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

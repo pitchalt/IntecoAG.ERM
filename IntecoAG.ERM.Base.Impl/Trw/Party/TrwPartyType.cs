@@ -18,6 +18,12 @@ namespace IntecoAG.ERM.Trw.Party {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+
+        private TrwPartyTypeType _TrwType;
+        public TrwPartyTypeType TrwType {
+            get { return _TrwType; }
+            set { SetPropertyValue<TrwPartyTypeType>("TrwType", ref _TrwType, value); }
+        }
     }
 
 }

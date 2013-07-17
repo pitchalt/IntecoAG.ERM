@@ -90,9 +90,9 @@ namespace IntecoAG.ERM.FM.Order {
         private DateTime _ProjectOrderPayDate;
 
         [Persistent("ManageDocCurrent")]
-        private fmCOrderManageDoc _ManageDocCurrent;
+        protected fmCOrderManageDoc _ManageDocCurrent;
         [Persistent("ManageDocProject")]
-        private fmCOrderManageDoc _ManageDocProject;
+        protected fmCOrderManageDoc _ManageDocProject;
         //private fmCOrderManageDocCollection _ManageDocs;
 
         #endregion
