@@ -165,6 +165,23 @@ namespace IntecoAG.ERM.CRM.Party
         /// <summary>
         /// 
         /// </summary>
+        [PersistentAlias("Person.PersonInScience")]
+        [RuleRequiredField]
+        public crmPartyPersonInScience PersonInScience {
+            get {
+                return Person.PersonInScience;
+            }
+            set {
+                crmPartyPersonInScience old = PersonInScience;
+                if (old != value) {
+                    Person.PersonInScience = value;
+                    OnChanged("PersonInScience");
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         [PersistentAlias("Person.Country")]
         [RuleRequiredField]
         public csCountry Country {

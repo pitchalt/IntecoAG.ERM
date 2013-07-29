@@ -129,6 +129,13 @@ namespace IntecoAG.ERM.FM {
                 }
                 os.CommitChanges();
             }
+            using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
+                IList<crmBankAccount> account_list = os.GetObjects<crmBankAccount>();
+                foreach (crmBankAccount account in account_list) {
+                    account.TrwAccountType = TrwAccountType.ACCOUNT_CURRENT;
+                }
+                os.CommitChanges();
+            }
         }
 
         //void imp_party_type_ProcessRecordEvent(object sender, Updater_1_1_1_202.ClassificatorImporter<TrwPartyType, Updater_1_1_1_202.SimpleAnalyticRecord>.ProcessRecordEventArgs e) {

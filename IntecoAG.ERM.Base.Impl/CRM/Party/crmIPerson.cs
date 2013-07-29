@@ -13,6 +13,13 @@ using IntecoAG.ERM.Trw.Party;
 
 namespace IntecoAG.ERM.CRM.Party {
 
+    public enum crmPartyPersonInScience { 
+        PERSON_NOT_SCIENCE = 0,
+        PERSON_SCIENCE_RAN = 1,
+        PERSON_SCIENCE_OTHER = 2,
+        PERSON_SCIENCE_INSTITUTE = 3
+    }
+
     [DC.DomainComponent]
     public interface crmIPerson : csIComponent {
 

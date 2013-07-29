@@ -203,6 +203,12 @@ namespace IntecoAG.ERM.CRM.Party
             }
         }
 
+        crmPartyPersonInScience _PersonInScience;
+        public crmPartyPersonInScience PersonInScience {
+            get { return _PersonInScience; }
+            set { SetPropertyValue<crmPartyPersonInScience>("PersonInScience", ref _PersonInScience, value); }
+        }
+
         TrwPartyMarket _TrwPartyMarket;
         public TrwPartyMarket TrwPartyMarket {
             get { return _TrwPartyMarket; }
@@ -236,6 +242,8 @@ namespace IntecoAG.ERM.CRM.Party
                     else
                         TrwPartyType = TrwPartyType.PARTY_VED;
                 }
+                else
+                    TrwPartyType = TrwPartyType.PARTY_WITH_BANK_ACCOUNT;
             }
         }
     }

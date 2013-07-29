@@ -57,6 +57,7 @@
       <Action Id="Unlink" Index="55" />
       <Action Id="WizardSupportCompleteAction" ValidationContexts="Next; Save; Complete" Index="57" />
       <Action Id="crmCLegalPerson.CopyLegalFact" SelectionDependencyType="RequireSingleObject" />
+      <Action Id="TrwPartyParty.CurToTrw" SelectionDependencyType="RequireSingleObject" TargetObjectsCriteriaMode="TrueForAll" />
     </Actions>
     <ActionToContainerMapping>
       <ActionContainer Id="FullTextSearch">
@@ -78,6 +79,7 @@
         <ActionLink ActionId="OrganizeDashboard" Index="5" />
         <ActionLink ActionId="BindAnalysisData" Index="6" />
         <ActionLink ActionId="UnbindAnalysisData" Index="7" />
+        <ActionLink ActionId="TrwPartyParty.CurToTrw" Removed="True" />
       </ActionContainer>
       <ActionContainer Id="VersionWorking" Removed="True">
         <ActionLink ActionId="NewVersionAction" Removed="True" />
@@ -251,6 +253,22 @@
         <ColumnInfo Id="Name" AllowEdit="False" />
       </Columns>
     </ListView>
+    <ListView Id="crmBankAccount_Trw_Type1_ListView" ClassName="IntecoAG.ERM.CRM.Party.crmBankAccount" Criteria="[Person.TrwParty.State] = ##Enum#IntecoAG.ERM.Trw.Party.TrwPartyState,CONFIRMED#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="CodeLegalType" PropertyName="Person.TrwParty.PartyLegalTypeCode" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="TrwName" PropertyName="Person.TrwParty.Name" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="TrwINN" PropertyName="Person.TrwParty.INN" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="TrwKPP" PropertyName="Person.TrwParty.KPP" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Number" PropertyName="Number" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="RCBIC" PropertyName="Bank.RCBIC" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="TrwAccountTypeCode" PropertyName="TrwAccountTypeCode" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="TrwFACCode" PropertyName="Person.TrwParty.TrwFACCode" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="MarketCode" PropertyName="Person.TrwParty.MarketCode" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="PartyTypeCode" PropertyName="Person.TrwParty.PartyTypeCode" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="IsGovermentCode" PropertyName="Person.TrwParty.IsGovermentCode" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="CityFull" PropertyName="Person.TrwParty.CityFull" Index="11" IsNewNode="True" />
+      </Columns>
+    </ListView>
     <ListView Id="crmCashFlowRegister_ListView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" AllowDelete="False" AllowNew="False" IsGroupPanelVisible="True" />
     <DetailView Id="crmCashFlowRegisterFilter01_DetailView">
       <Items>
@@ -325,7 +343,7 @@
     <DetailView Id="crmCLegalPerson_DetailView" AllowDelete="False">
       <Layout>
         <LayoutGroup Id="Main" Index="0" Direction="Vertical" ShowCaption="False" IsNewNode="True" Removed="True">
-          <LayoutGroup Id="SimpleEditors" Index="0" Direction="Horizontal" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" ShowCaption="False" IsNewNode="True">
             <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="15" IsNewNode="True" />
             <LayoutItem Id="Country" ViewItem="Country" Index="2" CaptionLocation="Top" RelativeSize="15" IsNewNode="True" />
             <LayoutItem Id="Name" ViewItem="Name" Index="3" CaptionLocation="Top" RelativeSize="70" IsNewNode="True" />
@@ -333,19 +351,27 @@
           <TabbedGroup Id="Tabs" IsNewNode="True">
             <LayoutGroup Id="CommonGroup" Index="0" IsNewNode="True">
               <LayoutGroup Id="CommonSimpleGroup" Index="0" IsNewNode="True">
-                <LayoutGroup Id="StatusGroup" Index="0" IsNewNode="True">
-                  <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="0" RelativeSize="20" IsNewNode="True" />
-                  <LayoutItem Id="PersonType" ViewItem="PersonType" Index="1" IsNewNode="True" />
+                <LayoutGroup Id="TrwAnalitics" Index="0" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="IsNpoCorporation" ViewItem="IsNpoCorporation" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutItem Id="IsTrwCorporation" ViewItem="IsTrwCorporation" CaptionLocation="Top" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="IsGovermentCustomer" ViewItem="IsGovermentCustomer" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutItem Id="IsClosed" ViewItem="IsClosed" Index="3" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
                 </LayoutGroup>
-                <LayoutItem Id="NameFull" ViewItem="NameFull" Index="1" IsNewNode="True" />
-                <LayoutGroup Id="CodeGroup" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="CormAnalitics" Index="1" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="PersonType" ViewItem="PersonType" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutItem Id="PersonInScience" ViewItem="PersonInScience" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutItem Id="TrwPartyMarket" ViewItem="TrwPartyMarket" CaptionLocation="Top" IsNewNode="True" />
+                  <LayoutItem Id="TrwPartyType" ViewItem="TrwPartyType" CaptionLocation="Top" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="NameFull" ViewItem="NameFull" Index="2" IsNewNode="True" />
+                <LayoutGroup Id="CodeGroup" Index="3" Direction="Horizontal" IsNewNode="True">
                   <LayoutItem Id="INN" ViewItem="INN" Index="0" IsNewNode="True" />
                   <LayoutItem Id="KPP" ViewItem="KPP" Index="1" IsNewNode="True" />
                   <LayoutItem Id="RegCode" ViewItem="RegCode" Index="2" IsNewNode="True" />
                 </LayoutGroup>
-                <LayoutItem Id="AddressLegal" ViewItem="AddressLegal" Index="3" IsNewNode="True" />
-                <LayoutItem Id="AddressFact" ViewItem="AddressFact" Index="4" IsNewNode="True" />
-                <LayoutItem Id="AddressPost" ViewItem="AddressPost" Index="5" IsNewNode="True" />
+                <LayoutItem Id="AddressLegal" ViewItem="AddressLegal" Index="4" IsNewNode="True" />
+                <LayoutItem Id="AddressFact" ViewItem="AddressFact" Index="5" IsNewNode="True" />
+                <LayoutItem Id="AddressPost" ViewItem="AddressPost" Index="6" IsNewNode="True" />
               </LayoutGroup>
               <LayoutGroup Id="SizeableEditors" Index="1" Direction="Vertical" ShowCaption="False" IsNewNode="True">
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" IsNewNode="True" />
@@ -1918,48 +1944,48 @@
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Codes" Direction="Horizontal" Index="0" IsNewNode="True">
-            <LayoutItem Id="CodeAlfa2" ViewItem="CodeAlfa2" ShowCaption="" Index="0" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="CodeAlfa3" ViewItem="CodeAlfa3" ShowCaption="" Index="1" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="CodeRuAlfa3" ViewItem="CodeRuAlfa3" ShowCaption="" Index="2" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="CodeNumeric" ViewItem="CodeNumeric" ShowCaption="" Index="3" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="CodeAlfa2" ViewItem="CodeAlfa2" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="CodeAlfa3" ViewItem="CodeAlfa3" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="CodeRuAlfa3" ViewItem="CodeRuAlfa3" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="CodeNumeric" ViewItem="CodeNumeric" Index="3" CaptionLocation="Top" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="Market" Index="2" Direction="Horizontal" IsNewNode="True">
-            <LayoutItem Id="IsUIG" ViewItem="IsUIG" ShowCaption="" Index="0" IsNewNode="True" />
-            <LayoutItem Id="IsVED" ViewItem="IsVED" ShowCaption="" Index="1" IsNewNode="True" />
-            <LayoutItem Id="IsVedNoUIG" ViewItem="IsVedNoUIG" ShowCaption="" Index="2" IsNewNode="True" />
+            <LayoutItem Id="IsUIG" ViewItem="IsUIG" Index="0" IsNewNode="True" />
+            <LayoutItem Id="IsVED" ViewItem="IsVED" Index="1" IsNewNode="True" />
+            <LayoutItem Id="IsVedNoUIG" ViewItem="IsVedNoUIG" Index="2" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="Names" Direction="Horizontal" Index="3" IsNewNode="True">
             <LayoutGroup Id="NamesEnglish" IsNewNode="True">
-              <LayoutItem Id="NameEnShortLow" ViewItem="NameEnShortLow" ShowCaption="" Index="0" CaptionLocation="Top" IsNewNode="True" />
-              <LayoutItem Id="NameEnShortUp" ViewItem="NameEnShortUp" ShowCaption="" Index="1" CaptionLocation="Top" IsNewNode="True" />
-              <LayoutItem Id="NameEnFull" ViewItem="NameEnFull" ShowCaption="" Index="2" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutItem Id="NameEnShortLow" ViewItem="NameEnShortLow" Index="0" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutItem Id="NameEnShortUp" ViewItem="NameEnShortUp" Index="1" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutItem Id="NameEnFull" ViewItem="NameEnFull" Index="2" CaptionLocation="Top" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="NamesRus" IsNewNode="True">
-              <LayoutItem Id="NameRuShortLow" ViewItem="NameRuShortLow" ShowCaption="" Index="0" CaptionLocation="Top" IsNewNode="True" />
-              <LayoutItem Id="NameRuShortUp" ViewItem="NameRuShortUp" ShowCaption="" Index="1" CaptionLocation="Top" IsNewNode="True" />
-              <LayoutItem Id="NameRuFull" ViewItem="NameRuFull" ShowCaption="" Index="6" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutItem Id="NameRuShortLow" ViewItem="NameRuShortLow" Index="0" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutItem Id="NameRuShortUp" ViewItem="NameRuShortUp" Index="1" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutItem Id="NameRuFull" ViewItem="NameRuFull" Index="6" CaptionLocation="Top" IsNewNode="True" />
             </LayoutGroup>
           </LayoutGroup>
-          <LayoutItem Id="Comment" ViewItem="Comment" ShowCaption="" Index="4" IsNewNode="True" />
+          <LayoutItem Id="Comment" ViewItem="Comment" Index="4" IsNewNode="True" />
           <LayoutGroup Id="SimpleEditors" Removed="True">
             <LayoutGroup Id="csCountry">
               <LayoutGroup Id="csCountry_col1">
-                <LayoutItem Id="IsVedNoUIG" Removed="True" />
-                <LayoutItem Id="NameEnFull" Removed="True" />
-                <LayoutItem Id="NameEnShortLow" Removed="True" />
-                <LayoutItem Id="NameEnShortUp" Removed="True" />
-                <LayoutItem Id="NameRuFull" Removed="True" />
-                <LayoutItem Id="NameRuShortLow" Removed="True" />
-                <LayoutItem Id="NameRuShortUp" Removed="True" />
+                <LayoutItem Id="IsVedNoUIG" ViewItem="IsVedNoUIG" Removed="True" />
+                <LayoutItem Id="NameEnFull" ViewItem="NameEnFull" Removed="True" />
+                <LayoutItem Id="NameEnShortLow" ViewItem="NameEnShortLow" Removed="True" />
+                <LayoutItem Id="NameEnShortUp" ViewItem="NameEnShortUp" Removed="True" />
+                <LayoutItem Id="NameRuFull" ViewItem="NameRuFull" Removed="True" />
+                <LayoutItem Id="NameRuShortLow" ViewItem="NameRuShortLow" Removed="True" />
+                <LayoutItem Id="NameRuShortUp" ViewItem="NameRuShortUp" Removed="True" />
               </LayoutGroup>
               <LayoutGroup Id="csCountry_col2">
-                <LayoutItem Id="CodeAlfa2" Removed="True" />
-                <LayoutItem Id="CodeAlfa3" Removed="True" />
-                <LayoutItem Id="CodeNumeric" Removed="True" />
-                <LayoutItem Id="CodeRuAlfa3" Removed="True" />
-                <LayoutItem Id="Comment" Removed="True" />
-                <LayoutItem Id="IsUIG" Removed="True" />
-                <LayoutItem Id="IsVED" Removed="True" />
+                <LayoutItem Id="CodeAlfa2" ViewItem="CodeAlfa2" Removed="True" />
+                <LayoutItem Id="CodeAlfa3" ViewItem="CodeAlfa3" Removed="True" />
+                <LayoutItem Id="CodeNumeric" ViewItem="CodeNumeric" Removed="True" />
+                <LayoutItem Id="CodeRuAlfa3" ViewItem="CodeRuAlfa3" Removed="True" />
+                <LayoutItem Id="Comment" ViewItem="Comment" Removed="True" />
+                <LayoutItem Id="IsUIG" ViewItem="IsUIG" Removed="True" />
+                <LayoutItem Id="IsVED" ViewItem="IsVED" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
@@ -2821,6 +2847,7 @@
       <Items>
         <PropertyEditor Id="Name" RowCount="3" />
         <PropertyEditor Id="NameCur" RowCount="3" />
+        <PropertyEditor Id="PartyLegalType" PropertyName="PartyLegalType" IsNewNode="True" Removed="True" />
       </Items>
       <Layout>
         <LayoutGroup Id="Main">
@@ -2859,16 +2886,23 @@
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="Common" Index="0" IsNewNode="True">
               <LayoutGroup Id="PartyGroup" Index="0" Direction="Horizontal" RelativeSize="0" IsNewNode="True">
-                <LayoutItem Id="Party" ViewItem="Party" Index="1" CaptionLocation="Top" RelativeSize="70" IsNewNode="True" />
-                <LayoutItem Id="IsDeal" ViewItem="IsDeal" Index="7" CaptionLocation="Top" RelativeSize="15" IsNewNode="True" />
-                <LayoutItem Id="IsPay" ViewItem="IsPay" Index="8" CaptionLocation="Top" RelativeSize="15" IsNewNode="True" />
+                <LayoutItem Id="PersonType" ViewItem="PersonType" CaptionLocation="Top" Index="0" RelativeSize="10" IsNewNode="True" />
+                <LayoutItem Id="Party" ViewItem="Party" Index="1" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+                <LayoutItem Id="IsDeal" ViewItem="IsDeal" Index="2" CaptionLocation="Top" RelativeSize="15" IsNewNode="True" />
+                <LayoutItem Id="IsPay" ViewItem="IsPay" Index="3" CaptionLocation="Top" RelativeSize="15" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="TrwAnalGroup" Index="1" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="PartyLegalTypeCode" ViewItem="PartyLegalTypeCode" Index="1" CaptionLocation="Top" IsNewNode="True" />
+              <LayoutGroup Id="Corporations" Index="1" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="IsGovermentCustomer" ViewItem="IsGovermentCustomer" Index="1" CaptionLocation="Default" IsNewNode="True" />
+                <LayoutItem Id="IsNpoCorporation" ViewItem="IsNpoCorporation" IsNewNode="True" />
+                <LayoutItem Id="IsTrwCorporation" ViewItem="IsTrwCorporation" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="TrwAnalGroup" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="PartyLegalType" ViewItem="PartyLegalType" Index="0" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="Market" ViewItem="Market" Index="2" CaptionLocation="Top" IsNewNode="True" />
                 <LayoutItem Id="PartyType" ViewItem="PartyType" Index="3" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="PersonInScience" ViewItem="PersonInScience" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="Attributes" Index="2" Direction="Horizontal" IsNewNode="True">
+              <LayoutGroup Id="Attributes" Index="3" Direction="Horizontal" IsNewNode="True">
                 <LayoutGroup Id="TrwAttrGroup" Index="0" ShowCaption="True" IsNewNode="True">
                   <LayoutItem Id="Name" ViewItem="Name" Index="1" IsNewNode="True" />
                   <LayoutItem Id="INN" ViewItem="INN" Index="3" IsNewNode="True" />
@@ -2880,7 +2914,7 @@
                   <LayoutItem Id="KPPCur" ViewItem="KPPCur" Index="6" IsNewNode="True" />
                 </LayoutGroup>
               </LayoutGroup>
-              <LayoutGroup Id="Address" Index="3" IsNewNode="True">
+              <LayoutGroup Id="Address" Index="4" IsNewNode="True">
                 <LayoutItem Id="AddressLegalString" ViewItem="AddressLegalString" Index="1" IsNewNode="True" />
                 <LayoutGroup Id="AddrItems" Index="2" Direction="Horizontal" IsNewNode="True">
                   <LayoutItem Id="Country" ViewItem="Country" Index="0" CaptionLocation="Top" IsNewNode="True" />
@@ -2888,7 +2922,7 @@
                   <LayoutItem Id="City" ViewItem="City" Index="4" CaptionLocation="Top" IsNewNode="True" />
                 </LayoutGroup>
               </LayoutGroup>
-              <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" ShowCaption="False" Index="4" IsNewNode="True" />
+              <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" ShowCaption="False" Index="5" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="BankAccounts" Index="1" Removed="True">
               <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" Removed="True" />

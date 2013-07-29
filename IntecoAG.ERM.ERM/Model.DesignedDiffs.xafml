@@ -151,7 +151,12 @@
         <Items IsNewNode="True">
           <Item Id="@48daa127-5acd-4748-acac-c1ffa2efdd99" ViewId="gcrCodifDeal_ListView" Index="0" IsNewNode="True" />
           <Item Id="@799f8a80-f3ff-4950-9c9c-5fbced783aaf" ViewId="fmCSubjectExt_TRV_ListView" Index="1" IsNewNode="True" />
-          <Item Id="@733110e6-63f1-4b7b-9b69-f542862c6166" ViewId="TrwPartyParty_ListView" IsNewNode="True" />
+          <Item Id="@049e6e56-0c16-491f-ae8a-2ba277878263" ViewId="crmBankAccount_Trw_ListView" Index="2" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="@733110e6-63f1-4b7b-9b69-f542862c6166" ViewId="TrwPartyParty_ListView" Index="0" IsNewNode="True" />
+              <Item Id="@196bc4c9-d08d-4e20-bf2f-60571d24c595" ViewId="crmBankAccount_Trw_Type1_ListView" Index="1" IsNewNode="True" />
+            </Items>
+          </Item>
           <Item Id="References" IsNewNode="True">
             <Items IsNewNode="True">
               <Item Id="@9ef1a0ba-d22b-4d6c-941a-e3c9c999c330" ViewId="crmContractDealTRVType_ListView" Index="0" IsNewNode="True" />

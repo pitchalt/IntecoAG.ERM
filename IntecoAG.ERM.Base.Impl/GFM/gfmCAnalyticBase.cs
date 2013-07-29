@@ -61,7 +61,7 @@ namespace IntecoAG.ERM.GFM
 
         #region СВОЙСТВА КЛАССА
         [PersistentAlias("Analytic.Code")]
-        [Size(14)]
+        [Size(15)]
         [RuleRequiredField]
         public String Code {
             get { return Analytic.Code; }

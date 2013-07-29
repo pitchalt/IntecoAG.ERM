@@ -171,12 +171,19 @@ namespace IntecoAG.ERM.CRM.Party
         //}
 
         //[Browsable(false)]
-        [Association("crmPerson-crmParty")]
+        //[Association("crmPerson-crmParty")]
         //[RuleRequiredField("crmParty.RequiredPerson", "Save")]
-        [Delayed]
+        //[Delayed]
+        //public crmCPerson Person {
+        //    get { return GetDelayedPropertyValue<crmCPerson>("Person"); }
+        //    set { SetDelayedPropertyValue<crmCPerson>("Person", value); }
+        //}
+        crmCPerson _Person;
+        [Association("crmPerson-crmParty")]
+        [ExplicitLoading]
         public crmCPerson Person {
-            get { return GetDelayedPropertyValue<crmCPerson>("Person"); }
-            set { SetDelayedPropertyValue<crmCPerson>("Person", value); }
+            get { return _Person; }
+            set { SetPropertyValue<crmCPerson>("Person", ref _Person, value); }
         }
         /// <summary>
         /// 

@@ -21,6 +21,7 @@ using DevExpress.Persistent.BaseImpl;
 
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CS.Nomenclature;
+using IntecoAG.ERM.Trw.Party;
 
 namespace IntecoAG.ERM.CRM.Party
 {
@@ -33,14 +34,35 @@ namespace IntecoAG.ERM.CRM.Party
     {
         public crmBankAccount(Session ses) : base(ses) { }
 
+        public override void AfterConstruction() {
+            base.AfterConstruction();
+            TrwAccountType = TrwAccountType.ACCOUNT_CURRENT;
+        }
+
         #region ПОЛЯ КЛАССА
 
         private crmCParty _PrefferedParty;
+        private TrwAccountType _TrwAccountType;
+        private crmBankAccount _TrwIntermediaAccount;
 
         #endregion
 
 
         #region СВОЙСТВА КЛАССА
+
+        public TrwAccountType TrwAccountType {
+            get { return _TrwAccountType; }
+            set { SetPropertyValue<TrwAccountType>("TrwAccountType", ref _TrwAccountType, value); }
+        }
+        public Int32 TrwAccountTypeCode {
+            get { return (Int32) TrwAccountType; }
+        }
+
+        [DataSourceCriteria("Person.TrwParty.PartyType == 'PARTY_INTERMEDIA_TREASURE' || Person.TrwParty.PartyType == 'PARTY_INTERMEDIA_BANK'")]
+        public crmBankAccount TrwIntermediaAccount {
+            get { return _TrwIntermediaAccount; }
+            set { SetPropertyValue<crmBankAccount>("TrwIntermediaAccount", ref _TrwIntermediaAccount, value); }
+        }
 
         private crmBank _Bank;
         public crmBank Bank {

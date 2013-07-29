@@ -47,8 +47,19 @@ namespace IntecoAG.ERM.Trw.Party {
         MARKET_VED = 4,
         MARKET_RUSSIA = 8
     }
+
+    public enum TrwAccountType { 
+        ACCOUNT_UNKNOW  = 0,
+        ACCOUNT_CURRENT = 1,
+        ACCOUNT_ACCREDITIVE = 2,
+        ACCOUNT_TRANSIT = 3,
+        ACCOUNT_VEKSEL = 4,
+        ACCOUNT_DEPOSIT = 6
+    }
+
     [Persistent("TrwPartyParty")]
     [Appearance("", AppearanceItemType.ViewItem, "Person != null", TargetItems="Person,State", Enabled=false)]
+    [Appearance("", AppearanceItemType.ViewItem, "State != 'NEW' && State != 'EDITED'", TargetItems="*", Enabled=false)]
     public class TrwPartyParty : csCComponent {
         public TrwPartyParty(Session session) : base(session) { }
         public override void AfterConstruction() {            
@@ -136,8 +147,12 @@ namespace IntecoAG.ERM.Trw.Party {
             }
         }
 
-        Int32 PartyTypeCode {
+        public Int32 PartyTypeCode {
             get { return (Int32)PartyType; }
+        }
+
+        public Int32 TrwFACCode {
+            get { return 25; }
         }
 
         private crmCPerson _Person;
@@ -157,9 +172,28 @@ namespace IntecoAG.ERM.Trw.Party {
                 }
             }
         }
-
+        [PersistentAlias("Person.PersonType")]
+        [RuleRequiredField("", "Approve")]
+        public crmPersonType PersonType {
+            get { return Person != null ? Person.PersonType : null; }
+            set {
+                if (!IsLoading && Person != null) {
+                    Person.PersonType = value;
+                }
+            }
+        }
+        //        public csCountry Country {
+//            get { return Person != null ? Person.Country : null; }
+//        }
+        [PersistentAlias("Person.Country")]
+        [RuleRequiredField("", "Approve")]
         public csCountry Country {
             get { return Person != null ? Person.Country : null; }
+            set {
+                if (!IsLoading && Person != null ) {
+                    Person.Country = value;
+                }
+            }
         }
         public String AddressLegalString {
             get { return Person != null && Person.Address != null? Person.Address.AddressString : null; }
@@ -187,6 +221,10 @@ namespace IntecoAG.ERM.Trw.Party {
             }
         }
 
+        public String CityFull {
+            get { return (CityType != null ? CityType : String.Empty) + (City != null ? City : String.Empty); }
+        }
+
         [PersistentAlias("Person.IsGovermentCustomer")]
         public Boolean IsGovermentCustomer {
             get { return Person != null ? Person.IsGovermentCustomer : false; }
@@ -198,12 +236,16 @@ namespace IntecoAG.ERM.Trw.Party {
             }
         }
 
+        public Int32 IsGovermentCode {
+            get { return IsGovermentCustomer ? 1 : 0;  }
+        }
+
         [PersistentAlias("Person.IsNpoCorporation")]
         public Boolean IsNpoCorporation {
             get { return Person != null ? Person.IsNpoCorporation : false; }
             set {
                 if (!IsLoading && Person != null) {
-                    Person.IsGovermentCustomer = value;
+                    Person.IsNpoCorporation = value;
                     OnChanged("IsNpoCorporation");
                     OnChanged("IsTrwCorporation");
                 }
@@ -274,14 +316,18 @@ namespace IntecoAG.ERM.Trw.Party {
         public String NameCur {
             get { return Party != null ? Party.Name : String.Empty; }
             set {
-                if (!IsLoading && Party != null) {
-                    Party.Name = value;
+                if (!IsLoading) {
+                    if (Party != null)
+                        Party.Name = value;
+                    if (Person != null)
+                        Person.Name = value;
                 }
             }
         }
 
         private String _INN;
         [Size(12)]
+//        [RuleUniqueValue("", "Approve")]
         public String INN {
             get { return _INN; }
             set {
@@ -326,6 +372,23 @@ namespace IntecoAG.ERM.Trw.Party {
             set {
                 if (!IsLoading && Party != null) {
                     Party.KPP = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("Person.PersonInScience")]
+        [RuleRequiredField]
+        public crmPartyPersonInScience PersonInScience {
+            get {
+                return Person.PersonInScience;
+            }
+            set {
+                crmPartyPersonInScience old = PersonInScience;
+                if (old != value) {
+                    Person.PersonInScience = value;
+                    OnChanged("PersonInScience");
                 }
             }
         }
@@ -374,6 +437,13 @@ namespace IntecoAG.ERM.Trw.Party {
                 State = TrwPartyState.IN_TRW;
         }
 
+        [Action(PredefinedCategory.RecordEdit, Caption = "Òåê->ÒÐÂ", 
+            TargetObjectsCriteria = "State == 'NEW' || State == 'EDITED'")]
+        public void CurToTrw () {
+            this.Name = NameCur;
+            this.INN = INNCur;
+            this.KPP = KPPCur;
+        }
         public static TrwPartyParty LocateTrwParty(IObjectSpace os, crmCParty party) {
             if (party.Person == null)
                 return null;

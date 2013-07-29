@@ -420,6 +420,9 @@
         <Member Name="Number" Caption="Номер счета" />
         <Member Name="Person" Caption="Лицо" />
         <Member Name="PrefferedParty" Caption="Предпочтительная сторона" />
+        <Member Name="TrwAccountType" Caption="ТРВ Тип Счета" />
+        <Member Name="TrwAccountTypeCode" Caption="ТРВ Код Типа счета" />
+        <Member Name="TrwIntermediaAccount" Caption="ТРВ Счет посредника" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.CRM.Party.crmCBusinessman" Caption="Предприниматель">
@@ -454,12 +457,19 @@
         <Member Name="Description" Caption="Описание" />
         <Member Name="INN" Caption="ИНН" />
         <Member Name="IsClosed" Caption="Закрыт" />
+        <Member Name="IsGovermentCustomer" Caption="Гос.Заказчик" />
+        <Member Name="IsNpoCorporation" Caption="Корп.НПОМаш" />
+        <Member Name="IsSyncRequired" Caption="Синх.ИБС" />
+        <Member Name="IsTrwCorporation" Caption="Корп.ТРВ" />
         <Member Name="KPP" Caption="КПП" />
         <Member Name="LegalPersonUnits" Caption="Обособ.Подразд" />
         <Member Name="Name" Caption="Наименование" />
         <Member Name="NameFull" Caption="Наим.Полное" />
+        <Member Name="PersonInScience" Caption="Научн.Орган." />
         <Member Name="PersonType" Caption="Форма" />
         <Member Name="RegCode" Caption="ОГРНЮЛ" />
+        <Member Name="TrwPartyMarket" Caption="ТРВ Рынок" />
+        <Member Name="TrwPartyType" Caption="ТРВ Тип контр." />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.CRM.Party.crmCLegalPersonUnit" Caption="Обособ.Подр.">
@@ -915,34 +925,38 @@
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0104" Caption="Справка 0104" />
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0105" Caption="Справка 0105" />
     <Class Name="IntecoAG.ERM.PM.pmProjectWork" Caption="Проектная работа" />
-    <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyMarket" Caption="ТРВ Рынок персоны" />
     <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyParty" Caption="ТРВ Контрагент">
       <OwnMembers>
         <Member Name="AddressLegalString" Caption="Юр.Адрес" />
         <Member Name="BankAccounts" Caption="Расчетные Счета" />
         <Member Name="City" Caption="Поселение" />
+        <Member Name="CityFull" Caption="Город" />
         <Member Name="CityType" Caption="Тип Поселения" />
         <Member Name="Country" Caption="Страна" />
         <Member Name="INN" Caption="ТРВ ИНН" />
         <Member Name="INNCur" Caption="Тек.ИНН" />
         <Member Name="IsDeal" Caption="Договор" />
+        <Member Name="IsGovermentCode" Caption="Гос.Заказчик" />
+        <Member Name="IsGovermentCustomer" Caption="Гос.Заказчик" />
+        <Member Name="IsNpoCorporation" Caption="Корп.НПОмаш" />
         <Member Name="IsPay" Caption="Оплата2013" />
+        <Member Name="IsTrwCorporation" Caption="Корп.ТРВ" />
         <Member Name="KPP" Caption="ТРВ КПП" />
         <Member Name="KPPCur" Caption="Тек.КПП" />
         <Member Name="Market" Caption="Рынок" />
+        <Member Name="MarketCode" Caption="КодРынка" />
         <Member Name="Name" Caption="ТРВ Наимен." />
         <Member Name="NameCur" Caption="Тек.Наимен." />
         <Member Name="Party" Caption="Партнер" />
         <Member Name="PartyLegalType" Caption="Юр/Физ Лицо" />
         <Member Name="PartyLegalTypeCode" Caption="Код Юр/Физ лица" />
-        <Member Name="PartyType" Caption="Тип партнера" />
+        <Member Name="PartyType" Caption="ТРВ Тип контр." />
+        <Member Name="PartyTypeCode" Caption="ТРВ Код типа контр." />
         <Member Name="Person" Caption="Персона" />
+        <Member Name="PersonInScience" Caption="Научная.Орг." />
+        <Member Name="PersonType" Caption="Орг.ПравоваяФорма" />
         <Member Name="State" Caption="Статус" />
-      </OwnMembers>
-    </Class>
-    <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyType" Caption="ТРВ Тип персоны">
-      <OwnMembers>
-        <Member Name="TrwType" Caption="ТРВ Тип персоны" />
+        <Member Name="TrwFACCode" Caption="ТРВ ЦФО Код" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.XAFExt.XafExtAnalysis" Caption="Справка" />
@@ -1016,6 +1030,12 @@
         <LocalizationItem Name="FINANCE" Value="Финансовый" />
         <LocalizationItem Name="TECHNICAL" Value="Технический" />
       </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Party.crmPartyPersonInScience" Value="Орг.Научные">
+        <LocalizationItem Name="PERSON_NOT_SCIENCE" Value="Другие" />
+        <LocalizationItem Name="PERSON_SCIENCE_INSTITUTE" Value="ВУЗ" />
+        <LocalizationItem Name="PERSON_SCIENCE_OTHER" Value="Научные прочие" />
+        <LocalizationItem Name="PERSON_SCIENCE_RAN" Value="Учреждения РАН" />
+      </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.CRM.Party.crmPhysicalPersonSex">
         <LocalizationItem Name="FEMALE" Value="Женщина" />
         <LocalizationItem Name="MALE" Value="Мужчина" />
@@ -1082,6 +1102,42 @@
         <LocalizationItem Name="COPERATING_INTERNAL" Value="Внутренний" />
         <LocalizationItem Name="COPERATING_SUPPLIER" Value="Соисполнитель" />
       </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Party.TrwAccountType" Value="ТРВ Тип Счета">
+        <LocalizationItem Name="ACCOUNT_ACCREDITIVE" Value="Аккредитивный" />
+        <LocalizationItem Name="ACCOUNT_CURRENT" Value="Расчетный" />
+        <LocalizationItem Name="ACCOUNT_DEPOSIT" Value="Депозитный" />
+        <LocalizationItem Name="ACCOUNT_TRANSIT" Value="Транзитный" />
+        <LocalizationItem Name="ACCOUNT_UNKNOW" Value="Неизвестный" />
+        <LocalizationItem Name="ACCOUNT_VEKSEL" Value="Вексельный" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Party.TrwPartyLegalType" Value="Вид Лица">
+        <LocalizationItem Name="LEGAL_PERSON" Value="Юр.Лицо" />
+        <LocalizationItem Name="PHYSICAL_PERSON" Value="Физ.Лицо" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Party.TrwPartyMarket">
+        <LocalizationItem Name="MARKET_RUSSIA" Value="Рын.Россия" />
+        <LocalizationItem Name="MARKET_TRW" Value="Рын.Корпорация" />
+        <LocalizationItem Name="MARKET_UIG" Value="Ярмарка СНГ" />
+        <LocalizationItem Name="MARKET_UNKNOW" Value="Неизвестный" />
+        <LocalizationItem Name="MARKET_VED" Value="Ярмарка ВЭД" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Party.TrwPartyState" Value="Состояние ">
+        <LocalizationItem Name="CONFIRMED" Value="Утвержден" />
+        <LocalizationItem Name="EDITED" Value="Исправлен" />
+        <LocalizationItem Name="IN_TRW" Value="Отправлен в ТРВ" />
+        <LocalizationItem Name="NEW" Value="Новый" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Party.TrwPartyType" Value="ТРВ Тип Контрагента">
+        <LocalizationItem Name="PARTY_GROUP" Value="Групповой" />
+        <LocalizationItem Name="PARTY_INTERMEDIA_BANK" Value="Посредник банк" />
+        <LocalizationItem Name="PARTY_INTERMEDIA_TREASURE" Value="Посредник УФК" />
+        <LocalizationItem Name="PARTY_TAX_AUTHORITY" Value="Налоговый орган" />
+        <LocalizationItem Name="PARTY_UIG" Value="Ярмарка СНГ" />
+        <LocalizationItem Name="PARTY_UNKNOW" Value="Неизвестный" />
+        <LocalizationItem Name="PARTY_VED" Value="Ярмарка ВЭД" />
+        <LocalizationItem Name="PARTY_WITH_BANK_ACCOUNT" Value="С Расч.Счетом" />
+        <LocalizationItem Name="PARTY_WITHOUT_BANK_ACCOUNT" Value="Без Расч.Счетов" />
+      </LocalizationGroup>
     </LocalizationGroup>
     <LocalizationGroup Name="Namespaces">
       <LocalizationItem Name="IntecoAG.ERM.CRM" Value="ERM.CRM" />
@@ -1123,6 +1179,7 @@
     </Rules>
   </Validation>
   <Views>
+    <ListView Id="crmBankAccount_Trw_Type1_ListView" Caption="ТРВ Счета контрагентов" />
     <DetailView Id="crmCBusinessman_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

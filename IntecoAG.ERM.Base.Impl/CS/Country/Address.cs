@@ -116,7 +116,7 @@ namespace IntecoAG.ERM.CS.Country
         /// Description - описание
         /// </summary>
         [Size(5)]
-        [RuleRequiredField(TargetCriteria = "!IsEmpty")]
+        //[RuleRequiredField(TargetCriteria = "!IsEmpty")]
         public string CityType {
             get { return _CityType == null ? String.Empty : _CityType; }
             set {
