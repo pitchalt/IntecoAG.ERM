@@ -28,6 +28,7 @@ using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.FM.Subject;
 
 namespace IntecoAG.ERM.CRM.Contract.Obligation
 {
@@ -68,15 +69,18 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
             get { return _Description; }
             set { SetPropertyValue<String>("Description", ref _Description, value); }
         }
+        private fmCOrder _Order;
         /// <summary>
         /// crmOrder Ссылка на Заказ
         /// </summary>
-        private fmCOrder _Order;
         //[RuleRequiredField("crmObligation.Order.Required", DefaultContexts.Save)]
+        [DataSourceProperty("OrderSource")]
         public virtual fmCOrder Order {
             get { return _Order; }
             set { SetPropertyValue<fmCOrder>("Order", ref _Order, value); }
         }
+        //
+        public abstract IList<fmCOrder> OrderSource { get; }
         /// <summary>
         /// CostItem
         /// </summary>

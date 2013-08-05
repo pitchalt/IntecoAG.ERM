@@ -429,13 +429,13 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_228.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_227.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_225.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_220.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceAnalytic.cs" />
     <Compile Include="DatabaseUpdate\UpdaterAVTInvoiceFix01.cs" />
     <Compile Include="DatabaseUpdate\UpdaterCashFlowRegister.cs" />
+    <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_232.cs" />
     <Compile Include="DatabaseUpdate\UpdaterFmAnalitic02.cs" />
     <Compile Include="DatabaseUpdate\UpdaterFmSaleDoc01.cs" />
     <Compile Include="DatabaseUpdate\UpdaterFmAnalitic01.cs" />
@@ -550,6 +550,9 @@
     <None Include="Documentation\Подсистема учёта разовых платежей.lyx" />
     <None Include="Documentation\Правила составления распечатки “Список счетов к оплате на дд.мм.гггг”.lyx" />
     <None Include="Documentation\Рукописная бумага от 2012-02-29.yx.lyx" />
+    <None Include="Import\csNomWork.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Import\fmCAVTInvoiceOperationType.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

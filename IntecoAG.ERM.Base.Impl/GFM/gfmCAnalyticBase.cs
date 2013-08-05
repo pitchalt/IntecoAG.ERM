@@ -77,6 +77,8 @@ namespace IntecoAG.ERM.GFM
         [PersistentAlias("Analytic.Name")]
         [Size(60)]
         [RuleRequiredField]
+        [VisibleInListView(true)]
+        [VisibleInLookupListView(true)]
         public virtual String Name {
             get { return Analytic.Name; }
             set {

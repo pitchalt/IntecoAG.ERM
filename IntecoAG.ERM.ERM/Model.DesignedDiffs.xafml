@@ -161,8 +161,6 @@
             <Items IsNewNode="True">
               <Item Id="@9ef1a0ba-d22b-4d6c-941a-e3c9c999c330" ViewId="crmContractDealTRVType_ListView" Index="0" IsNewNode="True" />
               <Item Id="@e39889c0-538b-4436-a7f6-99bf823fb976" ViewId="crmContractDealTRVContractor_ListView" Index="1" IsNewNode="True" />
-              <Item Id="@6a114b11-97c9-4544-ae4b-3a1dcbf8b311" ViewId="TrwPartyType_ListView" Index="2" IsNewNode="True" />
-              <Item Id="@4287d253-d1a4-4316-84e7-8c1ad96b0628" ViewId="TrwPartyMarket_ListView" IsNewNode="True" />
             </Items>
           </Item>
         </Items>
@@ -238,14 +236,14 @@
         <ColumnInfo Id="SourceType" View="" PropertyName="SourceType" Width="70" Index="-1" IsNewNode="True" />
         <ColumnInfo Id="Status" View="" Index="-1" PropertyName="Status" Width="70" IsNewNode="True" />
         <ColumnInfo Id="SubjectGroup" PropertyName="SubjectGroup" Width="70" Index="-1" IsNewNode="True" />
-        <ColumnInfo Id="Code" View="" Index="1" PropertyName="Code" Width="70" IsNewNode="True" />
-        <ColumnInfo Id="Code2" PropertyName="Code" Index="2" IsNewNode="True" />
-        <ColumnInfo Id="ContractNumber" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="3" IsNewNode="True" />
-        <ColumnInfo Id="ContractNumber2" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Code" View="" Index="0" PropertyName="Code" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="TrwCode" PropertyName="TrwCode" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="ContractNumber" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="ContractNumber2" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="3" IsNewNode="True" />
         <ColumnInfo Id="ContractNumber3" PropertyName="SourceDeal.Contract.ContractDocument.Number" Index="4" IsNewNode="True" />
         <ColumnInfo Id="DateBegin" View="" Index="5" PropertyName="DateBegin" Width="70" IsNewNode="True" />
         <ColumnInfo Id="DateEnd" View="" Index="6" PropertyName="DateEnd" Width="70" IsNewNode="True" />
-        <ColumnInfo Id="DateEnd2" View="" Index="6" PropertyName="DateEnd" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="DateEnd2" View="" Index="7" PropertyName="DateEnd" Width="70" IsNewNode="True" />
       </Columns>
       <Filters CurrentFilterId="All" IsNewNode="True">
         <Filter Id="All" Index="0" IsNewNode="True" />

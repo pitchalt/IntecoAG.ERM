@@ -25,6 +25,7 @@ using DevExpress.ExpressApp.Editors;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CS.Finance;
@@ -109,6 +110,18 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
 
 
         #region МЕТОДЫ
+
+        public override IList<fmCOrder> OrderSource {
+            get {
+                IList<fmCOrder> orders = new List<fmCOrder>();
+                foreach (fmCSubject subject in PaymentUnit.PaymentPlan.DealVersion.ContractDeal.Subjects) {
+                    foreach (fmCOrder order in subject.Orders)
+                        orders.Add(order);
+                }
+                return orders;
+            }
+        }
+
 
         #endregion
 

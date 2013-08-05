@@ -13,7 +13,7 @@ namespace IntecoAG.ERM.FM.AVT {
     [VisibleInReports]
     [Persistent("fmAVTBookVATRecord")]
 //    [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "BookVAT;SequenceNumber")]
-    [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "BookVAT;Invoice;RecordType")]
+    [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "BookVAT;Invoice;RecordType;BuhRecordType")]
     public class fmCAVTBookVATRecord : XPLiteObject {
 
         public enum fmCAVTBookVATRecordType {
@@ -59,7 +59,7 @@ namespace IntecoAG.ERM.FM.AVT {
         /// 
         /// </summary>
         [Association("fmAVTBookVAT-fmAVTBookVATRecords")]
-        [Indexed("Invoice;RecordType", Unique=true)]
+        [Indexed("Invoice;RecordType;BuhRecordType", Unique = true)]
         public fmCAVTBookVAT BookVAT {
             get { return _BookVAT; }
             set { SetPropertyValue<fmCAVTBookVAT>("BookVAT", ref _BookVAT, value); }

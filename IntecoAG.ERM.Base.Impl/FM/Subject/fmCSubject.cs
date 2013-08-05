@@ -24,6 +24,7 @@ using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 //
 using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CS.Common;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM;
@@ -38,6 +39,8 @@ namespace IntecoAG.ERM.FM.Subject
     /// </summary>
     //[DefaultClassOptions]
     //[MapInheritance(MapInheritanceType.ParentTable)]
+    [MiniNavigation("This", "Тема", TargetWindow.Default, 1)]
+    [MiniNavigation("SourceDeal.Current", "Договор", TargetWindow.Default, 2)]
     [FriendlyKeyProperty("Code")]
     [DefaultProperty("Name")]
     [Persistent("fmSubject")]
@@ -60,6 +63,9 @@ namespace IntecoAG.ERM.FM.Subject
         }
 
         #region ПОЛЯ КЛАССА
+        [Persistent("TrwCode")]
+        private String _TrwCode;
+        private Int16 _TrwNumber;
         private fmISubjectStatus _Status;
         private fmCSubjectGroup _SubjectGroup;
         private fmCDirection _Direction;
@@ -78,6 +84,30 @@ namespace IntecoAG.ERM.FM.Subject
 
         #region Associations
 
+        [Size(7)]
+        [PersistentAlias("_TrwCode")]
+        public String TrwCode {
+            get { return _TrwCode; }
+//            set { SetPropertyValue<String>("TrwCode", ref _TrwCode, value); }
+        }
+        [Browsable(false)]
+        public Int16 TrwNumber {
+            get { return _TrwNumber; }
+            set { SetPropertyValue<Int16>("TrwNumber", ref _TrwNumber, value); }
+        }
+        public void TrwCodeNew() {
+            if (Direction == null) 
+                throw new InvalidOperationException();
+            TrwNumber = Direction.TrwCodeSubjectNumberNew();
+            TrwCodeReNumber();
+        }
+        public void TrwCodeReNumber() {
+            if (Direction == null)
+                throw new InvalidOperationException();
+            _TrwCode = "Z" + Direction.TrwCode + TrwNumber.ToString("D4");
+            OnChanged("TrwCode");
+        }
+
         [Association("fmDirection-Subjects")]
         public fmCDirection Direction {
             get { return _Direction; }
@@ -86,6 +116,7 @@ namespace IntecoAG.ERM.FM.Subject
                 if (!IsLoading && value != null) {
                     this.ManagerCurator = value.Manager;
                     this.Manager = value.Manager;
+                    this.TrwCodeNew();
                 }
             }
         }
@@ -254,8 +285,10 @@ namespace IntecoAG.ERM.FM.Subject
             set { 
                 SetPropertyValue<crmContractDeal >("SourceDeal", ref _SourceDeal, value );
                 if (!IsLoading) {
-                    if (value != null)
+                    if (value != null) {
                         SourceParty = value.Customer;
+                        Deals.Add(value);
+                    }
                     SourceNameUpdate();
                 }
             }
@@ -356,6 +389,23 @@ namespace IntecoAG.ERM.FM.Subject
                 if (!IsLoading && value != null && value.Region != null) {
                     AnalitycRegion = value.Region;
                 }
+            }
+        }
+        [NonPersistent]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public Int32 OrderOpendCount {
+            get {
+                Int32 count = 0;
+                foreach (fmCOrder order in Orders) {
+                    if (order.Status != fmIOrderStatus.Closed &&
+                        order.Status != fmIOrderStatus.Loaded &&
+                        order.Status != fmIOrderStatus.Project &&
+                        order.Status != fmIOrderStatus.Deleting)
+                        count++;
+                }
+                return count;
             }
         }
 

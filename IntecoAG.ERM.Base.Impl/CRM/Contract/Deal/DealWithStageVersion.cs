@@ -226,6 +226,24 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             get { return this.ContractDeal as crmDealWithStage; }
         }
 
+        public override Boolean IsStaged {
+            get { return true; }
+        }
+
+        public override Int32 StageCount {
+            get { return Stages.Count; }
+        }
+
+        public override Int32 StageWithoutOrder {
+            get {
+                Int32 count = 0;
+                foreach (crmStage stage in Stages)
+                    if (stage.Order == null)
+                        count++;
+                return Stages.Count; 
+            }
+        }
+
         #endregion
 
 

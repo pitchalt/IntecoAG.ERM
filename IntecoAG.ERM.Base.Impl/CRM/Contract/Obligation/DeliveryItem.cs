@@ -29,6 +29,7 @@ using IntecoAG.ERM.CS.Measurement;
 using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Contract.Obligation;
@@ -509,6 +510,18 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
         //}
 
         #endregion
+
+        public override IList<fmCOrder> OrderSource {
+            get {
+                IList<fmCOrder> orders = new List<fmCOrder>();
+                foreach (fmCSubject subject in DeliveryUnit.DeliveryPlan.DealVersion.ContractDeal.Subjects) {
+                    foreach (fmCOrder order in subject.Orders)
+                        orders.Add(order);
+                }
+                return orders;
+            }
+        }
+
 
     }
 

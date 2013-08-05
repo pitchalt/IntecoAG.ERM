@@ -42,7 +42,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     [MiniNavigation("ContractDeal.Current", "Действующая редакция", TargetWindow.Current, 1)]
     [MiniNavigation("ContractDeal.Contract", "Договор", TargetWindow.Default, 2)]
     [Persistent("crmDealVersion")]
-    public partial class crmDealVersion : VersionRecord    // BaseObject, ICategorizedItem
+    public abstract partial class crmDealVersion : VersionRecord    // BaseObject, ICategorizedItem
     {
         public crmDealVersion(Session ses) : base(ses) { }
         public crmDealVersion(Session session, VersionStates state) : base(session, state) { }
@@ -406,6 +406,23 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             set { SetPropertyValue<fmCOrder>("Order", ref _Order, value); }
         }
 
+        [NonPersistent]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public abstract Boolean IsStaged { get; }
+
+        [NonPersistent]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public abstract Int32 StageCount { get; }
+
+        [NonPersistent]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public abstract Int32 StageWithoutOrder { get; }
 
         #endregion
 

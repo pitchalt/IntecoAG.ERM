@@ -39,10 +39,12 @@ namespace IntecoAG.ERM.CS.Nomenclature
 
         #region СВОЙСТВА КЛАССА
 
+        private string _Code;
         /// <summary>
         /// Код типа номенклатуры
         /// </summary>
-        private string _Code;
+        [VisibleInListView(true)]
+        [VisibleInLookupListView(true)]
         public string Code {
             get { return _Code; }
             set { if (_Code != value) SetPropertyValue("Code", ref _Code, value); }
@@ -52,6 +54,8 @@ namespace IntecoAG.ERM.CS.Nomenclature
         /// Наименование типа номенклатуры
         /// </summary>
         private string _NameShort;
+        [VisibleInListView(true)]
+        [VisibleInLookupListView(true)]
         public string NameShort {
             get { return _NameShort; }
             set { if (_NameShort != value) SetPropertyValue("NameShort", ref _NameShort, value); }

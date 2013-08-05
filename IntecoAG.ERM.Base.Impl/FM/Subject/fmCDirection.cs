@@ -59,10 +59,28 @@ namespace IntecoAG.ERM.FM.Subject
 
         #region ПОЛЯ КЛАССА
         private hrmStaff _Manager;
-        private fmIDirectionStatus _Status; 
+        private fmIDirectionStatus _Status;
+        private String _TrwCode;
+        private Int16 _TrwSubjectNumberCurrent;
         #endregion
 
-//        [Aggregated]
+        [Size(2)]
+        public String TrwCode {
+            get { return _TrwCode; }
+            set { SetPropertyValue<String>("TrwCode", ref _TrwCode, value); }
+        }
+        [Browsable(false)]
+        public Int16 TrwSubjectNumberCurrent {
+            get { return _TrwSubjectNumberCurrent; }
+            set { SetPropertyValue<Int16>("TrwSubjectNumberCurrent", ref _TrwSubjectNumberCurrent, value); }
+        }
+
+        public Int16 TrwCodeSubjectNumberNew() {
+            TrwSubjectNumberCurrent++;
+            return TrwSubjectNumberCurrent;
+        }
+
+        //        [Aggregated]
         [Association("fmDirection-Subjects", typeof(fmCSubject))]
         public XPCollection<fmCSubject> Subjects {
             get {

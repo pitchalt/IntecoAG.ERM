@@ -40,7 +40,7 @@ namespace IntecoAG.ERM.FM.Order
     //[DefaultClassOptions]
     [Persistent("fmOrder")]
     [FriendlyKeyProperty("Code")]
-    [DefaultProperty("Name")]
+    [DefaultProperty("Code")]
     [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "Code")]
     [Appearance("", AppearanceItemType.ViewItem, "", Enabled = false, TargetItems = "IsClosed")]
     [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
