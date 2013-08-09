@@ -101,7 +101,7 @@ namespace IntecoAG.ERM.CRM.Contract
                 }
             }
         }
-
+        //
         [VisibleInListView(false)]
         public string FullName {
             get { return ((DocumentCategory == null) ? "" : DocumentCategory.Code) + " № " + ((Number == null) ? "      " : Number) + " от " + Date.ToString("d"); }

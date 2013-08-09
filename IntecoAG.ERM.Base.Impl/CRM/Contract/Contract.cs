@@ -87,6 +87,62 @@ namespace IntecoAG.ERM.CRM.Contract
                 SetPropertyValue<hrmDepartment>("DepartmentRegistrator", ref _DepartmentRegistrator, value);
             }
         }
+        //
+        private Int32 _IntCurDocNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        public Int32 IntCurDocNumber {
+            get { return _IntCurDocNumber; }
+            set { SetPropertyValue<Int32>("IntCurDocNumber", ref _IntCurDocNumber, value); }
+        }
+
+        //
+        private Int32 _IntNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        [Indexed(Unique = true)]
+        public Int32 IntNumber {
+            get { return _IntNumber; }
+            set { 
+                SetPropertyValue<Int32>("IntNumber", ref _IntNumber, value);
+                if (!IsLoading && value != null) {
+                    TrwIntNumberSet("D" + value.ToString("D6"));
+                }
+            }
+        }
+        //
+        [Persistent("TrwIntNumber")]
+        [Size(20)]
+        [Indexed(Unique=true)]
+        private String _TrwIntNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("_TrwIntNumber")]
+        public String TrwIntNumber {
+            get { return _TrwIntNumber; }
+            //            set { SetPropertyValue<String>("TrwNumber", ref _TrwNumber, value); }
+        }
+        public void TrwIntNumberSet(String number) {
+            String old = _TrwIntNumber;
+            _TrwIntNumber = number;
+            OnChanged("TrwIntNumber", old, number);
+        }
+        //
+        private Int32 _FailNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        public Int32 FailNumber {
+            get { return _FailNumber; }
+            set { SetPropertyValue<Int32>("FailNumber", ref _FailNumber, value); }
+        }
 
         #endregion
 

@@ -3146,10 +3146,13 @@
             <LayoutGroup Id="Orders" Index="1" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="Orders" ViewItem="Orders" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="DealsGroup" Index="2" IsNewNode="True">
+            <LayoutGroup Id="Deals" Index="2" IsNewNode="True">
               <LayoutItem Id="Deals" ViewItem="Deals" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="AuditTrail" Index="3" ShowCaption="True" IsNewNode="True">
+            <LayoutGroup Id="TrwDeals" Index="3" IsNewNode="True">
+              <LayoutItem Id="TrwOrders" ViewItem="TrwOrders" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="4" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>

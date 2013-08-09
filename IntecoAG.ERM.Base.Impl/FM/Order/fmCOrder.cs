@@ -213,8 +213,11 @@ namespace IntecoAG.ERM.FM.Order
             set {
                 SetPropertyValue<crmContractDeal>("SourceDeal", ref _SourceDeal, value);
                 if (!IsLoading) {
-                    if (value != null)
+                    if (value != null) {
                         SourceParty = value.Customer;
+                        if (Subject != null)
+                            Subject.Deals.Add(value);
+                    }
                     SourceNameUpdate();
                 }
             }

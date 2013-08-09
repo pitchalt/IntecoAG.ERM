@@ -22,6 +22,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DevExpress.Xpo.Metadata;
 //
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Common;
@@ -31,6 +32,7 @@ using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.GFM;
 using IntecoAG.ERM.HRM.Organization;
+using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.FM.Subject
 {
@@ -176,6 +178,31 @@ namespace IntecoAG.ERM.FM.Subject
         public XPCollection<crmContractDeal> Deals {
             get {
                 return GetCollection<crmContractDeal>("Deals");
+            }
+        }
+
+        public class DealsCollection<T> : XPCollection<T> {
+            private Object _Owner;
+            public DealsCollection(Session session, object owner, XPMemberInfo property) :
+                base(session, owner, property) {
+                    _Owner = owner;
+            }
+            public override int BaseAdd(object newObject) {
+                Int32 index = base.BaseAdd(newObject);
+                fmCSubject owner = _Owner as fmCSubject;
+                if (owner != null && newObject is crmContractDeal)
+                    owner.DealsAdd(newObject as crmContractDeal);
+                return index;
+            }
+        }
+
+        protected override XPCollection<T> CreateCollection<T>(XPMemberInfo property) {
+            if (property.Name != "Deals")
+                return base.CreateCollection<T>(property);
+            else {
+                XPCollection<T> col = new DealsCollection<T>(this.Session, this, property);
+			    GC.SuppressFinalize(col);
+			    return col;
             }
         }
 
@@ -409,8 +436,41 @@ namespace IntecoAG.ERM.FM.Subject
             }
         }
 
+        private Int32 _OrderNumberCurrent;
+
+        [Browsable(false)]
+        public Int32 OrderNumberCurrent {
+            get { return _OrderNumberCurrent; }
+            set { SetPropertyValue<Int32>("OrderNumberCurrent", ref _OrderNumberCurrent, value); }
+        }
+
+        [Aggregated]
+        [Association("fmSubject-TrwOrders")]
+        public XPCollection<TrwOrder> TrwOrders {
+            get { return GetCollection<TrwOrder>("TrwOrders"); }
+        }
         #endregion
 
+        public String GetNextOrderNumber() { 
+            OrderNumberCurrent++;
+            return TrwCode + "/" + OrderNumberCurrent;
+        }
+
+        protected void DealsAdd(crmContractDeal deal) {
+            if (deal.TRVType == null || deal.TRVType.TRVSuperType != crmContractDealTRVSuperType.DEAL_SALE)
+                    return;
+            TrwOrder cur_order = null;
+            foreach (TrwOrder trw_order in this.TrwOrders) {
+               if (trw_order.Deal == deal)
+                   cur_order = trw_order;
+            }
+            if (cur_order == null) {
+                cur_order = new TrwOrder(this.Session);
+                cur_order.Subject = this;
+                cur_order.Deal = deal;
+            }
+        }
+        //
         public IList<IStateMachine> GetStateMachines() {
             List<IStateMachine> result = new List<IStateMachine>();
             result.Add(new fmCSubjectSM());

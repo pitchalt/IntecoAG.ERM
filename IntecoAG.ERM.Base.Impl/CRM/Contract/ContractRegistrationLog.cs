@@ -75,20 +75,6 @@ namespace IntecoAG.ERM.CRM.Contract
             DocNumberYear = prmDocNumberYear;
             Date = prmDate;   // prmContractRegistrationForm.Date;
 
-            //DocNumberDepartment = prmContractRegistrationForm.DepartmentRegistrator.Code;
-
-            //DealState = DealVersion.DealState;
-            //ContractDocument = DealVersion.ContractDeal.Current.ContractDocument;
-            //Customer = DealVersion.ContractDeal.Current.Customer;    //DealVersion.OurParty;
-            //Supplier = DealVersion.ContractDeal.Current.Supplier;    //DealVersion.PartnerParty;
-            //Valuta = DealVersion.Valuta;
-            //Price = DealVersion.Price;
-            //DescriptionShort = DealVersion.DescriptionShort;
-            //DateEnd = DealVersion.DateEnd;
-            //Curator = DealVersion.Curator;
-            //UserRegistrator = DealVersion.ContractDeal.Contract.UserRegistrator;
-            //DepartmentRegistrator = DealVersion.ContractDeal.Contract.DepartmentRegistrator;
-
             // Присвоение DocNumber
             if (NewNumberRequired) {
                 setAllNumbers();
@@ -439,7 +425,6 @@ namespace IntecoAG.ERM.CRM.Contract
         /// </summary>
         /// <returns></returns>
         public void setAllNumbers() {
-
             this.ISN = getISN();
             this.DocNumber = getDocNumber();
             this.SortNumber = this.ISN;   // getSortNumber();
@@ -458,94 +443,6 @@ namespace IntecoAG.ERM.CRM.Contract
         /// Получение очередного абсолютного номера записи в базе
         /// </summary>
         public int getISN() {
-            /*
-            if (getLastISN() != 0) {
-                return ContractRegistrationLogLastRecord.ISN + 1;
-            } else {
-                return 1;
-            }
-            */
-
-            /*
-            // Получаем номер через счётчик RegistrationLogISNGenerator
-            RegistrationLogISNGenerator isnGenerator = new RegistrationLogISNGenerator(this.Session);
-            return isnGenerator.ReserveNumber();
-            */
-
-            // Вариант с CollectionSource
-
-            /*
-            // Получение номера через счётчик Counter
-            IObjectSpace objectSpace = new ObjectSpace((UnitOfWork)(this.Session));
-            CollectionSource csb = new CollectionSource(objectSpace, typeof(RegistrationLogISNCounter), true, CollectionSourceMode.Normal);
-            csb.Reload();
-
-            RegistrationLogISNCounter newISNCounter = null;
-            
-            using (UnitOfWork uow = new UnitOfWork(this.Session.Dictionary)) {
-                if (csb.GetCount() == 0) {
-                    try {
-                        newISNCounter = new RegistrationLogISNCounter(uow);
-                        uow.CommitChanges();
-
-                        csb.Reload();
-                        if (csb.GetCount() > 1 && newISNCounter != null) {
-                            newISNCounter.Delete();
-                            uow.CommitChanges();
-                        }
-                        csb.Reload();
-
-                    } catch (Exception ex) {
-                        throw new Exception(ex.Message);
-                        //try
-                        //{
-                        //    uow.RollbackTransaction();
-                        //}
-                        //catch (Exception rollBackException)
-                        //{
-                        //    throw new Exception(String.Format("An exception of type {0} was encountered while attempting to roll back the transaction.\nError Message:{1}\nStackTrace:{2}",
-                        //        rollBackException.GetType(), rollBackException.Message, rollBackException.StackTrace), rollBackException);
-                        //}
-                        //Tracing.Tracer.LogError(ex);
-                        //throw new UserFriendlyException(new Exception(String.Format("Punching out can't be completed!\nAn exception of type {0} was encountered.\nError message = {1}\nStackTrace:{2}\nNo changes were made.",
-                        //        ex.GetType(), ex.Message, ex.StackTrace)));
-                    }
-                }
-            }
-            
-
-            //Session ssn = new Session();
-            //if (csb.GetCount() == 0) {
-            //    newISNCounter = new RegistrationLogISNCounter(ssn);
-            //    newISNCounter.Save();
-            //    try {
-            //        ssn.FlushChanges();
-            //    } catch (Exception ex) {
-            //        throw new Exception(ex.Message);
-            //    }
-            //}
-            //csb.Reload();
-
-            //if (csb.GetCount() > 1 && newISNCounter != null) {
-            //    newISNCounter.Delete();
-            //    ssn.FlushChanges();
-            //}
-            //csb.Reload();
-
-
-
-            //IObjectSpace objectSpace = new ObjectSpace((UnitOfWork)(this.Session));
-            CollectionSource csb1 = new CollectionSource(objectSpace, typeof(RegistrationLogISNCounter), true, CollectionSourceMode.Normal);
-            csb1.Reload();
-
-
-            foreach (RegistrationLogISNCounter counter in (csb1.Collection as IList<RegistrationLogISNCounter>)) {
-                return counter.ReserveNumber(); // Всегда используется только первая, если несколько
-            }
-
-            return -1;
-            */
-
 
             // Вариант с XPCollection
 
@@ -554,52 +451,8 @@ namespace IntecoAG.ERM.CRM.Contract
             XPCollection<RegistrationLogISNCounter> xpCounterCol = new XPCollection<RegistrationLogISNCounter>(ssn);
             if (!xpCounterCol.IsLoaded) xpCounterCol.Load();
 
-            /*
-            RegistrationLogISNCounter newISNCounter = null;
 
             if (xpCounterCol.Count == 0) {
-                newISNCounter = new RegistrationLogISNCounter(ssn);
-                newISNCounter.Save();
-                try {
-                    ssn.FlushChanges();  // Мгновенно отправляем изменения в БД
-                    xpCounterCol.Reload();
-                    if (!xpCounterCol.IsLoaded) xpCounterCol.Load();
-                } catch (Exception ex) {
-                    throw new Exception(ex.Message);
-                }
-            }
-
-            // Вдруг добавили лишнего (затесался другой сеанс)
-            if (xpCounterCol.Count > 1 && newISNCounter != null) {
-                newISNCounter.Delete();
-                ssn.FlushChanges();  // Мгновенно отправляем изменения в БД
-                xpCounterCol.Reload();
-                if (!xpCounterCol.IsLoaded) xpCounterCol.Load();
-            }
-            */
-
-            if (xpCounterCol.Count == 0) {
-                /*
-                // Работающий вариант, но не нравится, что надо делать ssn.FlushChanges()
-                RegistrationLogISNCounter newISNCounter = new RegistrationLogISNCounter(ssn);
-                newISNCounter.Save();
-                ssn.FlushChanges();  // Мгновенно отправляем изменения в БД
-                */
-
-                /*
-                // Другой работающий вариант. Здесь плохо с Connection (надо явно прописывать). 
-                // ssn.BeginNestedUnitOfWork не даёт желаемого результата
-                using (UnitOfWork uow = new UnitOfWork(this.Session.Dictionary)) {
-                    uow.Connection = ssn.Connection;
-                    //if (uow.Connection.State == System.Data.ConnectionState.Closed) uow.Connect();
-                    RegistrationLogISNCounter newCounter = new RegistrationLogISNCounter(uow);
-                    newCounter.Save();
-                    uow.FlushChanges();
-                    //if (uow.Connection.State == System.Data.ConnectionState.Open) uow.Connection.Close();
-                    xpCounterCol.Reload();
-                    if (!xpCounterCol.IsLoaded) xpCounterCol.Load();
-                }
-                */
                 
                 // SHU 2011-11-03 ПЕРЕДЕЛАТЬ НА Session!
                 using (UnitOfWork uow = new UnitOfWork(this.Session.DataLayer)) {
@@ -615,108 +468,12 @@ namespace IntecoAG.ERM.CRM.Contract
             // Номер ISN
             return xpCounterCol[0].ReserveNumber();
 
-
-
-            //CriteriaOperator criteriaYear = new BinaryOperator("Year", Year, BinaryOperatorType.Equal);
-            //csb.Criteria.Add("Year", criteriaYear);
-
-            //CriteriaOperator criteriaDepartment = null;
-            //if (Department != null) {
-            //    criteriaDepartment = new BinaryOperator("Department", Department, BinaryOperatorType.Equal);
-            //    csb.Criteria.Add("Department", criteriaDepartment);
-            //}
-
-            //CriteriaOperator criteriaOid = new BinaryOperator("Oid", Year, BinaryOperatorType.LessOrEqual);
-            //csb.Criteria.Add("Oid", criteriaOid);
-
-
         }
 
         /// <summary>
         /// Получение очередного номера для сортировки Пока алгоритм не отличается от алгоритма получения ISN
         /// </summary>
         public int getDocNumber() {
-            /*
-            if (getConditionalLastISN() != 0) {
-                return ContractRegistrationLogConditionalLastRecord.DocNumber + 1;
-            } else {
-                return 1;
-            }
-            */
-
-            /*
-            // Получаем номер через счётчик RegistrationLogISNGenerator
-            RegistrationLogDocNumberGenerator docNumberGenerator = new RegistrationLogDocNumberGenerator(this.Session, DocNumberYear, ContractDeal.DepartmentRegistrator);
-            return docNumberGenerator.ReserveDocNumber();
-            */
-
-
-            // Вариант 1 (CollectionSource)
-            /*
-            // Получение номера документа через счётчик Counter
-            IObjectSpace objectSpace = new ObjectSpace((UnitOfWork)(this.Session));
-            CollectionSource csb = new CollectionSource(objectSpace, typeof(RegistrationLogDocNumberCounter), true, CollectionSourceMode.Normal);
-
-            // Условия
-            CriteriaOperator criteriaYear = new BinaryOperator("Year", DocNumberYear, BinaryOperatorType.Equal);
-            csb.Criteria.Add("Year", criteriaYear);
-
-            CriteriaOperator criteriaDepartment = null;
-            if (DepartmentRegistrator != null) {
-                criteriaDepartment = new BinaryOperator("Department", DepartmentRegistrator, BinaryOperatorType.Equal);
-                csb.Criteria.Add("Department", criteriaDepartment);
-            }
-            
-            csb.Reload();
-
-            RegistrationLogDocNumberCounter newCounter = null;
-
-            using (UnitOfWork uow = new UnitOfWork()) {
-                if (csb.GetCount() == 0) {
-                    try {
-                        newCounter = new RegistrationLogDocNumberCounter(uow);
-                        newCounter.Year = this.DocNumberYear;
-                        newCounter.Department = this.DepartmentRegistrator;
-                        uow.CommitChanges();
-
-                        csb.Reload();
-                        if (csb.GetCount() > 1 && newCounter != null) {
-                            newCounter.Delete();
-                            uow.CommitChanges();
-                        }
-                        csb.Reload();
-
-                    } catch (Exception ex) {
-                        throw new Exception(ex.Message);
-                    }
-                }
-            }
-
-            
-            
-            ////Session ssn = new Session();
-            ////if (csb.GetCount() == 0) {
-            ////    newCounter = new RegistrationLogDocNumberCounter(ssn);
-            ////    newCounter.Year = this.DocNumberYear;
-            ////    newCounter.Department = this.DepartmentRegistrator;
-            ////    newCounter.Save();
-            ////    ssn.FlushChanges();
-            ////}
-            ////csb.Reload();
-
-            ////if (csb.GetCount() > 1 && newCounter != null) {
-            ////    newCounter.Delete();
-            ////    ssn.FlushChanges();
-            ////}
-            ////csb.Reload();
-
-            foreach (RegistrationLogDocNumberCounter counter in (csb.Collection as IList<RegistrationLogDocNumberCounter>)) {
-                return counter.ReserveDocNumber(); // Всегда используется только первая, если несколько
-            }
-
-            return -1;
-            */
-
 
             // Вариант 2 (с XPCollection)
 
@@ -742,46 +499,8 @@ namespace IntecoAG.ERM.CRM.Contract
 
             if (!xpCounterCol.IsLoaded) xpCounterCol.Load();
 
-            /*
-            RegistrationLogDocNumberCounter newCounter = null;
 
             if (xpCounterCol.Count == 0) {
-                newCounter = new RegistrationLogDocNumberCounter(ssn);
-                newCounter.Year = this.DocNumberYear;
-                newCounter.Department = this.DepartmentRegistrator;
-                newCounter.Save();
-                try {
-                    ssn.FlushChanges();  // Мгновенно отправляем изменения в БД
-                    xpCounterCol.Reload();
-                    if (!xpCounterCol.IsLoaded) xpCounterCol.Load();
-                } catch (Exception ex) {
-                    throw new Exception(ex.Message);
-                }
-            }
-
-            // Вдруг добавили лишнего (затесался другой сеанс)
-            if (xpCounterCol.Count > 1 && newCounter != null) {
-                newCounter.Delete();
-                ssn.FlushChanges();  // Мгновенно отправляем изменения в БД
-                xpCounterCol.Reload();
-                if (!xpCounterCol.IsLoaded) xpCounterCol.Load();
-            }
-            */
-
-            if (xpCounterCol.Count == 0) {
-
-                /*
-                // Работающий вариант, но надо делать FlushChanges()
-                RegistrationLogDocNumberCounter newCounter = new RegistrationLogDocNumberCounter(ssn);
-                newCounter.Year = this.DocNumberYear;
-                newCounter.Department = this.DepartmentRegistrator;
-                newCounter.Save();
-                ssn.FlushChanges();  // Мгновенно отправляем изменения в БД
-                */
-
-
-
-
 
                 // SHU 2011-11-03 ПЕРЕДЕЛАТЬ НА Session!
                 // Другой работающий вариант. Здесь плохо с Connection (надо явно прописывать). 

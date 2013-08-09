@@ -157,6 +157,7 @@
               <Item Id="@196bc4c9-d08d-4e20-bf2f-60571d24c595" ViewId="crmBankAccount_Trw_Type1_ListView" Index="1" IsNewNode="True" />
             </Items>
           </Item>
+          <Item Id="@9f41da8e-c7bb-47a5-ac26-efde9ddfb979" ViewId="TrwContractExchangeDoc_ListView" IsNewNode="True" />
           <Item Id="References" IsNewNode="True">
             <Items IsNewNode="True">
               <Item Id="@9ef1a0ba-d22b-4d6c-941a-e3c9c999c330" ViewId="crmContractDealTRVType_ListView" Index="0" IsNewNode="True" />

@@ -13,6 +13,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 
 using DevExpress.ExpressApp;
@@ -32,6 +33,7 @@ using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Analitic;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.HRM.Organization;
+using IntecoAG.ERM.Trw.Contract;
 
 namespace IntecoAG.ERM.CRM.Contract.Deal
 {
@@ -167,7 +169,6 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 return ret;
             }
         }
-
         // Папка
         private String _Delo;
         [Size(15)]
@@ -330,11 +331,93 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 return true;
             }
         }
+        //
+        [Persistent("TrwNumber")]
+        [Size(57)]
+        private String _TrwNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("_TrwNumber")]
+        public String TrwNumber {
+            get { return _TrwNumber; }
+            //            set { SetPropertyValue<String>("TrwNumber", ref _TrwNumber, value); }
+        }
+        public void TrwNumberSet(String number) {
+            String old = _TrwNumber;
+            _TrwNumber = number;
+            OnChanged("TrwNumber", old, number);
+        }
+        //
+        [Persistent("TrwIntNumber")]
+        [Indexed(Unique=true)]
+        [Size(20)]
+        private String _TrwIntNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [PersistentAlias("_TrwIntNumber")]
+        public String TrwIntNumber {
+            get { return _TrwIntNumber; }
+            //            set { SetPropertyValue<String>("TrwNumber", ref _TrwNumber, value); }
+        }
+        public void TrwIntNumberSet(String number) {
+            String old = _TrwIntNumber;
+            _TrwIntNumber = number;
+            OnChanged("TrwIntNumber", old, number);
+        }
+        //
+        private Int32 _IntNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        public Int32 IntNumber {
+            get { return _IntNumber; }
+            set { SetPropertyValue<Int32>("IntNumber", ref _IntNumber, value); }
+        }
+        //
+        private Int32 _FailNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        public Int32 FailNumber {
+            get { return _FailNumber; }
+            set { SetPropertyValue<Int32>("FailNumber", ref _FailNumber, value); }
+        }
+
+        [Aggregated]
+        [Association("crmDeal-TrwOrders")]
+        public XPCollection<TrwOrder> TrwOrders {
+            get { return GetCollection<TrwOrder>("TrwOrders"); }
+        }
 
         #endregion
 
 
         #region МЕТОДЫ
+        public void UpdateTrwNumbers() {
+            if (this.ContractKind == ContractKind.CONTRACT) {
+                this.TrwNumberSet(this.Contract.ContractDocument.Number);
+                this.TrwIntNumberSet(this.Contract.TrwIntNumber);
+            }
+            else {
+                if (this.ContractKind == ContractKind.ADDENDUM) {
+                    if (this.ContractDocument.Number.Length > 10) {
+                        this.TrwNumberSet(this.ContractDocument.Number);
+                        this.TrwIntNumberSet(this.Contract.TrwIntNumber + "/" + this.IntNumber);
+                    }
+                    else {
+                        this.TrwNumberSet(this.Contract.ContractDocument.Number + "//" + this.ContractDocument.Number);
+                        this.TrwIntNumberSet(this.Contract.TrwIntNumber + "//" + this.ContractDocument.Number);
+                    }
+                }
+                else
+                    throw new InvalidDataException("Invalid deal type");
+            }
+        }
 
         #endregion
 

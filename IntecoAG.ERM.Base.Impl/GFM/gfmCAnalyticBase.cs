@@ -51,7 +51,7 @@ namespace IntecoAG.ERM.GFM
         }
 
         #region ПОЛЯ КЛАССА
-//        private string _Code;
+//        private string _TrwCode;
 //        private string _Name;
         [Browsable(false)]
         public gfmCAnalytic Analytic;

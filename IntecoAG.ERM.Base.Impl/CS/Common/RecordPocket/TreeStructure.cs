@@ -52,19 +52,19 @@ namespace IntecoAG.ERM.CS
     //    ///// <summary>
     //    ///// Наименование
     //    ///// </summary>
-    //    //private string _Code;
+    //    //private string _TrwCode;
     //    //public string Code {
-    //    //    get { return _Code; }
-    //    //    set { SetPropertyValue("Code", ref _Code, value); }
+    //    //    get { return _TrwCode; }
+    //    //    set { SetPropertyValue("Code", ref _TrwCode, value); }
     //    //}
 
     //    /// <summary>
     //    /// Код
     //    /// </summary>
-    //    private string _Code;
+    //    private string _TrwCode;
     //    public string Code {
-    //        get { return _Code; }
-    //        set { SetPropertyValue("Code", ref _Code, value); }
+    //        get { return _TrwCode; }
+    //        set { SetPropertyValue("Code", ref _TrwCode, value); }
     //    }
 
     //    #region ITreeNode

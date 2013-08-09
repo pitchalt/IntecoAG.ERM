@@ -48,7 +48,13 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
         //[Browsable(false)]
         public crmContract Contract {
             get { return _Contract; }
-            set { SetPropertyValue<crmContract>("Contract", ref _Contract, value); }
+            set { 
+                SetPropertyValue<crmContract>("Contract", ref _Contract, value);
+                if (!IsLoading && value != null) {
+                    value.IntCurDocNumber++;
+                    this.IntNumber = value.IntCurDocNumber;
+                }
+            }
         }
     }
 

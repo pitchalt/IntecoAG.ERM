@@ -53,7 +53,7 @@ namespace IntecoAG.ERM.GFM
 
         #region ПОЛЯ КЛАССА
 
-//        private string _Code;
+//        private string _TrwCode;
         private String _NameFull;
         private DateTime _DateBegin;
         private DateTime _DateEnd;

@@ -285,6 +285,10 @@
       <DependentUpon>csCSecurityUserListController.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseUpdate\Updater_1_1_1_202.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_210.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_212.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>

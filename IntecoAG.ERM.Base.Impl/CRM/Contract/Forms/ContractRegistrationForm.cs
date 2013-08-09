@@ -488,9 +488,15 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
             }
             contract.ContractDeals.Add(deal); // одно и то же
             try {
-                if (this.IsRegRequired) {
-                    crmContractRegistrationLog crl = new crmContractRegistrationLog(this.Session, System.DateTime.Now.Year, System.DateTime.Now, this.NewNumberRequired, deal);
-                    crl.Save();
+                if (ContractKind == ContractKind.CONTRACT) {
+                    crmContractRegistrationLog crl;
+                    if (this.IsRegRequired)
+                        crl = new crmContractRegistrationLog(this.Session, System.DateTime.Now.Year, System.DateTime.Now, this.NewNumberRequired, deal);
+                    else {
+                        crl = new crmContractRegistrationLog(this.Session, 1900, new DateTime(1900, 01, 01), false, deal);
+                    }
+                    contract.IntNumber = crl.ISN;
+//                    crl.Save();
                     if (NewNumberRequired) {
                         this.ContractDocument.Number = crl.getDocumentNumber();
                     }
@@ -500,6 +506,7 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
                 DevExpress.XtraEditors.XtraMessageBox.Show("Contract saving Error: " + ex.ToString());
             }
             contract.ContractDocuments.Add(this.ContractDocument);
+            deal.UpdateTrwNumbers();
             // SHU 2011-10-03 this.Session.CommitTransaction();
             TrwPartyParty trw_party;
             trw_party = TrwPartyParty.LocateTrwParty(ObjectSpace.FindObjectSpaceByObject(this),
