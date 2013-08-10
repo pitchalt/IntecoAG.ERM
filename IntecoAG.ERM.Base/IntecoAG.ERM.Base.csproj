@@ -299,6 +299,12 @@
       <DependentUpon>MainForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportHelper\ReportHelper.cs" />
+    <Compile Include="Trw\Common\TrwContractViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trw\Common\TrwContractViewController.Designer.cs">
+      <DependentUpon>TrwContractViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="XAFExt\ObjectSpaceHelper.cs" />
     <Compile Include="XAFExt\TaskAnalysis1LayoutUpdaterBase.cs">
       <SubType>Code</SubType>
@@ -489,6 +495,9 @@
       <DependentUpon>MainForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Trw\Common\TrwContractViewController.resx">
+      <DependentUpon>TrwContractViewController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XAFExt\XafExtAnalysisFilterPanelController.resx">
       <DependentUpon>XafExtAnalysisFilterPanelController.cs</DependentUpon>
       <SubType>Designer</SubType>

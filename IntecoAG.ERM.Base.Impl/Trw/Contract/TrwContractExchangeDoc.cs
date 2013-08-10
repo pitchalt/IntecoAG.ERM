@@ -180,7 +180,7 @@ namespace IntecoAG.ERM.Trw.Contract {
 //        [Browsable(false)]
         [Aggregated]
         [Association("TrwContractExchangeDoc-TrwContractExchangeDocDealLink")]
-        public XPCollection<TrwContractExchangeDocDealLink> DealLinks {
+        protected XPCollection<TrwContractExchangeDocDealLink> DealLinks {
             get { return GetCollection<TrwContractExchangeDocDealLink>("DealLinks"); }
         }
 
