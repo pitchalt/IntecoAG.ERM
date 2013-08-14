@@ -29,6 +29,22 @@ namespace IntecoAG.ERM.Sync.SyncIBS {
             msg_in.ZKISCLOSED = order.IsClosed;
             if (order.AnalitycAccouterType != null)
                 msg_in.ZKBUHTYPE = order.AnalitycAccouterType.BuhCode;
+            if (order.AnalitycRegion.IsSNG)
+                msg_in.ERMANCOUNTRY = "СНГ";
+            else if (order.AnalitycRegion.IsVED)
+                msg_in.ERMANCOUNTRY = "ВЭД";
+            else if (order.AnalitycRegion.IsVED)
+                msg_in.ERMANCOUNTRY = "РФ";
+            msg_in.ERMANGOZCODE = order.AnalitycOrderSource.Code;
+            msg_in.ERMANGOZOID = order.AnalitycOrderSource.Oid.ToString();
+            msg_in.ERMANPRODCODE = order.AnalitycMilitary.Code;
+            msg_in.ERMANPRODOID = order.AnalitycMilitary.Oid.ToString();
+            msg_in.ERMANTARGETCODE = order.AnalitycFinanceSource.Code;
+            msg_in.ERMANTARGETOID = order.AnalitycFinanceSource.Oid.ToString();
+            msg_in.ERMANWORKCODE = order.AnalitycWorkType.Code;
+            msg_in.ERMANWORKOID = order.AnalitycWorkType.Oid.ToString();
+            msg_in.ERMOID = order.Oid.ToString();
+            msg_in.ERMSUBJECTOID = order.Subject.Oid.ToString();
             if (String.IsNullOrEmpty(msg_in.ZKBUHTYPE))
                 msg_in.ZKBUHTYPE = "0";
             if (order.Status == fmIOrderStatus.Opened) {

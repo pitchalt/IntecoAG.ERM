@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
@@ -180,7 +180,7 @@ namespace IntecoAG.ERM.Trw.Contract {
 //        [Browsable(false)]
         [Aggregated]
         [Association("TrwContractExchangeDoc-TrwContractExchangeDocDealLink")]
-        protected XPCollection<TrwContractExchangeDocDealLink> DealLinks {
+        public XPCollection<TrwContractExchangeDocDealLink> DealLinks {
             get { return GetCollection<TrwContractExchangeDocDealLink>("DealLinks"); }
         }
 

@@ -109,7 +109,7 @@ namespace IntecoAG.ERM.CRM.Contract
             get { return _IntNumber; }
             set { 
                 SetPropertyValue<Int32>("IntNumber", ref _IntNumber, value);
-                if (!IsLoading && value != 0) {
+                if (!IsLoading && value != null) {
                     TrwIntNumberSet("D" + value.ToString("D6"));
                 }
             }
