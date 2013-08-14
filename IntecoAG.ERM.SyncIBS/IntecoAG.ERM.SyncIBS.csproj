@@ -140,7 +140,7 @@
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\IBS\IntecoAG.IBS\SyncService\IntecoAG.IBS.SyncService.csproj">
+    <ProjectReference Include="..\..\IntecoAG.IBS\SyncService\IntecoAG.IBS.SyncService.csproj">
       <Project>{5B9924AF-1C20-4946-B838-4626DFCFAEE8}</Project>
       <Name>IntecoAG.IBS.SyncService</Name>
     </ProjectReference>

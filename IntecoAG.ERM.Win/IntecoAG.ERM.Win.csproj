@@ -317,11 +317,11 @@
     <Content Include="ExpressApp.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\XAFExt\IntecoAG.XAFExt\IntecoAG.XAFExt.CDS\IntecoAG.XAFExt.CDS\IntecoAG.XAFExt.CDS.csproj">
+    <ProjectReference Include="..\..\IntecoAG.XAFExt\IntecoAG.XAFExt.CDS\IntecoAG.XAFExt.CDS\IntecoAG.XAFExt.CDS.csproj">
       <Project>{20194556-A061-4715-8C68-1B157F06F9C0}</Project>
       <Name>IntecoAG.XAFExt.CDS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\XAFExt\IntecoAG.XAFExt\IntecoAG.XAFExt.StateMachine\IntecoAG.XAFExt.StateMachine\IntecoAG.XAFExt.StateMachine.csproj">
+    <ProjectReference Include="..\..\IntecoAG.XAFExt\IntecoAG.XAFExt.StateMachine\IntecoAG.XAFExt.StateMachine\IntecoAG.XAFExt.StateMachine.csproj">
       <Project>{5F9E1E64-7384-475E-99A6-50407FAF329A}</Project>
       <Name>IntecoAG.XAFExt.StateMachine</Name>
     </ProjectReference>
