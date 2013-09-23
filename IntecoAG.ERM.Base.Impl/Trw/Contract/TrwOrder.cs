@@ -1,16 +1,16 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-
+//
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
-
+//
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-
+//
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CRM.Contract;
@@ -18,11 +18,11 @@ using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Subject;
-
+//
 namespace IntecoAG.ERM.Trw.Contract {
 
     [Persistent("TrwOrder")]
-    public class TrwOrder : csCComponent {
+    public class TrwOrder : csCComponent, TrwIOrder {
         public TrwOrder(Session session) : base(session) { }
         public override void AfterConstruction() {            
             base.AfterConstruction();
@@ -66,6 +66,13 @@ namespace IntecoAG.ERM.Trw.Contract {
                 String old = _TrwCode;
                 _TrwCode = Subject.GetNextOrderNumber();
                 OnChanged("TrwCode", old, _TrwCode);
+            }
+        }
+
+        [PersistentAlias("Deal")]
+        public TrwIContract TrwContract {
+            get {
+                return Deal;
             }
         }
 

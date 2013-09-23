@@ -457,7 +457,7 @@ namespace IntecoAG.ERM.FM.Subject
         }
 
         protected void DealsAdd(crmContractDeal deal) {
-            if (deal.TRVType == null || deal.TRVType.TRVSuperType != crmContractDealTRVSuperType.DEAL_SALE)
+            if (deal.TRVType == null || deal.TRVType.TrwContractSuperType != TrwContractSuperType.DEAL_SALE)
                     return;
             TrwOrder cur_order = null;
             foreach (TrwOrder trw_order in this.TrwOrders) {

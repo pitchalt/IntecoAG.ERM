@@ -284,6 +284,7 @@
     <Compile Include="CS\Security\csCSecurityUserListController.Designer.cs">
       <DependentUpon>csCSecurityUserListController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_214.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_202.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_210.cs">
       <SubType>Code</SubType>

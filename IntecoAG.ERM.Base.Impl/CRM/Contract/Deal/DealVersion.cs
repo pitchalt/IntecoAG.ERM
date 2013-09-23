@@ -33,7 +33,10 @@ using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.CRM.Contract.Obligation;
-
+//
+using IntecoAG.ERM.Trw;
+using IntecoAG.ERM.Trw.Contract;
+//
 namespace IntecoAG.ERM.CRM.Contract.Deal
 {
     /// <summary>
@@ -258,10 +261,10 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         [RuleRequiredField(TargetCriteria = "ContractDeal.State != 'DEAL_CLOSED' && ContractDeal.State != 'DEAL_DELETED'")]
         [PersistentAlias("ContractDeal.TRVType")]
-        public crmContractDealTRVType TRVType {
+        public TrwContractType TRVType {
             get { return this.ContractDeal.TRVType; }
             set {
-                crmContractDealTRVType old = this.ContractDeal.TRVType;
+                TrwContractType old = this.ContractDeal.TRVType;
                 this.ContractDeal.TRVType = value;
                 if (old != value)
                     OnChanged("TRVType", old, value);
@@ -270,10 +273,10 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         [RuleRequiredField(TargetCriteria = "ContractDeal.State != 'DEAL_CLOSED' && ContractDeal.State != 'DEAL_DELETED'")]
         [PersistentAlias("ContractDeal.TRVContractor")]
-        public crmContractDealTRVContractor TRVContractor {
+        public TrwContractMarket TRVContractor {
             get { return this.ContractDeal.TRVContractor; }
             set {
-                crmContractDealTRVContractor old = this.ContractDeal.TRVContractor;
+                TrwContractMarket old = this.ContractDeal.TRVContractor;
                 this.ContractDeal.TRVContractor = value;
                 if (old != value)
                     OnChanged("TRVContractor", old, value);
@@ -367,6 +370,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             get { return _Customer; }
             set {
                 SetPropertyValue<crmContractParty>("Customer", ref _Customer, value);
+                if (!IsLoading) {
+                    Customer.ContractDeal = this.ContractDeal;
+                }
             }
         }
 
@@ -374,7 +380,12 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         [ExpandObjectMembers(ExpandObjectMembers.InDetailView)]
         public virtual crmContractParty Supplier {
             get { return _Supplier; }
-            set { SetPropertyValue<crmContractParty>("Supplier", ref _Supplier, value); }
+            set { 
+                SetPropertyValue<crmContractParty>("Supplier", ref _Supplier, value);
+                if (!IsLoading) {
+                    Supplier.ContractDeal = this.ContractDeal;
+                }
+            }
         }
 
 

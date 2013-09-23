@@ -23,6 +23,9 @@ using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.HRM.Organization;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
+//
+using IntecoAG.ERM.Trw;
+using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.Party;
 
 namespace IntecoAG.ERM.CRM.Contract.Forms {
@@ -373,17 +376,17 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
 
         #endregion
 
-        private crmContractDealTRVType _TRVType;
+        private TrwContractType _TRVType;
         [RuleRequiredField]
-        public crmContractDealTRVType TRVType {
+        public TrwContractType TRVType {
             get { return _TRVType; }
-            set { SetPropertyValue<crmContractDealTRVType>("TRVType", ref _TRVType, value); }
+            set { SetPropertyValue<TrwContractType>("TRVType", ref _TRVType, value); }
         }
-        private crmContractDealTRVContractor _TRVContractor;
+        private TrwContractMarket _TRVContractor;
         [RuleRequiredField]
-        public crmContractDealTRVContractor TRVContractor {
+        public TrwContractMarket TRVContractor {
             get { return _TRVContractor; }
-            set { SetPropertyValue<crmContractDealTRVContractor>("TRVContractor", ref _TRVContractor, value); }
+            set { SetPropertyValue<TrwContractMarket>("TRVContractor", ref _TRVContractor, value); }
         }
 
         /// <summary>

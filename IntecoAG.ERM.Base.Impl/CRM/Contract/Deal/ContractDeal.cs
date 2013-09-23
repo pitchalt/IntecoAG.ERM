@@ -27,14 +27,19 @@ using DevExpress.Persistent.Validation;
 
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Common;
+using IntecoAG.ERM.CS.Finance;
+using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Forms;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Analitic;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.HRM.Organization;
+//
+using IntecoAG.ERM.Trw;
+using IntecoAG.ERM.Trw.Exchange;
 using IntecoAG.ERM.Trw.Contract;
-
+//
 namespace IntecoAG.ERM.CRM.Contract.Deal
 {
     /// <summary>
@@ -79,7 +84,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     [DefaultProperty("Name")]
     [VisibleInReports]
     [Persistent("crmDeal")]
-    public partial class crmContractDeal : csCComponent, IStateMachineProvider
+    public partial class crmContractDeal : csCComponent, TrwIContract, IStateMachineProvider
         //, ICategorizedItem
     {
         public crmContractDeal(Session ses) : base(ses) { }
@@ -244,18 +249,18 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             set { SetPropertyValue<crmContractCategory>("Category", ref _Category, value); }
         }
 
-        private crmContractDealTRVType _TRVType;
+        private TrwContractType _TRVType;
         [RuleRequiredField(TargetCriteria = "State != 'DEAL_CLOSED' && State != 'DEAL_DELETED'")]
-        public crmContractDealTRVType TRVType {
+        public TrwContractType TRVType {
             get { return _TRVType; }
-            set { SetPropertyValue<crmContractDealTRVType>("TRVType", ref _TRVType, value); }
+            set { SetPropertyValue<TrwContractType>("TRVType", ref _TRVType, value); }
         }
 
-        private crmContractDealTRVContractor _TRVContractor;
+        private TrwContractMarket _TRVContractor;
         [RuleRequiredField(TargetCriteria = "State != 'DEAL_CLOSED' && State != 'DEAL_DELETED'")]
-        public crmContractDealTRVContractor TRVContractor {
+        public TrwContractMarket TRVContractor {
             get { return _TRVContractor; }
-            set { SetPropertyValue<crmContractDealTRVContractor>("TRVContractor", ref _TRVContractor, value); }
+            set { SetPropertyValue<TrwContractMarket>("TRVContractor", ref _TRVContractor, value); }
         }
 
         private crmContractDocument _ContractDocument;
@@ -352,18 +357,18 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         [Persistent("TrwIntNumber")]
         [Indexed(Unique=true)]
         [Size(20)]
-        private String _TrwIntNumber;
+        private String _TrwInternalNumber;
         /// <summary>
         /// 
         /// </summary>
         [PersistentAlias("_TrwIntNumber")]
-        public String TrwIntNumber {
-            get { return _TrwIntNumber; }
+        public String TrwInternalNumber {
+            get { return _TrwInternalNumber; }
             //            set { SetPropertyValue<String>("TrwNumber", ref _TrwNumber, value); }
         }
-        public void TrwIntNumberSet(String number) {
-            String old = _TrwIntNumber;
-            _TrwIntNumber = number;
+        public void TrwInternalNumberSet(String number) {
+            String old = _TrwInternalNumber;
+            _TrwInternalNumber = number;
             OnChanged("TrwIntNumber", old, number);
         }
         //
@@ -401,17 +406,17 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         public void UpdateTrwNumbers() {
             if (this.ContractKind == ContractKind.CONTRACT) {
                 this.TrwNumberSet(this.Contract.ContractDocument.Number);
-                this.TrwIntNumberSet(this.Contract.TrwIntNumber);
+                this.TrwInternalNumberSet(this.Contract.TrwIntNumber);
             }
             else {
                 if (this.ContractKind == ContractKind.ADDENDUM) {
                     if (this.ContractDocument.Number.Length > 10) {
                         this.TrwNumberSet(this.ContractDocument.Number);
-                        this.TrwIntNumberSet(this.Contract.TrwIntNumber + "/" + this.IntNumber);
+                        this.TrwInternalNumberSet(this.Contract.TrwIntNumber + "/" + this.IntNumber);
                     }
                     else {
                         this.TrwNumberSet(this.Contract.ContractDocument.Number + "//" + this.ContractDocument.Number);
-                        this.TrwIntNumberSet(this.Contract.TrwIntNumber + "//" + this.ContractDocument.Number);
+                        this.TrwInternalNumberSet(this.Contract.TrwIntNumber + "//" + this.ContractDocument.Number);
                     }
                 }
                 else
@@ -490,6 +495,143 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             sml.Add(new crmContractDealSM());
             return sml;
         }
+
+        #region Trw
+
+/*
+        String TrwNumber {
+            get {
+                throw new NotImplementedException();
+            }
+            set {
+                throw new NotImplementedException();
+            }
+        }
+*/
+        [PersistentAlias("ContractDocument.Date")]
+        public DateTime TrwDate {
+            get {
+                return ContractDocument != null ? ContractDocument.Date : default(DateTime);
+            }
+ //           set {
+ //               throw new NotImplementedException();
+ //           }
+        }
+        [PersistentAlias("Current.Customer")]
+        public TrwIContractParty TrwCustomerParty {
+            get { return Current != null? Current.Customer : null; }
+        }
+
+        [PersistentAlias("Current.Supplier")]
+        public TrwIContractParty TrwSupplierParty {
+            get { return Current != null ? Current.Supplier : null; }
+        }
+
+        [PersistentAlias("TRVContractor")]
+        public TrwContractMarket TrwContractMarket {
+            get {
+                return TRVContractor;
+            }
+        }
+
+        public IList<TrwIOrder> TrwSaleOrders {
+            get { 
+                return new ListConverter<TrwIOrder, TrwOrder>(TrwOrders); 
+            }
+        }
+
+        [PersistentAlias("Current.DescriptionShort")]
+        public String TrwSubject {
+            get {
+                return Current != null ? Current.DescriptionShort : null;
+            }
+ //           set {
+ //               throw new NotImplementedException();
+ //           }
+        }
+
+        [PersistentAlias("ContractDocument.Date")]
+        public DateTime TrwDateSigning {
+            get {
+                return ContractDocument != null ? ContractDocument.Date : default(DateTime);
+            }
+//            set {
+//                throw new NotImplementedException();
+//            }
+        }
+
+        [PersistentAlias("Current.DateBegin")]
+        public DateTime TrwDateValidFrom {
+            get {
+                return Current != null ? Current.DateBegin : default(DateTime);
+//                throw new NotImplementedException();
+            }
+//            set {
+//                throw new NotImplementedException();
+//            }
+        }
+
+        [PersistentAlias("Current.DateEnd")]
+        public DateTime TrwDateValidToPlan {
+            get {
+                return Current != null ? Current.DateEnd : default(DateTime);
+            }
+            //set {
+            //    throw new NotImplementedException();
+            //}
+        }
+
+        public DateTime TrwDateValidToFact {
+            get {
+                return default(DateTime);
+            }
+            //set {
+            //    throw new NotImplementedException();
+            //}
+        }
+
+        [PersistentAlias("Current.Valuta")]
+        public csValuta TrwObligationCurrency {
+            get {
+                return Current != null ? Current.Valuta : null;
+            }
+            //set {
+            //    throw new NotImplementedException();
+            //}
+        }
+
+        [PersistentAlias("Current.Price")]
+        public Decimal TrwObligationSumma {
+            get {
+                return Current != null ? Current.Price : default(Decimal);
+            }
+            //set {
+            //    throw new NotImplementedException();
+            //}
+        }
+
+        [PersistentAlias("Current.PaymentValuta")]
+        public csValuta TrwPaymentCurrency {
+            get {
+                return Current != null ? Current.PaymentValuta : null;
+            }
+            //set {
+            //    throw new NotImplementedException();
+            //}
+        }
+
+        [PersistentAlias("Current.NDSRate")]
+        public csNDSRate TrwVATRate {
+            get {
+                return Current != null ? Current.NDSRate : null;
+            }
+            //set {
+            //    throw new NotImplementedException();
+            //}
+        }
+
+
+        #endregion
     }
 
 }

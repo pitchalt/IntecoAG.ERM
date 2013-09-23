@@ -15,12 +15,15 @@ using IntecoAG.XAFExt.CDS;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Security;
 using IntecoAG.ERM.CRM.Party;
+using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Contract.Forms;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.HRM.Organization;
 using IntecoAG.ERM.CS.Nomenclature;
+using IntecoAG.ERM.Trw;
+using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.Module
 {
@@ -75,13 +78,22 @@ namespace IntecoAG.ERM.Module
         void Application_CreateCustomCollectionSource(object sender, CreateCustomCollectionSourceEventArgs e) {
             if (e.ObjectType == typeof(crmIParty)) {
 //                e.CollectionSource = new  InterfaceCollectionSource<crmIParty, crmPartyRu>(e.ObjectSpace);
-                e.CollectionSource = new CollectionSource(e.ObjectSpace, typeof(crmCParty));
+                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmCParty), e.ListViewID, e.Mode);
             }
             if (e.ObjectType == typeof(crmIPerson)) {
-                e.CollectionSource = new CollectionSource(e.ObjectSpace, typeof(crmCPerson));
+                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmCPerson), e.ListViewID, e.Mode);
             }
             if (e.ObjectType == typeof(hrmIStaff)) {
-                e.CollectionSource = new CollectionSource(e.ObjectSpace, typeof(hrmStaff));
+                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(hrmStaff), e.ListViewID, e.Mode);
+            }
+            if (e.ObjectType == typeof(TrwIContract)) {
+                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmContractDeal), e.ListViewID, e.Mode);
+            }
+            if (e.ObjectType == typeof(TrwIContractParty)) {
+                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmContractParty), e.ListViewID, e.Mode);
+            }
+            if (e.ObjectType == typeof(TrwIOrder)) {
+                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(TrwOrder), e.ListViewID, e.Mode);
             }
             //if (e.ObjectType == typeof(crmDealRegistrationStatistics)) { 
             //    e.CollectionSource = 
@@ -89,6 +101,17 @@ namespace IntecoAG.ERM.Module
             //            typeof(crmDealRegistrationStatistics), 
             //            crmDealRegistrationStatistics.Query(((ObjectSpace)e.ObjectSpace).Session));
             //}
+        }
+        private CollectionSourceBase CreateCustomCollection(IObjectSpace objectSpace, Type objectType, String listViewId, CollectionSourceMode mode) {
+            return new CollectionSource(objectSpace, objectType, GetIsServerMode(listViewId), mode);
+        }
+        private Boolean GetIsServerMode(String listViewId) {
+            Boolean result = false;
+            if (!String.IsNullOrEmpty(listViewId)) {
+                IModelListView modelListView = Application.FindModelView(listViewId) as IModelListView;
+                result = (modelListView != null) && modelListView.UseServerMode;
+            }
+            return result;
         }
 
         public override IList<PopupWindowShowAction> GetStartupActions() {

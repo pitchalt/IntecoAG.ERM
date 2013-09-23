@@ -172,19 +172,6 @@
         <Member Name="UserRegistrator" Caption="Рег.Польз." />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmContractDealTRVContractor" Caption="ТРВ Ген.Заказчик">
-      <OwnMembers>
-        <Member Name="Code" Caption="Код" />
-        <Member Name="Name" Caption="Наименование" />
-      </OwnMembers>
-    </Class>
-    <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmContractDealTRVType" Caption="ТРВ Тип Договора">
-      <OwnMembers>
-        <Member Name="Code" Caption="Код" />
-        <Member Name="Name" Caption="Наименование" />
-        <Member Name="TRVSuperType" Caption="Тип договора" />
-      </OwnMembers>
-    </Class>
     <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmDealNomenclature" Caption="Номенклатура сделки" />
     <Class Name="IntecoAG.ERM.CRM.Contract.Deal.crmDealRegistrationStatistics" Caption="Статистика Регистрации">
       <OwnMembers>
@@ -925,6 +912,19 @@
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0104" Caption="Справка 0104" />
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0105" Caption="Справка 0105" />
     <Class Name="IntecoAG.ERM.PM.pmProjectWork" Caption="Проектная работа" />
+    <Class Name="IntecoAG.ERM.Trw.Contract.TrwContractMarket" Caption="ТРВ Ген.Заказчик">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Contract.TrwContractType" Caption="ТРВ Тип Договора">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="TrwContractSuperType" Caption="Тип договора" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyParty" Caption="ТРВ Контрагент">
       <OwnMembers>
         <Member Name="AddressLegalString" Caption="Юр.Адрес" />

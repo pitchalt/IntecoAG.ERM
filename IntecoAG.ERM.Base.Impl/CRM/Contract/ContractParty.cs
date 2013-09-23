@@ -18,12 +18,15 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.ExpressApp.ConditionalAppearance;
-
-using IntecoAG.ERM.CRM.Party;
-
+//
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
-
+using IntecoAG.ERM.CRM.Party;
+using IntecoAG.ERM.CRM.Contract.Deal;
+using IntecoAG.ERM.Trw;
+using IntecoAG.ERM.Trw.Contract;
+using IntecoAG.ERM.Trw.Exchange;
+//
 namespace IntecoAG.ERM.CRM.Contract
 {
     /// <summary>
@@ -31,7 +34,7 @@ namespace IntecoAG.ERM.CRM.Contract
     /// </summary>
     //[DefaultClassOptions]
     [Persistent("crmContractParty")]
-    public partial class crmContractParty : VersionRecord   //BaseObject, IVersionSupport
+    public partial class crmContractParty : VersionRecord, TrwIContractParty   //BaseObject, IVersionSupport
     {
         public crmContractParty(Session ses) : base(ses) { }
         public crmContractParty(Session ses, VersionStates state) : base(ses, state) { }
@@ -47,6 +50,19 @@ namespace IntecoAG.ERM.CRM.Contract
 
 
         #region СВОЙСТВА КЛАССА
+
+        private crmUserParty _CfrUserParty;
+        [Association("crmUserParty-crmDealPartys")]
+        public crmUserParty CfrUserParty {
+            get { return _CfrUserParty; }
+            set { SetPropertyValue<crmUserParty>("CfrUserParty", ref _CfrUserParty, value); }
+        }
+
+        private crmContractDeal _ContractDeal;
+        public crmContractDeal ContractDeal {
+            get { return _ContractDeal; }
+            set { SetPropertyValue<crmContractDeal>("ContractDeal", ref _ContractDeal, value); }
+        }
 
         /// <summary>
         /// crmPartyRu - описание
@@ -211,6 +227,54 @@ namespace IntecoAG.ERM.CRM.Contract
 
         #endregion
 
+        #region Trw 
+        //
+        [PersistentAlias("ContractDeal")]
+        public TrwIContract TrwContract {
+            get { return ContractDeal; }
+        }
+
+        private TrwContractPartyType _TrwContractPartyType;
+        public TrwContractPartyType TrwContractPartyType {
+            get { return _TrwContractPartyType; }
+            set { SetPropertyValue<TrwContractPartyType>("TrwContractPartyType", ref _TrwContractPartyType, value); }
+        }
+        [PersistentAlias("ContractDeal.TrwInternalNumber")]
+        public String TrwInternalNumber {
+            get { return ContractDeal != null ? ContractDeal.TrwInternalNumber : null; }
+        }
+
+        [PersistentAlias("ContractDeal.TRVType")]
+        public TrwContractType TrwContractType {
+            get { return ContractDeal != null ? ContractDeal.TRVType : null; }
+            set {
+                if (ContractDeal != null)
+                    ContractDeal.TRVType = value;
+            }
+        }
+
+        [PersistentAlias("CfrUserParty")]
+        public TrwICfr TrwCfr {
+            get { return CfrUserParty; }
+        }
+        [PersistentAlias("CfrUserParty.Person")]
+        public TrwIPerson TrwCfrPerson {
+            get { return CfrUserParty.Person; }
+        }
+        [PersistentAlias("Party.Person")]
+        public TrwIPerson TrwPartyPerson {
+            get {
+                return Party.Person;
+            }
+        }
+        //
+        private TrwExchangeExportStates _TrwExportState;
+        public TrwExchangeExportStates TrwExportState {
+            get { return _TrwExportState; }
+            set { SetPropertyValue<TrwExchangeExportStates>("TrwExportState", ref _TrwExportState, value); }
+        }
+
+        #endregion Trw
     }
 
 }

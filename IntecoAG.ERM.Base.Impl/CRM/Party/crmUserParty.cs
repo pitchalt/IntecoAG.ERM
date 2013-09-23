@@ -18,9 +18,13 @@ using DevExpress.Persistent.Validation;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using System.ComponentModel;
-
+//
+using IntecoAG.ERM.CRM.Contract;
+using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CS.Country;
-
+using IntecoAG.ERM.Trw;
+using IntecoAG.ERM.Trw.Contract;
+//
 namespace IntecoAG.ERM.CRM.Party
 {
     /// <summary>
@@ -29,7 +33,7 @@ namespace IntecoAG.ERM.CRM.Party
     //[DefaultClassOptions]
     [DefaultProperty("Name")]
     [Persistent("crmUserParty")]
-    public partial class crmUserParty : BaseObject
+    public partial class crmUserParty : BaseObject, TrwICfr
     {
         public crmUserParty(Session ses) : base(ses) { }
 
@@ -81,6 +85,12 @@ namespace IntecoAG.ERM.CRM.Party
         public String KPP {
             get { return Party == null ? String.Empty : Party.KPP; }
         }
+        //
+        [Association("crmUserParty-crmDealPartys")]
+        public XPCollection<crmContractParty> DealPartys {
+            get { return GetCollection<crmContractParty>("DealPartys"); }
+        }
+
         #endregion
 
 
@@ -88,6 +98,28 @@ namespace IntecoAG.ERM.CRM.Party
 
         #endregion
 
+        #region Trw
+
+        private String _TrwCode;
+        public String TrwCode {
+            get { return _TrwCode; }
+            set { SetPropertyValue<String>("TrwCode", ref _TrwCode, value); }
+        }
+
+        [PersistentAlias("Party.Person")]
+        public TrwIPerson Person {
+            get {
+                return Party.Person;
+            }
+        }
+
+        public IList<TrwIContractParty> TrwContractPartys {
+            get {
+                return new ListConverter<TrwIContractParty, crmContractParty>(DealPartys);
+            }
+        }
+
+        #endregion Trw
     }
 
 }

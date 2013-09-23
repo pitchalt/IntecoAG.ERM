@@ -11,11 +11,18 @@ using DevExpress.Persistent.Validation;
 
 using IntecoAG.ERM.CS;
 
-namespace IntecoAG.ERM.CRM.Contract.Deal {
+namespace IntecoAG.ERM.Trw.Contract {
 
-    [Persistent("crmContractDealTRVContractor")]
-    public class crmContractDealTRVContractor : csCComponent {
-        public crmContractDealTRVContractor(Session session): base(session) { }
+    public enum TrwContractSuperType {
+        DEAL_CREDIT = 1,
+        DEAL_INVEST = 2,
+        DEAL_BAY = 3,
+        DEAL_SALE = 4
+    }
+
+    [Persistent("crmContractDealTRVType")]
+    public class TrwContractType : csCComponent {
+        public TrwContractType(Session session): base(session) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
@@ -23,6 +30,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
 
         private String _Code;
         private String _Name;
+        private TrwContractSuperType _TRVSuperType;
 
         [Size(20)]
         public String Code {
@@ -34,6 +42,11 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
         public String Name {
             get { return _Name; }
             set { SetPropertyValue<String>("Name", ref _Name, value); }
+        }
+        [Persistent("TRVSuperType")]
+        public TrwContractSuperType TrwContractSuperType {
+            get { return _TRVSuperType; }
+            set { SetPropertyValue<TrwContractSuperType>("TrwContractSuperType", ref _TRVSuperType, value); }
         }
 
     }

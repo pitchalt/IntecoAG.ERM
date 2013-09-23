@@ -21,8 +21,12 @@ using DevExpress.Persistent.BaseImpl;
 
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CS.Nomenclature;
+//
+using IntecoAG.ERM.Trw;
+using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.Party;
-
+using IntecoAG.ERM.Trw.Person;
+//
 namespace IntecoAG.ERM.CRM.Party
 {
     /// <summary>
@@ -30,7 +34,7 @@ namespace IntecoAG.ERM.CRM.Party
     /// </summary>
     [DefaultProperty("Name")]
     [Persistent("crmBankAccount")]
-    public partial class crmBankAccount : BaseObject
+    public partial class crmBankAccount : BaseObject, TrwIPersonAccount 
     {
         public crmBankAccount(Session ses) : base(ses) { }
 
@@ -133,6 +137,19 @@ namespace IntecoAG.ERM.CRM.Party
 
         #endregion
 
+        #region Trw
+
+        [PersistentAlias("Number")]
+        public String TrwNumber {
+            get {
+                return Number;
+            }
+            set {
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion Trw
     }
 
 }

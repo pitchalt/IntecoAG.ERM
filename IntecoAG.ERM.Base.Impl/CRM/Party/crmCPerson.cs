@@ -22,7 +22,10 @@ using DevExpress.Persistent.BaseImpl;
 
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
+//
+using IntecoAG.ERM.Trw;
 using IntecoAG.ERM.Trw.Party;
+using IntecoAG.ERM.Trw.Person;
 
 namespace IntecoAG.ERM.CRM.Party
 {
@@ -32,7 +35,7 @@ namespace IntecoAG.ERM.CRM.Party
     [DefaultProperty("Name")]
     [Persistent("crmPartyPerson")]
     [Appearance("", AppearanceItemType.ViewItem, "", TargetItems="TrwParty", Enabled = false)]
-    public partial class crmCPerson : csCComponent, crmIPerson
+    public partial class crmCPerson : csCComponent, crmIPerson, TrwIPerson
     {
         public crmCPerson(Session ses) : base(ses) { }
 
@@ -246,6 +249,70 @@ namespace IntecoAG.ERM.CRM.Party
                     TrwPartyType = TrwPartyType.PARTY_WITH_BANK_ACCOUNT;
             }
         }
+
+        #region Trw
+
+        [PersistentAlias("TrwParty.Name")]
+        public String TrwName {
+            get {
+                return TrwParty != null ? TrwParty.Name : null;
+            }
+            set {
+                if (TrwParty != null)
+                    TrwParty.Name = value;
+            }
+        }
+
+        [PersistentAlias("TrwParty.INN")]
+        public String TrwINN {
+            get {
+                return TrwParty != null ? TrwParty.INN : null;
+            }
+            set {
+                if (TrwParty != null)
+                    TrwParty.INN = value;
+            }
+        }
+
+        [PersistentAlias("TrwParty.INN")]
+        public String TrwKPP {
+            get {
+                return TrwParty != null ? TrwParty.KPP : null;
+            }
+            set {
+                if (TrwParty != null)
+                    TrwParty.KPP = value;
+            }
+        }
+
+        [PersistentAlias("TrwParty.City")]
+        public String TrwCity {
+            get {
+                return TrwParty != null ? TrwParty.City : null;
+            }
+            set {
+                if (TrwParty != null)
+                    TrwParty.City = value;
+            }
+        }
+
+        [PersistentAlias("TrwParty.CityType")]
+        public String TrwCityPrefix {
+            get {
+                return TrwParty != null ? TrwParty.CityType : null;
+            }
+            set {
+                if (TrwParty != null)
+                    TrwParty.CityType = value;
+            }
+        }
+
+        public IList<TrwIPersonAccount> TrwAccounts {
+            get {
+                return new ListConverter<TrwIPersonAccount, crmBankAccount>(BankAccounts);
+            }
+        }
+        #endregion Trw
     }
 
 }

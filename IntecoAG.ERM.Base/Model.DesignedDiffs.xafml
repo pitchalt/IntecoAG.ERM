@@ -229,8 +229,10 @@
   </CreatableItems>
   <NavigationItems>
     <Items>
-      <Item Id="Default" Removed="True" />
-      <Item Id="Reports">
+      <Item Id="Finance" Index="0" />
+      <Item Id="KPI" Index="1" />
+      <Item Id="Money" Index="2" />
+      <Item Id="Reports" Index="3">
         <Items>
           <Item Id="XafExtAnalysis" ViewId="XafExtAnalysis_ListView" ObjectKey="" Index="1" IsNewNode="True" />
           <Item Id="XafExtAnalysis_ListView" Index="1" Removed="True" />
@@ -238,6 +240,15 @@
           <Item Id="Analysis_ListView" Removed="True" />
         </Items>
       </Item>
+      <Item Id="Settings" Index="4" />
+      <Item Id="GeneralCompanyReports" Index="5" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_ListView" IsNewNode="True" />
+          <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" ViewId="TrwIContractParty_Exchange_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="State Machine" Index="6" />
+      <Item Id="Default" Removed="True" />
     </Items>
   </NavigationItems>
   <Options>
@@ -2843,6 +2854,32 @@
       </Layout>
     </DetailView>
     <ListView Id="ReportParametersObjectBase_ListView" UseServerMode="True" />
+    <ListView Id="TrwIContractParty_Exchange_ListView" ClassName="IntecoAG.ERM.Trw.Contract.TrwIContractParty" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="TrwCfr" PropertyName="TrwCfr" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TrwCfrPerson" PropertyName="TrwCfrPerson" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract" PropertyName="TrwContract" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TrwContractPartyType" PropertyName="TrwContractPartyType" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TrwPartyPerson" PropertyName="TrwPartyPerson" View="" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TrwInternalNumber" PropertyName="TrwInternalNumber" View="" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwNumber" PropertyName="TrwContract.TrwNumber" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="TrwPartyPerson_TrwINN" PropertyName="TrwPartyPerson.TrwINN" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="TrwPartyPerson_TrwKPP" PropertyName="TrwPartyPerson.TrwKPP" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="TrwPartyPerson_TrwName" PropertyName="TrwPartyPerson.TrwName" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwContractMarket" PropertyName="TrwContract.TrwContractMarket" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="TrwContractType" PropertyName="TrwContractType" View="" Width="70" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwSubject" PropertyName="TrwContract.TrwSubject" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwDateSigning" PropertyName="TrwContract.TrwDateSigning" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwDateValidFrom" PropertyName="TrwContract.TrwDateValidFrom" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwDateValidToPlan" PropertyName="TrwContract.TrwDateValidToPlan" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwDateValidToFact" PropertyName="TrwContract.TrwDateValidToFact" Index="11" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwObligationCurrency" PropertyName="TrwContract.TrwObligationCurrency" Index="12" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwPaymentCurrency" PropertyName="TrwContract.TrwPaymentCurrency" Index="13" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwObligationSumma" PropertyName="TrwContract.TrwObligationSumma" Index="14" IsNewNode="True" />
+        <ColumnInfo Id="TrwContract_TrwVATRate" PropertyName="TrwContract.TrwVATRate" Index="15" IsNewNode="True" />
+        <ColumnInfo Id="TrwExportState" PropertyName="TrwExportState" View="" Width="70" Index="16" IsNewNode="True" />
+      </Columns>
+    </ListView>
     <DetailView Id="TrwPartyParty_DetailView">
       <Items>
         <PropertyEditor Id="Name" RowCount="3" />

@@ -140,10 +140,10 @@
     <Compile Include="CRM\Contract\Counters\RegistrationLogDocNumberCounter.cs" />
     <Compile Include="CRM\Contract\Counters\RegistrationLogISNCounter.cs" />
     <Compile Include="CRM\Contract\Deal\crmContractDealSM.cs" />
-    <Compile Include="CRM\Contract\Deal\crmContractDealTRVContractor.cs">
+    <Compile Include="Trw\Contract\TrwContractMarket.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CRM\Contract\Deal\crmContractDealTRVType.cs">
+    <Compile Include="Trw\Contract\TrwContractType.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CRM\Contract\Deal\crmDealRegistrationStatistics.cs" />
@@ -356,8 +356,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
     <Compile Include="Trw\Contract\TrwContractExchangeDoc.cs" />
+    <Compile Include="Trw\Nomenclature\TrwId.cs" />
+    <Compile Include="Trw\TrwINomeclature.cs" />
+    <Compile Include="Trw\Exchange\TrwIExchangeDoc.cs" />
+    <Compile Include="Trw\TrwIContract.cs" />
     <Compile Include="Trw\Contract\TrwOrder.cs" />
+    <Compile Include="Trw\Exchange\TrwIExchangeExportableObject.cs" />
+    <Compile Include="Trw\Person\TrwIPersonAccount.cs" />
+    <Compile Include="Trw\Person\TrwIPersonBank.cs" />
     <Compile Include="Trw\Party\TrwPartyParty.cs" />
+    <Compile Include="Trw\TrwICfr.cs" />
+    <Compile Include="Trw\Contract\TrwIContractParty.cs" />
+    <Compile Include="Trw\TrwIOrder.cs" />
+    <Compile Include="Trw\TrwIPerson.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

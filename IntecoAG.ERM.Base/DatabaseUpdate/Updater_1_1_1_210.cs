@@ -20,6 +20,8 @@ using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.FM.Order;
+
+using IntecoAG.ERM.Trw;
 using IntecoAG.ERM.Trw.Party;
 using IntecoAG.ERM.Trw.Contract;
 //using IntecoAG.ERM.FM.AVT;
@@ -119,7 +121,7 @@ namespace IntecoAG.ERM.FM {
                         }
                     }
                     foreach (crmContractDeal deal in subject.Deals) {
-                        if (deal.TRVType == null || deal.TRVType.TRVSuperType != crmContractDealTRVSuperType.DEAL_SALE)
+                        if (deal.TRVType == null || deal.TRVType.TrwContractSuperType != TrwContractSuperType.DEAL_SALE)
                             continue;
                         TrwOrder cur_order = null;
                         foreach (TrwOrder trw_order in subject.TrwOrders) {
