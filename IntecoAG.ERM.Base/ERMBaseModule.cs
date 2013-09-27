@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 //
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.ExpressApp.Security;
@@ -11,7 +12,6 @@ using DevExpress.Persistent.Base;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.Model;
 //
-using IntecoAG.XAFExt.CDS;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Security;
 using IntecoAG.ERM.CRM.Party;
@@ -24,6 +24,7 @@ using IntecoAG.ERM.HRM.Organization;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.Trw;
 using IntecoAG.ERM.Trw.Contract;
+using IntecoAG.XAFExt.CDS;
 //
 namespace IntecoAG.ERM.Module
 {
@@ -48,12 +49,19 @@ namespace IntecoAG.ERM.Module
         }
 
         public override void Setup(XafApplication application) {
+            TypesInfo types_info = (TypesInfo) XafTypesInfo.Instance;
+//            type_info.
+//            type_info.RegisterEntity("TrwEContractParty", typeof(TrwIContractParty), typeof(crmContractParty));
+
             base.Setup(application);
             Application.CreateCustomCollectionSource += Application_CreateCustomCollectionSource;
             Application.DetailViewCreating += Application_DetailViewCreating;
             Application.DetailViewCreated += Application_DetailViewCreated;
             //
             application.SetupComplete += application_SetupComplete;
+            //
+            ITypeInfo type_info = XafTypesInfo.Instance.FindTypeInfo(typeof(crmContractParty));
+//            types_info.PersistentTypes.
             //
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(crmCommonRegistrationForm));
             SecurityStrategy.SecuredNonPersistentTypes.Add(typeof(crmDealRegistrationForm));
@@ -78,23 +86,28 @@ namespace IntecoAG.ERM.Module
         void Application_CreateCustomCollectionSource(object sender, CreateCustomCollectionSourceEventArgs e) {
             if (e.ObjectType == typeof(crmIParty)) {
 //                e.CollectionSource = new  InterfaceCollectionSource<crmIParty, crmPartyRu>(e.ObjectSpace);
-                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmCParty), e.ListViewID, e.Mode);
+                e.CollectionSource = new CollectionSource(e.ObjectSpace, typeof(crmCParty));
             }
             if (e.ObjectType == typeof(crmIPerson)) {
-                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmCPerson), e.ListViewID, e.Mode);
+//                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmCPerson), e.ListViewID, e.Mode);
+                e.CollectionSource = new CollectionSource(e.ObjectSpace, typeof(crmCPerson));
             }
             if (e.ObjectType == typeof(hrmIStaff)) {
-                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(hrmStaff), e.ListViewID, e.Mode);
+//                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(hrmStaff), e.ListViewID, e.Mode);
+                e.CollectionSource = new CollectionSource(e.ObjectSpace, typeof(hrmStaff));
             }
-            if (e.ObjectType == typeof(TrwIContract)) {
-                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmContractDeal), e.ListViewID, e.Mode);
-            }
-            if (e.ObjectType == typeof(TrwIContractParty)) {
-                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmContractParty), e.ListViewID, e.Mode);
-            }
-            if (e.ObjectType == typeof(TrwIOrder)) {
-                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(TrwOrder), e.ListViewID, e.Mode);
-            }
+            // !!! Есть вопросы с имплементом интерфейсов руками (поиск автоматический не работает, класс не считается хранимым)
+            //
+            //if (e.ObjectType == typeof(TrwIContract)) {
+            //    e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmContractDeal), e.ListViewID, e.Mode);
+            //}
+            //if (e.ObjectType == typeof(TrwIContractParty)) {
+            //    e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(crmContractParty), e.ListViewID, e.Mode);
+            //}
+            //if (e.ObjectType == typeof(TrwIOrder)) {
+            //    e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(TrwOrder), e.ListViewID, e.Mode);
+            //}
+
             //if (e.ObjectType == typeof(crmDealRegistrationStatistics)) { 
             //    e.CollectionSource = 
             //        new csLinqCollectionSource(e.ObjectSpace, 

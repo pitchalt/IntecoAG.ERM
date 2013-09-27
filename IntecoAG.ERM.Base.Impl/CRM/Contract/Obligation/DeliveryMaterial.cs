@@ -49,19 +49,20 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
         /// <summary>
         /// 
         /// </summary>
-        public override CS.Nomenclature.csNomenclature Nomenclature {
+        public override csNomenclature Nomenclature {
             get { return this.Material; }
         }
         /// <summary>
         /// Номентклатура
         /// </summary>
-        private CS.Nomenclature.csMaterial _Material;
-        public CS.Nomenclature.csMaterial Material {
+        private csMaterial _Material;
+        public csMaterial Material {
             get { return _Material; }
             set { 
-                SetPropertyValue<CS.Nomenclature.csMaterial>("Material", ref _Material, value);
+                SetPropertyValue<csMaterial>("Material", ref _Material, value);
                 if (!IsLoading) {
                     this.NomenclatureName = this.Material.NameShort;
+                    UpdateTrwNomenclature();
                 }
             }
         }

@@ -11,6 +11,7 @@ using DevExpress.Xpo;
 //
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.FM.FinAccount;
+using IntecoAG.ERM.Trw;
 //
 namespace IntecoAG.ERM.FM.Order {
 
@@ -93,6 +94,11 @@ namespace IntecoAG.ERM.FM.Order {
     public class fm—OrderAnalitycWorkType : fmCOrderAnalityc {
         public fm—OrderAnalitycWorkType(Session session)
             : base(session) {
+        }
+        private TrwOrderWorkType _TrwOrderWorkType;
+        public TrwOrderWorkType TrwOrderWorkType {
+            get { return _TrwOrderWorkType; }
+            set { SetPropertyValue<TrwOrderWorkType>("TrwOrderWorkType", ref _TrwOrderWorkType, value); }
         }
     }
 

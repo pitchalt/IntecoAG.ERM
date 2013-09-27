@@ -59,7 +59,20 @@
           <Item Id="Reports" Removed="True" />
         </Items>
       </Item>
-      <Item Id="Settings" Index="7" ChildItemsDisplayStyle="List" IsNewNode="True">
+      <Item Id="GeneralCompanyReports" ChildItemsDisplayStyle="List" Index="7" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="TrwContragents" Index="0" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="@2c7200cb-4b4a-42d0-9f9b-0014e950aa13" ViewId="TrwPartyParty_ListView" Index="0" IsNewNode="True" />
+              <Item Id="@52ec9235-0012-478a-b657-0b56a4c64ef4" ViewId="crmBankAccount_Trw_Type1_ListView" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" Index="1" IsNewNode="True" />
+          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" Index="2" IsNewNode="True" />
+          <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" Index="3" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Settings" Index="8" ChildItemsDisplayStyle="List" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="ERMCurrentUser" Caption="My  Details" ImageName="BO_MyDetails" ObjectKey="" Index="0" Shortcut="" ViewId="csCSecurityUser_ListView" IsNewNode="True" />
           <Item Id="SettingsPartners" Index="1" IsNewNode="True">
@@ -147,25 +160,6 @@
           <Item Id="fmCPaymentTaxPeriod_ListView" IsNewNode="True" Removed="True" />
         </Items>
       </Item>
-      <Item Id="GeneralCompanyReports" ChildItemsDisplayStyle="List" IsNewNode="True">
-        <Items IsNewNode="True">
-          <Item Id="@48daa127-5acd-4748-acac-c1ffa2efdd99" ViewId="gcrCodifDeal_ListView" Index="0" IsNewNode="True" />
-          <Item Id="@799f8a80-f3ff-4950-9c9c-5fbced783aaf" ViewId="fmCSubjectExt_TRV_ListView" Index="1" IsNewNode="True" />
-          <Item Id="@049e6e56-0c16-491f-ae8a-2ba277878263" ViewId="crmBankAccount_Trw_ListView" Index="2" IsNewNode="True">
-            <Items IsNewNode="True">
-              <Item Id="@733110e6-63f1-4b7b-9b69-f542862c6166" ViewId="TrwPartyParty_ListView" Index="0" IsNewNode="True" />
-              <Item Id="@196bc4c9-d08d-4e20-bf2f-60571d24c595" ViewId="crmBankAccount_Trw_Type1_ListView" Index="1" IsNewNode="True" />
-            </Items>
-          </Item>
-          <Item Id="@9f41da8e-c7bb-47a5-ac26-efde9ddfb979" ViewId="TrwContractExchangeDoc_ListView" IsNewNode="True" />
-          <Item Id="References" IsNewNode="True">
-            <Items IsNewNode="True">
-              <Item Id="@9ef1a0ba-d22b-4d6c-941a-e3c9c999c330" ViewId="crmContractDealTRVType_ListView" Index="0" IsNewNode="True" />
-              <Item Id="@e39889c0-538b-4436-a7f6-99bf823fb976" ViewId="crmContractDealTRVContractor_ListView" Index="1" IsNewNode="True" />
-            </Items>
-          </Item>
-        </Items>
-      </Item>
       <Item Id="KPI" Removed="True" />
       <Item Id="State Machine" Removed="True" />
     </Items>
@@ -181,6 +175,27 @@
         <PropertyEditor Id="Name" RowCount="2" MaxLength="300" />
       </Items>
     </DetailView>
+    <ListView Id="crmContractDeal_ListView">
+      <Columns>
+        <ColumnInfo Id="ComponentType" Removed="True" />
+        <ColumnInfo Id="FailNumber" Removed="True" />
+        <ColumnInfo Id="TrwContractMarket" Removed="True" />
+        <ColumnInfo Id="TrwCustomerParty" Removed="True" />
+        <ColumnInfo Id="TrwDate" Removed="True" />
+        <ColumnInfo Id="TrwDateSigning" Removed="True" />
+        <ColumnInfo Id="TrwDateValidFrom" Removed="True" />
+        <ColumnInfo Id="TrwDateValidToFact" Removed="True" />
+        <ColumnInfo Id="TrwDateValidToPlan" Removed="True" />
+        <ColumnInfo Id="TrwInternalNumber" Removed="True" />
+        <ColumnInfo Id="TrwNumber" Removed="True" />
+        <ColumnInfo Id="TrwObligationCurrency" Removed="True" />
+        <ColumnInfo Id="TrwObligationSumma" Removed="True" />
+        <ColumnInfo Id="TrwPaymentCurrency" Removed="True" />
+        <ColumnInfo Id="TrwSubject" Removed="True" />
+        <ColumnInfo Id="TrwSupplierParty" Removed="True" />
+        <ColumnInfo Id="TrwVATRate" Removed="True" />
+      </Columns>
+    </ListView>
     <ListView Id="fmCPaymentBase_LookupListView">
       <Columns>
         <ColumnInfo Id="Code" Index="-1" />

@@ -5,14 +5,42 @@ using DevExpress.Persistent.Base;
 
 using IntecoAG.ERM.CRM.Party;
 
-namespace IntecoAG.ERM.Trw.Nomenclature {
+namespace IntecoAG.ERM.Trw {
 
+    public enum TrwSaleNomenclatureMilitaryType {
+        SALE_NOMENCLATURE_MILITARY_TYPE_UNKNOW = 0,
+        SALE_NOMENCLATURE_MILITARY_TYPE_CIVIL = 1,
+        SALE_NOMENCLATURE_MILITARY_TYPE_MILITARY = 2
+    }
+    //
+    public enum TrwSaleNomenclatureType {
+        SALE_NOMENCLATURE_TYPE_UNKNOW = 0,
+        SALE_NOMENCLATURE_TYPE_SPECIAL_MACHINE = 1,
+        SALE_NOMENCLATURE_TYPE_CIVIL_GOODS = 2,
+        SALE_NOMENCLATURE_TYPE_COMPONENT = 3,
+        SALE_NOMENCLATURE_TYPE_SCIENCE_WORK = 4,
+        SALE_NOMENCLATURE_TYPE_OTHER_WORK = 5,
+        SALE_NOMENCLATURE_TYPE_OTHER = 6
+    }
+    //
+    public enum TrwSaleNomenclatureMeasurementUnit { 
+        SALE_NOMENCLATURE_MEASUREMET_UNIT_UNKNOW = 0,
+        SALE_NOMENCLATURE_MEASUREMET_UNIT_ITEM = 1,
+        SALE_NOMENCLATURE_MEASUREMET_UNIT_KILOGRAM = 2,
+        SALE_NOMENCLATURE_MEASUREMET_UNIT_TONNE = 3,
+        SALE_NOMENCLATURE_MEASUREMET_UNIT_WORK = 4
+    }
+    //
     [DomainComponent]
-    public interface TrwITemp {
+    public interface TrwISaleNomenclature {
         [FieldSize(22)]
-        String TrwCode { get; set; }
-        [FieldSize(128)]
-        String TrwDescription { get; set; }
+        String TrwCode { get; }
+//        [FieldSize(128)]
+        String TrwName { get; }
+        TrwSaleNomenclatureMilitaryType TrwSaleNomenclatureMilitaryType { get; }
+        TrwSaleNomenclatureType TrwSaleNomenclatureType { get; }
+        TrwSaleNomenclatureMeasurementUnit TrwMeasurementUnit {get; }
+        String TrwDescription { get; }
     }
 
     // To use a Domain Component in an XAF application, the Component should be registered.

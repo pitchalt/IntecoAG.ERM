@@ -60,6 +60,16 @@
       <Item Id="AVT" Caption="НДС" />
       <Item Id="Sale" Caption="Продажи" />
       <Item Id="Money" Caption="Деньги" />
+      <Item Id="GeneralCompanyReports" Caption="ТРВ Отчеты">
+        <Items>
+          <Item Id="TrwContragents" Caption="Контрагенты">
+            <Items>
+              <Item Id="@2c7200cb-4b4a-42d0-9f9b-0014e950aa13" Caption="ТРВ Контрагенты" />
+              <Item Id="@52ec9235-0012-478a-b657-0b56a4c64ef4" Caption="ТРВ Собственные счета контрагентов " />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
       <Item Id="Settings" Caption="Настройки">
         <Items>
           <Item Id="ERMCurrentUser" Caption="Мои данные" />
@@ -83,13 +93,6 @@
               <Item Id="KPI" Caption="КПИ" />
             </Items>
           </Item>
-        </Items>
-      </Item>
-      <Item Id="GeneralCompanyReports" Caption="ТРВ Отчеты">
-        <Items>
-          <Item Id="@799f8a80-f3ff-4950-9c9c-5fbced783aaf" Caption="ТРВ Заказы" />
-          <Item Id="@049e6e56-0c16-491f-ae8a-2ba277878263" Caption="ТРВ Контрагенты" />
-          <Item Id="References" Caption="Справочники" />
         </Items>
       </Item>
     </Items>

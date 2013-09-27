@@ -361,7 +361,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         /// <summary>
         /// 
         /// </summary>
-        [PersistentAlias("_TrwIntNumber")]
+        [PersistentAlias("_TrwInternalNumber")]
         public String TrwInternalNumber {
             get { return _TrwInternalNumber; }
             //            set { SetPropertyValue<String>("TrwNumber", ref _TrwNumber, value); }

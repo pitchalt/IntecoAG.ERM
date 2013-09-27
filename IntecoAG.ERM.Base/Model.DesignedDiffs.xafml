@@ -243,7 +243,8 @@
       <Item Id="Settings" Index="4" />
       <Item Id="GeneralCompanyReports" Index="5" IsNewNode="True">
         <Items IsNewNode="True">
-          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_ListView" IsNewNode="True" />
+          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_Exchange_ListView" IsNewNode="True" />
+          <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" ViewId="TrwSaleNomenclature_Exchange_ListView" IsNewNode="True" />
           <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" ViewId="TrwIContractParty_Exchange_ListView" IsNewNode="True" />
         </Items>
       </Item>
@@ -459,8 +460,28 @@
       </Layout>
     </DetailView>
     <ListView Id="crmCLegalPersonUnit_ListView" AllowDelete="False" />
-    <ListView Id="crmContract_ContractDeals_ListView" AllowEdit="True" AllowNew="False" AllowDelete="False">
+    <ListView Id="crmContract_ContractDeals_ListView" AllowEdit="True" AllowNew="False" AllowDelete="False" FreezeColumnIndices="True">
       <Columns>
+        <ColumnInfo Id="ComponentType" Index="-1" Removed="True" />
+        <ColumnInfo Id="Contract" Removed="True" />
+        <ColumnInfo Id="ContractDocument.Contract" Removed="True" />
+        <ColumnInfo Id="ContractDocument.FullName" Removed="True" />
+        <ColumnInfo Id="FailNumber" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwContractMarket" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwCustomerParty" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwDate" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwDateSigning" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwDateValidFrom" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwDateValidToFact" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwDateValidToPlan" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwInternalNumber" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwNumber" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwObligationCurrency" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwObligationSumma" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwPaymentCurrency" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwSubject" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwSupplierParty" Index="-1" Removed="True" />
+        <ColumnInfo Id="TrwVATRate" Index="-1" Removed="True" />
         <ColumnInfo Id="Name" Index="0" />
         <ColumnInfo Id="Category" Index="1" />
         <ColumnInfo Id="ContractKind" AllowEdit="False" Index="1" Removed="True" />
@@ -475,10 +496,9 @@
         <ColumnInfo Id="State" AllowEdit="False" Index="9" Removed="True" />
         <ColumnInfo Id="ContractDocument.Date" Index="10" AllowEdit="False" />
         <ColumnInfo Id="DepartmentRegistrator" AllowEdit="False" Index="11" />
+        <ColumnInfo Id="TRVType" Index="12" />
+        <ColumnInfo Id="TRVContractor" Index="13" />
         <ColumnInfo Id="Current" Index="14" Removed="True" />
-        <ColumnInfo Id="Contract" Removed="True" />
-        <ColumnInfo Id="ContractDocument.Contract" Removed="True" />
-        <ColumnInfo Id="ContractDocument.FullName" Removed="True" />
       </Columns>
     </ListView>
     <DetailView Id="crmContract_DetailView" AllowDelete="False" AllowNew="False">
@@ -2691,8 +2711,9 @@
         <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
             <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
-            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
-            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="60" IsNewNode="True" />
+            <LayoutItem Id="SortOrder" ViewItem="SortOrder" Index="1" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="TrwOrderWorkType" CaptionLocation="Top" ViewItem="TrwOrderWorkType" Index="2" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="3" CaptionLocation="Top" RelativeSize="50" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="SizeableEditors" Index="2" ShowCaption="False" IsNewNode="True">
             <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
@@ -2705,9 +2726,9 @@
     </DetailView>
     <ListView Id="fmСOrderAnalitycWorkType_ListView" AllowDelete="False" AllowEdit="False" NewItemRowPosition="None">
       <Columns>
+        <ColumnInfo Id="SortOrder" Width="20" />
         <ColumnInfo Id="Code" Width="100" />
         <ColumnInfo Id="Name" Width="300" />
-        <ColumnInfo Id="SortOrder" Width="20" />
       </Columns>
     </ListView>
     <ListView Id="fmСOrderAnalitycWorkType_LookupListView">
@@ -2854,7 +2875,7 @@
       </Layout>
     </DetailView>
     <ListView Id="ReportParametersObjectBase_ListView" UseServerMode="True" />
-    <ListView Id="TrwIContractParty_Exchange_ListView" ClassName="IntecoAG.ERM.Trw.Contract.TrwIContractParty" IsNewNode="True">
+    <ListView Id="TrwIContractParty_Exchange_ListView" ClassName="IntecoAG.ERM.CRM.Contract.crmContractParty" Criteria="[CfrUserParty] Is Not Null" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="TrwCfr" PropertyName="TrwCfr" View="" Width="70" Index="-1" IsNewNode="True" />
         <ColumnInfo Id="TrwCfrPerson" PropertyName="TrwCfrPerson" View="" Width="70" Index="-1" IsNewNode="True" />
@@ -2880,6 +2901,68 @@
         <ColumnInfo Id="TrwExportState" PropertyName="TrwExportState" View="" Width="70" Index="16" IsNewNode="True" />
       </Columns>
     </ListView>
+    <ListView Id="TrwIOrder_Exchange_ListView" ClassName="IntecoAG.ERM.Trw.Contract.TrwOrder" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="ComponentType" PropertyName="ComponentType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TrwInternalCode" PropertyName="TrwInternalCode" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="TrwCode" PropertyName="TrwCode" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="TrwFinWorkTypeCode" PropertyName="TrwFinWorkTypeCode" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="Deal_TrwInternalNumber" PropertyName="Deal.TrwInternalNumber" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Deal_TrwNumber" PropertyName="Deal.TrwNumber" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="TrwOrderWorkTypeCode" PropertyName="TrwOrderWorkTypeCode" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Deal_TrwDateValidFrom" PropertyName="Deal.TrwDateValidFrom" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Deal_TrwDateValidToFact" PropertyName="Deal.TrwDateValidToFact" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="Deal_TrwDateValidToPlan" PropertyName="Deal.TrwDateValidToPlan" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Deal" PropertyName="Deal" Width="70" Index="10" IsNewNode="True" />
+      </Columns>
+      <Filters IsNewNode="True">
+        <Filter Id="@5d0d44d9-1562-4fb8-a5ab-cae38f5e4b19" Criteria="[TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,CREATED# Or [TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,REJECTED# Or [TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,CHANGED#" Index="0" IsNewNode="True" />
+        <Filter Id="@cff17d66-708e-44ee-adcc-0ba87d546428" Criteria="[TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,PREPARED#" Index="1" IsNewNode="True" />
+        <Filter Id="@fd11b6ab-a23e-4d39-95fa-fa3534468e85" Criteria="[TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,CONFIRMED#" Index="2" IsNewNode="True" />
+        <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" IsNewNode="True" />
+      </Filters>
+    </ListView>
+    <DetailView Id="TrwOrder_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="TrwCode" ViewItem="TrwCode" ShowCaption="" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwInternalCode" ViewItem="TrwInternalCode" ShowCaption="" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwInternalNumber" ViewItem="TrwInternalNumber" ShowCaption="" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwExportState" ViewItem="TrwExportState" ShowCaption="" Index="3" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="TrwOrder">
+              <LayoutGroup Id="TrwOrder_col1">
+                <LayoutItem Id="TrwCode" Removed="True" />
+                <LayoutItem Id="TrwContract" Removed="True" />
+                <LayoutItem Id="TrwInternalCode" Removed="True" />
+                <LayoutItem Id="TrwInternalNumber" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="TrwOrder_col2">
+                <LayoutItem Id="TrwExportState" Removed="True" />
+                <LayoutItem Id="TrwFinWorkTypeCode" Removed="True" />
+                <LayoutItem Id="TrwOrderWorkType" Removed="True" />
+                <LayoutItem Id="TrwOrderWorkTypeCode" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Index="0" IsNewNode="True">
+              <LayoutItem Id="TrwContract" ViewItem="TrwContract" ShowCaption="" Index="3" IsNewNode="True" />
+              <LayoutGroup Id="TrwOrderWorkType" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="TrwOrderWorkType" ViewItem="TrwOrderWorkType" ShowCaption="" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TrwFinWorkTypeCode" ViewItem="TrwFinWorkTypeCode" ShowCaption="" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TrwOrderWorkTypeCode" ViewItem="TrwOrderWorkTypeCode" ShowCaption="" Index="2" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="TrwSaleNomenclatures" Index="1" />
+            <LayoutGroup Id="AuditTrail" Index="2" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="TrwPartyParty_DetailView">
       <Items>
         <PropertyEditor Id="Name" RowCount="3" />
@@ -2969,6 +3052,74 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="TrwSaleNomenclature_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="TrwCode" ViewItem="TrwCode" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwExportState" ViewItem="TrwExportState" Index="1" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwName" ViewItem="TrwName" Index="2" RelativeSize="60" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="TrwSaleNomenclature">
+              <LayoutGroup Id="TrwSaleNomenclature_col1">
+                <LayoutItem Id="Nomenclature" ViewItem="Nomenclature" Removed="True" />
+                <LayoutItem Id="Order" ViewItem="Order" Removed="True" />
+                <LayoutItem Id="TrwCode" ViewItem="TrwCode" Removed="True" />
+                <LayoutItem Id="TrwName" ViewItem="TrwName" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="TrwSaleNomenclature_col2">
+                <LayoutItem Id="TrwExportState" ViewItem="TrwExportState" Removed="True" />
+                <LayoutItem Id="TrwMeasurementUnit" ViewItem="TrwMeasurementUnit" Removed="True" />
+                <LayoutItem Id="TrwSaleNomenclatureMilitaryType" ViewItem="TrwSaleNomenclatureMilitaryType" Removed="True" />
+                <LayoutItem Id="TrwSaleNomenclatureType" ViewItem="TrwSaleNomenclatureType" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" Removed="True">
+            <LayoutItem Id="TrwDescription" ViewItem="TrwDescription" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="3">
+            <LayoutGroup Id="Common" Index="0" IsNewNode="True">
+              <LayoutGroup Id="Simple" Index="0" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="Simple_col1" Direction="Vertical" Index="0" IsNewNode="True">
+                  <LayoutItem Id="Nomenclature" ViewItem="Nomenclature" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="TrwSaleNomenclatureType" ViewItem="TrwSaleNomenclatureType" Index="3" IsNewNode="True" />
+                  <LayoutItem Id="TrwMeasurementUnit" ViewItem="TrwMeasurementUnit" Index="4" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="Simple_col2" IsNewNode="True">
+                  <LayoutItem Id="Order" ViewItem="Order" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="TrwSaleNomenclatureMilitaryType" ViewItem="TrwSaleNomenclatureMilitaryType" Index="2" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutItem Id="TrwDescription" ViewItem="TrwDescription" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="TrwOrders" Index="1" />
+            <LayoutGroup Id="AuditTrail" Index="2" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="TrwSaleNomenclature_Exchange_ListView" ClassName="IntecoAG.ERM.Trw.Nomenclature.TrwSaleNomenclature" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="ComponentType" PropertyName="ComponentType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TrwCode" PropertyName="TrwCode" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="TrwName" PropertyName="TrwName" Width="400" SortIndex="0" SortOrder="Ascending" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="TrwSaleNomenclatureMilitaryType" PropertyName="TrwSaleNomenclatureMilitaryType" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="TrwSaleNomenclatureType" PropertyName="TrwSaleNomenclatureType" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="TrwMeasurementUnit" PropertyName="TrwMeasurementUnit" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="TrwDescription" PropertyName="TrwDescription" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Order" PropertyName="Order" Width="70" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Nomenclature" PropertyName="Nomenclature" Width="70" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="TrwExportState" PropertyName="TrwExportState" Index="8" IsNewNode="True" />
+      </Columns>
+      <Filters CurrentFilterId="@5d0d44d9-1562-4fb8-a5ab-cae38f5e4b19" IsNewNode="True">
+        <Filter Id="@5d0d44d9-1562-4fb8-a5ab-cae38f5e4b19" Criteria="[TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,CREATED# Or [TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,REJECTED# Or [TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,CHANGED#" Index="0" IsNewNode="True" />
+        <Filter Id="@cff17d66-708e-44ee-adcc-0ba87d546428" Criteria="[TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,PREPARED#" Index="1" IsNewNode="True" />
+        <Filter Id="@fd11b6ab-a23e-4d39-95fa-fa3534468e85" Criteria="[TrwExportState] = ##Enum#IntecoAG.ERM.Trw.Exchange.TrwExchangeExportStates,CONFIRMED#" Index="2" IsNewNode="True" />
+        <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" IsNewNode="True" />
+      </Filters>
+    </ListView>
     <DetailView Id="XafExtReportData_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

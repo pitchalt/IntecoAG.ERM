@@ -5,10 +5,74 @@ using DevExpress.Persistent.Base;
 
 namespace IntecoAG.ERM.Trw {
 
+    public enum TrwOrderWorkType {
+        WORK_TYPE_UNKNOW = 0,
+        WORK_TYPE_LINE = 11,
+        WORK_TYPE_NIOKR = 21,
+        WORK_TYPE_OTHER_LEASE = 31,
+        WORK_TYPE_OTHER_BUILDING = 32,
+        WORK_TYPE_OTHER_COMMUNAL = 33,
+        WORK_TYPE_OTHER_SALE = 34,
+        WORK_TYPE_OTHER_SOCIAL = 35,
+        WORK_TYPE_OTHER_OTHER = 36
+    }
+
+    public static class TrwOrderWorkTypeLogic {
+        public static String GetOrderWorkTypeCode(TrwOrderWorkType work_type) {
+            switch (work_type) { 
+                case TrwOrderWorkType.WORK_TYPE_LINE:
+                    return "Группа 1";
+                case TrwOrderWorkType.WORK_TYPE_NIOKR:
+                    return "Группа 2";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_LEASE:
+                    return "Предоставление в аренду";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_BUILDING:
+                    return "Строительно-ремонтные услуги";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_COMMUNAL:
+                    return "Коммунальные услуги";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_SALE:
+                    return "Торговые услуги";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_SOCIAL:
+                    return "Использование объектов социального назначения";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_OTHER:
+                    return "Прочие услуги и работы";
+                default:
+                    return null;
+            }
+        }
+        public static String GetFinWorkTypeCode(TrwOrderWorkType work_type) {
+            switch (work_type) { 
+                case TrwOrderWorkType.WORK_TYPE_LINE:
+                    return "11";
+                case TrwOrderWorkType.WORK_TYPE_NIOKR:
+                    return "22";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_LEASE:
+                    return "33";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_BUILDING:
+                    return "33";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_COMMUNAL:
+                    return "33";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_SALE:
+                    return "33";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_SOCIAL:
+                    return "33";
+                case TrwOrderWorkType.WORK_TYPE_OTHER_OTHER:
+                    return "33";
+                default:
+                    return null;
+            }
+        }
+    }
+
     [DomainComponent]
     public interface TrwIOrder {
         TrwIContract TrwContract { get; }
         String TrwCode { get; }
+        String TrwInternalCode { get; }
+
+        TrwOrderWorkType TrwOrderWorkType { get; }
+        String TrwOrderWorkTypeCode { get; }
+        String TrwFinWorkTypeCode { get; }
         //string CalculatedProperty { get; }
         //int SumMethod(int val1, int val2);
     }

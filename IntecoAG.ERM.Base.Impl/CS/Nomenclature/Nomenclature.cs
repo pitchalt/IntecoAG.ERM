@@ -13,12 +13,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+//
 using DevExpress.Xpo;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
+//
 using IntecoAG.ERM.CS.Measurement;
 using IntecoAG.ERM.FM;
+using IntecoAG.ERM.Trw;
+//
 
 namespace IntecoAG.ERM.CS.Nomenclature
 {
@@ -31,6 +35,10 @@ namespace IntecoAG.ERM.CS.Nomenclature
     {
         public csNomenclature(Session ses) : base(ses) { }
 
+        public override void AfterConstruction() {
+            base.AfterConstruction();
+        }
+
 
         #region ПОЛЯ КЛАССА
 
@@ -38,37 +46,47 @@ namespace IntecoAG.ERM.CS.Nomenclature
 
 
         #region СВОЙСТВА КЛАССА
-
+        //
         private string _Code;
         /// <summary>
-        /// Код типа номенклатуры
+        /// Код номенклатуры
         /// </summary>
         [VisibleInListView(true)]
         [VisibleInLookupListView(true)]
         public string Code {
             get { return _Code; }
-            set { if (_Code != value) SetPropertyValue("Code", ref _Code, value); }
+            set { SetPropertyValue("Code", ref _Code, value); }
         }
-
+        //
+        private string _CodeTechnical;
         /// <summary>
-        /// Наименование типа номенклатуры
+        /// Технический код номенклатуры
+        /// </summary>
+        [VisibleInListView(true)]
+        [VisibleInLookupListView(true)]
+        public string CodeTechnical {
+            get { return _CodeTechnical; }
+            set { SetPropertyValue("CodeTechnical", ref _CodeTechnical, value); }
+        }
+        /// <summary>
+        /// Наименование номенклатуры
         /// </summary>
         private string _NameShort;
         [VisibleInListView(true)]
         [VisibleInLookupListView(true)]
         public string NameShort {
             get { return _NameShort; }
-            set { if (_NameShort != value) SetPropertyValue("NameShort", ref _NameShort, value); }
+            set { SetPropertyValue("NameShort", ref _NameShort, value); }
         }
 
         /// <summary>
-        /// 
+        /// Полное наименование
         /// </summary>
         private string _NameFull;
         public string NameFull
         {
             get { return _NameFull; }
-            set { if (_NameFull != value) SetPropertyValue<String>("NameFull", ref _NameFull, value); }
+            set { SetPropertyValue<String>("NameFull", ref _NameFull, value); }
         }
 
         /// <summary>
@@ -78,7 +96,7 @@ namespace IntecoAG.ERM.CS.Nomenclature
         public csUnit BaseUnit
         {
             get { return _BaseUnit; }
-            set { if (_BaseUnit != value) SetPropertyValue<csUnit>("BaseUnit", ref _BaseUnit, value); }
+            set { SetPropertyValue<csUnit>("BaseUnit", ref _BaseUnit, value); }
         }
 
         /// <summary>
@@ -88,7 +106,7 @@ namespace IntecoAG.ERM.CS.Nomenclature
         public fmCostItem CostItem
         {
             get { return _CostItem; }
-            set { if (_CostItem != value) SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value); }
+            set { SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value); }
         }
 
         #endregion
@@ -124,6 +142,21 @@ namespace IntecoAG.ERM.CS.Nomenclature
         //        NomenclatureType = (csNomenclatureType) value;
         //    }
         //}
+        #region Trw
+
+        private TrwSaleNomenclatureType _TrwSaleNomenclatureType;
+        public TrwSaleNomenclatureType TrwSaleNomenclatureType {
+            get { return _TrwSaleNomenclatureType; }
+            set { SetPropertyValue<TrwSaleNomenclatureType>("TrwSaleNomenclatureType", ref _TrwSaleNomenclatureType, value); }
+        }
+
+        private TrwSaleNomenclatureMeasurementUnit _TrwMeasurementUnit;
+        public TrwSaleNomenclatureMeasurementUnit TrwMeasurementUnit {
+            get { return _TrwMeasurementUnit; }
+            set { SetPropertyValue<TrwSaleNomenclatureMeasurementUnit>("TrwMeasurementUnit", ref _TrwMeasurementUnit, value); }
+        }
+
+        #endregion Trw
     }
 
 }

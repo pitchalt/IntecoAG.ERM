@@ -277,6 +277,12 @@
     <Compile Include="CS\csNMCourseEditorViewController.Designer.cs">
       <DependentUpon>csNMCourseEditorViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CS\Nomenclature\csNomenclatureImportController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CS\Nomenclature\csNomenclatureImportController.Designer.cs">
+      <DependentUpon>csNomenclatureImportController.cs</DependentUpon>
+    </Compile>
     <Compile Include="CS\RusNumber.cs" />
     <Compile Include="CS\Security\csCSecurityUserListController.cs">
       <SubType>Component</SubType>
@@ -284,12 +290,7 @@
     <Compile Include="CS\Security\csCSecurityUserListController.Designer.cs">
       <DependentUpon>csCSecurityUserListController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_214.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_202.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_210.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_212.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_218.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -488,6 +489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CS\csNMCourseEditorViewController.resx">
       <DependentUpon>csNMCourseEditorViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CS\Nomenclature\csNomenclatureImportController.resx">
+      <DependentUpon>csNomenclatureImportController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CS\Security\csCSecurityUserListController.resx">
       <DependentUpon>csCSecurityUserListController.cs</DependentUpon>

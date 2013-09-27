@@ -61,9 +61,12 @@
       <OwnMembers>
         <Member Name="AddressFact" Caption="Адрес фактический" />
         <Member Name="AddressLegal" Caption="Адрес юридический" />
+        <Member Name="AddressPost" Caption="Адрес почтовый" />
         <Member Name="Bank" Caption="Банк" />
         <Member Name="BankAccount" Caption="Счет в банке" />
         <Member Name="BIC" Caption="Swift BIC" />
+        <Member Name="CfrUserParty" Caption="ЦФО" />
+        <Member Name="ContractDeal" Caption="Сделка" />
         <Member Name="CurrentAcc" Caption="Номер расч.счета " />
         <Member Name="INN" Caption="ИНН" />
         <Member Name="KorAcc" Caption="Номер кор.счета" />
@@ -72,6 +75,14 @@
         <Member Name="Party" Caption="Сторона" />
         <Member Name="RCBIC" Caption="БИК" />
         <Member Name="RegNumber" Caption="Рег.Номер" />
+        <Member Name="TrwCfr" Caption="ТРВ ЦФО" />
+        <Member Name="TrwCfrPerson" Caption="ТРВ ЦФО Контрагент" />
+        <Member Name="TrwContract" Caption="ТРВ Договор" />
+        <Member Name="TrwContractPartyType" Caption="ТРВ Тип контрагента" />
+        <Member Name="TrwContractType" Caption="ТРВ Тип договора" />
+        <Member Name="TrwExportState" Caption="ТРВ Статус" />
+        <Member Name="TrwInternalNumber" Caption="ТРВ Внутр.Номер" />
+        <Member Name="TrwPartyPerson" Caption="ТРВ Контрагент" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.CRM.Contract.crmContractRegistrationLog" Caption="Журнал Регистрации Дог.">
@@ -169,6 +180,23 @@
         <Member Name="Supplier" Caption="Исполнитель" />
         <Member Name="TRVContractor" Caption="ТРВ Ген.Заказчик" />
         <Member Name="TRVType" Caption="ТРВ ТипДоговора" />
+        <Member Name="TrwContractMarket" Caption="ТРВ Ген.Заказчик" />
+        <Member Name="TrwCustomerParty" Caption="ТРВ Сторона Заказчик" />
+        <Member Name="TrwDate" Caption="ТРВ Дата" />
+        <Member Name="TrwDateSigning" Caption="ТРВ Дата подписания" />
+        <Member Name="TrwDateValidFrom" Caption="ТРВ Дата С" />
+        <Member Name="TrwDateValidToFact" Caption="ТРВ Дата ПО факт" />
+        <Member Name="TrwDateValidToPlan" Caption="ТРВ Дата По план" />
+        <Member Name="TrwInternalNumber" Caption="ТРВ Внутр.Номер" />
+        <Member Name="TrwNumber" Caption="ТРВ Номер" />
+        <Member Name="TrwObligationCurrency" Caption="ТРВ Валюта договора" />
+        <Member Name="TrwObligationSumma" Caption="ТРВ Сумма договора" />
+        <Member Name="TrwOrders" Caption="ТРВ Заказы" />
+        <Member Name="TrwPaymentCurrency" Caption="ТРВ Валюта платежа" />
+        <Member Name="TrwSaleOrders" Caption="ТРВ Сбытовые Заказы" />
+        <Member Name="TrwSubject" Caption="ТРВ Предмет" />
+        <Member Name="TrwSupplierParty" Caption="ТРВ Сторона Поставщик" />
+        <Member Name="TrwVATRate" Caption="ТРВ Ставка НДС" />
         <Member Name="UserRegistrator" Caption="Рег.Польз." />
       </OwnMembers>
     </Class>
@@ -925,6 +953,33 @@
         <Member Name="TrwContractSuperType" Caption="Тип договора" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.Trw.Contract.TrwOrder">
+      <OwnMembers>
+        <Member Name="Deal" Caption="Простой договор" />
+        <Member Name="Subject" Caption="Тема" />
+        <Member Name="TrwCode" Caption="ТРВ Код" />
+        <Member Name="TrwContract" Caption="ТРВ Контракт" />
+        <Member Name="TrwExportState" Caption="Статус" />
+        <Member Name="TrwFinWorkTypeCode" Caption="ТРВ ФКД" />
+        <Member Name="TrwInternalCode" Caption="ТРВ Заказ номер" />
+        <Member Name="TrwInternalNumber" Caption="Внутр.Номер" />
+        <Member Name="TrwOrderWorkType" Caption="ТРВ Вид деятельности" />
+        <Member Name="TrwOrderWorkTypeCode" Caption="ТРВ Код вида деятельности" />
+        <Member Name="TrwSaleNomenclatures" Caption="Доступные ЕНГП" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Nomenclature.TrwSaleNomenclature" Caption="ТРВ ЕНГП">
+      <OwnMembers>
+        <Member Name="Nomenclature" Caption="Номенклатура ФПиК" />
+        <Member Name="Order" Caption="Заказ ФПиК" />
+        <Member Name="TrwCode" Caption="ТРВ Код" />
+        <Member Name="TrwDescription" Caption="ТРВ Дополнительно" />
+        <Member Name="TrwMeasurementUnit" Caption="ТРВ Ед.Изм." />
+        <Member Name="TrwName" Caption="ТРВ Описание" />
+        <Member Name="TrwSaleNomenclatureMilitaryType" Caption="ТРВ Назначение продукции" />
+        <Member Name="TrwSaleNomenclatureType" Caption="ТРВ Группа продукции" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.Trw.Party.TrwPartyParty" Caption="ТРВ Контрагент">
       <OwnMembers>
         <Member Name="AddressLegalString" Caption="Юр.Адрес" />
@@ -1138,6 +1193,38 @@
         <LocalizationItem Name="PARTY_WITH_BANK_ACCOUNT" Value="С Расч.Счетом" />
         <LocalizationItem Name="PARTY_WITHOUT_BANK_ACCOUNT" Value="Без Расч.Счетов" />
       </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.TrwOrderWorkType">
+        <LocalizationItem Name="WORK_TYPE_LINE" Value="1. Серийное и мелкосерийное производство" />
+        <LocalizationItem Name="WORK_TYPE_NIOKR" Value="2. НИОКР" />
+        <LocalizationItem Name="WORK_TYPE_OTHER_BUILDING" Value="3.2 Строительно-ремонтные услуги" />
+        <LocalizationItem Name="WORK_TYPE_OTHER_COMMUNAL" Value="3.3 Коммунальные услуги" />
+        <LocalizationItem Name="WORK_TYPE_OTHER_LEASE" Value="3.1 Предоставление в аренду" />
+        <LocalizationItem Name="WORK_TYPE_OTHER_OTHER" Value="3.6 Прочие услуги и работы" />
+        <LocalizationItem Name="WORK_TYPE_OTHER_SALE" Value="3.4 Торговые услуги" />
+        <LocalizationItem Name="WORK_TYPE_OTHER_SOCIAL" Value="3.5 Использование объектов социального назначения" />
+        <LocalizationItem Name="WORK_TYPE_UNKNOW" Value="Неопределено" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.TrwSaleNomenclatureMeasurementUnit">
+        <LocalizationItem Name="SALE_NOMENCLATURE_MEASUREMET_UNIT_ITEM" Value="Штуки" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_MEASUREMET_UNIT_KILOGRAM" Value="Килограм" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_MEASUREMET_UNIT_TONNE" Value="Тонна" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_MEASUREMET_UNIT_UNKNOW" Value="Неопределена" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_MEASUREMET_UNIT_WORK" Value="Единица работ" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.TrwSaleNomenclatureMilitaryType">
+        <LocalizationItem Name="SALE_NOMENCLATURE_MILITARY_TYPE_CIVIL" Value="Гражданская продукция" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_MILITARY_TYPE_MILITARY" Value="Военная продукция" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_MILITARY_TYPE_UNKNOW" Value="Неопределено" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.TrwSaleNomenclatureType">
+        <LocalizationItem Name="SALE_NOMENCLATURE_TYPE_CIVIL_GOODS" Value="2. Товары народного потребления" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_TYPE_COMPONENT" Value="3. Полуфабрикаты" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_TYPE_OTHER" Value="6. Прочая продукция" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_TYPE_OTHER_WORK" Value="5. Работы и услуги (кроме НИОКР)" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_TYPE_SCIENCE_WORK" Value="4. НИОКР" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_TYPE_SPECIAL_MACHINE" Value="1. Спецтехника" />
+        <LocalizationItem Name="SALE_NOMENCLATURE_TYPE_UNKNOW" Value="Неопределена" />
+      </LocalizationGroup>
     </LocalizationGroup>
     <LocalizationGroup Name="Namespaces">
       <LocalizationItem Name="IntecoAG.ERM.CRM" Value="ERM.CRM" />
@@ -1170,9 +1257,25 @@
       <LocalizationItem Name="IntecoAG.ERM.Module" Value="ERM.Module" />
       <LocalizationItem Name="IntecoAG.ERM.Module.ReportHelper" Value="ERM.ПомошникОтчетов" />
       <LocalizationItem Name="IntecoAG.ERM.PM" Value="ERM.PM" />
+      <LocalizationItem Name="IntecoAG.ERM.Trw" Value="Erm.Trw" />
+      <LocalizationItem Name="IntecoAG.ERM.Trw.Contract" Value="Erm.Trw.Contract" />
+      <LocalizationItem Name="IntecoAG.ERM.Trw.Exchange" Value="Erm.Trw.Exchange" />
+      <LocalizationItem Name="IntecoAG.ERM.Trw.Nomenclature" Value="ERM.Trw.Nomenclature" />
+      <LocalizationItem Name="IntecoAG.ERM.Trw.Party" Value="Erm.Trw.Party" />
+      <LocalizationItem Name="IntecoAG.ERM.Trw.Person" Value="Erm.Trw.Person" />
       <LocalizationItem Name="IntecoAG.ERM.XAFExt" Value="ERM.XAFExt" />
     </LocalizationGroup>
   </Localization>
+  <NavigationItems>
+    <Items>
+      <Item Id="GeneralCompanyReports">
+        <Items>
+          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" Caption="ТРВ Заказы" />
+          <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" Caption="ТРВ Договоры" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Validation>
     <Rules>
       <RuleCriteria Id="crmDeliveryItem.FullCheck" CustomMessageTemplate="Сумма &quot;Всего&quot; должна быть равна &quot;Сумма НДС&quot; + &quot;Стоимость&quot;" />
@@ -1380,6 +1483,23 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="TrwIOrder_Exchange_ListView">
+      <Filters>
+        <Filter Id="@5d0d44d9-1562-4fb8-a5ab-cae38f5e4b19" Caption="Для проработки" />
+        <Filter Id="@cff17d66-708e-44ee-adcc-0ba87d546428" Caption="Подготовлены" />
+        <Filter Id="@fd11b6ab-a23e-4d39-95fa-fa3534468e85" Caption="Подтверждены" />
+        <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" Caption="Все" />
+      </Filters>
+    </ListView>
+    <DetailView Id="TrwOrder_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Сведения" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="TrwPartyParty_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
@@ -1395,6 +1515,23 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="TrwSaleNomenclature_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Caption="Сведения" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="TrwSaleNomenclature_Exchange_ListView">
+      <Filters>
+        <Filter Id="@5d0d44d9-1562-4fb8-a5ab-cae38f5e4b19" Caption="Для проработки" />
+        <Filter Id="@cff17d66-708e-44ee-adcc-0ba87d546428" Caption="Подготовлены" />
+        <Filter Id="@fd11b6ab-a23e-4d39-95fa-fa3534468e85" Caption="Подтверждены" />
+        <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" Caption="Все" />
+      </Filters>
+    </ListView>
     <ListView Id="XafExtReportData_ListView" Caption="Отчеты" />
   </Views>
 </Application>

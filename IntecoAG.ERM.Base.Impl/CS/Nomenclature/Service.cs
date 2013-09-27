@@ -12,8 +12,11 @@
 
 using System;
 using System.Collections.Generic;
+//
 using DevExpress.Xpo;
 using DevExpress.Persistent.Base;
+//
+using IntecoAG.ERM.Trw;
 
 namespace IntecoAG.ERM.CS.Nomenclature
 {
@@ -25,6 +28,10 @@ namespace IntecoAG.ERM.CS.Nomenclature
     public class csService : csNomenclature
     {
         public csService(Session ses) : base(ses) { }
+        public override void AfterConstruction() {
+            base.AfterConstruction();
+            TrwMeasurementUnit = TrwSaleNomenclatureMeasurementUnit.SALE_NOMENCLATURE_MEASUREMET_UNIT_WORK;
+        }
 
 
         #region ПОЛЯ КЛАССА

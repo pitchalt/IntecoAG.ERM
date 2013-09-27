@@ -55,6 +55,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
                 SetPropertyValue("csService", ref _Service, value);
                 if (!IsLoading) {
                     this.NomenclatureName = this.Service.NameShort;
+                    UpdateTrwNomenclature();
                 }
             }
         }

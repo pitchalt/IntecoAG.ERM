@@ -139,6 +139,7 @@
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CRM.Contract.Deal.crmDealWithStageVersion));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Party.TrwPartyParty));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Contract.TrwContractExchangeDoc));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Nomenclature.TrwSaleNomenclature));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase));

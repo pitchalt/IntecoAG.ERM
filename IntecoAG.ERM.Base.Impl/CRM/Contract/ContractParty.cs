@@ -13,6 +13,7 @@
 using System;
 using System.Collections.Generic;
 using DevExpress.Xpo;
+using DevExpress.Xpo.Helpers;
 using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
@@ -20,6 +21,7 @@ using DevExpress.Persistent.Validation;
 using DevExpress.ExpressApp.ConditionalAppearance;
 //
 using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CS.Common;
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
@@ -33,8 +35,16 @@ namespace IntecoAG.ERM.CRM.Contract
     /// Класс ContractParty, представляющий участников договора
     /// </summary>
     //[DefaultClassOptions]
+    [LikeSearchPathList(new string[] { 
+        "TrwInternalNumber",
+        "ContractDeal.TrwNumber",
+        "Party.Person.TrwParty.TrwName",
+        "Party.Person.TrwParty.TrwINN",
+        "Party.Person.TrwParty.TrwKPP"
+    })]
     [Persistent("crmContractParty")]
-    public partial class crmContractParty : VersionRecord, TrwIContractParty   //BaseObject, IVersionSupport
+    [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
+    public partial class crmContractParty : VersionRecord, TrwIContractParty//, IPersistentInterfaceData<TrwIContractParty>   //BaseObject, IVersionSupport
     {
         public crmContractParty(Session ses) : base(ses) { }
         public crmContractParty(Session ses, VersionStates state) : base(ses, state) { }
@@ -43,6 +53,9 @@ namespace IntecoAG.ERM.CRM.Contract
             base.VersionAfterConstruction();
         }
 
+        protected override void OnDeleting() {
+            throw new InvalidOperationException("Delete is not allowed");
+        }
 
         #region ПОЛЯ КЛАССА
 
@@ -257,9 +270,9 @@ namespace IntecoAG.ERM.CRM.Contract
         public TrwICfr TrwCfr {
             get { return CfrUserParty; }
         }
-        [PersistentAlias("CfrUserParty.Person")]
+        [PersistentAlias("CfrUserParty.Party.Person")]
         public TrwIPerson TrwCfrPerson {
-            get { return CfrUserParty.Person; }
+            get { return CfrUserParty != null ? CfrUserParty.Party.Person : null; }
         }
         [PersistentAlias("Party.Person")]
         public TrwIPerson TrwPartyPerson {
@@ -275,6 +288,15 @@ namespace IntecoAG.ERM.CRM.Contract
         }
 
         #endregion Trw
+
+        //public TrwIContractParty Instance {
+        //    get { return this; }
+        //}
+
+
+        public void Refresh() {
+            throw new NotImplementedException();
+        }
     }
 
 }

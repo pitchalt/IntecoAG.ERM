@@ -9,11 +9,13 @@
 {*******************************************************************}
 */
 #endregion Copyright (c) 2011 INTECOAG.
-
+//
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Linq;
+//
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.Validation;
@@ -22,7 +24,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-
+//
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CS.Measurement;
@@ -33,9 +35,9 @@ using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Contract.Obligation;
-
-namespace IntecoAG.ERM.CRM.Contract.Obligation
-{
+using IntecoAG.ERM.Trw.Nomenclature;
+//
+namespace IntecoAG.ERM.CRM.Contract.Obligation {
     public enum CostCalculateMethod {
         NOT_SELECT = 0,
         NO_COST = 1,
@@ -92,11 +94,10 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
     //[RuleCriteria("crmDeliveryItem.NDSRateRequired2", DefaultContexts.Save, "NDSRate == 'Null'", "NDSRate Required", TargetCriteria="!IsNoCost")]
     [MapInheritance(MapInheritanceType.ParentTable)]
     [VisibleInReports]
-    public abstract partial class crmDeliveryItem : crmObligationTransfer
-    {
+    public abstract partial class crmDeliveryItem : crmObligationTransfer {
         public crmDeliveryItem(Session session) : base(session) { }
         public crmDeliveryItem(Session session, VersionStates state) : base(session, state) { }
-        
+
         public override void VersionAfterConstruction() {
             base.VersionAfterConstruction();
         }
@@ -137,12 +138,12 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
             get { return _NDSCalculateMethod; }
             set {
                 SetPropertyValue<NDSCalculateMethod>("NDSCalculateMethod", ref _NDSCalculateMethod, value);
-                if (!IsLoading ) {
+                if (!IsLoading) {
                     if (this.NDSCalculateMethod == NDSCalculateMethod.FROM_COST ||
                         this.NDSCalculateMethod == NDSCalculateMethod.FROM_PRICE)
                         if (this.FullCalculateMethod == FullCalculateMethod.CALC_NDS) {
                             this.FullCalculateMethod = FullCalculateMethod.CALC_FULL;
-                    }
+                        }
                     UpdateAll();
                 }
             }
@@ -193,17 +194,17 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
         }
         //
         void UpdateCost() {
-            switch (this.CostCalculateMethod) { 
+            switch (this.CostCalculateMethod) {
                 case CostCalculateMethod.NOT_SELECT:
-                    if (this.Price != 0 && this.SummCost != 0 && this.CountValue == 0 ) {
+                    if (this.Price != 0 && this.SummCost != 0 && this.CountValue == 0) {
                         this.CostCalculateMethod = CostCalculateMethod.CALC_COUNT;
                         break;
                     }
-                    if (this.Price != 0 && this.SummCost == 0 && this.CountValue != 0 ) {
+                    if (this.Price != 0 && this.SummCost == 0 && this.CountValue != 0) {
                         this.CostCalculateMethod = CostCalculateMethod.CALC_COST;
                         break;
                     }
-                    if (this.Price == 0 && this.SummCost != 0 && this.CountValue != 0 ) {
+                    if (this.Price == 0 && this.SummCost != 0 && this.CountValue != 0) {
                         this.CostCalculateMethod = CostCalculateMethod.CALC_PRICE;
                         break;
                     }
@@ -292,7 +293,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
         }
         //
         void UpdateFull() {
-            switch (this.FullCalculateMethod) { 
+            switch (this.FullCalculateMethod) {
                 case FullCalculateMethod.NOT_SELECT:
                     if (this.SummFull == 0 && this.SummCost != 0 && (this.SummNDS != 0 || this.NDSCalculateMethod == NDSCalculateMethod.NO_NDS)) {
                         this.FullCalculateMethod = FullCalculateMethod.CALC_FULL;
@@ -394,7 +395,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
         /// <summary>
         /// CountUnit
         /// </summary>
-        [RuleRequiredField("crmDeliveryItem.CountUnit", DefaultContexts.Save, TargetCriteria="!IsNoCount")]
+        [RuleRequiredField("crmDeliveryItem.CountUnit", DefaultContexts.Save, TargetCriteria = "!IsNoCount")]
         public CS.Measurement.csUnit CountUnit {
             get { return _CountUnit; }
             set { SetPropertyValue("CountUnit", ref _CountUnit, value); }
@@ -477,7 +478,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
                 }
             }
         }
-        
+
         /// <summary>
         /// NomenclatureName
         /// </summary>
@@ -487,27 +488,58 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
             set { SetPropertyValue<string>("NomenclatureName", ref _NomenclatureName, value); }
         }
 
+        public override fmCOrder Order {
+            get {
+                return base.Order;
+            }
+            set {
+                base.Order = value;
+                if (!IsLoading) {
+                    UpdateTrwNomenclature();
+                }
+            }
+        }
         private crmDealNomenclature _DealNomenclature;
         /// <summary>
         /// 
         /// </summary>
         [Browsable(false)]
-        public crmDealNomenclature DealNomenclature {
+        public virtual crmDealNomenclature DealNomenclature {
             get { return _DealNomenclature; }
             set {
                 SetPropertyValue<crmDealNomenclature>("DealNomenclature", ref _DealNomenclature, value);
             }
         }
-        
+        //
+        [Persistent("TrwSaleNomenclature")]
+        private TrwSaleNomenclature _TrwSaleNomenclature;
+        [PersistentAlias("_TrwSaleNomenclature")]
+        public TrwSaleNomenclature TrwSaleNomenclature {
+            get { return _TrwSaleNomenclature; }
+        }
+
         #endregion
 
 
         #region МЕТОДЫ
 
-        //public override void UpdateCost(crmCostItem sp, Boolean mode) {
-        //    if (DeliveryUnit != null)
-        //        DeliveryUnit.UpdateCost(sp, mode);
-        //}
+        public void UpdateTrwNomenclature() {
+            if (Nomenclature == null || Order == null) return;
+            TrwSaleNomenclature old = _TrwSaleNomenclature;
+            if (old == null || old.Order != Order || old.Nomenclature != Nomenclature) {
+                IObjectSpace os = ObjectSpace.FindObjectSpaceByObject(this);
+                _TrwSaleNomenclature = os.GetObjects<TrwSaleNomenclature>(
+                        new OperandProperty("Order") == Order &
+                        new OperandProperty("Nomenclature") == Nomenclature
+                    ).FirstOrDefault();
+                if (_TrwSaleNomenclature == null) {
+                    _TrwSaleNomenclature = os.CreateObject<TrwSaleNomenclature>();
+                    _TrwSaleNomenclature.Order = Order;
+                    _TrwSaleNomenclature.Nomenclature = Nomenclature;
+                }
+                OnChanged("TrwSaleNomenclature", old, _TrwSaleNomenclature);
+            }
+        }
 
         #endregion
 

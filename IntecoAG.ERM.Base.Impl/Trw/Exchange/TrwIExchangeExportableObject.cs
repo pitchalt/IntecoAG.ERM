@@ -6,15 +6,19 @@ using DevExpress.Persistent.Base;
 namespace IntecoAG.ERM.Trw.Exchange {
 
     public enum TrwExchangeExportStates { 
+        CREATED     =   0,
         PREPARED    =   1,
         EXPORTED    =   4,
         CONFIRMED   =   5,
-        REJECTED    =   6
+        REJECTED    =   6,
+        CHANGED     =   7
     }
 
     [DomainComponent]
     public interface TrwIExchangeExportableObject {
-        TrwExchangeExportStates TrwExportState { get; set; }
+        TrwExchangeExportStates TrwExportState { get; }
+
+        void Refresh();
         //string PersistentProperty { get; set; }
         //string CalculatedProperty { get; }
         //int SumMethod(int val1, int val2);

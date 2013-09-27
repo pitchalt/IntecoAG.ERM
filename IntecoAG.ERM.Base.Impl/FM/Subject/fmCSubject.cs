@@ -451,12 +451,13 @@ namespace IntecoAG.ERM.FM.Subject
         }
         #endregion
 
-        public String GetNextOrderNumber() { 
+        public Int32 GetNextOrderNumber() { 
             OrderNumberCurrent++;
-            return TrwCode + "/" + OrderNumberCurrent;
+//            return TrwCode + "/" + OrderNumberCurrent;
+            return OrderNumberCurrent;
         }
 
-        protected void DealsAdd(crmContractDeal deal) {
+        public void DealsAdd(crmContractDeal deal) {
             if (deal.TRVType == null || deal.TRVType.TrwContractSuperType != TrwContractSuperType.DEAL_SALE)
                     return;
             TrwOrder cur_order = null;
@@ -468,6 +469,13 @@ namespace IntecoAG.ERM.FM.Subject
                 cur_order = new TrwOrder(this.Session);
                 cur_order.Subject = this;
                 cur_order.Deal = deal;
+            }
+        }
+
+        [Action()]
+        public void RefreshDeals() {
+            foreach (crmContractDeal deal in Deals) {
+                DealsAdd(deal);
             }
         }
         //
