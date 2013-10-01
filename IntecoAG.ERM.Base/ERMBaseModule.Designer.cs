@@ -28,6 +28,7 @@
             // 
             // ERMBaseModule
             // 
+            this.AdditionalControllerTypes.Add(typeof(IntecoAG.XafExt.Bpmn.XafExtBpmnAcceptableObjectController));
             this.AdditionalExportedTypes.Add(typeof(DevExpress.Persistent.BaseImpl.Analysis));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Work.csEvent));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CS.Country.csAddress));
@@ -138,8 +139,8 @@
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.HRM.Organization.hrmCStaffPost));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.CRM.Contract.Deal.crmDealWithStageVersion));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Party.TrwPartyParty));
-            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Contract.TrwContractExchangeDoc));
             this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Nomenclature.TrwSaleNomenclature));
+            this.AdditionalExportedTypes.Add(typeof(IntecoAG.ERM.Trw.Exchange.TrwExchangeDocSaleNomenclature));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase));

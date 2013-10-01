@@ -14,13 +14,14 @@ using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.Exchange;
-
+using IntecoAG.XafExt.Bpmn;
+//
 namespace IntecoAG.ERM.Trw.Nomenclature {
 
     [Persistent("TrwNomenclature")]
     [DefaultProperty("TrwCode")]
     [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
-    public class TrwSaleNomenclature : csCComponent, TrwISaleNomenclature, TrwIExchangeExportableObject {
+    public class TrwSaleNomenclature : csCComponent, TrwISaleNomenclature, TrwExchangeIExportableObject, XafExtBpmnIAcceptableObject {
         public TrwSaleNomenclature(Session session) : base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
@@ -127,6 +128,8 @@ namespace IntecoAG.ERM.Trw.Nomenclature {
                 TrwExchangeExportStates old = _TrwExportState;
                 _TrwExportState = state;
                 OnChanged("TrwExportState", old, state);
+                if (StateChangedEvent != null)
+                    StateChangedEvent(this, new StateChangedEventArgs(IsAcceptable, IsRejectable));
             }
         }
 
@@ -156,9 +159,38 @@ namespace IntecoAG.ERM.Trw.Nomenclature {
         public void Refresh() {
             UpdatePropertys();
         }
-        [Action(PredefinedCategory.RecordEdit, TargetObjectsCriteria = "TrwExportState == 'CREATED' || TrwExportState == 'REJECTED' || TrwExportState == 'PREPARED' ")]
-        public void Confirm() {
-            switch (TrwExportState ) {
+//        [Action(PredefinedCategory.RecordEdit, TargetObjectsCriteria = "TrwExportState == 'CREATED' || TrwExportState == 'REJECTED' || TrwExportState == 'PREPARED' ")]
+        public event StateChangedEventHandler StateChangedEvent;
+
+        public bool IsAcceptable {
+            get {
+                switch (TrwExportState) {
+                    case TrwExchangeExportStates.CREATED:
+                    case TrwExchangeExportStates.REJECTED:
+                    case TrwExchangeExportStates.CHANGED:
+                    case TrwExchangeExportStates.PREPARED:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
+
+        public bool IsRejectable {
+            get {
+                switch (TrwExportState) {
+                    case TrwExchangeExportStates.PREPARED:
+                    case TrwExchangeExportStates.EXPORTED:
+                    case TrwExchangeExportStates.CONFIRMED:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
+
+        public void Accept(IObjectSpace os) {
+            switch (TrwExportState) {
                 case TrwExchangeExportStates.CREATED:
                 case TrwExchangeExportStates.REJECTED:
                     Validator.RuleSet.Validate(this, "Confirm");
@@ -166,6 +198,20 @@ namespace IntecoAG.ERM.Trw.Nomenclature {
                     break;
                 case TrwExchangeExportStates.PREPARED:
                     TrwExportStateSet(TrwExchangeExportStates.CONFIRMED);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void Reject(IObjectSpace os) {
+            switch (TrwExportState) {
+                case TrwExchangeExportStates.PREPARED:
+                case TrwExchangeExportStates.EXPORTED:
+                    TrwExportStateSet(TrwExchangeExportStates.REJECTED);
+                    break;
+                case TrwExchangeExportStates.CONFIRMED:
+                    TrwExportStateSet(TrwExchangeExportStates.REJECTED);
                     break;
                 default:
                     break;

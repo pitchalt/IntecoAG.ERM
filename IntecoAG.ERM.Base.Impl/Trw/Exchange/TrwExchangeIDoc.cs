@@ -1,16 +1,32 @@
 using System;
 using System.Collections.Generic;
+//
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 
 namespace IntecoAG.ERM.Trw.Exchange {
-    [DomainComponent]
-    public interface TrwIExchangeDoc {
-        //string PersistentProperty { get; set; }
-        //string CalculatedProperty { get; }
-        //int SumMethod(int val1, int val2);
+
+//    [DomainComponent]
+    public interface TrwExchangeIDoc<T>
+        where T : TrwExchangeIExportableObject
+    {
+
+        String DocNumber { get; }
+        DateTime DocDate { get; }
+
+        DateTime DocDateConfirm { get; }
+
+        IList<TrwExchangeIDocObjectLink<T>> ObjectLinks { get; }
+
+        TrwExchangeIDocObjectLink<T> ObjectLinksCreate(IObjectSpace os, T obj);
     }
 
+    public static class TrwExchangeIDocLogic<T>
+        where T : TrwExchangeIExportableObject
+    {
+
+    }
     // To use a Domain Component in an XAF application, the Component should be registered.
     // Override the ModuleBase.Setup method in the application's module and invoke the ITypesInfo.RegisterEntity method in it:
     //

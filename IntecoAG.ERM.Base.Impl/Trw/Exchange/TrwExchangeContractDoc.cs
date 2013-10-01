@@ -22,10 +22,10 @@ using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Subject;
 
-namespace IntecoAG.ERM.Trw.Contract {
+namespace IntecoAG.ERM.Trw.Exchange {
 
-    [Persistent("TrwContractExchangeDoc")]
-    public class TrwContractExchangeDoc : csCComponent {
+    [Persistent("TrwExchangeContractDoc")]
+    public class TrwExchangeContractDoc : csCComponent {
 
         [Persistent("TrwContractExchangeDocDealLink")]
         public class TrwContractExchangeDocDealLink : csCComponent {
@@ -33,13 +33,13 @@ namespace IntecoAG.ERM.Trw.Contract {
             public override void AfterConstruction() {            
                 base.AfterConstruction();
             }
-            private TrwContractExchangeDoc _ExchangeDoc;
+            private TrwExchangeContractDoc _ExchangeDoc;
             private crmContractDeal _Deal;
 
             [Association("TrwContractExchangeDoc-TrwContractExchangeDocDealLink")]
-            public TrwContractExchangeDoc ExchangeDoc {
+            public TrwExchangeContractDoc ExchangeDoc {
                 get { return _ExchangeDoc; }
-                set { SetPropertyValue<TrwContractExchangeDoc>("ExchangeDoc", ref _ExchangeDoc, value); }
+                set { SetPropertyValue<TrwExchangeContractDoc>("ExchangeDoc", ref _ExchangeDoc, value); }
             }
 
             public crmContractDeal Deal {
@@ -50,8 +50,8 @@ namespace IntecoAG.ERM.Trw.Contract {
         }
 
         public class DealList : IList<crmContractDeal>, ICollection<crmContractDeal>, IEnumerable<crmContractDeal> {
-            private TrwContractExchangeDoc _ExchangeDoc;
-            public DealList(TrwContractExchangeDoc doc) {
+            private TrwExchangeContractDoc _ExchangeDoc;
+            public DealList(TrwExchangeContractDoc doc) {
                 _ExchangeDoc = doc;
             }
 
@@ -163,7 +163,7 @@ namespace IntecoAG.ERM.Trw.Contract {
             }
         }
 
-        public TrwContractExchangeDoc(Session session) : base(session) { }
+        public TrwExchangeContractDoc(Session session) : base(session) { }
         public override void AfterConstruction() {            
             base.AfterConstruction();
             _DateCreate = DateTime.Now;

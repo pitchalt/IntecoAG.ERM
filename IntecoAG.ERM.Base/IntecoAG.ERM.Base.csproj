@@ -301,17 +301,29 @@
       <DependentUpon>MainForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportHelper\ReportHelper.cs" />
-    <Compile Include="Trw\Common\TrwContractViewController.cs">
+    <Compile Include="Trw\Exchange\TrwExchangeExportableObjectController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Trw\Common\TrwContractViewController.Designer.cs">
-      <DependentUpon>TrwContractViewController.cs</DependentUpon>
+    <Compile Include="Trw\Exchange\TrwExchangeExportableObjectController.Designer.cs">
+      <DependentUpon>TrwExchangeExportableObjectController.cs</DependentUpon>
     </Compile>
-    <Compile Include="XAFExt\ObjectSpaceHelper.cs" />
-    <Compile Include="XAFExt\TaskAnalysis1LayoutUpdaterBase.cs">
+    <Compile Include="Trw\Exchange\TrwExchangeSaleNomenclatureController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trw\Exchange\TrwExchangeSaleNomenclatureController.Designer.cs">
+      <DependentUpon>TrwExchangeSaleNomenclatureController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.Designer.cs">
+      <DependentUpon>XafExtBpmnAcceptableObjectController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XafExt\ObjectSpaceHelper.cs" />
+    <Compile Include="XafExt\TaskAnalysis1LayoutUpdaterBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XAFExt\XafExtReport.cs">
+    <Compile Include="XafExt\XafExtReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="FilterAndParamForms\crmContractRegistrationLogFilter02.cs">
@@ -323,10 +335,10 @@
     <Compile Include="ImmediateValidationOnLostFocusController.Designer.cs">
       <DependentUpon>ImmediateValidationOnLostFocusController.cs</DependentUpon>
     </Compile>
-    <Compile Include="XAFExt\ImportReportsViewController.cs">
+    <Compile Include="XafExt\ImportReportsViewController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XAFExt\ImportReportsViewController.Designer.cs">
+    <Compile Include="XafExt\ImportReportsViewController.Designer.cs">
       <DependentUpon>ImportReportsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="NestedFarme\OnShowListPropertyController.cs">
@@ -335,10 +347,10 @@
     <Compile Include="NestedFarme\OnShowListPropertyController.Designer.cs">
       <DependentUpon>OnShowListPropertyController.cs</DependentUpon>
     </Compile>
-    <Compile Include="XAFExt\XafExtAnalysisFilterPanelController.cs">
+    <Compile Include="XafExt\XafExtAnalysisFilterPanelController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XAFExt\XafExtAnalysisFilterPanelController.Designer.cs">
+    <Compile Include="XafExt\XafExtAnalysisFilterPanelController.Designer.cs">
       <DependentUpon>XafExtAnalysisFilterPanelController.cs</DependentUpon>
     </Compile>
     <Compile Include="FilterAndParamForms\AnalysisFilter01.cs">
@@ -366,7 +378,7 @@
     <Compile Include="EditorStateCustomizationController.Designer.cs">
       <DependentUpon>EditorStateCustomizationController.cs</DependentUpon>
     </Compile>
-    <Compile Include="XAFExt\XafExtAnalysis.cs">
+    <Compile Include="XafExt\XafExtAnalysis.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FilterAndParamForms\FilteringCriterion.cs" />
@@ -383,10 +395,10 @@
     <Compile Include="LongOperationController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XAFExt\MiniNavigationController.cs">
+    <Compile Include="XafExt\MiniNavigationController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XAFExt\MiniNavigationController.Designer.cs">
+    <Compile Include="XafExt\MiniNavigationController.Designer.cs">
       <DependentUpon>MiniNavigationController.cs</DependentUpon>
     </Compile>
     <Compile Include="NestedFarme\IMasterDetailViewInfo.cs" />
@@ -452,10 +464,10 @@
     <Compile Include="ReportHelper\Spravka0105.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XAFExt\ShowReportController.cs">
+    <Compile Include="XafExt\ShowReportController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XAFExt\ShowReportController.Designer.cs">
+    <Compile Include="XafExt\ShowReportController.Designer.cs">
       <DependentUpon>ShowReportController.cs</DependentUpon>
     </Compile>
     <Compile Include="Updater.cs">
@@ -473,7 +485,7 @@
     <Compile Include="WizardSupportController.Designer.cs">
       <DependentUpon>WizardSupportController.cs</DependentUpon>
     </Compile>
-    <Compile Include="XAFExt\XafExtReportData.cs" />
+    <Compile Include="XafExt\XafExtReportData.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ChangeLanguageController.resx">
@@ -500,14 +512,17 @@
       <DependentUpon>MainForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Trw\Common\TrwContractViewController.resx">
-      <DependentUpon>TrwContractViewController.cs</DependentUpon>
+    <EmbeddedResource Include="Trw\Exchange\TrwExchangeExportableObjectController.resx">
+      <DependentUpon>TrwExchangeExportableObjectController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="XAFExt\XafExtAnalysisFilterPanelController.resx">
+    <EmbeddedResource Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.resx">
+      <DependentUpon>XafExtBpmnAcceptableObjectController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XafExt\XafExtAnalysisFilterPanelController.resx">
       <DependentUpon>XafExtAnalysisFilterPanelController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="XAFExt\ImportReportsViewController.resx">
+    <EmbeddedResource Include="XafExt\ImportReportsViewController.resx">
       <DependentUpon>ImportReportsViewController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -515,7 +530,7 @@
       <DependentUpon>ListViewFilterPanelController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="XAFExt\MiniNavigationController.resx">
+    <EmbeddedResource Include="XafExt\MiniNavigationController.resx">
       <DependentUpon>MiniNavigationController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -685,7 +700,7 @@
       <DependentUpon>OnShowListPropertyController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="XAFExt\ShowReportController.resx">
+    <EmbeddedResource Include="XafExt\ShowReportController.resx">
       <DependentUpon>ShowReportController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VersionServiceController.resx">
@@ -730,6 +745,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FM\Subject\" />
+    <Folder Include="Trw\Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

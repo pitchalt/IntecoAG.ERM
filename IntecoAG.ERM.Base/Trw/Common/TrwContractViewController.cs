@@ -46,7 +46,7 @@ namespace IntecoAG.ERM.Module.Trw.Common {
             if (e.SelectedObjects.Count < 1) return;
 //            using (){
             IObjectSpace os = Application.CreateObjectSpace();
-            TrwContractExchangeDoc doc = os.CreateObject<TrwContractExchangeDoc>();
+            TrwExchangeContractDoc doc = os.CreateObject<TrwExchangeContractDoc>();
             crmContractDeal deal = null;
             foreach (crmContractDeal sel_deal in e.SelectedObjects) {
                 deal = os.GetObject<crmContractDeal>(sel_deal);

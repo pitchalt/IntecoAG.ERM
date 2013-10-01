@@ -73,6 +73,10 @@ namespace IntecoAG.ERM.Trw {
         TrwOrderWorkType TrwOrderWorkType { get; }
         String TrwOrderWorkTypeCode { get; }
         String TrwFinWorkTypeCode { get; }
+
+        DateTime TrwDateFrom { get; }
+        DateTime TrwDateToPlan { get; }
+        DateTime TrwDateToFact { get; }
         //string CalculatedProperty { get; }
         //int SumMethod(int val1, int val2);
     }

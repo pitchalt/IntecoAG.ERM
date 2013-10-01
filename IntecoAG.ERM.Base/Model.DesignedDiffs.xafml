@@ -244,6 +244,7 @@
       <Item Id="GeneralCompanyReports" Index="5" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_Exchange_ListView" IsNewNode="True" />
+          <Item Id="@7e5fc703-6ef1-432d-8d80-bcdd697f688c" ViewId="TrwExchangeDoc_ListView" IsNewNode="True" />
           <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" ViewId="TrwSaleNomenclature_Exchange_ListView" IsNewNode="True" />
           <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" ViewId="TrwIContractParty_Exchange_ListView" IsNewNode="True" />
         </Items>
@@ -2927,34 +2928,34 @@
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
-            <LayoutItem Id="TrwCode" ViewItem="TrwCode" ShowCaption="" Index="0" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="TrwInternalCode" ViewItem="TrwInternalCode" ShowCaption="" Index="1" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="TrwInternalNumber" ViewItem="TrwInternalNumber" ShowCaption="" Index="2" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="TrwExportState" ViewItem="TrwExportState" ShowCaption="" Index="3" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwCode" ViewItem="TrwCode" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwInternalCode" ViewItem="TrwInternalCode" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwInternalNumber" ViewItem="TrwInternalNumber" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwExportState" ViewItem="TrwExportState" Index="3" CaptionLocation="Top" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
             <LayoutGroup Id="TrwOrder">
               <LayoutGroup Id="TrwOrder_col1">
-                <LayoutItem Id="TrwCode" Removed="True" />
-                <LayoutItem Id="TrwContract" Removed="True" />
-                <LayoutItem Id="TrwInternalCode" Removed="True" />
-                <LayoutItem Id="TrwInternalNumber" Removed="True" />
+                <LayoutItem Id="TrwCode" ViewItem="TrwCode" Removed="True" />
+                <LayoutItem Id="TrwContract" ViewItem="TrwContract" Removed="True" />
+                <LayoutItem Id="TrwInternalCode" ViewItem="TrwInternalCode" Removed="True" />
+                <LayoutItem Id="TrwInternalNumber" ViewItem="TrwInternalNumber" Removed="True" />
               </LayoutGroup>
               <LayoutGroup Id="TrwOrder_col2">
-                <LayoutItem Id="TrwExportState" Removed="True" />
-                <LayoutItem Id="TrwFinWorkTypeCode" Removed="True" />
-                <LayoutItem Id="TrwOrderWorkType" Removed="True" />
-                <LayoutItem Id="TrwOrderWorkTypeCode" Removed="True" />
+                <LayoutItem Id="TrwExportState" ViewItem="TrwExportState" Removed="True" />
+                <LayoutItem Id="TrwFinWorkTypeCode" ViewItem="TrwFinWorkTypeCode" Removed="True" />
+                <LayoutItem Id="TrwOrderWorkType" ViewItem="TrwOrderWorkType" Removed="True" />
+                <LayoutItem Id="TrwOrderWorkTypeCode" ViewItem="TrwOrderWorkTypeCode" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="Common" Index="0" IsNewNode="True">
-              <LayoutItem Id="TrwContract" ViewItem="TrwContract" ShowCaption="" Index="3" IsNewNode="True" />
+              <LayoutItem Id="TrwContract" ViewItem="TrwContract" Index="3" IsNewNode="True" />
               <LayoutGroup Id="TrwOrderWorkType" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="TrwOrderWorkType" ViewItem="TrwOrderWorkType" ShowCaption="" Index="0" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="TrwFinWorkTypeCode" ViewItem="TrwFinWorkTypeCode" ShowCaption="" Index="1" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="TrwOrderWorkTypeCode" ViewItem="TrwOrderWorkTypeCode" ShowCaption="" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TrwOrderWorkType" ViewItem="TrwOrderWorkType" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TrwFinWorkTypeCode" ViewItem="TrwFinWorkTypeCode" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="TrwOrderWorkTypeCode" ViewItem="TrwOrderWorkTypeCode" Index="2" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
             </LayoutGroup>
             <LayoutGroup Id="TrwSaleNomenclatures" Index="1" />

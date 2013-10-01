@@ -140,6 +140,9 @@
     <Compile Include="CRM\Contract\Counters\RegistrationLogDocNumberCounter.cs" />
     <Compile Include="CRM\Contract\Counters\RegistrationLogISNCounter.cs" />
     <Compile Include="CRM\Contract\Deal\crmContractDealSM.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeIDocObjectLink.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeDocSaleNomenclature.cs" />
+    <Compile Include="XafExt\Bpmn\XafExtBpmnIAcceptableObject.cs" />
     <Compile Include="Trw\Contract\TrwContractMarket.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -355,13 +358,14 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
-    <Compile Include="Trw\Contract\TrwContractExchangeDoc.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeContractDoc.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeDoc.cs" />
     <Compile Include="Trw\Nomenclature\TrwSaleNomenclature.cs" />
     <Compile Include="Trw\TrwISaleNomenclature.cs" />
-    <Compile Include="Trw\Exchange\TrwIExchangeDoc.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeIDoc.cs" />
     <Compile Include="Trw\TrwIContract.cs" />
     <Compile Include="Trw\Contract\TrwOrder.cs" />
-    <Compile Include="Trw\Exchange\TrwIExchangeExportableObject.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeIExportableObject.cs" />
     <Compile Include="Trw\Person\TrwIPersonAccount.cs" />
     <Compile Include="Trw\Person\TrwIPersonBank.cs" />
     <Compile Include="Trw\Party\TrwPartyParty.cs" />
@@ -399,6 +403,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Trw\Party\TrwPartyUseCase.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

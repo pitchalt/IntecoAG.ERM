@@ -26,7 +26,7 @@ namespace IntecoAG.ERM.Trw.Contract {
     [Persistent("TrwOrder")]
     [DefaultProperty("TrwCode")]
     [Appearance("", AppearanceItemType.Action, "", TargetItems = "Delete", Enabled = false)]
-    public class TrwOrder : csCComponent, TrwIOrder, TrwIExchangeExportableObject {
+    public class TrwOrder : csCComponent, TrwIOrder, TrwExchangeIExportableObject {
         public TrwOrder(Session session) : base(session) { }
         public override void AfterConstruction() {            
             base.AfterConstruction();
@@ -137,6 +137,27 @@ namespace IntecoAG.ERM.Trw.Contract {
             get { return GetCollection<TrwSaleNomenclature>("TrwSaleNomenclatures"); }
         }
 
+        private DateTime _TrwDateFrom;
+        [RuleRequiredField(TargetContextIDs = "Confirm")]
+        public DateTime TrwDateFrom {
+            get { return _TrwDateFrom; }
+            set { SetPropertyValue("TrwDateFrom", ref _TrwDateFrom, value); }
+        }
+
+        private DateTime _TrwDateToPlan;
+        [RuleRequiredField(TargetContextIDs = "Confirm")]
+        public DateTime TrwDateToPlan {
+            get { return _TrwDateToPlan; }
+            set { SetPropertyValue("TrwDateToPlan", ref _TrwDateToPlan, value); }
+        }
+
+        private DateTime _TrwDateToFact;
+        [RuleRequiredField(TargetContextIDs = "Confirm")]
+        public DateTime TrwDateToFact {
+            get { return _TrwDateToFact; }
+            set { SetPropertyValue("TrwDateToFact", ref _TrwDateToFact, value); }
+        }
+
         [Persistent("TrwExportState")]
         private TrwExchangeExportStates _TrwExportState;
         [PersistentAlias("_TrwExportState")]
@@ -163,6 +184,9 @@ namespace IntecoAG.ERM.Trw.Contract {
             }
 
             if (Deal != null) {
+                TrwDateFrom = Deal.TrwDateValidFrom;
+                TrwDateToPlan = Deal.TrwDateValidToPlan;
+                TrwDateToFact = Deal.TrwDateValidToFact;
             }
         }
 
@@ -185,6 +209,5 @@ namespace IntecoAG.ERM.Trw.Contract {
                     break;
             }
         }
-
     }
 }

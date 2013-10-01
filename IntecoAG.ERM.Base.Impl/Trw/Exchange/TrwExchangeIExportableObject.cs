@@ -11,11 +11,12 @@ namespace IntecoAG.ERM.Trw.Exchange {
         EXPORTED    =   4,
         CONFIRMED   =   5,
         REJECTED    =   6,
-        CHANGED     =   7
+        CHANGED     =   7,
+        DELETED     =   8
     }
 
     [DomainComponent]
-    public interface TrwIExchangeExportableObject {
+    public interface TrwExchangeIExportableObject {
         TrwExchangeExportStates TrwExportState { get; }
 
         void Refresh();
