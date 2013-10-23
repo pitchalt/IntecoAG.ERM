@@ -2876,7 +2876,7 @@
       </Layout>
     </DetailView>
     <ListView Id="ReportParametersObjectBase_ListView" UseServerMode="True" />
-    <ListView Id="TrwIContractParty_Exchange_ListView" ClassName="IntecoAG.ERM.CRM.Contract.crmContractParty" Criteria="[CfrUserParty] Is Not Null" IsNewNode="True">
+    <ListView Id="TrwIContractParty_Exchange_ListView" ClassName="IntecoAG.ERM.CRM.Contract.crmContractParty" Criteria="[CfrUserParty] Is Not Null And [Party] Is Not Null" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="TrwCfr" PropertyName="TrwCfr" View="" Width="70" Index="-1" IsNewNode="True" />
         <ColumnInfo Id="TrwCfrPerson" PropertyName="TrwCfrPerson" View="" Width="70" Index="-1" IsNewNode="True" />

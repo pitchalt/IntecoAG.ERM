@@ -277,7 +277,7 @@ namespace IntecoAG.ERM.CRM.Contract
         [PersistentAlias("Party.Person")]
         public TrwIPerson TrwPartyPerson {
             get {
-                return Party.Person;
+                return Party != null ? Party.Person : null;
             }
         }
         //

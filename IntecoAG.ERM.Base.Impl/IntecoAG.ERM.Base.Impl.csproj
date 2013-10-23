@@ -101,6 +101,10 @@
     <Reference Include="DevExpress.XtraEditors.v11.2.Design, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="FileHelpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\FileHelpers\Binaries\DotNet 2.0\FileHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>
@@ -140,6 +144,7 @@
     <Compile Include="CRM\Contract\Counters\RegistrationLogDocNumberCounter.cs" />
     <Compile Include="CRM\Contract\Counters\RegistrationLogISNCounter.cs" />
     <Compile Include="CRM\Contract\Deal\crmContractDealSM.cs" />
+    <Compile Include="CS\csIImportSupport.cs" />
     <Compile Include="Trw\Exchange\TrwExchangeIDocObjectLink.cs" />
     <Compile Include="Trw\Exchange\TrwExchangeDocSaleNomenclature.cs" />
     <Compile Include="XafExt\Bpmn\XafExtBpmnIAcceptableObject.cs" />

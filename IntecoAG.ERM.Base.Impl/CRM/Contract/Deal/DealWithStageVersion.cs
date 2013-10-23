@@ -12,6 +12,7 @@
 
 using System;
 using System.Collections.Generic;
+//
 using DevExpress.Xpo;
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
@@ -21,7 +22,9 @@ using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Validation;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.Xpo.Metadata;
-
+//
+using FileHelpers;
+//
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Obligation;
@@ -37,7 +40,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     [Appearance("crmDealWithStageVersion.ApproveHidden", AppearanceItemType = "Action", Criteria = "VersionState = 1 OR VersionState = 2 OR VersionState = 4 OR VersionState = 5 OR VersionState = 6", TargetItems = "VersionApprove", Visibility = ViewItemVisibility.Hide, Context = "Any")]
 //    [Persistent("crmDealWithStageVersion")]
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public partial class crmDealWithStageVersion : crmDealVersion, IVersionSupport, IVersionBusinessLogicSupport
+    public partial class crmDealWithStageVersion : crmDealVersion, IVersionSupport, IVersionBusinessLogicSupport, csIImportSupport
     {
         public crmDealWithStageVersion(Session ses) : base(ses) { }
         public crmDealWithStageVersion(Session session, VersionStates state) : base(session, state) { }
@@ -363,5 +366,34 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         */
         #endregion
 
+        [DelimitedRecord(";")]
+        public class DealDataImport {
+            String StageCode;
+            String NomenclatureCode;
+            String NomenclatureName;
+            [FieldConverter(ConverterKind.Date, "yyyyMMdd")]
+            DateTime DeliveryDate;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            Decimal? Count;
+            String MesUnitCode;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            Decimal? Price;
+            String ValutaCode;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            Decimal Summa;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            Decimal? SummaVat;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            Decimal SummaAll;
+        }
+
+        public void Import(System.IO.TextReader reader) {
+            FileHelperEngine<DealDataImport> engine = new FileHelperEngine<DealDataImport>();
+            engine.Options.IgnoreFirstLines = 1;
+            DealDataImport[] deal_data = engine.ReadStream(reader);
+            foreach (DealDataImport record in deal_data) {
+
+            }
+        }
     }
 }

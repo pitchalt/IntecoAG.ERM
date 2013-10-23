@@ -631,6 +631,7 @@
     <Content Include="ReportLayouts\ForPivotReport1.xml" />
     <Content Include="Templates\TrwContract.xml" />
     <Content Include="Templates\TrwOrders.xml" />
+    <Content Include="Templates\TrwSaleNomanclature.xml" />
     <None Include="Documentation\ActionPermissionSystem.vsd" />
     <None Include="Documentation\Последовательность действий по обновлению системы на продуктовом сервере.docx" />
     <None Include="Import\TrwPartyMarket.csv">
