@@ -3,17 +3,19 @@ using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
-
+using System.Xml;
+//using System.Xml.Serialization;
+//
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
-
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-
+//
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CRM.Contract;
@@ -42,6 +44,8 @@ namespace IntecoAG.ERM.Trw.Exchange {
     [Persistent("TrwExchangeDoc")]
     public abstract class TrwExchangeDoc : csCComponent, XafExtBpmnIAcceptableObject
     {
+ 
+        public TrwExchangeDoc() { }
 
         [Persistent("TrwExchangeDocObjectLink")]
         public abstract class ObjectLink : csCComponent {
@@ -115,6 +119,18 @@ namespace IntecoAG.ERM.Trw.Exchange {
             _DateCreate = DateTime.Now;
             _DocDate = _DateCreate;
             StateSet(TrwExchangeExportStates.CREATED);
+        }
+
+        public abstract void Serialize(XmlDictionaryWriter writer);
+
+        [Action()]
+        public void Export() {
+            MemoryStream mem_stream = new MemoryStream();
+            XmlDictionaryWriter writer = XmlDictionaryWriter.CreateTextWriter(mem_stream);
+            Serialize(writer);
+            writer.Close();
+            mem_stream.Close();
+            System.Console.WriteLine(new StreamReader(mem_stream).ReadToEnd());
         }
 
         [Persistent("State")]

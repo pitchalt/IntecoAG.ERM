@@ -15,6 +15,7 @@ namespace IntecoAG.ERM.CS {
     [NonPersistent]
     [Appearance("", AppearanceItemType.Action, "UseCounter != 0", TargetItems = "Delete", Enabled = false)]
     public abstract class csCComponent : BaseObject, csIComponent {
+        protected csCComponent() { }
 
         public csCComponent(Session session)
             : base(session) {

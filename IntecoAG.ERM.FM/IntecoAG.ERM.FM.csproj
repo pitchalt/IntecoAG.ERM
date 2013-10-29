@@ -644,10 +644,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IntecoAG.ERM.Base.Impl\IntecoAG.ERM.Base.Impl.csproj">
-      <Project>{0B88798B-F4D2-4122-81CB-78C88062FCB8}</Project>
-      <Name>IntecoAG.ERM.Base.Impl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IntecoAG.ERM.Base\IntecoAG.ERM.Base.csproj">
       <Project>{368E9133-CB2F-4929-92A4-7F047659B03E}</Project>
       <Name>IntecoAG.ERM.Base</Name>

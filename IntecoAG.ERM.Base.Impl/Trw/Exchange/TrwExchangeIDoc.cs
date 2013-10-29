@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml;
 //
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
@@ -20,6 +21,8 @@ namespace IntecoAG.ERM.Trw.Exchange {
         IList<TrwExchangeIDocObjectLink<T>> ObjectLinks { get; }
 
         TrwExchangeIDocObjectLink<T> ObjectLinksCreate(IObjectSpace os, T obj);
+
+        void Serialize(XmlDictionaryWriter writer);
     }
 
     public static class TrwExchangeIDocLogic<T>

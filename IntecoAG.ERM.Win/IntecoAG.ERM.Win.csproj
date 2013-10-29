@@ -325,10 +325,6 @@
       <Project>{5F9E1E64-7384-475E-99A6-50407FAF329A}</Project>
       <Name>IntecoAG.XAFExt.StateMachine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IntecoAG.ERM.Base.Impl\IntecoAG.ERM.Base.Impl.csproj">
-      <Project>{0B88798B-F4D2-4122-81CB-78C88062FCB8}</Project>
-      <Name>IntecoAG.ERM.Base.Impl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IntecoAG.ERM.Base.Win\IntecoAG.ERM.Base.Win.csproj">
       <Project>{B3EED3F8-DC5D-42A5-BF94-3A383D34A191}</Project>
       <Name>IntecoAG.ERM.Base.Win</Name>

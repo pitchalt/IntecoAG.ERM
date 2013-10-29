@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Xml;
+//using System.Xml.Serialization;
+//
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
-
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
@@ -52,6 +53,7 @@ namespace IntecoAG.ERM.Trw.Exchange {
             }
         }
 
+        public TrwExchangeDocSaleNomenclature() { }
         public TrwExchangeDocSaleNomenclature(Session session) : base(session) { }
         public override void AfterConstruction() {            
             base.AfterConstruction();
@@ -79,6 +81,10 @@ namespace IntecoAG.ERM.Trw.Exchange {
                 link.SaleNomenclature.TrwExportStateSet(TrwExchangeExportStates.EXPORTED);
             }
             base.Accept(os);
+        }
+
+        public override void Serialize(XmlDictionaryWriter writer) {
+            return ;
         }
     }
 }

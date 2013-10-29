@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+//using System.Runtime.Serialization;
+//
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
-
+//
 namespace IntecoAG.ERM.Trw.Exchange {
     //    [DomainComponent]
     public interface TrwExchangeIDocObjectLink<T>
