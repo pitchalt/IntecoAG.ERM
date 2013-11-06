@@ -368,29 +368,34 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         [DelimitedRecord(";")]
         public class DealDataImport {
+            String OrderCode;
             String StageCode;
             String NomenclatureCode;
-            String NomenclatureName;
-            [FieldConverter(ConverterKind.Date, "yyyyMMdd")]
-            DateTime DeliveryDate;
             [FieldConverter(ConverterKind.Decimal, ",")]
             Decimal? Count;
-            String MesUnitCode;
             [FieldConverter(ConverterKind.Decimal, ",")]
             Decimal? Price;
-            String ValutaCode;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal Summa;
+            Decimal? SummaAll;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal? SummaVat;
+            Decimal? PayAvans;
+            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            DateTime? DateContract;
+            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            DateTime? DateFactDelivery;
+            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            DateTime? DateFactPayment;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal SummaAll;
+            Decimal? SummaPayment;
+            String LastColumns;
         }
 
-        public void Import(System.IO.TextReader reader) {
+        public void Import(IObjectSpace os, String file_name) {
             FileHelperEngine<DealDataImport> engine = new FileHelperEngine<DealDataImport>();
             engine.Options.IgnoreFirstLines = 1;
-            DealDataImport[] deal_data = engine.ReadStream(reader);
+            engine.Options.IgnoreEmptyLines = true;
+//            DealDataImport[] deal_data = engine.ReadStream(reader);
+            DealDataImport[] deal_data = engine.ReadFile(file_name);
             foreach (DealDataImport record in deal_data) {
 
             }
