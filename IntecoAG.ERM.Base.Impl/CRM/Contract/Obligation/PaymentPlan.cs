@@ -22,7 +22,7 @@ using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.CRM.Contract.Deal;
-//using IntecoAG.ERM.CRM.Contract.Obligation;
+using IntecoAG.ERM.CRM.Contract.Obligation;
 using IntecoAG.ERM.CS.Finance;
 
 namespace IntecoAG.ERM.CRM.Contract.Obligation

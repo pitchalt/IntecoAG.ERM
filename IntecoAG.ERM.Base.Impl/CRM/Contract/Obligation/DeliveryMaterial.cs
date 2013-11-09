@@ -61,7 +61,8 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
             set { 
                 SetPropertyValue<csMaterial>("Material", ref _Material, value);
                 if (!IsLoading) {
-                    this.NomenclatureName = this.Material.NameShort;
+                    if (String.IsNullOrEmpty(this.NomenclatureName))
+                        this.NomenclatureName = this.Material.NameShort;
                     UpdateTrwNomenclature();
                 }
             }

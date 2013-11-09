@@ -16,6 +16,7 @@ using DevExpress.Xpo;
 //using DevExpress.Persistent.BaseImpl;
 using System.Collections.Generic;
 
+using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract;
 
@@ -31,6 +32,12 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
             get {
                 return GetCollection<crmPaymentItem>("PaymentItems");
             }
+        }
+
+        public crmPaymentItem PaymentItemsCreateMoney() {
+            crmPaymentMoney pay_item = new crmPaymentMoney(this.Session, this.VersionState);
+            PaymentItems.Add(pay_item);
+            return pay_item;
         }
     }
 

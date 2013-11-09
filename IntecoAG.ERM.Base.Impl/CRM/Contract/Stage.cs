@@ -345,6 +345,11 @@ namespace IntecoAG.ERM.CRM.Contract
             get { return GetCollection<crmStage>("SubStages"); }
         }
 
+        public crmStage SubStagesCreate() {
+            crmStage stage = new crmStage(this.Session, this.VersionState);
+            SubStages.Add(stage);
+            return stage;
+        }
 
         #region Delivery
         //

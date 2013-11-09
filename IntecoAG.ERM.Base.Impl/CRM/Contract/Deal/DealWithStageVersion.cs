@@ -12,25 +12,30 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 //
-using DevExpress.Xpo;
+using DevExpress.Data;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.Editors;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Validation;
-using DevExpress.ExpressApp.Editors;
+using DevExpress.Xpo;
 using DevExpress.Xpo.Metadata;
 //
 using FileHelpers;
 //
 using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Obligation;
+using IntecoAG.ERM.FM.Order;
 
-namespace IntecoAG.ERM.CRM.Contract.Deal
-{
+namespace IntecoAG.ERM.CRM.Contract.Deal {
 
     /// <summary>
     /// Класс crmDealWithStageVersion
@@ -38,10 +43,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     //[Appearance("crmDealWithStageVersion.ApproveHidden", AppearanceItemType = "Action", Criteria = "VersionState = 1 OR VersionState = 2 OR VersionState = 4 OR VersionState = 5 OR VersionState = 6 OR not isnull(crmComplexContractVersion)", TargetItems = "VersionApprove", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     //[Appearance("crmDealWithStageVersion.GotoMainActionHidden", AppearanceItemType = "Action", Criteria = "not isnull(crmComplexContractVersion)", TargetItems = "GotoMainAction", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("crmDealWithStageVersion.ApproveHidden", AppearanceItemType = "Action", Criteria = "VersionState = 1 OR VersionState = 2 OR VersionState = 4 OR VersionState = 5 OR VersionState = 6", TargetItems = "VersionApprove", Visibility = ViewItemVisibility.Hide, Context = "Any")]
-//    [Persistent("crmDealWithStageVersion")]
+    //    [Persistent("crmDealWithStageVersion")]
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public partial class crmDealWithStageVersion : crmDealVersion, IVersionSupport, IVersionBusinessLogicSupport, csIImportSupport
-    {
+    public partial class crmDealWithStageVersion : crmDealVersion, IVersionSupport, IVersionBusinessLogicSupport, csIImportSupport {
         public crmDealWithStageVersion(Session ses) : base(ses) { }
         public crmDealWithStageVersion(Session session, VersionStates state) : base(session, state) { }
 
@@ -154,7 +158,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 base.Valuta = value;
                 if (!IsLoading) {
                     this.StageStructure.FirstStage.Valuta = value;
-                    if (this.PaymentValuta == null || this.PaymentValuta == old ) {
+                    if (this.PaymentValuta == null || this.PaymentValuta == old) {
                         this.PaymentValuta = value;
                     }
                 }
@@ -243,7 +247,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 foreach (crmStage stage in Stages)
                     if (stage.Order == null)
                         count++;
-                return Stages.Count; 
+                return Stages.Count;
             }
         }
 
@@ -337,7 +341,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         public void Approve(IVersionSupport obj) {
         }
-        
+
         /*
         public override Dictionary<IVersionSupport, IVersionSupport> GenerateCopyOfObjects(List<IVersionSupport> list, Session ssn, IVersionSupport sourceObj) {
             Dictionary<IVersionSupport, IVersionSupport>  dict = base.GenerateCopyOfObjects(list, ssn, sourceObj);
@@ -368,32 +372,177 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         [DelimitedRecord(";")]
         public class DealDataImport {
-            String StageCode;
-            String NomenclatureCode;
-            String NomenclatureName;
-            [FieldConverter(ConverterKind.Date, "yyyyMMdd")]
-            DateTime DeliveryDate;
+            public String OrderCode;
+            public String StageCode;
+            public String NomenclatureCode;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal? Count;
-            String MesUnitCode;
+            public Decimal? Count;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal? Price;
-            String ValutaCode;
+            public Decimal? Price;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal Summa;
+            public Decimal? SummaAll;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal? SummaVat;
+            public Decimal? PayAvans;
+            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            public DateTime? DateContract;
+            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            public DateTime? DateFactDelivery;
+            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            public DateTime? DateFactPayment;
             [FieldConverter(ConverterKind.Decimal, ",")]
-            Decimal SummaAll;
+            public Decimal? SummaPayment;
+            public String LastColumns;
         }
 
-        public void Import(System.IO.TextReader reader) {
+        public void Import(IObjectSpace os, String file_name) {
             FileHelperEngine<DealDataImport> engine = new FileHelperEngine<DealDataImport>();
             engine.Options.IgnoreFirstLines = 1;
-            DealDataImport[] deal_data = engine.ReadStream(reader);
+            engine.Options.IgnoreEmptyLines = true;
+            //            DealDataImport[] deal_data = engine.ReadStream(reader);
+            DealDataImport[] deal_data = engine.ReadFile(file_name);
+            IList<fmCOrder> orders = new List<fmCOrder>();
+            IList<crmStage> stages = new List<crmStage>();
+            IList<crmDeliveryUnit> delivery_units = new List<crmDeliveryUnit>();
+            IList<crmDeliveryItem> delivery_items = new List<crmDeliveryItem>();
+            IList<crmPaymentUnit> payment_units = new List<crmPaymentUnit>();
+            IList<crmPaymentItem> payment_items = new List<crmPaymentItem>();
+            IList<csMaterial> materials = os.GetObjects<csMaterial>();
             foreach (DealDataImport record in deal_data) {
+                fmCOrder order = null;
+                crmStage stage = null;
+                crmDeliveryUnit delivery_unit = null;
+                crmDeliveryItem delivery_item = null;
+                crmPaymentUnit payment_unit = null;
+                crmPaymentItem payment_item = null;
+                if (String.IsNullOrEmpty(record.StageCode)) {
+                    throw new ArgumentException("Stage Code is Empty", "StageCode");
+                }
+                if (record.StageCode.Substring(0, 3) == "Adv") {
+                    stage = StageStructure.FirstStage;
+                }
+                else {
+                    stage = StageStructure.Stages.FirstOrDefault(x => x.Code == record.StageCode);
+                    if (stage == null) {
+                        stage = StageStructure.FirstStage.SubStagesCreate();
+                        stage.Code = record.StageCode;
+                    }
+                    if (!stages.Contains(stage)) {
+                        stage.StageType = Contract.StageType.FINANCE;
+                        stage.DeliveryMethod = DeliveryMethod.UNITS_SHEDULE;
+                        stage.PaymentMethod = PaymentMethod.SCHEDULE;
+//                        stage.DateEnd = stage.DateBegin;
+//                        stage.DateFinish = stage.DateEnd;
+                        stages.Add(stage);
+                    }
+                }
+                if (record.StageCode.Substring(0, 3) != "Adv") {
+                    if (String.IsNullOrEmpty(record.OrderCode)) {
+                        throw new ArgumentException("Order Code is Empty", "OrderCode");
+                    }
+                    order = orders.FirstOrDefault(x => x.Code == record.OrderCode);
+                    if (order == null) {
+                        order = os.FindObject<fmCOrder>(new BinaryOperator("Code", record.OrderCode, BinaryOperatorType.Equal));
+                        if (order == null)
+                            throw new ArgumentException("Order unknow", "OrderCode");
+                        else
+                            orders.Add(order);
+                        stage.Order = order;
+                    }
+                    if (record.DateContract == null) {
+                        throw new ArgumentException("Date Contract is Empty", "DateContract");
+                    }
+                    delivery_unit = stage.DeliveryPlan.DeliveryUnits.FirstOrDefault(x => x.DatePlane == record.DateContract);
+                    if (record.DateContract > stage.DateEnd)
+                        stage.DateEnd = (DateTime) record.DateContract;
+                    if (delivery_unit == null) {
+                        delivery_unit = stage.DeliveryPlan.DeliveryUnitCreate();
+                        delivery_unit.DatePlane = (DateTime)record.DateContract;
+                    }
+                    if (!delivery_units.Contains(delivery_unit))
+                        delivery_units.Add(delivery_unit);
+                    delivery_unit.Order = order;
+                    if (record.Count == null)
+                        throw new ArgumentException("Count is Empty", "Count");
+                    if (record.Price == null)
+                        throw new ArgumentException("Price is Empty", "Price");
+                    if (String.IsNullOrEmpty(record.NomenclatureCode))
+                        throw new ArgumentException("Nomenclature Code is Empty", "NomenclatureCode");
+                    if (!record.NomenclatureCode.Contains("*I") && !record.NomenclatureCode.Contains("*E")) {
 
+                        csMaterial material = materials.FirstOrDefault(x => x.CodeTechnical == record.NomenclatureCode);
+                        if (material == null) {
+                            throw new ArgumentException("Nomenclature unknow", "NomenclatureCode");
+                        }
+                        delivery_item = delivery_unit.DeliveryItems.FirstOrDefault(x => x.Nomenclature == material);
+                        if (delivery_item == null) {
+                            delivery_item = delivery_unit.DeliveryItemsCreateMaterial();
+                            ((crmDeliveryMaterial)delivery_item).Material = material;
+                        }
+                        delivery_item.CostCalculateMethod = CostCalculateMethod.CALC_COST;
+                        delivery_item.NDSCalculateMethod = NDSCalculateMethod.FROM_COST;
+                        delivery_item.FullCalculateMethod = FullCalculateMethod.CALC_FULL;
+                        delivery_item.Price = (Decimal)record.Price;
+                        delivery_item.CountUnit = delivery_item.Nomenclature.BaseUnit;
+                        if (delivery_items.Contains(delivery_item))
+                            delivery_item.CountValue += (Decimal)record.Count;
+                        else {
+                            delivery_item.CountValue = (Decimal)record.Count;
+                            delivery_items.Add(delivery_item);
+                        }
+                    }
+                }
+                if (record.DateContract == null) {
+                    throw new ArgumentException("Date Contract is Empty", "DateContract");
+                }
+                payment_unit = stage.PaymentPlan.PaymentUnits.FirstOrDefault(x => x.DatePlane == record.DateContract && x is crmPaymentCasheLess);
+                if (payment_unit == null) {
+                    payment_unit = stage.PaymentPlan.PaymentCasheLessCreate();
+                    payment_unit.DatePlane = (DateTime)record.DateContract;
+                    if (payment_unit.DatePlane > stage.DateFinish)
+                        stage.DateFinish = payment_unit.DatePlane;
+                }
+                if (!payment_units.Contains(payment_unit)) {
+                    ((crmPaymentCasheLess)payment_unit).SummFull = (Decimal)record.SummaPayment;
+                    payment_units.Add(payment_unit);
+                }
+                else { 
+                    ((crmPaymentCasheLess)payment_unit).SummFull += (Decimal)record.SummaPayment;
+                } 
+
+                //                payment_item = payment_unit.PaymentItems.FirstOrDefault(x => x.Order == order);
+                //                if (payment_item == null) {
+                //                    payment_item = payment_unit.PaymentItemsCreateMoney();
+                //                }
+                //if (payment_unit.PaymentItems.Count == 0) {
+                //    payment_item = payment_unit.PaymentItemsCreateMoney();
+                //}
+                //else {
+                //    payment_item = payment_unit.PaymentItems[0];
+                //}
+                //if (payment_items.Contains(payment_item)) {
+                //    payment_item.SummFull += (Decimal)record.SummaPayment;
+                //    payment_item.AccountSumma += (Decimal)record.SummaPayment;
+                //}
+                //else {
+                //    payment_item.SummFull = (Decimal)record.SummaPayment;
+                //    payment_item.AccountSumma = (Decimal)record.SummaPayment;
+                //    payment_items.Add(payment_item);
+                //}
             }
+            IList<crmDeliveryUnit> del_delivery_units = new List<crmDeliveryUnit>();
+            IList<crmPaymentUnit> del_payment_units = new List<crmPaymentUnit>();
+            foreach (crmStage stage in stages) {
+                foreach (crmDeliveryUnit delivery_unit in stage.DeliveryPlan.DeliveryUnits) {
+                    if (!delivery_units.Contains(delivery_unit))
+                        del_delivery_units.Add(delivery_unit);
+                }
+                foreach (crmPaymentUnit payment_unit in stage.PaymentPlan.PaymentUnits) {
+                    if (!payment_units.Contains(payment_unit))
+                        del_payment_units.Add(payment_unit);
+                }
+            }
+            os.Delete(del_delivery_units);
+            os.Delete(del_payment_units);
         }
     }
 }
