@@ -11,16 +11,18 @@
 #endregion Copyright (c) 2011 INTECOAG.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 //
+using DevExpress.Data;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DevExpress.Xpo.Metadata;
@@ -32,9 +34,8 @@ using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Obligation;
 using IntecoAG.ERM.FM.Order;
-//
-namespace IntecoAG.ERM.CRM.Contract.Deal
-{
+
+namespace IntecoAG.ERM.CRM.Contract.Deal {
 
     /// <summary>
     /// Класс crmDealWithStageVersion
@@ -42,10 +43,9 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     //[Appearance("crmDealWithStageVersion.ApproveHidden", AppearanceItemType = "Action", Criteria = "VersionState = 1 OR VersionState = 2 OR VersionState = 4 OR VersionState = 5 OR VersionState = 6 OR not isnull(crmComplexContractVersion)", TargetItems = "VersionApprove", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     //[Appearance("crmDealWithStageVersion.GotoMainActionHidden", AppearanceItemType = "Action", Criteria = "not isnull(crmComplexContractVersion)", TargetItems = "GotoMainAction", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("crmDealWithStageVersion.ApproveHidden", AppearanceItemType = "Action", Criteria = "VersionState = 1 OR VersionState = 2 OR VersionState = 4 OR VersionState = 5 OR VersionState = 6", TargetItems = "VersionApprove", Visibility = ViewItemVisibility.Hide, Context = "Any")]
-//    [Persistent("crmDealWithStageVersion")]
+    //    [Persistent("crmDealWithStageVersion")]
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public partial class crmDealWithStageVersion : crmDealVersion, IVersionSupport, IVersionBusinessLogicSupport, csIImportSupport
-    {
+    public partial class crmDealWithStageVersion : crmDealVersion, IVersionSupport, IVersionBusinessLogicSupport, csIImportSupport {
         public crmDealWithStageVersion(Session ses) : base(ses) { }
         public crmDealWithStageVersion(Session session, VersionStates state) : base(session, state) { }
 
@@ -158,7 +158,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 base.Valuta = value;
                 if (!IsLoading) {
                     this.StageStructure.FirstStage.Valuta = value;
-                    if (this.PaymentValuta == null || this.PaymentValuta == old ) {
+                    if (this.PaymentValuta == null || this.PaymentValuta == old) {
                         this.PaymentValuta = value;
                     }
                 }
@@ -247,7 +247,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 foreach (crmStage stage in Stages)
                     if (stage.Order == null)
                         count++;
-                return Stages.Count; 
+                return Stages.Count;
             }
         }
 
@@ -341,7 +341,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         public void Approve(IVersionSupport obj) {
         }
-        
+
         /*
         public override Dictionary<IVersionSupport, IVersionSupport> GenerateCopyOfObjects(List<IVersionSupport> list, Session ssn, IVersionSupport sourceObj) {
             Dictionary<IVersionSupport, IVersionSupport>  dict = base.GenerateCopyOfObjects(list, ssn, sourceObj);
@@ -413,7 +413,17 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 crmDeliveryUnit delivery_unit = null;
                 crmDeliveryItem delivery_item = null;
                 crmPaymentUnit payment_unit = null;
-                crmPaymentItem payment_item = null;
+                //                crmPaymentItem payment_item = null;
+                if (!String.IsNullOrEmpty(record.OrderCode)) {
+                    order = orders.FirstOrDefault(x => x.Code == record.OrderCode);
+                    if (order == null) {
+                        order = os.FindObject<fmCOrder>(new BinaryOperator("Code", record.OrderCode, BinaryOperatorType.Equal));
+                        if (order == null)
+                            throw new ArgumentException("Order unknow", "OrderCode");
+                        else
+                            orders.Add(order);
+                    }
+                }
                 if (String.IsNullOrEmpty(record.StageCode)) {
                     throw new ArgumentException("Stage Code is Empty", "StageCode");
                 }
@@ -427,33 +437,25 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                         stage.Code = record.StageCode;
                     }
                     if (!stages.Contains(stage)) {
+                        stage.Order = order;
                         stage.StageType = Contract.StageType.FINANCE;
                         stage.DeliveryMethod = DeliveryMethod.UNITS_SHEDULE;
                         stage.PaymentMethod = PaymentMethod.SCHEDULE;
-//                        stage.DateEnd = stage.DateBegin;
-//                        stage.DateFinish = stage.DateEnd;
+                        //                        stage.DateEnd = stage.DateBegin;
+                        //                        stage.DateFinish = stage.DateEnd;
                         stages.Add(stage);
                     }
                 }
                 if (record.StageCode.Substring(0, 3) != "Adv") {
-                    if (String.IsNullOrEmpty(record.OrderCode)) {
-                        throw new ArgumentException("Order Code is Empty", "OrderCode");
-                    }
-                    order = orders.FirstOrDefault(x => x.Code == record.OrderCode);
                     if (order == null) {
-                        order = os.FindObject<fmCOrder>(new BinaryOperator("Code", record.OrderCode, BinaryOperatorType.Equal));
-                        if (order == null)
-                            throw new ArgumentException("Order unknow", "OrderCode");
-                        else
-                            orders.Add(order);
-                        stage.Order = order;
+                        throw new ArgumentException("Order is Empty", "OrderCode");
                     }
                     if (record.DateContract == null) {
                         throw new ArgumentException("Date Contract is Empty", "DateContract");
                     }
                     delivery_unit = stage.DeliveryPlan.DeliveryUnits.FirstOrDefault(x => x.DatePlane == record.DateContract);
                     if (record.DateContract > stage.DateEnd)
-                        stage.DateEnd = (DateTime) record.DateContract;
+                        stage.DateEnd = (DateTime)record.DateContract;
                     if (delivery_unit == null) {
                         delivery_unit = stage.DeliveryPlan.DeliveryUnitCreate();
                         delivery_unit.DatePlane = (DateTime)record.DateContract;
@@ -495,19 +497,24 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                     throw new ArgumentException("Date Contract is Empty", "DateContract");
                 }
                 payment_unit = stage.PaymentPlan.PaymentUnits.FirstOrDefault(x => x.DatePlane == record.DateContract && x is crmPaymentCasheLess);
+                //if (payment_unit != null && !payment_units.Contains(payment_unit)) {
+                //    os.Delete(payment_unit);
+                //    payment_unit = null;
+                //}
                 if (payment_unit == null) {
                     payment_unit = stage.PaymentPlan.PaymentCasheLessCreate();
                     payment_unit.DatePlane = (DateTime)record.DateContract;
                     if (payment_unit.DatePlane > stage.DateFinish)
                         stage.DateFinish = payment_unit.DatePlane;
                 }
+                payment_unit.Order = order;
                 if (!payment_units.Contains(payment_unit)) {
                     ((crmPaymentCasheLess)payment_unit).SummFull = (Decimal)record.SummaPayment;
                     payment_units.Add(payment_unit);
                 }
-                else { 
+                else {
                     ((crmPaymentCasheLess)payment_unit).SummFull += (Decimal)record.SummaPayment;
-                } 
+                }
 
                 //                payment_item = payment_unit.PaymentItems.FirstOrDefault(x => x.Order == order);
                 //                if (payment_item == null) {
@@ -530,19 +537,40 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
                 //}
             }
             IList<crmDeliveryUnit> del_delivery_units = new List<crmDeliveryUnit>();
+            IList<crmDeliveryItem> del_delivery_items = new List<crmDeliveryItem>();
             IList<crmPaymentUnit> del_payment_units = new List<crmPaymentUnit>();
+            IList<crmPaymentItem> del_payment_items = new List<crmPaymentItem>();
             foreach (crmStage stage in stages) {
                 foreach (crmDeliveryUnit delivery_unit in stage.DeliveryPlan.DeliveryUnits) {
-                    if (!delivery_units.Contains(delivery_unit))
+                    if (!delivery_units.Contains(delivery_unit)) {
                         del_delivery_units.Add(delivery_unit);
+                        foreach (crmDeliveryItem item in delivery_unit.DeliveryItems)
+                            del_delivery_items.Add(item);
+                    }
+                    else {
+                        foreach (crmDeliveryItem item in delivery_unit.DeliveryItems)
+                            if (!delivery_items.Contains(item))
+                                del_delivery_items.Add(item);
+                    }
                 }
                 foreach (crmPaymentUnit payment_unit in stage.PaymentPlan.PaymentUnits) {
-                    if (!payment_units.Contains(payment_unit))
+                    if (!payment_units.Contains(payment_unit)) {
                         del_payment_units.Add(payment_unit);
+                        foreach (crmPaymentItem item in payment_unit.PaymentItems)
+                            del_payment_items.Add(item);
+                    }
+                    else {
+                        foreach (crmPaymentItem item in payment_unit.PaymentItems)
+                            if (!payment_items.Contains(item))
+                                del_payment_items.Add(item);
+                    }
                 }
             }
-            os.Delete(del_delivery_units);
+            // Не удаляем PaymentItems, поскольку не создаем их, а создаем PaymentUnitCashLess, который сам создает Item
+            //            os.Delete(del_payment_items);
             os.Delete(del_payment_units);
+            os.Delete(del_delivery_items);
+            os.Delete(del_delivery_units);
         }
     }
 }
