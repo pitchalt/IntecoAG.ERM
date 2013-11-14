@@ -13,6 +13,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 //
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
@@ -26,7 +27,11 @@ using DevExpress.Xpo.Metadata;
 //
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Common;
+using IntecoAG.ERM.CS.Measurement;
+using IntecoAG.ERM.CS.Nomenclature;
+using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
+using IntecoAG.ERM.CRM.Contract.Obligation;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.Order;
@@ -36,6 +41,16 @@ using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.FM.Subject
 {
+
+    public enum DealInfoDealType {
+        DEAL_INFO_PROCEEDS = 1,
+        DEAL_INFO_EXPENDITURE = 2
+    }
+    public enum DealInfoNomType {
+        DEAL_INFO_DELIVERY = 1,
+        DEAL_INFO_PAYMENT = 2
+    }
+
     /// <summary>
     /// Класс Subject
     /// </summary>
@@ -203,6 +218,154 @@ namespace IntecoAG.ERM.FM.Subject
                 XPCollection<T> col = new DealsCollection<T>(this.Session, this, property);
 			    GC.SuppressFinalize(col);
 			    return col;
+            }
+        }
+
+        [NonPersistent]
+        public class DealInfo: BaseObject {
+            public DealInfoDealType DealType;
+            public DealInfoNomType NomType;
+            public crmContractDeal Deal;
+            public fmCSubject Subject;
+            public fmCOrder Order;
+            public csValuta Valuta;
+            public Int32 Year {
+                get {
+                    return Date.Year;
+                }
+            }
+            public Int32 Month {
+                get {
+                    return Date.Month;
+                }
+            }
+            public Decimal SummCost;
+            public Decimal SummVat;
+            public Decimal SummFull;
+
+            [VisibleInDetailView(false)]
+            [VisibleInListView(false)]
+            public Decimal PaySummCost {
+                get { return NomType == DealInfoNomType.DEAL_INFO_PAYMENT ? SummCost : 0; }
+            }
+            [VisibleInDetailView(false)]
+            [VisibleInListView(false)]
+            public Decimal PaySummVat {
+                get { return NomType == DealInfoNomType.DEAL_INFO_PAYMENT ? SummVat : 0; }
+            }
+            [VisibleInDetailView(false)]
+            [VisibleInListView(false)]
+            public Decimal PaySummFull {
+                get { return NomType == DealInfoNomType.DEAL_INFO_PAYMENT ? SummFull : 0; }
+            }
+
+            [VisibleInDetailView(false)]
+            [VisibleInListView(false)]
+            public Decimal DeliverySummCost {
+                get { return NomType == DealInfoNomType.DEAL_INFO_DELIVERY ? SummCost : 0; }
+            }
+            [VisibleInDetailView(false)]
+            [VisibleInListView(false)]
+            public Decimal DeliverySummVat {
+                get { return NomType == DealInfoNomType.DEAL_INFO_DELIVERY ? SummVat : 0; }
+            }
+            [VisibleInDetailView(false)]
+            [VisibleInListView(false)]
+            public Decimal DeliverySummFull {
+                get { return NomType == DealInfoNomType.DEAL_INFO_DELIVERY ? SummFull : 0; }
+            }
+
+            public DateTime Date;
+            public DealInfo(Session session) : base(session) { }
+        }
+
+        public class DealInfoCollection : List<DealInfo> {
+            public fmCSubject Subject;
+
+            [Action(Caption="Reload")]
+            public void ReloadAction() {
+                Subject.ReloadDealInfos();
+            }
+        }
+
+        private DealInfoCollection _DealInfos;
+        public DealInfoCollection DealInfos {
+            get {
+                if (_DealInfos == null) 
+                    ReloadDealInfos();
+                return _DealInfos;
+            }
+        }
+
+        public void ReloadDealInfos() {
+            if (_DealInfos == null)  {
+                _DealInfos = new DealInfoCollection() {
+                    Subject = this
+                };
+            }
+            _DealInfos.Clear();
+            foreach(crmContractDeal deal in Deals) {
+                DealInfoDealType deal_type;
+                if (deal.TRVType == null || deal.TRVType.TrwContractSuperType != TrwContractSuperType.DEAL_SALE)
+                    deal_type = DealInfoDealType.DEAL_INFO_EXPENDITURE;
+                else
+                    deal_type = DealInfoDealType.DEAL_INFO_PROCEEDS;
+                if (deal is crmDealWithoutStage)
+                    ReloadDealInfos(deal_type, (crmDealWithoutStage)deal);
+                if (deal is crmDealWithStage)
+                    ReloadDealInfos(deal_type, (crmDealWithStage)deal);
+            }
+        }
+
+        protected void ReloadDealInfos(DealInfoDealType deal_type, crmDealWithStage deal) {
+            foreach (crmStage stage in deal.Current.StageStructure.Stages) {
+                ReloadDealInfos(deal_type, deal, stage.DeliveryPlan);
+                ReloadDealInfos(deal_type, deal, stage.PaymentPlan);
+            }
+        }
+
+        protected void ReloadDealInfos(DealInfoDealType deal_type, crmDealWithoutStage deal) {
+            ReloadDealInfos(deal_type, deal, ((crmDealWithoutStageVersion)deal.Current).DeliveryPlan);
+            ReloadDealInfos(deal_type, deal, ((crmDealWithoutStageVersion)deal.Current).PaymentPlan);
+        }
+
+        protected void ReloadDealInfos(DealInfoDealType deal_type, crmContractDeal deal, crmDeliveryPlan plan) { 
+            foreach (crmDeliveryUnit unit in plan.DeliveryUnits) {
+                ReloadDealInfos(deal_type, deal, DealInfoNomType.DEAL_INFO_DELIVERY, unit, new ListConverter<crmObligation, crmDeliveryItem>( unit.DeliveryItems));
+            }
+        }
+
+        protected void ReloadDealInfos(DealInfoDealType deal_type, crmContractDeal deal, crmPaymentPlan plan) {
+            foreach (crmPaymentUnit unit in plan.PaymentUnits) {
+                ReloadDealInfos(deal_type, deal, DealInfoNomType.DEAL_INFO_PAYMENT, unit, new ListConverter<crmObligation, crmPaymentItem>(unit.PaymentItems));
+            }
+        }
+
+        protected void ReloadDealInfos(DealInfoDealType deal_type,  crmContractDeal deal, DealInfoNomType nom_type, crmObligationUnit unit, IList<crmObligation> items) {
+            foreach (crmObligation obl in items) {
+                var deal_info = _DealInfos.FirstOrDefault(
+                    x => x.Deal == deal &&
+                        x.DealType == deal_type &&
+                        x.NomType == nom_type &&
+                        x.Order == obl.Order &&
+                        x.Valuta == obl.Valuta &&
+                        x.Date == unit.DatePlane
+                    );
+                if (deal_info == null) {
+                    deal_info = new DealInfo(this.Session) {
+                        DealType = deal_type,
+                        Deal = deal,
+                        NomType = nom_type,
+                        Subject = obl.Order != null ? obl.Order.Subject : null,
+                        Order = obl.Order,
+                        Valuta = obl.Valuta,
+                        Date = unit.DatePlane
+                    };
+                    _DealInfos.Add(deal_info);
+                }
+                deal_info.SummCost += obl.SummCost;
+                deal_info.SummVat += obl.SummNDS;
+                deal_info.SummFull += obl.SummFull;
             }
         }
 

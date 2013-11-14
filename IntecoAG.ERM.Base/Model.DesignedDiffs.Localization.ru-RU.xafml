@@ -835,6 +835,7 @@
         <Member Name="AnalitycOrderSource" Caption="Гоз.Заказ" />
         <Member Name="AnalitycRegion" Caption="Регион" />
         <Member Name="AnalitycWorkType" Caption="ВидРабот" />
+        <Member Name="DealInfos" Caption="Финансы договоров" />
         <Member Name="Deals" Caption="Сделки" />
         <Member Name="Direction" Caption="Направление" />
         <Member Name="Manager" Caption="Ведущий" />
@@ -848,6 +849,24 @@
         <Member Name="SourceType" Caption="ТипОснования" />
         <Member Name="Status" Caption="Статус" />
         <Member Name="SubjectGroup" Caption="ГруппаПО" />
+        <Member Name="TrwCode" Caption="ТРВ Код" />
+        <Member Name="TrwOrders" Caption="ТРВ Заказы" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Subject.fmCSubject+DealInfo" Caption="Финансы договоров">
+      <OwnMembers>
+        <Member Name="Date" Caption="Дата" />
+        <Member Name="Deal" Caption="Ведомость" />
+        <Member Name="DealType" Caption="Доход/Расход" />
+        <Member Name="Month" Caption="Месяц" />
+        <Member Name="NomType" Caption="Деньги/Поставки" />
+        <Member Name="Order" Caption="Заказ" />
+        <Member Name="Subject" Caption="Тема" />
+        <Member Name="SummCost" Caption="Стоимость" />
+        <Member Name="SummFull" Caption="Всего" />
+        <Member Name="SummVat" Caption="НДС" />
+        <Member Name="Valuta" Caption="Валюта" />
+        <Member Name="Year" Caption="Год" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Subject.fmCSubjectGroup" Caption="ГруппаПО">
@@ -1134,6 +1153,14 @@
         <LocalizationItem Name="PRODUCT_CIVIL" Value="ГП" />
         <LocalizationItem Name="PRODUCT_MILITARY" Value="ВП" />
         <LocalizationItem Name="PRODUCT_OTHER" Value="Прочие" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.DealInfoDealType">
+        <LocalizationItem Name="DEAL_INFO_EXPENDITURE" Value="Расходы" />
+        <LocalizationItem Name="DEAL_INFO_PROCEEDS" Value="Доходы" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.DealInfoNomType">
+        <LocalizationItem Name="DEAL_INFO_DELIVERY" Value="Работы/Поставки" />
+        <LocalizationItem Name="DEAL_INFO_PAYMENT" Value="Оплата" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.fmIDirectionStatus">
         <LocalizationItem Name="CLOSED" Value="Закрыто" />

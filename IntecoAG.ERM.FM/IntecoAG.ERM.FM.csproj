@@ -604,6 +604,9 @@
     <None Include="ReportLayouts\fmPaymentRequestContractReport01.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ReportLayouts\fmSubjectDealDetailReport.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ReportLayouts\Служебная записка на оплату %28краткая%29.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
