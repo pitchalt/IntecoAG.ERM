@@ -229,6 +229,7 @@
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
@@ -246,13 +247,99 @@
     <Compile Include="CommonConstants.cs" />
     <Compile Include="CommonMethods.cs" />
     <Compile Include="ContractVersionsReportParametersObject.cs" />
+    <Compile Include="CRM\Analitic\BaseDebitCreditRegister.cs" />
+    <Compile Include="CRM\Analitic\BasePrimaryPartyContragentRegister.cs" />
+    <Compile Include="CRM\Analitic\BaseRegister.cs" />
+    <Compile Include="CRM\Analitic\CashFlowRegister.cs" />
+    <Compile Include="CRM\Analitic\CommonBaseRegister.cs" />
+    <Compile Include="CRM\Analitic\DebtorCreditorDebtRegister.cs" />
+    <Compile Include="CRM\Analitic\PlaneFactRegister.cs" />
+    <Compile Include="CRM\Contract\Contract-ContractDeals.cs" />
+    <Compile Include="CRM\Contract\Contract-ContractDocuments.cs" />
+    <Compile Include="CRM\Contract\Contract.cs" />
+    <Compile Include="CRM\Contract\ContractCategory-Contracts.cs" />
+    <Compile Include="CRM\Contract\ContractCategory.cs" />
+    <Compile Include="CRM\Contract\ContractDocument.cs" />
+    <Compile Include="CRM\Contract\ContractDocumentCategory.cs" />
+    <Compile Include="CRM\Contract\ContractParty.cs" />
+    <Compile Include="CRM\Contract\ContractRegistrationLog.cs" />
+    <Compile Include="CRM\Contract\ContractVersion.cs" />
+    <Compile Include="CRM\Contract\Cost.cs" />
+    <Compile Include="CRM\Contract\CostCol.cs" />
+    <Compile Include="CRM\Contract\CostModel.cs" />
+    <Compile Include="CRM\Contract\Counters\RegistrationLogDocNumberCounter.cs" />
+    <Compile Include="CRM\Contract\Counters\RegistrationLogISNCounter.cs" />
+    <Compile Include="CRM\Contract\Deal\ContractDeal-DealVersions.cs" />
+    <Compile Include="CRM\Contract\Deal\ContractDeal-ObligationUnitMains.cs" />
+    <Compile Include="CRM\Contract\Deal\ContractDeal-StageMains.cs" />
+    <Compile Include="CRM\Contract\Deal\ContractDeal.cs" />
+    <Compile Include="CRM\Contract\Deal\crmContractDealSM.cs" />
+    <Compile Include="CRM\Contract\Deal\crmDealRegistrationStatistics.cs" />
+    <Compile Include="CRM\Contract\Deal\DealNomenclature.cs" />
+    <Compile Include="CRM\Contract\Deal\DealVersion-ObligationUnits.cs" />
+    <Compile Include="CRM\Contract\Deal\DealVersion.cs" />
+    <Compile Include="CRM\Contract\Deal\DealWithoutStage.cs" />
+    <Compile Include="CRM\Contract\Deal\DealWithoutStageVersion.cs" />
+    <Compile Include="CRM\Contract\Deal\DealWithStage.cs" />
+    <Compile Include="CRM\Contract\Deal\DealWithStageVersion.cs" />
+    <Compile Include="CRM\Contract\Document\Addendum.cs" />
+    <Compile Include="CRM\Contract\Document\Contract.cs" />
+    <Compile Include="CRM\Contract\Document\IAddendum.cs" />
+    <Compile Include="CRM\Contract\Document\IContract.cs" />
+    <Compile Include="CRM\Contract\FinancialDeal-FinancialDealVersions.cs" />
+    <Compile Include="CRM\Contract\FinancialDeal.cs" />
+    <Compile Include="CRM\Contract\FinancialDealVersion.cs" />
+    <Compile Include="CRM\Contract\FinancialStructure-FinancialDeals.cs" />
+    <Compile Include="CRM\Contract\FinancialStructure.cs" />
+    <Compile Include="CRM\Contract\Forms\CommonRegistrationForm.cs" />
+    <Compile Include="CRM\Contract\Forms\ContractRegistrationForm.cs" />
+    <Compile Include="CRM\Contract\Forms\DealRegistrationForm.cs" />
+    <Compile Include="CRM\Contract\Obligation\DeliveryItem.cs" />
+    <Compile Include="CRM\Contract\Obligation\DeliveryMaterial.cs" />
+    <Compile Include="CRM\Contract\Obligation\DeliveryPlan-DeliveryUnits.cs" />
+    <Compile Include="CRM\Contract\Obligation\DeliveryPlan.cs" />
+    <Compile Include="CRM\Contract\Obligation\DeliveryService.cs" />
+    <Compile Include="CRM\Contract\Obligation\DeliveryUnit-DeliveryItems.cs" />
+    <Compile Include="CRM\Contract\Obligation\DeliveryUnit.cs" />
+    <Compile Include="CRM\Contract\Obligation\Obligation.cs" />
+    <Compile Include="CRM\Contract\Obligation\ObligationPlan.cs" />
+    <Compile Include="CRM\Contract\Obligation\ObligationTransfer.cs" />
+    <Compile Include="CRM\Contract\Obligation\ObligationUnit.cs" />
+    <Compile Include="CRM\Contract\Obligation\ObligationUnitMain-ObligationUnits.cs" />
+    <Compile Include="CRM\Contract\Obligation\ObligationUnitMain.cs" />
+    <Compile Include="CRM\Contract\Obligation\PaymentCashLess.cs" />
+    <Compile Include="CRM\Contract\Obligation\PaymentItem.cs" />
+    <Compile Include="CRM\Contract\Obligation\PaymentMoney.cs" />
+    <Compile Include="CRM\Contract\Obligation\PaymentPlan-PaymentUnits.cs" />
+    <Compile Include="CRM\Contract\Obligation\PaymentPlan.cs" />
+    <Compile Include="CRM\Contract\Obligation\PaymentUnit-PaymentItems.cs" />
+    <Compile Include="CRM\Contract\Obligation\PaymentUnit.cs" />
+    <Compile Include="CRM\Contract\Stage.cs" />
+    <Compile Include="CRM\Contract\StageMain-Stages.cs" />
+    <Compile Include="CRM\Contract\StageMain.cs" />
+    <Compile Include="CRM\Contract\StageStructure-Stages.cs" />
+    <Compile Include="CRM\Contract\StageStructure.cs" />
+    <Compile Include="CRM\crmCSettingsContract.cs" />
+    <Compile Include="CRM\Party\Bank.cs" />
+    <Compile Include="CRM\Party\BankAccount.cs" />
+    <Compile Include="CRM\Party\crmCBusinessman.cs" />
+    <Compile Include="CRM\Party\crmCLegalPerson.cs" />
+    <Compile Include="CRM\Party\crmCLegalPersonUnit.cs" />
     <Compile Include="CRM\Party\crmCLegalPersonUnitViewController.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CRM\Party\crmCLegalPersonUnitViewController.Designer.cs">
       <DependentUpon>crmCLegalPersonUnitViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CRM\Party\crmCParty.cs" />
+    <Compile Include="CRM\Party\crmCPerson.cs" />
+    <Compile Include="CRM\Party\crmCPhysicalParty.cs" />
     <Compile Include="CRM\Party\crmCUserPartyOperators.cs" />
+    <Compile Include="CRM\Party\crmIParty.cs" />
+    <Compile Include="CRM\Party\crmIPerson.cs" />
+    <Compile Include="CRM\Party\crmPersonType.cs" />
+    <Compile Include="CRM\Party\crmPhysicalPerson.cs" />
+    <Compile Include="CRM\Party\crmUserParty.cs" />
     <Compile Include="CRM\Party\PartyViewController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -265,12 +352,32 @@
     <Compile Include="CS\CommitInfoController.Designer.cs">
       <DependentUpon>CommitInfoController.cs</DependentUpon>
     </Compile>
-    <Compile Include="CS\csImportSupportVC.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CS\csImportSupportVC.Designer.cs">
-      <DependentUpon>csImportSupportVC.cs</DependentUpon>
-    </Compile>
+    <Compile Include="CS\Common\Attributes\LikeSearchPathListAttribute.cs" />
+    <Compile Include="CS\Common\Attributes\MiniNavigationAttribute.cs" />
+    <Compile Include="CS\Common\CLongOperation.cs" />
+    <Compile Include="CS\Common\ConverterType2String.cs" />
+    <Compile Include="CS\Common\ICustomFilter.cs" />
+    <Compile Include="CS\Common\ILongOperation.cs" />
+    <Compile Include="CS\Common\IWizardSupport.cs" />
+    <Compile Include="CS\Common\NonPersistent\NonPersistentCustomBaseClass.cs" />
+    <Compile Include="CS\Common\RecordPocket\BaseRecord.cs" />
+    <Compile Include="CS\Common\RecordPocket\ObjectCollection.cs" />
+    <Compile Include="CS\Common\RecordPocket\TreeStructure.cs" />
+    <Compile Include="CS\Common\ValueConverter.cs" />
+    <Compile Include="CS\Common\VersionSupport\IVersionBusinessLogicSupport.cs" />
+    <Compile Include="CS\Common\VersionSupport\IVersionMainObject.cs" />
+    <Compile Include="CS\Common\VersionSupport\IVersionSupport.cs" />
+    <Compile Include="CS\Common\VersionSupport\VersionHelper.cs" />
+    <Compile Include="CS\Common\VersionSupport\VersionRecord.cs" />
+    <Compile Include="CS\Country\Address.cs" />
+    <Compile Include="CS\Country\Country.cs" />
+    <Compile Include="CS\Country\csIAddress.cs" />
+    <Compile Include="CS\csCCodedComponent.cs" />
+    <Compile Include="CS\csCComponent.cs" />
+    <Compile Include="CS\csICodedComponent.cs" />
+    <Compile Include="CS\csIComponent.cs" />
+    <Compile Include="CS\csIImportSupport.cs" />
+    <Compile Include="CS\csIVersionSupport.cs" />
     <Compile Include="CS\csNavigationController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -283,48 +390,131 @@
     <Compile Include="CS\csNMCourseEditorViewController.Designer.cs">
       <DependentUpon>csNMCourseEditorViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CS\Document\Document.cs" />
+    <Compile Include="CS\Enums.cs" />
+    <Compile Include="CS\Finance\NDSRate.cs" />
+    <Compile Include="CS\ICommitInfo.cs" />
+    <Compile Include="CS\IHDenormalization.cs" />
+    <Compile Include="CS\Locale\Language.cs" />
+    <Compile Include="CS\Measurement\Measurement.cs" />
+    <Compile Include="CS\Measurement\TimeUnit.cs" />
+    <Compile Include="CS\Measurement\Unit.cs" />
+    <Compile Include="CS\Nomenclature\csCNMCourseEditor.cs" />
+    <Compile Include="CS\Nomenclature\csCNMValutaCourse.cs" />
     <Compile Include="CS\Nomenclature\csNomenclatureImportController.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CS\Nomenclature\csNomenclatureImportController.Designer.cs">
       <DependentUpon>csNomenclatureImportController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CS\Nomenclature\Financial.cs" />
+    <Compile Include="CS\Nomenclature\Material.cs" />
+    <Compile Include="CS\Nomenclature\Nomenclature.cs" />
+    <Compile Include="CS\Nomenclature\NomenclatureType-Nomenclatures.cs" />
+    <Compile Include="CS\Nomenclature\NomenclatureType-NomenclatureTypes.cs" />
+    <Compile Include="CS\Nomenclature\NomenclatureType.cs" />
+    <Compile Include="CS\Nomenclature\Service.cs" />
+    <Compile Include="CS\Nomenclature\Valuta.cs" />
     <Compile Include="CS\RusNumber.cs" />
+    <Compile Include="CS\Security\csCSecurityRole.cs" />
+    <Compile Include="CS\Security\csCSecurityUser.cs" />
     <Compile Include="CS\Security\csCSecurityUserListController.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CS\Security\csCSecurityUserListController.Designer.cs">
       <DependentUpon>csCSecurityUserListController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CS\Security\csCSecurityUserLogic.cs" />
+    <Compile Include="CS\Security\csCSecurityUserOperators.cs" />
+    <Compile Include="CS\Settings\csCSettingsBase.cs" />
+    <Compile Include="CS\Work\Event.cs" />
+    <Compile Include="CS\Work\IEvent.cs" />
+    <Compile Include="CS\Work\Work.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_220.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_218.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FM\Docs\csCDocRCB.cs" />
+    <Compile Include="FM\FinAccount\fmCFAAccount.cs" />
+    <Compile Include="FM\FinAccount\fmCFAAccountSystem.cs" />
+    <Compile Include="FM\fmCostItem.cs" />
+    <Compile Include="FM\fmCPaymentBase.cs" />
+    <Compile Include="FM\fmCPaymentKBK.cs" />
+    <Compile Include="FM\fmCPaymentKind.cs" />
+    <Compile Include="FM\fmCPaymentTaxPeriod.cs" />
+    <Compile Include="FM\fmSettingsFinance.cs" />
+    <Compile Include="FM\Order\fmCOrder.cs" />
+    <Compile Include="FM\Order\fmCOrderAnalityc.cs" />
+    <Compile Include="FM\Order\fmCOrderOverhead.cs" />
+    <Compile Include="FM\Order\fmCOrderSM.cs" />
+    <Compile Include="FM\Order\fmIOrder.cs" />
+    <Compile Include="FM\Order\fmIOrderOverhead.cs" />
+    <Compile Include="FM\Subject\fmCDirection.cs" />
+    <Compile Include="FM\Subject\fmCDirectionSM.cs" />
+    <Compile Include="FM\Subject\fmCSubject.cs" />
+    <Compile Include="FM\Subject\fmCSubjectGroup.cs" />
+    <Compile Include="FM\Subject\fmCSubjectSM.cs" />
+    <Compile Include="FM\Subject\fmIDirection.cs" />
+    <Compile Include="FM\Subject\fmISubject.cs" />
+    <Compile Include="GFM\gfmCAnalytic.cs" />
+    <Compile Include="GFM\gfmCAnalyticBase.cs" />
+    <Compile Include="GFM\gfmIAnalytic.cs" />
+    <Compile Include="HRM\Organization\Department-Staffs.cs" />
+    <Compile Include="HRM\Organization\Department.cs" />
+    <Compile Include="HRM\Organization\hrmCStaffGroup.cs" />
+    <Compile Include="HRM\Organization\hrmCStaffGroupItem.cs" />
+    <Compile Include="HRM\Organization\hrmCStaffPost.cs" />
+    <Compile Include="HRM\Organization\hrmIStaff.cs" />
+    <Compile Include="HRM\Organization\hrmIStaffPost.cs" />
+    <Compile Include="HRM\Organization\hrmStaff.cs" />
     <Compile Include="MainForm1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm1.Designer.cs">
       <DependentUpon>MainForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
+    <Compile Include="Sync\SyncISyncObject.cs" />
+    <Compile Include="Trw\Contract\TrwContractMarket.cs" />
+    <Compile Include="Trw\Contract\TrwContractType.cs" />
+    <Compile Include="Trw\Contract\TrwIContractParty.cs" />
+    <Compile Include="Trw\Contract\TrwOrder.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeDoc.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeDocSaleNomenclature.cs" />
     <Compile Include="Trw\Exchange\TrwExchangeExportableObjectController.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trw\Exchange\TrwExchangeExportableObjectController.Designer.cs">
       <DependentUpon>TrwExchangeExportableObjectController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Trw\Exchange\TrwExchangeIDoc.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeIDocObjectLink.cs" />
+    <Compile Include="Trw\Exchange\TrwExchangeIExportableObject.cs" />
     <Compile Include="Trw\Exchange\TrwExchangeSaleNomenclatureController.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trw\Exchange\TrwExchangeSaleNomenclatureController.Designer.cs">
       <DependentUpon>TrwExchangeSaleNomenclatureController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Trw\Nomenclature\TrwSaleNomenclature.cs" />
+    <Compile Include="Trw\Party\TrwPartyParty.cs" />
+    <Compile Include="Trw\Person\TrwIPersonAccount.cs" />
+    <Compile Include="Trw\Person\TrwIPersonBank.cs" />
+    <Compile Include="Trw\References\TrwReferences.cs" />
+    <Compile Include="Trw\TrwICfr.cs" />
+    <Compile Include="Trw\TrwIContract.cs" />
+    <Compile Include="Trw\TrwIOrder.cs" />
+    <Compile Include="Trw\TrwIPerson.cs" />
+    <Compile Include="Trw\TrwISaleNomenclature.cs" />
     <Compile Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.Designer.cs">
       <DependentUpon>XafExtBpmnAcceptableObjectController.cs</DependentUpon>
     </Compile>
+    <Compile Include="XafExt\Bpmn\XafExtBpmnIAcceptableObject.cs" />
     <Compile Include="XafExt\ObjectSpaceHelper.cs" />
     <Compile Include="XafExt\TaskAnalysis1LayoutUpdaterBase.cs">
       <SubType>Code</SubType>
@@ -505,9 +695,6 @@
       <DependentUpon>PartyViewController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CS\csImportSupportVC.resx">
-      <DependentUpon>csImportSupportVC.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CS\csNMCourseEditorViewController.resx">
       <DependentUpon>csNMCourseEditorViewController.cs</DependentUpon>
     </EmbeddedResource>
@@ -641,12 +828,10 @@
     <Content Include="Templates\TrwContract.xml" />
     <Content Include="Templates\TrwOrders.xml" />
     <Content Include="Templates\TrwSaleNomanclature.xml" />
+    <Content Include="Trw\Party\TrwPartyUseCase.txt" />
     <None Include="Documentation\ActionPermissionSystem.vsd" />
     <None Include="Documentation\Последовательность действий по обновлению системы на продуктовом сервере.docx" />
-    <None Include="Import\TrwPartyMarket.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Import\TrwPartyType.csv">
+    <None Include="Import\TrwReferences.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ReportLayouts\crmContractRegistrationJurnal.repx">
@@ -748,13 +933,11 @@
       <Project>{5F9E1E64-7384-475E-99A6-50407FAF329A}</Project>
       <Name>IntecoAG.XAFExt.StateMachine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IntecoAG.ERM.Base.Impl\IntecoAG.ERM.Base.Impl.csproj">
-      <Project>{0B88798B-F4D2-4122-81CB-78C88062FCB8}</Project>
-      <Name>IntecoAG.ERM.Base.Impl</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FM\Subject\" />
+    <Folder Include="CRM\Contract\Ru\" />
+    <Folder Include="CS\Task\" />
+    <Folder Include="Documentation\Trw\" />
     <Folder Include="Trw\Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

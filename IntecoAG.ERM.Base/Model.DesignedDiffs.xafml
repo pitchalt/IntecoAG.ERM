@@ -247,6 +247,56 @@
           <Item Id="@7e5fc703-6ef1-432d-8d80-bcdd697f688c" ViewId="TrwExchangeDoc_ListView" IsNewNode="True" />
           <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" ViewId="TrwSaleNomenclature_Exchange_ListView" IsNewNode="True" />
           <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" ViewId="TrwIContractParty_Exchange_ListView" IsNewNode="True" />
+          <Item Id="References" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="TrwRefBL_ListView" ViewId="TrwRefBL_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefCNDT_ListView" ViewId="TrwRefCNDT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefCNM_ListView" ViewId="TrwRefCNM_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefCNT_ListView" ViewId="TrwRefCNT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefCU_ListView" ViewId="TrwRefCU_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefEXPT_ListView" ViewId="TrwRefEXPT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefFAT_ListView" ViewId="TrwRefFAT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefFINS_ListView" ViewId="TrwRefFINS_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefIVC_ListView" ViewId="TrwRefIVC_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefMU_ListView" ViewId="TrwRefMU_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefNIT_ListView" ViewId="TrwRefNIT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefNST_ListView" ViewId="TrwRefNST_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefNSTT_ListView" ViewId="TrwRefNSTT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefPELT_ListView" ViewId="TrwRefPELT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefPEM_ListView" ViewId="TrwRefPEM_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefPET_ListView" ViewId="TrwRefPET_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefSOS_ListView" ViewId="TrwRefSOS_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefSOSO_ListView" ViewId="TrwRefSOSO_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefST_ListView" ViewId="TrwRefST_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefTAX_ListView" ViewId="TrwRefTAX_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefTAXT_ListView" ViewId="TrwRefTAXT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefTaxVatRate_ListView" ViewId="TrwRefTaxVatRate_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefWT_ListView" ViewId="TrwRefWT_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="TrwRefBL_ListView" Removed="True" />
+          <Item Id="TrwRefCNDT_ListView" Removed="True" />
+          <Item Id="TrwRefCNM_ListView" Removed="True" />
+          <Item Id="TrwRefCNT_ListView" Removed="True" />
+          <Item Id="TrwRefCU_ListView" Removed="True" />
+          <Item Id="TrwRefEXPT_ListView" Removed="True" />
+          <Item Id="TrwRefFAT_ListView" Removed="True" />
+          <Item Id="TrwRefFINS_ListView" Removed="True" />
+          <Item Id="TrwRefIVC_ListView" Removed="True" />
+          <Item Id="TrwRefMU_ListView" Removed="True" />
+          <Item Id="TrwRefNIT_ListView" Removed="True" />
+          <Item Id="TrwRefNST_ListView" Removed="True" />
+          <Item Id="TrwRefNSTT_ListView" Removed="True" />
+          <Item Id="TrwRefPELT_ListView" Removed="True" />
+          <Item Id="TrwRefPEM_ListView" Removed="True" />
+          <Item Id="TrwRefPET_ListView" Removed="True" />
+          <Item Id="TrwRefSOS_ListView" Removed="True" />
+          <Item Id="TrwRefSOSO_ListView" Removed="True" />
+          <Item Id="TrwRefST_ListView" Removed="True" />
+          <Item Id="TrwRefTAX_ListView" Removed="True" />
+          <Item Id="TrwRefTAXT_ListView" Removed="True" />
+          <Item Id="TrwRefTaxVatRate_ListView" Removed="True" />
+          <Item Id="TrwRefWT_ListView" Removed="True" />
         </Items>
       </Item>
       <Item Id="State Machine" Index="6" />
