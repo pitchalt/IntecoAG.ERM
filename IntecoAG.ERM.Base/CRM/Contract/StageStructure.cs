@@ -111,6 +111,13 @@ namespace IntecoAG.ERM.CRM.Contract
         }
 
         #endregion
+        [Association("crmStageStructure-crmStage")]
+        [Browsable(false)]
+        public XPCollection<crmStage> Stages {
+            get {
+                return GetCollection<crmStage>("Stages");
+            }
+        }
 
 
         #region МЕТОДЫ

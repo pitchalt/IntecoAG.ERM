@@ -48,7 +48,10 @@ namespace IntecoAG.ERM.Trw.References {
         [Persistent("RefCode")]
         [Size(10)]
         protected String _RefCode;
-        [PersistentAlias("_RefCode"), Browsable(false)]
+        [PersistentAlias("_RefCode")]
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInLookupListView(false)]
         public String RefCode {
             get { return _RefCode; }
         }
@@ -135,7 +138,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Тип приложения
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefCNDT : TrwRefBase {
         public TrwRefCNDT(Session session) : base(session) { }
 
@@ -149,7 +152,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// ФКД Функциональный классификатор дейтельности
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefSOS : TrwRefBase {
         public TrwRefSOS(Session session) : base(session) { }
 
@@ -163,7 +166,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Единица измерения
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefMU : TrwRefBase {
         public TrwRefMU(Session session) : base(session) { }
 
@@ -177,7 +180,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Группа продукции
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefNST : TrwRefBase {
         public TrwRefNST(Session session) : base(session) { }
 
@@ -191,7 +194,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Назначение продукции
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefNTT : TrwRefBase {
         public TrwRefNTT(Session session) : base(session) { }
 
@@ -205,7 +208,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Виды ТМЦ
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefNIT : TrwRefBase {
         public TrwRefNIT(Session session) : base(session) { }
 
@@ -219,7 +222,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Виды ОС и НМА
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefFAT : TrwRefBase {
         public TrwRefFAT(Session session) : base(session) { }
 
@@ -233,7 +236,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Категории затрат
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefEXPT : TrwRefBase {
         public TrwRefEXPT(Session session) : base(session) { }
 
@@ -247,7 +250,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Виды ЦБ
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefSCT : TrwRefBase {
         public TrwRefSCT(Session session) : base(session) { }
 
@@ -261,7 +264,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Источники финансирования
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefFINS : TrwRefBase {
         public TrwRefFINS(Session session) : base(session) { }
 
@@ -275,7 +278,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Категории договоров
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefCNT : TrwRefBase {
         public TrwRefCNT(Session session) : base(session) { }
 
@@ -289,7 +292,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Генеральные заказчики
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefCNM : TrwRefBase {
         public TrwRefCNM(Session session) : base(session) { }
 
@@ -303,7 +306,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Уровень бюджетной системы
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefBGL : TrwRefBase {
         public TrwRefBGL(Session session) : base(session) { }
 
@@ -317,7 +320,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Вид персонала
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefWT : TrwRefBase {
         public TrwRefWT(Session session) : base(session) { }
 
@@ -331,7 +334,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Вид налогов
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefTAXT : TrwRefBase {
         public TrwRefTAXT(Session session) : base(session) { }
 
@@ -346,7 +349,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Наименование налогов
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefTAX : TrwRefBase {
         public TrwRefTAX(Session session) : base(session) { }
 
@@ -361,7 +364,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Вид контрагента
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefPELT : TrwRefBase {
         public TrwRefPELT(Session session) : base(session) { }
 
@@ -375,7 +378,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Тип рынка контрагента
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefPEM : TrwRefBase {
         public TrwRefPEM(Session session) : base(session) { }
 
@@ -389,7 +392,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Тип контрагента
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefPET : TrwRefBase {
         public TrwRefPET(Session session) : base(session) { }
 
@@ -403,7 +406,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Ставки НДС
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefTaxVatRate : TrwRefBase {
         public TrwRefTaxVatRate(Session session) : base(session) { }
 
@@ -417,7 +420,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Валюта
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefCU : TrwRefBase {
         public TrwRefCU(Session session) : base(session) { }
 
@@ -431,7 +434,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Код вида деятельности (Возможно не используется)
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefSOSO : TrwRefBase {
         public TrwRefSOSO(Session session) : base(session) { }
 
@@ -445,7 +448,7 @@ namespace IntecoAG.ERM.Trw.References {
     /// Разделы мероприятий
     /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
-    [NavigationItem("GeneralCompanyReports")]
+    [NavigationItem("Trw.Codif.References")]
     public class TrwRefIVC : TrwRefBase {
         public TrwRefIVC(Session session) : base(session) { }
 

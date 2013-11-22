@@ -71,7 +71,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         TargetItems = "DeliveryUnits", Visibility = ViewItemVisibility.Hide, Enabled = false)]
     //
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public partial class crmDealWithoutStageVersion : crmDealVersion, IVersionSupport, IVersionBusinessLogicSupport
+    public partial class crmDealWithoutStageVersion : crmDealWithStageVersion, IVersionSupport, IVersionBusinessLogicSupport
     {
         public crmDealWithoutStageVersion(Session ses) : base(ses) { }
         public crmDealWithoutStageVersion(Session session, VersionStates state) : base(session, state) { }
@@ -597,26 +597,26 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         }
         #endregion
         //
-        [PersistentAlias("DeliveryPlan.CurrentCost")]
-        [ExpandObjectMembers(ExpandObjectMembers.Always)]
-        public crmCostCol CurrentCost {
-            get {
-                return DeliveryPlan.CurrentCost;
-            }
-        }
+        //[PersistentAlias("DeliveryPlan.CurrentCost")]
+        //[ExpandObjectMembers(ExpandObjectMembers.Always)]
+        //public crmCostCol CurrentCost {
+        //    get {
+        //        return DeliveryPlan.CurrentCost;
+        //    }
+        //}
         //
-        [PersistentAlias("PaymentPlan.CurrentCost")]
-        [ExpandObjectMembers(ExpandObjectMembers.Always)]
-        public crmCostCol CurrentPayment {
-            get {
-                return PaymentPlan.CurrentCost;
-            }
-        }
-        //
+        //[PersistentAlias("PaymentPlan.CurrentCost")]
+        //[ExpandObjectMembers(ExpandObjectMembers.Always)]
+        //public crmCostCol CurrentPayment {
+        //    get {
+        //        return PaymentPlan.CurrentCost;
+        //    }
+        //}
+        ////
         protected override void OnLoaded() {
             base.OnLoaded();
-            CurrentCost.Changed += OnCurrentCostChanged;
-            CurrentPayment.Changed += OnCurrentPaymentChanged;
+            if (CurrentCost != null) CurrentCost.Changed += OnCurrentCostChanged;
+            if (CurrentPayment != null) CurrentPayment.Changed += OnCurrentPaymentChanged;
         }
         //
         public void OnCurrentCostChanged(object sender, ObjectChangeEventArgs e) {
@@ -659,21 +659,21 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
         #region МЕТОДЫ
 
-        public void ApproveVersion() {
-            if (this.ContractDeal as crmDealWithoutStage != null) (this.ContractDeal as crmDealWithoutStage).ApproveVersion(this);
-        }
+        //public void ApproveVersion() {
+        //    if (this.ContractDeal is crmDealWithoutStage) ((crmDealWithoutStage) this.ContractDeal).ApproveVersion(this);
+        //}
 
         #endregion
 
         #region IVersionBusinessLogicSupport
 
-        public IVersionSupport CreateNewVersion() {
-            VersionHelper vHelper = new VersionHelper(this.Session);
-            return vHelper.CreateNewVersion((IVersionSupport)(((crmDealWithoutStage)(this.MainObject)).Current), vHelper);
-        }
+        //public IVersionSupport CreateNewVersion() {
+        //    VersionHelper vHelper = new VersionHelper(this.Session);
+        //    return vHelper.CreateNewVersion((IVersionSupport)(((crmDealWithoutStage)(this.MainObject)).Current), vHelper);
+        //}
 
-        public void Approve(IVersionSupport obj) {
-        }
+        //public void Approve(IVersionSupport obj) {
+        //}
 
         #endregion
 

@@ -54,7 +54,6 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             //this.ContractDocument = new crmContractDocument(this.Session);
         }
 
-
         #region ПОЛЯ КЛАССА
 
         #endregion

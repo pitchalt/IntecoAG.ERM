@@ -54,22 +54,14 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="Reports" Index="6">
+      <Item Id="Trw" ChildItemsDisplayStyle="List">
         <Items>
-          <Item Id="Reports" Removed="True" />
-        </Items>
-      </Item>
-      <Item Id="GeneralCompanyReports" ChildItemsDisplayStyle="List" Index="7" IsNewNode="True">
-        <Items IsNewNode="True">
           <Item Id="TrwContragents" Index="0" IsNewNode="True">
             <Items IsNewNode="True">
               <Item Id="@2c7200cb-4b4a-42d0-9f9b-0014e950aa13" ViewId="TrwPartyParty_ListView" Index="0" IsNewNode="True" />
               <Item Id="@52ec9235-0012-478a-b657-0b56a4c64ef4" ViewId="crmBankAccount_Trw_Type1_ListView" IsNewNode="True" />
             </Items>
           </Item>
-          <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" Index="1" IsNewNode="True" />
-          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" Index="2" IsNewNode="True" />
-          <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" Index="3" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="Settings" Index="8" ChildItemsDisplayStyle="List" IsNewNode="True">

@@ -26,13 +26,6 @@ namespace IntecoAG.ERM.CRM.Contract
     /// </summary>
     public partial class crmStageStructure
     {
-        [Association("crmStageStructure-crmStage")]
-        [Browsable(false)]
-        public XPCollection<crmStage> Stages {
-            get {
-                return GetCollection<crmStage>("Stages");
-            }
-        }
     }
 
     /// <summary>
@@ -40,13 +33,6 @@ namespace IntecoAG.ERM.CRM.Contract
     /// </summary>
     public partial class crmStage
     {
-        private crmStageStructure _StageStructure;
-        [Association("crmStageStructure-crmStage")]
-        [Browsable(false)]
-        public crmStageStructure StageStructure {
-            get { return _StageStructure; }
-            set { SetPropertyValue<crmStageStructure>("StageStructure", ref _StageStructure, value); }
-        }
     }
 
 }

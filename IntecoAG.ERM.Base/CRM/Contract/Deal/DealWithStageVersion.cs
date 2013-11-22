@@ -59,6 +59,10 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
             base.VersionAfterConstruction();
         }
 
+        public void StageStructureCreate() {
+            this.StageStructure = new crmStageStructure(this.Session, this.VersionState);
+            this.StageStructure.DealVersion = this;
+        }
         #region ПОЛЯ КЛАССА
 
         public override crmContractParty Customer {
@@ -206,7 +210,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
         [PersistentAlias("StageStructure.FirstStage.CurrentCost")]
         [ExpandObjectMembers(ExpandObjectMembers.InDetailView)]
         public crmCostCol CurrentCost {
-            get { return StageStructure.FirstStage.CurrentCost; }
+            get { return StageStructure == null? null : StageStructure.FirstStage.CurrentCost; }
         }
         /// <summary>
         /// 
@@ -214,7 +218,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
         [PersistentAlias("StageStructure.FirstStage.CurrentPayment")]
         [ExpandObjectMembers(ExpandObjectMembers.InDetailView)]
         public crmCostCol CurrentPayment {
-            get { return StageStructure.FirstStage.CurrentPayment; }
+            get { return StageStructure == null? null : StageStructure.FirstStage.CurrentPayment; }
         }
 
         [PersistentAlias("StageStructure.FirstStage.SubStages")]

@@ -232,7 +232,7 @@
       <Item Id="Finance" Index="0" />
       <Item Id="KPI" Index="1" />
       <Item Id="Money" Index="2" />
-      <Item Id="Reports" Index="3">
+      <Item Id="Reports" Index="3" Removed="True">
         <Items>
           <Item Id="XafExtAnalysis" ViewId="XafExtAnalysis_ListView" ObjectKey="" Index="1" IsNewNode="True" />
           <Item Id="XafExtAnalysis_ListView" Index="1" Removed="True" />
@@ -240,16 +240,17 @@
           <Item Id="Analysis_ListView" Removed="True" />
         </Items>
       </Item>
-      <Item Id="Settings" Index="4" />
-      <Item Id="GeneralCompanyReports" Index="5" IsNewNode="True">
+      <Item Id="Settings" Index="4">
+        <Items>
+          <Item Id="XafExtAnalysis" ViewId="XafExtAnalysis_ListView" ObjectKey="" Index="1" IsNewNode="True" />
+          <Item Id="XafExtReportData" Index="2" ViewId="XafExtReportData_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Trw" Index="5" IsNewNode="True">
         <Items IsNewNode="True">
-          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_Exchange_ListView" IsNewNode="True" />
-          <Item Id="@7e5fc703-6ef1-432d-8d80-bcdd697f688c" ViewId="TrwExchangeDoc_ListView" IsNewNode="True" />
-          <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" ViewId="TrwSaleNomenclature_Exchange_ListView" IsNewNode="True" />
-          <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" ViewId="TrwIContractParty_Exchange_ListView" IsNewNode="True" />
-          <Item Id="References" IsNewNode="True">
+          <Item Id="Trw.Codif.References" Index="0" IsNewNode="True">
             <Items IsNewNode="True">
-              <Item Id="TrwRefBL_ListView" ViewId="TrwRefBL_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefBGL_ListView" ViewId="TrwRefBGL_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefCNDT_ListView" ViewId="TrwRefCNDT_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefCNM_ListView" ViewId="TrwRefCNM_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefCNT_ListView" ViewId="TrwRefCNT_ListView" ObjectKey="" IsNewNode="True" />
@@ -261,46 +262,28 @@
               <Item Id="TrwRefMU_ListView" ViewId="TrwRefMU_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefNIT_ListView" ViewId="TrwRefNIT_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefNST_ListView" ViewId="TrwRefNST_ListView" ObjectKey="" IsNewNode="True" />
-              <Item Id="TrwRefNSTT_ListView" ViewId="TrwRefNSTT_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefNTT_ListView" ViewId="TrwRefNTT_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefPELT_ListView" ViewId="TrwRefPELT_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefPEM_ListView" ViewId="TrwRefPEM_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefPET_ListView" ViewId="TrwRefPET_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="TrwRefSCT_ListView" ViewId="TrwRefSCT_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefSOS_ListView" ViewId="TrwRefSOS_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefSOSO_ListView" ViewId="TrwRefSOSO_ListView" ObjectKey="" IsNewNode="True" />
-              <Item Id="TrwRefST_ListView" ViewId="TrwRefST_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefTAX_ListView" ViewId="TrwRefTAX_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefTAXT_ListView" ViewId="TrwRefTAXT_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefTaxVatRate_ListView" ViewId="TrwRefTaxVatRate_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="TrwRefWT_ListView" ViewId="TrwRefWT_ListView" ObjectKey="" IsNewNode="True" />
             </Items>
           </Item>
-          <Item Id="TrwRefBL_ListView" Removed="True" />
-          <Item Id="TrwRefCNDT_ListView" Removed="True" />
-          <Item Id="TrwRefCNM_ListView" Removed="True" />
-          <Item Id="TrwRefCNT_ListView" Removed="True" />
-          <Item Id="TrwRefCU_ListView" Removed="True" />
-          <Item Id="TrwRefEXPT_ListView" Removed="True" />
-          <Item Id="TrwRefFAT_ListView" Removed="True" />
-          <Item Id="TrwRefFINS_ListView" Removed="True" />
-          <Item Id="TrwRefIVC_ListView" Removed="True" />
-          <Item Id="TrwRefMU_ListView" Removed="True" />
-          <Item Id="TrwRefNIT_ListView" Removed="True" />
-          <Item Id="TrwRefNST_ListView" Removed="True" />
-          <Item Id="TrwRefNSTT_ListView" Removed="True" />
-          <Item Id="TrwRefPELT_ListView" Removed="True" />
-          <Item Id="TrwRefPEM_ListView" Removed="True" />
-          <Item Id="TrwRefPET_ListView" Removed="True" />
-          <Item Id="TrwRefSOS_ListView" Removed="True" />
-          <Item Id="TrwRefSOSO_ListView" Removed="True" />
-          <Item Id="TrwRefST_ListView" Removed="True" />
-          <Item Id="TrwRefTAX_ListView" Removed="True" />
-          <Item Id="TrwRefTAXT_ListView" Removed="True" />
-          <Item Id="TrwRefTaxVatRate_ListView" Removed="True" />
-          <Item Id="TrwRefWT_ListView" Removed="True" />
+          <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" ViewId="TrwIContractParty_Exchange_ListView" Index="1" IsNewNode="True" />
+          <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" ViewId="TrwSaleNomenclature_Exchange_ListView" Index="2" IsNewNode="True" />
+          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_Exchange_ListView" Index="3" IsNewNode="True" />
+          <Item Id="@7e5fc703-6ef1-432d-8d80-bcdd697f688c" ViewId="TrwExchangeDoc_ListView" Index="4" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="State Machine" Index="6" />
       <Item Id="Default" Removed="True" />
+      <Item Id="Trw.Codif.References" Removed="True" />
     </Items>
   </NavigationItems>
   <Options>
@@ -1114,52 +1097,22 @@
               </LayoutGroup>
               <LayoutItem Id="DescriptionLong" ViewItem="DescriptionLong" Index="7" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="Obligations" Index="1" IsNewNode="True">
-              <LayoutGroup Id="ObligationData" Index="0" IsNewNode="True">
-                <LayoutGroup Id="DeliveryData" Index="0" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="DeliveryMethod" Index="0" ViewItem="DeliveryMethod" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
-                  <LayoutItem Id="DeliveryDate" ViewItem="DeliveryDate" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
-                  <LayoutItem Id="Valuta" ViewItem="Valuta" Index="2" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
-                  <LayoutItem Id="CostModel" ViewItem="CostModel" Index="3" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
-                  <LayoutItem Id="NDSRate" ViewItem="NDSRate" Index="4" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="CurrentCostData" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="CurrentCost.SummCost" ViewItem="CurrentCost.SummCost" Index="0" CaptionLocation="Top" IsNewNode="True" />
-                  <LayoutItem Id="CurrentCost.SummNDS" ViewItem="CurrentCost.SummNDS" Index="1" CaptionLocation="Top" IsNewNode="True" />
-                  <LayoutItem Id="CurrentCost.SummFull" ViewItem="CurrentCost.SummFull" Index="2" CaptionLocation="Top" IsNewNode="True" />
-                </LayoutGroup>
-              </LayoutGroup>
-              <LayoutGroup Id="DeliveryTypes" IsNewNode="True">
-                <LayoutGroup Id="DeliveryItemAtTheEnd" Index="0" IsNewNode="True">
-                  <LayoutItem Id="DeliveryItem" ViewItem="DeliveryItem" ShowCaption="True" CaptionLocation="Top" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="DeliveryUnitAtTheEnd" Index="1" IsNewNode="True">
-                  <LayoutItem Id="DeliveryItems" ViewItem="DeliveryItems" ShowCaption="True" CaptionLocation="Top" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="DeliveryItemsShedule" Index="2" IsNewNode="True">
-                  <LayoutItem Id="ItemShedules" ViewItem="ItemShedules" ShowCaption="False" Index="0" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="DeliveryUnitsShedule" Index="3" IsNewNode="True">
-                  <LayoutItem Id="DeliveryUnits" ViewItem="DeliveryUnits" CaptionLocation="Top" ShowCaption="True" IsNewNode="True" />
-                </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-            <LayoutGroup Id="Payments" Index="2" IsNewNode="True">
-              <LayoutGroup Id="PaymentParams" Index="0" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="PaymentMethod" ViewItem="PaymentMethod" Index="0" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="AdvancePercentage" ViewItem="AdvancePercentage" Index="1" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="AdvanceDate" ViewItem="AdvanceDate" Index="2" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="SettlementDate" ViewItem="SettlementDate" Index="3" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="4" CaptionLocation="Top" IsNewNode="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="PaymentSumm" Index="1" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="PaySummCost" ViewItem="CurrentPayment.SummCost" Index="2" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="PaySummNDS" ViewItem="CurrentPayment.SummNDS" Index="3" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="PaySummFull" Index="4" ViewItem="CurrentPayment.SummFull" CaptionLocation="Top" IsNewNode="True" />
-              </LayoutGroup>
-              <LayoutItem Id="PaymentUnits" ViewItem="PaymentUnits" ShowCaption="False" Index="5" IsNewNode="True" />
+            <LayoutGroup Id="Stages" Index="1" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="Stages" ViewItem="Stages" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="SheduleUnits" Index="2" IsNewNode="True">
+              <LayoutGroup Id="DeliveryParams" Index="0" Direction="Horizontal" ShowCaption="False" CaptionLocation="Top" IsNewNode="True">
+                <LabelItem Id="@c668cd47-4ca6-4c6e-9eb5-ff4ee9934079" Index="0" VerticalAlign="Bottom" IsNewNode="True" />
+                <LayoutItem Id="CurrentCost.SummCost" ViewItem="CurrentCost.SummCost" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentCost.SummNDS" ViewItem="CurrentCost.SummNDS" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentCost.SummFull" ViewItem="CurrentCost.SummFull" Index="3" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="PaymentParams" Index="1" Direction="Horizontal" ShowCaption="False" CaptionLocation="Top" IsNewNode="True">
+                <LabelItem Id="@6ec44038-29f8-40cb-8b16-f753d93c8c09" Index="0" IsNewNode="True" />
+                <LayoutItem Id="CurrentPayment.SummCost" ViewItem="CurrentPayment.SummCost" Index="1" ShowCaption="False" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentPayment.SummNDS" ViewItem="CurrentPayment.SummNDS" Index="2" ShowCaption="False" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentPayment.SummFull" ViewItem="CurrentPayment.SummFull" Index="3" ShowCaption="False" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
               <LayoutItem Id="ObligationUnits" ViewItem="ObligationUnits" Index="2" CaptionLocation="Top" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Partys" Index="5" IsNewNode="True">
@@ -1364,15 +1317,17 @@
             </LayoutGroup>
             <LayoutGroup Id="Stages" Index="1" />
             <LayoutGroup Id="SheduleUnits" Index="2" IsNewNode="True" Removed="True">
-              <LayoutGroup Id="DeliveryParams" Index="0" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
-                <LayoutItem Id="CurrentCost.SummCost" ViewItem="CurrentCost.SummCost" Index="0" IsNewNode="True" />
-                <LayoutItem Id="CurrentCost.SummNDS" ViewItem="CurrentCost.SummNDS" Index="1" IsNewNode="True" />
-                <LayoutItem Id="CurrentCost.SummFull" ViewItem="CurrentCost.SummFull" Index="2" IsNewNode="True" />
+              <LayoutGroup Id="DeliveryParams" Index="0" Direction="Horizontal" ShowCaption="False" CaptionLocation="Top" IsNewNode="True">
+                <LabelItem Id="@c668cd47-4ca6-4c6e-9eb5-ff4ee9934079" Index="0" VerticalAlign="Bottom" IsNewNode="True" />
+                <LayoutItem Id="CurrentCost.SummCost" ViewItem="CurrentCost.SummCost" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentCost.SummNDS" ViewItem="CurrentCost.SummNDS" Index="2" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentCost.SummFull" ViewItem="CurrentCost.SummFull" Index="3" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="PaymentParams" Index="1" Direction="Horizontal" ShowCaption="True" CaptionLocation="Top" IsNewNode="True">
-                <LayoutItem Id="CurrentPayment.SummCost" ViewItem="CurrentPayment.SummCost" Index="4" IsNewNode="True" />
-                <LayoutItem Id="CurrentPayment.SummNDS" ViewItem="CurrentPayment.SummNDS" Index="5" IsNewNode="True" />
-                <LayoutItem Id="CurrentPayment.SummFull" ViewItem="CurrentPayment.SummFull" Index="6" IsNewNode="True" />
+              <LayoutGroup Id="PaymentParams" Index="1" Direction="Horizontal" ShowCaption="False" CaptionLocation="Top" IsNewNode="True">
+                <LabelItem Id="@6ec44038-29f8-40cb-8b16-f753d93c8c09" Index="0" IsNewNode="True" />
+                <LayoutItem Id="CurrentPayment.SummCost" ViewItem="CurrentPayment.SummCost" Index="1" ShowCaption="False" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentPayment.SummNDS" ViewItem="CurrentPayment.SummNDS" Index="2" ShowCaption="False" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="CurrentPayment.SummFull" ViewItem="CurrentPayment.SummFull" Index="3" ShowCaption="False" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
               <LayoutItem Id="ObligationUnits" ViewItem="ObligationUnits" Index="2" CaptionLocation="Top" IsNewNode="True" />
             </LayoutGroup>

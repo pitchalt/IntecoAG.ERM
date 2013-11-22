@@ -246,8 +246,6 @@
         <Member Name="AdvanceDate" Caption="Дата аванса" />
         <Member Name="AdvancePercentage" Caption="Процент аванса" />
         <Member Name="AdvanceSumm" Caption="Сумма Аванса" />
-        <Member Name="CurrentCost" Caption="Стоимость обязательств" />
-        <Member Name="CurrentPayment" Caption="Стоимость расчетов" />
         <Member Name="DeliveryDate" Caption="Дата поставки" />
         <Member Name="DeliveryItems" Caption="Позиции поставки" />
         <Member Name="DeliveryUnits" Caption="Поставки" />
@@ -1033,6 +1031,36 @@
         <Member Name="TrwFACCode" Caption="ТРВ ЦФО Код" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefBase" Caption="ТРВ Общий справочник" ObjectCaptionFormat="({0:Code}) {0:Name}">
+      <OwnMembers>
+        <Member Name="Code" Caption=" Код" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="RefCode" Caption="Код справочника" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefBGL" Caption="ТРВ Уровень бюджетной системы" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefCNDT" Caption="ТРВ Тип приложения" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefCNM" Caption="ТРВ Генеральные заказчики" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefCNT" Caption="ТРВ Категории договоров" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefCU" Caption="ТРВ Валюта" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefEXPT" Caption="ТРВ Категории затрат" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefFAT" Caption="ТРВ Виды ОС и НМА" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefFINS" Caption="ТРВ Источники финансирования" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefIVC" Caption="ТРВ Разделы мероприятий" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefMU" Caption="ТРВ Единица измерения" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefNIT" Caption="ТРВ Виды ТМЦ" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefNST" Caption="ТРВ Группа продукции" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefNTT" Caption="ТРВ Назначение продукции" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefPELT" Caption="ТРВ Вид контрагента" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefPEM" Caption="ТРВ Тип рынка контрагента" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefPET" Caption="ТРВ Тип контрагента" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefSCT" Caption="ТРВ Виды ЦБ" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefSOS" Caption="ТРВ ФКД" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefSOSO" Caption="ТРВ Код вида деятельности" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefTAX" Caption="ТРВ Наименования налогов" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefTAXT" Caption="ТРВ Вид налогов" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefTaxVatRate" Caption="ТРВ НДС" />
+    <Class Name="IntecoAG.ERM.Trw.References.TrwRefWT" Caption="ТРВ Вид персонала" />
     <Class Name="IntecoAG.ERM.XAFExt.XafExtAnalysis" Caption="Справка" />
     <Class Name="IntecoAG.ERM.XAFExt.XafExtReportData" Caption="Отчет" />
   </BOModel>
@@ -1295,10 +1323,11 @@
   </Localization>
   <NavigationItems>
     <Items>
-      <Item Id="GeneralCompanyReports">
+      <Item Id="Trw" Caption="ТРВ">
         <Items>
-          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" Caption="ТРВ Заказы" />
           <Item Id="@cffc1387-ea9d-4bad-96d8-a3486555c7e6" Caption="ТРВ Договоры" />
+          <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" Caption="ТРВ Заказы" />
+          <Item Id="@7e5fc703-6ef1-432d-8d80-bcdd697f688c" Caption="Документы экспорта в ТРВ" />
         </Items>
       </Item>
     </Items>
@@ -1405,6 +1434,15 @@
         <LayoutGroup Id="Main">
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="Common" Caption="Общие" />
+            <LayoutGroup Id="Stages" Caption="Этапы" />
+            <LayoutGroup Id="SheduleUnits" Caption="График выполнения">
+              <LayoutGroup Id="DeliveryParams">
+                <LabelItem Id="@c668cd47-4ca6-4c6e-9eb5-ff4ee9934079" Text="Стоимость имущества,работ,услуг" />
+              </LayoutGroup>
+              <LayoutGroup Id="PaymentParams">
+                <LabelItem Id="@6ec44038-29f8-40cb-8b16-f753d93c8c09" Text="Оплата" />
+              </LayoutGroup>
+            </LayoutGroup>
             <LayoutGroup Id="Partys" Caption="Стороны" />
             <LayoutGroup Id="ContractDocuments" Caption="Документооборот" />
           </TabbedGroup>
@@ -1417,6 +1455,14 @@
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="Common" Caption="Общие" />
             <LayoutGroup Id="Stages" Caption="Этапы" />
+            <LayoutGroup Id="SheduleUnits" Caption="График выполнения">
+              <LayoutGroup Id="DeliveryParams">
+                <LabelItem Id="@c668cd47-4ca6-4c6e-9eb5-ff4ee9934079" Text="Стоимость имущества,работ,услуг" />
+              </LayoutGroup>
+              <LayoutGroup Id="PaymentParams">
+                <LabelItem Id="@6ec44038-29f8-40cb-8b16-f753d93c8c09" Text="Оплата" />
+              </LayoutGroup>
+            </LayoutGroup>
             <LayoutGroup Id="Partys" Caption="Стороны">
               <TabbedGroup Id="PartysTabs">
                 <LayoutGroup Id="Customer" Caption="Заказчик" />

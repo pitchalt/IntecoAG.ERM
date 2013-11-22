@@ -60,8 +60,9 @@
       <Item Id="AVT" Caption="НДС" />
       <Item Id="Sale" Caption="Продажи" />
       <Item Id="Money" Caption="Деньги" />
-      <Item Id="GeneralCompanyReports" Caption="ТРВ Отчеты">
+      <Item Id="Trw">
         <Items>
+          <Item Id="Trw.Codif.References" Caption="Общие справочники" />
           <Item Id="TrwContragents" Caption="Контрагенты">
             <Items>
               <Item Id="@2c7200cb-4b4a-42d0-9f9b-0014e950aa13" Caption="ТРВ Контрагенты" />

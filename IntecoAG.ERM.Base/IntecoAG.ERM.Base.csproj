@@ -8,7 +8,7 @@
     <ProjectGuid>{368E9133-CB2F-4929-92A4-7F047659B03E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IntecoAG.ERM.Module</RootNamespace>
+    <RootNamespace>IntecoAG.ERM</RootNamespace>
     <AssemblyName>IntecoAG.ERM.Base</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
@@ -317,7 +317,6 @@
     <Compile Include="CRM\Contract\Stage.cs" />
     <Compile Include="CRM\Contract\StageMain-Stages.cs" />
     <Compile Include="CRM\Contract\StageMain.cs" />
-    <Compile Include="CRM\Contract\StageStructure-Stages.cs" />
     <Compile Include="CRM\Contract\StageStructure.cs" />
     <Compile Include="CRM\crmCSettingsContract.cs" />
     <Compile Include="CRM\Party\Bank.cs" />
@@ -499,7 +498,16 @@
       <DependentUpon>TrwExchangeSaleNomenclatureController.cs</DependentUpon>
     </Compile>
     <Compile Include="Trw\Nomenclature\TrwSaleNomenclature.cs" />
+    <Compile Include="Trw\Party\TrwPartyKppSequence.cs" />
+    <Compile Include="Trw\Party\TrwPartyKppSequenceLogic.cs" />
     <Compile Include="Trw\Party\TrwPartyParty.cs" />
+    <Compile Include="Trw\Party\TrwPartyPartyLogic.cs" />
+    <Compile Include="Trw\Party\TrwPartyPartyVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trw\Party\TrwPartyPartyVC.Designer.cs">
+      <DependentUpon>TrwPartyPartyVC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Trw\Person\TrwIPersonAccount.cs" />
     <Compile Include="Trw\Person\TrwIPersonBank.cs" />
     <Compile Include="Trw\References\TrwReferences.cs" />
@@ -710,6 +718,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Trw\Exchange\TrwExchangeExportableObjectController.resx">
       <DependentUpon>TrwExchangeExportableObjectController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trw\Party\TrwPartyPartyVC.resx">
+      <DependentUpon>TrwPartyPartyVC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.resx">
       <DependentUpon>XafExtBpmnAcceptableObjectController.cs</DependentUpon>

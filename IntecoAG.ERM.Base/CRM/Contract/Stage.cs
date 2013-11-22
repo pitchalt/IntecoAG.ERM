@@ -107,6 +107,13 @@ namespace IntecoAG.ERM.CRM.Contract
         }
 
         #region СВОЙСТВА КЛАССА
+        private crmStageStructure _StageStructure;
+        [Association("crmStageStructure-crmStage")]
+        [Browsable(false)]
+        public crmStageStructure StageStructure {
+            get { return _StageStructure; }
+            set { SetPropertyValue<crmStageStructure>("StageStructure", ref _StageStructure, value); }
+        }
 
         [Browsable(false)]
         [NonPersistent]

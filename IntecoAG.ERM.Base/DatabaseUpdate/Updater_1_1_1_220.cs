@@ -52,7 +52,38 @@ namespace IntecoAG.ERM.FM {
                 }
             }
         }
-        
+
+        public void DealWhithoutStageUpdate(IObjectSpace os) {
+            var deals = os.GetObjects<crmDealWithoutStage>();
+            foreach (crmDealWithoutStage deal in deals) {
+                crmDealWithoutStageVersion deal_version = (crmDealWithoutStageVersion) deal.Current;
+                deal_version.StageStructureCreate();
+                var stage = deal_version.StageStructure.FirstStage.SubStagesCreate();
+                stage.StageType = StageType.FINANCE;
+                stage.Code = "1"; 
+//                stage. = "Ведомость";
+                var delivery_plan = stage.DeliveryPlan;
+                stage.DeliveryMethod = deal_version.DeliveryMethod;
+                stage.DeliveryPlan = deal_version.DeliveryPlan;
+                deal_version.DeliveryPlan.Stage = stage;
+                deal_version.DeliveryPlan.CurrentCost.UpCol = delivery_plan.CurrentCost.UpCol;
+                delivery_plan.Stage = null;
+                delivery_plan.CurrentCost.UpCol = null;
+                deal_version.DeliveryPlan = null;
+                os.Delete(delivery_plan);
+                //
+                var payment_plan = stage.PaymentPlan;
+                stage.PaymentMethod = deal_version.PaymentMethod;
+                stage.PaymentPlan = deal_version.PaymentPlan;
+                deal_version.PaymentPlan.Stage = stage;
+                deal_version.PaymentPlan.CurrentCost.UpCol = payment_plan.CurrentCost.UpCol;
+                payment_plan.Stage = null;
+                payment_plan.CurrentCost.UpCol = null;
+                deal_version.PaymentPlan = null;
+                os.Delete(payment_plan);
+            }
+        }
+
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
             // Disable version
@@ -65,6 +96,10 @@ namespace IntecoAG.ERM.FM {
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
                 var references = new ClassificatorImporter<ReferecesRecord>();
                 references.Import(os, dir + "TrwReferences.csv");
+                os.CommitChanges();
+            }
+            using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
+                DealWhithoutStageUpdate(os);
                 os.CommitChanges();
             }
         }
