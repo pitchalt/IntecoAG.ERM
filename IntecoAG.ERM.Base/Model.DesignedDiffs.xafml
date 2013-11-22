@@ -279,10 +279,16 @@
           <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" ViewId="TrwSaleNomenclature_Exchange_ListView" Index="2" IsNewNode="True" />
           <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_Exchange_ListView" Index="3" IsNewNode="True" />
           <Item Id="@7e5fc703-6ef1-432d-8d80-bcdd697f688c" ViewId="TrwExchangeDoc_ListView" Index="4" IsNewNode="True" />
+          <Item Id="Trw.Budget" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="TrwBudgetSubjectControl_ListView" ViewId="TrwBudgetSubjectControl_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
         </Items>
       </Item>
       <Item Id="State Machine" Index="6" />
       <Item Id="Default" Removed="True" />
+      <Item Id="Trw.Budget" Removed="True" />
       <Item Id="Trw.Codif.References" Removed="True" />
     </Items>
   </NavigationItems>
@@ -1062,6 +1068,12 @@
       </Columns>
     </ListView>
     <DetailView Id="crmDealWithoutStageVersion_DetailView" InvisibleGroupVerticalDistance="10" AllowDelete="False" AllowNew="False">
+      <Items>
+        <PropertyEditor Id="CurrentCost.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentCost.SummNDS" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummCost" AllowEdit="False" />
+        <PropertyEditor Id="CurrentPayment.SummNDS" AllowEdit="False" />
+      </Items>
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
