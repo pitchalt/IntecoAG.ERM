@@ -32,11 +32,14 @@ namespace IntecoAG.ERM.Trw.Party {
                     case TrwPartyKppSequenceType.PARTY_TYPE_INTERNAL:
                         cur_num.Number = 3;
                         break;
+                    case TrwPartyKppSequenceType.PARTY_TYPE_MARKET2:
+                        cur_num.Number = 2000;
+                        break;
                     case TrwPartyKppSequenceType.PARTY_TYPE_MARKET1:
                         cur_num.Number = 100;
                         break;
-                    case TrwPartyKppSequenceType.PARTY_TYPE_MARKET2:
-                        cur_num.Number = 51;
+                    case TrwPartyKppSequenceType.PARTY_TYPE_PAY_INTERMEDIA:
+                        cur_num.Number = 1000;
                         break;
                 }
                 cur_num.SequenceType = seq_type;

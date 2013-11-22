@@ -26,8 +26,12 @@ namespace IntecoAG.ERM.Trw.Party {
             else {
                 if (party.Market == TrwPartyMarket.MARKET_VED)
                     seq_type = TrwPartyKppSequenceType.PARTY_TYPE_MARKET1;
-                else
-                    throw new ArgumentOutOfRangeException("Unsupported market type");
+                else {
+                    if (party.PartyType == TrwPartyType.PARTY_INTERMEDIA_TREASURE)
+                        seq_type = TrwPartyKppSequenceType.PARTY_TYPE_PAY_INTERMEDIA;
+                    else
+                        throw new ArgumentOutOfRangeException("Unsupported market type");
+                }
             }
             Int32 kpp = TrwPartyKppSequenceLogic.GetNextNumber(seq_os, seq_type, party.Oid);
             party.INN = "2500000000";

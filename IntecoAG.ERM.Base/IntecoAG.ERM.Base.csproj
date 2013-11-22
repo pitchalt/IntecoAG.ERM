@@ -476,6 +476,8 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetBase.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetSubjectControl.cs" />
     <Compile Include="Trw\Contract\TrwContractMarket.cs" />
     <Compile Include="Trw\Contract\TrwContractType.cs" />
     <Compile Include="Trw\Contract\TrwIContractParty.cs" />

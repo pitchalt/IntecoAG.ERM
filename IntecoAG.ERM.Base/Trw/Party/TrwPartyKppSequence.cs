@@ -20,7 +20,8 @@ namespace IntecoAG.ERM.Trw.Party {
         PARTY_TYPE_SINGLE_DEAL = 3,
         PARTY_TYPE_INTERNAL = 4,
         PARTY_TYPE_MARKET1 = 5,
-        PARTY_TYPE_MARKET2 = 6
+        PARTY_TYPE_MARKET2 = 6,
+        PARTY_TYPE_PAY_INTERMEDIA = 7
     }
 
     [Persistent("TrwPartyKppSequence")]

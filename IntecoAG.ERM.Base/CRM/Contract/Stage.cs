@@ -89,6 +89,18 @@ namespace IntecoAG.ERM.CRM.Contract
     {
         public crmStage(Session session) : base(session) { }
         public crmStage(Session session, VersionStates state) : base(session, state) { }
+        public crmStage(Session session, VersionStates state, 
+                        crmDeliveryPlan delivery_plan, crmPaymentPlan payment_plan) 
+            : base(session) { 
+            VersionState = state;
+            DeliveryPlan = delivery_plan;
+            DeliveryPlan.Stage = this;
+            _DeliveryMethod = delivery_plan.DeliveryMethod;
+            PaymentPlan = payment_plan;
+            PaymentPlan.Stage = this;
+            _PaymentMethod = Deal.PaymentMethod.SCHEDULE;
+            _StageType = Contract.StageType.FINANCE;
+        }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
@@ -331,7 +343,8 @@ namespace IntecoAG.ERM.CRM.Contract
                         if (value.StageType == CRM.Contract.StageType.FINANCE)
                             this.StageType = CRM.Contract.StageType.TECHNICAL;
                         else
-                            this.StageType = value.StageType;
+                            if (this.StageType != Contract.StageType.FINANCE)
+                                this.StageType = value.StageType;
                         // this.DisplaySummMode = value.DisplaySummMode;
                         this.DateBegin = value.DateBegin;
                         this.DateEnd = value.DateEnd;
@@ -354,6 +367,11 @@ namespace IntecoAG.ERM.CRM.Contract
 
         public crmStage SubStagesCreate() {
             crmStage stage = new crmStage(this.Session, this.VersionState);
+            SubStages.Add(stage);
+            return stage;
+        }
+        public crmStage SubStagesCreate(crmDeliveryPlan delivery_plan, crmPaymentPlan payment_plan) {
+            crmStage stage = new crmStage(this.Session, this.VersionState, delivery_plan, payment_plan);
             SubStages.Add(stage);
             return stage;
         }

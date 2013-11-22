@@ -16,6 +16,7 @@ using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
+using IntecoAG.ERM.CRM.Contract.Obligation;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.Trw.References;
 //using IntecoAG.ERM.FM.AVT;
@@ -58,30 +59,33 @@ namespace IntecoAG.ERM.FM {
             foreach (crmDealWithoutStage deal in deals) {
                 crmDealWithoutStageVersion deal_version = (crmDealWithoutStageVersion) deal.Current;
                 deal_version.StageStructureCreate();
-                var stage = deal_version.StageStructure.FirstStage.SubStagesCreate();
-                stage.StageType = StageType.FINANCE;
+                deal_version.StageStructure.Customer = deal_version.Customer;
+                deal_version.StageStructure.Supplier = deal_version.Supplier;
+                deal_version.StageStructure.FirstStage.DateBegin = deal_version.DateBegin;
+                deal_version.StageStructure.FirstStage.DateEnd = deal_version.DateEnd;
+                deal_version.StageStructure.FirstStage.DateFinish = deal_version.DateFinish;
+                deal_version.StageStructure.FirstStage.Valuta = deal_version.Valuta;
+                deal_version.StageStructure.FirstStage.PaymentValuta = deal_version.PaymentValuta;
+                deal_version.StageStructure.FirstStage.NDSRate = deal_version.NDSRate;
+                deal_version.StageStructure.FirstStage.Order = deal_version.Order;
+                var stage = deal_version.StageStructure.FirstStage.SubStagesCreate(deal_version.DeliveryPlan, deal_version.PaymentPlan);
+//                stage.StageType = StageType.FINANCE;
                 stage.Code = "1"; 
 //                stage. = "Ведомость";
-                var delivery_plan = stage.DeliveryPlan;
-                stage.DeliveryMethod = deal_version.DeliveryMethod;
-                stage.DeliveryPlan = deal_version.DeliveryPlan;
-                deal_version.DeliveryPlan.Stage = stage;
-                deal_version.DeliveryPlan.CurrentCost.UpCol = delivery_plan.CurrentCost.UpCol;
-                delivery_plan.Stage = null;
-                delivery_plan.CurrentCost.UpCol = null;
                 deal_version.DeliveryPlan = null;
-                os.Delete(delivery_plan);
-                //
-                var payment_plan = stage.PaymentPlan;
-                stage.PaymentMethod = deal_version.PaymentMethod;
-                stage.PaymentPlan = deal_version.PaymentPlan;
-                deal_version.PaymentPlan.Stage = stage;
-                deal_version.PaymentPlan.CurrentCost.UpCol = payment_plan.CurrentCost.UpCol;
-                payment_plan.Stage = null;
-                payment_plan.CurrentCost.UpCol = null;
                 deal_version.PaymentPlan = null;
-                os.Delete(payment_plan);
+                deal_version.Advance = null;
+                deal_version.Settlement = null;
             }
+        }
+
+        public override void UpdateDatabaseBeforeUpdateSchema() {
+            base.UpdateDatabaseBeforeUpdateSchema();
+//            var result = ExecuteNonQueryCommand(
+//                "UPDATE \"XPObjectType\" "+
+//                "SET \"AssemblyName\"= 'IntecoAG.ERM.Base' "+
+//                "WHERE \"AssemblyName\" = 'IntecoAG.ERM.Base.Impl' ; "
+//            , false);
         }
 
         public override void UpdateDatabaseAfterUpdateSchema() {

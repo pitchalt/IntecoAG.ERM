@@ -191,6 +191,21 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
             this.PaymentUnits.Add(du);
             return du;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        //public void PaymentUnitsClear() {
+        //    List<crmPaymentUnit> pul = new List<crmPaymentUnit>();
+        //    foreach (crmPaymentUnit pu in this.PaymentUnits)
+        //        pul.Add(pu);
+        //    foreach (crmPaymentUnit pu in pul) {
+        //        if (pu != this.PaymentUnit) {
+        //            this.DeliveryUnits.Remove(du);
+        //            du.Delete();
+        //        }
+        //    }
+        //}
+
 
         public crmPaymentCasheLess PaymentCasheLessCreate() {
             crmPaymentCasheLess du = new crmPaymentCasheLess(this.Session, this.VersionState);
