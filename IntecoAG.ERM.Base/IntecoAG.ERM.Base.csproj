@@ -476,8 +476,19 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
-    <Compile Include="Trw\Budget\TrwBudgetBase.cs" />
-    <Compile Include="Trw\Budget\TrwBudgetSubjectControl.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectLogic.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectDealSale.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectDealBase.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectDealBay.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trw\Subject\TrwSubjectVC.Designer.cs">
+      <DependentUpon>TrwSubjectVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trw\TrwContract.cs" />
+    <Compile Include="Trw\TrwPeriod.cs" />
+    <Compile Include="Trw\Subject\TrwSubject.cs" />
     <Compile Include="Trw\Contract\TrwContractMarket.cs" />
     <Compile Include="Trw\Contract\TrwContractType.cs" />
     <Compile Include="Trw\Contract\TrwIContractParty.cs" />
@@ -724,6 +735,9 @@
     <EmbeddedResource Include="Trw\Party\TrwPartyPartyVC.resx">
       <DependentUpon>TrwPartyPartyVC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Trw\Subject\TrwSubjectVC.resx">
+      <DependentUpon>TrwSubjectVC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.resx">
       <DependentUpon>XafExtBpmnAcceptableObjectController.cs</DependentUpon>
     </EmbeddedResource>
@@ -951,7 +965,9 @@
     <Folder Include="CRM\Contract\Ru\" />
     <Folder Include="CS\Task\" />
     <Folder Include="Documentation\Trw\" />
+    <Folder Include="Trw\Budget\Subject\" />
     <Folder Include="Trw\Common\" />
+    <Folder Include="Trw\Fact\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
