@@ -24,25 +24,48 @@ namespace IntecoAG.ERM.Trw.Subject {
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            this.ImportSaleDeals_Action = new DevExpress.ExpressApp.Actions.ParametrizedAction(this.components);
+            this.ImportSaleDealsAction = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
+            this.ImportBayDealsAction = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
             // 
-            // ImportSaleDeals_Action
+            // ImportSaleDealsAction
             // 
-            this.ImportSaleDeals_Action.Caption = "ImportSaleDeals";
-            this.ImportSaleDeals_Action.Category = "RecordEdit";
-            this.ImportSaleDeals_Action.ConfirmationMessage = null;
-            this.ImportSaleDeals_Action.Id = "TrwSubjectVC_ImportSaleDeals_Action";
-            this.ImportSaleDeals_Action.ImageName = null;
-            this.ImportSaleDeals_Action.ShortCaption = null;
-            this.ImportSaleDeals_Action.Shortcut = null;
-            this.ImportSaleDeals_Action.Tag = null;
-            this.ImportSaleDeals_Action.TargetObjectsCriteria = null;
-            this.ImportSaleDeals_Action.TargetViewId = null;
-            this.ImportSaleDeals_Action.TargetViewNesting = DevExpress.ExpressApp.Nesting.Root;
-            this.ImportSaleDeals_Action.TargetViewType = DevExpress.ExpressApp.ViewType.DetailView;
-            this.ImportSaleDeals_Action.ToolTip = null;
-            this.ImportSaleDeals_Action.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
-            this.ImportSaleDeals_Action.Execute += new DevExpress.ExpressApp.Actions.ParametrizedActionExecuteEventHandler(this.ImportSaleDeals_Action_Execute);
+            this.ImportSaleDealsAction.AcceptButtonCaption = null;
+            this.ImportSaleDealsAction.CancelButtonCaption = null;
+            this.ImportSaleDealsAction.Caption = "ImportSaleDeals";
+            this.ImportSaleDealsAction.Category = "RecordEdit";
+            this.ImportSaleDealsAction.ConfirmationMessage = null;
+            this.ImportSaleDealsAction.Id = "TrwSubjectVC_ImportSaleDeals_Action";
+            this.ImportSaleDealsAction.ImageName = null;
+            this.ImportSaleDealsAction.Shortcut = null;
+            this.ImportSaleDealsAction.Tag = null;
+            this.ImportSaleDealsAction.TargetObjectsCriteria = null;
+            this.ImportSaleDealsAction.TargetViewId = null;
+            this.ImportSaleDealsAction.TargetViewNesting = DevExpress.ExpressApp.Nesting.Root;
+            this.ImportSaleDealsAction.TargetViewType = DevExpress.ExpressApp.ViewType.DetailView;
+            this.ImportSaleDealsAction.ToolTip = null;
+            this.ImportSaleDealsAction.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
+            this.ImportSaleDealsAction.CustomizePopupWindowParams += new DevExpress.ExpressApp.Actions.CustomizePopupWindowParamsEventHandler(this.ImportSaleDealsAction_CustomizePopupWindowParams);
+            this.ImportSaleDealsAction.Execute += new DevExpress.ExpressApp.Actions.PopupWindowShowActionExecuteEventHandler(this.ImportSaleDealsAction_Execute);
+            // 
+            // ImportBayDealsAction
+            // 
+            this.ImportBayDealsAction.AcceptButtonCaption = null;
+            this.ImportBayDealsAction.CancelButtonCaption = null;
+            this.ImportBayDealsAction.Caption = "ImportBayDeals";
+            this.ImportBayDealsAction.Category = "RecordEdit";
+            this.ImportBayDealsAction.ConfirmationMessage = null;
+            this.ImportBayDealsAction.Id = "TrwSubjectVC_ImportBayDeals_Action";
+            this.ImportBayDealsAction.ImageName = null;
+            this.ImportBayDealsAction.Shortcut = null;
+            this.ImportBayDealsAction.Tag = null;
+            this.ImportBayDealsAction.TargetObjectsCriteria = null;
+            this.ImportBayDealsAction.TargetViewId = null;
+            this.ImportBayDealsAction.TargetViewNesting = DevExpress.ExpressApp.Nesting.Root;
+            this.ImportBayDealsAction.TargetViewType = DevExpress.ExpressApp.ViewType.DetailView;
+            this.ImportBayDealsAction.ToolTip = null;
+            this.ImportBayDealsAction.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
+            this.ImportBayDealsAction.CustomizePopupWindowParams += new DevExpress.ExpressApp.Actions.CustomizePopupWindowParamsEventHandler(this.ImportBayDealsAction_CustomizePopupWindowParams);
+            this.ImportBayDealsAction.Execute += new DevExpress.ExpressApp.Actions.PopupWindowShowActionExecuteEventHandler(this.ImportBayDealsAction_Execute);
             // 
             // TrwSubjectVC
             // 
@@ -52,6 +75,7 @@ namespace IntecoAG.ERM.Trw.Subject {
 
         #endregion
 
-        private DevExpress.ExpressApp.Actions.ParametrizedAction ImportSaleDeals_Action;
+        private DevExpress.ExpressApp.Actions.PopupWindowShowAction ImportSaleDealsAction;
+        private DevExpress.ExpressApp.Actions.PopupWindowShowAction ImportBayDealsAction;
     }
 }

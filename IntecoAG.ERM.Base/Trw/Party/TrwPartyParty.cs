@@ -382,7 +382,7 @@ namespace IntecoAG.ERM.Trw.Party {
         [RuleRequiredField]
         public crmPartyPersonInScience PersonInScience {
             get {
-                return Person.PersonInScience;
+                return Person != null ? Person.PersonInScience : crmPartyPersonInScience.PERSON_NOT_SCIENCE;
             }
             set {
                 crmPartyPersonInScience old = PersonInScience;

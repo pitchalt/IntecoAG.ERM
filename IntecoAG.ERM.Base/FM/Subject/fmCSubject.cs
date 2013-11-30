@@ -310,14 +310,16 @@ namespace IntecoAG.ERM.FM.Subject
                     deal_type = DealInfoDealType.DEAL_INFO_EXPENDITURE;
                 else
                     deal_type = DealInfoDealType.DEAL_INFO_PROCEEDS;
-                if (deal is crmDealWithoutStage)
-                    ReloadDealInfos(deal_type, (crmDealWithoutStage)deal);
-                if (deal is crmDealWithStage)
-                    ReloadDealInfos(deal_type, (crmDealWithStage)deal);
+                ReloadDealInfos(deal_type, deal);
+//                if (deal is crmDealWithoutStage)
+//                    ReloadDealInfos(deal_type, (crmDealWithoutStage)deal);
+//                if (deal is crmDealWithStage)
+//                    ReloadDealInfos(deal_type, (crmDealWithStage)deal);
             }
         }
 
-        protected void ReloadDealInfos(DealInfoDealType deal_type, crmDealWithStage deal) {
+        //        protected void ReloadDealInfos(DealInfoDealType deal_type, crmDealWithStage deal) {
+        protected void ReloadDealInfos(DealInfoDealType deal_type, crmContractDeal deal) {
             foreach (crmStage stage in deal.Current.StageStructure.Stages) {
                 ReloadDealInfos(deal_type, deal, stage.DeliveryPlan);
                 ReloadDealInfos(deal_type, deal, stage.PaymentPlan);

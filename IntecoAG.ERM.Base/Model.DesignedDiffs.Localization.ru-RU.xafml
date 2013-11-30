@@ -11,6 +11,8 @@
       <Action Id="crmCLegalPersonUnitViewController_SetChecked" Caption="Проверено!" ToolTip="Подтвердить, что сведения об объекте верны" />
       <Action Id="csCSecurityUserListController_UpdateListAction" Caption="Синхр.с AD" ToolTip="Синхронизировать с группой Active Directory" />
       <Action Id="ImportReports" Caption="Перегрузить отчёты" />
+      <Action Id="TrwSubjectVC_ImportBayDeals_Action" Caption="Импорт Договоров Смежников" />
+      <Action Id="TrwSubjectVC_ImportSaleDeals_Action" Caption="Импорт Договоров Заказчика" />
     </Actions>
   </ActionDesign>
   <BOModel>
@@ -1061,6 +1063,30 @@
     <Class Name="IntecoAG.ERM.Trw.References.TrwRefTAXT" Caption="ТРВ Вид налогов" />
     <Class Name="IntecoAG.ERM.Trw.References.TrwRefTaxVatRate" Caption="ТРВ НДС" />
     <Class Name="IntecoAG.ERM.Trw.References.TrwRefWT" Caption="ТРВ Вид персонала" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubject" Caption="ТРВ Контролируемая тема">
+      <OwnMembers>
+        <Member Name="DealOtherBay" Caption="Договор Прочие смежники" />
+        <Member Name="DealOtherSale" Caption="Договор Прочие покупатели" />
+        <Member Name="DealsBay" Caption="Планирование договоров смежников" />
+        <Member Name="DealsSale" Caption="Планирование договоров продажи" />
+        <Member Name="Subject" Caption="ФПиК Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealBase" Caption="Планирование договора">
+      <OwnMembers>
+        <Member Name="Deal" Caption="ФПиК Договор" />
+        <Member Name="DealBudget" Caption="ТРВ Договор" />
+        <Member Name="Party" Caption="Контрагент" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.TrwContract" Caption="ТРВ Договор">
+      <OwnMembers>
+        <Member Name="ContractSuperType" Caption="ТРВ Тип Договора" />
+        <Member Name="Subject" Caption="ФПиК Тема" />
+        <Member Name="TrwDate" Caption="ТРВ Дата" />
+        <Member Name="TrwNumber" Caption="ТРВ Номер" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.XAFExt.XafExtAnalysis" Caption="Справка" />
     <Class Name="IntecoAG.ERM.XAFExt.XafExtReportData" Caption="Отчет" />
   </BOModel>
@@ -1605,6 +1631,17 @@
         <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" Caption="Все" />
       </Filters>
     </ListView>
+    <DetailView Id="TrwSubjectImportDealActionParameters_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="TrwSubjectImportDealActionParameters">
+              <LabelItem Id="@60b2b45e-6887-41fd-9aeb-ebf6d27cbc86" Text="Если указан 0 - ограничение не используется (берутся все возможные)" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="XafExtReportData_ListView" Caption="Отчеты" />
   </Views>
 </Application>

@@ -429,8 +429,7 @@
     <Compile Include="CS\Work\Event.cs" />
     <Compile Include="CS\Work\IEvent.cs" />
     <Compile Include="CS\Work\Work.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_220.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_218.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_223.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -476,6 +475,19 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetLineBase.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetBase.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetRegister.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trw\Budget\TrwBudgetVC.Designer.cs">
+      <DependentUpon>TrwBudgetVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trw\Subject\TrwSubjectBudget.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectBudgetLine.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectBudgetSale.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectBudgetSaleLine.cs" />
     <Compile Include="Trw\Subject\TrwSubjectLogic.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealSale.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealBase.cs" />
@@ -529,6 +541,7 @@
     <Compile Include="Trw\TrwIOrder.cs" />
     <Compile Include="Trw\TrwIPerson.cs" />
     <Compile Include="Trw\TrwISaleNomenclature.cs" />
+    <Compile Include="Trw\TrwPeriodValue.cs" />
     <Compile Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -729,6 +742,9 @@
       <DependentUpon>MainForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Trw\Budget\TrwBudgetVC.resx">
+      <DependentUpon>TrwBudgetVC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Trw\Exchange\TrwExchangeExportableObjectController.resx">
       <DependentUpon>TrwExchangeExportableObjectController.cs</DependentUpon>
     </EmbeddedResource>

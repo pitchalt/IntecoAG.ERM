@@ -125,6 +125,11 @@
         <Member Name="ItemShedules" Caption="Номенклатурный График" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.CRM.Contract.Forms.crmCommonRegistrationForm">
+      <OwnMembers>
+        <Member Name="KindOfDeal" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryPlanItemShedule">
       <OwnMembers>
         <Member Name="CountValue" AllowEdit="False" />
@@ -222,6 +227,14 @@
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.HRM.Organization.hrmDepartment" Caption="hrm Department" DefaultLookupEditorMode="Search" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealBay" Caption="ТРВ Тема Договора покупки" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealSale" Caption="ТРВ Тема Договора продажи" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectImportDealActionParameters" Caption="Параметры включения договоров">
+      <OwnMembers>
+        <Member Name="MaxCount" Caption="Максимальное кол-во договоров" />
+        <Member Name="VolumePercent" Caption="Максимальная доля включаемых договоров" DisplayFormat="{0:P2}" EditMask="p2" />
+      </OwnMembers>
+    </Class>
   </BOModel>
   <CreatableItems>
     <CreatableItem ClassName="IntecoAG.ERM.CRM.Contract.Forms.crmContractRegistrationForm" Index="0" IsNewNode="True" />
@@ -279,11 +292,6 @@
           <Item Id="@8463a536-8b1d-4351-8d05-26dcb1d9a66a" ViewId="TrwSaleNomenclature_Exchange_ListView" Index="2" IsNewNode="True" />
           <Item Id="@39062964-c460-480c-9b4b-e35b273c8443" ViewId="TrwIOrder_Exchange_ListView" Index="3" IsNewNode="True" />
           <Item Id="@7e5fc703-6ef1-432d-8d80-bcdd697f688c" ViewId="TrwExchangeDoc_ListView" Index="4" IsNewNode="True" />
-          <Item Id="Trw.Budget" IsNewNode="True">
-            <Items IsNewNode="True">
-              <Item Id="TrwBudgetSubjectControl_ListView" ViewId="TrwBudgetSubjectControl_ListView" ObjectKey="" IsNewNode="True" />
-            </Items>
-          </Item>
         </Items>
       </Item>
       <Item Id="State Machine" Index="6" />
@@ -2893,6 +2901,7 @@
       </Layout>
     </DetailView>
     <ListView Id="ReportParametersObjectBase_ListView" UseServerMode="True" />
+    <ListView Id="TrwContract_ListView" AllowDelete="False" AllowNew="False" />
     <ListView Id="TrwIContractParty_Exchange_ListView" ClassName="IntecoAG.ERM.CRM.Contract.crmContractParty" Criteria="[CfrUserParty] Is Not Null And [Party] Is Not Null" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="TrwCfr" PropertyName="TrwCfr" View="" Width="70" Index="-1" IsNewNode="True" />
@@ -3138,6 +3147,20 @@
         <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" IsNewNode="True" />
       </Filters>
     </ListView>
+    <ListView Id="TrwSubject_ListView" AllowDelete="False" AllowNew="False" />
+    <DetailView Id="TrwSubjectImportDealActionParameters_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="TrwSubjectImportDealActionParameters">
+              <LabelItem Id="@60b2b45e-6887-41fd-9aeb-ebf6d27cbc86" Index="0" IsNewNode="True" />
+              <LayoutItem Id="MaxCount" Index="1" ViewItem="MaxCount" />
+              <LayoutItem Id="VolumePercent" Index="2" ViewItem="VolumePercent" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="XafExtReportData_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

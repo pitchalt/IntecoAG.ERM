@@ -19,12 +19,31 @@ namespace IntecoAG.ERM.Trw.Subject {
     [Persistent("TrwSubject")]
     public class TrwSubject : BaseObject {
 
-        private fmCSubject _Subject;
-        public fmCSubject Subject {
-            get { return _Subject; }
-            set { SetPropertyValue<fmCSubject>("Subject", ref _Subject, value); }
+        private TrwPeriod _Period;
+
+        [RuleRequiredField]
+        [VisibleInDetailView(true)]
+        [Association("TrwPeriod-TrwSubject")]
+        public TrwPeriod Period {
+            get { return _Period; }
+            set { SetPropertyValue<TrwPeriod>("Period", ref _Period, value); }
         }
 
+        private fmCSubject _Subject;
+        [RuleRequiredField]
+        public fmCSubject Subject {
+            get { return _Subject; }
+            set { 
+                SetPropertyValue<fmCSubject>("Subject", ref _Subject, value);
+                if (!IsLoading) {
+                    DealOtherSale.Subject = value;
+                    DealOtherBay.Subject = value;
+                }
+            }
+        }
+
+        public TrwContract DealOtherSale;
+        public TrwContract DealOtherBay;
 //        public XPCollection<TrwBudgetBudget> SubjectBudgets {
 //            get { return GetCollection<TrwBudgetBudget>("SubjectBudgets"); }
 //        }
@@ -38,9 +57,18 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return GetCollection<TrwSubjectDealSale>("DealsSale"); }
         }
 
+        [Association("TrwSubject-TrwSubjectBudget"), Aggregated]
+        public XPCollection<TrwSubjectBudget> Budgets {
+            get { return GetCollection<TrwSubjectBudget>("Budgets"); }
+        }
+
         public TrwSubject(Session session): base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
+            DealOtherSale = new TrwContract(Session);
+            DealOtherSale.ContractSuperType = Contract.TrwContractSuperType.DEAL_SALE;
+            DealOtherBay = new TrwContract(Session);
+            DealOtherBay.ContractSuperType = Contract.TrwContractSuperType.DEAL_BAY;
         }
     }
 }

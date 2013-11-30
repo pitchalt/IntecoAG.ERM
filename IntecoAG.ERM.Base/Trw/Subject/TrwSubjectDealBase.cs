@@ -11,6 +11,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 //
 using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
 //
 namespace IntecoAG.ERM.Trw.Subject {
@@ -27,6 +28,18 @@ namespace IntecoAG.ERM.Trw.Subject {
 
         [Browsable(false)]
         public abstract XPCollection<crmContractDeal> DealSource { get; }
+
+        public abstract crmCParty Party { get; }
+
+        private TrwContract _DealBudget;
+        [DataSourceProperty("DealBudgetSource")]
+        public TrwContract DealBudget {
+            get { return _DealBudget; }
+            set { SetPropertyValue<TrwContract>("DealBudget", ref _DealBudget, value); }
+        }
+
+        [Browsable(false)]
+        public abstract XPCollection<TrwContract> DealBudgetSource { get; }
 
         public TrwSubjectDealBase(Session session): base(session) { }
         public override void AfterConstruction() {

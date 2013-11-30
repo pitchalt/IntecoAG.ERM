@@ -41,6 +41,7 @@ namespace IntecoAG.ERM.CRM.Contract.Forms {
                     this.OurParty = (crmCParty)crmUserParty.CurrentUserPartyGet(this.Session).Party;
                 }
             }
+            KindOfDeal = Deal.KindOfDeal.DEAL_WITH_STAGE;
 //            backColorRequired = Color.FromArgb(245, 255, 255).ToString();
         }
 
