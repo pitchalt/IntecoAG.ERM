@@ -1,14 +1,14 @@
 using System;
 using System.ComponentModel;
-
+//
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
-
+//
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-
+//
 namespace IntecoAG.ERM.Trw.Budget {
 
     [Persistent("TrwBudget")]
@@ -26,9 +26,16 @@ namespace IntecoAG.ERM.Trw.Budget {
 
         [Browsable(false)]
         [Association("TrwBudgetBase-TrwBudgetLineBase"), Aggregated]
-        public XPCollection<TrwBudgetLineBase> Lines {
+        public XPCollection<TrwBudgetKey> Keys {
             get {
-                return GetCollection<TrwBudgetLineBase>("Lines");
+                return GetCollection<TrwBudgetKey>("Keys");
+            }
+        }
+
+        [Association("TrwBudgetBase-TrwBudgetValue"), Aggregated]
+        public XPCollection<TrwBudgetKey> Values {
+            get {
+                return GetCollection<TrwBudgetKey>("Values");
             }
         }
 

@@ -22,10 +22,10 @@ using IntecoAG.ERM.Trw.Nomenclature;
 namespace IntecoAG.ERM.Trw.Budget {
 
     [Persistent("TrwBudgetLine")]
-    public abstract class TrwBudgetLineBase : XPObject {
+    public abstract class TrwBudgetValue : XPObject {
 
         private TrwBudgetBase _BudgetBase;
-        [Association("TrwBudgetBase-TrwBudgetLineBase")]
+        [Association("TrwBudgetBase-TrwBudgetValue")]
         public TrwBudgetBase BudgetBase {
             get { return _BudgetBase; }
             set { SetPropertyValue<TrwBudgetBase>("BudgetBase", ref _BudgetBase, value); }
@@ -35,49 +35,6 @@ namespace IntecoAG.ERM.Trw.Budget {
         public TrwPeriodValue PeriodValue {
             get { return _PeriodValue; }
             set { SetPropertyValue<TrwPeriodValue>("PeriodValue", ref _PeriodValue, value); }
-        }
-
-        private fmCostItem _CostItem;
-        public fmCostItem CostItem {
-            get { return _CostItem; }
-            set { SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value); }
-        }
-
-        private crmContractDeal _Deal;
-        public crmContractDeal Deal {
-            get { return _Deal; }
-            set { SetPropertyValue<crmContractDeal>("Deal", ref _Deal, value); }
-        }
-
-        private crmCParty _Party;
-        public crmCParty Party {
-            get { return _Party; }
-            set { SetPropertyValue<crmCParty>("Party", ref _Party, value); }
-        }
-
-
-        private TrwContract _TrwContractSale;
-        public TrwContract TrwContractSale {
-            get { return _TrwContractSale; }
-            set { SetPropertyValue<TrwContract>("TrwContractSale", ref _TrwContractSale, value); }
-        }
-
-        private TrwOrder _TrwOrderSale;
-        public TrwOrder TrwOrderSale {
-            get { return _TrwOrderSale; }
-            set { SetPropertyValue<TrwOrder>("TrwOrderSale", ref _TrwOrderSale, value); }
-        }
-
-        private TrwSaleNomenclature _TrwSaleNomenclature;
-        public TrwSaleNomenclature TrwSaleNomenclature {
-            get { return _TrwSaleNomenclature; }
-            set { SetPropertyValue<TrwSaleNomenclature>("TrwSaleNomenclature", ref _TrwSaleNomenclature, value); }
-        }
-
-        private TrwContract _TrwContractBay;
-        public TrwContract TrwContractBay {
-            get { return _TrwContractBay; }
-            set { SetPropertyValue<TrwContract>("TrwContractBay", ref _TrwContractBay, value); }
         }
 
         private csValuta _ObligationValuta;
@@ -91,9 +48,6 @@ namespace IntecoAG.ERM.Trw.Budget {
             get { return _PaymentValuta; }
             set { SetPropertyValue<csValuta>("PaymentValuta", ref _PaymentValuta, value); }
         }
-
-        public Boolean IsCalcVat;
-        public Boolean IsCalcCost;
 
         private Decimal _Count;
         public Decimal Count {
@@ -120,9 +74,6 @@ namespace IntecoAG.ERM.Trw.Budget {
             set {
                 value = Decimal.Round(value, 2);
                 SetPropertyValue<Decimal>("SummCost", ref _SummCost, value);
-                if (!IsLoading) {
-                    SummAll = SummCost + SummVat;
-                }
             }
         }
 
@@ -132,9 +83,6 @@ namespace IntecoAG.ERM.Trw.Budget {
             set {
                 value = Decimal.Round(value, 2);
                 SetPropertyValue<Decimal>("SummVat", ref _SummVat, value);
-                if (!IsLoading) {
-                    SummAll = SummCost + SummVat;
-                }
             }
         }
 
@@ -144,11 +92,10 @@ namespace IntecoAG.ERM.Trw.Budget {
             set {
                 value = Decimal.Round(value, 2);
                 SetPropertyValue<Decimal>("SummAll", ref _SummAll, value); 
-
             }
         }
 
-        public TrwBudgetLineBase(Session session) : base(session) { }
+        public TrwBudgetValue(Session session) : base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
         }

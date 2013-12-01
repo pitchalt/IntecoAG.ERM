@@ -475,7 +475,8 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
-    <Compile Include="Trw\Budget\TrwBudgetLineBase.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetValue.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetKey.cs" />
     <Compile Include="Trw\Budget\TrwBudgetBase.cs" />
     <Compile Include="Trw\Budget\TrwBudgetRegister.cs" />
     <Compile Include="Trw\Budget\TrwBudgetVC.cs">

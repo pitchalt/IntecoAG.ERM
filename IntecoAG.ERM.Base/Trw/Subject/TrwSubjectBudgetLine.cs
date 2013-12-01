@@ -16,7 +16,7 @@ using IntecoAG.ERM.Trw.Budget;
 namespace IntecoAG.ERM.Trw.Subject {
 
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public class TrwSubjectBudgetLine : TrwBudgetLineBase {
+    public class TrwSubjectBudgetLine : TrwBudgetKey {
 
         private fmCSubject _Subject;
         public fmCSubject Subject {

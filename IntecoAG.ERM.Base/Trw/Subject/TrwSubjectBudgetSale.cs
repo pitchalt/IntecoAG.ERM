@@ -39,7 +39,7 @@ namespace IntecoAG.ERM.Trw.Subject {
         public XPCollection<TrwSubjectBudgetSaleLine> SaleLines {
             get {
                 if (_SaleLines == null)
-                    _SaleLines = new XPCollection<TrwSubjectBudgetSaleLine>(Lines);
+                    _SaleLines = new XPCollection<TrwSubjectBudgetSaleLine>(Keys);
                 return _SaleLines;
             }
         }
