@@ -44,7 +44,12 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return Deal != null ? Deal.Supplier : null; }
         }
 
-        public TrwSubjectDealBay(Session session): base(session) { }
+
+        public override XPCollection<FM.Subject.fmCSubject> SubjectSource {
+            get { return TrwSubject.Subjects; }
+        }
+
+        public TrwSubjectDealBay(Session session) : base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
         }

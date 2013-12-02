@@ -1,14 +1,14 @@
 using System;
 using System.ComponentModel;
-
+//
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
-
+//
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-
+//
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Party;
@@ -18,23 +18,42 @@ using IntecoAG.ERM.FM.Subject;
 //
 using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.Nomenclature;
+using IntecoAG.ERM.Trw.Subject;
 //
 namespace IntecoAG.ERM.Trw.Budget {
 
-    [Persistent("TrwBudgetLine")]
+    [Persistent("TrwBudgetKey")]
     public abstract class TrwBudgetKey : XPObject {
 
         private TrwBudgetBase _BudgetBase;
-        [Association("TrwBudgetBase-TrwBudgetLineBase")]
+        [Association("TrwBudgetBase-TrwBudgetKey")]
         public TrwBudgetBase BudgetBase {
             get { return _BudgetBase; }
             set { SetPropertyValue<TrwBudgetBase>("BudgetBase", ref _BudgetBase, value); }
         }
 
-        private TrwPeriodValue _PeriodValue;
-        public TrwPeriodValue PeriodValue {
-            get { return _PeriodValue; }
-            set { SetPropertyValue<TrwPeriodValue>("PeriodValue", ref _PeriodValue, value); }
+        private TrwSubjectBudget _SubjectBudget;
+        [Association("TrwSubjectBudget-TrwBudgetKey")]
+        public TrwSubjectBudget SubjectBudget {
+            get { return _SubjectBudget; }
+            set { SetPropertyValue<TrwSubjectBudget>("SubjectBudget", ref _SubjectBudget, value); }
+        }
+
+        [Association("TrwBudgetKey-TrwBudgetValue")]
+        public XPCollection<TrwBudgetValue> BudgetValues {
+            get { return GetCollection<TrwBudgetValue>("BudgetValues"); }
+        }
+
+        private fmCSubject _Subject;
+        public fmCSubject Subject {
+            get { return _Subject; }
+            set { SetPropertyValue<fmCSubject>("Subject", ref _Subject, value); }
+        }
+
+        private fmCOrder _Order;
+        public fmCOrder Order {
+            get { return _Order; }
+            set { SetPropertyValue<fmCOrder>("Order", ref _Order, value); }
         }
 
         private fmCostItem _CostItem;
@@ -90,62 +109,6 @@ namespace IntecoAG.ERM.Trw.Budget {
         public csValuta PaymentValuta {
             get { return _PaymentValuta; }
             set { SetPropertyValue<csValuta>("PaymentValuta", ref _PaymentValuta, value); }
-        }
-
-        public Boolean IsCalcVat;
-        public Boolean IsCalcCost;
-
-        private Decimal _Count;
-        public Decimal Count {
-            get { return _Count; }
-            set {
-                value = Decimal.Round(value, 4);
-                SetPropertyValue<Decimal>("Count", ref _Count, value);
-            }
-        }
-
-
-        private Decimal _Price;
-        public Decimal Price {
-            get { return _Price; }
-            set {
-                value = Decimal.Round(value, 2);
-                SetPropertyValue<Decimal>("Price", ref _Price, value);
-            }
-        }
-
-        private Decimal _SummCost;
-        public Decimal SummCost {
-            get { return _SummCost; }
-            set {
-                value = Decimal.Round(value, 2);
-                SetPropertyValue<Decimal>("SummCost", ref _SummCost, value);
-                if (!IsLoading) {
-                    SummAll = SummCost + SummVat;
-                }
-            }
-        }
-
-        private Decimal _SummVat;
-        public Decimal SummVat {
-            get { return _SummVat; }
-            set {
-                value = Decimal.Round(value, 2);
-                SetPropertyValue<Decimal>("SummVat", ref _SummVat, value);
-                if (!IsLoading) {
-                    SummAll = SummCost + SummVat;
-                }
-            }
-        }
-
-        private Decimal _SummAll;
-        public Decimal SummAll {
-            get { return _SummAll; }
-            set {
-                value = Decimal.Round(value, 2);
-                SetPropertyValue<Decimal>("SummAll", ref _SummAll, value); 
-
-            }
         }
 
         public TrwBudgetKey(Session session) : base(session) { }

@@ -14,10 +14,10 @@ namespace IntecoAG.ERM.Trw.Budget {
     [Persistent("TrwBudgetRegister")]
     public class TrwBudgetRegister : XPObject {
 
-        private TrwPeriodValue _TrwPeriodValue;
-        public TrwPeriodValue TrwPeriodValue {
+        private TrwBudgetPeriodValue _TrwPeriodValue;
+        public TrwBudgetPeriodValue TrwPeriodValue {
             get { return _TrwPeriodValue; }
-            set { SetPropertyValue<TrwPeriodValue>("TrwPeriodValue", ref _TrwPeriodValue, value); }
+            set { SetPropertyValue<TrwBudgetPeriodValue>("TrwPeriodValue", ref _TrwPeriodValue, value); }
         }
 
         public TrwBudgetRegister(Session session) : base(session) { }

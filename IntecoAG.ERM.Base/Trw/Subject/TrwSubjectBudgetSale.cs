@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Linq;
 //
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
@@ -10,7 +11,11 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 //
+using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CS.Nomenclature;
+using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
+using IntecoAG.ERM.CRM.Contract.Obligation;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.Trw.Budget;
@@ -34,24 +39,28 @@ namespace IntecoAG.ERM.Trw.Subject {
             }
         }
 
-        private XPCollection<TrwSubjectBudgetSaleLine> _SaleLines;
-        [Aggregated]
-        public XPCollection<TrwSubjectBudgetSaleLine> SaleLines {
-            get {
-                if (_SaleLines == null)
-                    _SaleLines = new XPCollection<TrwSubjectBudgetSaleLine>(Keys);
-                return _SaleLines;
-            }
-        }
+        //        private XPCollection<TrwSubjectBudgetSaleLine> _SaleLines;
+        //        [Aggregated]
+        //        public XPCollection<TrwSubjectBudgetSaleLine> SaleLines {
+        //            get {
+        //                if (_SaleLines == null)
+        //                    _SaleLines = new XPCollection<TrwSubjectBudgetSaleLine>(Keys);
+        //                return _SaleLines;
+        //            }
+        //        }
 
         public TrwSubjectBudgetSale(Session session) : base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
 
-        private struct LineKey {
+        protected struct LineKey {
+            public DateTime Date;
+            public fmCSubject Subject;
             public fmCOrder Order;
             public crmContractDeal Deal;
+            public TrwSubject TrwSubject;
+            public TrwContract TrwContract;
             public TrwOrder TrwOrder;
             public TrwSaleNomenclature TrwNomenclature;
         }
@@ -60,34 +69,50 @@ namespace IntecoAG.ERM.Trw.Subject {
             public Decimal SummVat;
             public Decimal SummAll;
         }
+        //
         public override void Calculate(IObjectSpace os) {
-            foreach(TrwSubjectDealSale deal_sale in TrwSubject.DealsSale) {
-                fmCOrder order = null;
-                crmContractDeal deal = null;
-                TrwOrder trw_order = null;
-                TrwSaleNomenclature trw_sale_nom = null;
-                TrwPeriodValue trw_period;
+            os.Delete(this.SubjectBudgetKeys);
+            os.Delete(this.BudgetValues);
+            IDictionary<TrwBudgetKey, IList<TrwBudgetValue>> Keys = new Dictionary<TrwBudgetKey, IList<TrwBudgetValue>>();
+            foreach (TrwSubjectDealSale deal_sale in TrwSubject.DealsSale) {
+                Load(deal_sale, Keys);
+            }
+        }
+        //
+        protected void Load(TrwSubjectDealSale trw_deal_sale, IDictionary<TrwBudgetKey, IList<TrwBudgetValue>> keys ) {
+            LineKey key = new LineKey();
+            key.TrwSubject = trw_deal_sale.TrwSubject;
+            key.Subject = trw_deal_sale.Subject;
+            key.Deal = trw_deal_sale.Deal;
+            if (trw_deal_sale.DealBudget != null) {
+                key.TrwContract = trw_deal_sale.DealBudget;
+            }
+            if (key.Deal != null) {
+                Load(key.Deal, key, keys);
+            }
+        }
 
-                TrwSubjectBudgetSaleLine line = null;
-                foreach (TrwSubjectBudgetSaleLine cur_line in SaleLines) {
-                    if (cur_line.Order == order &&
-                        cur_line.Deal == deal &&
-                        cur_line.TrwOrderSale == trw_order &&
-                        cur_line.TrwSaleNomenclature == trw_sale_nom ) {
-                        line = cur_line;
-                        break;
-                    }
-                }
-                if (line != null) {
-                    line = os.CreateObject<TrwSubjectBudgetSaleLine>();
+        protected void Load(crmContractDeal deal_sale, LineKey key, IDictionary<TrwBudgetKey, IList<TrwBudgetValue>> keys) {
+            crmDealVersion deal_version = deal_sale.Current;
+            foreach (crmStage stage in deal_version.StageStructure.Stages) {
+                Load(deal_version, stage, key, keys);
+            }
+        }
 
-                    foreach (TrwPeriodValue period in TrwPeriod.TrwPeriodValues) {
-                        
+        protected void Load(crmDealVersion deal_version, crmStage stage, LineKey key, IDictionary<TrwBudgetKey, IList<TrwBudgetValue>> keys) {
+            foreach (crmDeliveryUnit unit in stage.DeliveryUnits) {
+                foreach (crmDeliveryItem item in unit.DeliveryItems) { 
+                    TrwBudgetKey budget_key = keys.Keys.FirstOrDefault(
+                                x => x.Deal == key.Deal &&
+                                    x.Subject == key.Subject &&
+                                    x.Order == item.Order &&
+                                    x.TrwSaleNomenclature == item.TrwSaleNomenclature
+                                );
+                    if (budget_key == null) { 
                     }
                 }
             }
         }
-
     }
 
 }

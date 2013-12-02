@@ -13,6 +13,7 @@ using DevExpress.Persistent.Validation;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
+using IntecoAG.ERM.FM.Subject;
 //
 namespace IntecoAG.ERM.Trw.Subject {
 
@@ -40,6 +41,16 @@ namespace IntecoAG.ERM.Trw.Subject {
 
         [Browsable(false)]
         public abstract XPCollection<TrwContract> DealBudgetSource { get; }
+
+        private fmCSubject _Subject;
+        [DataSourceProperty("SubjectSource")]
+        public fmCSubject Subject {
+            get { return _Subject; }
+            set { SetPropertyValue<fmCSubject>("Subject", ref _Subject, value); }
+        }
+
+        [Browsable(false)]
+        public abstract XPCollection<fmCSubject> SubjectSource { get; }
 
         public TrwSubjectDealBase(Session session): base(session) { }
         public override void AfterConstruction() {

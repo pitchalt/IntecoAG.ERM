@@ -12,6 +12,7 @@ using DevExpress.Persistent.Validation;
 //
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.FM.Subject;
+using IntecoAG.ERM.Trw.Budget;
 //
 namespace IntecoAG.ERM.Trw.Subject {
 
@@ -19,14 +20,14 @@ namespace IntecoAG.ERM.Trw.Subject {
     [Persistent("TrwSubject")]
     public class TrwSubject : BaseObject {
 
-        private TrwPeriod _Period;
+        private TrwBudgetPeriod _Period;
 
         [RuleRequiredField]
         [VisibleInDetailView(true)]
-        [Association("TrwPeriod-TrwSubject")]
-        public TrwPeriod Period {
+        [Association("TrwBudgetPeriod-TrwSubject")]
+        public TrwBudgetPeriod Period {
             get { return _Period; }
-            set { SetPropertyValue<TrwPeriod>("Period", ref _Period, value); }
+            set { SetPropertyValue<TrwBudgetPeriod>("Period", ref _Period, value); }
         }
 
         private fmCSubject _Subject;
@@ -40,6 +41,11 @@ namespace IntecoAG.ERM.Trw.Subject {
                     DealOtherBay.Subject = value;
                 }
             }
+        }
+
+        [Association("TrwSubject-fmCSubject")]
+        public XPCollection<fmCSubject> Subjects {
+            get { return GetCollection<fmCSubject>("Subjects"); }
         }
 
         public TrwContract DealOtherSale;
@@ -69,6 +75,10 @@ namespace IntecoAG.ERM.Trw.Subject {
             DealOtherSale.ContractSuperType = Contract.TrwContractSuperType.DEAL_SALE;
             DealOtherBay = new TrwContract(Session);
             DealOtherBay.ContractSuperType = Contract.TrwContractSuperType.DEAL_BAY;
+        }
+
+        protected override void OnDeleting() {
+            throw new InvalidOperationException("Delete is not allowed");
         }
     }
 }

@@ -24,8 +24,7 @@ namespace IntecoAG.ERM.Trw.Budget {
 
         protected abstract void NameUpdate();
 
-        [Browsable(false)]
-        [Association("TrwBudgetBase-TrwBudgetLineBase"), Aggregated]
+        [Association("TrwBudgetBase-TrwBudgetKey"), Aggregated]
         public XPCollection<TrwBudgetKey> Keys {
             get {
                 return GetCollection<TrwBudgetKey>("Keys");
@@ -33,16 +32,16 @@ namespace IntecoAG.ERM.Trw.Budget {
         }
 
         [Association("TrwBudgetBase-TrwBudgetValue"), Aggregated]
-        public XPCollection<TrwBudgetKey> Values {
+        public XPCollection<TrwBudgetValue> BudgetValues {
             get {
-                return GetCollection<TrwBudgetKey>("Values");
+                return GetCollection<TrwBudgetValue>("BudgetValues");
             }
         }
 
         [Persistent("TrwPeriod")]
-        protected TrwPeriod _TrwPeriod;
+        protected TrwBudgetPeriod _TrwPeriod;
         [PersistentAlias("_TrwPeriod")]
-        public TrwPeriod TrwPeriod {
+        public TrwBudgetPeriod TrwPeriod {
             get { return _TrwPeriod; }
 //            set { SetPropertyValue<TrwPeriod>("TrwPeriod", ref _TrwPeriod, value); }
         }
@@ -53,6 +52,10 @@ namespace IntecoAG.ERM.Trw.Budget {
         public override void AfterConstruction() {
             base.AfterConstruction();
             NameUpdate();
+        }
+
+        protected override void OnDeleting() {
+            throw new InvalidOperationException("Delete is not allowed");
         }
     }
 

@@ -31,6 +31,11 @@ namespace IntecoAG.ERM.Trw.Subject {
             }
         }
 
+        [Association("TrwSubjectBudget-TrwBudgetKey")]
+        public XPCollection<TrwBudgetKey> SubjectBudgetKeys {
+            get { return GetCollection<TrwBudgetKey>("SubjectBudgetKeys"); }
+        }
+
         public TrwSubjectBudget(Session session) : base(session) {}
         public override void AfterConstruction() {
             base.AfterConstruction();

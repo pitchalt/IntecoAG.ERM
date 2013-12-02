@@ -12,12 +12,12 @@ using DevExpress.Persistent.Validation;
 //
 using IntecoAG.ERM.Trw.Subject;
 //
-namespace IntecoAG.ERM.Trw {
+namespace IntecoAG.ERM.Trw.Budget {
 
     [NavigationItem("Trw")]
-    [Persistent("TrwPeriod")]
+    [Persistent("TrwBudgetPeriod")]
     [DefaultProperty("Name")]
-    public class TrwPeriod : BaseObject {
+    public class TrwBudgetPeriod : BaseObject {
 
         private Int16 _Year;
         public Int16 Year {
@@ -29,17 +29,17 @@ namespace IntecoAG.ERM.Trw {
             get { return "Á‏הזועû ÒÐÂ חא " + Year.ToString() + "ד."; }
         }
 
-        [Association("TrwPeriod-TrwSubject"), Aggregated]
+        [Association("TrwBudgetPeriod-TrwSubject"), Aggregated]
         public XPCollection<TrwSubject> TrwSubjects {
             get { return GetCollection<TrwSubject>("TrwSubjects"); }
         }
 
-        [Association("TrwPeriod-TrwPeriodValue"), Aggregated]
-        public XPCollection<TrwPeriodValue> TrwPeriodValues {
-            get { return GetCollection<TrwPeriodValue>("TrwPeriodValues"); }
+        [Association("TrwBudgetPeriod-TrwBudgetPeriodValue"), Aggregated]
+        public XPCollection<TrwBudgetPeriodValue> TrwBudgetPeriodValues {
+            get { return GetCollection<TrwBudgetPeriodValue>("TrwBudgetPeriodValues"); }
         }
 
-        public TrwPeriod(Session session) : base(session) { }
+        public TrwBudgetPeriod(Session session) : base(session) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
@@ -48,13 +48,17 @@ namespace IntecoAG.ERM.Trw {
 
         public void InitPeriodValues() {
             for (short i = 0; i < 14; i++) {
-                TrwPeriodValue period_value = TrwPeriodValues.FirstOrDefault(x => x.Month == i);
+                TrwBudgetPeriodValue period_value = TrwBudgetPeriodValues.FirstOrDefault(x => x.Month == i);
                 if (period_value == null) {
-                    period_value = new TrwPeriodValue(this.Session);
+                    period_value = new TrwBudgetPeriodValue(this.Session);
                     period_value.Month = i;
-                    TrwPeriodValues.Add(period_value);
+                    TrwBudgetPeriodValues.Add(period_value);
                 }
             }
+        }
+
+        protected override void OnDeleting() {
+            throw new InvalidOperationException("Delete is not allowed");
         }
     }
 

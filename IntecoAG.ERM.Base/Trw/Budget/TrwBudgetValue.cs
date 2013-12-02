@@ -21,7 +21,7 @@ using IntecoAG.ERM.Trw.Nomenclature;
 //
 namespace IntecoAG.ERM.Trw.Budget {
 
-    [Persistent("TrwBudgetLine")]
+    [Persistent("TrwBudgetValue")]
     public abstract class TrwBudgetValue : XPObject {
 
         private TrwBudgetBase _BudgetBase;
@@ -31,10 +31,18 @@ namespace IntecoAG.ERM.Trw.Budget {
             set { SetPropertyValue<TrwBudgetBase>("BudgetBase", ref _BudgetBase, value); }
         }
 
-        private TrwPeriodValue _PeriodValue;
-        public TrwPeriodValue PeriodValue {
+        private TrwBudgetPeriodValue _PeriodValue;
+        [Association("TrwBudgetPeriodValue-TrwBudgetValue")]
+        public TrwBudgetPeriodValue PeriodValue {
             get { return _PeriodValue; }
-            set { SetPropertyValue<TrwPeriodValue>("PeriodValue", ref _PeriodValue, value); }
+            set { SetPropertyValue<TrwBudgetPeriodValue>("PeriodValue", ref _PeriodValue, value); }
+        }
+
+        private TrwBudgetKey _BudgetKey;
+        [Association("TrwBudgetKey-TrwBudgetValue")]
+        public TrwBudgetKey BudgetKey {
+            get { return _BudgetKey; }
+            set { SetPropertyValue<TrwBudgetKey>("BudgetKey", ref _BudgetKey, value); }
         }
 
         private csValuta _ObligationValuta;
@@ -57,7 +65,6 @@ namespace IntecoAG.ERM.Trw.Budget {
                 SetPropertyValue<Decimal>("Count", ref _Count, value);
             }
         }
-
 
         private Decimal _Price;
         public Decimal Price {

@@ -38,6 +38,7 @@ using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.GFM;
 using IntecoAG.ERM.HRM.Organization;
 using IntecoAG.ERM.Trw.Contract;
+using IntecoAG.ERM.Trw.Subject;
 //
 namespace IntecoAG.ERM.FM.Subject
 {
@@ -123,6 +124,20 @@ namespace IntecoAG.ERM.FM.Subject
                 throw new InvalidOperationException();
             _TrwCode = "Z" + Direction.TrwCode + TrwNumber.ToString("D4");
             OnChanged("TrwCode");
+        }
+
+        private TrwSubject _TrwSubject;
+        [Browsable(false)]
+        [Association("TrwSubject-fmCSubject")]
+        public TrwSubject TrwSubject {
+            get { return _TrwSubject; }
+            set {
+                if (!IsLoading && TrwSubject != null) {
+                    if (TrwSubject.Subject == this)
+                        throw new InvalidOperationException("This attribute can't be change, it is current in TrwSubject");
+                }
+                SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value); 
+            }
         }
 
         [Association("fmDirection-Subjects")]

@@ -11,6 +11,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 //
 using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
 //
@@ -40,8 +41,23 @@ namespace IntecoAG.ERM.Trw.Subject {
             }
         }
 
+        public override XPCollection<FM.Subject.fmCSubject> SubjectSource {
+            get { return TrwSubject.Subjects; }
+        }
+
         public override crmCParty Party {
             get { return Deal != null ? Deal.Customer : null; }
+        }
+
+        private csNomenclature _Nomenclature;
+        public csNomenclature Nomenclature {
+            get { return _Nomenclature; }
+            set { SetPropertyValue<csNomenclature>("Nomenclature", ref _Nomenclature, value); }
+        }
+
+        [Association("TrwSubjectDealSale-TrwSubjectDealSaleOrder"), Aggregated]
+        public XPCollection<TrwSubjectDealSaleOrder> DealSaleOrders {
+            get { return GetCollection<TrwSubjectDealSaleOrder>("DealSaleOrders"); }
         }
 
         public TrwSubjectDealSale(Session session): base(session) { }

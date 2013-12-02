@@ -486,9 +486,8 @@
       <DependentUpon>TrwBudgetVC.cs</DependentUpon>
     </Compile>
     <Compile Include="Trw\Subject\TrwSubjectBudget.cs" />
-    <Compile Include="Trw\Subject\TrwSubjectBudgetLine.cs" />
     <Compile Include="Trw\Subject\TrwSubjectBudgetSale.cs" />
-    <Compile Include="Trw\Subject\TrwSubjectBudgetSaleLine.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectDealSaleOrder.cs" />
     <Compile Include="Trw\Subject\TrwSubjectLogic.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealSale.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealBase.cs" />
@@ -500,7 +499,7 @@
       <DependentUpon>TrwSubjectVC.cs</DependentUpon>
     </Compile>
     <Compile Include="Trw\TrwContract.cs" />
-    <Compile Include="Trw\TrwPeriod.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetPeriod.cs" />
     <Compile Include="Trw\Subject\TrwSubject.cs" />
     <Compile Include="Trw\Contract\TrwContractMarket.cs" />
     <Compile Include="Trw\Contract\TrwContractType.cs" />
@@ -542,7 +541,7 @@
     <Compile Include="Trw\TrwIOrder.cs" />
     <Compile Include="Trw\TrwIPerson.cs" />
     <Compile Include="Trw\TrwISaleNomenclature.cs" />
-    <Compile Include="Trw\TrwPeriodValue.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetPeriodValue.cs" />
     <Compile Include="XafExt\Bpmn\XafExtBpmnAcceptableObjectController.cs">
       <SubType>Component</SubType>
     </Compile>

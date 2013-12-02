@@ -112,10 +112,21 @@ namespace IntecoAG.ERM.Trw.Contract {
             }
         }
 
-        [PersistentAlias("Deal")]
+        private TrwContract _TrwContract;
+        [Persistent("TrwContract")]
+        [Association("TrwContract-TrwOrder")]
+        public TrwContract TrwContractInt {
+            get { return _TrwContract; }
+            set { SetPropertyValue<TrwContract>("TrwContractInt", ref _TrwContract, value); }
+        }
+
+        //[PersistentAlias("Deal")]
         public TrwIContract TrwContract {
             get {
-                return Deal;
+                if (TrwContractInt == null)
+                    return Deal;
+                else
+                    return TrwContractInt;
             }
         }
 
