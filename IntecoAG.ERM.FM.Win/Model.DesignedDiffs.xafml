@@ -10,5 +10,6 @@
       <ChartSettings Settings="" />
     </ListView>
     <ListView Id="fmCSubject_DealInfos_ListView_Pivot" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" />
+    <ListView Id="fmCSubject_DealInfos_ListView_PivotShort" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" />
   </Views>
 </Application>

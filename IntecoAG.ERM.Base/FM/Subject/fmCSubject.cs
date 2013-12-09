@@ -244,6 +244,16 @@ namespace IntecoAG.ERM.FM.Subject
             public fmCSubject Subject;
             public fmCOrder Order;
             public csValuta Valuta;
+
+            public crmCPerson Contragent {
+                get {
+                    if (DealType == DealInfoDealType.DEAL_INFO_PROCEEDS)
+                        return Deal.Customer.Person;
+                    else
+                        return Deal.Supplier.Person;
+                }
+            }
+
             public Int32 Year {
                 get {
                     return Date.Year;

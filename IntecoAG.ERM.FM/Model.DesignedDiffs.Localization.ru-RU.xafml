@@ -1209,6 +1209,7 @@
       </Layout>
     </DetailView>
     <ListView Id="fmCSubject_DealInfos_ListView_Pivot" Caption="Финансы договоров сводные" />
+    <ListView Id="fmCSubject_DealInfos_ListView_PivotShort" Caption="Финансы договоров для Бюджетников" />
     <DetailView Id="fmCSubjectExt_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

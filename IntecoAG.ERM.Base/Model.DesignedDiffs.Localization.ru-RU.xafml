@@ -855,12 +855,19 @@
     </Class>
     <Class Name="IntecoAG.ERM.FM.Subject.fmCSubject+DealInfo" Caption="Финансы договоров">
       <OwnMembers>
+        <Member Name="Contragent" Caption="Контрагент" />
         <Member Name="Date" Caption="Дата" />
         <Member Name="Deal" Caption="Ведомость" />
         <Member Name="DealType" Caption="Доход/Расход" />
+        <Member Name="DeliverySummCost" Caption="Обязательства Стоимость" />
+        <Member Name="DeliverySummFull" Caption="Обязательства Стоимость с НДС" />
+        <Member Name="DeliverySummVat" Caption="Обязательства НДС" />
         <Member Name="Month" Caption="Месяц" />
         <Member Name="NomType" Caption="Деньги/Поставки" />
         <Member Name="Order" Caption="Заказ" />
+        <Member Name="PaySummCost" Caption="Оплата без НДС" />
+        <Member Name="PaySummFull" Caption="Оплата  с НДС" />
+        <Member Name="PaySummVat" Caption="Оплата НДС" />
         <Member Name="Subject" Caption="Тема" />
         <Member Name="SummCost" Caption="Стоимость" />
         <Member Name="SummFull" Caption="Всего" />

@@ -538,7 +538,7 @@
         <ColumnInfo Id="Supplier" AllowEdit="False" Index="4" />
         <ColumnInfo Id="CuratorDepartment" AllowEdit="False" Index="5" />
         <ColumnInfo Id="DateRegistration" AllowEdit="False" Index="6" />
-        <ColumnInfo Id="UserRegistrator" AllowEdit="False" Index="7" />
+        <ColumnInfo Id="UserRegistrator" AllowEdit="True" Index="7" />
         <ColumnInfo Id="ContractDocument.DocumentCategory" Index="8" AllowEdit="False" />
         <ColumnInfo Id="ContractDocument.Number" Index="9" AllowEdit="False" />
         <ColumnInfo Id="State" AllowEdit="False" Index="9" Removed="True" />
