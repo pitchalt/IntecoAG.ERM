@@ -19,16 +19,31 @@ using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.Nomenclature;
 //
+using IntecoAG.ERM.Trw.Subject;
+//
 namespace IntecoAG.ERM.Trw.Budget {
 
     [Persistent("TrwBudgetValue")]
-    public abstract class TrwBudgetValue : XPObject {
+    public class TrwBudgetValue : XPObject {
 
-        private TrwBudgetBase _BudgetBase;
-        [Association("TrwBudgetBase-TrwBudgetValue")]
-        public TrwBudgetBase BudgetBase {
-            get { return _BudgetBase; }
-            set { SetPropertyValue<TrwBudgetBase>("BudgetBase", ref _BudgetBase, value); }
+        private DateTime _Date;
+        public DateTime Date {
+            get { return _Date; }
+            set { SetPropertyValue<DateTime>("Date", ref _Date, value); }
+        }
+
+        private TrwBudgetMaster _BudgetMaster;
+        [Association("TrwBudgetMaster-TrwBudgetValue")]
+        public TrwBudgetMaster BudgetMaster {
+            get { return _BudgetMaster; }
+            set { SetPropertyValue<TrwBudgetMaster>("BudgetMaster", ref _BudgetMaster, value); }
+        }
+
+        private TrwBudgetSubject _BudgetSubject;
+        [Association("TrwBudgetSubject-TrwBudgetValue")]
+        public TrwBudgetSubject BudgetSubject {
+            get { return _BudgetSubject; }
+            set { SetPropertyValue<TrwBudgetSubject>("BudgetSubject", ref _BudgetSubject, value); }
         }
 
         private TrwBudgetPeriodValue _PeriodValue;

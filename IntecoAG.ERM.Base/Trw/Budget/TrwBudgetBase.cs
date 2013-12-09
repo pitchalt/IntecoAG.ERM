@@ -12,7 +12,16 @@ using DevExpress.Persistent.Validation;
 namespace IntecoAG.ERM.Trw.Budget {
 
     [Persistent("TrwBudget")]
+    [DefaultProperty("Name")]
     public abstract class TrwBudgetBase : BaseObject {
+
+        [Persistent("Code")]
+        protected String _Code;
+        [PersistentAlias("_Code")]
+        [VisibleInLookupListView(true)]
+        public String Code {
+            get { return _Code; }
+        }
 
         [Persistent("Name")]
         protected String _Name;
@@ -24,27 +33,7 @@ namespace IntecoAG.ERM.Trw.Budget {
 
         protected abstract void NameUpdate();
 
-        [Association("TrwBudgetBase-TrwBudgetKey"), Aggregated]
-        public XPCollection<TrwBudgetKey> Keys {
-            get {
-                return GetCollection<TrwBudgetKey>("Keys");
-            }
-        }
-
-        [Association("TrwBudgetBase-TrwBudgetValue"), Aggregated]
-        public XPCollection<TrwBudgetValue> BudgetValues {
-            get {
-                return GetCollection<TrwBudgetValue>("BudgetValues");
-            }
-        }
-
-        [Persistent("TrwPeriod")]
-        protected TrwBudgetPeriod _TrwPeriod;
-        [PersistentAlias("_TrwPeriod")]
-        public TrwBudgetPeriod TrwPeriod {
-            get { return _TrwPeriod; }
-//            set { SetPropertyValue<TrwPeriod>("TrwPeriod", ref _TrwPeriod, value); }
-        }
+//        [Persistent("TrwPeriod")]
 
         public abstract void Calculate(IObjectSpace os);
 

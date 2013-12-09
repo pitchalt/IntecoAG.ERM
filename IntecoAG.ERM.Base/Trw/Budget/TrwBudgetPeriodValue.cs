@@ -12,6 +12,7 @@ using DevExpress.Persistent.Validation;
 namespace IntecoAG.ERM.Trw.Budget {
 
     [Persistent("TrwBudgetPeriodValue")]
+    [DefaultProperty("Name")]
     public class TrwBudgetPeriodValue : XPObject {
 
         private TrwBudgetPeriod _TrwPeriod;
@@ -31,6 +32,10 @@ namespace IntecoAG.ERM.Trw.Budget {
         public Int16 Month {
             get { return _Month; }
             set { SetPropertyValue<Int16>("Month", ref _Month, value); }
+        }
+
+        public String Name {
+            get { return TrwPeriod.Year.ToString("D4") + "." + Month.ToString("D2"); }
         }
 
         public TrwBudgetPeriodValue(Session session) : base(session) { }

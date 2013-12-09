@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application>
+<Application Company="Интеко АГ">
   <ActionDesign>
     <Actions>
       <Action Id="ListViewApplyFilter" Caption="Применить" ToolTip="Применить текущий фильтр" />
@@ -966,6 +966,73 @@
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0104" Caption="Справка 0104" />
     <Class Name="IntecoAG.ERM.Module.ReportHelper.Spravka0105" Caption="Справка 0105" />
     <Class Name="IntecoAG.ERM.PM.pmProjectWork" Caption="Проектная работа" />
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetBase" Caption="ТРВ Бюджет">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetKey" Caption="Аналитика бюджета">
+      <OwnMembers>
+        <Member Name="BudgetMaster" Caption="Мастер бюджет" />
+        <Member Name="CostItem" Caption="Статья ДДС" />
+        <Member Name="DealBay" Caption="ФПиК Договор покупки" />
+        <Member Name="DealSale" Caption="ФПиК Договор продажи" />
+        <Member Name="ObligationValuta" Caption="Валюта обязательств" />
+        <Member Name="Order" Caption="Заказ ФПиК" />
+        <Member Name="Party" Caption="Партнер" />
+        <Member Name="PaymentValuta" Caption="Валюта платежа" />
+        <Member Name="Subject" Caption="Тема ФПиК" />
+        <Member Name="TrwBudgetValues" Caption="Показатели бюджета" />
+        <Member Name="TrwIContractBay" Caption="ТРВ Договор покупки" />
+        <Member Name="TrwIContractSale" Caption="ТРВ Договор продажи" />
+        <Member Name="TrwOrderSale" Caption="ТРВ Заказ" />
+        <Member Name="TrwSaleNomenclature" Caption="ТРВ ЕНГП" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetMaster" Caption="Мастер бюджет">
+      <OwnMembers>
+        <Member Name="BudgetKeys" Caption="Аналитики бюджета" />
+        <Member Name="BudgetPeriod" Caption="Бюджетный период" />
+        <Member Name="BudgetSubjects" Caption="Тематические бюджеты" />
+        <Member Name="BudgetValues" Caption="Показатели бюджета" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetPeriod" Caption="ТРВ Бджетный период">
+      <OwnMembers>
+        <Member Name="BudgetMasters" Caption="Мастер бюджеты" />
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="PeriodValues" Caption="Месяца" />
+        <Member Name="TrwSubjects" Caption="ТРВ Темы" />
+        <Member Name="Year" Caption="Год" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetPeriodValue" Caption="ТРВ Бджетный месяц">
+      <OwnMembers>
+        <Member Name="Month" Caption="Месяц" />
+        <Member Name="TrwPeriod" Caption="ТРВ Период" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetSale" Caption="Мастер бюджет продаж">
+      <OwnMembers>
+        <Member Name="TrwBudgetSubjectSales" Caption="Тематические бюджеты продаж" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetSubject" Caption="Бюджет темы" />
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetSubjectSale" Caption="Бюджет продаж темы" />
+    <Class Name="IntecoAG.ERM.Trw.Budget.TrwBudgetValue" Caption="ТРВ Показатель бюджета">
+      <OwnMembers>
+        <Member Name="Count" Caption="Кол-во" />
+        <Member Name="Date" Caption="Дата" />
+        <Member Name="ObligationValuta" Caption="Валюта обязательств" />
+        <Member Name="PaymentValuta" Caption="Валюта платежа" />
+        <Member Name="Price" Caption="Цена" />
+        <Member Name="SummAll" Caption="Сумма Всего" />
+        <Member Name="SummCost" Caption="Стоимость" />
+        <Member Name="SummVat" Caption="НДС" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.Trw.Contract.TrwContractMarket" Caption="ТРВ Ген.Заказчик">
       <OwnMembers>
         <Member Name="Code" Caption="Код" />
@@ -1589,6 +1656,8 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="TrwBudgetSale_BudgetValues_ListView" Caption="ТРВ Бюджет продаж подробный" />
+    <ListView Id="TrwBudgetSale_BudgetValues_PivotView" Caption="ТРВ Бюджет продаж сводный" />
     <ListView Id="TrwIOrder_Exchange_ListView">
       <Filters>
         <Filter Id="@5d0d44d9-1562-4fb8-a5ab-cae38f5e4b19" Caption="Для проработки" />

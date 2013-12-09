@@ -63,9 +63,9 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return GetCollection<TrwSubjectDealSale>("DealsSale"); }
         }
 
-        [Association("TrwSubject-TrwSubjectBudget"), Aggregated]
-        public XPCollection<TrwSubjectBudget> Budgets {
-            get { return GetCollection<TrwSubjectBudget>("Budgets"); }
+        [Association("TrwSubject-TrwBudgetSubject"), Aggregated]
+        public XPCollection<TrwBudgetSubject> Budgets {
+            get { return GetCollection<TrwBudgetSubject>("Budgets"); }
         }
 
         public TrwSubject(Session session): base(session) { }

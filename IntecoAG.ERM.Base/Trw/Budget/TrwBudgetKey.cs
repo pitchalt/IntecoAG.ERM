@@ -23,25 +23,18 @@ using IntecoAG.ERM.Trw.Subject;
 namespace IntecoAG.ERM.Trw.Budget {
 
     [Persistent("TrwBudgetKey")]
-    public abstract class TrwBudgetKey : XPObject {
+    public class TrwBudgetKey : XPObject {
 
-        private TrwBudgetBase _BudgetBase;
-        [Association("TrwBudgetBase-TrwBudgetKey")]
-        public TrwBudgetBase BudgetBase {
-            get { return _BudgetBase; }
-            set { SetPropertyValue<TrwBudgetBase>("BudgetBase", ref _BudgetBase, value); }
-        }
-
-        private TrwSubjectBudget _SubjectBudget;
-        [Association("TrwSubjectBudget-TrwBudgetKey")]
-        public TrwSubjectBudget SubjectBudget {
-            get { return _SubjectBudget; }
-            set { SetPropertyValue<TrwSubjectBudget>("SubjectBudget", ref _SubjectBudget, value); }
+        private TrwBudgetMaster _BudgetMaster;
+        [Association("TrwBudgetMaster-TrwBudgetKey")]
+        public TrwBudgetMaster BudgetMaster {
+            get { return _BudgetMaster; }
+            set { SetPropertyValue<TrwBudgetMaster>("BudgetMaster", ref _BudgetMaster, value); }
         }
 
         [Association("TrwBudgetKey-TrwBudgetValue")]
-        public XPCollection<TrwBudgetValue> BudgetValues {
-            get { return GetCollection<TrwBudgetValue>("BudgetValues"); }
+        public XPCollection<TrwBudgetValue> TrwBudgetValues {
+            get { return GetCollection<TrwBudgetValue>("TrwBudgetValues"); }
         }
 
         private fmCSubject _Subject;
@@ -62,25 +55,33 @@ namespace IntecoAG.ERM.Trw.Budget {
             set { SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value); }
         }
 
-        private crmContractDeal _Deal;
-        public crmContractDeal Deal {
-            get { return _Deal; }
-            set { SetPropertyValue<crmContractDeal>("Deal", ref _Deal, value); }
-        }
-
         private crmCParty _Party;
         public crmCParty Party {
             get { return _Party; }
             set { SetPropertyValue<crmCParty>("Party", ref _Party, value); }
         }
 
+        private crmContractDeal _DealSale;
+        public crmContractDeal DealSale {
+            get { return _DealSale; }
+            set { SetPropertyValue<crmContractDeal>("DealSale", ref _DealSale, value); }
+        }
 
         private TrwContract _TrwContractSale;
+        [Browsable(false)]
         public TrwContract TrwContractSale {
             get { return _TrwContractSale; }
             set { SetPropertyValue<TrwContract>("TrwContractSale", ref _TrwContractSale, value); }
         }
 
+        public TrwIContract TrwIContractSale {
+            get {
+                if (TrwContractSale != null)
+                    return TrwContractSale;
+                else
+                    return DealSale;
+            }
+        }
         private TrwOrder _TrwOrderSale;
         public TrwOrder TrwOrderSale {
             get { return _TrwOrderSale; }
@@ -93,10 +94,26 @@ namespace IntecoAG.ERM.Trw.Budget {
             set { SetPropertyValue<TrwSaleNomenclature>("TrwSaleNomenclature", ref _TrwSaleNomenclature, value); }
         }
 
+        private crmContractDeal _DealBay;
+        public crmContractDeal DealBay {
+            get { return _DealBay; }
+            set { SetPropertyValue<crmContractDeal>("DealBay", ref _DealBay, value); }
+        }
+
         private TrwContract _TrwContractBay;
+        [Browsable(false)]
         public TrwContract TrwContractBay {
             get { return _TrwContractBay; }
             set { SetPropertyValue<TrwContract>("TrwContractBay", ref _TrwContractBay, value); }
+        }
+
+        public TrwIContract TrwIContractBay {
+            get {
+                if (TrwContractBay != null)
+                    return TrwContractBay;
+                else
+                    return DealBay;
+            }
         }
 
         private csValuta _ObligationValuta;

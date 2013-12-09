@@ -9,34 +9,38 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
-using IntecoAG.ERM.Trw.Budget;
+using IntecoAG.ERM.Trw.Subject;
 
-namespace IntecoAG.ERM.Trw.Subject {
+namespace IntecoAG.ERM.Trw.Budget {
 
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public abstract class TrwSubjectBudget : TrwBudgetBase {
+    public abstract class TrwBudgetSubject : TrwBudgetBase {
 
         private TrwSubject _TrwSubject;
-        [Association("TrwSubject-TrwSubjectBudget")]
+        [Association("TrwSubject-TrwBudgetSubject")]
         public TrwSubject TrwSubject {
             get { return _TrwSubject; }
             set { 
                 SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value);
                 if (!IsLoading) {
-                    if (TrwSubject != null) {
-                        _TrwPeriod = TrwSubject.Period;
-                    }
                     NameUpdate();
                 }
             }
         }
 
-        [Association("TrwSubjectBudget-TrwBudgetKey")]
-        public XPCollection<TrwBudgetKey> SubjectBudgetKeys {
-            get { return GetCollection<TrwBudgetKey>("SubjectBudgetKeys"); }
+        [Association("TrwBudgetSubject-TrwBudgetValue"), Aggregated]
+        public XPCollection<TrwBudgetValue> BudgetValues {
+            get { return GetCollection<TrwBudgetValue>("BudgetValues"); }
         }
 
-        public TrwSubjectBudget(Session session) : base(session) {}
+        private TrwBudgetMaster _BudgetMaster;
+        [Association("TrwBudgetMaster-TrwBudgetSubject")]
+        public TrwBudgetMaster BudgetMaster {
+            get { return _BudgetMaster; }
+            set { SetPropertyValue<TrwBudgetMaster>("BudgetMaster", ref _BudgetMaster, value); }
+        }
+
+        public TrwBudgetSubject(Session session) : base(session) {}
         public override void AfterConstruction() {
             base.AfterConstruction();
             // Place here your initialization code.

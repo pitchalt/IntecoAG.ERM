@@ -429,6 +429,7 @@
     <Compile Include="CS\Work\Event.cs" />
     <Compile Include="CS\Work\IEvent.cs" />
     <Compile Include="CS\Work\Work.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_224.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_223.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
@@ -475,6 +476,9 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetMaster.cs" />
+    <Compile Include="Trw\Budget\Sale\TrwBudgetSale.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetPeriodCurrencyExchange.cs" />
     <Compile Include="Trw\Budget\TrwBudgetValue.cs" />
     <Compile Include="Trw\Budget\TrwBudgetKey.cs" />
     <Compile Include="Trw\Budget\TrwBudgetBase.cs" />
@@ -485,8 +489,8 @@
     <Compile Include="Trw\Budget\TrwBudgetVC.Designer.cs">
       <DependentUpon>TrwBudgetVC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Trw\Subject\TrwSubjectBudget.cs" />
-    <Compile Include="Trw\Subject\TrwSubjectBudgetSale.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetSubject.cs" />
+    <Compile Include="Trw\Budget\Sale\TrwBudgetSubjectSale.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealSaleOrder.cs" />
     <Compile Include="Trw\Subject\TrwSubjectLogic.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealSale.cs" />
@@ -928,6 +932,7 @@
     <None Include="Reports\Spravka0105.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Trw\IntecoAG.ERM.Trw.vsd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru-RU.xafml">
@@ -981,7 +986,6 @@
     <Folder Include="CRM\Contract\Ru\" />
     <Folder Include="CS\Task\" />
     <Folder Include="Documentation\Trw\" />
-    <Folder Include="Trw\Budget\Subject\" />
     <Folder Include="Trw\Common\" />
     <Folder Include="Trw\Fact\" />
   </ItemGroup>
