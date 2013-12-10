@@ -449,6 +449,7 @@
     <Compile Include="FM\Order\fmCOrderSM.cs" />
     <Compile Include="FM\Order\fmIOrder.cs" />
     <Compile Include="FM\Order\fmIOrderOverhead.cs" />
+    <Compile Include="FM\Subject\fmSubjectDeals.cs" />
     <Compile Include="FM\Subject\fmCDirection.cs" />
     <Compile Include="FM\Subject\fmCDirectionSM.cs" />
     <Compile Include="FM\Subject\fmCSubject.cs" />

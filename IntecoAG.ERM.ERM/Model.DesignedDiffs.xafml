@@ -4,13 +4,14 @@
     <Items>
       <Item Id="Contract" Index="0" IsNewNode="True">
         <Items IsNewNode="True">
-          <Item Id="crmContractDeal_ListView" ViewId="crmContractDeal_ListView" ObjectKey="" Index="2" IsNewNode="True" />
-          <Item Id="Contract Registration Form_Copy" Index="3" ViewId="crmContractRegistrationForm_DetailView" IsNewNode="True" />
-          <Item Id="Deal Registration Form" Index="4" ViewId="crmDealRegistrationForm_DetailView" Visible="False" IsNewNode="True" />
-          <Item Id="crmContract_ListView" ViewId="crmContract_ListView" ObjectKey="" Index="5" IsNewNode="True" />
-          <Item Id="@2439d31c-034e-43e1-8383-3129a85e45bf" ViewId="crmContractRegistrationLog_ListView" Index="6" IsNewNode="True" />
-          <Item Id="@09a50827-4964-4438-97eb-06bf72fdc8a3" ViewId="crmDealRegistrationStatistics_ListView" IsNewNode="True" />
-          <Item Id="@afeb4736-c016-49d4-a18f-388e8e86d548" ViewId="fmCPRPaymentRequestContractIn_ListView" IsNewNode="True" />
+          <Item Id="crmContractDeal_ListView" ViewId="crmContractDeal_ListView" ObjectKey="" Index="0" IsNewNode="True" />
+          <Item Id="Contract Registration Form_Copy" Index="1" ViewId="crmContractRegistrationForm_DetailView" IsNewNode="True" />
+          <Item Id="Deal Registration Form" Index="2" ViewId="crmDealRegistrationForm_DetailView" Visible="False" IsNewNode="True" />
+          <Item Id="crmContract_ListView" ViewId="crmContract_ListView" ObjectKey="" Index="3" IsNewNode="True" />
+          <Item Id="@2439d31c-034e-43e1-8383-3129a85e45bf" ViewId="crmContractRegistrationLog_ListView" Index="4" IsNewNode="True" />
+          <Item Id="@09a50827-4964-4438-97eb-06bf72fdc8a3" ViewId="crmDealRegistrationStatistics_ListView" Index="5" IsNewNode="True" />
+          <Item Id="@afeb4736-c016-49d4-a18f-388e8e86d548" ViewId="fmCPRPaymentRequestContractIn_ListView" Index="6" IsNewNode="True" />
+          <Item Id="@a53a1b98-50de-4062-a636-0ab983646450" Index="7" ViewId="fmCSubject+DealInfo_ListView" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="Partners" Index="1" IsNewNode="True">

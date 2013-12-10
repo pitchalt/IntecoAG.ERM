@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 //
 using DevExpress.ExpressApp;
@@ -46,6 +47,56 @@ namespace IntecoAG.ERM.Module
             // поэтому регистрацию комментарим
             //if (CriteriaOperator.GetCustomFunction("ILike") == null)
             //    CriteriaOperator.RegisterCustomFunction(new PostgessILikeOperator());
+        }
+        public class ListCollectionSource : CollectionSourceBase //, IQueryDataSource
+        {
+            private IList queryCore = null;
+            //private Session session = null;
+
+
+            //private IBindingList collectionCore;
+            private ITypeInfo objectTypeInfoCore;
+
+            //protected CollectionDataSource(IObjectSpace objectSpace)
+            //    : base(objectSpace) {
+            //}
+
+            public override bool? IsObjectFitForCollection(object obj) {
+                return false;
+            }
+
+            protected override void ApplyCriteriaCore(CriteriaOperator criteria) { }
+
+            public override ITypeInfo ObjectTypeInfo {
+                get { return objectTypeInfoCore; }
+            }
+
+
+
+            public ListCollectionSource(IObjectSpace objectSpace, Type type, IList list)
+                : base(objectSpace) {
+                //session = ((ObjectSpace)(this.ObjectSpace)).Session;
+                queryCore = list;
+                objectTypeInfoCore = XafTypesInfo.Instance.FindTypeInfo(type);
+            }
+
+            protected override object CreateCollection() {
+                BindingList<Object> result = new BindingList<Object>();
+                foreach (var item in queryCore) {
+                    result.Add(item);
+                }
+                return result;
+            }
+
+            //public IQueryable Query {
+            //    get { return queryCore; }
+            //    set { queryCore = value; }
+            //}
+
+            //public virtual IQueryable<T> GetQuery() {
+            //    return null;
+            //}
+
         }
 
         public override void Setup(XafApplication application) {
@@ -95,6 +146,10 @@ namespace IntecoAG.ERM.Module
             if (e.ObjectType == typeof(hrmIStaff)) {
 //                e.CollectionSource = CreateCustomCollection(e.ObjectSpace, typeof(hrmStaff), e.ListViewID, e.Mode);
                 e.CollectionSource = new CollectionSource(e.ObjectSpace, typeof(hrmStaff));
+            }
+            if (e.ObjectType == typeof(fmCSubject.DealInfo)) {
+                e.CollectionSource = new ListCollectionSource(e.ObjectSpace, typeof(fmCSubject.DealInfo),
+                                        (IList)new fmSubjectDeals(((ObjectSpace)e.ObjectSpace).Session).GetInfos());
             }
             // !!! Есть вопросы с имплементом интерфейсов руками (поиск автоматический не работает, класс не считается хранимым)
             //
