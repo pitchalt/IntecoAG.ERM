@@ -80,7 +80,7 @@ namespace IntecoAG.ERM.HRM {
                     count++;
                     current++;
                     msg_in.TBBUHCODE.Add(item.TBBUHCODE);
-                    if (count >= 100 || current == operation.StaffList.TBLIST.Count) {
+                    if (count >= 100 || current >= operation.StaffList.TBLIST.Count) {
                         if (longOperation.Status == LongOperationStatus.Cancelling) {
                             return;
                         }
@@ -88,7 +88,7 @@ namespace IntecoAG.ERM.HRM {
                         XWTBXLOA list_res = operation.SyncService.XWTBXL0N(msg_in);
                         using (IObjectSpace os = Application.CreateObjectSpace()) {
                             foreach (var item2 in list_res.TBLIST) {
-                                System.Console.WriteLine(item2.TBCODE + " " + item2.TBLASTNAME + " " + item2.TBFIRSTNAME + " " + item2.TBMIDDLENAME + " " + item2.TBDPCODE);
+//                                System.Console.WriteLine(item2.TBCODE + " " + item2.TBLASTNAME + " " + item2.TBFIRSTNAME + " " + item2.TBMIDDLENAME + " " + item2.TBDPCODE);
                                 hrmStaff staff;
                                 IList<hrmStaff> staffs = os.GetObjects<hrmStaff>(new BinaryOperator("BuhCode", item2.TBBUHCODE.ToString(), BinaryOperatorType.Equal));
                                 if (staffs.Count > 1 || staffs.Count < 0)
@@ -119,7 +119,7 @@ namespace IntecoAG.ERM.HRM {
                         }
                         if (longOperation.Status == LongOperationStatus.InProgress) {
                             longOperation.RaiseProgressChanged(
-                                (int)((++current * 100) / operation.StaffList.TBLIST.Count), 
+                                (int)((current * 100) / operation.StaffList.TBLIST.Count), 
                                 "Update Staff " + current.ToString() + " from " + operation.StaffList.TBLIST.Count.ToString());
                             //longOperation.RaiseProgressChanged((int)((++index * 100) / dpl.Count), "Update Departnent " + index.ToString() + " from " + msg_out.DPLIST.Count.ToString());
                         }

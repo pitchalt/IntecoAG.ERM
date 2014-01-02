@@ -144,7 +144,7 @@ namespace IntecoAG.ERM.FM.Docs {
         /// Назначение платежа
         /// </summary>
         //[Appearance("fmCDocRCBPayment.PaymentFunction.Enabled", Method = "AllowEditPayer", Enabled = false)]
-        [Size(300)]
+        [Size(1000)]
         public String PaymentFunction {
             get { return _PaymentFunction; }
             set {
