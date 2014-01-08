@@ -13,6 +13,8 @@ using DevExpress.Persistent.Validation;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Party;
+using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.Subject;
 //
 namespace IntecoAG.ERM.Trw.Subject {
 
@@ -24,6 +26,10 @@ namespace IntecoAG.ERM.Trw.Subject {
         public TrwSubject TrwSubject {
             get { return _TrwSubject; }
             set { SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value); }
+        }
+
+        public override TrwSubject TrwSubjectBase {
+            get { return TrwSubject; }
         }
 
         public override XPCollection<TrwContract> DealBudgetSource {
@@ -40,12 +46,12 @@ namespace IntecoAG.ERM.Trw.Subject {
             }
         }
 
-        public override crmCParty Party {
-            get { return Deal != null ? Deal.Supplier : null; }
+        public override crmCPerson Person {
+            get { return Deal != null ? (Deal.Supplier != null ? Deal.Supplier.Person : null) : PersonInternal; }
         }
 
 
-        public override XPCollection<FM.Subject.fmCSubject> SubjectSource {
+        public override IList<fmCSubject> SubjectSource {
             get { return TrwSubject.Subjects; }
         }
 

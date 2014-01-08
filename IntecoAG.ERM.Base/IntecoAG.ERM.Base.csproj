@@ -376,6 +376,12 @@
     <Compile Include="CS\csICodedComponent.cs" />
     <Compile Include="CS\csIComponent.cs" />
     <Compile Include="CS\csIImportSupport.cs" />
+    <Compile Include="CS\csImportSupportVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CS\csImportSupportVC.Designer.cs">
+      <DependentUpon>csImportSupportVC.cs</DependentUpon>
+    </Compile>
     <Compile Include="CS\csIVersionSupport.cs" />
     <Compile Include="CS\csNavigationController.cs">
       <SubType>Component</SubType>
@@ -492,11 +498,14 @@
     </Compile>
     <Compile Include="Trw\Budget\TrwBudgetSubject.cs" />
     <Compile Include="Trw\Budget\Sale\TrwBudgetSubjectSale.cs" />
+    <Compile Include="Trw\TrwSettings.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectDealDealLink.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealSaleOrder.cs" />
     <Compile Include="Trw\Subject\TrwSubjectLogic.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealSale.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealBase.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealBay.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectSubjectLink.cs" />
     <Compile Include="Trw\Subject\TrwSubjectVC.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -733,6 +742,9 @@
     <EmbeddedResource Include="CRM\Party\PartyViewController.resx">
       <DependentUpon>PartyViewController.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CS\csImportSupportVC.resx">
+      <DependentUpon>csImportSupportVC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CS\csNMCourseEditorViewController.resx">
       <DependentUpon>csNMCourseEditorViewController.cs</DependentUpon>

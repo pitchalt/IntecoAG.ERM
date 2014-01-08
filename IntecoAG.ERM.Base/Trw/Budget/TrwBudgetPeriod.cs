@@ -34,6 +34,18 @@ namespace IntecoAG.ERM.Trw.Budget {
             get { return "Á‏הזועû ÒÐÂ חא " + Year.ToString() + "ד."; }
         }
 
+        private Int16 _SubjectNumberCurrent;
+        [Browsable(false)]
+        public Int16 SubjectNumberCurrent {
+            get { return _SubjectNumberCurrent; }
+            set { SetPropertyValue<Int16>("SubjectNumberCurrent", ref _SubjectNumberCurrent, value); }
+        }
+
+        public Int16 SubjectNumberNextGet() {
+            SubjectNumberCurrent++;
+            return SubjectNumberCurrent;
+        }
+
         [Association("TrwBudgetPeriod-TrwSubject"), Aggregated]
         public XPCollection<TrwSubject> TrwSubjects {
             get { return GetCollection<TrwSubject>("TrwSubjects"); }

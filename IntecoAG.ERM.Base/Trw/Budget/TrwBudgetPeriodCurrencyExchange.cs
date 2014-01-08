@@ -32,7 +32,7 @@ namespace IntecoAG.ERM.Trw.Budget {
             set { SetPropertyValue<csValuta>("Valuta", ref _Valuta, value); }
         }
 
-        public TrwBudgetPeriodCurrencyExchange() : base() { }
+        public TrwBudgetPeriodCurrencyExchange(Session session) : base(session) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();

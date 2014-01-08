@@ -96,6 +96,9 @@ namespace IntecoAG.ERM.Trw.Budget {
             set {
                 value = Decimal.Round(value, 2);
                 SetPropertyValue<Decimal>("SummCost", ref _SummCost, value);
+                if (!IsLoading) {
+                    UpdateBalance();
+                }
             }
         }
 
@@ -105,6 +108,9 @@ namespace IntecoAG.ERM.Trw.Budget {
             set {
                 value = Decimal.Round(value, 2);
                 SetPropertyValue<Decimal>("SummVat", ref _SummVat, value);
+                if (!IsLoading) {
+                    UpdateBalance();
+                }
             }
         }
 
@@ -113,8 +119,41 @@ namespace IntecoAG.ERM.Trw.Budget {
             get { return _SummAll; }
             set {
                 value = Decimal.Round(value, 2);
-                SetPropertyValue<Decimal>("SummAll", ref _SummAll, value); 
+                SetPropertyValue<Decimal>("SummAll", ref _SummAll, value);
+                if (!IsLoading) {
+                    UpdateBalance();
+                }
             }
+        }
+
+        private Decimal _ObligationRate;
+        public Decimal ObligationRate {
+            get { return _ObligationRate; }
+            set {
+                SetPropertyValue<Decimal>("ObligationRate", ref _ObligationRate, value);
+                if (!IsLoading) {
+                    UpdateBalance();
+                }
+            }
+        }
+
+        protected void UpdateBalance() {
+            _SummCostBalance = Decimal.Round(SummCost * ObligationRate, 2);
+            _SummAllBalance = Decimal.Round(SummAll * ObligationRate, 2);
+        }
+
+        [Persistent("SummCostBalance")]
+        private Decimal _SummCostBalance;
+        [PersistentAlias("_SummCostBalance")]
+        public Decimal SummCostBalance {
+            get { return _SummCostBalance; }
+        }
+
+        [Persistent("SummAllBalance")]
+        private Decimal _SummAllBalance;
+        [PersistentAlias("_SummAllBalance")]
+        public Decimal SummAllBalance {
+            get { return _SummAllBalance; }
         }
 
         public TrwBudgetValue(Session session) : base(session) { }

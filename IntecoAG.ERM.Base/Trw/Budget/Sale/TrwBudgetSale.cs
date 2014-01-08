@@ -14,6 +14,7 @@ using DevExpress.Persistent.Validation;
 using IntecoAG.ERM.Trw.Subject;
 
 namespace IntecoAG.ERM.Trw.Budget {
+
     [MapInheritance(MapInheritanceType.ParentTable)]
     public class TrwBudgetSale : TrwBudgetMaster {
 

@@ -160,6 +160,10 @@ namespace IntecoAG.ERM.Trw.Budget {
                                     budget_value.Date = new DateTime(BudgetMaster.BudgetPeriod.Year + 1, 01, 01);
                             }
                             BudgetMaster.BudgetPeriod.ValueGet(budget_value.Date).BudgetValues.Add(budget_value);
+                            if (BudgetMaster.BudgetPeriod.Valuta == budget_key.ObligationValuta)
+                                budget_value.ObligationRate = 1;
+                            else
+                                budget_value.ObligationRate = BudgetMaster.BudgetPeriod.CurrencyExchanges.FirstOrDefault(x => x.Valuta == budget_key.ObligationValuta).Rate;
                             keys[budget_key].Add(budget_value);
                         }
                     }

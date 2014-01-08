@@ -17,6 +17,7 @@ using System.IO;
 using System.Linq;
 
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.StateMachine;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Base.General;

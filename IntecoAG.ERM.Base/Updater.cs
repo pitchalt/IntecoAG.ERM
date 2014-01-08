@@ -11,7 +11,6 @@ using DevExpress.Data.Filtering;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 //using DevExpress.Persistent.Base.Security;
-
 //
 using IntecoAG.ERM.CS.Security;
 using IntecoAG.ERM.FM;
@@ -23,7 +22,8 @@ using IntecoAG.ERM.CRM.Contract.Obligation;
 using IntecoAG.ERM.HRM.Organization;
 using IntecoAG.ERM.XAFExt;
 using IntecoAG.ERM.Module.ReportHelper;
-
+using IntecoAG.ERM.Trw;
+//
 namespace IntecoAG.ERM.Module {
     /// <summary>
     /// Паша!!! Очень большой вопрос с генерацией исключений при обновлении данных
@@ -48,11 +48,12 @@ namespace IntecoAG.ERM.Module {
                 //
                 fmCSettingsFinance.GetInstance(((ObjectSpace)ObjectSpace).Session);
                 crmCSettingsContract.GetInstance(((ObjectSpace)ObjectSpace).Session);
+                TrwSettings.GetInstance(ObjectSpace);
                 //
                 //UpdateParty();
                 //UpdateStaff();
             }
-            catch {
+            catch (Exception e){
             }
         }
         private void UpdateStaff() {

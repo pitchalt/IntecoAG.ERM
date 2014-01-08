@@ -13,9 +13,11 @@ using DevExpress.Persistent.Validation;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CS.Nomenclature;
+using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.References;
+using IntecoAG.ERM.Trw.Subject;
 //
 namespace IntecoAG.ERM.Trw {
 
@@ -24,17 +26,17 @@ namespace IntecoAG.ERM.Trw {
     [DefaultProperty("Name")]
     public class TrwContract : BaseObject, TrwIContract {
 
-        private fmCSubject _Subject;
-        public fmCSubject Subject {
-            get { return _Subject; }
-            set {
-                SetPropertyValue<fmCSubject>("Subject", ref _Subject, value);
-                if (!IsLoading && value != null) {
-                    TrwNumber = "D" + value.TrwCode;
-                    TrwDate = value.DateBegin;
-                }
-            }
-        }
+//        private fmCSubject _Subject;
+//        public fmCSubject Subject {
+//            get { return _Subject; }
+//            set {
+//                SetPropertyValue<fmCSubject>("Subject", ref _Subject, value);
+//                if (!IsLoading && value != null) {
+//                    TrwNumber = "D" + value.TrwCode;
+//                    TrwDate = value.DateBegin;
+//                }
+//            }
+//        }
 
         public String Name {
             get {
@@ -65,10 +67,16 @@ namespace IntecoAG.ERM.Trw {
         }
 
         public TrwIPerson TrwPartyPerson {
-            get { return null; }
+            get { return PartyPerson; }
         }
 
-        public TrwContractMarket _TrwContractMarket;
+        private crmCPerson _PartyPerson;
+        public crmCPerson PartyPerson {
+            get { return _PartyPerson; }
+            set { SetPropertyValue<crmCPerson>("PartyPerson", ref _PartyPerson, value); }
+        }
+
+        private TrwContractMarket _TrwContractMarket;
         public TrwContractMarket TrwContractMarket {
             get { return _TrwContractMarket; }
             set { SetPropertyValue<TrwContractMarket>("TrwContractMarket", ref _TrwContractMarket, value); }
@@ -85,6 +93,7 @@ namespace IntecoAG.ERM.Trw {
         }
 
         [Association("TrwContract-TrwOrder")]
+        [Browsable(false)]
         public XPCollection<TrwOrder> TrwOrders {
             get { return GetCollection<TrwOrder>("TrwOrders"); }
         } 

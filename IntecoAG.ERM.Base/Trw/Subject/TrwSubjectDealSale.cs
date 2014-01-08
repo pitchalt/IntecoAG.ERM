@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 //
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
@@ -14,6 +15,9 @@ using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
+using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.Subject;
+using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.Trw.Subject {
 
@@ -24,7 +28,29 @@ namespace IntecoAG.ERM.Trw.Subject {
         [Association("TrwSubject-TrwSubjectDealSale")]
         public TrwSubject TrwSubject {
             get { return _TrwSubject; }
-            set { SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value); }
+            set { 
+                SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value);
+                if (!IsLoading) {
+                    TrwContractOrdersUpdate();
+                }
+            }
+        }
+
+        public override TrwSubject TrwSubjectBase {
+            get { return TrwSubject; }
+        }
+
+        public void TrwContractOrdersUpdate() {
+            if (DealType == TrwSubjectDealType.TRW_SUBJECT_DEAL_REAL || TrwSubject == null || DealBudget == null)
+                return;
+            foreach (fmCSubject subj in TrwSubject.Subjects) {
+                TrwOrder trw_order = DealBudget.TrwOrders.FirstOrDefault(x => x.Subject == subj);
+                if (trw_order == null) {
+                    trw_order = new TrwOrder(this.Session);
+                    trw_order.Subject = subj;
+                    trw_order.TrwContractInt = DealBudget;
+                }
+            }
         }
 
         public override XPCollection<TrwContract> DealBudgetSource {
@@ -32,6 +58,9 @@ namespace IntecoAG.ERM.Trw.Subject {
                 return new XPCollection<TrwContract>(this.Session, 
                     new BinaryOperator("Subject", TrwSubject.Subject));
             }
+        }
+        protected override void DealBudgetChanged() {
+            TrwContractOrdersUpdate();
         }
 
         public override XPCollection<crmContractDeal> DealSource {
@@ -41,12 +70,12 @@ namespace IntecoAG.ERM.Trw.Subject {
             }
         }
 
-        public override XPCollection<FM.Subject.fmCSubject> SubjectSource {
+        public override IList<fmCSubject> SubjectSource {
             get { return TrwSubject.Subjects; }
         }
 
-        public override crmCParty Party {
-            get { return Deal != null ? Deal.Customer : null; }
+        public override crmCPerson Person {
+            get { return Deal != null ? (Deal.Customer != null ?  Deal.Customer.Person : null)  : PersonInternal; }
         }
 
         private csNomenclature _Nomenclature;

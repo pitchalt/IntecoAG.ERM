@@ -63,8 +63,8 @@ namespace IntecoAG.ERM.Trw.Contract {
         private crmContractDeal _Deal;
         [Association("crmDeal-TrwOrders")]
         [VisibleInListView(true)]
-        [RuleRequiredField(TargetContextIDs = "Confirm;Save")]
-        [Indexed("Subject", Name = "Subject-Deal", Unique = true)]
+        [RuleRequiredField("", "Confirm;Save", TargetCriteria = "This.TrwContractInt == Null")]
+        [Indexed(new String[]{"Subject", "TrwContractInt"}, Name = "Subject-Deal-Contract", Unique = true)]
         public crmContractDeal Deal {
             get { return _Deal; }
             set {
@@ -117,7 +117,12 @@ namespace IntecoAG.ERM.Trw.Contract {
         [Association("TrwContract-TrwOrder")]
         public TrwContract TrwContractInt {
             get { return _TrwContract; }
-            set { SetPropertyValue<TrwContract>("TrwContractInt", ref _TrwContract, value); }
+            set { 
+                SetPropertyValue<TrwContract>("TrwContractInt", ref _TrwContract, value);
+                if (!IsLoading && value != null) {
+                    UpdatePropertys();
+                }
+            }
         }
 
         //[PersistentAlias("Deal")]
@@ -193,11 +198,10 @@ namespace IntecoAG.ERM.Trw.Contract {
                 else
                     TrwOrderWorkType = TrwOrderWorkType.WORK_TYPE_UNKNOW;
             }
-
-            if (Deal != null) {
-                TrwDateFrom = Deal.TrwDateValidFrom;
-                TrwDateToPlan = Deal.TrwDateValidToPlan;
-                TrwDateToFact = Deal.TrwDateValidToFact;
+            if (TrwContract != null) {
+                TrwDateFrom = TrwContract.TrwDateValidFrom;
+                TrwDateToPlan = TrwContract.TrwDateValidToPlan;
+                TrwDateToFact = TrwContract.TrwDateValidToFact;
             }
         }
 

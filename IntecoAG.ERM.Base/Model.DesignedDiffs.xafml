@@ -3213,6 +3213,26 @@
         <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" IsNewNode="True" />
       </Filters>
     </ListView>
+    <ListView Id="TrwSubject_DealsBay_ListView">
+      <Columns>
+        <ColumnInfo Id="DealBudget" Index="-1" />
+        <ColumnInfo Id="Subject" Index="-1" />
+        <ColumnInfo Id="DealType" Index="0" />
+        <ColumnInfo Id="Party" Index="1" />
+        <ColumnInfo Id="TrwContract" Index="2" />
+        <ColumnInfo Id="Deal" Index="3" />
+      </Columns>
+    </ListView>
+    <ListView Id="TrwSubject_DealsSale_ListView">
+      <Columns>
+        <ColumnInfo Id="DealBudget" Index="-1" />
+        <ColumnInfo Id="Nomenclature" Index="-1" />
+        <ColumnInfo Id="DealType" Index="0" />
+        <ColumnInfo Id="Party" Index="1" />
+        <ColumnInfo Id="TrwContract" Index="2" />
+        <ColumnInfo Id="Deal" Index="3" />
+      </Columns>
+    </ListView>
     <DetailView Id="TrwSubject_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

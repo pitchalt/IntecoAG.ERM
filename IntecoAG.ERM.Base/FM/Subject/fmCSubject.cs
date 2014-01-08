@@ -126,19 +126,19 @@ namespace IntecoAG.ERM.FM.Subject
             OnChanged("TrwCode");
         }
 
-        private TrwSubject _TrwSubject;
-        [Browsable(false)]
-        [Association("TrwSubject-fmCSubject")]
-        public TrwSubject TrwSubject {
-            get { return _TrwSubject; }
-            set {
-                if (!IsLoading && TrwSubject != null) {
-                    if (TrwSubject.Subject == this)
-                        throw new InvalidOperationException("This attribute can't be change, it is current in TrwSubject");
-                }
-                SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value); 
-            }
-        }
+        //private TrwSubject _TrwSubject;
+        //[Browsable(false)]
+        //[Association("TrwSubject-fmCSubject")]
+        //public TrwSubject TrwSubject {
+        //    get { return _TrwSubject; }
+        //    set {
+        //        if (!IsLoading && TrwSubject != null) {
+        //            if (TrwSubject.Subject == this)
+        //                throw new InvalidOperationException("This attribute can't be change, it is current in TrwSubject");
+        //        }
+        //        SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value); 
+        //    }
+        //}
 
         [Association("fmDirection-Subjects")]
         public fmCDirection Direction {
