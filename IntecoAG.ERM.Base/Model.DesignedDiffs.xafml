@@ -2912,6 +2912,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="TrwBudgetPeriod_TrwSubjects_ListView">
+      <Columns>
+        <ColumnInfo Id="NameInternal" Index="-1" />
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="Name" Index="1" />
+      </Columns>
+    </ListView>
     <ListView Id="TrwBudgetSale_BudgetValues_ListView" ClassName="IntecoAG.ERM.Trw.Budget.TrwBudgetValue" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="Oid" PropertyName="Oid" Width="50" Index="-1" IsNewNode="True" />
@@ -3216,10 +3223,12 @@
     <ListView Id="TrwSubject_DealsBay_ListView">
       <Columns>
         <ColumnInfo Id="DealBudget" Index="-1" />
+        <ColumnInfo Id="PersonInternal" Index="-1" />
         <ColumnInfo Id="Subject" Index="-1" />
+        <ColumnInfo Id="TrwSubjectBase" Index="-1" />
         <ColumnInfo Id="DealType" Index="0" />
-        <ColumnInfo Id="Party" Index="1" />
-        <ColumnInfo Id="TrwContract" Index="2" />
+        <ColumnInfo Id="Person" Index="1" />
+        <ColumnInfo Id="TrwContract" Index="2" LookupProperty="TrwNumber" />
         <ColumnInfo Id="Deal" Index="3" />
       </Columns>
     </ListView>
@@ -3228,24 +3237,56 @@
         <ColumnInfo Id="DealBudget" Index="-1" />
         <ColumnInfo Id="Nomenclature" Index="-1" />
         <ColumnInfo Id="DealType" Index="0" />
-        <ColumnInfo Id="Party" Index="1" />
-        <ColumnInfo Id="TrwContract" Index="2" />
+        <ColumnInfo Id="Person" Index="1" />
+        <ColumnInfo Id="TrwContract" Index="2" LookupProperty="TrwNumber" />
         <ColumnInfo Id="Deal" Index="3" />
       </Columns>
     </ListView>
     <DetailView Id="TrwSubject_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="NameInternal" ViewItem="NameInternal" Index="3" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutItem Id="Subject" ViewItem="Subject" Index="1" IsNewNode="True" />
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="Budgets" Index="0" />
             <LayoutGroup Id="Subjects" Index="1" />
-            <LayoutGroup Id="DealsBay" Index="2" />
-            <LayoutGroup Id="DealsSale" Index="3" />
+            <LayoutGroup Id="DealsSale" Index="2" />
+            <LayoutGroup Id="DealsBay" Index="3" />
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True">
+            <LayoutGroup Id="TrwSubject">
+              <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
+              <LayoutItem Id="Name" ViewItem="Name" Removed="True" />
+              <LayoutItem Id="NameInternal" ViewItem="NameInternal" Removed="True" />
+              <LayoutItem Id="Subject" ViewItem="Subject" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="TrwSubject_ListView" AllowDelete="False" AllowNew="False">
+      <Columns>
+        <ColumnInfo Id="NameInternal" Index="-1" />
+        <ColumnInfo Id="Period" Index="0" GroupIndex="1" />
+        <ColumnInfo Id="Code" Index="1" />
+        <ColumnInfo Id="Name" Index="2" />
+        <ColumnInfo Id="Subject" Index="3" />
+      </Columns>
+    </ListView>
+    <DetailView Id="TrwSubjectDealSale_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="TrwOrders" Index="0" />
+            <LayoutGroup Id="DealSaleOrders" Index="1" />
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="TrwSubject_ListView" AllowDelete="False" AllowNew="False" />
     <DetailView Id="TrwSubjectImportDealActionParameters_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

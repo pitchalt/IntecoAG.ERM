@@ -1137,26 +1137,65 @@
     <Class Name="IntecoAG.ERM.Trw.References.TrwRefTAXT" Caption="ТРВ Вид налогов" />
     <Class Name="IntecoAG.ERM.Trw.References.TrwRefTaxVatRate" Caption="ТРВ НДС" />
     <Class Name="IntecoAG.ERM.Trw.References.TrwRefWT" Caption="ТРВ Вид персонала" />
-    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubject" Caption="ТРВ Контролируемая тема">
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubject" Caption="ТРВ Контр. Тема">
       <OwnMembers>
-        <Member Name="DealOtherBay" Caption="Договор Прочие смежники" />
-        <Member Name="DealOtherSale" Caption="Договор Прочие покупатели" />
-        <Member Name="DealsBay" Caption="Планирование договоров смежников" />
-        <Member Name="DealsSale" Caption="Планирование договоров продажи" />
-        <Member Name="Subject" Caption="ФПиК Тема" />
+        <Member Name="Budgets" Caption="Бюджеты" />
+        <Member Name="Code" Caption="Код" />
+        <Member Name="DealsBay" Caption="План. Договора смежников" />
+        <Member Name="DealsSale" Caption="План. Договора продажи" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="NameInternal" Caption="Наименование для сводных тем" />
+        <Member Name="Period" Caption="Период" />
+        <Member Name="Subject" Caption="ФПиК Реальная тема" />
+        <Member Name="Subjects" Caption="ФПиК Темы" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealBase" Caption="Планирование договора">
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealBase" Caption="План. договор">
       <OwnMembers>
-        <Member Name="Deal" Caption="ФПиК Договор" />
-        <Member Name="DealBudget" Caption="ТРВ Договор" />
-        <Member Name="Party" Caption="Контрагент" />
+        <Member Name="CrmContractDeals" Caption="ФПиК Договора" />
+        <Member Name="Deal" Caption="ФПиК Реальный договор" />
+        <Member Name="DealBudget" Caption="ТРВ Сводный договор" />
+        <Member Name="DealType" Caption="Тип план. договора" />
+        <Member Name="Person" Caption="Партнер" />
+        <Member Name="PersonInternal" Caption="Партнер сводного договора" />
+        <Member Name="TrwContract" Caption="ТРВ Договор" />
+        <Member Name="TrwSubjectBase" Caption="ТРВ Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealBay">
+      <OwnMembers>
+        <Member Name="TrwSubject" Caption="ТРВ Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealDealLink" Caption="Ссылка на сделку">
+      <OwnMembers>
+        <Member Name="CrmContractDeal" Caption="ФПиК Договор" />
+        <Member Name="TrwSubjectDeal" Caption="ТРВ План. Договор" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealSale">
+      <OwnMembers>
+        <Member Name="DealSaleOrders" Caption="ТРВ План. заказы" />
+        <Member Name="Nomenclature" Caption="ФПиК Номенклатура" />
+        <Member Name="TrwSubject" Caption="ТРВ Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealSaleOrder">
+      <OwnMembers>
+        <Member Name="Order" Caption="ФПиК Заказ" />
+        <Member Name="TrwSaleNomenclature" Caption="ТРВ ЕНГП" />
+        <Member Name="TrwSubjectDeal" Caption="ТРВ План. договор" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectSubjectLink" Caption="Ссылка на тему">
+      <OwnMembers>
+        <Member Name="FmSubject" Caption="ФПиК Тема" />
+        <Member Name="TrwSubject" Caption="ТРВ Контр. Тема" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.Trw.TrwContract" Caption="ТРВ Договор">
       <OwnMembers>
         <Member Name="ContractSuperType" Caption="ТРВ Тип Договора" />
-        <Member Name="Subject" Caption="ФПиК Тема" />
         <Member Name="TrwDate" Caption="ТРВ Дата" />
         <Member Name="TrwNumber" Caption="ТРВ Номер" />
       </OwnMembers>
@@ -1347,6 +1386,12 @@
         <LocalizationItem Name="PARTY_VED" Value="Ярмарка ВЭД" />
         <LocalizationItem Name="PARTY_WITH_BANK_ACCOUNT" Value="С Расч.Счетом" />
         <LocalizationItem Name="PARTY_WITHOUT_BANK_ACCOUNT" Value="Без Расч.Счетов" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealType">
+        <LocalizationItem Name="TRW_SUBJECT_DEAL_CONS_DEAL" Value="Сводные сделки" />
+        <LocalizationItem Name="TRW_SUBJECT_DEAL_CONS_OTHER" Value="Сводные прочие" />
+        <LocalizationItem Name="TRW_SUBJECT_DEAL_CONS_PARTNER" Value="Сводные партнер" />
+        <LocalizationItem Name="TRW_SUBJECT_DEAL_REAL" Value="Реальная сделка" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.Trw.TrwOrderWorkType">
         <LocalizationItem Name="WORK_TYPE_LINE" Value="1. Серийное и мелкосерийное производство" />

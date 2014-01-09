@@ -16,6 +16,7 @@ using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.FM.Subject;
+using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.Trw.Subject {
 
@@ -69,11 +70,17 @@ namespace IntecoAG.ERM.Trw.Subject {
             }
         }
 
+        public IList<TrwIOrder> TrwOrders {
+            get {
+                return DealBudget != null ? new ListConverter<TrwIOrder, TrwOrder>( DealBudget.TrwOrders) : null;
+            }
+        }
+
         [NonPersistent]
         public abstract TrwSubject TrwSubjectBase { get; } 
 
         private crmContractDeal _Deal;
-        [DataSourceProperty("DealSource")]
+//        [DataSourceProperty("DealSource")]
         public crmContractDeal Deal {
             get { return _Deal; }
             set { 
@@ -107,7 +114,7 @@ namespace IntecoAG.ERM.Trw.Subject {
         }
 
         private TrwContract _DealBudget;
-        [DataSourceProperty("DealBudgetSource")]
+//        [DataSourceProperty("DealBudgetSource")]
         public TrwContract DealBudget {
             get { return _DealBudget; }
             set { 
