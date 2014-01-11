@@ -77,6 +77,8 @@ namespace IntecoAG.ERM.Trw {
         DateTime TrwDateFrom { get; }
         DateTime TrwDateToPlan { get; }
         DateTime TrwDateToFact { get; }
+
+        IList<TrwISaleNomenclature> TrwSaleNomenclatures { get; }
         //string CalculatedProperty { get; }
         //int SumMethod(int val1, int val2);
     }

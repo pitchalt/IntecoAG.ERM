@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+//
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Base.General;
 //
 using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CS.Nomenclature;
@@ -13,6 +15,8 @@ namespace IntecoAG.ERM.Trw {
     public interface TrwIContract {
         String TrwNumber { get; }
         DateTime TrwDate { get; }
+
+        String Name { get; }
 
         TrwIContractParty TrwCustomerParty { get; }
         TrwIContractParty TrwSupplierParty { get; }

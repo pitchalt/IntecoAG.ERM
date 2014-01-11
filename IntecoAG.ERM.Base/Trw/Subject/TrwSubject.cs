@@ -50,6 +50,22 @@ namespace IntecoAG.ERM.Trw.Subject {
             SetPropertyValue<String>("Code", ref _Code, code);
         }
         //
+        private IList<TrwSubjectItem> _SubjectItems;
+        public IList<TrwSubjectItem> SubjectItems {
+            get {
+                if (_SubjectItems == null) {
+                    _SubjectItems = new List<TrwSubjectItem>();
+                    TrwSubjectItemSaleDeals sale_item = new TrwSubjectItemSaleDeals(this.Session);
+                    sale_item.Subject = this;
+                    _SubjectItems.Add(sale_item);
+                    TrwSubjectItemBayDeals bay_item = new TrwSubjectItemBayDeals(this.Session);
+                    bay_item.Subject = this;
+                    _SubjectItems.Add(bay_item);
+                }
+                return _SubjectItems; 
+            }
+        }
+        //
         private fmCSubject _Subject;
         public fmCSubject Subject {
             get { return _Subject; }

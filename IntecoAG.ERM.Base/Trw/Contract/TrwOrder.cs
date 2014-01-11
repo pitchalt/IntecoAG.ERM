@@ -8,6 +8,7 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 //
@@ -63,7 +64,7 @@ namespace IntecoAG.ERM.Trw.Contract {
         private crmContractDeal _Deal;
         [Association("crmDeal-TrwOrders")]
         [VisibleInListView(true)]
-        [RuleRequiredField("", "Confirm;Save", TargetCriteria = "This.TrwContractInt == Null")]
+        [RuleRequiredField("", "Confirm;Save", TargetCriteria = "TrwContractInt == Null")]
         [Indexed(new String[]{"Subject", "TrwContractInt"}, Name = "Subject-Deal-Contract", Unique = true)]
         public crmContractDeal Deal {
             get { return _Deal; }
@@ -224,5 +225,21 @@ namespace IntecoAG.ERM.Trw.Contract {
                     break;
             }
         }
+
+        IList<TrwISaleNomenclature> TrwIOrder.TrwSaleNomenclatures {
+            get { return new ListConverter<TrwISaleNomenclature, TrwSaleNomenclature>(TrwSaleNomenclatures); }
+        }
+
+        //public IBindingList Children {
+        //    get { return new BindingList<TrwISaleNomenclature>(((TrwIOrder) this).TrwSaleNomenclatures); }
+        //}
+
+        //public string Name {
+        //    get { return TrwCode; }
+        //}
+
+        //public ITreeNode Parent {
+        //    get { return TrwContract; }
+        //}
     }
 }

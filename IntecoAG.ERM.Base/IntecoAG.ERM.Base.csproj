@@ -498,6 +498,7 @@
     </Compile>
     <Compile Include="Trw\Budget\TrwBudgetSubject.cs" />
     <Compile Include="Trw\Budget\Sale\TrwBudgetSubjectSale.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectItem.cs" />
     <Compile Include="Trw\TrwSettings.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealDealLink.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealSaleOrder.cs" />

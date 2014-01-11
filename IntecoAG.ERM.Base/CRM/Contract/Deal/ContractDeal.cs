@@ -633,6 +633,14 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
 
 
         #endregion
+
+        //public IBindingList Children {
+        //    get { return new BindingList<TrwIOrder>( TrwSaleOrders); }
+        //}
+
+        //public ITreeNode Parent {
+        //    get { return null; }
+        //}
     }
 
 }

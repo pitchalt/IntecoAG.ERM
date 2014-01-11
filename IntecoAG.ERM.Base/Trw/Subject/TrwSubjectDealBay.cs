@@ -59,5 +59,9 @@ namespace IntecoAG.ERM.Trw.Subject {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+
+        //public override IBindingList Children {
+        //    get { return null; }
+        //}
     }
 }

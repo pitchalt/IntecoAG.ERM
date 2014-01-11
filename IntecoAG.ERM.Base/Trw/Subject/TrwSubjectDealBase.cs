@@ -9,6 +9,7 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.ConditionalEditorState;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 //
@@ -72,7 +73,9 @@ namespace IntecoAG.ERM.Trw.Subject {
 
         public IList<TrwIOrder> TrwOrders {
             get {
-                return DealBudget != null ? new ListConverter<TrwIOrder, TrwOrder>( DealBudget.TrwOrders) : null;
+                return DealBudget != null ? 
+                    new ListConverter<TrwIOrder, TrwOrder>( DealBudget.TrwOrders) : 
+                    new ListConverter<TrwIOrder, TrwOrder>( Deal.TrwOrders);
             }
         }
 
@@ -163,10 +166,25 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return GetList<crmContractDeal>("CrmContractDeals"); }
         }
 
-
         public TrwSubjectDealBase(Session session): base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+
+        protected override void OnDeleting() {
+            base.OnDeleting();
+            if (DealBudget != null && DealBudget.TrwExportState != Exchange.TrwExchangeExportStates.CONFIRMED)
+                DealBudget.TrwExportStateSet(Exchange.TrwExchangeExportStates.DELETED);
+        }
+
+        //public virtual ITreeNode Parent {
+        //    get { return null; }  
+        //}
+        //public abstract IBindingList Children { get; }
+
+        //public virtual String Name {
+        //    get { return TrwContract != null ? TrwContract.TrwNumber : null; }
+        //}
+
     }
 }

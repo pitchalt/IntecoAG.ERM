@@ -7,6 +7,7 @@ using DevExpress.Data.Filtering;
 //
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 //
@@ -18,6 +19,7 @@ using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.References;
 using IntecoAG.ERM.Trw.Subject;
+using IntecoAG.ERM.Trw.Exchange;
 //
 namespace IntecoAG.ERM.Trw {
 
@@ -37,6 +39,16 @@ namespace IntecoAG.ERM.Trw {
 //                }
 //            }
 //        }
+
+        [Persistent("TrwExportState")]
+        private TrwExchangeExportStates _TrwExportState;
+        [PersistentAlias("_TrwExportState")]
+        public TrwExchangeExportStates TrwExportState {
+            get { return _TrwExportState; }
+        }
+        public void TrwExportStateSet(TrwExchangeExportStates state) {
+            SetPropertyValue<TrwExchangeExportStates>("TrwExportState", ref _TrwExportState, state);
+        }
 
         public String Name {
             get {
@@ -155,9 +167,16 @@ namespace IntecoAG.ERM.Trw {
         public TrwContract(Session session) : base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
+            _TrwExportState = TrwExchangeExportStates.CREATED;
         }
 
+        //public IBindingList Children {
+        //    get { return new BindingList<TrwIOrder>(TrwSaleOrders); }
+        //}
 
+        //public ITreeNode Parent {
+        //    get { return null; }
+        //}
     }
 
 }
