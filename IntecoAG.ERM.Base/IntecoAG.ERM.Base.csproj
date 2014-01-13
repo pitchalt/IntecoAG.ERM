@@ -437,6 +437,7 @@
     <Compile Include="CS\Work\Work.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_224.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_223.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_225.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -498,6 +499,7 @@
     </Compile>
     <Compile Include="Trw\Budget\TrwBudgetSubject.cs" />
     <Compile Include="Trw\Budget\Sale\TrwBudgetSubjectSale.cs" />
+    <Compile Include="Trw\TrwRefCashFlow.cs" />
     <Compile Include="Trw\Subject\TrwSubjectItem.cs" />
     <Compile Include="Trw\TrwSettings.cs" />
     <Compile Include="Trw\Subject\TrwSubjectDealDealLink.cs" />
@@ -892,6 +894,9 @@
     <Content Include="Trw\Party\TrwPartyUseCase.txt" />
     <None Include="Documentation\ActionPermissionSystem.vsd" />
     <None Include="Documentation\Последовательность действий по обновлению системы на продуктовом сервере.docx" />
+    <None Include="Import\TrwRefCashFlow.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Import\TrwReferences.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

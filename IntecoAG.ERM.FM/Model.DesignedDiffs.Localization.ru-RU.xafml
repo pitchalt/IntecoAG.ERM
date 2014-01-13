@@ -601,6 +601,7 @@
         <Member Name="PaymentValuta" Caption="Валюта платежа" />
         <Member Name="PayType" Caption="Тип оплаты" />
         <Member Name="Summ" Caption="Сумма" />
+        <Member Name="TrwRefCashFlow" Caption="ТРВ Статья ДДС" />
         <Member Name="Valuta" Caption="Валюта" />
       </OwnMembers>
     </Class>

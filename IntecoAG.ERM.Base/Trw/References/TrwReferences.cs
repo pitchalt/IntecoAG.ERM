@@ -74,6 +74,10 @@ namespace IntecoAG.ERM.Trw.References {
             set { SetPropertyValue<String>("Name", ref _Name, value); }
         }
 
+        protected override void OnDeleting() {
+            throw new InvalidOperationException("Удалять нельзя");
+        }
+
         public TrwRefBase(Session session): base(session) { }
 
         public override string ToString() {

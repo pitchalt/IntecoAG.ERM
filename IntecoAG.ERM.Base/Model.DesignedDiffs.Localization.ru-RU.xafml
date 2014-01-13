@@ -1200,6 +1200,16 @@
         <Member Name="TrwNumber" Caption="ТРВ Номер" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.Trw.TrwRefCashFlow" Caption="ТРВ Статья ДДС">
+      <OwnMembers>
+        <Member Name="Childs" Caption="Дочерние" />
+        <Member Name="Code" Caption="Код" />
+        <Member Name="IsSelectabled" Caption="Конечный" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="NameFull" Caption="Наименование" />
+        <Member Name="TopRef" Caption="Верхний" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.XAFExt.XafExtAnalysis" Caption="Справка" />
     <Class Name="IntecoAG.ERM.XAFExt.XafExtReportData" Caption="Отчет" />
   </BOModel>

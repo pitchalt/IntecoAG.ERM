@@ -235,6 +235,7 @@
         <Member Name="VolumePercent" Caption="Максимальная доля включаемых договоров" DisplayFormat="{0:P2}" EditMask="p2" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.Trw.TrwRefCashFlow" DefaultLookupEditorMode="AllItems" />
   </BOModel>
   <CreatableItems>
     <CreatableItem ClassName="IntecoAG.ERM.CRM.Contract.Forms.crmContractRegistrationForm" Index="0" IsNewNode="True" />

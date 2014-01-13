@@ -9,6 +9,7 @@ using IntecoAG.ERM.CRM.Contract.Obligation;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.Trw;
 
 namespace IntecoAG.ERM.FM.PaymentRequest {
 
@@ -101,6 +102,15 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         public fmCostItem CostItem {
             get { return _CostItem; }
             set { SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value); }
+        }
+
+        private TrwRefCashFlow _TrwRefCashFlow;
+        /// <summary>
+        /// ТРВ Статья ДДС
+        /// </summary>
+        public TrwRefCashFlow TrwRefCashFlow {
+            get { return _TrwRefCashFlow; }
+            set { SetPropertyValue<TrwRefCashFlow>("TrwRefCashFlow", ref _TrwRefCashFlow, value); }
         }
         /// <summary>
         /// Заказ

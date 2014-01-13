@@ -2073,6 +2073,48 @@
         <ColumnInfo Id="PersonalAccount" Index="4" />
       </Columns>
     </ListView>
+    <DetailView Id="fmCPRPaymentRequestObligation_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Index="3">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Order" ViewItem="Order" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="CostItem" ViewItem="CostItem" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="PayType" ViewItem="PayType" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwRefCashFlow" ViewItem="TrwRefCashFlow" Index="3" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header2" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Valuta" ViewItem="Valuta" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Summ" ViewItem="Summ" Index="2" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header3" Index="2" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="ContractDeal" ViewItem="ContractDeal" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="FinancialDeal" ViewItem="FinancialDeal" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="PaymentItem" ViewItem="PaymentItem" Index="2" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Index="3" />
+          <LayoutGroup Id="SimpleEditors" Removed="True">
+            <LayoutGroup Id="csCComponent" Removed="True" />
+            <LayoutGroup Id="fmCPRPaymentRequestObligation">
+              <LayoutGroup Id="fmCPRPaymentRequestObligation_col1">
+                <LayoutItem Id="ContractDeal" ViewItem="ContractDeal" Removed="True" />
+                <LayoutItem Id="CostItem" ViewItem="CostItem" Removed="True" />
+                <LayoutItem Id="FinancialDeal" ViewItem="FinancialDeal" Removed="True" />
+                <LayoutItem Id="PaymentItem" ViewItem="PaymentItem" Removed="True" />
+                <LayoutItem Id="PayType" ViewItem="PayType" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="fmCPRPaymentRequestObligation_col2">
+                <LayoutItem Id="Order" ViewItem="Order" Removed="True" />
+                <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Removed="True" />
+                <LayoutItem Id="Summ" ViewItem="Summ" Removed="True" />
+                <LayoutItem Id="TrwRefCashFlow" ViewItem="TrwRefCashFlow" Removed="True" />
+                <LayoutItem Id="Valuta" ViewItem="Valuta" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="fmCPRPaymentRequestObligationContract_DetailView" ClassName="IntecoAG.ERM.FM.PaymentRequest.fmCPRPaymentRequestObligation" IsNewNode="True">
       <Items IsNewNode="True">
         <PropertyEditor Id="AuditTrail" PropertyName="AuditTrail" View="csCComponent_AuditTrail_ListView" IsNewNode="True" />
@@ -2085,6 +2127,7 @@
         <PropertyEditor Id="PaymentValuta" PropertyName="PaymentValuta" IsNewNode="True" />
         <PropertyEditor Id="PayType" PropertyName="PayType" IsNewNode="True" />
         <PropertyEditor Id="Summ" PropertyName="Summ" IsNewNode="True" />
+        <PropertyEditor Id="TrwRefCashFlow" PropertyName="TrwRefCashFlow" IsNewNode="True" />
         <PropertyEditor Id="Valuta" PropertyName="Valuta" IsNewNode="True" />
       </Items>
       <Layout IsNewNode="True">
@@ -2093,9 +2136,12 @@
             <LayoutItem Id="Order" ViewItem="Order" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
             <LayoutItem Id="CostItem" ViewItem="CostItem" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
             <LayoutItem Id="PayType" Index="2" RelativeSize="10" CaptionLocation="Top" ViewItem="PayType" IsNewNode="True" />
-            <LayoutItem Id="Summ" ViewItem="Summ" Index="3" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
-            <LayoutItem Id="Valuta" ViewItem="Valuta" Index="4" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
-            <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="5" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="TrwRefCashFlow" ViewItem="TrwRefCashFlow" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header2" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Valuta" ViewItem="Valuta" Index="0" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="1" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="Summ" ViewItem="Summ" Index="2" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="AuditTrail_Group" Index="2" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
             <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" Index="0" CaptionLocation="Top" IsNewNode="True" />
@@ -2145,6 +2191,7 @@
         <PropertyEditor Id="PaymentValuta" PropertyName="PaymentValuta" IsNewNode="True" />
         <PropertyEditor Id="PayType" PropertyName="PayType" IsNewNode="True" />
         <PropertyEditor Id="Summ" PropertyName="Summ" IsNewNode="True" />
+        <PropertyEditor Id="TrwRefCashFlow" PropertyName="TrwRefCashFlow" IsNewNode="True" />
         <PropertyEditor Id="Valuta" PropertyName="Valuta" IsNewNode="True" />
       </Items>
       <Layout IsNewNode="True">
@@ -2153,9 +2200,12 @@
             <LayoutItem Id="Order" ViewItem="Order" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
             <LayoutItem Id="CostItem" ViewItem="CostItem" Index="1" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
             <LayoutItem Id="PayType" Index="2" RelativeSize="10" CaptionLocation="Top" ViewItem="PayType" IsNewNode="True" />
-            <LayoutItem Id="Summ" ViewItem="Summ" Index="3" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
-            <LayoutItem Id="Valuta" ViewItem="Valuta" Index="4" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
-            <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="5" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="TrwRefCashFlow" ViewItem="TrwRefCashFlow" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header2" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Valuta" ViewItem="Valuta" Index="0" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="PaymentValuta" ViewItem="PaymentValuta" Index="1" CaptionLocation="Top" RelativeSize="10" IsNewNode="True" />
+            <LayoutItem Id="Summ" ViewItem="Summ" Index="2" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="AuditTrail_Group" Index="2" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
             <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" Index="0" CaptionLocation="Top" IsNewNode="True" />
