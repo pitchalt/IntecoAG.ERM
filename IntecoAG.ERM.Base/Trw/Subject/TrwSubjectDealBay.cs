@@ -51,9 +51,9 @@ namespace IntecoAG.ERM.Trw.Subject {
         }
 
 
-        public override IList<fmCSubject> SubjectSource {
-            get { return TrwSubject.Subjects; }
-        }
+        //public override IList<fmCSubject> SubjectSource {
+        //    get { return TrwSubject.Subjects; }
+        //}
 
         public TrwSubjectDealBay(Session session) : base(session) { }
         public override void AfterConstruction() {

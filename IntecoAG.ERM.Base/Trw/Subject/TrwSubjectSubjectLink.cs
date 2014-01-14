@@ -30,9 +30,9 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return _FmSubject; }
             set { 
                 SetPropertyValue<fmCSubject>("FmSubject", ref _FmSubject, value);
-                if (!IsLoading && TrwSubject != null && value != null) {
-                    TrwSubject.UpdateDeals();               
-                }
+                //if (!IsLoading && TrwSubject != null && value != null) {
+                //    TrwSubject.UpdateDeals();               
+                //}
             }
         }
 

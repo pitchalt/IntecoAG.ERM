@@ -229,10 +229,9 @@
     <Class Name="IntecoAG.ERM.HRM.Organization.hrmDepartment" Caption="hrm Department" DefaultLookupEditorMode="Search" />
     <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealBay" Caption="ТРВ Тема Договора покупки" />
     <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealSale" Caption="ТРВ Тема Договора продажи" />
-    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectImportDealActionParameters" Caption="Параметры включения договоров">
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectImportDealParameters">
       <OwnMembers>
-        <Member Name="MaxCount" Caption="Максимальное кол-во договоров" />
-        <Member Name="VolumePercent" Caption="Максимальная доля включаемых договоров" DisplayFormat="{0:P2}" EditMask="p2" />
+        <Member Name="VolumePercent" DisplayFormat="{0:P2}" EditMask="p2" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.Trw.TrwRefCashFlow" DefaultLookupEditorMode="AllItems" />
@@ -3246,17 +3245,22 @@
     <DetailView Id="TrwSubject_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
-          <LayoutGroup Id="Header" Index="1" Direction="Horizontal" IsNewNode="True">
-            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" IsNewNode="True" />
-            <LayoutItem Id="NameInternal" ViewItem="NameInternal" Index="3" CaptionLocation="Top" IsNewNode="True" />
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Status" ViewItem="Status" Index="0" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="Code" ViewItem="Code" Index="1" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="50" IsNewNode="True" />
           </LayoutGroup>
-          <LayoutItem Id="Subject" ViewItem="Subject" Index="1" IsNewNode="True" />
-          <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="SubjectGroup" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="SubjectType" ViewItem="SubjectType" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Subject" ViewItem="Subject" Index="1" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
+            <LayoutItem Id="NameInternal" ViewItem="NameInternal" Index="2" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="3">
             <LayoutGroup Id="Budgets" Index="0" />
             <LayoutGroup Id="Subjects" Index="1" />
             <LayoutGroup Id="DealsSale" Index="2" />
             <LayoutGroup Id="DealsBay" Index="3" />
+            <LayoutGroup Id="SubjectItems" Index="4" />
           </TabbedGroup>
           <LayoutGroup Id="SimpleEditors" Removed="True">
             <LayoutGroup Id="TrwSubject">
@@ -3288,14 +3292,19 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <DetailView Id="TrwSubjectImportDealActionParameters_DetailView">
+    <ListView Id="TrwSubjectDealSaleOrder_LookupListView" GroupSummary="" />
+    <DetailView Id="TrwSubjectImportDealParameters_DetailView">
+      <Items>
+        <StaticText Id="Comment" Caption="Caption" IsNewNode="True" />
+      </Items>
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="TrwSubjectImportDealActionParameters">
-              <LabelItem Id="@60b2b45e-6887-41fd-9aeb-ebf6d27cbc86" Index="0" IsNewNode="True" />
+            <LayoutGroup Id="TrwSubjectImportDealParameters">
+              <LayoutItem Id="Comment" ViewItem="Comment" Index="0" IsNewNode="True" />
               <LayoutItem Id="MaxCount" Index="1" ViewItem="MaxCount" />
               <LayoutItem Id="VolumePercent" Index="2" ViewItem="VolumePercent" />
+              <LayoutItem Id="CreateOtherDeal" Index="3" ViewItem="CreateOtherDeal" />
             </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>

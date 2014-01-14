@@ -31,9 +31,6 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return _TrwSubject; }
             set { 
                 SetPropertyValue<TrwSubject>("TrwSubject", ref _TrwSubject, value);
-                if (!IsLoading) {
-                    TrwContractOrdersUpdate();
-                }
             }
         }
 
@@ -41,18 +38,18 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return TrwSubject; }
         }
 
-        public void TrwContractOrdersUpdate() {
-            if (DealType == TrwSubjectDealType.TRW_SUBJECT_DEAL_REAL || TrwSubject == null || DealBudget == null)
-                return;
-            foreach (fmCSubject subj in TrwSubject.Subjects) {
-                TrwOrder trw_order = DealBudget.TrwOrders.FirstOrDefault(x => x.Subject == subj);
-                if (trw_order == null) {
-                    trw_order = new TrwOrder(this.Session);
-                    trw_order.Subject = subj;
-                    trw_order.TrwContractInt = DealBudget;
-                }
-            }
-        }
+        //public void TrwContractOrdersUpdate() {
+        //    if (DealType == TrwSubjectDealType.TRW_SUBJECT_DEAL_REAL || TrwSubject == null || DealBudget == null)
+        //        return;
+        //    foreach (fmCSubject subj in TrwSubject.Subjects) {
+        //        TrwOrder trw_order = DealBudget.TrwOrders.FirstOrDefault(x => x.Subject == subj);
+        //        if (trw_order == null) {
+        //            trw_order = new TrwOrder(this.Session);
+        //            trw_order.Subject = subj;
+        //            trw_order.TrwContractInt = DealBudget;
+        //        }
+        //    }
+        //}
 
         public override XPCollection<TrwContract> DealBudgetSource {
             get { 
@@ -60,19 +57,12 @@ namespace IntecoAG.ERM.Trw.Subject {
                     new BinaryOperator("Subject", TrwSubject.Subject));
             }
         }
-        protected override void DealBudgetChanged() {
-            TrwContractOrdersUpdate();
-        }
 
         public override XPCollection<crmContractDeal> DealSource {
             get {
                 return new XPCollection<crmContractDeal>(TrwSubject.Subject.Deals,
                         new BinaryOperator("TRVType.TrwContractSuperType", Contract.TrwContractSuperType.DEAL_SALE, BinaryOperatorType.Equal));
             }
-        }
-
-        public override IList<fmCSubject> SubjectSource {
-            get { return TrwSubject.Subjects; }
         }
 
         public override crmCPerson Person {

@@ -1146,8 +1146,11 @@
         <Member Name="Name" Caption="Наименование" />
         <Member Name="NameInternal" Caption="Наименование для сводных тем" />
         <Member Name="Period" Caption="Период" />
+        <Member Name="Status" Caption="Статус" />
         <Member Name="Subject" Caption="ФПиК Реальная тема" />
+        <Member Name="SubjectItems" Caption="Структура темы" />
         <Member Name="Subjects" Caption="ФПиК Темы" />
+        <Member Name="SubjectType" Caption="Тип темы" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealBase" Caption="План. договор">
@@ -1185,6 +1188,13 @@
         <Member Name="Order" Caption="ФПиК Заказ" />
         <Member Name="TrwSaleNomenclature" Caption="ТРВ ЕНГП" />
         <Member Name="TrwSubjectDeal" Caption="ТРВ План. договор" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectImportDealParameters" Caption="Параметры включения договоров">
+      <OwnMembers>
+        <Member Name="CreateOtherDeal" Caption="Создать сводный договор" />
+        <Member Name="MaxCount" Caption="Максимальное кол-во договоров" />
+        <Member Name="VolumePercent" Caption="Максимальная доля включаемых договоров" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectSubjectLink" Caption="Ссылка на тему">
@@ -1402,6 +1412,17 @@
         <LocalizationItem Name="TRW_SUBJECT_DEAL_CONS_OTHER" Value="Сводные прочие" />
         <LocalizationItem Name="TRW_SUBJECT_DEAL_CONS_PARTNER" Value="Сводные партнер" />
         <LocalizationItem Name="TRW_SUBJECT_DEAL_REAL" Value="Реальная сделка" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Subject.TrwSubjectStatus">
+        <LocalizationItem Name="TRW_SUBJECT_CONF_DEAL_LIST" Value="Утверждены договора" />
+        <LocalizationItem Name="TRW_SUBJECT_CONF_SUBJECT_LIST" Value="Утверждены темы" />
+        <LocalizationItem Name="TRW_SUBJECT_DELETE" Value="Удалена" />
+        <LocalizationItem Name="TRW_SUBJECT_INIT" Value="Открыта" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.Trw.Subject.TrwSubjectType">
+        <LocalizationItem Name="TRW_SUBJECT_TYPE_CONSOLIDATE" Value="Сводная тема" />
+        <LocalizationItem Name="TRW_SUBJECT_TYPE_REAL" Value="Реальная тема" />
+        <LocalizationItem Name="TRW_SUBJECT_TYPE_UNDEFINED" Value="Неопределено" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.Trw.TrwOrderWorkType">
         <LocalizationItem Name="WORK_TYPE_LINE" Value="1. Серийное и мелкосерийное производство" />
@@ -1762,16 +1783,10 @@
         <Filter Id="@f7be72f7-b2ab-4375-bfcb-3cecbe94e150" Caption="Все" />
       </Filters>
     </ListView>
-    <DetailView Id="TrwSubjectImportDealActionParameters_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="TrwSubjectImportDealActionParameters">
-              <LabelItem Id="@60b2b45e-6887-41fd-9aeb-ebf6d27cbc86" Text="Если указан 0 - ограничение не используется (берутся все возможные)" />
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
+    <DetailView Id="TrwSubjectImportDealParameters_DetailView">
+      <Items>
+        <StaticText Id="Comment" Caption="Commen" Text="Укажите кол-во и/или процент 0 - означает все" />
+      </Items>
     </DetailView>
     <ListView Id="XafExtReportData_ListView" Caption="Отчеты" />
   </Views>

@@ -7,6 +7,8 @@ using DevExpress.Data.Filtering;
 //
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.StateMachine;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
@@ -17,13 +19,58 @@ using IntecoAG.ERM.Trw.Budget;
 //
 namespace IntecoAG.ERM.Trw.Subject {
 
+    public enum TrwSubjectStatus {
+        TRW_SUBJECT_INIT = 1,
+        TRW_SUBJECT_CONF_SUBJECT_LIST = 2,
+        TRW_SUBJECT_CONF_DEAL_LIST = 3,
+        TRW_SUBJECT_DELETE = 16
+    }
+
+    public enum TrwSubjectType { 
+        TRW_SUBJECT_TYPE_UNDEFINED = 1,
+        TRW_SUBJECT_TYPE_REAL = 2,
+        TRW_SUBJECT_TYPE_CONSOLIDATE = 3
+    }
+
     [NavigationItem("Trw")]
     [Persistent("TrwSubject")]
-    [Appearance("", AppearanceItemType.ViewItem, "Subject != null", TargetItems="NameInternal,Subjects", Enabled=false)]
-    public class TrwSubject : BaseObject {
+    [Appearance(null, AppearanceItemType.ViewItem, "SubjectType == 'TRW_SUBJECT_TYPE_REAL'", 
+        TargetItems = "SubjectType,NameInternal,Subjects", Enabled = false)]
+    [Appearance(null, AppearanceItemType.ViewItem, "SubjectType == 'TRW_SUBJECT_TYPE_CONSOLIDATE'",
+        TargetItems = "SubjectType,Subject", Enabled = false)]
+    [Appearance(null, AppearanceItemType.ViewItem, "SubjectType == 'TRW_SUBJECT_TYPE_UNDEFINED'",
+        TargetItems = "*,SubjectType", Enabled = false)]
+    [Appearance(null, AppearanceItemType.ViewItem, "Status != 'TRW_SUBJECT_INIT'", TargetItems = "SubjectType,Subject,NameInternal,Subjects", Enabled = false)]
+    [Appearance(null, AppearanceItemType.ViewItem, "Status != 'TRW_SUBJECT_CONF_SUBJECT_LIST'", TargetItems = "DealsBay,DealsSale", Enabled = false)]
+    [Appearance(null, AppearanceItemType.LayoutItem, "Status != 'TRW_SUBJECT_CONF_DEAL_LIST'", TargetItems = "SubjectItems", Visibility = ViewItemVisibility.Hide)]
+    public class TrwSubject : BaseObject, IStateMachineProvider {
+
+        private TrwSubjectStatus _Status;
+        public TrwSubjectStatus Status {
+            get { return _Status; }
+            set { SetPropertyValue<TrwSubjectStatus>("Status", ref _Status, value); }
+        }
+
+        private TrwSubjectType _SubjectType;
+        [ImmediatePostData]
+        [RuleValueComparison(null, "Save;Approve", ValueComparisonType.NotEquals, TrwSubjectType.TRW_SUBJECT_TYPE_UNDEFINED)]
+        public TrwSubjectType SubjectType {
+            get { return _SubjectType; }
+            set { 
+                SetPropertyValue<TrwSubjectType>("SubjectType", ref _SubjectType, value);
+                if (!IsLoading) {
+                    if (value == TrwSubjectType.TRW_SUBJECT_TYPE_REAL) {
+                        NameInternal = null;
+                        Subjects.Clear();
+                    }
+                    if (value == TrwSubjectType.TRW_SUBJECT_TYPE_CONSOLIDATE) {
+                        Subject = null;
+                    }
+                }
+            }
+        }
 
         private TrwBudgetPeriod _Period;
-
         [RuleRequiredField]
         [VisibleInDetailView(true)]
         [Association("TrwBudgetPeriod-TrwSubject")]
@@ -67,13 +114,13 @@ namespace IntecoAG.ERM.Trw.Subject {
         }
         //
         private fmCSubject _Subject;
+        [RuleRequiredField(null, "Save;Approve", TargetCriteria = "SubjectType == 'TRW_SUBJECT_TYPE_REAL'")]
         public fmCSubject Subject {
             get { return _Subject; }
             set { 
                 SetPropertyValue<fmCSubject>("Subject", ref _Subject, value);
                 if (!IsLoading) {
                     if (value != null) {
-                        Subjects.Clear();
                         Subjects.Add(value);
                     }
                 }
@@ -92,6 +139,7 @@ namespace IntecoAG.ERM.Trw.Subject {
         }
 
         private String _NameInternal;
+        [RuleRequiredField(null, "Save;Approve", TargetCriteria = "SubjectType == 'TRW_SUBJECT_TYPE_CONSOLIDATE'")]
         public String NameInternal {
             get { return _NameInternal; }
             set { SetPropertyValue<String>("NameInternal", ref _NameInternal, value); }
@@ -164,20 +212,25 @@ namespace IntecoAG.ERM.Trw.Subject {
         public TrwSubject(Session session): base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
-            //DealOtherSale = new TrwContract(Session);
-            //DealOtherSale.ContractSuperType = Contract.TrwContractSuperType.DEAL_SALE;
-            //DealOtherBay = new TrwContract(Session);
-            //DealOtherBay.ContractSuperType = Contract.TrwContractSuperType.DEAL_BAY;
+            Status = TrwSubjectStatus.TRW_SUBJECT_INIT;
+            SubjectType = TrwSubjectType.TRW_SUBJECT_TYPE_UNDEFINED;
         }
 
         protected override void OnDeleting() {
             throw new InvalidOperationException("Delete is not allowed");
         }
 
-        public void UpdateDeals() {
-            foreach (TrwSubjectDealSale deal in DealsSale) {
-                deal.TrwContractOrdersUpdate();
-            }
+        //public void UpdateDeals() {
+        //    foreach (TrwSubjectDealSale deal in DealsSale) {
+        //        deal.TrwContractOrdersUpdate();
+        //    }
+        //}
+
+        public IList<IStateMachine> GetStateMachines() {
+            IList<IStateMachine> sml = new List<IStateMachine>(1);
+            sml.Add(new TrwSubjectSM());
+            return sml;
         }
     }
+
 }

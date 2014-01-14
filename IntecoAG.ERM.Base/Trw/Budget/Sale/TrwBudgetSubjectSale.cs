@@ -95,7 +95,8 @@ namespace IntecoAG.ERM.Trw.Budget {
         protected void Load(IObjectSpace os, TrwSubjectDealSale trw_deal_sale, IDictionary<TrwBudgetKey, IList<TrwBudgetValue>> keys ) {
             LineKey key = new LineKey();
             key.TrwSubject = trw_deal_sale.TrwSubject;
-            key.Subject = trw_deal_sale.Subject;
+// This property set from trw_deal_sale
+//            key.Subject = trw_deal_sale.Subject;
             key.Deal = trw_deal_sale.Deal;
             key.Party = key.Deal.Customer;
             if (trw_deal_sale.DealBudget != null) {
