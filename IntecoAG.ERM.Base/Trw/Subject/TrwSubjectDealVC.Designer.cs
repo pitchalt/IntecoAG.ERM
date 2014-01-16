@@ -23,7 +23,11 @@ namespace IntecoAG.ERM.Trw.Subject {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
+            // 
+            // TrwSubjectDealVC
+            // 
+            this.TargetObjectType = typeof(IntecoAG.ERM.Trw.Subject.TrwSubjectDealBase);
+
         }
 
         #endregion

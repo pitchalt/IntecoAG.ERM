@@ -1162,6 +1162,7 @@
         <Member Name="Person" Caption="Партнер" />
         <Member Name="PersonInternal" Caption="Партнер сводного договора" />
         <Member Name="TrwContract" Caption="ТРВ Договор" />
+        <Member Name="TrwOrders" Caption="ТРВ Заказы" />
         <Member Name="TrwSubjectBase" Caption="ТРВ Тема" />
       </OwnMembers>
     </Class>
@@ -1178,14 +1179,19 @@
     </Class>
     <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealSale">
       <OwnMembers>
-        <Member Name="DealSaleOrders" Caption="ТРВ План. заказы" />
+        <Member Name="Count" Caption="Кол-во" />
+        <Member Name="DealSaleOrders" Caption="ТРВ План. ЕНГП" />
+        <Member Name="IsNomPlan" Caption="Планировать ЕНГП" />
         <Member Name="Nomenclature" Caption="ФПиК Номенклатура" />
+        <Member Name="TrwOrderWorkType" Caption="ТРВ Вид работ" />
         <Member Name="TrwSubject" Caption="ТРВ Тема" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealSaleOrder">
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectDealSaleOrder" Caption="ТРВ План ЕНГП по ФПиК заказам">
       <OwnMembers>
+        <Member Name="Nomenclature" Caption="Номенклатура" />
         <Member Name="Order" Caption="ФПиК Заказ" />
+        <Member Name="TrwOrder" Caption="ФПиК Заказ" />
         <Member Name="TrwSaleNomenclature" Caption="ТРВ ЕНГП" />
         <Member Name="TrwSubjectDeal" Caption="ТРВ План. договор" />
       </OwnMembers>
@@ -1197,6 +1203,22 @@
         <Member Name="VolumePercent" Caption="Максимальная доля включаемых договоров" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectItem" Caption="ТРВ Структура">
+      <OwnMembers>
+        <Member Name="Children" Caption="Дочерние" />
+        <Member Name="Code" Caption="Код" />
+        <Member Name="CrmDeal" Caption="ФПиК Сделка" />
+        <Member Name="FmOrder" Caption="ФПиК Заказ" />
+        <Member Name="FmSubject" Caption="ФПиК Тема" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectItemBayDeal" Caption="ТРВ Структура договор покупки" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectItemBayDeals" Caption="ТРВ Структура Договора покупки" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectItemSaleDeal" Caption="ТРВ Структура Договор продажи" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectItemSaleDeals" Caption="ТРВ Структура Договора продажи" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectItemSaleNomenclature" Caption="ТРВ Структура ЕНГП" />
+    <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectItemSaleOrder" Caption="ТРВ Структура Заказ" />
     <Class Name="IntecoAG.ERM.Trw.Subject.TrwSubjectSubjectLink" Caption="Ссылка на тему">
       <OwnMembers>
         <Member Name="FmSubject" Caption="ФПиК Тема" />
@@ -1412,6 +1434,7 @@
         <LocalizationItem Name="TRW_SUBJECT_DEAL_CONS_OTHER" Value="Сводные прочие" />
         <LocalizationItem Name="TRW_SUBJECT_DEAL_CONS_PARTNER" Value="Сводные партнер" />
         <LocalizationItem Name="TRW_SUBJECT_DEAL_REAL" Value="Реальная сделка" />
+        <LocalizationItem Name="TRW_SUBJECT_DEAL_UNKNOW" Value="Неопределен" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.Trw.Subject.TrwSubjectStatus">
         <LocalizationItem Name="TRW_SUBJECT_CONF_DEAL_LIST" Value="Утверждены договора" />

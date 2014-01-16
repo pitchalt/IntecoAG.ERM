@@ -10,7 +10,9 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
+using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.Nomenclature;
+using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.FM.Order;
 
 namespace IntecoAG.ERM.Trw.Subject {
@@ -24,6 +26,31 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return _TrwSubjectDeal; }
             set {
                 SetPropertyValue<TrwSubjectDealSale>("TrwSubjectDeal", ref _TrwSubjectDeal, value);
+                if (!IsLoading && value != null && Nomenclature == null) {
+                    Nomenclature = value.Nomenclature;
+                }
+            }
+        }
+        //
+        [Persistent("TrwOrder")]
+        private TrwOrder _TrwOrder;
+        [PersistentAlias("_TrwOrder")]
+        public TrwOrder TrwOrder {
+            get { return _TrwOrder; }
+        }
+        public void TrwOrderSet(TrwOrder trw_order) {
+            SetPropertyValue<TrwOrder>("TrwOrder", ref _TrwOrder, trw_order);
+        }
+
+        //
+        private csNomenclature _Nomenclature;
+        public csNomenclature Nomenclature {
+            get { return _Nomenclature; }
+            set {
+                SetPropertyValue<csNomenclature>("Nomenclature", ref _Nomenclature, value);
+                if (!IsLoading) {
+                    UpdateTrwNomenclature();
+                }
             }
         }
         //
@@ -44,19 +71,19 @@ namespace IntecoAG.ERM.Trw.Subject {
                 }
             }
         }
+
         public void UpdateTrwNomenclature() {
-            if (TrwSubjectDeal.Nomenclature == null || Order == null) return;
+            if (Nomenclature == null || Order == null) return;
             TrwSaleNomenclature old = _TrwSaleNomenclature;
-            if (old == null || old.Order != Order || old.Nomenclature != TrwSubjectDeal.Nomenclature) {
+            if (old == null || old.Order != Order || old.Nomenclature != Nomenclature) {
                 IObjectSpace os = ObjectSpace.FindObjectSpaceByObject(this);
                 _TrwSaleNomenclature = os.GetObjects<TrwSaleNomenclature>(
                         new OperandProperty("Order") == Order &
-                        new OperandProperty("Nomenclature") == TrwSubjectDeal.Nomenclature
-                    ).FirstOrDefault();
+                        new OperandProperty("Nomenclature") == Nomenclature, true ).FirstOrDefault();
                 if (_TrwSaleNomenclature == null) {
                     _TrwSaleNomenclature = os.CreateObject<TrwSaleNomenclature>();
                     _TrwSaleNomenclature.Order = Order;
-                    _TrwSaleNomenclature.Nomenclature = TrwSubjectDeal.Nomenclature;
+                    _TrwSaleNomenclature.Nomenclature = Nomenclature;
                 }
                 OnChanged("TrwSaleNomenclature", old, _TrwSaleNomenclature);
             }

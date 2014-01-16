@@ -96,5 +96,15 @@ namespace IntecoAG.ERM.Trw.Subject {
                 }
             }
         }
+
+        public static void RefreshSubjectDeals(IObjectSpace os, TrwSubject trw_subj) {
+            foreach (TrwSubjectDealSale trw_deal in trw_subj.DealsSale) {
+                TrwSubjectDealLogic.RefreshDeal(os, trw_deal);
+            }
+            foreach (TrwSubjectDealBay trw_deal in trw_subj.DealsBay) {
+                TrwSubjectDealLogic.RefreshDeal(os, trw_deal);
+            }
+        }
+
     }
 }

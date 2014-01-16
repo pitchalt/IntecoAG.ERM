@@ -21,7 +21,7 @@ using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.Trw.Subject {
 
-    public enum TrwSubjectDealType { 
+    public enum TrwSubjectDealType {
         TRW_SUBJECT_DEAL_UNKNOW = 0,
         TRW_SUBJECT_DEAL_REAL = 1,
         TRW_SUBJECT_DEAL_CONS_DEAL = 16,
@@ -30,24 +30,24 @@ namespace IntecoAG.ERM.Trw.Subject {
     }
 
     [Persistent("TrwSubjectDeal")]
-    //[Appearance(null, AppearanceItemType.ViewItem, "DealType == 'TRW_SUBJECT_DEAL_UNKNOW'", 
-    //    TargetItems="*,DealType", Enabled = false)]
-    [Appearance(null, AppearanceItemType.ViewItem, "DealType == 'TRW_SUBJECT_DEAL_REAL'", 
+    [Appearance(null, AppearanceItemType.ViewItem, "DealType == 'TRW_SUBJECT_DEAL_UNKNOW'",
+        TargetItems = "*,DealType", Enabled = false)]
+    [Appearance(null, AppearanceItemType.ViewItem, "DealType == 'TRW_SUBJECT_DEAL_REAL'",
         TargetItems = "DealType,PersonInternal,CrmContractDeals,DealBudget", Enabled = false)]
     [Appearance(null, AppearanceItemType.ViewItem, "DealType == 'TRW_SUBJECT_DEAL_CONS_DEAL' || DealType == 'TRW_SUBJECT_DEAL_CONS_PARTNER' || DealType == 'TRW_SUBJECT_DEAL_CONS_OTHER' ",
-        TargetItems = "DealType,Deal", Enabled=false)]
+        TargetItems = "DealType,Deal", Enabled = false)]
     [Appearance(null, AppearanceItemType.ViewItem, "DealType == 'TRW_SUBJECT_DEAL_CONS_PARTNER' || DealType == 'TRW_SUBJECT_DEAL_CONS_OTHER' ",
-        TargetItems = "CrmContractDeals", Enabled=false)]
+        TargetItems = "CrmContractDeals", Enabled = false)]
     public abstract class TrwSubjectDealBase : XPObject {
 
         private TrwSubjectDealType _DealType;
         [ImmediatePostData]
         public TrwSubjectDealType DealType {
             get { return _DealType; }
-            set { 
+            set {
                 SetPropertyValue<TrwSubjectDealType>("DealType", ref _DealType, value);
                 if (!IsLoading) {
-                    switch (value) { 
+                    switch (value) {
                         case TrwSubjectDealType.TRW_SUBJECT_DEAL_REAL:
                             CrmContractDeals.Clear();
                             break;
@@ -89,22 +89,22 @@ namespace IntecoAG.ERM.Trw.Subject {
                     return null;
                 if (DealBudget != null)
                     return new ListConverter<TrwIOrder, TrwOrder>(DealBudget.TrwOrders);
-                return new ListConverter<TrwIOrder, TrwOrder>( Deal.TrwOrders);
+                return new ListConverter<TrwIOrder, TrwOrder>(Deal.TrwOrders);
             }
         }
 
         [NonPersistent]
-        public abstract TrwSubject TrwSubjectBase { get; } 
+        public abstract TrwSubject TrwSubjectBase { get; }
 
         private crmContractDeal _Deal;
-//        [DataSourceProperty("DealSource")]
+        //        [DataSourceProperty("DealSource")]
         public crmContractDeal Deal {
             get { return _Deal; }
-            set { 
+            set {
                 SetPropertyValue<crmContractDeal>("Deal", ref _Deal, value);
                 if (!IsLoading) {
                     if (value != null) {
-                        DealType = TrwSubjectDealType.TRW_SUBJECT_DEAL_REAL;
+                        DealUpdated();
                         CrmContractDeals.Clear();
                         CrmContractDeals.Add(value);
                     }
@@ -114,12 +114,17 @@ namespace IntecoAG.ERM.Trw.Subject {
         [Browsable(false)]
         public abstract XPCollection<crmContractDeal> DealSource { get; }
 
+        public virtual void DealUpdated() {
+            CrmContractDeals.Clear();
+            CrmContractDeals.Add(Deal);
+        }
+
         public abstract crmCPerson Person { get; }
 
         private crmCPerson _PersonInternal;
         public crmCPerson PersonInternal {
             get { return _PersonInternal; }
-            set { 
+            set {
                 SetPropertyValue<crmCPerson>("PersonInternal", ref _PersonInternal, value);
                 if (!IsLoading && value != null) {
                     DealBudget.PartyPerson = value;
@@ -128,10 +133,10 @@ namespace IntecoAG.ERM.Trw.Subject {
         }
 
         private TrwContract _DealBudget;
-//        [DataSourceProperty("DealBudgetSource")]
+        //        [DataSourceProperty("DealBudgetSource")]
         public TrwContract DealBudget {
             get { return _DealBudget; }
-            set { 
+            set {
                 SetPropertyValue<TrwContract>("DealBudget", ref _DealBudget, value);
                 //if (!IsLoading)
                 //    DealBudgetChanged();
@@ -177,7 +182,7 @@ namespace IntecoAG.ERM.Trw.Subject {
             get { return GetList<crmContractDeal>("CrmContractDeals"); }
         }
 
-        public TrwSubjectDealBase(Session session): base(session) { }
+        public TrwSubjectDealBase(Session session) : base(session) { }
         public override void AfterConstruction() {
             base.AfterConstruction();
             DealType = TrwSubjectDealType.TRW_SUBJECT_DEAL_UNKNOW;

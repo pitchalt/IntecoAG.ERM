@@ -35,6 +35,7 @@ using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CRM.Contract.Obligation;
+using IntecoAG.ERM.Trw.Contract;
 using IntecoAG.ERM.Trw.Nomenclature;
 //
 namespace IntecoAG.ERM.CRM.Contract.Obligation {
@@ -536,6 +537,13 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation {
                     _TrwSaleNomenclature = os.CreateObject<TrwSaleNomenclature>();
                     _TrwSaleNomenclature.Order = Order;
                     _TrwSaleNomenclature.Nomenclature = Nomenclature;
+                    TrwOrder trw_order = Order.Subject.TrwOrders.FirstOrDefault(x => x.Deal == this.DeliveryUnit.DealVersion.ContractDeal);
+                    if (trw_order == null) {
+                        Order.Subject.Deals.Add(this.DeliveryUnit.DealVersion.ContractDeal);
+                        trw_order = Order.Subject.TrwOrders.FirstOrDefault(x => x.Deal == this.DeliveryUnit.DealVersion.ContractDeal);
+                    }
+                    if (trw_order != null)
+                        trw_order.TrwSaleNomenclatures.Add(_TrwSaleNomenclature);
                 }
                 OnChanged("TrwSaleNomenclature", old, _TrwSaleNomenclature);
             }

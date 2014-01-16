@@ -435,6 +435,7 @@
     <Compile Include="CS\Work\Event.cs" />
     <Compile Include="CS\Work\IEvent.cs" />
     <Compile Include="CS\Work\Work.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_227.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_226.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_224.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_225.cs" />
@@ -499,6 +500,13 @@
     </Compile>
     <Compile Include="Trw\Budget\TrwBudgetSubject.cs" />
     <Compile Include="Trw\Budget\Sale\TrwBudgetSubjectSale.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectDealLogic.cs" />
+    <Compile Include="Trw\Subject\TrwSubjectDealVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trw\Subject\TrwSubjectDealVC.Designer.cs">
+      <DependentUpon>TrwSubjectDealVC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Trw\TrwRefCashFlow.cs" />
     <Compile Include="Trw\Subject\TrwSubjectSM.cs" />
     <Compile Include="Trw\Subject\TrwSubjectItem.cs" />
@@ -771,6 +779,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Trw\Party\TrwPartyPartyVC.resx">
       <DependentUpon>TrwPartyPartyVC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trw\Subject\TrwSubjectDealVC.resx">
+      <DependentUpon>TrwSubjectDealVC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Trw\Subject\TrwSubjectVC.resx">
       <DependentUpon>TrwSubjectVC.cs</DependentUpon>

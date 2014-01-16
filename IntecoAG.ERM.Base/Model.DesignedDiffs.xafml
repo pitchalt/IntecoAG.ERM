@@ -3224,7 +3224,6 @@
       <Columns>
         <ColumnInfo Id="DealBudget" Index="-1" />
         <ColumnInfo Id="PersonInternal" Index="-1" />
-        <ColumnInfo Id="Subject" Index="-1" />
         <ColumnInfo Id="TrwSubjectBase" Index="-1" />
         <ColumnInfo Id="DealType" Index="0" />
         <ColumnInfo Id="Person" Index="1" />
@@ -3282,12 +3281,96 @@
         <ColumnInfo Id="Subject" Index="3" />
       </Columns>
     </ListView>
+    <DetailView Id="TrwSubjectDealBase_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="DealType" ViewItem="DealType" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Person" ViewItem="Person" Index="1" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwContract" ViewItem="TrwContract" Index="2" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header2" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Deal" ViewItem="Deal" Index="0" CaptionLocation="Top" RelativeSize="35" IsNewNode="True" />
+            <LayoutItem Id="PersonInternal" ViewItem="PersonInternal" Index="1" RelativeSize="30" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="DealBudget" ViewItem="DealBudget" Index="2" RelativeSize="35" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="TrwOrders" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="TrwSubjectDealBay_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="DealType" ViewItem="DealType" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Person" ViewItem="Person" Index="1" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwContract" ViewItem="TrwContract" Index="2" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header2" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Deal" ViewItem="Deal" Index="0" CaptionLocation="Top" RelativeSize="35" IsNewNode="True" />
+            <LayoutItem Id="PersonInternal" ViewItem="PersonInternal" Index="1" RelativeSize="30" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="DealBudget" ViewItem="DealBudget" Index="2" RelativeSize="35" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="TrwOrders" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="TrwSubjectDealSale_DealSaleOrders_ListView">
+      <Columns>
+        <ColumnInfo Id="Order" Index="0" />
+        <ColumnInfo Id="Nomenclature" Index="1" />
+        <ColumnInfo Id="TrwOrder" Index="2" />
+        <ColumnInfo Id="TrwSaleNomenclature" Index="3" />
+      </Columns>
+    </ListView>
     <DetailView Id="TrwSubjectDealSale_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
-          <TabbedGroup Id="Tabs">
-            <LayoutGroup Id="TrwOrders" Index="0" />
-            <LayoutGroup Id="DealSaleOrders" Index="1" />
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="DealType" ViewItem="DealType" Index="0" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Person" ViewItem="Person" Index="1" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwContract" ViewItem="TrwContract" Index="2" RelativeSize="40" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header2" Index="1" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Deal" ViewItem="Deal" Index="0" CaptionLocation="Top" RelativeSize="35" IsNewNode="True" />
+            <LayoutItem Id="PersonInternal" ViewItem="PersonInternal" Index="1" RelativeSize="30" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="DealBudget" ViewItem="DealBudget" Index="2" RelativeSize="35" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Header3" Index="2" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="IsNomPlan" ViewItem="IsNomPlan" Index="0" IsNewNode="True" />
+            <LayoutItem Id="Nomenclature" ViewItem="Nomenclature" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Count" ViewItem="Count" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="TrwOrderWorkType" ViewItem="TrwOrderWorkType" Index="3" RelativeSize="20" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="3" Removed="True">
+            <LayoutGroup Id="TrwSubjectDealBase">
+              <LayoutGroup Id="TrwSubjectDealBase_col1" Removed="True">
+                <LayoutItem Id="Deal" ViewItem="Deal" Removed="True" />
+                <LayoutItem Id="DealType" ViewItem="DealType" Removed="True" />
+                <LayoutItem Id="Person" ViewItem="Person" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="TrwSubjectDealBase_col2">
+                <LayoutItem Id="DealBudget" ViewItem="DealBudget" Removed="True" />
+                <LayoutItem Id="PersonInternal" ViewItem="PersonInternal" Removed="True" />
+                <LayoutItem Id="TrwContract" ViewItem="TrwContract" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="TrwSubjectDealSale">
+              <LayoutItem Id="Nomenclature" ViewItem="Nomenclature" Removed="True" />
+              <LayoutItem Id="TrwOrderWorkType" ViewItem="TrwOrderWorkType" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="4">
+            <LayoutGroup Id="CrmContractDeals" Index="0" />
+            <LayoutGroup Id="TrwOrders" Index="1" />
+            <LayoutGroup Id="DealSaleOrders" Index="2" />
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
