@@ -402,6 +402,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
             FileHelperEngine<DealDataImport> engine = new FileHelperEngine<DealDataImport>();
             engine.Options.IgnoreFirstLines = 1;
             engine.Options.IgnoreEmptyLines = true;
+            Int32 line = 0;
             //            DealDataImport[] deal_data = engine.ReadStream(reader);
             DealDataImport[] deal_data = engine.ReadFile(file_name);
             IList<fmCOrder> orders = new List<fmCOrder>();
@@ -417,19 +418,20 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
                 crmDeliveryUnit delivery_unit = null;
                 crmDeliveryItem delivery_item = null;
                 crmPaymentUnit payment_unit = null;
+                line++;
                 //                crmPaymentItem payment_item = null;
                 if (!String.IsNullOrEmpty(record.OrderCode)) {
                     order = orders.FirstOrDefault(x => x.Code == record.OrderCode);
                     if (order == null) {
                         order = os.FindObject<fmCOrder>(new BinaryOperator("Code", record.OrderCode, BinaryOperatorType.Equal));
                         if (order == null)
-                            throw new ArgumentException("Order unknow", "OrderCode");
+                            throw new ArgumentException("Неизвестный заказ: " + record.OrderCode + " Строка: " + line, "OrderCode");
                         else
                             orders.Add(order);
                     }
                 }
                 if (String.IsNullOrEmpty(record.StageCode)) {
-                    throw new ArgumentException("Stage Code is Empty", "StageCode");
+                    throw new ArgumentException("Номер этапа пустой. Строка: " + line, "StageCode");
                 }
                 if (record.StageCode.Substring(0, 3) == "Adv") {
                     stage = StageStructure.FirstStage;
@@ -452,10 +454,10 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
                 }
                 if (record.StageCode.Substring(0, 3) != "Adv") {
                     if (order == null) {
-                        throw new ArgumentException("Order is Empty", "OrderCode");
+                        throw new ArgumentException("Заказ не найден", "OrderCode");
                     }
                     if (record.DateContract == null) {
-                        throw new ArgumentException("Date Contract is Empty", "DateContract");
+                        throw new ArgumentException("Незаполнена плановая дата исполнения. Строка: " + line, "DateContract");
                     }
                     delivery_unit = stage.DeliveryPlan.DeliveryUnits.FirstOrDefault(x => x.DatePlane == record.DateContract);
                     if (record.DateContract > stage.DateEnd)
@@ -468,16 +470,16 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
                         delivery_units.Add(delivery_unit);
                     delivery_unit.Order = order;
                     if (record.Count == null)
-                        throw new ArgumentException("Count is Empty", "Count");
+                        throw new ArgumentException("Кол-во пустое. Строка: " + line, "Count");
                     if (record.Price == null)
-                        throw new ArgumentException("Price is Empty", "Price");
+                        throw new ArgumentException("Цена пустая. Строка: " + line, "Price");
                     if (String.IsNullOrEmpty(record.NomenclatureCode))
-                        throw new ArgumentException("Nomenclature Code is Empty", "NomenclatureCode");
+                        throw new ArgumentException("Номенклатура пустая. Строка: " + line, "NomenclatureCode");
                     if (!record.NomenclatureCode.Contains("*I") && !record.NomenclatureCode.Contains("*E")) {
 
                         csMaterial material = materials.FirstOrDefault(x => x.CodeTechnical == record.NomenclatureCode);
                         if (material == null) {
-                            throw new ArgumentException("Nomenclature unknow", "NomenclatureCode");
+                            throw new ArgumentException("Номенклатура: " + record.NomenclatureCode + " ненайдена. Строка: " + line, "NomenclatureCode");
                         }
                         delivery_item = delivery_unit.DeliveryItems.FirstOrDefault(x => x.Nomenclature == material);
                         if (delivery_item == null) {
@@ -498,7 +500,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
                     }
                 }
                 if (record.DateContract == null) {
-                    throw new ArgumentException("Date Contract is Empty", "DateContract");
+                    throw new ArgumentException("Дата плановая исполнения не заполнена. Строка: " + line, "DateContract");
                 }
                 payment_unit = stage.PaymentPlan.PaymentUnits.FirstOrDefault(x => x.DatePlane == record.DateContract && x is crmPaymentCasheLess);
                 //if (payment_unit != null && !payment_units.Contains(payment_unit)) {

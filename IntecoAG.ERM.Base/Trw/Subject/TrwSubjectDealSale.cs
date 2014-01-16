@@ -55,7 +55,7 @@ namespace IntecoAG.ERM.Trw.Subject {
             using (IObjectSpace os = ObjectSpace.FindObjectSpaceByObject(this).CreateNestedObjectSpace()) {
                 TrwSubjectDealSale subj_deal = os.GetObject<TrwSubjectDealSale>(this);
                 subj_deal.CrmContractDeals.Clear();
-                subj_deal.CrmContractDeals.Add(Deal);
+                subj_deal.CrmContractDeals.Add(subj_deal.Deal);
                 os.Delete(subj_deal.DealSaleOrders);
                 TrwSubjectDealLogic.RefreshDeal(os, subj_deal);
                 os.CommitChanges();

@@ -531,8 +531,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation {
                 IObjectSpace os = ObjectSpace.FindObjectSpaceByObject(this);
                 _TrwSaleNomenclature = os.GetObjects<TrwSaleNomenclature>(
                         new OperandProperty("Order") == Order &
-                        new OperandProperty("Nomenclature") == Nomenclature
-                    ).FirstOrDefault();
+                        new OperandProperty("Nomenclature") == Nomenclature, true).FirstOrDefault();
                 if (_TrwSaleNomenclature == null) {
                     _TrwSaleNomenclature = os.CreateObject<TrwSaleNomenclature>();
                     _TrwSaleNomenclature.Order = Order;
