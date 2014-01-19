@@ -29,6 +29,7 @@ namespace IntecoAG.ERM.Trw.Subject {
     public class TrwSubjectDealSale : TrwSubjectDealBase {
 
         public override void UpdateConsolidateDeal(Boolean force) {
+            base.UpdateConsolidateDeal(force);
             IsNomPlan = true;
         }
 
