@@ -14,20 +14,6 @@ using IntecoAG.ERM.Trw;
 namespace IntecoAG.ERM.FM.PaymentRequest {
 
     /// <summary>
-    /// Вариант оплаты
-    /// </summary>
-    public enum fmPRPayType {
-        /// <summary>
-        /// Предоплата
-        /// </summary>
-        PREPAYMENT = 1,
-        /// <summary>
-        /// Постоплата
-        /// </summary>
-        POSTPAYMENT = 2
-    }
-
-    /// <summary>
     /// Оплачиваемые расчётные обязательства 
     /// </summary>
     [Persistent("fmPRPaymentRequestObligation")]

@@ -14,6 +14,10 @@ using IntecoAG.ERM.CS;
 //
 namespace IntecoAG.ERM.Trw {
 
+    public enum TrwRefCachFlowChildsType {
+        
+    }
+
     [Persistent("TrwRefCacheFlow")]
     [NavigationItem("Trw")]
     [DefaultProperty("Code")]

@@ -63,6 +63,12 @@ namespace IntecoAG.ERM.FM
             set { SetPropertyValue<string>("Description", ref _Description, value); }
         }
 
+        private Boolean _IsSelectabled;
+        public Boolean IsSelectabled {
+            get { return _IsSelectabled; }
+            set { SetPropertyValue<Boolean>("IsSelectabled", ref _IsSelectabled, value); }
+        }
+
         #endregion
 
 

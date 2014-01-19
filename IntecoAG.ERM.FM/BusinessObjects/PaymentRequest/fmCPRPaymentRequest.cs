@@ -635,6 +635,20 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
             }
         }
 
+        /// <summary>
+        /// Список заказов
+        /// </summary>
+        [VisibleInDetailView(false)]
+        [VisibleInListView(true)]
+        public String TrwRefCode {
+            get {
+                if (PaySettlmentOfObligations.Count == 1 && PaySettlmentOfObligations[0].TrwRefCashFlow != null)
+                    return PaySettlmentOfObligations[0].TrwRefCashFlow.Code;
+                else
+                    return null;
+            }
+        }
+
         #endregion
 
         #region МЕТОДЫ
