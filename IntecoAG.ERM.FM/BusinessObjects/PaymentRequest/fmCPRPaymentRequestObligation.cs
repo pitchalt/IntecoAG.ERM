@@ -1,5 +1,6 @@
 ﻿using System;
 //
+using DevExpress.ExpressApp;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 //
@@ -78,16 +79,38 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         [RuleRequiredField]
         public fmPRPayType PayType {
             get { return _PayType; }
-            set { SetPropertyValue<fmPRPayType>("PayType", ref _PayType, value); }
+            set { 
+                SetPropertyValue<fmPRPayType>("PayType", ref _PayType, value);
+                if (!IsLoading) {
+                    TrwRefCashFlowUpdate();
+                }
+            }
         }
-
+        /// <summary>
+        /// Заказ
+        /// </summary>
+        [RuleRequiredField]
+        public fmCOrderExt Order {
+            get { return _Order; }
+            set { 
+                SetPropertyValue<fmCOrderExt>("Order", ref _Order, value);
+                if (!IsLoading) {
+                    TrwRefCashFlowUpdate();
+                }
+            }
+        }
         /// <summary>
         /// Статья
         /// </summary>
         [RuleRequiredField]
         public fmCostItem CostItem {
             get { return _CostItem; }
-            set { SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value); }
+            set { 
+                SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value);
+                if (!IsLoading) {
+                    TrwRefCashFlowUpdate();
+                }
+            }
         }
 
         private TrwRefCashFlow _TrwRefCashFlow;
@@ -96,22 +119,21 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         /// </summary>
         public TrwRefCashFlow TrwRefCashFlow {
             get { return _TrwRefCashFlow; }
-            set { SetPropertyValue<TrwRefCashFlow>("TrwRefCashFlow", ref _TrwRefCashFlow, value); }
+            set { 
+                SetPropertyValue<TrwRefCashFlow>("TrwRefCashFlow", ref _TrwRefCashFlow, value);
+            }
         }
-        /// <summary>
-        /// Заказ
-        /// </summary>
-        [RuleRequiredField]
-        public fmCOrderExt Order {
-            get { return _Order; }
-            set { SetPropertyValue<fmCOrderExt>("Order", ref _Order, value); }
+        //
+        private void TrwRefCashFlowUpdate() {
+            if (Order == null || CostItem == null || !(PayType == fmPRPayType.PREPAYMENT || PayType == fmPRPayType.POSTPAYMENT))
+                return;
+            TrwRefCashFlow = TrwRefCashFlowLogic.AutoDetect(ObjectSpace.FindObjectSpaceByObject(this), false, Order, PayType, CostItem);
         }
-
         /// <summary>
         /// Сумма
         /// </summary>
         [RuleRequiredField]
-        public decimal Summ {
+        public Decimal Summ {
             get { return _Summ; }
             set {
                 SetPropertyValue<decimal>("Summ", ref _Summ, value);

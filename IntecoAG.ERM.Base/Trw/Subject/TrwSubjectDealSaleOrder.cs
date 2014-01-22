@@ -102,6 +102,13 @@ namespace IntecoAG.ERM.Trw.Subject {
             base.AfterConstruction();
             // Place here your initialization code.
         }
+
+        protected override void OnDeleting() {
+            base.OnDeleting();
+            if (_TrwSaleNomenclature != null && this.Session.IsNewObject(_TrwSaleNomenclature)) {
+                this.Session.Delete(_TrwSaleNomenclature);
+            }
+        }
     }
 
 }

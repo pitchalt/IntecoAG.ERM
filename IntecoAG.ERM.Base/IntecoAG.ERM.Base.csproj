@@ -435,11 +435,8 @@
     <Compile Include="CS\Work\Event.cs" />
     <Compile Include="CS\Work\IEvent.cs" />
     <Compile Include="CS\Work\Work.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_229.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_228.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_227.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_226.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_224.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_225.cs" />
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -910,6 +907,9 @@
     <None Include="Documentation\ActionPermissionSystem.vsd" />
     <None Include="Documentation\Последовательность действий по обновлению системы на продуктовом сервере.docx" />
     <None Include="Import\fmCostItem.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Import\fmOrderUpdate001.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Import\TrwRefCashFlow.csv">

@@ -137,7 +137,7 @@ namespace IntecoAG.ERM.Trw.Contract {
         }
 
         private TrwOrderWorkType _TrwOrderWorkType;
-        [RuleValueComparison("", "Confirm", ValueComparisonType.NotEquals, TrwOrderWorkType.WORK_TYPE_UNKNOW)]
+        //[RuleValueComparison("", "Confirm", ValueComparisonType.NotEquals, TrwOrderWorkType.WORK_TYPE_UNKNOW)]
         public TrwOrderWorkType TrwOrderWorkType {
             get { return _TrwOrderWorkType; }
             set { SetPropertyValue<TrwOrderWorkType>("TrwOrderWorkType", ref _TrwOrderWorkType, value); }
@@ -155,21 +155,24 @@ namespace IntecoAG.ERM.Trw.Contract {
         }
 
         private DateTime _TrwDateFrom;
-        [RuleRequiredField(TargetContextIDs = "Confirm")]
+        // даты берутся из сделки и пока не все заплонены
+        //[RuleRequiredField(TargetContextIDs = "Confirm")]
         public DateTime TrwDateFrom {
             get { return _TrwDateFrom; }
             set { SetPropertyValue("TrwDateFrom", ref _TrwDateFrom, value); }
         }
 
         private DateTime _TrwDateToPlan;
-        [RuleRequiredField(TargetContextIDs = "Confirm")]
+        // даты берутся из сделки и пока не все заплонены
+        //[RuleRequiredField(TargetContextIDs = "Confirm")]
         public DateTime TrwDateToPlan {
             get { return _TrwDateToPlan; }
             set { SetPropertyValue("TrwDateToPlan", ref _TrwDateToPlan, value); }
         }
 
         private DateTime _TrwDateToFact;
-        [RuleRequiredField(TargetContextIDs = "Confirm")]
+        // даты берутся из сделки и пока не все заплонены
+        //[RuleRequiredField(TargetContextIDs = "Confirm")]
         public DateTime TrwDateToFact {
             get { return _TrwDateToFact; }
             set { SetPropertyValue("TrwDateToFact", ref _TrwDateToFact, value); }

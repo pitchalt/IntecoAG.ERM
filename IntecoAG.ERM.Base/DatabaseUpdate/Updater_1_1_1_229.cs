@@ -10,16 +10,17 @@ using DevExpress.Data.Filtering;
 using FileHelpers;
 //
 using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.Trw;
 using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.CS {
-    public class Updater_1_1_1_228 : ModuleUpdater {
-        public Updater_1_1_1_228(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
+    public class Updater_1_1_1_229 : ModuleUpdater {
+        public Updater_1_1_1_229(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
 
         public override void UpdateDatabaseBeforeUpdateSchema() {
             base.UpdateDatabaseBeforeUpdateSchema();
-            if (this.CurrentDBVersion != new Version("1.1.1.228"))
+            if (this.CurrentDBVersion != new Version("1.1.1.229"))
                 return;
             //ExecuteNonQueryCommand("DROP TABLE \"TrwBudgetValue\";", true);
             //ExecuteNonQueryCommand("DROP TABLE \"TrwBudgetKey\";", true);
@@ -30,9 +31,8 @@ namespace IntecoAG.ERM.CS {
 
         [DelimitedRecord(";")]
         public class ReferecesRecord {
-            public String IntCode;
             public String Code;
-            public String Name;
+            public String OrderType;
         }
 
         public class ClassificatorImporter<Tr>
@@ -42,47 +42,29 @@ namespace IntecoAG.ERM.CS {
                 DelimitedFileEngine engine = new DelimitedFileEngine(typeof(Tr));
                 engine.Options.IgnoreFirstLines = 1;
                 Tr[] records = (Tr[])engine.ReadFile(file_name);
-                IList<fmCostItem> obj_refs = os.GetObjects<fmCostItem>();
+                IList<fmÑOrderAnalitycFinanceSource> type_refs = os.GetObjects<fmÑOrderAnalitycFinanceSource>();
                 foreach (Tr rec in records) {
-                    fmCostItem obj = obj_refs.FirstOrDefault(x => x.Code == rec.Code.Trim());
-                    if (obj == null) {
-                        obj = os.CreateObject<fmCostItem>();
-                        obj_refs.Add(obj);
-                        obj.Code = rec.Code.Trim();
+                    fmCOrder order = os.GetObjects<fmCOrder>(new BinaryOperator("Code", rec.Code)).First();
+                    if (rec.OrderType == "ÊÏ") {
+                        order.AnalitycFinanceSource = type_refs.First(x => x.Code == "Ïð.êîììåð.");
                     }
-                    //                    rec.Name = rec.Name.Trim();
-                    //                    String new_name = rec.Name[0].ToString().ToUpper();
-                    //                    new_name = new_name + rec.Name.Substring(1, rec.Name.Length - 1).ToLower();
-                    obj.Name = rec.Name.Trim().ToLowerInvariant();
-                    obj.IsSelectabled = true;
-                }
-            }
-        }
-        public void UpdateTrwOrder(IObjectSpace os) {
-            foreach (TrwOrder trw_order in
-                os.GetObjects<TrwOrder>(new UnaryOperator(UnaryOperatorType.Not,
-                                        new UnaryOperator(UnaryOperatorType.IsNull, "TrwContractInt")))) {
-                if (trw_order.Subject == null)
-                    continue;
-                if (trw_order.TrwContractInt != null) {
-                    trw_order.TrwDateFrom = trw_order.TrwContractInt.TrwDateValidFrom;
-                    trw_order.TrwDateToPlan = trw_order.TrwContractInt.TrwDateValidToPlan;
+                    if (rec.OrderType == "×Ï") {
+                        order.AnalitycFinanceSource = type_refs.First(x => x.Code == "×èñò.Ïðèáûëü");
+                    }
                 }
             }
         }
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
-            if (this.CurrentDBVersion != new Version("1.1.1.228"))
+            if (this.CurrentDBVersion != new Version("1.1.1.229"))
                 return;
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
                 //
                 FileInfo fi = new FileInfo(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
                 String dir = fi.Directory.FullName + "\\Import\\";
                 //
-                new ClassificatorImporter<ReferecesRecord>().Import(os, dir + "fmCostItem.csv");
-                //
-                UpdateTrwOrder(os);
+                new ClassificatorImporter<ReferecesRecord>().Import(os, dir + "fmOrderUpdate001.csv");
                 //
                 os.CommitChanges();
             }

@@ -6,6 +6,7 @@ using DevExpress.Persistent.Base;
 namespace IntecoAG.ERM.Trw.Exchange {
 
     public enum TrwExchangeExportStates { 
+        INIT        =   -1,
         CREATED     =   0,
         PREPARED    =   1,
         EXPORTED    =   4,

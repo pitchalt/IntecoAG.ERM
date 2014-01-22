@@ -31,8 +31,17 @@ namespace IntecoAG.ERM.Trw.Nomenclature {
             TrwExportStateSet(TrwExchangeExportStates.CREATED);
         }
 
+        protected override void OnSaving() {
+            base.OnSaving();
+            //if (TrwExportState == TrwExchangeExportStates.INIT) {
+            //    TrwExportStateSet(TrwExchangeExportStates.CREATED);
+            //}
+        }
+
         protected override void OnDeleting() {
-            throw new InvalidOperationException("Delete is not allowed");
+            if (!this.Session.IsNewObject(this)) {
+                throw new InvalidOperationException("Delete is not allowed");
+            }
         }
 
         private fmCOrder _Order;
