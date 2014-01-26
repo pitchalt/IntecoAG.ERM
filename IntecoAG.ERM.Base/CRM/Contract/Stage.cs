@@ -262,7 +262,7 @@ namespace IntecoAG.ERM.CRM.Contract
         /// Code
         /// </summary>
         private string _Code;
-        [Size(10)]
+        [Size(30)]
         [RuleRequiredField("crmStage.Code.Required", "Save")]
         //[RuleRequiredField("crmStage.Code.Required.Immediate", "Immediate")]
         public string Code {

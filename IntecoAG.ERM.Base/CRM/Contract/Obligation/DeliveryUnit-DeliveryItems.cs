@@ -38,6 +38,12 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
             DeliveryItems.Add(item);
             return item;
         }
+
+        public crmDeliveryItem DeliveryItemsCreateService() {
+            crmDeliveryItem item = new crmDeliveryService(this.Session, this.VersionState);
+            DeliveryItems.Add(item);
+            return item;
+        }
     }
 
     /// <summary>

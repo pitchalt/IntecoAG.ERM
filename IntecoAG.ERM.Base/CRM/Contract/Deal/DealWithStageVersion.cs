@@ -411,7 +411,7 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
             IList<crmDeliveryItem> delivery_items = new List<crmDeliveryItem>();
             IList<crmPaymentUnit> payment_units = new List<crmPaymentUnit>();
             IList<crmPaymentItem> payment_items = new List<crmPaymentItem>();
-            IList<csMaterial> materials = os.GetObjects<csMaterial>();
+            IList<csNomenclature> materials = os.GetObjects<csNomenclature>();
             foreach (DealDataImport record in deal_data) {
                 fmCOrder order = null;
                 crmStage stage = null;
@@ -477,14 +477,24 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
                         throw new ArgumentException("Номенклатура пустая. Строка: " + line, "NomenclatureCode");
                     if (!record.NomenclatureCode.Contains("*I") && !record.NomenclatureCode.Contains("*E")) {
 
-                        csMaterial material = materials.FirstOrDefault(x => x.CodeTechnical == record.NomenclatureCode);
-                        if (material == null) {
+//                        csMaterial material = ;
+                        csNomenclature nomenclature = materials.FirstOrDefault(x => x.CodeTechnical == record.NomenclatureCode);
+                        if (nomenclature == null) {
                             throw new ArgumentException("Номенклатура: " + record.NomenclatureCode + " ненайдена. Строка: " + line, "NomenclatureCode");
                         }
-                        delivery_item = delivery_unit.DeliveryItems.FirstOrDefault(x => x.Nomenclature == material);
+                        delivery_item = delivery_unit.DeliveryItems.FirstOrDefault(x => x.Nomenclature == nomenclature);
                         if (delivery_item == null) {
-                            delivery_item = delivery_unit.DeliveryItemsCreateMaterial();
-                            ((crmDeliveryMaterial)delivery_item).Material = material;
+                            if (nomenclature is csMaterial) {
+                                delivery_item = delivery_unit.DeliveryItemsCreateMaterial();
+                                ((crmDeliveryMaterial)delivery_item).Material = nomenclature as csMaterial;
+                            }
+                            else if (nomenclature is csService) {
+                                delivery_item = delivery_unit.DeliveryItemsCreateService();
+                                ((crmDeliveryService)delivery_item).Service = nomenclature as csService;
+                            }
+                            else {
+                                throw new ArgumentException("Номенклатура: " + record.NomenclatureCode + " неверного типа. Строка: " + line, "NomenclatureCode");
+                            }
                         }
                         delivery_item.CostCalculateMethod = CostCalculateMethod.CALC_COST;
                         delivery_item.NDSCalculateMethod = NDSCalculateMethod.FROM_COST;
