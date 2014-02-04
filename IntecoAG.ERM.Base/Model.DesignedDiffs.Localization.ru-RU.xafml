@@ -19,7 +19,49 @@
     <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmBaseDebitCreditRegister" Caption="Базовый регистр деб" />
     <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmBasePrimaryPartyContragentRegister" Caption="Базовый регистр по контрагенту" />
     <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmBaseRegister" Caption="Базовый регистр" />
-    <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmCashFlowRegister" Caption="Регистр денежного потока" />
+    <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmCashFlowRegister" Caption="Регистр денежного потока">
+      <OwnMembers>
+        <Member Name="Bank" Caption="Банк" />
+        <Member Name="BankAccount" Caption="Банковский счет" />
+        <Member Name="Contract" Caption="Контракт" />
+        <Member Name="ContractDeal" Caption="Сделка" />
+        <Member Name="ContragentParty" Caption="Контрагент" />
+        <Member Name="ContragentPartyReal" Caption="Фактический контрагент" />
+        <Member Name="Cost" Caption="Стоимость" />
+        <Member Name="CostItem" Caption="Статья ДДС" />
+        <Member Name="FinancialDeal" Caption="Финансовая сделка" />
+        <Member Name="fmOrder" Caption="Заказ" />
+        <Member Name="ObligationUnit" Caption="Поставка/Работа" />
+        <Member Name="ObligationUnitDateTime" Caption="Дата Поставки/Работы" />
+        <Member Name="ObligationUnitMonth" Caption="Месяц Поставки/Работы" />
+        <Member Name="ObligationUnitQuarter" Caption="Квартал Поставки/Работы" />
+        <Member Name="ObligationUnitYear" Caption="Год Поставки/Работы" />
+        <Member Name="OperationDate" Caption="Дата операции" />
+        <Member Name="PaymentCost" Caption="Сумма оплаты" />
+        <Member Name="PaymentDocument" Caption="Платежный документ" />
+        <Member Name="PaymentItem" Caption="Платежная единица" />
+        <Member Name="PaymentRequestObligationGUID" Caption="Уникальный код источника" />
+        <Member Name="PaymentValuta" Caption="Валюта платежа" />
+        <Member Name="PrimaryParty" Caption="Организация" />
+        <Member Name="PrimaryPartyReal" Caption="Фактическая организация" />
+        <Member Name="Section" Caption="Тип записи" />
+        <Member Name="SourceType" Caption="Тип источника" />
+        <Member Name="Subject" Caption="Тема" />
+        <Member Name="SumBalance" Caption="Бухг.Сумма" />
+        <Member Name="SumBalanceAcc" Caption="Бухг.Субсчет" />
+        <Member Name="SumIn" Caption="Сумма Входящая" />
+        <Member Name="SumInAcc" Caption="Счет бухг.суммы" />
+        <Member Name="SumObligationBalance" Caption="Сумма обязательств баланса" />
+        <Member Name="SumObligationIn" Caption="Сумма обязательств входящая" />
+        <Member Name="SumObligationOut" Caption="Сумма обязательств исходящая" />
+        <Member Name="SumOut" Caption="Сумма исходящая" />
+        <Member Name="SumOutAcc" Caption="Субсчет суммы исходящей" />
+        <Member Name="Valuta" Caption="Валюта" />
+        <Member Name="ValutaAcc" Caption="Бухг.Валюта" />
+        <Member Name="ValutaObligation" Caption="Валюта обязательств" />
+        <Member Name="ValutaPayment" Caption="Валюта платежа" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmCommonBaseRegister" Caption="Базовый регистр общие сведения" />
     <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmDebtorCreditorDebtRegister" Caption="Регистр задолженности контрагента" />
     <Class Name="IntecoAG.ERM.CRM.Contract.Analitic.crmPlaneFactRegister" Caption="Регистр план факта" />
@@ -1756,6 +1798,16 @@
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="TrwBudgetPeriod_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="CurrencyExchanges" Caption="" />
+            <LayoutGroup Id="Options" Caption="Параметры" />
+          </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>

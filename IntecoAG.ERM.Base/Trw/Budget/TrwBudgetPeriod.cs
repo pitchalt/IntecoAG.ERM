@@ -12,6 +12,7 @@ using DevExpress.Persistent.Validation;
 //
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.Trw.Subject;
+using IntecoAG.ERM.Trw.Budget.Period;
 //
 namespace IntecoAG.ERM.Trw.Budget {
 
@@ -66,6 +67,11 @@ namespace IntecoAG.ERM.Trw.Budget {
             get { return GetCollection<TrwBudgetPeriodCurrencyExchange>("CurrencyExchanges"); }
         }
 
+        [Association("TrwBudgetPeriod-TrwBudgetPeriodInContractBSR"), Aggregated]
+        public XPCollection<TrwBudgetPeriodInContractBSR> InContractBSR {
+            get { return GetCollection<TrwBudgetPeriodInContractBSR>("InContractBSR"); }
+        }
+
         private csValuta _Valuta;
         public csValuta Valuta {
             get { return _Valuta; }
@@ -102,6 +108,20 @@ namespace IntecoAG.ERM.Trw.Budget {
                     period_month = 13;
             }
             return PeriodValues.FirstOrDefault(x => x.Month == period_month);
+        }
+
+        public XPCollection<TrwSubjectDealBay> PeriodBayDeals {
+            get { 
+                return new XPCollection<TrwSubjectDealBay>(this.Session, 
+                    new BinaryOperator("TrwSubject.Period", this));
+            }
+        }
+
+        public XPCollection<TrwSubjectDealSale> PeriodSaleDeals {
+            get {
+                return new XPCollection<TrwSubjectDealSale>(this.Session,
+                    new BinaryOperator("TrwSubject.Period", this));
+            }
         }
 
         protected override void OnDeleting() {

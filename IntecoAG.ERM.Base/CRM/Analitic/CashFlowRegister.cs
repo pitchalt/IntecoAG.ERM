@@ -58,6 +58,7 @@ namespace IntecoAG.ERM.CRM.Contract.Analitic
     //[DefaultClassOptions]
     [VisibleInReports]
     [Persistent("crmCashFlowRegister")]
+    [NavigationItem("Money")]
     public class crmCashFlowRegister : crmBaseRegister
     {
         public crmCashFlowRegister(Session ses) : base(ses) { }

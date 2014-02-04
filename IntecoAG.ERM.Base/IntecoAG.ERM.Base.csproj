@@ -486,9 +486,17 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
+    <Compile Include="Trw\Budget\Period\TrwBudgetPeriodInContractBSR.cs" />
     <Compile Include="Trw\Budget\TrwBudgetMaster.cs" />
     <Compile Include="Trw\Budget\Sale\TrwBudgetSale.cs" />
     <Compile Include="Trw\Budget\TrwBudgetPeriodCurrencyExchange.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetPeriodLogic.cs" />
+    <Compile Include="Trw\Budget\TrwBudgetPeriodVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trw\Budget\TrwBudgetPeriodVC.Designer.cs">
+      <DependentUpon>TrwBudgetPeriodVC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Trw\Budget\TrwBudgetValue.cs" />
     <Compile Include="Trw\Budget\TrwBudgetKey.cs" />
     <Compile Include="Trw\Budget\TrwBudgetBase.cs" />
@@ -773,6 +781,9 @@
       <DependentUpon>MainForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Trw\Budget\TrwBudgetPeriodVC.resx">
+      <DependentUpon>TrwBudgetPeriodVC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Trw\Budget\TrwBudgetVC.resx">
       <DependentUpon>TrwBudgetVC.cs</DependentUpon>
     </EmbeddedResource>

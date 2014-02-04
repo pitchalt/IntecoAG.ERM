@@ -329,7 +329,50 @@
         <ColumnInfo Id="CityFull" PropertyName="Person.TrwParty.CityFull" Index="11" IsNewNode="True" />
       </Columns>
     </ListView>
-    <ListView Id="crmCashFlowRegister_ListView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" AllowDelete="False" AllowNew="False" IsGroupPanelVisible="True" />
+    <ListView Id="crmCashFlowRegister_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" AllowDelete="False" AllowNew="False" IsGroupPanelVisible="True">
+      <Columns>
+        <ColumnInfo Id="Contract" Index="-1" />
+        <ColumnInfo Id="FinancialDeal" Index="-1" />
+        <ColumnInfo Id="ObligationUnit" Index="-1" />
+        <ColumnInfo Id="ObligationUnitDateTime" Index="-1" />
+        <ColumnInfo Id="ObligationUnitMonth" Index="-1" />
+        <ColumnInfo Id="ObligationUnitQuarter" Index="-1" />
+        <ColumnInfo Id="ObligationUnitYear" Index="-1" />
+        <ColumnInfo Id="PaymentItem" Index="-1" />
+        <ColumnInfo Id="PaymentRequestObligationGUID" Index="-1" />
+        <ColumnInfo Id="SumBalance" Index="-1" />
+        <ColumnInfo Id="SumBalanceAcc" Index="-1" />
+        <ColumnInfo Id="SumIn" Index="-1" />
+        <ColumnInfo Id="SumInAcc" Index="-1" />
+        <ColumnInfo Id="SumObligationBalance" Index="-1" />
+        <ColumnInfo Id="SumObligationIn" Index="-1" />
+        <ColumnInfo Id="SumObligationOut" Index="-1" />
+        <ColumnInfo Id="SumOut" Index="-1" />
+        <ColumnInfo Id="SumOutAcc" Index="-1" />
+        <ColumnInfo Id="ValutaAcc" Index="-1" />
+        <ColumnInfo Id="ValutaObligation" Index="-1" />
+        <ColumnInfo Id="ValutaPayment" Index="-1" />
+        <ColumnInfo Id="Section" Index="0" />
+        <ColumnInfo Id="DateRecord" Index="1" />
+        <ColumnInfo Id="OperationDate" Index="2" />
+        <ColumnInfo Id="Subject" Index="3" />
+        <ColumnInfo Id="fmOrder" Index="4" />
+        <ColumnInfo Id="CostItem" Index="5" />
+        <ColumnInfo Id="ContractDeal" Index="6" />
+        <ColumnInfo Id="SourceType" Index="7" />
+        <ColumnInfo Id="PrimaryParty" Index="8" />
+        <ColumnInfo Id="PrimaryPartyReal" Index="9" />
+        <ColumnInfo Id="ContragentParty" Index="10" />
+        <ColumnInfo Id="ContragentPartyReal" Index="11" />
+        <ColumnInfo Id="PaymentCost" Index="12" />
+        <ColumnInfo Id="PaymentValuta" Index="13" />
+        <ColumnInfo Id="Cost" Index="14" />
+        <ColumnInfo Id="Valuta" Index="15" />
+        <ColumnInfo Id="PaymentDocument" Index="16" />
+        <ColumnInfo Id="Bank" Index="17" />
+        <ColumnInfo Id="BankAccount" Index="18" LookupProperty="Number" />
+      </Columns>
+    </ListView>
     <DetailView Id="crmCashFlowRegisterFilter01_DetailView">
       <Items>
         <ActionContainerViewItem Id="ClearFilterFields" Caption="Clear Filter" PaintStyle="CaptionAndImage" SizeConstraints="None" IsNewNode="True" />
@@ -2904,16 +2947,60 @@
     </DetailView>
     <ListView Id="ReportParametersObjectBase_ListView" UseServerMode="True" />
     <DetailView Id="TrwBudgetPeriod_DetailView">
+      <Items>
+        <PropertyEditor Id="PeriodBayDeals" AllowEdit="False" />
+        <PropertyEditor Id="PeriodSaleDeals" AllowEdit="False" />
+      </Items>
       <Layout>
         <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" ShowCaption="" Index="1" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="2" CaptionLocation="Top" RelativeSize="70" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="TrwBudgetPeriod" Removed="True">
+              <LayoutItem Id="Code" Removed="True" />
+              <LayoutItem Id="Name" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
           <TabbedGroup Id="Tabs">
             <LayoutGroup Id="BudgetMasters" Index="0" />
             <LayoutGroup Id="TrwSubjects" Index="1" />
-            <LayoutGroup Id="PeriodValues" Index="2" />
+            <LayoutGroup Id="PeriodSaleDeals" Index="2" />
+            <LayoutGroup Id="PeriodBayDeals" Index="3" />
+            <LayoutGroup Id="PeriodValues" Index="4" />
+            <LayoutGroup Id="CurrencyExchanges" Index="5" Removed="True">
+              <LayoutItem Id="CurrencyExchanges" Index="1" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Options" IsNewNode="True">
+              <LayoutGroup Id="TrwBudgetPeriod" Index="0" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Year" ViewItem="Year" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Valuta" ViewItem="Valuta" ShowCaption="" Index="3" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="CurrencyExchanges" Index="1" ViewItem="CurrencyExchanges" ShowCaption="False" IsNewNode="True" />
+            </LayoutGroup>
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="TrwBudgetPeriod_PeriodBayDeals_ListView">
+      <Columns>
+        <ColumnInfo Id="TrwSubject" Index="0" />
+        <ColumnInfo Id="Person" Index="1" />
+        <ColumnInfo Id="TrwContract" Index="2" />
+      </Columns>
+    </ListView>
+    <ListView Id="TrwBudgetPeriod_PeriodSaleDeals_ListView">
+      <Columns>
+        <ColumnInfo Id="Count" Index="-1" />
+        <ColumnInfo Id="TrwOrderWorkType" Index="-1" />
+        <ColumnInfo Id="TrwSubject" Index="0" />
+        <ColumnInfo Id="Person" Index="1" />
+        <ColumnInfo Id="TrwContract" Index="2" />
+        <ColumnInfo Id="IsNomPlan" Index="3" />
+        <ColumnInfo Id="Nomenclature" Index="4" />
+      </Columns>
+    </ListView>
     <ListView Id="TrwBudgetPeriod_TrwSubjects_ListView">
       <Columns>
         <ColumnInfo Id="NameInternal" Index="-1" />
