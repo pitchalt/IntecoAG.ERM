@@ -435,7 +435,7 @@
     <Compile Include="CS\Work\Event.cs" />
     <Compile Include="CS\Work\IEvent.cs" />
     <Compile Include="CS\Work\Work.cs" />
-    <Compile Include="DatabaseUpdate\Updater_1_1_1_231.cs" />
+    <Compile Include="DatabaseUpdate\Copy of Updater_1_1_1_231.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_230.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_229.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_228.cs" />
@@ -443,6 +443,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FM\Docs\csCDocRCB.cs" />
+    <Compile Include="FM\Docs\Fm\FmDocsFmInDataLogic.cs" />
+    <Compile Include="FM\Docs\Fm\FmDocsFmInData.cs" />
     <Compile Include="FM\FinAccount\fmCFAAccount.cs" />
     <Compile Include="FM\FinAccount\fmCFAAccountSystem.cs" />
     <Compile Include="FM\fmCostItem.cs" />
@@ -486,7 +488,12 @@
     <Compile Include="PM\ProjectWork.cs" />
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
+    <Compile Include="Trw\Budget\Period\TrwBudgetPeriodDocDealLogic.cs" />
+    <Compile Include="Trw\Budget\Period\TrwBudgetPeriodDocBSR.cs" />
+    <Compile Include="Trw\Budget\Period\TrwBudgetPeriodDocDeal.cs" />
+    <Compile Include="Trw\Budget\Period\TrwBudgetPeriodDoc.cs" />
     <Compile Include="Trw\Budget\Period\TrwBudgetPeriodInContractBSR.cs" />
+    <Compile Include="Trw\Budget\Period\TrwBudgetPeriodDocBSRLogic.cs" />
     <Compile Include="Trw\Budget\TrwBudgetMaster.cs" />
     <Compile Include="Trw\Budget\Sale\TrwBudgetSale.cs" />
     <Compile Include="Trw\Budget\TrwBudgetPeriodCurrencyExchange.cs" />

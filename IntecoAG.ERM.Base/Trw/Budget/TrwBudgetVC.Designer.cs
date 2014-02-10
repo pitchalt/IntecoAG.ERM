@@ -28,7 +28,7 @@ namespace IntecoAG.ERM.Trw.Budget {
             // 
             // CalculateAction
             // 
-            this.CalculateAction.Caption = "Calculate";
+            this.CalculateAction.Caption = "LoadTrwSubject";
             this.CalculateAction.Category = "Edit";
             this.CalculateAction.ConfirmationMessage = null;
             this.CalculateAction.Id = "TrwBudgetVC_CalculateAction";

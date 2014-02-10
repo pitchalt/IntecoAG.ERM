@@ -71,6 +71,10 @@ namespace IntecoAG.ERM.Trw.Budget {
         public XPCollection<TrwBudgetPeriodInContractBSR> InContractBSR {
             get { return GetCollection<TrwBudgetPeriodInContractBSR>("InContractBSR"); }
         }
+        [Association("TrwBudgetPeriod-TrwBudgetPeriodDoc"), Aggregated]
+        public XPCollection<TrwBudgetPeriodDoc> BudgetPeriodDocs {
+            get { return GetCollection<TrwBudgetPeriodDoc>("BudgetPeriodDocs"); }
+        }
 
         private csValuta _Valuta;
         public csValuta Valuta {
