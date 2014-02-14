@@ -2954,13 +2954,13 @@
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
-            <LayoutItem Id="Code" ViewItem="Code" ShowCaption="" Index="1" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
-            <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="2" CaptionLocation="Top" RelativeSize="70" IsNewNode="True" />
+            <LayoutItem Id="Code" ViewItem="Code" Index="1" CaptionLocation="Top" RelativeSize="30" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="2" CaptionLocation="Top" RelativeSize="70" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
             <LayoutGroup Id="TrwBudgetPeriod" Removed="True">
-              <LayoutItem Id="Code" Removed="True" />
-              <LayoutItem Id="Name" Removed="True" />
+              <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
+              <LayoutItem Id="Name" ViewItem="Name" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
           <TabbedGroup Id="Tabs">
@@ -2970,12 +2970,12 @@
             <LayoutGroup Id="PeriodBayDeals" Index="3" />
             <LayoutGroup Id="PeriodValues" Index="4" />
             <LayoutGroup Id="CurrencyExchanges" Index="5" Removed="True">
-              <LayoutItem Id="CurrencyExchanges" Index="1" Removed="True" />
+              <LayoutItem Id="CurrencyExchanges" Index="1" ViewItem="CurrencyExchanges" Removed="True" />
             </LayoutGroup>
             <LayoutGroup Id="Options" IsNewNode="True">
               <LayoutGroup Id="TrwBudgetPeriod" Index="0" ShowCaption="False" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="Year" ViewItem="Year" ShowCaption="" Index="0" IsNewNode="True" />
-                <LayoutItem Id="Valuta" ViewItem="Valuta" ShowCaption="" Index="3" IsNewNode="True" />
+                <LayoutItem Id="Year" ViewItem="Year" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Valuta" ViewItem="Valuta" Index="3" IsNewNode="True" />
               </LayoutGroup>
               <LayoutItem Id="CurrencyExchanges" Index="1" ViewItem="CurrencyExchanges" ShowCaption="False" IsNewNode="True" />
             </LayoutGroup>
@@ -3006,6 +3006,92 @@
         <ColumnInfo Id="NameInternal" Index="-1" />
         <ColumnInfo Id="Code" Index="0" />
         <ColumnInfo Id="Name" Index="1" />
+      </Columns>
+    </ListView>
+    <DetailView Id="TrwBudgetPeriodDocBSR_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" IsNewNode="True">
+              <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutGroup Id="TrwBudgetPeriodDoc" Index="0" ShowCaption="False" IsNewNode="True">
+                  <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="Number" ViewItem="Number" ShowCaption="" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="Date" ViewItem="Date" ShowCaption="" Index="2" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="csCComponent" Index="1" ShowCaption="False" IsNewNode="True">
+                  <LayoutItem Id="ComponentType" ViewItem="ComponentType" ShowCaption="" Index="0" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Lines" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="TrwBudgetPeriodDocBSR_DocBSRLines_ListView">
+      <Columns>
+        <ColumnInfo Id="Period00" Index="4" />
+        <ColumnInfo Id="Period01" Index="5" />
+        <ColumnInfo Id="Period02" Index="6" />
+        <ColumnInfo Id="Period03" Index="7" />
+        <ColumnInfo Id="Period04" Index="8" />
+        <ColumnInfo Id="Period05" Index="9" />
+        <ColumnInfo Id="Period06" Index="10" />
+        <ColumnInfo Id="Period07" Index="11" />
+        <ColumnInfo Id="Period08" Index="12" />
+        <ColumnInfo Id="Period09" Index="13" />
+        <ColumnInfo Id="Period10" Index="14" />
+        <ColumnInfo Id="Period11" Index="15" />
+        <ColumnInfo Id="Period12" Index="16" />
+        <ColumnInfo Id="Period13" Index="17" />
+      </Columns>
+    </ListView>
+    <DetailView Id="TrwBudgetPeriodDocDeal_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Common" Index="1" IsNewNode="True">
+              <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutGroup Id="TrwBudgetPeriodDocDeal" Index="0" ShowCaption="False" IsNewNode="True">
+                  <LayoutItem Id="DocInData" ViewItem="DocInData" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="DocBSR" ViewItem="DocBSR" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="TrwBudgetPeriodDoc" Index="1" ShowCaption="False" IsNewNode="True">
+                  <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="Number" ViewItem="Number" ShowCaption="" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="Date" ViewItem="Date" ShowCaption="" Index="2" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Lines" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True">
+            <LayoutGroup Id="csCComponent" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="TrwBudgetPeriodDocDeal_DocDealLines_ListView">
+      <Columns>
+        <ColumnInfo Id="TrwSubjectDealBay" Index="3" />
+        <ColumnInfo Id="TrwBudgetDeal" PropertyName="TrwSubjectDealBay.TrwContract" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="FmOrder" Index="5" />
+        <ColumnInfo Id="Period00" Index="6" />
+        <ColumnInfo Id="Period01" Index="7" />
+        <ColumnInfo Id="Period02" Index="8" />
+        <ColumnInfo Id="Period03" Index="9" />
+        <ColumnInfo Id="Period04" Index="10" />
+        <ColumnInfo Id="Period05" Index="11" />
+        <ColumnInfo Id="Period06" Index="12" />
+        <ColumnInfo Id="Period07" Index="13" />
+        <ColumnInfo Id="Period08" Index="14" />
+        <ColumnInfo Id="Period09" Index="15" />
+        <ColumnInfo Id="Period10" Index="16" />
+        <ColumnInfo Id="Period11" Index="17" />
+        <ColumnInfo Id="Period12" Index="18" />
+        <ColumnInfo Id="Period13" Index="19" />
       </Columns>
     </ListView>
     <ListView Id="TrwBudgetSale_BudgetValues_ListView" ClassName="IntecoAG.ERM.Trw.Budget.TrwBudgetValue" IsNewNode="True">
