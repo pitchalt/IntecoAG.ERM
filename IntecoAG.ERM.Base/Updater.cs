@@ -35,7 +35,6 @@ namespace IntecoAG.ERM.Module {
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
-            try {
                 // Добавление отчётов
                 CheckDirectoryOnReports();
                 // Добавление аналитических данных
@@ -52,9 +51,6 @@ namespace IntecoAG.ERM.Module {
                 //
                 //UpdateParty();
                 //UpdateStaff();
-            }
-            catch (Exception e){
-            }
         }
         private void UpdateStaff() {
             IList<hrmStaff> staffs = ObjectSpace.GetObjects<hrmStaff>(

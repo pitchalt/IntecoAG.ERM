@@ -78,11 +78,11 @@ namespace IntecoAG.ERM.Trw.Budget {
             public TrwOrder TrwOrder;
             public TrwSaleNomenclature TrwNomenclature;
         }
-        private struct LineKeyValue {
-            public Decimal SummCost;
-            public Decimal SummVat;
-            public Decimal SummAll;
-        }
+//        private struct LineKeyValue {
+//            public Decimal SummCost;
+//            public Decimal SummVat;
+//            public Decimal SummAll;
+//        }
         //
         public override void Calculate(IObjectSpace os) {
             os.Delete(this.BudgetValues);

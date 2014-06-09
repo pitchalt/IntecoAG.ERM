@@ -271,6 +271,46 @@
         <Member Name="Status" Caption="Статус" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCacheKKM" Caption="ККМ">
+      <OwnMembers>
+        <Member Name="DateFrom" Caption="Дата С" />
+        <Member Name="DateTo" Caption="Дата По" />
+        <Member Name="IsClosed" Caption="Закрыт" />
+        <Member Name="KKMNumber" Caption="Номер ККМ" />
+        <Member Name="Name" Caption="Наименование" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCacheKKMPayment" Caption="Наличная реализация">
+      <OwnMembers>
+        <Member Name="Date" Caption="Дата" />
+        <Member Name="KKMPaymentNumber" Caption="Номер документа" />
+        <Member Name="KKMs" Caption="Список ККМ" />
+        <Member Name="Lines" Caption="Чеки" />
+        <Member Name="Month" Caption="Месяц" />
+        <Member Name="Operation" Caption="Операция" />
+        <Member Name="Order" Caption="Заказ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCacheKKMPaymentLine" Caption="Чеки">
+      <OwnMembers>
+        <Member Name="AccAVTCredit" Caption="НДС Кредит" />
+        <Member Name="AccAVTDebet" Caption="НДС Дебет" />
+        <Member Name="AccRealCredit" Caption="Выручка Кредит" />
+        <Member Name="AccRealDebet" Caption="Выручка Дебет" />
+        <Member Name="CheckNumber" Caption="Номер чека" />
+        <Member Name="DocBuhNumber" Caption="Номер документа" />
+        <Member Name="DocBuhPck" Caption="Номер пачки" />
+        <Member Name="DocBuhProv" Caption="Номер проводки" />
+        <Member Name="KKM" Caption="ККМ" />
+        <Member Name="KKMPayment" Caption="Документ наличной реализации" />
+        <Member Name="Operation" Caption="Операция" />
+        <Member Name="Order" Caption="Заказ" />
+        <Member Name="SummAll" Caption="Сумма всего" />
+        <Member Name="SummCost" Caption="Сумма стоимость" />
+        <Member Name="SummVat" Caption="Сумма НДС" />
+        <Member Name="VatRate" Caption="Ставка НДС" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Docs.fmCDocRCB" Caption="Платёжный документ">
       <OwnMembers>
         <Member Name="AcceptanceDuration" Caption="Срок акцепта" />
@@ -462,7 +502,6 @@
         <Member Name="Valuta" Caption="Валюта" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.fmAutoBindingUpdater" Caption="Признак выполнения автоматического биндинга" />
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrder" Caption="ЗаказБаз">
       <OwnMembers>
         <Member Name="BuhAccount" Caption="Бух.Субсчет" />

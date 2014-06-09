@@ -164,6 +164,7 @@ namespace IntecoAG.ERM.FM.AVT {
             System.Console.WriteLine("All " + count);
         }
         static public void ImportAvansData(IObjectSpace os, String file_name) {
+            fmCAVTInvoiceType inv_type = os.GetObjects<fmCAVTInvoiceType>().FirstOrDefault(x => x.Prefix == "À");
             FileHelperEngine<fmCAVTInvoiceAvansImport> engine = new FileHelperEngine<fmCAVTInvoiceAvansImport>();
             engine.Options.IgnoreFirstLines = 1;
             fmCAVTInvoiceAvansImport[] avans = engine.ReadFile(file_name);
@@ -189,6 +190,7 @@ namespace IntecoAG.ERM.FM.AVT {
                     invoice.Supplier = os.GetObjects<crmCParty>(new BinaryOperator("Code", "2518")).FirstOrDefault();
                 }
                 if (invoice != null) {
+                    invoice.InvoiceType = inv_type;
                     if (invoice.Lines.Count > 0)
                         line = invoice.Lines[0];
                     if (line == null) {

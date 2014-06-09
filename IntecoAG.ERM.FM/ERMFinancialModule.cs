@@ -24,13 +24,17 @@ namespace IntecoAG.ERM.FM {
                 XafTypesInfo.Instance.RegisterSharedPart(typeof(Docs.Cache.fmIDocCache));
                 XafTypesInfo.Instance.RegisterSharedPart(typeof(Docs.Cache.fmIDocCacheLine));
                 XafTypesInfo.Instance.RegisterSharedPart(typeof(Docs.Cache.fmIDocCacheIn));
+                XafTypesInfo.Instance.RegisterSharedPart(typeof(Docs.Cache.fmIDocCacheOut));
                 XafTypesInfo.Instance.RegisterEntity("fmIDocCacheInRealPrepare", typeof(Docs.Cache.fmIDocCacheInRealPrepare));
                 XafTypesInfo.Instance.RegisterEntity("fmIDocCacheInRealPrepareLine", typeof(Docs.Cache.fmIDocCacheInRealPrepareLine));
                 XafTypesInfo.Instance.RegisterEntity("fmIDocCacheInRealFinal", typeof(Docs.Cache.fmIDocCacheInRealFinal));
+                XafTypesInfo.Instance.RegisterEntity("fmIDocCacheOutCommon", typeof(Docs.Cache.fmIDocCacheOutCommon));
+                XafTypesInfo.Instance.RegisterEntity("fmIDocCacheOutCommonLine", typeof(Docs.Cache.fmIDocCacheOutCommonLine));
                 XafTypesInfo.Instance.RegisterEntity("fmIDocCacheJournal", typeof(Docs.Cache.fmIDocCacheJournal));
                 XafTypesInfo.Instance.RegisterEntity("fmIDocCacheJournalLine", typeof(Docs.Cache.fmIDocCacheJournalLine));
-                //                XafTypesInfo.Instance.RegisterEntity("fmIDocCacheIn", typeof(Docs.Cache.fmIDocCacheIn));
-                //                XafTypesInfo.Instance.RegisterEntity("fmIDocCacheOut", typeof(Docs.Cache.fmIDocCacheOut));
+                XafTypesInfo.Instance.RegisterEntity("fmIDocCacheKKM", typeof(Docs.Cache.fmIDocCacheKKM));
+                XafTypesInfo.Instance.RegisterEntity("fmIDocCacheKKMPayment", typeof(Docs.Cache.fmIDocCacheKKMPayment));
+                XafTypesInfo.Instance.RegisterEntity("fmIDocCacheKKMPaymentLine", typeof(Docs.Cache.fmIDocCacheKKMPaymentLine));
             }
             base.Setup(application);
             application.DetailViewCreating += new EventHandler<DetailViewCreatingEventArgs>(application_DetailViewCreating);

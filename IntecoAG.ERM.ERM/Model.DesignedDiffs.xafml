@@ -289,5 +289,10 @@
         <ColumnInfo Id="AppendixComment" Index="22" />
       </Columns>
     </ListView>
+    <ListView Id="TrwIOrder_Exchange_ListView">
+      <Columns>
+        <ColumnInfo Id="TrwContract_TrwNumber" Removed="True" />
+      </Columns>
+    </ListView>
   </Views>
 </Application>

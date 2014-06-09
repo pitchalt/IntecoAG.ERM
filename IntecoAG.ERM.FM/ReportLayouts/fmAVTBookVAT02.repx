@@ -1,12 +1,12 @@
 /// <XRTypeInfo>
-///   <AssemblyFullName>DevExpress.ExpressApp.Reports.v11.2, Version=11.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</AssemblyFullName>
-///   <AssemblyLocation>C:\Windows\assembly\GAC_MSIL\DevExpress.ExpressApp.Reports.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.ExpressApp.Reports.v11.2.dll</AssemblyLocation>
+///   <AssemblyFullName>DevExpress.ExpressApp.Reports.v11.2, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</AssemblyFullName>
+///   <AssemblyLocation>C:\Windows\assembly\GAC_MSIL\DevExpress.ExpressApp.Reports.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.ExpressApp.Reports.v11.2.dll</AssemblyLocation>
 ///   <TypeName>DevExpress.ExpressApp.Reports.XafReport</TypeName>
 ///   <Localization>ru-RU</Localization>
 ///   <References>
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.ExpressApp.Reports.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.ExpressApp.Reports.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.ExpressApp.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.ExpressApp.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.Xpo.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.Xpo.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.ExpressApp.Reports.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.ExpressApp.Reports.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.ExpressApp.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.ExpressApp.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.Xpo.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.Xpo.v11.2.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\WindowsBase\3.0.0.0__31bf3856ad364e35\WindowsBase.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\System\2.0.0.0__b77a5c561934e089\System.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll" />
@@ -41,17 +41,17 @@
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\System.IdentityModel.Selectors\3.0.0.0__b77a5c561934e089\System.IdentityModel.Selectors.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\Microsoft.Transactions.Bridge\3.0.0.0__b03f5f7f11d50a3a\Microsoft.Transactions.Bridge.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\System.Core\3.5.0.0__b77a5c561934e089\System.Core.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraReports.v11.2.Extensions\11.2.8.0__b88d1754d700e49a\DevExpress.XtraReports.v11.2.Extensions.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraBars.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.XtraBars.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.Reports.v11.2.Designer\11.2.8.0__b88d1754d700e49a\DevExpress.Reports.v11.2.Designer.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraCharts.v11.2.Extensions\11.2.8.0__b88d1754d700e49a\DevExpress.XtraCharts.v11.2.Extensions.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraTreeList.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.XtraTreeList.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraRichEdit.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.XtraRichEdit.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.RichEdit.v11.2.Core\11.2.8.0__b88d1754d700e49a\DevExpress.RichEdit.v11.2.Core.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraPrinting.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.XtraPrinting.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraNavBar.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.XtraNavBar.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraVerticalGrid.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.XtraVerticalGrid.v11.2.dll" />
-///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.CodeParser.v11.2\11.2.8.0__b88d1754d700e49a\DevExpress.CodeParser.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraReports.v11.2.Extensions\11.2.14.0__b88d1754d700e49a\DevExpress.XtraReports.v11.2.Extensions.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraBars.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.XtraBars.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.Reports.v11.2.Designer\11.2.14.0__b88d1754d700e49a\DevExpress.Reports.v11.2.Designer.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraCharts.v11.2.Extensions\11.2.14.0__b88d1754d700e49a\DevExpress.XtraCharts.v11.2.Extensions.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraTreeList.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.XtraTreeList.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraRichEdit.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.XtraRichEdit.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.RichEdit.v11.2.Core\11.2.14.0__b88d1754d700e49a\DevExpress.RichEdit.v11.2.Core.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraPrinting.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.XtraPrinting.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraNavBar.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.XtraNavBar.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraVerticalGrid.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.XtraVerticalGrid.v11.2.dll" />
+///     <Reference Path="C:\Windows\assembly\GAC_MSIL\DevExpress.CodeParser.v11.2\11.2.14.0__b88d1754d700e49a\DevExpress.CodeParser.v11.2.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\System.ServiceModel.Web\3.5.0.0__31bf3856ad364e35\System.ServiceModel.Web.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\System.Web.Extensions\3.5.0.0__31bf3856ad364e35\System.Web.Extensions.dll" />
 ///     <Reference Path="C:\Windows\assembly\GAC_MSIL\System.Web.Abstractions\3.5.0.0__31bf3856ad364e35\System.Web.Abstractions.dll" />
@@ -758,7 +758,7 @@ namespace XtraReportSerialization {
             this.tableCell83.Font = new System.Drawing.Font("Times New Roman", 9F);
             this.tableCell83.Name = "tableCell83";
             this.tableCell83.StylePriority.UseFont = false;
-            this.tableCell83.Text = "стоиомсть покупок, облагаемых налогом по ставке";
+            this.tableCell83.Text = "стоиомсть продаж, облагаемых налогом по ставке";
             this.tableCell83.Weight = 0.81582536162636421;
             // 
             // tableCell84
@@ -931,7 +931,7 @@ namespace XtraReportSerialization {
             this.tableCell18.Multiline = true;
             this.tableCell18.Name = "tableCell18";
             this.tableCell18.StylePriority.UseTextAlignment = false;
-            this.tableCell18.Text = "Наименование \r\nпродавца\r\n";
+            this.tableCell18.Text = "Наименование \r\nпокупателя\r\n";
             this.tableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.tableCell18.Weight = 0.48888685309584512;
             // 
@@ -941,7 +941,7 @@ namespace XtraReportSerialization {
             this.tableCell32.Multiline = true;
             this.tableCell32.Name = "tableCell32";
             this.tableCell32.StylePriority.UseTextAlignment = false;
-            this.tableCell32.Text = "ИНН   \r\nпродавца\r\n";
+            this.tableCell32.Text = "ИНН   \r\nпокупателя\r\n";
             this.tableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.tableCell32.Weight = 0.17063993727980684;
             // 
@@ -951,7 +951,7 @@ namespace XtraReportSerialization {
             this.tableCell14.Multiline = true;
             this.tableCell14.Name = "tableCell14";
             this.tableCell14.StylePriority.UseTextAlignment = false;
-            this.tableCell14.Text = "КПП   \r\nпродавца\r\n";
+            this.tableCell14.Text = "КПП   \r\nпокупателя\r\n";
             this.tableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.tableCell14.Weight = 0.17184920660985931;
             // 
@@ -971,7 +971,7 @@ namespace XtraReportSerialization {
             this.tableCell41.Multiline = true;
             this.tableCell41.Name = "tableCell41";
             this.tableCell41.StylePriority.UseTextAlignment = false;
-            this.tableCell41.Text = "Стоимость\r\nпокупок, \r\nвключая \r\nНДС, -  \r\nвсего  \r\n";
+            this.tableCell41.Text = "Стоимость\r\nпродаж, \r\nвключая \r\nНДС, -  \r\nвсего  \r\n";
             this.tableCell41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.tableCell41.Weight = 0.19768025779273704;
             // 
@@ -980,7 +980,7 @@ namespace XtraReportSerialization {
             this.tableCell16.Dpi = 254F;
             this.tableCell16.Multiline = true;
             this.tableCell16.Name = "tableCell16";
-            this.tableCell16.Text = "стои-  \r\nмость  \r\nпокупок\r\nбез НДС\r\n";
+            this.tableCell16.Text = "стои-  \r\nмость  \r\nпродаж\r\nбез НДС\r\n";
             this.tableCell16.Weight = 0.17219887835596298;
             // 
             // tableCell45
@@ -996,7 +996,7 @@ namespace XtraReportSerialization {
             this.tableCell31.Dpi = 254F;
             this.tableCell31.Multiline = true;
             this.tableCell31.Name = "tableCell31";
-            this.tableCell31.Text = "стои-  \r\nмость  \r\nпокупок\r\nбез НДС\r\n";
+            this.tableCell31.Text = "стои-  \r\nмость  \r\nпродаж\r\nбез НДС\r\n";
             this.tableCell31.Weight = 0.17620431494225908;
             // 
             // tableCell39
@@ -1020,7 +1020,7 @@ namespace XtraReportSerialization {
             this.tableCell15.Dpi = 254F;
             this.tableCell15.Multiline = true;
             this.tableCell15.Name = "tableCell15";
-            this.tableCell15.Text = "стоимость\r\nпокупок, \r\nосвобож- \r\nдаемых от\r\nналога   \r\n";
+            this.tableCell15.Text = "стоимость\r\nпродаж, \r\nосвобож- \r\nдаемых от\r\nналога   \r\n";
             this.tableCell15.Weight = 0.19074038179027292;
             // 
             // tableRow1

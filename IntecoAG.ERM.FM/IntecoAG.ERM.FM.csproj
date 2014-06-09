@@ -227,6 +227,10 @@
       <DependentUpon>fmCAVTInvoiceRegisterViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="BusinessObjects\AVT\fmCAVTInvoiceTransferType.cs" />
+    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheKKMPaymentLine.cs" />
+    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheKKM.cs" />
+    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheKKMPayment.cs" />
+    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheOutCommonLine.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCache.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheIn.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealPrepareLine.cs" />
@@ -234,9 +238,11 @@
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheJournalLine.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheLine.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheOut.cs" />
+    <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheOutCommon.cs" />
     <Compile Include="BusinessObjects\Docs\fmIDocument.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealFinal.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealPrepare.cs" />
+    <Compile Include="BusinessObjects\fmSettingsFinanceExt.cs" />
     <Compile Include="BusinessObjects\Order\fmCOrderExViewController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -587,6 +593,9 @@
     <None Include="ReportLayouts\fmIDocCacheIn01.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="ReportLayouts\fmIDocCacheIn02.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ReportLayouts\fmPaymentRequestContractReport01.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

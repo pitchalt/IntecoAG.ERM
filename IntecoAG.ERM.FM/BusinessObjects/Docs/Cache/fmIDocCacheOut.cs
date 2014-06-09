@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
 
+using IntecoAG.ERM.CS.Finance;
+using IntecoAG.ERM.CRM.Party;
+using IntecoAG.ERM.FM.Order;
+
 namespace IntecoAG.ERM.FM.Docs.Cache {
     [DomainComponent]
-    //[MapInheritance(MapInheritanceType.ParentTable)]
     [VisibleInReports(true)]
+    [NavigationItem("Sale")]
+    //[MapInheritance(MapInheritanceType.ParentTable)]
     public interface fmIDocCacheOut : fmIDocCache {
         //string PersistentProperty { get; set; }
         //string CalculatedProperty { get; }
@@ -31,22 +37,5 @@ namespace IntecoAG.ERM.FM.Docs.Cache {
             // Use this method to implement calculated properties.
             return "testOKUD";
         }
-    //    public static string Get_CalculatedProperty(fmIDocCacheOut instance) {
-    //        // A "Get_" method is executed when getting a target property value. The target property should be readonly.
-    //        // Use this method to implement calculated properties.
-    //        return "";
-    //    }
-    //    public static void AfterChange_PersistentProperty(fmIDocCacheOut instance) {
-    //        // An "AfterChange_" method is executed after a target property is changed. The target property should not be readonly. 
-    //        // Use this method to refresh dependant property values.
-    //    }
-    //    public static void AfterConstruction(fmIDocCacheOut instance) {
-    //        // The "AfterConstruction" method is executed only once, after an object is created. 
-    //        // Use this method to initialize new objects with default property values.
-    //    }
-    //    public static int SumMethod(fmIDocCacheOut instance, int val1, int val2) {
-    //        // You can also define custom methods.
-    //        return val1 + val2;
-    //    }
     }
 }

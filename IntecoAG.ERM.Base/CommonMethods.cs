@@ -17,9 +17,14 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.ExpressApp.SystemModule;
 
-namespace IntecoAG.ERM.Module {
+namespace IntecoAG.ERM {
 
     public static class CommonMethods {
+
+        public static DateTime DateTimeNow() {
+            return DateTime.Now;
+        }
+
 
         #region Методы загрузки View
 

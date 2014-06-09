@@ -3403,6 +3403,58 @@
         <SortProperty Id="DocNumber" PropertyName="DocNumber" IsNewNode="True" />
       </Sorting>
     </ListView>
+    <DetailView Id="fmIDocCacheKKMPayment_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="KKMPaymentNumber" ViewItem="KKMPaymentNumber" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Date" ViewItem="Date" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Operation" ViewItem="Operation" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Order" ViewItem="Order" Index="3" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="fmIDocCacheKKMPayment">
+              <LayoutGroup Id="fmIDocCacheKKMPayment_col1">
+                <LayoutItem Id="Date" ViewItem="Date" Removed="True" />
+                <LayoutItem Id="KKMPaymentNumber" ViewItem="KKMPaymentNumber" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="fmIDocCacheKKMPayment_col2">
+                <LayoutItem Id="Operation" ViewItem="Operation" Removed="True" />
+                <LayoutItem Id="Order" ViewItem="Order" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Lines" Index="0" />
+            <LayoutGroup Id="KKMs" Index="1" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmIDocCacheKKMPayment_Lines_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="KKM" Index="0" PropertyName="KKM" />
+        <ColumnInfo Id="CheckNumber" Index="1" />
+        <ColumnInfo Id="SummAll" Index="2" />
+        <ColumnInfo Id="VatRate" Index="3" />
+        <ColumnInfo Id="SummVat" Index="4" />
+        <ColumnInfo Id="SummCost" Index="5" />
+        <ColumnInfo Id="Order" Index="6" />
+        <ColumnInfo Id="DocBuhProv" Index="7" />
+        <ColumnInfo Id="DocBuhPck" Index="8" />
+        <ColumnInfo Id="DocBuhNumber" Index="9" />
+        <ColumnInfo Id="AccRealDebet" Index="10" />
+        <ColumnInfo Id="AccRealCredit" Index="11" />
+        <ColumnInfo Id="AccAVTDebet" Index="12" />
+        <ColumnInfo Id="AccAVTCredit" Index="13" />
+        <ColumnInfo Id="Operation" Index="14" />
+      </Columns>
+      <Sorting>
+        <SortProperty Id="KKM.KKMNumber" PropertyName="KKM.KKMNumber" Index="0" IsNewNode="True" />
+        <SortProperty Id="CheckNumber" PropertyName="CheckNumber" Index="1" IsNewNode="True" />
+        <SortProperty Id="VatRate" PropertyName="VatRate" Index="2" IsNewNode="True" />
+      </Sorting>
+    </ListView>
     <DetailView Id="fmPaymentRequestMemorandum_DetailView">
       <HiddenActions Index="0" />
       <Items Index="1">
