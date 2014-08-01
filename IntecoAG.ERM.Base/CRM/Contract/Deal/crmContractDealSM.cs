@@ -18,22 +18,27 @@ namespace IntecoAG.ERM.CRM.Contract.Deal {
 
         public crmContractDealSM() {
             StateProject = new State(this, DealStates.DEAL_PROJECT);
-            IState StateFormation = new State(this, DealStates.DEAL_FORMATION);
-            IState StateResolved = new State(this, DealStates.DEAL_RESOLVED);
+//            IState StateFormation = new State(this, DealStates.DEAL_FORMATION);
+//            IState StateResolved = new State(this, DealStates.DEAL_RESOLVED);
             IState StateConcluded = new State(this, DealStates.DEAL_CONCLUDED);
             IState StateClosed = new State(this, DealStates.DEAL_CLOSED);
             IState StateDeleted = new State(this, DealStates.DEAL_DELETED);
+            IState StateDecline = new State(this, DealStates.DEAL_DECLINE);
 
-            StateProject.Transitions.Add(new Transition(StateClosed, "Закрыть", 1));
-            StateProject.Transitions.Add(new Transition(StateDeleted, "Удалить", 2));
+            StateProject.Transitions.Add(new Transition(StateConcluded, "Действующий", 1));
+            StateProject.Transitions.Add(new Transition(StateDecline, "Отклонить", 2));
+            StateProject.Transitions.Add(new Transition(StateDeleted, "Удалить", 3));
 
-            StateFormation.Transitions.Add(new Transition(StateClosed, "Закрыть", 1));
-            StateFormation.Transitions.Add(new Transition(StateDeleted, "Удалить", 2));
+            StateConcluded.Transitions.Add(new Transition(StateClosed, "Исполнен", 1));
+            StateConcluded.Transitions.Add(new Transition(StateProject, "Проект", 2));
+            //StateFormation.Transitions.Add(new Transition(StateClosed, "Закрыть", 1));
+            //StateFormation.Transitions.Add(new Transition(StateDeleted, "Удалить", 2));
 
             States.Add(StateProject);
-            States.Add(StateFormation);
-            States.Add(StateResolved);
+            //States.Add(StateFormation);
+            //States.Add(StateResolved);
             States.Add(StateConcluded);
+            States.Add(StateDecline);
             States.Add(StateClosed);
             States.Add(StateDeleted);
         }

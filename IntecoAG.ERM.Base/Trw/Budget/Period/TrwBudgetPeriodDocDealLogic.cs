@@ -47,7 +47,12 @@ namespace IntecoAG.ERM.Trw.Budget.Period {
             os.Delete(doc.DocDealLines);
             Dictionary<fmCOrder, OrderValue> rsp = new Dictionary<fmCOrder, OrderValue>();
             foreach (TrwSubject subj in doc.Period.TrwSubjects) {
-                LoadTrwSubject(doc, os, rsp, subj);
+                try {
+                    LoadTrwSubject(doc, os, rsp, subj);
+                } catch (Exception ex) {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
             foreach (TrwBudgetPeriodDocBSR.LineBSR bsr_line in doc.DocBSR.DocBSRLines) {
                 if (bsr_line.FmOrder == null)

@@ -37,11 +37,13 @@ namespace IntecoAG.ERM.FM.AVT {
                 rec => rec.BookType == "P" && (
                        rec.PeriodOtchet == period_m1 ||
                        rec.PeriodOtchet == period_m2 ||
-                       rec.PeriodOtchet == period_m3 &&
-                       (rec.RecordType != "AON" ||
-                        rec.RecordType == "AON" &&
-                        rec.RecordSummType == "NDS" &&
-                        rec.SummVAT != 0))
+                       rec.PeriodOtchet == period_m3 
+//                       &&
+//                       (rec.RecordType != "AON" ||
+//                        rec.RecordType == "AON" &&
+//                        rec.RecordSummType == "NDS" &&
+//                        rec.SummVAT != 0)
+                    )
                 ));
             var invoice_buhrecs = buhrecs.GroupBy(rec => new {
                 rec.RecordType,
@@ -122,11 +124,12 @@ namespace IntecoAG.ERM.FM.AVT {
                 rec => rec.BookType == "B" && (
                        rec.PeriodOtchet == period_m1 ||
                        rec.PeriodOtchet == period_m2 ||
-                       rec.PeriodOtchet == period_m3 &&
-                       (rec.RecordType != "AON" ||
-                        rec.RecordType == "AON" &&
-                        rec.RecordSummType == "NDS" &&
-                        rec.SummVAT != 0))
+                       rec.PeriodOtchet == period_m3
+                       //&& (rec.RecordType != "AON" ||
+                       // rec.RecordType == "AON" &&
+                       // rec.RecordSummType == "NDS" &&
+                       // rec.SummVAT != 0)
+                        )
                 ));
             var invoice_buhrecs = buhrecs.GroupBy(rec => new {
                 rec.RecordType,

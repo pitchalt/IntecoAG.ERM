@@ -497,6 +497,7 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="fmCAVTInvoiceBase_PaymentsList_ListView" DetailViewID="fmCAVTInvoiceVersion+fmCAVTInvoicePayment_DetailView" />
     <DetailView Id="fmCAVTInvoiceLine_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

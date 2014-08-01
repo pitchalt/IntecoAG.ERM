@@ -27,7 +27,9 @@ using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Common;
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CRM.Party;
-
+//
+using IntecoAG.ERM.Trw.Budget;
+//
 namespace IntecoAG.ERM.CRM.Party
 {
     /// <summary>
@@ -285,6 +287,12 @@ namespace IntecoAG.ERM.CRM.Party
         [PersistentAlias("Person.BankAccounts")]
         public XPCollection<crmBankAccount> BankAccounts {
             get { return null; }
+        }
+
+        [Association("TrwBudgetPeriod-crmParty")]
+        [Browsable(false)]
+        public XPCollection<TrwBudgetPeriod> TrwBudgetPeriods {
+            get { return GetCollection<TrwBudgetPeriod>("TrwBudgetPeriods"); }
         }
     
         #endregion

@@ -1637,12 +1637,12 @@ namespace IntecoAG.ERM.FM.StatementAccount {
                 return true;
             }
             catch (FormatException fEx) {
-                string err = String.Format("Error is detected. File: '{0}'. Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), fEx.ToString());
+                string err = String.Format("Error is detected. File: '{0}'. crmAct_Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), fEx.ToString());
                 //throw new Exception(err);
                 WriteLog(importResult, err);
             }
             catch (Exception Ex) {
-                string err = String.Format("Error is detected. File: '{0}'. Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), Ex.ToString());
+                string err = String.Format("Error is detected. File: '{0}'. crmAct_Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), Ex.ToString());
                 //throw new Exception(err);
                 WriteLog(importResult, err);
             }
@@ -1661,12 +1661,12 @@ namespace IntecoAG.ERM.FM.StatementAccount {
                 return true;
             }
             catch (FormatException fEx) {
-                string err = String.Format("Error is detected. File: '{0}'. Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), fEx.ToString());
+                string err = String.Format("Error is detected. File: '{0}'. crmAct_Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), fEx.ToString());
                 //throw new Exception(err);
                 WriteLog(importResult, err);
             }
             catch (Exception Ex) {
-                string err = String.Format("Error is detected. File: '{0}'. Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), Ex.ToString());
+                string err = String.Format("Error is detected. File: '{0}'. crmAct_Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), Ex.ToString());
                 //throw new Exception(err);
                 WriteLog(importResult, err);
             }
@@ -1685,12 +1685,12 @@ namespace IntecoAG.ERM.FM.StatementAccount {
                 return true;
             }
             catch (FormatException fEx) {
-                string err = String.Format("Error is detected. File: '{0}'. Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), fEx.ToString());
+                string err = String.Format("Error is detected. File: '{0}'. crmAct_Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), fEx.ToString());
                 //throw new Exception(err);
                 WriteLog(importResult, err);
             }
             catch (Exception Ex) {
-                string err = String.Format("Error is detected. File: '{0}'. Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), Ex.ToString());
+                string err = String.Format("Error is detected. File: '{0}'. crmAct_Line: {1}. " + "System message:  {2}", "", LineNum.ToString(), Ex.ToString());
                 //throw new Exception(err);
                 WriteLog(importResult, err);
             }

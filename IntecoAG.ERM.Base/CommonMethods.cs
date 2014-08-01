@@ -25,6 +25,9 @@ namespace IntecoAG.ERM {
             return DateTime.Now;
         }
 
+        public static IObjectSpace FindObjectSpaceByObject(Object obj) {
+            return ObjectSpace.FindObjectSpaceByObject(obj);
+        }
 
         #region Методы загрузки View
 

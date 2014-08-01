@@ -11,7 +11,8 @@
       <Action Id="crmCLegalPersonUnitViewController_SetChecked" Caption="Проверено!" ToolTip="Подтвердить, что сведения об объекте верны" />
       <Action Id="csCSecurityUserListController_UpdateListAction" Caption="Синхр.с AD" ToolTip="Синхронизировать с группой Active Directory" />
       <Action Id="ImportReports" Caption="Перегрузить отчёты" />
-      <Action Id="TrwSubjectVC_ImportBayDeals_Action" Caption="Импорт Договоров Смежников" />
+      <Action Id="TrwSubjectVC_ImportBayDeals_Action" Caption="Импорт Смежников по объему" />
+      <Action Id="TrwSubjectVC_ImportBayDeals2Action" Caption="Импорт Смежников по Корпорации" />
       <Action Id="TrwSubjectVC_ImportSaleDeals_Action" Caption="Импорт Договоров Заказчика" />
     </Actions>
   </ActionDesign>
@@ -1301,9 +1302,11 @@
         <LocalizationItem Name="ADDENDUM" Value="Доп.Согл." />
         <LocalizationItem Name="CONTRACT" Value="Договор" />
       </LocalizationGroup>
-      <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.Deal.DealStates">
-        <LocalizationItem Name="DEAL_CLOSED" Value="Закрыт" />
-        <LocalizationItem Name="DEAL_CONCLUDED" Value="Заключен" />
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.Deal.DealStates" Value="Статус сделки">
+        <LocalizationItem Name="DEAL_CLOSED" Value="Исполнен" />
+        <LocalizationItem Name="DEAL_CONCLUDED" Value="Действующий" />
+        <LocalizationItem Name="DEAL_DECLINE" Value="Отклонен" />
+        <LocalizationItem Name="DEAL_DELETED" Value="Удален" />
         <LocalizationItem Name="DEAL_FORMATION" Value="Оформление" />
         <LocalizationItem Name="DEAL_PROJECT" Value="Проект" />
         <LocalizationItem Name="DEAL_RESOLVED" Value="Подписан" />
@@ -1358,6 +1361,12 @@
         <LocalizationItem Name="AGREGATE" Value="Сводный" />
         <LocalizationItem Name="FINANCE" Value="Финансовый" />
         <LocalizationItem Name="TECHNICAL" Value="Технический" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.crmActState" Value="Статус акта">
+        <LocalizationItem Name="ACT_CONFIRMED" Value="Подтвержден" />
+        <LocalizationItem Name="ACT_DECLINE" Value="Отклонен" />
+        <LocalizationItem Name="ACT_DELETED" Value="Удален" />
+        <LocalizationItem Name="ACT_NEW" Value="Новый" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.CRM.Party.crmPartyPersonInScience" Value="Орг.Научные">
         <LocalizationItem Name="PERSON_NOT_SCIENCE" Value="Другие" />
@@ -1614,7 +1623,20 @@
       </Layout>
     </DetailView>
     <ListView Id="crmContract_ListView" Caption="Договора" />
-    <ListView Id="crmContractDeal_ListView" Caption="Простые Договора" />
+    <ListView Id="crmContractDeal_ListView" Caption="Простые Договора">
+      <Filters>
+        <Filter Id="Concluded" Caption="Действующие" />
+        <Filter Id="Archive" Caption="Архив" />
+        <Filter Id="All" Caption="Все" />
+      </Filters>
+    </ListView>
+    <ListView Id="crmContractDeal_LookupListView">
+      <Filters>
+        <Filter Id="Concluded" Caption="Действующие" />
+        <Filter Id="Archive" Caption="Архив" />
+        <Filter Id="All" Caption="Все" />
+      </Filters>
+    </ListView>
     <DetailView Id="crmContractDealFilter01_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

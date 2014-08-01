@@ -10,6 +10,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 //
+using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.Trw.Subject;
 using IntecoAG.ERM.Trw.Budget.Period;
@@ -74,6 +75,11 @@ namespace IntecoAG.ERM.Trw.Budget {
         [Association("TrwBudgetPeriod-TrwBudgetPeriodDoc"), Aggregated]
         public XPCollection<TrwBudgetPeriodDoc> BudgetPeriodDocs {
             get { return GetCollection<TrwBudgetPeriodDoc>("BudgetPeriodDocs"); }
+        }
+
+        [Association("TrwBudgetPeriod-crmParty")]
+        public XPCollection<crmCParty> CorporationPartys {
+            get { return GetCollection<crmCParty>("CorporationPartys"); }
         }
 
         private csValuta _Valuta;

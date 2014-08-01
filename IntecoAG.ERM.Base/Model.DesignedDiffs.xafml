@@ -308,6 +308,12 @@
     <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.14.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
+    <DetailView Id="crmAct_DetailView">
+      <Items>
+        <PropertyEditor Id="Lines" DataSourceCriteria="" />
+      </Items>
+    </DetailView>
+    <ListView Id="crmAct_Lines_ListView" ActiveFilterString="" DetailViewID="" />
     <ListView Id="crmBank_LookupListView">
       <Columns>
         <ColumnInfo Id="Name" AllowEdit="False" />
@@ -635,27 +641,50 @@
     <ListView Id="crmContract_ListView" AllowDelete="False" AllowNew="False" />
     <ListView Id="crmContractDeal_ListView" AllowDelete="False" AllowNew="False" AllowEdit="False" Criteria="" UseServerMode="True" ShowFindPanel="False">
       <Columns>
+        <ColumnInfo Id="TrwContractMarket" Index="-1" />
+        <ColumnInfo Id="TrwCustomerParty" Index="-1" />
+        <ColumnInfo Id="TrwDate" Index="-1" />
+        <ColumnInfo Id="TrwDateSigning" Index="-1" />
+        <ColumnInfo Id="TrwDateValidFrom" Index="-1" />
+        <ColumnInfo Id="TrwDateValidToFact" Index="-1" />
+        <ColumnInfo Id="TrwDateValidToPlan" Index="-1" />
+        <ColumnInfo Id="TrwInternalNumber" Index="-1" />
+        <ColumnInfo Id="TrwNumber" Index="-1" />
+        <ColumnInfo Id="TrwObligationCurrency" Index="-1" />
+        <ColumnInfo Id="TrwObligationSumma" Index="-1" />
+        <ColumnInfo Id="TrwPaymentCurrency" Index="-1" />
+        <ColumnInfo Id="TrwSubject" Index="-1" />
+        <ColumnInfo Id="TrwSupplierParty" Index="-1" />
+        <ColumnInfo Id="TrwVATRate" Index="-1" />
         <ColumnInfo Id="Delo" Index="0" />
-        <ColumnInfo Id="DocMunber" PropertyName="ContractDocument.Number" Index="1" IsNewNode="True" />
-        <ColumnInfo Id="Date" PropertyName="ContractDocument.Date" Index="2" IsNewNode="True" />
-        <ColumnInfo Id="Category" Index="3" AllowEdit="False" LookupProperty="FullCode" Removed="True" />
+        <ColumnInfo Id="Category" PropertyName="Category" LookupProperty="FullCode" Index="1" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="FinOrder" PropertyName="Current.Order" Index="2" IsNewNode="True" />
         <ColumnInfo Id="ContractDocument.DocumentCategory" Index="3" Removed="True" />
         <ColumnInfo Id="ContractDocument.FullName" Index="3" Removed="True" />
-        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="10" Index="3" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="DocMunber" PropertyName="ContractDocument.Number" Index="3" IsNewNode="True" />
         <ColumnInfo Id="ContractDocument.Number" Index="4" Removed="True" />
-        <ColumnInfo Id="State" Index="4" AllowEdit="False" />
+        <ColumnInfo Id="Date" PropertyName="ContractDocument.Date" Index="4" IsNewNode="True" />
         <ColumnInfo Id="ContractDocument.Date" Index="5" Removed="True" />
-        <ColumnInfo Id="Customer" Index="5" AllowEdit="False" />
-        <ColumnInfo Id="Supplier" Index="6" AllowEdit="False" />
-        <ColumnInfo Id="CuratorDepartment" Index="7" AllowEdit="False" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="10" Index="5" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="State" Index="6" AllowEdit="False" />
+        <ColumnInfo Id="Customer" Index="7" AllowEdit="False" />
         <ColumnInfo Id="DateRegistration" Index="7" AllowEdit="False" Removed="True" />
         <ColumnInfo Id="DepartmentRegistrator" Index="8" Removed="True" />
-        <ColumnInfo Id="UserRegistrator" Index="8" AllowEdit="False" />
+        <ColumnInfo Id="Supplier" Index="8" AllowEdit="False" />
         <ColumnInfo Id="ContractKind" Index="9" AllowEdit="False" Removed="True" />
+        <ColumnInfo Id="CuratorDepartment" Index="9" AllowEdit="False" />
+        <ColumnInfo Id="UserRegistrator" Index="10" AllowEdit="False" />
         <ColumnInfo Id="Current" Index="11" Removed="True" />
+        <ColumnInfo Id="TRVType" Index="11" />
+        <ColumnInfo Id="TRVContractor" Index="12" />
         <ColumnInfo Id="Contract" Removed="True" />
         <ColumnInfo Id="ContractDocument.Contract" Removed="True" />
       </Columns>
+      <Filters CurrentFilterId="Concluded">
+        <Filter Id="Concluded" Criteria="[State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_PROJECT# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_FORMATION# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_CONCLUDED#" Index="0" IsNewNode="True" />
+        <Filter Id="Archive" Criteria="[State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_CLOSED# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_DELETED# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_DECLINE#" Index="1" IsNewNode="True" />
+        <Filter Id="All" IsNewNode="True" />
+      </Filters>
     </ListView>
     <ListView Id="crmContractDeal_LookupListView" AllowDelete="False" AllowNew="False" Criteria="[State] &lt;&gt; ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_DELETED#">
       <Columns>
@@ -664,10 +693,10 @@
         <ColumnInfo Id="Customer" PropertyName="Customer" IsNewNode="True" />
         <ColumnInfo Id="Supplier" PropertyName="Supplier" IsNewNode="True" />
       </Columns>
-      <Filters CurrentFilterId="AllNotClosed">
-        <Filter Id="MyNotClosed" Index="0" Criteria="[State] &lt;&gt; ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_CLOSED# And [UserRegistrator] = ERMCurrentUser()" IsNewNode="True" />
-        <Filter Id="AllNotClosed" Criteria="[State] &lt;&gt; ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_CLOSED#" Index="1" IsNewNode="True" />
-        <Filter Id="All" Index="2" IsNewNode="True" />
+      <Filters CurrentFilterId="Concluded">
+        <Filter Id="Concluded" Criteria="[State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_PROJECT# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_FORMATION# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_CONCLUDED#" Index="0" IsNewNode="True" />
+        <Filter Id="Archive" Criteria="[State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_CLOSED# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_DELETED# Or [State] = ##Enum#IntecoAG.ERM.CRM.Contract.Deal.DealStates,DEAL_DECLINE#" Index="1" IsNewNode="True" />
+        <Filter Id="All" IsNewNode="True" />
       </Filters>
     </ListView>
     <ListView Id="crmContractDeal_Subjects_ListView" AllowDelete="False" AllowNew="False" />
@@ -995,6 +1024,12 @@
       </Layout>
     </DetailView>
     <ListView Id="crmDealRegistrationStatistics_ListView" CollectionDataSource="" />
+    <ListView Id="crmDealVersion_Acts_ListView">
+      <Columns>
+        <ColumnInfo Id="Deal" Index="-1" />
+        <ColumnInfo Id="IsNotNumber" Index="-1" />
+      </Columns>
+    </ListView>
     <ListView Id="crmDealVersion_DealVersions_ListView" AllowDelete="False" AllowNew="False">
       <Columns>
         <ColumnInfo Id="DealState" Index="0" Removed="True" />
@@ -1180,7 +1215,7 @@
               </LayoutGroup>
               <LayoutItem Id="ObligationUnits" ViewItem="ObligationUnits" Index="2" CaptionLocation="Top" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="Partys" Index="5" IsNewNode="True">
+            <LayoutGroup Id="Partys" Index="3" IsNewNode="True">
               <TabbedGroup Id="PartysTabs" IsNewNode="True">
                 <LayoutGroup Id="Customer" IsNewNode="True">
                   <LayoutItem Id="Customer.Party" ViewItem="Customer.Party" Index="0" IsNewNode="True" />
@@ -1216,10 +1251,13 @@
                 </LayoutGroup>
               </TabbedGroup>
             </LayoutGroup>
-            <LayoutGroup Id="DealVersions" Index="6" ShowCaption="True" IsNewNode="True">
+            <LayoutGroup Id="Acts" Index="4" IsNewNode="True">
+              <LayoutItem Id="Acts" ViewItem="Acts" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="DealVersions" Index="5" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="DealVersions" ViewItem="DealVersions" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="ContractDocuments" Index="7" ShowCaption="True" IsNewNode="True">
+            <LayoutGroup Id="ContractDocuments" Index="6" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="Registrator" ViewItem="Registrator" Index="0" IsNewNode="True" />
               <LayoutItem Id="Curator" ViewItem="Curator" Index="1" IsNewNode="True" />
               <LayoutItem Id="ContractDocuments" ViewItem="ContractDocuments" ShowCaption="False" Index="2" IsNewNode="True" />
@@ -1433,9 +1471,10 @@
                 </LayoutGroup>
               </TabbedGroup>
             </LayoutGroup>
+            <LayoutGroup Id="Acts" Index="4" />
             <LayoutGroup Id="CurrentCost.DownCols" Index="4" Removed="True" />
-            <LayoutGroup Id="DealVersions" Index="4" />
-            <LayoutGroup Id="ContractDocuments" Index="5">
+            <LayoutGroup Id="DealVersions" Index="5" />
+            <LayoutGroup Id="ContractDocuments" Index="6">
               <LayoutItem Id="Registrator" ViewItem="Registrator" Index="0" IsNewNode="True" />
               <LayoutItem Id="Curator" ViewItem="Curator" Index="1" IsNewNode="True" />
               <LayoutItem Id="ContractDocuments" Index="2" ViewItem="ContractDocuments" />
@@ -1443,10 +1482,10 @@
             <LayoutGroup Id="Subjects" Index="6" Removed="True">
               <LayoutItem Id="Subjects" ViewItem="Subjects" Removed="True" />
             </LayoutGroup>
-            <LayoutGroup Id="SubjectsGroup" Index="6" IsNewNode="True">
+            <LayoutGroup Id="SubjectsGroup" Index="7" IsNewNode="True">
               <LayoutItem Id="Subjects" ViewItem="Subjects" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="AuditTrailGroup" Index="7" IsNewNode="True">
+            <LayoutGroup Id="AuditTrailGroup" Index="8" IsNewNode="True">
               <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="AuditTrail" Removed="True">
@@ -3015,12 +3054,12 @@
             <LayoutGroup Id="Common" IsNewNode="True">
               <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
                 <LayoutGroup Id="TrwBudgetPeriodDoc" Index="0" ShowCaption="False" IsNewNode="True">
-                  <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="Number" ViewItem="Number" ShowCaption="" Index="1" IsNewNode="True" />
-                  <LayoutItem Id="Date" ViewItem="Date" ShowCaption="" Index="2" IsNewNode="True" />
+                  <LayoutItem Id="Name" ViewItem="Name" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="Number" ViewItem="Number" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="Date" ViewItem="Date" Index="2" IsNewNode="True" />
                 </LayoutGroup>
                 <LayoutGroup Id="csCComponent" Index="1" ShowCaption="False" IsNewNode="True">
-                  <LayoutItem Id="ComponentType" ViewItem="ComponentType" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="ComponentType" ViewItem="ComponentType" Index="0" IsNewNode="True" />
                 </LayoutGroup>
               </LayoutGroup>
             </LayoutGroup>
@@ -3055,13 +3094,13 @@
             <LayoutGroup Id="Common" Index="1" IsNewNode="True">
               <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
                 <LayoutGroup Id="TrwBudgetPeriodDocDeal" Index="0" ShowCaption="False" IsNewNode="True">
-                  <LayoutItem Id="DocInData" ViewItem="DocInData" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="DocBSR" ViewItem="DocBSR" ShowCaption="" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="DocInData" ViewItem="DocInData" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="DocBSR" ViewItem="DocBSR" Index="1" IsNewNode="True" />
                 </LayoutGroup>
                 <LayoutGroup Id="TrwBudgetPeriodDoc" Index="1" ShowCaption="False" IsNewNode="True">
-                  <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="Number" ViewItem="Number" ShowCaption="" Index="1" IsNewNode="True" />
-                  <LayoutItem Id="Date" ViewItem="Date" ShowCaption="" Index="2" IsNewNode="True" />
+                  <LayoutItem Id="Name" ViewItem="Name" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="Number" ViewItem="Number" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="Date" ViewItem="Date" Index="2" IsNewNode="True" />
                 </LayoutGroup>
               </LayoutGroup>
             </LayoutGroup>

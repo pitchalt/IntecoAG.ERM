@@ -99,24 +99,37 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
             get { return this.ContractDeal.State; }
         }
         //
-        [Action(Caption = "Закрыть", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_FORMATION'",
+        [Action(Caption = "Исполнен", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_CONCLUDED'",
                 AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
         public void DealClose() {
             this.ContractDeal.State = DealStates.DEAL_CLOSED;
             OnChanged("DealState");
         }
-        [Action(Caption = "Удалить", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_FORMATION'", 
+        [Action(Caption = "Удален", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_FORMATION' || ContractDeal.State == 'DEAL_PROJECT'", 
                 AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
         public void DealDelete() {
             this.ContractDeal.State = DealStates.DEAL_DELETED;
             OnChanged("DealState");
         }
-        [Action(Caption = "Оформление", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_CLOSED' || ContractDeal.State == 'DEAL_DELETED' ",
+        [Action(Caption = "Отклонен", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_FORMATION' || ContractDeal.State == 'DEAL_PROJECT'",
                 AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
-        public void DealReFormat() {
-            this.ContractDeal.State = DealStates.DEAL_FORMATION;
+        public void DealDecline() {
+            this.ContractDeal.State = DealStates.DEAL_DECLINE;
             OnChanged("DealState");
         }
+        [Action(Caption = "Действующий", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_CLOSED' || ContractDeal.State == 'DEAL_FORMATION' ||  ContractDeal.State == 'DEAL_PROJECT'",
+                AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
+        public void DealConcluded() {
+            this.ContractDeal.State = DealStates.DEAL_CONCLUDED;
+            OnChanged("DealState");
+        }
+        [Action(Caption = "Проект", TargetObjectsCriteria = "ContractDeal.State == 'DEAL_CONCLUDED' || ContractDeal.State == 'DEAL_DELETED' ||  ContractDeal.State == 'DEAL_DECLINE'",
+                AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
+        public void DealProject() {
+            this.ContractDeal.State = DealStates.DEAL_PROJECT;
+            OnChanged("DealState");
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -415,6 +428,12 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         public virtual fmCOrder Order {
             get { return _Order; }
             set { SetPropertyValue<fmCOrder>("Order", ref _Order, value); }
+        }
+
+        [Aggregated]
+        [PersistentAlias("ContractDeal.Acts")]
+        public XPCollection<crmAct> Acts {
+            get { return ContractDeal.Acts; }
         }
 
         [NonPersistent]

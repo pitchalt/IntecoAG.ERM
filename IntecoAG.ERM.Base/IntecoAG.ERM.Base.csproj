@@ -318,6 +318,7 @@
     <Compile Include="CRM\Contract\StageMain-Stages.cs" />
     <Compile Include="CRM\Contract\StageMain.cs" />
     <Compile Include="CRM\Contract\StageStructure.cs" />
+    <Compile Include="CRM\crmAct.cs" />
     <Compile Include="CRM\crmCSettingsContract.cs" />
     <Compile Include="CRM\Party\Bank.cs" />
     <Compile Include="CRM\Party\BankAccount.cs" />
@@ -1041,6 +1042,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CRM\Contract\Ru\" />
+    <Folder Include="CRM\Fact\" />
     <Folder Include="CS\Task\" />
     <Folder Include="Documentation\Trw\" />
     <Folder Include="Trw\Common\" />

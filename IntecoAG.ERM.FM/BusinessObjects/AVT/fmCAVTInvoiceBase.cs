@@ -14,6 +14,7 @@ using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 //
 using IntecoAG.ERM.CS;
+using IntecoAG.ERM.CS.Common;
 using IntecoAG.ERM.CS.Country;
 using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CS.Finance;
@@ -34,6 +35,16 @@ namespace IntecoAG.ERM.FM.AVT {
     [NavigationItem("AVT")]
     [VisibleInReports]
     [DefaultProperty("InvoiceName")]
+    [LikeSearchPathList(new string[] { 
+        "Number", 
+        "RegNumber", 
+        "Current.Customer.Name",
+        "Current.Customer.INN",
+        "Current.Customer.AddressLegal.AddressString",
+        "Current.Supplier.Name",
+        "Current.Supplier.INN",
+        "Current.Supplier.AddressLegal.AddressString",
+    })]
     public class fmCAVTInvoiceBase : csCComponent {
         public fmCAVTInvoiceBase(Session ses)
             : base(ses) {

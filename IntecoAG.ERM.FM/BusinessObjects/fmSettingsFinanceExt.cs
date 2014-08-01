@@ -22,7 +22,7 @@ using IntecoAG.ERM.FM.Order;
 //
 namespace IntecoAG.ERM.FM {
 
-    [Persistent("fmSettingsFinance")]
+    [Persistent("fmSettingsFinanceExt")]
     [MapInheritance(MapInheritanceType.OwnTable)]
     public class fmCSettingsFinanceExt: csCSettings {
         protected internal fmCSettingsFinanceExt(Session ses)

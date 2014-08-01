@@ -47,12 +47,34 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
     /// Статусы сделки
     /// </summary>
     public enum DealStates {
-        DEAL_PROJECT = 1,   // Проект
-        DEAL_FORMATION = 2,  // Оформление
-        DEAL_RESOLVED = 3,  // Урегулирование
-        DEAL_CONCLUDED = 4,  // Заключён
-        DEAL_CLOSED = 5,  // Закрыт
-        DEAL_DELETED = 10  // Удален
+        /// <summary>
+        /// Проект
+        /// </summary>
+        DEAL_PROJECT = 1,
+        /// <summary>
+        /// Оформление
+        /// </summary>
+        DEAL_FORMATION = 2,
+        /// <summary>
+        /// Урегулирование
+        /// </summary>
+        DEAL_RESOLVED = 3,
+        /// <summary>
+        /// Заключен
+        /// </summary>
+        DEAL_CONCLUDED = 4,
+        /// <summary>
+        /// Исполнен
+        /// </summary>
+        DEAL_CLOSED = 5, 
+        /// <summary>
+        /// Удален
+        /// </summary>
+        DEAL_DELETED = 10,
+        /// <summary>
+        /// Отклонен
+        /// </summary>
+        DEAL_DECLINE = 11,
     }
 
     public enum KindOfDeal {
@@ -299,6 +321,14 @@ namespace IntecoAG.ERM.CRM.Contract.Deal
         public XPCollection<fmCSubject> Subjects {
             get {
                 return GetCollection<fmCSubject>("Subjects");
+            }
+        }
+
+        [Association("CrmContractDeal-CrmAct")]
+        [Aggregated]
+        public XPCollection<crmAct> Acts {
+            get {
+                return GetCollection<crmAct>("Acts");
             }
         }
 

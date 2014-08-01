@@ -51,6 +51,17 @@ namespace IntecoAG.ERM.Trw.Subject {
 
         }
 
+        private void ImportBayDeals2Action_Execute(object sender, PopupWindowShowActionExecuteEventArgs e) {
+            TrwSubject trw_subj = e.CurrentObject as TrwSubject;
+            if (trw_subj == null) return;
+            using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
+                trw_subj = os.GetObject<TrwSubject>(trw_subj);
+                TrwSubjectLogic.FillBayDeals2(os, trw_subj, _ImportActionParameters);
+                os.CommitChanges();
+            }
+            _ImportActionParameters = null;
+        }
+
         private void ImportBayDealsAction_Execute(object sender, PopupWindowShowActionExecuteEventArgs e) {
             TrwSubject trw_subj = e.CurrentObject as TrwSubject;
             if (trw_subj == null) return;
@@ -62,6 +73,14 @@ namespace IntecoAG.ERM.Trw.Subject {
             _ImportActionParameters = null;
         }
 
+        private void ImportBayDeals2Action_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e) {
+            IObjectSpace os = Application.CreateObjectSpace();
+            _ImportActionParameters = new TrwSubjectImportDealParameters();
+            _ImportActionParameters.MaxCount = 5;
+            _ImportActionParameters.VolumePercent = 0.6M;
+            _ImportActionParameters.CreateOtherDeal = true;
+            e.View = Application.CreateDetailView(os, _ImportActionParameters);
+        }
         private void ImportBayDealsAction_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e) {
             IObjectSpace os = Application.CreateObjectSpace();
             _ImportActionParameters = new TrwSubjectImportDealParameters();
@@ -92,6 +111,8 @@ namespace IntecoAG.ERM.Trw.Subject {
                 }
             } 
         }
+
+
     }
 
     [NonPersistent]

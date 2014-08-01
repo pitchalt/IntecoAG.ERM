@@ -25,7 +25,7 @@ namespace IntecoAG.ERM.Trw.Budget {
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) { 
+            using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
                 period = os.GetObject<TrwBudgetPeriod>(period);
                 StreamReader reader = File.OpenText(dialog.FileName);
                 TrwBudgetPeriodLogic.ImportInContractBSR(period, os, reader);

@@ -22,6 +22,7 @@ using IntecoAG.ERM.FM.Docs;
 using IntecoAG.ERM.HRM.Organization;
 //
 namespace IntecoAG.ERM.FM.AVT {
+
     [DC.DomainComponent]
     public class fmCAVTInvoicePay {
         public fmCAVTInvoicePay() { }
@@ -58,9 +59,21 @@ namespace IntecoAG.ERM.FM.AVT {
             return pays;
         }
     }
+
     /// <summary>
     /// Редакция счета-фактуры
     /// </summary>
+    [LikeSearchPathList(new string[] { 
+        "Number", 
+//        "RegNumber", 
+        "Customer.Name",
+        "Customer.INN",
+        "Customer.AddressLegal.AddressString",
+        "Supplier.Name",
+        "Supplier.INN",
+        "Supplier.AddressLegal.AddressString"
+    })]
+
     [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "AVTInvoice;VersionNumber")]
     [VisibleInReports]
     [Persistent("fmAVTInvoiceVersion")]

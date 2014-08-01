@@ -26,6 +26,7 @@ namespace IntecoAG.ERM.Trw.Subject {
             this.components = new System.ComponentModel.Container();
             this.ImportSaleDealsAction = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
             this.ImportBayDealsAction = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
+            this.ImportBayDeals2Action = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
             // 
             // ImportSaleDealsAction
             // 
@@ -67,6 +68,26 @@ namespace IntecoAG.ERM.Trw.Subject {
             this.ImportBayDealsAction.CustomizePopupWindowParams += new DevExpress.ExpressApp.Actions.CustomizePopupWindowParamsEventHandler(this.ImportBayDealsAction_CustomizePopupWindowParams);
             this.ImportBayDealsAction.Execute += new DevExpress.ExpressApp.Actions.PopupWindowShowActionExecuteEventHandler(this.ImportBayDealsAction_Execute);
             // 
+            // ImportBayDeals2Action
+            // 
+            this.ImportBayDeals2Action.AcceptButtonCaption = null;
+            this.ImportBayDeals2Action.CancelButtonCaption = null;
+            this.ImportBayDeals2Action.Caption = "ImportBayDeals";
+            this.ImportBayDeals2Action.Category = "Tools";
+            this.ImportBayDeals2Action.ConfirmationMessage = null;
+            this.ImportBayDeals2Action.Id = "TrwSubjectVC_ImportBayDeals2Action";
+            this.ImportBayDeals2Action.ImageName = null;
+            this.ImportBayDeals2Action.Shortcut = null;
+            this.ImportBayDeals2Action.Tag = null;
+            this.ImportBayDeals2Action.TargetObjectsCriteria = "Status == \'TRW_SUBJECT_CONF_SUBJECT_LIST\'";
+            this.ImportBayDeals2Action.TargetViewId = null;
+            this.ImportBayDeals2Action.TargetViewNesting = DevExpress.ExpressApp.Nesting.Root;
+            this.ImportBayDeals2Action.TargetViewType = DevExpress.ExpressApp.ViewType.DetailView;
+            this.ImportBayDeals2Action.ToolTip = null;
+            this.ImportBayDeals2Action.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
+            this.ImportBayDeals2Action.CustomizePopupWindowParams += new DevExpress.ExpressApp.Actions.CustomizePopupWindowParamsEventHandler(this.ImportBayDeals2Action_CustomizePopupWindowParams);
+            this.ImportBayDeals2Action.Execute += new DevExpress.ExpressApp.Actions.PopupWindowShowActionExecuteEventHandler(this.ImportBayDeals2Action_Execute);
+            // 
             // TrwSubjectVC
             // 
             this.TargetObjectType = typeof(IntecoAG.ERM.Trw.Subject.TrwSubject);
@@ -77,5 +98,6 @@ namespace IntecoAG.ERM.Trw.Subject {
 
         private DevExpress.ExpressApp.Actions.PopupWindowShowAction ImportSaleDealsAction;
         private DevExpress.ExpressApp.Actions.PopupWindowShowAction ImportBayDealsAction;
+        private DevExpress.ExpressApp.Actions.PopupWindowShowAction ImportBayDeals2Action;
     }
 }
