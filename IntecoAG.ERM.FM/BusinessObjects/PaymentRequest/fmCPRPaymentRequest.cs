@@ -269,6 +269,9 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
             }
         }
 
+        /// <summary>
+        /// Номер документа основания
+        /// </summary>
         [Size(50)]
         [RuleRequiredField]
         public String ExtDocNumber {
@@ -279,7 +282,7 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         }
 
         /// <summary>
-        /// Дата создания документа заявки
+        /// Дата документа основания
         /// </summary>
         [RuleRequiredField]
         public DateTime ExtDocDate {

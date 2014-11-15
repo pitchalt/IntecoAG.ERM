@@ -215,7 +215,7 @@
           <Item Id="fmAccountBase_ListView" Index="0" Visible="False" />
           <Item Id="FinancialDocuments" Shortcut="" Index="1" IsNewNode="True">
             <Items IsNewNode="True">
-              <Item Id="fmCPRPaymentRequest" Index="4" ViewId="fmCPRPaymentRequest_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="fmCPRPaymentRequest" Index="4" ObjectKey="" ViewId="fmCPRPaymentRequest_VariantView" IsNewNode="True" />
               <Item Id="fmCDocRCB" Index="5" ViewId="fmCDocRCB_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="fmCPRRegistrator" Index="6" ViewId="fmCPRRegistrator_ListView" ObjectKey="" IsNewNode="True" />
               <Item Id="PaymentRequestMemorandum" Index="14" Caption="PaymentRequestMemorandum" ViewId="fmPaymentRequestMemorandum_ListView" IsNewNode="True" />
@@ -1542,18 +1542,13 @@
                   <LayoutItem Id="OverheadType" Index="0" ViewItem="OverheadType" IsNewNode="True" />
                   <LayoutItem Id="OverheadStandart" ViewItem="OverheadStandart" Index="1" CaptionLocation="Default" RelativeSize="50" MaxSize="300, 0" MinSize="50, 0" IsNewNode="True" />
                 </LayoutGroup>
-                <LayoutItem Id="PlanOverheadType" Index="1" RelativeSize="20" CaptionLocation="Top" ViewItem="PlanOverheadType" IsNewNode="True" />
+                <LayoutGroup Id="RealTypeG" Index="1" IsNewNode="True">
+                  <LayoutItem Id="PlanOverheadType" Index="1" RelativeSize="20" CaptionLocation="Top" ViewItem="PlanOverheadType" IsNewNode="True" />
+                </LayoutGroup>
                 <LayoutGroup Id="KoeffG" RelativeSize="30" IsNewNode="True">
                   <LayoutItem Id="FixKoeff" Index="0" RelativeSize="0" CaptionLocation="Default" ViewItem="FixKoeff" IsNewNode="True" />
                   <LayoutItem Id="FixKoeffOZM" RelativeSize="0" CaptionLocation="Default" Index="1" ViewItem="FixKoeffOZM" IsNewNode="True" />
                 </LayoutGroup>
-              </LayoutGroup>
-              <LayoutGroup Id="BuhAnal" Index="5" Direction="Horizontal" IsNewNode="True">
-                <LayoutItem Id="AnalitycAccounterType" ViewItem="AnalitycAccouterType" Index="0" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="BuhAccount" ViewItem="BuhAccount" Index="1" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="BuhOverheadType" ViewItem="BuhOverheadType" Index="2" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="AnalitycAVT" ViewItem="AnalitycAVT" Index="3" CaptionLocation="Top" IsNewNode="True" />
-                <LayoutItem Id="IBSSystemsProtect" ViewItem="IBSSystemsProtect" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
               <LayoutItem Id="SourceParty" ViewItem="SourceParty" Index="6" IsNewNode="True" />
               <LayoutGroup Id="Source" Index="7" Direction="Horizontal" IsNewNode="True">
@@ -1566,11 +1561,22 @@
                 <LayoutItem Id="Description" ViewItem="Description" Index="0" CaptionLocation="Top" IsNewNode="True" />
               </LayoutGroup>
             </LayoutGroup>
-            <LayoutGroup Id="ManageDocs" IsNewNode="True">
+            <LayoutGroup Id="BuhGroup" Index="1" IsNewNode="True">
+              <LayoutItem Id="BuhOverheadType" ViewItem="BuhOverheadType" Index="0" CaptionLocation="Left" IsNewNode="True" />
+              <LayoutGroup Id="BuhAnal" Index="5" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="AnalitycAccounterType" ViewItem="AnalitycAccouterType" Index="0" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="BuhAccount" ViewItem="BuhAccount" Index="1" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="AnalitycAVT" ViewItem="AnalitycAVT" Index="3" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="IBSSystemsProtect" ViewItem="IBSSystemsProtect" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="ManageDocs" Index="2" IsNewNode="True">
               <LayoutItem Id="ManageDocCurrent" Index="0" ViewItem="ManageDocCurrent" IsNewNode="True" />
               <LayoutItem Id="ManageDocProject" ViewItem="ManageDocProject" Index="1" IsNewNode="True" />
               <LayoutItem Id="ManageDocs" Index="2" CaptionLocation="Top" ViewItem="ManageDocs" IsNewNode="True" />
             </LayoutGroup>
+            <LayoutGroup Id="FinIndexes" Index="3" IsNewNode="True" />
+            <LayoutGroup Id="AuditTrail" Index="4" IsNewNode="True" />
           </TabbedGroup>
           <LayoutGroup Id="ManageDocs_Group" Removed="True" />
           <LayoutGroup Id="SimpleEditors" Removed="True">
@@ -1804,6 +1810,35 @@
         <Filter Id="FilterAll" Criteria="" Index="8" IsNewNode="True" />
       </Filters>
     </ListView>
+    <ListView Id="fmCPRPaymentRequest_MasterDetailView" ClassName="IntecoAG.ERM.FM.PaymentRequest.fmCPRPaymentRequest" MasterDetailView="fmCPRPaymentRequest_ShortDetailView" MasterDetailMode="ListViewAndDetailView" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Name" PropertyName="Name" Width="400" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SumInString" PropertyName="SumInString" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="State" PropertyName="State" View="" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Number" PropertyName="Number" View="" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Date" PropertyName="Date" View="" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="ExtDocNumber" PropertyName="ExtDocNumber" View="" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="ExtDocDate" PropertyName="ExtDocDate" View="" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="PayDate" PropertyName="PayDate" View="" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Summ" PropertyName="Summ" View="" Width="50" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Valuta" PropertyName="Valuta" View="" Width="70" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="IPartyPayReceiver" PropertyName="IPartyPayReceiver" View="" Width="70" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" View="" Width="70" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Curator" PropertyName="Curator" View="" Width="70" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="TrwRefCode" PropertyName="TrwRefCode" Width="70" Index="23" IsNewNode="True" />
+      </Columns>
+      <Filters IsNewNode="True">
+        <Filter Id="FilterPlan" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,REGISTERED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED#" Index="0" IsNewNode="True" />
+        <Filter Id="FilterBudget" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET#" Index="1" IsNewNode="True" />
+        <Filter Id="FilterFinancial" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,SUSPENDED#" Index="2" IsNewNode="True" />
+        <Filter Id="FilterNotPayed" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,REGISTERED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,SUSPENDED#" Index="3" IsNewNode="True" />
+        <Filter Id="FilterNotDeclined_Copy" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,REGISTERED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,SUSPENDED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,PAYED#" Index="4" IsNewNode="True" />
+        <Filter Id="FilterFinancialInPayment" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT#" Index="5" IsNewNode="True" />
+        <Filter Id="FilterFinancialInBank" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BANK#" Index="6" IsNewNode="True" />
+        <Filter Id="FilterFinancialInPaymentOrInBank" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BANK#" Index="7" IsNewNode="True" />
+        <Filter Id="FilterAll" Criteria="" Index="8" IsNewNode="True" />
+      </Filters>
+    </ListView>
     <ListView Id="fmCPRPaymentRequest_PaySettlmentOfObligations_Memorandum_ListView" ClassName="IntecoAG.ERM.FM.PaymentRequest.fmCPRPaymentRequestObligation" AllowEdit="True" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="ComponentType" PropertyName="ComponentType" Width="70" Index="-1" IsNewNode="True" />
@@ -1829,6 +1864,87 @@
         <ColumnInfo Id="RepaymentTask" Removed="True" />
         <ColumnInfo Id="SumBalance" Removed="True" />
       </Columns>
+    </ListView>
+    <DetailView Id="fmCPRPaymentRequest_ShortDetailView" ClassName="IntecoAG.ERM.FM.PaymentRequest.fmCPRPaymentRequest" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="AuditTrail" PropertyName="AuditTrail" View="csCComponent_AuditTrail_ListView" IsNewNode="True" />
+        <PropertyEditor Id="Comment" PropertyName="Comment" IsNewNode="True" />
+        <PropertyEditor Id="ComponentType" PropertyName="ComponentType" IsNewNode="True" />
+        <PropertyEditor Id="Curator" PropertyName="Curator" IsNewNode="True" />
+        <PropertyEditor Id="Date" PropertyName="Date" IsNewNode="True" />
+        <PropertyEditor Id="DateBudget" PropertyName="DateBudget" IsNewNode="True" />
+        <PropertyEditor Id="DateContractOrPlan" PropertyName="DateContractOrPlan" IsNewNode="True" />
+        <PropertyEditor Id="DateFinance" PropertyName="DateFinance" IsNewNode="True" />
+        <PropertyEditor Id="DateInPayment" PropertyName="DateInPayment" IsNewNode="True" />
+        <PropertyEditor Id="DateRegister" PropertyName="DateRegister" IsNewNode="True" />
+        <PropertyEditor Id="DepartmentOfState" PropertyName="DepartmentOfState" IsNewNode="True" />
+        <PropertyEditor Id="Description" PropertyName="Description" IsNewNode="True" />
+        <PropertyEditor Id="ExtDocDate" PropertyName="ExtDocDate" IsNewNode="True" />
+        <PropertyEditor Id="ExtDocNumber" PropertyName="ExtDocNumber" IsNewNode="True" />
+        <PropertyEditor Id="FBKManager" PropertyName="FBKManager" IsNewNode="True" />
+        <PropertyEditor Id="IPartyPayCreditor" PropertyName="IPartyPayCreditor" IsNewNode="True" />
+        <PropertyEditor Id="IPartyPayDebitor" PropertyName="IPartyPayDebitor" IsNewNode="True" />
+        <PropertyEditor Id="IPartyPayReceiver" PropertyName="IPartyPayReceiver" IsNewNode="True" />
+        <PropertyEditor Id="IPartyPaySender" PropertyName="IPartyPaySender" IsNewNode="True" />
+        <PropertyEditor Id="Name" PropertyName="Name" IsNewNode="True" />
+        <PropertyEditor Id="Number" PropertyName="Number" IsNewNode="True" />
+        <PropertyEditor Id="OrderList" PropertyName="OrderList" IsNewNode="True" />
+        <PropertyEditor Id="PayDate" PropertyName="PayDate" IsNewNode="True" />
+        <PropertyEditor Id="PaymentSumm" PropertyName="PaymentSumm" IsNewNode="True" />
+        <PropertyEditor Id="PaymentValuta" PropertyName="PaymentValuta" IsNewNode="True" />
+        <PropertyEditor Id="PaySettlmentOfObligations" PropertyName="PaySettlmentOfObligations" View="fmCPRPaymentRequest_PaySettlmentOfObligations_ListView" IsNewNode="True" />
+        <PropertyEditor Id="Repayments" PropertyName="Repayments" View="fmCPRPaymentRequest_Repayments_ListView" IsNewNode="True" />
+        <PropertyEditor Id="State" PropertyName="State" IsNewNode="True" />
+        <PropertyEditor Id="SumInString" PropertyName="SumInString" IsNewNode="True" />
+        <PropertyEditor Id="Summ" PropertyName="Summ" IsNewNode="True" />
+        <PropertyEditor Id="TrwRefCode" PropertyName="TrwRefCode" IsNewNode="True" />
+        <PropertyEditor Id="Valuta" PropertyName="Valuta" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <TabbedGroup Id="Tabs" Index="2" IsNewNode="True">
+            <LayoutGroup Id="PaySettlmentOfObligations" Index="0" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="PaySettlmentOfObligations" ViewItem="PaySettlmentOfObligations" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Repayments" Index="1" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="Repayments" ViewItem="Repayments" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fmCPRPaymentRequest_VariantView" ClassName="IntecoAG.ERM.FM.PaymentRequest.fmCPRPaymentRequest" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Name" PropertyName="Name" Width="400" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SumInString" PropertyName="SumInString" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="State" PropertyName="State" View="" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Number" PropertyName="Number" View="" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Date" PropertyName="Date" View="" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="ExtDocNumber" PropertyName="ExtDocNumber" View="" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="ExtDocDate" PropertyName="ExtDocDate" View="" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="PayDate" PropertyName="PayDate" View="" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Summ" PropertyName="Summ" View="" Width="50" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Valuta" PropertyName="Valuta" View="" Width="70" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="IPartyPayReceiver" PropertyName="IPartyPayReceiver" View="" Width="70" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" View="" Width="70" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Curator" PropertyName="Curator" View="" Width="70" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="TrwRefCode" PropertyName="TrwRefCode" Width="70" Index="23" IsNewNode="True" />
+      </Columns>
+      <Filters IsNewNode="True">
+        <Filter Id="FilterPlan" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,REGISTERED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED#" Index="0" IsNewNode="True" />
+        <Filter Id="FilterBudget" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET#" Index="1" IsNewNode="True" />
+        <Filter Id="FilterFinancial" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,SUSPENDED#" Index="2" IsNewNode="True" />
+        <Filter Id="FilterNotPayed" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,REGISTERED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,SUSPENDED#" Index="3" IsNewNode="True" />
+        <Filter Id="FilterNotDeclined_Copy" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,REGISTERED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,ACCEPTED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BUDGET# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,SUSPENDED# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,PAYED#" Index="4" IsNewNode="True" />
+        <Filter Id="FilterFinancialInPayment" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT#" Index="5" IsNewNode="True" />
+        <Filter Id="FilterFinancialInBank" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BANK#" Index="6" IsNewNode="True" />
+        <Filter Id="FilterFinancialInPaymentOrInBank" Criteria="[State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_PAYMENT# Or [State] = ##Enum#IntecoAG.ERM.FM.PaymentRequest.PaymentRequestStates,IN_BANK#" Index="7" IsNewNode="True" />
+        <Filter Id="FilterAll" Criteria="" Index="8" IsNewNode="True" />
+      </Filters>
+      <Variants Current="@6cd41699-7b71-4bd5-b030-9aa9663c1098" IsNewNode="True">
+        <Variant Id="@6cd41699-7b71-4bd5-b030-9aa9663c1098" ViewID="fmCPRPaymentRequest_ListView" IsNewNode="True" />
+        <Variant Id="@9611c940-5eca-4a02-9fe0-95e2ec2e0815" ViewID="fmCPRPaymentRequest_MasterDetailView" IsNewNode="True" />
+      </Variants>
     </ListView>
     <DetailView Id="fmCPRPaymentRequestContract_DetailView">
       <HiddenActions Index="0" />

@@ -1097,6 +1097,7 @@
       <Layout>
         <LayoutGroup Id="Main">
           <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="BuhGroup" Caption="Бухгалтерия" />
             <LayoutGroup Id="ManageDocs" Caption="Заказ-Наряды" />
           </TabbedGroup>
         </LayoutGroup>
@@ -1131,6 +1132,36 @@
         <Filter Id="FilterFinancialInPaymentOrInBank" Caption="В оплате или в банке" />
         <Filter Id="FilterAll" Caption="Все" />
       </Filters>
+    </ListView>
+    <ListView Id="fmCPRPaymentRequest_MasterDetailView" Caption="Заявки на оплату">
+      <Filters>
+        <Filter Id="FilterPlan" Caption="В регистрации" />
+        <Filter Id="FilterBudget" Caption="В бюджетном отделе" />
+        <Filter Id="FilterFinancial" Caption="В финансовом отделе" />
+        <Filter Id="FilterNotPayed" Caption="Все не оплаченные" />
+        <Filter Id="FilterNotDeclined_Copy" Caption="Все не отклоненные" />
+        <Filter Id="FilterFinancialInPayment" Caption="В оплате" />
+        <Filter Id="FilterFinancialInBank" Caption="В банке" />
+        <Filter Id="FilterFinancialInPaymentOrInBank" Caption="В оплате или в банке" />
+        <Filter Id="FilterAll" Caption="Все" />
+      </Filters>
+    </ListView>
+    <ListView Id="fmCPRPaymentRequest_VariantView" Caption="Заявки на оплату">
+      <Filters>
+        <Filter Id="FilterPlan" Caption="В регистрации" />
+        <Filter Id="FilterBudget" Caption="В бюджетном отделе" />
+        <Filter Id="FilterFinancial" Caption="В финансовом отделе" />
+        <Filter Id="FilterNotPayed" Caption="Все не оплаченные" />
+        <Filter Id="FilterNotDeclined_Copy" Caption="Все не отклоненные" />
+        <Filter Id="FilterFinancialInPayment" Caption="В оплате" />
+        <Filter Id="FilterFinancialInBank" Caption="В банке" />
+        <Filter Id="FilterFinancialInPaymentOrInBank" Caption="В оплате или в банке" />
+        <Filter Id="FilterAll" Caption="Все" />
+      </Filters>
+      <Variants>
+        <Variant Id="@6cd41699-7b71-4bd5-b030-9aa9663c1098" Caption="Обычный список" />
+        <Variant Id="@9611c940-5eca-4a02-9fe0-95e2ec2e0815" Caption="Список с детализацией" />
+      </Variants>
     </ListView>
     <DetailView Id="fmCPRPaymentRequestContract_DetailView">
       <Layout>
