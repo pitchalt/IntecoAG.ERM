@@ -453,7 +453,9 @@
     <Compile Include="FM\fmCPaymentKBK.cs" />
     <Compile Include="FM\fmCPaymentKind.cs" />
     <Compile Include="FM\fmCPaymentTaxPeriod.cs" />
-    <Compile Include="FM\fmSettingsFinance.cs" />
+    <Compile Include="FM\fmSettingsFinance.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FM\Order\fmCOrder.cs" />
     <Compile Include="FM\Order\fmCOrderAnalityc.cs" />
     <Compile Include="FM\Order\fmCOrderOverhead.cs" />

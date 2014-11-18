@@ -189,7 +189,18 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         [Association("fmPRPaymentRequest-fmPRPaymentRequestObligation")]
         public fmCPRPaymentRequest PaymentRequestBase {
             get { return _PaymentRequestBase; }
-            set { SetPropertyValue<fmCPRPaymentRequest>("PaymentRequestBase", ref _PaymentRequestBase, value); }
+            set { 
+                SetPropertyValue<fmCPRPaymentRequest>("PaymentRequestBase", ref _PaymentRequestBase, value);
+                if (!IsLoading) {
+                    fmCPRPaymentRequestContract req_deal = value as fmCPRPaymentRequestContract;
+                    if (req_deal != null) {
+                        ContractDeal = req_deal.ContractDeal;
+                    }
+                    else {
+                        ContractDeal = null;
+                    }
+                }
+            }
         }
 
         #endregion

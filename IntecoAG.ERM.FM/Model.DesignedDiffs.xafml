@@ -2294,6 +2294,7 @@
         <ColumnInfo Id="Valuta" PropertyName="Valuta" Width="70" Index="9" IsNewNode="True" />
         <ColumnInfo Id="Summ" PropertyName="Summ" Width="50" Index="10" IsNewNode="True" />
         <ColumnInfo Id="PaymentRequestPartyPayReceiver" PropertyName="PaymentRequestBase.IPartyPayReceiver" Index="11" IsNewNode="True" />
+        <ColumnInfo Id="ContractDeal" PropertyName="ContractDeal" Index="12" IsNewNode="True" />
       </Columns>
     </ListView>
     <DetailView Id="fmCPRPaymentRequestObligationSingle_DetailView" ClassName="IntecoAG.ERM.FM.PaymentRequest.fmCPRPaymentRequestObligation" IsNewNode="True">

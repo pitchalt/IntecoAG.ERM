@@ -242,7 +242,13 @@
     <Compile Include="BusinessObjects\Docs\fmIDocument.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealFinal.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealPrepare.cs" />
-    <Compile Include="BusinessObjects\fmSettingsFinanceExt.cs" />
+    <Compile Include="BusinessObjects\FinPlan\FmFinPlanPlan.cs" />
+    <Compile Include="BusinessObjects\FinPlan\FmFinPlanBase.cs" />
+    <Compile Include="BusinessObjects\FinPlan\FmFinPlanDoc.cs" />
+    <Compile Include="BusinessObjects\FinPlan\FmFinPlanJournal.cs" />
+    <Compile Include="BusinessObjects\FinPlan\FmFinPlanOperation.cs" />
+    <Compile Include="BusinessObjects\FinPlan\FmFinPlanSubjectFull.cs" />
+    <Compile Include="BusinessObjects\FinPlan\FmFinPlanSubjectFullDoc.cs" />
     <Compile Include="BusinessObjects\Order\fmCOrderExViewController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -435,6 +441,7 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_238.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_234.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_232.cs" />
     <Compile Include="ERMFinancialModule.cs">

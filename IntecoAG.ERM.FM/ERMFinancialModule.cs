@@ -16,6 +16,7 @@ using IntecoAG.ERM.FM.ReportHelper;
 namespace IntecoAG.ERM.FM {
     public sealed partial class ERMFinancialModule : ModuleBase {
         public ERMFinancialModule() {
+//            DevExpress.Xpo.Metadata.ReflectionClassInfo.SuppressSuspiciousMemberInheritanceCheck = true;
             InitializeComponent();
         }
 

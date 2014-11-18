@@ -106,6 +106,9 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
                     } else if (this.PartyPayCreditor != null && this.PartyPayCreditor != null) {
                         // NOP
                     }
+                    foreach (fmCPRPaymentRequestObligation line in PaySettlmentOfObligations) { 
+                        line.ContractDeal = value;
+                    }
                     //if ((old.Supplier == value.Supplier || old.Supplier == value.Customer) && (old.Customer == value.Customer || old.Customer == value.Supplier)) {
                     //    // NOP
                     //}
