@@ -18,30 +18,27 @@ namespace IntecoAG.ERM.FM.FinPlan {
             base.AfterConstruction();
             // Place here your initialization code.
         }
-        [Size(64)]
-        [Persistent]
-        private String _Code;
-        [PersistentAlias("_Code")]
-        public String Code { 
-            get { return _Code; }
-        }
-        public void CodeSet(String code) {
-            SetPropertyValue<String>("Code", ref _Code, code);
-        }
 
         [Persistent("Journal")]
         [Aggregated]
-        protected FmFinPlanJournal _Journal;
+        protected FmJournal _Journal;
         [PersistentAlias("_Journal")]
-        public FmFinPlanJournal Journal {
+        public FmJournal Journal {
             get { return _Journal; }
         }
 
-        [PersistentAlias("Journal.Operations")]
-        [Aggregated]
-        public XPCollection<FmFinPlanOperation> Operations {
-            get { return _Journal.Operations; }
+        private XPCollection<FmJournalOperation> _Operations;
+        public XPCollection<FmJournalOperation> Operations {
+            get {
+                if (_Operations == null) {
+                    _Operations = new XPCollection<FmJournalOperation>(OperationsCriteria);
+                    _Operations.BindingBehavior = CollectionBindingBehavior.AllowNone;
+                }
+                return _Operations;
+            }
         }
+        public abstract CriteriaOperator OperationsCriteria { get; }
+
     }
 
 }

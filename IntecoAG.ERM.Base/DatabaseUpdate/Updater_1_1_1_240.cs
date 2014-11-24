@@ -17,14 +17,17 @@ using IntecoAG.ERM.Trw;
 using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.CS {
-    public class Updater_1_1_1_231 : ModuleUpdater {
-        public Updater_1_1_1_231(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
+    public class Updater_1_1_1_240 : ModuleUpdater {
+        public Updater_1_1_1_240(IObjectSpace objectSpace, Version currentDBVersion) : base(objectSpace, currentDBVersion) { }
 
         public override void UpdateDatabaseBeforeUpdateSchema() {
             base.UpdateDatabaseBeforeUpdateSchema();
-            if (this.CurrentDBVersion != new Version("1.1.1.231"))
+            if (this.CurrentDBVersion != new Version("1.1.1.239"))
                 return;
-            ExecuteNonQueryCommand("ALTER TABLE \"crmStage\" ALTER COLUMN \"Code\" TYPE character varying(30);", true);
+            DropTable("FmFinPlanDoc", false);
+            DropTable("FmFinPlanPlan", false);
+            DropTable("FmFinPlanOperation", false);
+            DropTable("FmFinPlanJournal", false);
         }
 
         //public void UpdateContractDeal(IObjectSpace os) {

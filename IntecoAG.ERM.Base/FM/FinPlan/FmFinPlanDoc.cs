@@ -15,29 +15,28 @@ using DevExpress.Persistent.Validation;
 namespace IntecoAG.ERM.FM.FinPlan {
 
     [Persistent("FmFinPlanDoc")]
-    [MapInheritance(MapInheritanceType.OwnTable)]
+//    [MapInheritance(MapInheritanceType.OwnTable)]
     public abstract class FmFinPlanDoc : FmFinPlanBase {
         public FmFinPlanDoc(Session session): base(session) {}
 
         public override void AfterConstruction() {
             base.AfterConstruction();
-            _Journal = new FmFinPlanJournal(this.Session);
-            _Journal.FinPlanDoc = this;
         }
+
+        //[Persistent("Journal")]
+        //[Aggregated]
+        //protected FmJournal _Journal;
+        //[PersistentAlias("_Journal")]
+        //public FmJournal Journal {
+        //    get { return _Journal; }
+        //}
+
 
 //        private FmFinPlanPlan _FinPlan;
 //        [Association("FmFinPlanPlan-FmFinPlanDoc")]
-        [NonPersistent]
-        public abstract FmFinPlanPlan FinPlan {
-            get;
-            //get { return _FinPlan; }
-            //set {
-            //    SetPropertyValue<FmFinPlanPlan>("FinPlan", ref _FinPlan, value);
-            //    if (!IsLoading) {
-            //        Journal.FinPlan = value;
-            //    }
-            //}
-        }
+
+//        [NonPersistent]
+        public abstract FmFinPlanPlan FinPlan { get; }
     }
 
 }

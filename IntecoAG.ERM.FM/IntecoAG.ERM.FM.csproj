@@ -242,13 +242,6 @@
     <Compile Include="BusinessObjects\Docs\fmIDocument.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealFinal.cs" />
     <Compile Include="BusinessObjects\Docs\Cache\fmIDocCacheInRealPrepare.cs" />
-    <Compile Include="BusinessObjects\FinPlan\FmFinPlanPlan.cs" />
-    <Compile Include="BusinessObjects\FinPlan\FmFinPlanBase.cs" />
-    <Compile Include="BusinessObjects\FinPlan\FmFinPlanDoc.cs" />
-    <Compile Include="BusinessObjects\FinPlan\FmFinPlanJournal.cs" />
-    <Compile Include="BusinessObjects\FinPlan\FmFinPlanOperation.cs" />
-    <Compile Include="BusinessObjects\FinPlan\FmFinPlanSubjectFull.cs" />
-    <Compile Include="BusinessObjects\FinPlan\FmFinPlanSubjectFullDoc.cs" />
     <Compile Include="BusinessObjects\Order\fmCOrderExViewController.cs">
       <SubType>Component</SubType>
     </Compile>

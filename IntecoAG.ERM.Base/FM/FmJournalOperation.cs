@@ -18,42 +18,53 @@ using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
 
-namespace IntecoAG.ERM.FM.FinPlan {
+namespace IntecoAG.ERM.FM {
 
     /// <summary>
     /// 
     /// </summary>
-    public enum JournalSubType {
-        JOURNAL_SUB_TYPE_PLAN0 = 1,
-        JOURNAL_SUB_TYPE_FACT = 2,
-        JOURNAL_SUB_TYPE_COST_STRUCTURE = 3, 
-        JOURNAL_SUB_TYPE_CONTRACT = 4,
-        JOURNAL_SUB_TYPE_YEAR = 5
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Persistent("FmFinPlanOperation")]
-    public class FmFinPlanOperation : XPObject {
-        public FmFinPlanOperation(Session session) : base(session) { }
+    [Persistent("FmJournalOperation")]
+    public class FmJournalOperation : XPObject {
+        public FmJournalOperation(Session session) : base(session) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
             // Place here your initialization code.
         }
 
-        private FmFinPlanJournal _Journal;
-        [Association("fmFinPlanJournal-fmFinPlanOperation")]
-        public FmFinPlanJournal Journal {
+        private FmJournal _Journal;
+        [Association("FmJournal-FmJournalOperation")]
+        public FmJournal Journal {
             get { return _Journal; }
-            set { SetPropertyValue<FmFinPlanJournal>("Journal", ref _Journal, value); }
+            set { 
+                SetPropertyValue<FmJournal>("Journal", ref _Journal, value);
+                if (!IsLoading) { 
+                    if (value != null) {
+                        Subject = value.Subject;
+                        Order = value.Order;
+                    }
+                }
+            }
         }
 
-        private JournalSubType _JournalSubType;
-        public JournalSubType JournalSubType {
-            get { return _JournalSubType; }
-            set { SetPropertyValue<JournalSubType>("JournalSubType", ref _JournalSubType, value); }
+        [PersistentAlias("Journal.JournalTypeSource")]
+        public JournalTypeSource JournalTypeSource {
+            get { return Journal.JournalTypeSource; }
+        }
+
+        [PersistentAlias("Journal.JournalTypeLegal")]
+        public JournalTypeLegal JournalTypeLegal {
+            get { return Journal.JournalTypeLegal; }
+        }
+
+        [PersistentAlias("Journal.JournalTypePeriod")]
+        public JournalTypePeriod JournalTypePeriod {
+            get { return Journal.JournalTypePeriod; }
+        }
+
+        [PersistentAlias("Journal.JournalTypeObject")]
+        public JournalTypeObject JournalTypeObject {
+            get { return Journal.JournalTypeObject; }
         }
 
         private DateTime _Date;

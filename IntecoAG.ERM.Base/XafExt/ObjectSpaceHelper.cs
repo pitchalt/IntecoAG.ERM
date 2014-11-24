@@ -5,7 +5,7 @@ using DevExpress.ExpressApp;
 using DevExpress.Xpo;
 //
 
-namespace IntecoAG.ERM.Module {
+namespace IntecoAG.ERM.XafExt {
 
     /// <summary>
     /// Методы расширения ObjectSpace

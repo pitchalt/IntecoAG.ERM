@@ -436,7 +436,7 @@
     <Compile Include="CS\Work\Event.cs" />
     <Compile Include="CS\Work\IEvent.cs" />
     <Compile Include="CS\Work\Work.cs" />
-    <Compile Include="DatabaseUpdate\Copy of Updater_1_1_1_231.cs" />
+    <Compile Include="DatabaseUpdate\Updater_1_1_1_240.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_230.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_229.cs" />
     <Compile Include="DatabaseUpdate\Updater_1_1_1_228.cs" />
@@ -448,6 +448,15 @@
     <Compile Include="FM\Docs\Fm\FmDocsFmInData.cs" />
     <Compile Include="FM\FinAccount\fmCFAAccount.cs" />
     <Compile Include="FM\FinAccount\fmCFAAccountSystem.cs" />
+    <Compile Include="FM\FinPlan\FmFinPlanBase.cs" />
+    <Compile Include="FM\FinPlan\FmFinPlanDoc.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocYear.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDoc.cs" />
+    <Compile Include="FM\FmJournal.cs" />
+    <Compile Include="FM\FmJournalOperation.cs" />
+    <Compile Include="FM\FinPlan\FmFinPlanPlan.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubject.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocFull.cs" />
     <Compile Include="FM\fmCostItem.cs" />
     <Compile Include="FM\fmCPaymentBase.cs" />
     <Compile Include="FM\fmCPaymentKBK.cs" />
@@ -1047,6 +1056,8 @@
     <Folder Include="CRM\Fact\" />
     <Folder Include="CS\Task\" />
     <Folder Include="Documentation\Trw\" />
+    <Folder Include="FM\FinPlan\Budget\" />
+    <Folder Include="FM\FinPlan\Fact\" />
     <Folder Include="Trw\Common\" />
     <Folder Include="Trw\Fact\" />
   </ItemGroup>
