@@ -443,6 +443,8 @@
     <Compile Include="FilterAndParamForms\crmDebtorCreditorDebtRegisterFilter01.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FM\Accounting\FmAccountingContract.cs" />
+    <Compile Include="FM\Accounting\FmAccountingFinancial.cs" />
     <Compile Include="FM\Docs\csCDocRCB.cs" />
     <Compile Include="FM\Docs\Fm\FmDocsFmInDataLogic.cs" />
     <Compile Include="FM\Docs\Fm\FmDocsFmInData.cs" />
@@ -452,6 +454,7 @@
     <Compile Include="FM\FinPlan\FmFinPlanDoc.cs" />
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocYear.cs" />
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDoc.cs" />
+    <Compile Include="FM\FmAccounting.cs" />
     <Compile Include="FM\FmJournal.cs" />
     <Compile Include="FM\FmJournalOperation.cs" />
     <Compile Include="FM\FinPlan\FmFinPlanPlan.cs" />

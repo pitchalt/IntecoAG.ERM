@@ -9,27 +9,32 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
-using IntecoAG.ERM.FM.Order;
-using IntecoAG.ERM.FM.Subject;
-
-namespace IntecoAG.ERM.FM.FinPlan.Subject {
+namespace IntecoAG.ERM.FM.Accounting {
 
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public class FmFinPlanSubjectDocFull : FmFinPlanSubjectDoc {
-        public FmFinPlanSubjectDocFull(Session session) : base(session) { }
+    public class FmAccountingContract : FmAccounting {
+        public FmAccountingContract(Session session): base(session) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
+            // Place here your initialization code.
             _Journal = new FmJournal(this.Session);
-            _Journal.FinPlanDocSet(this);
+            _Journal.AccountingSet(this);
             _Journal.JournalTypeAccountingSet(JournalTypeAccounting.FM_JTA_FINANCIAL);
             _Journal.JournalTypeLegalSet(JournalTypeLegal.FM_JTL_COMPANY);
-            _Journal.JournalTypeObjectSet(JournalTypeObject.FM_JTO_ORDER);
+            _Journal.JournalTypeObjectSet(JournalTypeObject.FM_JTO_ALL);
             _Journal.JournalTypePeriodSet(JournalTypePeriod.FM_JTP_FULL);
-            _Journal.JournalTypeSourceSet(JournalTypeSource.FM_JTS_FINPLAN_DOC);
-
+            _Journal.JournalTypeSourceSet(JournalTypeSource.FM_JTS_CONTRACT);
+            CodeSet("дц");
         }
 
+
+        protected override CriteriaOperator OperationsCriteria {
+            get {
+                return XPQuery<FmJournalOperation>.TransformExpression(this.Session,
+                        x => x.Journal == Journal);
+            }
+        }
     }
 
 }

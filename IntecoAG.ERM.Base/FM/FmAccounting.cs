@@ -9,15 +9,31 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
-namespace IntecoAG.ERM.FM.FinPlan {
+using IntecoAG.ERM.CRM.Party;
 
-    [NonPersistent]
-    public abstract class FmFinPlanBase : BaseObject {
-        public FmFinPlanBase(Session session) : base(session) { }
+namespace IntecoAG.ERM.FM {
+
+    [NavigationItem("FinPlan")]
+    [Persistent("FmAccounting")]
+    public abstract class FmAccounting : XPObject {
+        public FmAccounting(Session session): base(session) {}
         public override void AfterConstruction() {
             base.AfterConstruction();
             // Place here your initialization code.
         }
+
+        [Size(64)]
+        [Persistent]
+        protected String _Code;
+        [PersistentAlias("_Code")]
+        public String Code {
+            get { return _Code; }
+        }
+        public void CodeSet(String code) {
+            SetPropertyValue<String>("Code", ref _Code, code);
+            _Journal.CodeSet(code);
+        }
+
 
         [Persistent("Journal")]
         [Aggregated]
@@ -26,6 +42,13 @@ namespace IntecoAG.ERM.FM.FinPlan {
         [ExpandObjectMembers(ExpandObjectMembers.Always)]
         public FmJournal Journal {
             get { return _Journal; }
+        }
+
+        private crmCPerson _Person;
+//        [ExplicitLoading(1)]
+        public crmCPerson Person {
+            get { return _Person; }
+            set { SetPropertyValue<crmCPerson>("Person", ref _Person, value); }
         }
 
         private XPCollection<FmJournalOperation> _Operations;

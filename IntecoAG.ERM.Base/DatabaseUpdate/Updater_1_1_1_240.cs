@@ -9,12 +9,12 @@ using DevExpress.Data.Filtering;
 //
 using FileHelpers;
 //
+using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.Accounting;
 using IntecoAG.ERM.FM.Order;
-using IntecoAG.ERM.Trw;
-using IntecoAG.ERM.Trw.Contract;
 //
 namespace IntecoAG.ERM.CS {
     public class Updater_1_1_1_240 : ModuleUpdater {
@@ -24,10 +24,7 @@ namespace IntecoAG.ERM.CS {
             base.UpdateDatabaseBeforeUpdateSchema();
             if (this.CurrentDBVersion != new Version("1.1.1.239"))
                 return;
-            DropTable("FmFinPlanDoc", false);
-            DropTable("FmFinPlanPlan", false);
-            DropTable("FmFinPlanOperation", false);
-            DropTable("FmFinPlanJournal", false);
+            ExecuteNonQueryCommand("DROP TABLE \"FmFinPlanDoc\", \"FmFinPlanPlan\", \"FmFinPlanOperation\", \"FmFinPlanJournal\" CASCADE;", false);
         }
 
         //public void UpdateContractDeal(IObjectSpace os) {
@@ -41,10 +38,20 @@ namespace IntecoAG.ERM.CS {
 
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
-            if (this.CurrentDBVersion != new Version("1.1.1.231"))
+            if (this.CurrentDBVersion != new Version("1.1.1.239"))
                 return;
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
-                //
+                foreach (var org in os.GetObjects<crmUserParty>()) {
+                    if (org.AccountingContract == null) {
+                        org.AccountingContractSet(os.CreateObject<FmAccountingContract>());
+                        org.AccountingContract.Person = org.Party.Person;
+                    }
+                    if (org.AccountingFact == null) {
+                        org.AccountingFactSet(os.CreateObject<FmAccountingFinancial>());
+                        org.AccountingFact.JournalTypeAccounting = JournalTypeAccounting.FM_JTA_FINANCIAL;
+                        org.AccountingFact.Person = org.Party.Person;
+                    }
+                }
                 os.CommitChanges();
             }
         }

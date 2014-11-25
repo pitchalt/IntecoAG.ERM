@@ -10,6 +10,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
+using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.XafExt;
 
@@ -24,6 +25,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             base.AfterConstruction();
             // Place here your initialization code.
             _Journal = new FmJournal(this.Session);
+            _Journal.FinPlanSet(this);
             _Journal.JournalTypeAccountingSet(JournalTypeAccounting.FM_JTA_FINANCIAL);
             _Journal.JournalTypeLegalSet(JournalTypeLegal.FM_JTL_COMPANY);
             _Journal.JournalTypeObjectSet(JournalTypeObject.FM_JTO_SUBJECT);
@@ -31,11 +33,18 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             _Journal.JournalTypeSourceSet(JournalTypeSource.FM_JTS_FINPLAN);
             //
             _JournalPlanYear = new FmJournal(this.Session);
+            _JournalPlanYear.FinPlanSet(this);
             _JournalPlanYear.JournalTypeAccountingSet(JournalTypeAccounting.FM_JTA_FINANCIAL);
             _JournalPlanYear.JournalTypeLegalSet(JournalTypeLegal.FM_JTL_COMPANY);
             _JournalPlanYear.JournalTypeObjectSet(JournalTypeObject.FM_JTO_SUBJECT);
             _JournalPlanYear.JournalTypePeriodSet(JournalTypePeriod.FM_JTP_YEAR);
             _JournalPlanYear.JournalTypeSourceSet(JournalTypeSource.FM_JTS_FINPLAN);
+
+            crmUserParty user_org = crmUserParty.CurrentUserPartyGet(this.Session);
+            if (user_org != null) {
+                AccountingContract = user_org.AccountingContract;
+                AccountingFact = user_org.AccountingFact;
+            }
         }
 
         private fmCSubject _Subject;
@@ -66,15 +75,18 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         [Aggregated]
         protected FmJournal _JournalPlanYear;
         [PersistentAlias("_JournalPlanYear")]
+        [ExpandObjectMembers(ExpandObjectMembers.Always)]
         public FmJournal JournalPlanYear {
             get { return _JournalPlanYear; }
         }
 
-        public override CriteriaOperator OperationsCriteria {
+        protected override CriteriaOperator OperationsCriteria {
             get {  
                 return XPQuery<FmJournalOperation>.TransformExpression(this.Session, 
                     x => x.Journal == Journal ||
-                        x.Journal == JournalPlanYear
+                        x.Journal == JournalPlanYear ||
+                        x.Journal == AccountingFact.Journal ||
+                        x.Journal == AccountingContract.Journal 
                     );
             }
         }

@@ -36,7 +36,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
 //        [Association("FmFinPlanPlan-FmFinPlanDoc")]
 
 //        [NonPersistent]
-        public abstract FmFinPlanPlan FinPlan { get; }
+        protected abstract FmFinPlanPlan FinPlan { get; }
     }
 
 }

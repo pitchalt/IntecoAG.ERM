@@ -9,6 +9,8 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
+using IntecoAG.ERM.FM.Accounting;
+
 namespace IntecoAG.ERM.FM.FinPlan {
 
     [Persistent("FmFinPlanPlan")]
@@ -20,6 +22,20 @@ namespace IntecoAG.ERM.FM.FinPlan {
             // Place here your initialization code.
             //_JournalPlan0 = new FmJournal(this.Session);
             //_JournalPlan0.FinPlanSet(this);
+        }
+
+        protected FmAccountingFinancial _AccountingFact;
+        [ExpandObjectMembers(ExpandObjectMembers.Always)]
+        public FmAccountingFinancial AccountingFact {
+            get { return _AccountingFact; }
+            set { SetPropertyValue<FmAccountingFinancial>("AccountingFact", ref _AccountingFact, value); }
+        }
+
+        protected FmAccountingContract _AccountingContract;
+        [ExpandObjectMembers(ExpandObjectMembers.Always)]
+        public FmAccountingContract AccountingContract {
+            get { return _AccountingContract; }
+            set { SetPropertyValue<FmAccountingContract>("AccountingContract", ref _AccountingContract, value); }
         }
 
         //[Persistent("Journal")]

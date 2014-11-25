@@ -21,6 +21,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         public override void AfterConstruction() {
             base.AfterConstruction();
             _Journal = new FmJournal(this.Session);
+            _Journal.FinPlanDocSet(this);
             _Journal.JournalTypeAccountingSet(JournalTypeAccounting.FM_JTA_FINANCIAL);
             _Journal.JournalTypeLegalSet(JournalTypeLegal.FM_JTL_COMPANY);
             _Journal.JournalTypeObjectSet(JournalTypeObject.FM_JTO_ORDER);

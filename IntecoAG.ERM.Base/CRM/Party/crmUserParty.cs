@@ -22,6 +22,9 @@ using System.ComponentModel;
 using IntecoAG.ERM.CRM.Contract;
 using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.CS.Country;
+using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.Accounting;
+using IntecoAG.ERM.FM.FinPlan;
 using IntecoAG.ERM.Trw;
 using IntecoAG.ERM.Trw.Contract;
 //
@@ -89,6 +92,26 @@ namespace IntecoAG.ERM.CRM.Party
         [Association("crmUserParty-crmDealPartys")]
         public XPCollection<crmContractParty> DealPartys {
             get { return GetCollection<crmContractParty>("DealPartys"); }
+        }
+
+        [Persistent("AccountingContract")]
+        protected FmAccountingContract _AccountingContract;
+        [PersistentAlias("_AccountingContract")]
+        public FmAccountingContract AccountingContract {
+            get { return _AccountingContract; }
+        }
+        public void AccountingContractSet(FmAccountingContract value) {
+            SetPropertyValue<FmAccountingContract>("AccountingContract", ref _AccountingContract, value);
+        }
+
+        [Persistent("AccountingFact")]
+        protected FmAccountingFinancial _AccountingFact;
+        [PersistentAlias("_AccountingFact")]
+        public FmAccountingFinancial AccountingFact {
+            get { return _AccountingFact; }
+        }
+        public void AccountingFactSet(FmAccountingFinancial value) {
+            SetPropertyValue<FmAccountingFinancial>("AccountingFact", ref _AccountingFact, value);
         }
 
         #endregion

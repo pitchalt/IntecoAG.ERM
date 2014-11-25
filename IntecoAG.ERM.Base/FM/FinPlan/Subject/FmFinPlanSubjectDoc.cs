@@ -47,17 +47,19 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             }
         }
 
-        public override FmFinPlanPlan FinPlan {
+        protected override FmFinPlanPlan FinPlan {
             get { return FinPlanSubject; }
         }
 
-        public override CriteriaOperator OperationsCriteria {
+        protected override CriteriaOperator OperationsCriteria {
             get {
-                return FinPlan.OperationsCriteria |
-                    XPQuery<FmJournalOperation>.TransformExpression(this.Session,
-                    x => x.Journal == Journal
-                    );
-
+                return XPQuery<FmJournalOperation>.TransformExpression(this.Session,
+                    x => x.Journal == Journal ||
+                         x.Journal == FinPlanSubject.Journal ||
+                        x.Journal == FinPlanSubject.JournalPlanYear ||
+                        x.Journal == FinPlanSubject.AccountingFact.Journal ||
+                        x.Journal == FinPlanSubject.AccountingContract.Journal
+                        );
             }
         }
     }

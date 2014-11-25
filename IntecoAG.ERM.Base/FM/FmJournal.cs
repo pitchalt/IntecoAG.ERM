@@ -155,12 +155,27 @@ namespace IntecoAG.ERM.FM {
             SetPropertyValue<FmFinPlanPlan>("FinPlan", ref _FinPlan, value);
         }
 
-        //private FmFinPlanDoc _FinPlanDoc;
-        //[ExplicitLoading(0)]
-        //public FmFinPlanDoc FinPlanDoc {
-        //    get { return _FinPlanDoc; }
-        //    set { SetPropertyValue<FmFinPlanDoc>("FinPlanDoc", ref _FinPlanDoc, value); }
-        //}
+        [ExplicitLoading(0)]
+        [Persistent("FinPlanDoc")]
+        private FmFinPlanDoc _FinPlanDoc;
+        [PersistentAlias("_FinPlanDoc")]
+        public FmFinPlanDoc FinPlanDoc {
+            get { return _FinPlanDoc; }
+        }
+        public void FinPlanDocSet(FmFinPlanDoc value) {
+            SetPropertyValue<FmFinPlanDoc>("FinPlanDoc", ref _FinPlanDoc, value);
+        }
+
+        [ExplicitLoading(0)]
+        [Persistent("Accounting")]
+        private FmAccounting _Accounting;
+        [PersistentAlias("_Accounting")]
+        public FmAccounting Accounting {
+            get { return _Accounting; }
+        }
+        public void AccountingSet(FmAccounting value) {
+            SetPropertyValue<FmAccounting>("Accounting", ref _Accounting, value);
+        }
 
         [Association("FmJournal-FmJournalOperation"), Aggregated]
         public XPCollection<FmJournalOperation> Operations {
