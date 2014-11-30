@@ -328,7 +328,6 @@
     <Compile Include="BusinessObjects\FinIndex\fmIFinIndexStructure.cs" />
     <Compile Include="BusinessObjects\FinIndex\fmIFinIndexStructureItem.cs" />
     <Compile Include="BusinessObjects\Order\fmCOrderExt.cs" />
-    <Compile Include="BusinessObjects\FinIndex\fmCFinIndex.cs" />
     <Compile Include="BusinessObjects\Order\fmIOrderExt.cs" />
     <Compile Include="BusinessObjects\Subject\fmCSubjectExt.cs" />
     <Compile Include="BusinessObjects\Subject\fmISubjectExt.cs" />

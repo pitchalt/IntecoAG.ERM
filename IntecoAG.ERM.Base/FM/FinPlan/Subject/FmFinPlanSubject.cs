@@ -9,6 +9,7 @@ using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using DevExpress.ExpressApp.ConditionalAppearance;
 
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM.Subject;
@@ -49,19 +50,20 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
         private fmCSubject _Subject;
         [RuleRequiredField]
+        [Appearance("", AppearanceItemType.ViewItem, "Subject != Null", Enabled = false)]
         public fmCSubject Subject {
             get { return _Subject; }
-            set { 
+            set {
+                if (!IsLoading && _Subject != null)
+                    throw new InvalidOperationException("Изменить нельзя если уже задано");
                 SetPropertyValue<fmCSubject>("Subject", ref _Subject, value);
                 if (!IsLoading) {
-                    //Journal.SubjectSet(value);
-                    //foreach (var doc in FinPlanSubjectFullDocs) {
-                    //    doc.SubjectSet(value);
-                    //}
-                    //if (value != null)
-                    //    CodeSet("SFP." + value.Code);
-                    //else
-                    //    CodeSet("SFP.Null");
+                    Journal.SubjectSet(value);
+                    if (value != null) {
+                        CodeSet("ФПТ." + value.Code);
+                        _Journal.CodeSet(Code + ".П0");
+                        _JournalPlanYear.CodeSet(Code + ".ПГ");
+                    }
                 }
             } 
         }
@@ -75,18 +77,36 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         [Aggregated]
         protected FmJournal _JournalPlanYear;
         [PersistentAlias("_JournalPlanYear")]
-        [ExpandObjectMembers(ExpandObjectMembers.Always)]
+//        [ExpandObjectMembers(ExpandObjectMembers.Always)]
         public FmJournal JournalPlanYear {
             get { return _JournalPlanYear; }
+        }
+
+        [PersistentAlias("JournalPlanYear.Operations")]
+        [Aggregated]
+        public XPCollection<FmJournalOperation> PlanYearOperations {
+            get {
+                return JournalPlanYear.Operations;
+            }
+        }
+
+        [PersistentAlias("Journal.Operations")]
+        [Aggregated]
+        public XPCollection<FmJournalOperation> PlanFullOperations {
+            get {
+                return Journal.Operations;
+            }
         }
 
         protected override CriteriaOperator OperationsCriteria {
             get {  
                 return XPQuery<FmJournalOperation>.TransformExpression(this.Session, 
-                    x => x.Journal == Journal ||
+                    x => x.Subject == this.Subject && ( 
+                        x.Journal == Journal ||
                         x.Journal == JournalPlanYear ||
                         x.Journal == AccountingFact.Journal ||
                         x.Journal == AccountingContract.Journal 
+                        )
                     );
             }
         }

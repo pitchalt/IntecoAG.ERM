@@ -10,7 +10,8 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
-//using IntecoAG.ERM.FM.FinPlan.View;
+using IntecoAG.ERM.CS.Finance;
+using IntecoAG.ERM.CS.Nomenclature;
 
 namespace IntecoAG.ERM.FM.FinPlan {
 
@@ -37,6 +38,16 @@ namespace IntecoAG.ERM.FM.FinPlan {
 
 //        [NonPersistent]
         protected abstract FmFinPlanPlan FinPlan { get; }
+
+        [Association("FmFinPlanDoc-FmFinPlanDocLine"), Aggregated]
+        public XPCollection<FmFinPlanDocLine> Lines {
+            get { return GetCollection<FmFinPlanDocLine>("Lines"); }
+        }
+
+        public csValuta Valuta;
+
+        public csNDSRate NdsRate;
+
     }
 
 }

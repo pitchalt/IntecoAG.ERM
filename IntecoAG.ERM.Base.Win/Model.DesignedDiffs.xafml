@@ -16,6 +16,7 @@
       </Columns>
     </ListView>
     <ListView Id="fmCSubject_Deals_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
+    <ListView Id="FmFinPlanBase_Operations_Analiz_F4" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" ActiveFilterString="" />
     <ListView Id="hrmDepartment_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
     <ListView Id="TrwSubjectDealBase_CrmContractDeals_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
   </Views>

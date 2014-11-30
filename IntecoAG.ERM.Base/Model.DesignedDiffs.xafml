@@ -2452,6 +2452,139 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="FmFinPlanBase_Operations_Analiz_F4" ClassName="IntecoAG.ERM.FM.FmJournalOperation" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Oid" PropertyName="Oid" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Journal" PropertyName="Journal" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="JournalCode" PropertyName="JournalCode" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypeSource" PropertyName="JournalTypeSource" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypeLegal" PropertyName="JournalTypeLegal" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypePeriod" PropertyName="JournalTypePeriod" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypeObject" PropertyName="JournalTypeObject" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Date" PropertyName="Date" Width="70" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Year" PropertyName="Year" Width="50" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="YearMonth" PropertyName="YearMonth" Width="50" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Month" PropertyName="Month" Width="50" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="Order" PropertyName="Order" Width="70" Index="11" IsNewNode="True" />
+        <ColumnInfo Id="FinIndex" PropertyName="FinIndex" Width="70" Index="12" IsNewNode="True" />
+        <ColumnInfo Id="CostItem" PropertyName="CostItem" Width="70" Index="13" IsNewNode="True" />
+        <ColumnInfo Id="Department" PropertyName="Department" Width="70" Index="14" IsNewNode="True" />
+        <ColumnInfo Id="DepartmentStructItem" PropertyName="DepartmentStructItem" Width="70" Index="15" IsNewNode="True" />
+        <ColumnInfo Id="Party" PropertyName="Party" Width="70" Index="16" IsNewNode="True" />
+        <ColumnInfo Id="Person" PropertyName="Person" Width="70" Index="17" IsNewNode="True" />
+        <ColumnInfo Id="Deal" PropertyName="Deal" Width="70" Index="18" IsNewNode="True" />
+        <ColumnInfo Id="BalanceSumma" PropertyName="BalanceSumma" Width="50" Index="19" IsNewNode="True" />
+        <ColumnInfo Id="BalanceValuta" PropertyName="BalanceValuta" Width="70" Index="20" IsNewNode="True" />
+        <ColumnInfo Id="ObligationSumma" PropertyName="ObligationSumma" Width="50" Index="21" IsNewNode="True" />
+        <ColumnInfo Id="ObligationValuta" PropertyName="ObligationValuta" Width="70" Index="22" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="FmFinPlanBase_Operations_ListVariants" ClassName="IntecoAG.ERM.FM.FmJournalOperation" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Oid" PropertyName="Oid" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Journal" PropertyName="Journal" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="JournalCode" PropertyName="JournalCode" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypeSource" PropertyName="JournalTypeSource" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypeLegal" PropertyName="JournalTypeLegal" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypePeriod" PropertyName="JournalTypePeriod" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="JournalTypeObject" PropertyName="JournalTypeObject" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Date" PropertyName="Date" Width="70" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Year" PropertyName="Year" Width="50" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="YearMonth" PropertyName="YearMonth" Width="50" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Month" PropertyName="Month" Width="50" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="Order" PropertyName="Order" Width="70" Index="11" IsNewNode="True" />
+        <ColumnInfo Id="FinIndex" PropertyName="FinIndex" Width="70" Index="12" IsNewNode="True" />
+        <ColumnInfo Id="CostItem" PropertyName="CostItem" Width="70" Index="13" IsNewNode="True" />
+        <ColumnInfo Id="Department" PropertyName="Department" Width="70" Index="14" IsNewNode="True" />
+        <ColumnInfo Id="DepartmentStructItem" PropertyName="DepartmentStructItem" Width="70" Index="15" IsNewNode="True" />
+        <ColumnInfo Id="Party" PropertyName="Party" Width="70" Index="16" IsNewNode="True" />
+        <ColumnInfo Id="Person" PropertyName="Person" Width="70" Index="17" IsNewNode="True" />
+        <ColumnInfo Id="Deal" PropertyName="Deal" Width="70" Index="18" IsNewNode="True" />
+        <ColumnInfo Id="BalanceSumma" PropertyName="BalanceSumma" Width="50" Index="19" IsNewNode="True" />
+        <ColumnInfo Id="BalanceValuta" PropertyName="BalanceValuta" Width="70" Index="20" IsNewNode="True" />
+        <ColumnInfo Id="ObligationSumma" PropertyName="ObligationSumma" Width="50" Index="21" IsNewNode="True" />
+        <ColumnInfo Id="ObligationValuta" PropertyName="ObligationValuta" Width="70" Index="22" IsNewNode="True" />
+      </Columns>
+      <Variants Current="@1be19501-10e6-4d31-a1fb-3bcf1208bb77" IsNewNode="True">
+        <Variant Id="@1be19501-10e6-4d31-a1fb-3bcf1208bb77" ViewID="FmFinPlanBase_Operations_ListView" IsNewNode="True" />
+        <Variant Id="@b3dccf82-255c-442f-9763-03f8dff28e04" ViewID="FmFinPlanBase_Operations_Analiz_F4" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <ListView Id="FmFinPlanDoc_Lines_ListView">
+      <Columns>
+        <ColumnInfo Id="IsError" Index="-1" />
+        <ColumnInfo Id="LineCode" Index="-1" />
+        <ColumnInfo Id="LineTime" Index="-1" />
+        <ColumnInfo Id="Parent" Index="-1" />
+        <ColumnInfo Id="TopLine" Index="-1" />
+        <ColumnInfo Id="TotalType" Index="-1" />
+        <ColumnInfo Id="Sheet" Index="0" />
+        <ColumnInfo Id="Name" Index="1" />
+        <ColumnInfo Id="LineName" Index="2" />
+        <ColumnInfo Id="DepStruct" Index="3" />
+        <ColumnInfo Id="Party" Index="4" />
+        <ColumnInfo Id="Valuta" Index="5" />
+        <ColumnInfo Id="NdsRate" Index="6" />
+        <ColumnInfo Id="PayType" Index="7" />
+        <ColumnInfo Id="ValueManual" Index="8" />
+        <ColumnInfo Id="ValueAutomatic" Index="9" />
+      </Columns>
+      <Filters CurrentFilterId="ALL_SHEET">
+        <Filter Id="ALL_SHEET" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_COST#" Index="0" IsNewNode="True" />
+        <Filter Id="ONLY_SHEET_COST" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_COST#" Index="1" IsNewNode="True" />
+        <Filter Id="ONLY_SHEET_CASH" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_CASH#" Index="2" IsNewNode="True" />
+        <Filter Id="ONLY_SHEET_PARTY" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_PARTY#" Index="3" IsNewNode="True" />
+        <Filter Id="ONLY_SHEET_MATERIAL" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_MATERIAL#" Index="4" IsNewNode="True" />
+        <Filter Id="Нормативы" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_NORMATIV#" IsNewNode="True" />
+      </Filters>
+    </ListView>
+    <DetailView Id="FmFinPlanSubjectDocFull_DetailView">
+      <Items>
+        <PropertyEditor Id="DocOperations" View="FmFinPlanBase_Operations_ListVariants" />
+        <PropertyEditor Id="Operations" View="FmFinPlanBase_Operations_ListVariants" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Subject" ViewItem="Subject" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Order" ViewItem="Order" Index="1" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="FmFinPlanBase">
+              <LayoutItem Id="Code" ViewItem="Code" Removed="True" />
+              <LayoutItem Id="Journal" ViewItem="Journal" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="FmFinPlanDoc">
+              <LayoutItem Id="NdsRate" ViewItem="NdsRate" Removed="True" />
+              <LayoutItem Id="Valuta" ViewItem="Valuta" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="FmFinPlanSubjectDoc">
+              <LayoutItem Id="Order" ViewItem="Order" Removed="True" />
+              <LayoutItem Id="Subject" ViewItem="Subject" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Lines" Index="0" />
+            <LayoutGroup Id="Operations" Index="1" />
+            <LayoutGroup Id="DocOperations" Index="2" />
+            <LayoutGroup Id="Additions" IsNewNode="True">
+              <LayoutItem Id="Journal" ViewItem="Journal" Index="0" IsNewNode="True" />
+              <LayoutItem Id="NdsRate" ViewItem="NdsRate" Index="1" IsNewNode="True" />
+              <LayoutItem Id="Valuta" ViewItem="Valuta" Index="2" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="FmFinPlanSubjectDocYear_DetailView">
+      <Items>
+        <PropertyEditor Id="DocOperations" View="FmFinPlanBase_Operations_ListVariants" />
+        <PropertyEditor Id="Operations" View="FmFinPlanBase_Operations_ListVariants" />
+      </Items>
+    </DetailView>
     <DetailView Id="fmIDirection_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

@@ -15,6 +15,7 @@ namespace IntecoAG.ERM.FM {
 
     [NavigationItem("FinPlan")]
     [Persistent("FmAccounting")]
+    [DefaultProperty("Code")]
     public abstract class FmAccounting : XPObject {
         public FmAccounting(Session session): base(session) {}
         public override void AfterConstruction() {

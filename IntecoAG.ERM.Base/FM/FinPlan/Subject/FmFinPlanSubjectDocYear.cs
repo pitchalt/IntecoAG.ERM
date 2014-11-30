@@ -29,6 +29,16 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             _Journal.JournalTypeSourceSet(JournalTypeSource.FM_JTS_FINPLAN_DOC);
         }
 
+        protected override void OnChanged(string propertyName, object oldValue, object newValue) {
+            base.OnChanged(propertyName, oldValue, newValue);
+            if (propertyName == "Order") {
+                fmCOrder order = newValue as fmCOrder;
+                if (order != null) {
+                    CodeSet("тог." + order.Code + ".о1");
+                    Journal.CodeSet(Code);
+                }
+            }
+        }
 
     }
 

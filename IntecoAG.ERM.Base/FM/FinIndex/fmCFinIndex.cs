@@ -46,8 +46,37 @@ namespace IntecoAG.ERM.FM.FinIndex {
             set { SetPropertyValue<Boolean>("IsClosed", ref _IsClosed, value); }
         }
 
+
+        [Association("FmFinIndex-FmFinIndexCostItem"), Aggregated]
+        [VisibleInDetailView(false)]
+        public XPCollection<FmFinIndexCostItem> FinIndexCostItems {
+            get {
+                return GetCollection<FmFinIndexCostItem>("FinIndexCostItems");
+            }
+        }
+
+        [ManyToManyAlias("FinIndexCostItems", "CostItem")]
+        public IList<fmCostItem> CostItems {
+            get {
+                return GetList<fmCostItem>("CostItems");
+            }
+        }
+
         protected override void OnDeleting() {
             throw new InvalidOperationException("Invalid deleting operation for type: " + this.GetType().FullName);
         }
+
+        
+        public static fmCFinIndex FinIndexGet(Session session, fmCostItem cost_item, DateTime date) {
+            fmCFinIndex result = null;
+            foreach (FmFinIndexCostItem index_cost_item in session.GetObjects(session.GetClassInfo<FmFinIndexCostItem>(),null,null,0,false,false)) {
+                if (cost_item == index_cost_item.CostItem) {
+                    result = index_cost_item.FinIndex;
+                    break;
+                }
+            }
+            return result;
+        }
+
     }
 }

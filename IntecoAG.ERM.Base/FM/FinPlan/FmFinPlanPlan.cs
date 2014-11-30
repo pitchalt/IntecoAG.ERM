@@ -25,14 +25,14 @@ namespace IntecoAG.ERM.FM.FinPlan {
         }
 
         protected FmAccountingFinancial _AccountingFact;
-        [ExpandObjectMembers(ExpandObjectMembers.Always)]
+//        [ExpandObjectMembers(ExpandObjectMembers.Always)]
         public FmAccountingFinancial AccountingFact {
             get { return _AccountingFact; }
             set { SetPropertyValue<FmAccountingFinancial>("AccountingFact", ref _AccountingFact, value); }
         }
 
         protected FmAccountingContract _AccountingContract;
-        [ExpandObjectMembers(ExpandObjectMembers.Always)]
+//        [ExpandObjectMembers(ExpandObjectMembers.Always)]
         public FmAccountingContract AccountingContract {
             get { return _AccountingContract; }
             set { SetPropertyValue<FmAccountingContract>("AccountingContract", ref _AccountingContract, value); }

@@ -12,6 +12,7 @@ using DevExpress.Persistent.Validation;
 namespace IntecoAG.ERM.FM.FinPlan {
 
     [NonPersistent]
+    [DefaultProperty("Code")]
     public abstract class FmFinPlanBase : BaseObject {
         public FmFinPlanBase(Session session) : base(session) { }
         public override void AfterConstruction() {
@@ -19,11 +20,22 @@ namespace IntecoAG.ERM.FM.FinPlan {
             // Place here your initialization code.
         }
 
+        [Size(64)]
+        [Persistent]
+        private String _Code;
+        [PersistentAlias("_Code")]
+        public String Code {
+            get { return _Code; }
+        }
+        public void CodeSet(String code) {
+            SetPropertyValue<String>("Code", ref _Code, code);
+        }
+
         [Persistent("Journal")]
         [Aggregated]
         protected FmJournal _Journal;
         [PersistentAlias("_Journal")]
-        [ExpandObjectMembers(ExpandObjectMembers.Always)]
+//        [ExpandObjectMembers(ExpandObjectMembers.Always)]
         public FmJournal Journal {
             get { return _Journal; }
         }

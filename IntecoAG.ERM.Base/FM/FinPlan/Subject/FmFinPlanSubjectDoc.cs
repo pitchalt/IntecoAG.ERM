@@ -5,6 +5,7 @@ using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
 
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
@@ -38,12 +39,21 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         }
 
         private fmCOrder _Order;
-        [DataSourceCriteria("Subject == This.Subject")]
+        [DataSourceCriteria("Subject == '@This.Subject'")]
+        [Appearance("", AppearanceItemType.ViewItem, "Order != Null", Enabled=false)]
         [RuleRequiredField]
         public fmCOrder Order {
             get { return _Order; }
             set {
+                if (!IsLoading)
+                    new InvalidOperationException("Изменить нельзя если уже задано");
                 SetPropertyValue<fmCOrder>("Order", ref _Order, value);
+                if (!IsLoading) {
+                    Journal.OrderSet(value);
+                    Operations.Criteria = this.OperationsCriteria;
+                    Operations.Reload();
+//                    OnChanged("Operations");
+                }
             }
         }
 
@@ -51,14 +61,27 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             get { return FinPlanSubject; }
         }
 
+        [PersistentAlias("Journal.Operations")]
+        [Aggregated]
+        public XPCollection<FmJournalOperation> DocOperations {
+            get {
+                return Journal.Operations;
+            }
+        }
+
         protected override CriteriaOperator OperationsCriteria {
             get {
-                return XPQuery<FmJournalOperation>.TransformExpression(this.Session,
-                    x => x.Journal == Journal ||
-                         x.Journal == FinPlanSubject.Journal ||
-                        x.Journal == FinPlanSubject.JournalPlanYear ||
-                        x.Journal == FinPlanSubject.AccountingFact.Journal ||
-                        x.Journal == FinPlanSubject.AccountingContract.Journal
+                return 
+                    XPQuery<FmJournalOperation>.TransformExpression(this.Session,
+                    x => 
+                        x.Subject == FinPlanSubject.Subject &&
+                        x.Order == this.Order && (
+                            x.Journal == Journal ||
+                            x.Journal == FinPlanSubject.Journal ||
+                            x.Journal == FinPlanSubject.JournalPlanYear ||
+                            x.Journal == FinPlanSubject.AccountingFact.Journal ||
+                            x.Journal == FinPlanSubject.AccountingContract.Journal
+                        )
                         );
             }
         }

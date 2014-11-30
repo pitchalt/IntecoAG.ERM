@@ -5,6 +5,7 @@ using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
 
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
@@ -12,11 +13,15 @@ using DevExpress.Persistent.Validation;
 using IntecoAG.ERM.CS.Nomenclature;
 
 using IntecoAG.ERM.FM;
+using IntecoAG.ERM.FM.FinAccount;
+using IntecoAG.ERM.FM.FinIndex;
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.FM.Subject;
 
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.CRM.Contract.Deal;
+
+using IntecoAG.ERM.HRM.Organization;
 
 namespace IntecoAG.ERM.FM {
 
@@ -45,6 +50,11 @@ namespace IntecoAG.ERM.FM {
                     }
                 }
             }
+        }
+
+        [PersistentAlias("Journal.Code")]
+        public String JournalCode {
+            get { return Journal.Code; }
         }
 
         [PersistentAlias("Journal.JournalTypeSource")]
@@ -87,23 +97,78 @@ namespace IntecoAG.ERM.FM {
 
         private fmCSubject _Subject;
         [ExplicitLoading(1)]
+        [Appearance("", AppearanceItemType.ViewItem, "Journal.Subject != Null", Enabled=false)]
         public fmCSubject Subject {
             get { return _Subject; }
-            set { SetPropertyValue<fmCSubject>("Subject", ref _Subject, value); }
+            set {
+                if (!IsLoading && Journal.Subject != null)
+                    new InvalidOperationException("Ќе может быт изменено, поскольку задано дл€ журнала");
+                SetPropertyValue<fmCSubject>("Subject", ref _Subject, value); 
+            }
         }
 
         private fmCOrder _Order;
         [ExplicitLoading(1)]
+        [Appearance("", AppearanceItemType.ViewItem, "Journal.Order != Null", Enabled = false)]
         public fmCOrder Order {
             get { return _Order; }
-            set { SetPropertyValue<fmCOrder>("Order", ref _Order, value); }
+            set {
+                if (!IsLoading && Journal.Subject != null)
+                    new InvalidOperationException("Ќе может быт изменено, поскольку задано дл€ журнала");
+                SetPropertyValue<fmCOrder>("Order", ref _Order, value); 
+            }
         }
 
-        private crmCPerson _Person;
+        [Persistent("FinIndex")]
+        protected fmCFinIndex _FinIndex;
+        [PersistentAlias("_FinIndex")]
+        [Appearance("", AppearanceItemType.ViewItem, "CostItem != Null", Enabled=false)]
+        public fmCFinIndex FinIndex {
+            get { return _FinIndex; }
+            set {
+                if (CostItem != null)
+                    new InvalidOperationException("”же задана стать€");
+                SetPropertyValue<fmCFinIndex>("FinIndex", ref _FinIndex, value);
+            }
+        }
+
+        private fmCostItem _CostItem;
         [ExplicitLoading(1)]
+        public fmCostItem CostItem {
+            get { return _CostItem; }
+            set { 
+                SetPropertyValue<fmCostItem>("CostItem", ref _CostItem, value);
+                if (!IsLoading && value != null) {
+                    fmCFinIndex old = _FinIndex;
+                    _FinIndex = fmCFinIndex.FinIndexGet(this.Session, value, Date);
+                    OnChanged("FinIndex", old, _FinIndex);
+                }
+            }
+        }
+
+        private hrmDepartment _Department;
+        [ExplicitLoading(1)]
+        public hrmDepartment Department {
+            get { return _Department; }
+            set { SetPropertyValue<hrmDepartment>("Department", ref _Department, value); }
+        }
+
+        private HrmDepartmentStructItem _DepartmentStructItem;
+        public HrmDepartmentStructItem  DepartmentStructItem {
+            get { return _DepartmentStructItem; }
+            set { SetPropertyValue<HrmDepartmentStructItem>("DepartmentStructItem", ref _DepartmentStructItem, value); }
+        }
+
+        private crmCParty _Party;
+        [ExplicitLoading(1)]
+        public crmCParty Party {
+            get { return _Party; }
+            set { SetPropertyValue<crmCParty>("Party", ref _Party, value); }
+        }
+
+        [PersistentAlias("Party.Person")]
         public crmCPerson Person {
-            get { return _Person; }
-            set { SetPropertyValue<crmCPerson>("Person", ref _Person, value); }
+            get { return Party != null ? Party.Person : null; }
         }
 
         private crmContractDeal _Deal;
@@ -111,6 +176,18 @@ namespace IntecoAG.ERM.FM {
         public crmContractDeal Deal {
             get { return _Deal; }
             set { SetPropertyValue<crmContractDeal>("Deal", ref _Deal, value); }
+        }
+
+        private fmCFAAccount _BuhAccount;
+        public fmCFAAccount BuhAccount {
+            get { return _BuhAccount; }
+            set { SetPropertyValue<fmCFAAccount>("BuhAccount", ref _BuhAccount, value); }
+        }
+
+        private fmCFAAccount _FinAccount;
+        public fmCFAAccount FinAccount {
+            get { return _FinAccount; }
+            set { SetPropertyValue<fmCFAAccount>("FinAccount", ref _FinAccount, value); }
         }
 
         private Decimal _BalanceSumma;

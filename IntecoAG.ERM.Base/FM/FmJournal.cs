@@ -68,6 +68,7 @@ namespace IntecoAG.ERM.FM {
     /// 
     /// </summary>
     [Persistent("FmJournal")]
+    [DefaultProperty("Code")]
     public class FmJournal : XPObject {
         public FmJournal(Session session) : base(session) { }
 
@@ -91,7 +92,7 @@ namespace IntecoAG.ERM.FM {
             get { return _Code; }
         }
         public void CodeSet(String code) {
-            SetPropertyValue<String>("Code", ref _Code, code);
+            SetPropertyValue<String>("Code", ref _Code, "ÔÆ." + code);
         }
 
         [Persistent("JournalTypeSource")]
@@ -205,9 +206,9 @@ namespace IntecoAG.ERM.FM {
         }
         public void OrderSet(fmCOrder value) {
             SetPropertyValue<fmCOrder>("Order", ref _Order, value);
+            SubjectSet(value.Subject);
             foreach (var oper in Operations) {
                 oper.Order = value;
-                oper.Subject = value.Subject;
             }
         }
 

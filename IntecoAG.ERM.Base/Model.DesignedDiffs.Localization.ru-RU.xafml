@@ -1806,6 +1806,21 @@
     <ListView Id="fmCSubject_ListView" Caption="Список Тем" />
     <ListView Id="fmCSubject_LookupListView" Caption="Выбор Темы" />
     <ListView Id="fmCSubject_Orders_ListView" Caption="Заказы" />
+    <ListView Id="FmFinPlanBase_Operations_ListVariants">
+      <Variants>
+        <Variant Id="@1be19501-10e6-4d31-a1fb-3bcf1208bb77" Caption="Список Операций" />
+        <Variant Id="@b3dccf82-255c-442f-9763-03f8dff28e04" Caption="Анализ ДДС" />
+      </Variants>
+    </ListView>
+    <ListView Id="FmFinPlanDoc_Lines_ListView">
+      <Filters>
+        <Filter Id="ALL_SHEET" Caption="Все" />
+        <Filter Id="ONLY_SHEET_COST" Caption="Затраты" />
+        <Filter Id="ONLY_SHEET_CASH" Caption="Деньги" />
+        <Filter Id="ONLY_SHEET_PARTY" Caption="Смежники" />
+        <Filter Id="ONLY_SHEET_MATERIAL" Caption="Материалы" />
+      </Filters>
+    </ListView>
     <ListView Id="hrmCStaffGroup_ListView" Caption="Группы Сотрудников" />
     <ListView Id="hrmCStaffGroup_LookupListView" Caption="Группы Сотрудников" />
     <DetailView Id="hrmStaff_DetailView">
