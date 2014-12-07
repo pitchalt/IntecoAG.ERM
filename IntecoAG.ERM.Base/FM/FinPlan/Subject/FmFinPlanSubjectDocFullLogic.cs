@@ -18,6 +18,16 @@ using DevExpress.Persistent.Validation;
 namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
     public class FmFinPlanSubjectDocXMLLoader {
+
+        protected enum ReadState {
+            READ_BOOK = 1,
+            READ_SHEET = 2,
+            READ_TABLE = 3,
+            READ_COLUMN = 4,
+            READ_ROW = 5,
+            READ_CELL = 6
+        }
+
         protected NameTable NameTable = null;
         protected object nBook;
         protected object nSheet;
@@ -29,6 +39,12 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         protected IObjectSpace ObjectSpace;
         protected FmFinPlanSubjectDocFull TargetDoc;
         protected XmlReader Reader;
+
+        protected ReadState CurState;
+        protected String CurSheet;
+        protected Int32 CurCol = 0;
+        protected Int32 CurRow = 0;
+
 
         public FmFinPlanSubjectDocXMLLoader(IObjectSpace os, FmFinPlanSubjectDocFull doc, Stream stream) {
             ObjectSpace = os;
@@ -65,8 +81,10 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                 while (Reader.Read()) {
                     if (Reader.NodeType == XmlNodeType.Element || Reader.NodeType == XmlNodeType.EndElement) {
                         object LocalName = Reader.LocalName;
-                        if (LocalName == nSheet)
+                        if (LocalName == nSheet) {
                             LoadSheet();
+                            continue;
+                        }
                         if (LocalName == nBook) {
                             System.Console.WriteLine("/WorkBook");
                             Reader.ReadEndElement();
@@ -158,19 +176,10 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             }
         }
 
-        protected enum ReadState {
-            READ_SHEET = 1,
-            READ_TABLE = 2,
-            READ_COLUMN = 3,
-            READ_ROW = 4,
-            READ_CELL = 5
-        }
         protected void LoadSheetCost() {
             Reader.ReadStartElement((String)nSheet);
             System.Console.WriteLine("Load Sheet Unknow");
-            ReadState current_state = ReadState.READ_SHEET;
-            Int32 cur_row = 0;
-            Int32 cur_col = 0;
+//            ReadState current_state = ReadState.READ_SHEET;
             String index = null;
             String merge = null;
             String type = null;
@@ -179,7 +188,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                 if (Reader.NodeType != XmlNodeType.Element && Reader.NodeType != XmlNodeType.EndElement)
                     continue;
                 object LocalName = Reader.LocalName;
-                switch (current_state) {
+                switch (CurState) {
                     case ReadState.READ_SHEET:
                         if (LocalName == nSheet) {
                             if (Reader.NodeType == XmlNodeType.EndElement) {
@@ -198,8 +207,8 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                             else {
                                 System.Console.WriteLine("Table");
                                 Reader.ReadStartElement((String)nTable);
-                                cur_row = 0;
-                                current_state = ReadState.READ_TABLE;
+                                CurRow = 0;
+                                CurState = ReadState.READ_TABLE;
                             }
                             continue;
                         }
@@ -212,25 +221,25 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                         if (LocalName == nRow) {
                             index = Reader.GetAttribute("Index", "urn:schemas-microsoft-com:office:spreadsheet");
                             if (index == null)
-                                cur_row++;
+                                CurRow++;
                             else
-                                cur_row = Int32.Parse(index);
+                                CurRow = Int32.Parse(index);
                             if (Reader.IsEmptyElement) {
-                                System.Console.WriteLine("Row/ " + cur_row.ToString());
+                                System.Console.WriteLine("Row/ " + CurRow.ToString());
                                 Reader.ReadStartElement((String)nRow);
                             }
                             else {
-                                System.Console.WriteLine("Row " + cur_row.ToString());
+                                System.Console.WriteLine("Row " + CurRow.ToString());
                                 Reader.ReadStartElement((String)nRow);
-                                cur_col = 0;
-                                current_state = ReadState.READ_ROW;
+                                CurCol = 0;
+                                CurState = ReadState.READ_ROW;
                             }
                             continue;
                         }
                         if (LocalName == nTable) {
                             System.Console.WriteLine("/Table");
                             Reader.ReadEndElement();
-                            current_state = ReadState.READ_SHEET;
+                            CurState = ReadState.READ_SHEET;
                             continue;
                         }
                         break;
@@ -239,23 +248,23 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                             index = Reader.GetAttribute("Index", "urn:schemas-microsoft-com:office:spreadsheet");
                             merge = Reader.GetAttribute("MergeAcross", "urn:schemas-microsoft-com:office:spreadsheet");
                             if (index == null)
-                                cur_col++;
+                                CurCol++;
                             else
-                                cur_col = Int32.Parse(index);
+                                CurCol = Int32.Parse(index);
                             if (Reader.IsEmptyElement) {
                                 Reader.ReadStartElement((String)nCell);
                             }
                             else {
                                 Reader.ReadStartElement((String)nCell);
-                                current_state = ReadState.READ_CELL;
+                                CurState = ReadState.READ_CELL;
                             }
                             if (merge != null)
-                                cur_col += Int32.Parse(merge);
+                                CurCol += Int32.Parse(merge);
                             continue;
                         }
                         if (LocalName == nRow) {
                             Reader.ReadEndElement();
-                            current_state = ReadState.READ_TABLE;
+                            CurState = ReadState.READ_TABLE;
                             continue;
                         }
                         break;
@@ -267,7 +276,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                                 type = Reader.GetAttribute("Type", "urn:schemas-microsoft-com:office:spreadsheet");
                                 Reader.ReadStartElement((String)nData, "urn:schemas-microsoft-com:office:spreadsheet");
                                 value = Reader.ReadString();
-                                ProcessCell(cur_row, cur_col, type, value);
+                                ProcessCell(CurRow, CurCol, type, value);
 //                                Reader.ReadEndElement();
 //                                current_state = ReadState.READ_ROW;
                             }
@@ -275,7 +284,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                         }
                         if (LocalName == nCell) {
                             Reader.ReadEndElement();
-                            current_state = ReadState.READ_ROW;
+                            CurState = ReadState.READ_ROW;
                             continue;
                         }
                         break;
