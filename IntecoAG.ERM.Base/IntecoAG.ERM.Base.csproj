@@ -459,6 +459,13 @@
     <Compile Include="FM\FinPlan\FmFinPlanDoc.cs" />
     <Compile Include="FM\FinPlan\FmFinPlanDocLine.cs" />
     <Compile Include="FM\FinPlan\FmFinPlanDocTime.cs" />
+    <Compile Include="FM\FinPlan\FmFinPlanDocLineController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FM\FinPlan\FmFinPlanDocLineController.Designer.cs">
+      <DependentUpon>FmFinPlanDocLineController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocFullLogic.cs" />
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocYear.cs" />
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDoc.cs" />
     <Compile Include="FM\FmAccounting.cs" />
@@ -807,6 +814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CS\Security\csCSecurityUserListController.resx">
       <DependentUpon>csCSecurityUserListController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FM\FinPlan\FmFinPlanDocLineController.resx">
+      <DependentUpon>FmFinPlanDocLineController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm1.resx">
       <DependentUpon>MainForm1.cs</DependentUpon>

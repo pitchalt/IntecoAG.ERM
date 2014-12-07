@@ -39,7 +39,20 @@ namespace IntecoAG.ERM.FM.FinPlan {
 //        [NonPersistent]
         protected abstract FmFinPlanPlan FinPlan { get; }
 
+
+        [Aggregated]
+        [Browsable(false)]
+        [Persistent("TopLine")]
+        protected FmFinPlanDocLine _TopLine;
+
+        [PersistentAlias("_TopLine.SubLines")]
+        [Aggregated]
+        public XPCollection<FmFinPlanDocLine> SubLines {
+            get { return _TopLine != null ? _TopLine.SubLines : null; }
+        }
+
         [Association("FmFinPlanDoc-FmFinPlanDocLine"), Aggregated]
+        [Browsable(false)]
         public XPCollection<FmFinPlanDocLine> Lines {
             get { return GetCollection<FmFinPlanDocLine>("Lines"); }
         }
@@ -47,6 +60,12 @@ namespace IntecoAG.ERM.FM.FinPlan {
         public csValuta Valuta;
 
         public csNDSRate NdsRate;
+
+        public void Clean() {
+            foreach (var line in Lines) {
+                line.Clean();
+            }
+        }
 
     }
 

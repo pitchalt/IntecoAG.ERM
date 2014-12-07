@@ -10,17 +10,19 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
+using IntecoAG.ERM.CS;
 using IntecoAG.ERM.FM.Subject;
 using IntecoAG.ERM.FM.Order;
 
 namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public abstract class FmFinPlanSubjectDoc : FmFinPlanDoc {
+    public abstract class FmFinPlanSubjectDoc : FmFinPlanDoc, csIImportSupport {
         public FmFinPlanSubjectDoc(Session session): base(session) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
+
         }
 
         [PersistentAlias("FinPlanSubject.Subject")]
@@ -85,6 +87,8 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                         );
             }
         }
+
+        public abstract void Import(IObjectSpace os, string file_name);
     }
 
 }

@@ -89,6 +89,8 @@ namespace IntecoAG.ERM.HRM {
                         using (IObjectSpace os = Application.CreateObjectSpace()) {
                             foreach (var item2 in list_res.TBLIST) {
 //                                System.Console.WriteLine(item2.TBCODE + " " + item2.TBLASTNAME + " " + item2.TBFIRSTNAME + " " + item2.TBMIDDLENAME + " " + item2.TBDPCODE);
+                                if (item2.TBBUHCODE == 13951)
+                                    System.Console.WriteLine("Sync A1 source: " + item2.TBBUHCODE + " dep: " + item2.TBDPCODE);
                                 hrmStaff staff;
                                 IList<hrmStaff> staffs = os.GetObjects<hrmStaff>(new BinaryOperator("BuhCode", item2.TBBUHCODE.ToString(), BinaryOperatorType.Equal));
                                 if (staffs.Count > 1 || staffs.Count < 0)
@@ -97,6 +99,8 @@ namespace IntecoAG.ERM.HRM {
                                     staff = staffs[0];
                                 else
                                     staff = os.CreateObject<hrmStaff>();
+                                if (item2.TBBUHCODE == 13951)
+                                    System.Console.WriteLine("Sync ERM before: " + staff.BuhCode + " dep: " + staff.Department != null ? staff.Department.Code : String.Empty );
                                 //staff.Code = item2.TBCODE;
                                 staff.BuhCode = item2.TBBUHCODE.ToString();
                                 staff.FirstName = item2.TBFIRSTNAME;
@@ -114,6 +118,8 @@ namespace IntecoAG.ERM.HRM {
                                 if (deps.Count > 0)
                                     staff.Department = deps[0];
                                 //                                staff.IsClosed = item2.TBISCLOSED;
+                                if (item2.TBBUHCODE == 13951)
+                                    System.Console.WriteLine("Sync ERM after: " + staff.BuhCode + " dep: " + staff.Department != null ? staff.Department.Code : String.Empty);
                             }
                             os.CommitChanges();
                         }

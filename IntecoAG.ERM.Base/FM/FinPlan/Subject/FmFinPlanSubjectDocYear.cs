@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.IO;
 
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
@@ -40,6 +41,10 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             }
         }
 
+
+        public override void Import(IObjectSpace os, String file_name) {
+            throw new NotImplementedException();
+        }
     }
 
 }

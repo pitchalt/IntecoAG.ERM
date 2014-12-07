@@ -2512,38 +2512,39 @@
         <Variant Id="@b3dccf82-255c-442f-9763-03f8dff28e04" ViewID="FmFinPlanBase_Operations_Analiz_F4" IsNewNode="True" />
       </Variants>
     </ListView>
-    <ListView Id="FmFinPlanDoc_Lines_ListView">
+    <ListView Id="FmFinPlanDocLine_SubLines_ListView">
       <Columns>
+        <ColumnInfo Id="FinPlanDoc" Index="-1" />
         <ColumnInfo Id="IsError" Index="-1" />
-        <ColumnInfo Id="LineCode" Index="-1" />
         <ColumnInfo Id="LineTime" Index="-1" />
-        <ColumnInfo Id="Parent" Index="-1" />
-        <ColumnInfo Id="TopLine" Index="-1" />
+        <ColumnInfo Id="LineType" Index="-1" />
+        <ColumnInfo Id="PartyName" Index="-1" />
         <ColumnInfo Id="TotalType" Index="-1" />
-        <ColumnInfo Id="Sheet" Index="0" />
-        <ColumnInfo Id="Name" Index="1" />
+        <ColumnInfo Id="LineCode" Index="0" />
+        <ColumnInfo Id="Sheet" Index="1" />
         <ColumnInfo Id="LineName" Index="2" />
         <ColumnInfo Id="DepStruct" Index="3" />
         <ColumnInfo Id="Party" Index="4" />
-        <ColumnInfo Id="Valuta" Index="5" />
+        <ColumnInfo Id="PayType" Index="5" />
         <ColumnInfo Id="NdsRate" Index="6" />
-        <ColumnInfo Id="PayType" Index="7" />
+        <ColumnInfo Id="Valuta" Index="7" />
         <ColumnInfo Id="ValueManual" Index="8" />
         <ColumnInfo Id="ValueAutomatic" Index="9" />
       </Columns>
-      <Filters CurrentFilterId="ALL_SHEET">
-        <Filter Id="ALL_SHEET" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_COST#" Index="0" IsNewNode="True" />
-        <Filter Id="ONLY_SHEET_COST" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_COST#" Index="1" IsNewNode="True" />
-        <Filter Id="ONLY_SHEET_CASH" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_CASH#" Index="2" IsNewNode="True" />
-        <Filter Id="ONLY_SHEET_PARTY" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_PARTY#" Index="3" IsNewNode="True" />
-        <Filter Id="ONLY_SHEET_MATERIAL" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_MATERIAL#" Index="4" IsNewNode="True" />
-        <Filter Id="Нормативы" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_NORMATIV#" IsNewNode="True" />
+      <Filters CurrentFilterId="All">
+        <Filter Id="All" Index="0" IsNewNode="True" />
+        <Filter Id="Затраты" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_COST#" Index="1" IsNewNode="True" />
+        <Filter Id="ДДС" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_CASH#" Index="2" IsNewNode="True" />
+        <Filter Id="Смежники" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_PARTY#" Index="3" IsNewNode="True" />
+        <Filter Id="Материалы" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_MATERIAL#" Index="4" IsNewNode="True" />
+        <Filter Id="Нормативы" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_NORMATIV#" Index="5" IsNewNode="True" />
       </Filters>
     </ListView>
     <DetailView Id="FmFinPlanSubjectDocFull_DetailView">
       <Items>
         <PropertyEditor Id="DocOperations" View="FmFinPlanBase_Operations_ListVariants" />
         <PropertyEditor Id="Operations" View="FmFinPlanBase_Operations_ListVariants" />
+        <PropertyEditor Id="SubLines" View="FmFinPlanDocLine_SubLines_ListView" />
       </Items>
       <Layout>
         <LayoutGroup Id="Main">
@@ -2567,7 +2568,7 @@
             </LayoutGroup>
           </LayoutGroup>
           <TabbedGroup Id="Tabs">
-            <LayoutGroup Id="Lines" Index="0" />
+            <LayoutGroup Id="SubLines" Index="0" />
             <LayoutGroup Id="Operations" Index="1" />
             <LayoutGroup Id="DocOperations" Index="2" />
             <LayoutGroup Id="Additions" IsNewNode="True">

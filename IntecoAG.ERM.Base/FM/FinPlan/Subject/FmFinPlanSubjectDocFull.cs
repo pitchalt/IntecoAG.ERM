@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.IO;
 
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
@@ -11,9 +12,13 @@ using DevExpress.Persistent.Validation;
 
 using IntecoAG.ERM.FM.Order;
 using IntecoAG.ERM.FM.Subject;
+using IntecoAG.ERM.HRM.Organization;
 
 namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
+    /// <summary>
+    /// 
+    /// </summary>
     [MapInheritance(MapInheritanceType.ParentTable)]
     public class FmFinPlanSubjectDocFull : FmFinPlanSubjectDoc {
         public FmFinPlanSubjectDocFull(Session session) : base(session) { }
@@ -28,23 +33,9 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             _Journal.JournalTypePeriodSet(JournalTypePeriod.FM_JTP_FULL);
             _Journal.JournalTypeSourceSet(JournalTypeSource.FM_JTS_FINPLAN_DOC);
             CodeSet("‘œ«" + ".Null");
-
-            FmFinPlanDocLine line = null;
-            line = new FmFinPlanDocLine(this.Session);
-            Lines.Add(line);
-            line.SheetSet(FmFinPlanSheetType.FMFPS_COST);
-            line = new FmFinPlanDocLine(this.Session);
-            Lines.Add(line);
-            line.SheetSet(FmFinPlanSheetType.FMFPS_CASH);
-            line = new FmFinPlanDocLine(this.Session);
-            Lines.Add(line);
-            line.SheetSet(FmFinPlanSheetType.FMFPS_PARTY);
-            line = new FmFinPlanDocLine(this.Session);
-            Lines.Add(line);
-            line.SheetSet(FmFinPlanSheetType.FMFPS_MATERIAL);
-            line = new FmFinPlanDocLine(this.Session);
-            Lines.Add(line);
-            line.SheetSet(FmFinPlanSheetType.FMFPS_NORMATIV);
+            //
+            _TopLine = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_TOP, null, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                " ÌË„‡", " ÌË„‡", HrmStructItemType.HRM_STRUCT_UNKNOW);
         }
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue) {
@@ -55,6 +46,12 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                     CodeSet("‘œ«." + order.Code + ".œ0");
                     Journal.CodeSet(Code);
                 }
+            }
+        }
+
+        public override void Import(IObjectSpace os, String file_name) {
+            using (Stream stream = new FileStream(file_name, FileMode.Open)) {
+                FmFinPlanSubjectDocFullLogic.LoadDocFromXML(os, this, stream);
             }
         }
     }
