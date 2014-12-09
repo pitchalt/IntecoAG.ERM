@@ -1341,6 +1341,11 @@
         <LocalizationItem Name="UNIT_AT_THE_END" Value="Спецификация" />
         <LocalizationItem Name="UNITS_SHEDULE" Value="График поставок" />
       </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.Obligation.DeliveryUnitType">
+        <LocalizationItem Name="LIST_ITEMS" Value="Список позиций" />
+        <LocalizationItem Name="SINGLE_MATERIAL" Value="Единичный материал" />
+        <LocalizationItem Name="SINGLE_SERVICE" Value="Единичная работа(услуга)" />
+      </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.CRM.Contract.Obligation.FullCalculateMethod" Value="Метод Расч.Итого">
         <LocalizationItem Name="CALC_COST" Value="Расч.Стоим." />
         <LocalizationItem Name="CALC_FULL" Value="Расч.Всего" />
@@ -1393,6 +1398,56 @@
         <LocalizationItem Name="VERSION_OLD" Value="Старая" />
         <LocalizationItem Name="VERSION_PROJECT" Value="Проект" />
       </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType">
+        <LocalizationItem Name="FMFPS_CASH" Value="БДДС" />
+        <LocalizationItem Name="FMFPS_COST" Value="БСР" />
+        <LocalizationItem Name="FMFPS_MATERIAL" Value="Материалы" />
+        <LocalizationItem Name="FMFPS_NORMATIV" Value="Нормативы" />
+        <LocalizationItem Name="FMFPS_PARTY" Value="Соисполнители" />
+        <LocalizationItem Name="FMFPS_UNKNOW" Value="Неопределено" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanTimeType">
+        <LocalizationItem Name="FMFPT_MONTH" Value="Месяц" />
+        <LocalizationItem Name="FMFPT_QUARTER" Value="Квартал" />
+        <LocalizationItem Name="FMFPT_SALDO" Value="Сальдо" />
+        <LocalizationItem Name="FMFPT_TOTAL" Value="Всего" />
+        <LocalizationItem Name="FMFPT_UNKNOW" Value="Неопределено" />
+        <LocalizationItem Name="FMFPT_YEAR" Value="Год" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanTotalType">
+        <LocalizationItem Name="FMFPT_ACCUMULATED" Value="Накопительно" />
+        <LocalizationItem Name="FMFPT_HIERARCHICAL" Value="Иерархия" />
+        <LocalizationItem Name="FMFPT_NOTOTAL" Value="Без итога" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.JournalTypeAccounting">
+        <LocalizationItem Name="FM_JTA_FINANCIAL" Value="ФУ" />
+        <LocalizationItem Name="FM_JTA_MANAGEMENT" Value="УУ" />
+        <LocalizationItem Name="FM_JTA_TAX" Value="НУ" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.JournalTypeLegal">
+        <LocalizationItem Name="FM_JTL_COMPANY" Value="Компания" />
+        <LocalizationItem Name="FM_JTL_CORPORATION" Value="НПО Корпорация" />
+        <LocalizationItem Name="FM_JTL_CORPORATION_TOP" Value="ТРВ Корпорация" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.JournalTypeObject">
+        <LocalizationItem Name="FM_JTO_ALL" Value="Все" />
+        <LocalizationItem Name="FM_JTO_ORDER" Value="Заказ" />
+        <LocalizationItem Name="FM_JTO_SUBJECT" Value="Тема" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.JournalTypePeriod">
+        <LocalizationItem Name="FM_JTP_FULL" Value="Полный" />
+        <LocalizationItem Name="FM_JTP_MONTH" Value="Месяц" />
+        <LocalizationItem Name="FM_JTP_QUARTER" Value="Квартал" />
+        <LocalizationItem Name="FM_JTP_YEAR" Value="Год" />
+        <LocalizationItem Name="FM_JTP_YEAR3" Value="Три года" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.JournalTypeSource">
+        <LocalizationItem Name="FM_JTS_CONTRACT" Value="Договора" />
+        <LocalizationItem Name="FM_JTS_COST_STRUCTURE" Value="Структура цены" />
+        <LocalizationItem Name="FM_JTS_FACT" Value="Факт" />
+        <LocalizationItem Name="FM_JTS_FINPLAN" Value="Фин.План" />
+        <LocalizationItem Name="FM_JTS_FINPLAN_DOC" Value="Док.Фин.План" />
+      </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Order.fmIOrderOverheadType">
         <LocalizationItem Name="Individual" Value="Индивидуальный" />
         <LocalizationItem Name="Standart" Value="Стандартный" />
@@ -1417,6 +1472,10 @@
         <LocalizationItem Name="PRODUCT_CIVIL" Value="ГП" />
         <LocalizationItem Name="PRODUCT_MILITARY" Value="ВП" />
         <LocalizationItem Name="PRODUCT_OTHER" Value="Прочие" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.FM.PaymentRequest.fmPRPayType">
+        <LocalizationItem Name="POSTPAYMENT" Value="Расчет" />
+        <LocalizationItem Name="PREPAYMENT" Value="Аванс" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.FM.Subject.DealInfoDealType">
         <LocalizationItem Name="DEAL_INFO_EXPENDITURE" Value="Расходы" />
@@ -1447,6 +1506,13 @@
         <LocalizationItem Name="COPERATING_GENERAL" Value="Головной" />
         <LocalizationItem Name="COPERATING_INTERNAL" Value="Внутренний" />
         <LocalizationItem Name="COPERATING_SUPPLIER" Value="Соисполнитель" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="IntecoAG.ERM.HRM.Organization.HrmStructItemType">
+        <LocalizationItem Name="HRM_STRUCT_CONTRACT" Value="Подряд" />
+        <LocalizationItem Name="HRM_STRUCT_KB" Value="КБ" />
+        <LocalizationItem Name="HRM_STRUCT_ORION" Value="КБ &quot;Орион&quot;" />
+        <LocalizationItem Name="HRM_STRUCT_OZM" Value="ОЗМ" />
+        <LocalizationItem Name="HRM_STRUCT_UNKNOW" Value="Неопределено" />
       </LocalizationGroup>
       <LocalizationGroup Name="IntecoAG.ERM.Trw.Party.TrwAccountType" Value="ТРВ Тип Счета">
         <LocalizationItem Name="ACCOUNT_ACCREDITIVE" Value="Аккредитивный" />

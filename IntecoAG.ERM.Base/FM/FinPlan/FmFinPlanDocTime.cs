@@ -115,7 +115,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
             get { return _Year; }
         }
         public void YearSet(Int16 value) {
-            SetPropertyValue<Int16>("Year", ref _Year, value);
+            SetPropertyValue<Int16>("year", ref _Year, value);
         }
 
         [Persistent("Quarter")]
@@ -135,7 +135,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
             get { return _Month; }
         }
         public void MonthSet(Int16 value) {
-            SetPropertyValue<Int16>("Month", ref _Month, value);
+            SetPropertyValue<Int16>("month", ref _Month, value);
         }
 
         private Decimal _ValueManual;
@@ -170,7 +170,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
         public void ValueAutomaticSet(Decimal value) {
             SetPropertyValue<Decimal>("ValueAutomatic", ref _ValueAutomatic, value);
             if (TopTime != null)
-                ValueAutomaticUpdate();
+                TopTime.ValueAutomaticUpdate();
         }
 
         [VisibleInListView(false)]
@@ -200,6 +200,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
             }
         }
 
+        [Browsable(false)]
         public IBindingList Children {
             get { return SubTimes; }
         }
@@ -208,6 +209,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
             get { return ToString(); }
         }
 
+        [Browsable(false)]
         public ITreeNode Parent {
             get { return TopTime; }
         }

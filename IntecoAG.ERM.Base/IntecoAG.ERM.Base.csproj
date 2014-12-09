@@ -401,6 +401,7 @@
     <Compile Include="CS\Finance\NDSRate.cs" />
     <Compile Include="CS\ICommitInfo.cs" />
     <Compile Include="CS\IHDenormalization.cs" />
+    <Compile Include="CS\Import\Excel2003XmlReader.cs" />
     <Compile Include="CS\Locale\Language.cs" />
     <Compile Include="CS\Measurement\Measurement.cs" />
     <Compile Include="CS\Measurement\TimeUnit.cs" />
@@ -466,6 +467,12 @@
       <DependentUpon>FmFinPlanDocLineController.cs</DependentUpon>
     </Compile>
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocFullLogic.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocVC.Designer.cs">
+      <DependentUpon>FmFinPlanSubjectDocVC.cs</DependentUpon>
+    </Compile>
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocYear.cs" />
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDoc.cs" />
     <Compile Include="FM\FmAccounting.cs" />
@@ -817,6 +824,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FM\FinPlan\FmFinPlanDocLineController.resx">
       <DependentUpon>FmFinPlanDocLineController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FM\FinPlan\Subject\FmFinPlanSubjectDocVC.resx">
+      <DependentUpon>FmFinPlanSubjectDocVC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm1.resx">
       <DependentUpon>MainForm1.cs</DependentUpon>

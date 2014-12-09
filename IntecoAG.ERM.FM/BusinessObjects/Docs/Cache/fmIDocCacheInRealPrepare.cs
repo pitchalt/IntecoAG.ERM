@@ -92,7 +92,7 @@ namespace IntecoAG.ERM.FM.Docs.Cache {
 //                instance.AVTSumma = csNDSRate.getNDS(instance.Summa, instance.AVTRate);
             }
             foreach (var line in instance.PrepareLines) {
-//                if (line.AVTRate == null)
+//                if (line_doc.AVTRate == null)
                 line.AVTRate = instance.AVTRate;
             }
         }
@@ -100,7 +100,7 @@ namespace IntecoAG.ERM.FM.Docs.Cache {
             // An "AfterChange_" method is executed after a target property is changed. The target property should not be readonly. 
             // Use this method to refresh dependant property values.
             foreach (var line in instance.PrepareLines) {
-                //                if (line.AVTRate == null)
+                //                if (line_doc.AVTRate == null)
                 line.Order = instance.Order;
             }
         }

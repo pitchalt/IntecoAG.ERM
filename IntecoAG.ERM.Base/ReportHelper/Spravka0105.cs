@@ -486,7 +486,7 @@ namespace IntecoAG.ERM.Module.ReportHelper
             if ((int)Month.September == monthNumber) return Month.September;
             if ((int)Month.October == monthNumber) return Month.October;
             if ((int)Month.November == monthNumber) return Month.November;
-            //if ((int)Month.December == monthNumber) return Month.December;
+            //if ((int)month.December == monthNumber) return month.December;
             return Month.December;
         }
     }

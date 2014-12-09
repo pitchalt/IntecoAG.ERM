@@ -2512,24 +2512,84 @@
         <Variant Id="@b3dccf82-255c-442f-9763-03f8dff28e04" ViewID="FmFinPlanBase_Operations_Analiz_F4" IsNewNode="True" />
       </Variants>
     </ListView>
-    <ListView Id="FmFinPlanDocLine_SubLines_ListView">
+    <DetailView Id="FmFinPlanDocLine_MasterDetailView" ClassName="IntecoAG.ERM.FM.FinPlan.FmFinPlanDocLine" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Deal" PropertyName="Deal" Index="0" IsNewNode="True" />
+        <PropertyEditor Id="DealAddNumber" PropertyName="DealAddNumber" Index="1" IsNewNode="True" />
+        <PropertyEditor Id="DealNumber" PropertyName="DealNumber" Index="2" IsNewNode="True" />
+        <PropertyEditor Id="DepStruct" PropertyName="DepStruct" IsNewNode="True" />
+        <PropertyEditor Id="IsError" PropertyName="IsError" IsNewNode="True" />
+        <PropertyEditor Id="LineCode" PropertyName="LineCode" IsNewNode="True" />
+        <PropertyEditor Id="LineName" PropertyName="LineName" IsNewNode="True" />
+        <PropertyEditor Id="LineTime" PropertyName="LineTime" IsNewNode="True" />
+        <PropertyEditor Id="LineType" PropertyName="LineType" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="Party" PropertyName="Party" IsNewNode="True" />
+        <PropertyEditor Id="PartyName" PropertyName="PartyName" IsNewNode="True" />
+        <PropertyEditor Id="PayType" PropertyName="PayType" IsNewNode="True" />
+        <PropertyEditor Id="Sheet" PropertyName="Sheet" IsNewNode="True" />
+        <PropertyEditor Id="SubLines" PropertyName="SubLines" View="FmFinPlanDocLine_SubLines_ListView" IsNewNode="True" />
+        <PropertyEditor Id="SubTimes" PropertyName="SubTimes" View="FmFinPlanDocLine_SubTimes_ListView" IsNewNode="True" />
+        <PropertyEditor Id="TotalType" PropertyName="TotalType" IsNewNode="True" />
+        <PropertyEditor Id="ValueAutomatic" PropertyName="ValueAutomatic" IsNewNode="True" />
+        <PropertyEditor Id="ValueManual" PropertyName="ValueManual" IsNewNode="True" />
+        <PropertyEditor Id="Valuta" PropertyName="Valuta" IsNewNode="True" />
+        <PropertyEditor Id="VatRate" PropertyName="VatRate" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="Header" Direction="Horizontal" Index="0" IsNewNode="True">
+            <LayoutItem Id="Sheet" ViewItem="Sheet" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="LineCode" ViewItem="LineCode" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="ValueManual" ViewItem="ValueManual" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="ValueAutomatic" ViewItem="ValueAutomatic" Index="3" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="1" IsNewNode="True">
+            <LayoutGroup Id="SubTimes" Index="1" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="SubTimes" ViewItem="SubTimes" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Other" IsNewNode="True">
+              <LayoutGroup Id="FmFinPlanDocLine_col1" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="LineType" ViewItem="LineType" Index="1" IsNewNode="True" />
+                <LayoutItem Id="Party" ViewItem="Party" Index="2" IsNewNode="True" />
+                <LayoutItem Id="Deal" ViewItem="Deal" IsNewNode="True" />
+                <LayoutItem Id="DealAddNumber" ViewItem="DealAddNumber" IsNewNode="True" />
+                <LayoutItem Id="DealNumber" ViewItem="DealNumber" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="FmFinPlanDocLine_col2" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="DepStruct" ViewItem="DepStruct" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Valuta" ViewItem="Valuta" Index="1" IsNewNode="True" />
+                <LayoutItem Id="VatRate" ViewItem="VatRate" Index="2" IsNewNode="True" />
+                <LayoutItem Id="PayType" ViewItem="PayType" Index="3" IsNewNode="True" />
+                <LayoutItem Id="TotalType" ViewItem="TotalType" Index="4" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="SizeableEditors" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="PartyName" ViewItem="PartyName" Index="0" IsNewNode="True" />
+                <LayoutItem Id="LineName" ViewItem="LineName" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="FmFinPlanDocLine_SubLines_ListView" MasterDetailMode="ListViewAndDetailView" MasterDetailView="FmFinPlanDocLine_MasterDetailView">
       <Columns>
+        <ColumnInfo Id="DepStruct" Index="-1" />
         <ColumnInfo Id="FinPlanDoc" Index="-1" />
         <ColumnInfo Id="IsError" Index="-1" />
+        <ColumnInfo Id="LineCode" Index="-1" />
+        <ColumnInfo Id="LineName" Index="-1" />
         <ColumnInfo Id="LineTime" Index="-1" />
         <ColumnInfo Id="LineType" Index="-1" />
+        <ColumnInfo Id="Party" Index="-1" />
         <ColumnInfo Id="PartyName" Index="-1" />
+        <ColumnInfo Id="PayType" Index="-1" />
+        <ColumnInfo Id="Sheet" Index="-1" />
         <ColumnInfo Id="TotalType" Index="-1" />
-        <ColumnInfo Id="LineCode" Index="0" />
-        <ColumnInfo Id="Sheet" Index="1" />
-        <ColumnInfo Id="LineName" Index="2" />
-        <ColumnInfo Id="DepStruct" Index="3" />
-        <ColumnInfo Id="Party" Index="4" />
-        <ColumnInfo Id="PayType" Index="5" />
-        <ColumnInfo Id="NdsRate" Index="6" />
-        <ColumnInfo Id="Valuta" Index="7" />
-        <ColumnInfo Id="ValueManual" Index="8" />
-        <ColumnInfo Id="ValueAutomatic" Index="9" />
+        <ColumnInfo Id="Name" Index="0" />
+        <ColumnInfo Id="Valuta" Index="3" />
+        <ColumnInfo Id="ValueManual" Index="4" />
+        <ColumnInfo Id="ValueAutomatic" Index="5" />
       </Columns>
       <Filters CurrentFilterId="All">
         <Filter Id="All" Index="0" IsNewNode="True" />
@@ -2540,6 +2600,53 @@
         <Filter Id="Нормативы" Criteria="[Sheet] = ##Enum#IntecoAG.ERM.FM.FinPlan.FmFinPlanSheetType,FMFPS_NORMATIV#" Index="5" IsNewNode="True" />
       </Filters>
     </ListView>
+    <ListView Id="FmFinPlanDocLine_SubTimes_ListView">
+      <Columns>
+        <ColumnInfo Id="Date" Index="-1" />
+        <ColumnInfo Id="DocLine" Index="-1" />
+        <ColumnInfo Id="IsExpanded" Index="-1" />
+        <ColumnInfo Id="TopTime" Index="-1" />
+        <ColumnInfo Id="TimeType" Index="1" />
+        <ColumnInfo Id="Year" Index="2" />
+        <ColumnInfo Id="Quarter" Index="3" />
+        <ColumnInfo Id="Month" Index="4" />
+        <ColumnInfo Id="ValueManual" Index="6" />
+        <ColumnInfo Id="ValueAutomatic" Index="7" />
+      </Columns>
+    </ListView>
+    <DetailView Id="FmFinPlanSubject_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Subject" ViewItem="Subject" Index="0" CaptionLocation="Top" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="1">
+            <LayoutGroup Id="FinPlanSubjectDocs" Index="0" />
+            <LayoutGroup Id="PlanYearOperations" Index="1" />
+            <LayoutGroup Id="PlanFullOperations" Index="2" />
+            <LayoutGroup Id="Operations" Index="3" />
+            <LayoutGroup Id="Others" IsNewNode="True">
+              <LayoutGroup Id="FmFinPlanSubject" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="JournalPlanYear" ViewItem="JournalPlanYear" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="FmFinPlanPlan" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="AccountingFact" ViewItem="AccountingFact" Index="0" IsNewNode="True" />
+                <LayoutItem Id="AccountingContract" ViewItem="AccountingContract" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="FmFinPlanBase" Index="2" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="Journal" ViewItem="Journal" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True">
+            <LayoutGroup Id="FmFinPlanBase" Removed="True" />
+            <LayoutGroup Id="FmFinPlanPlan" Removed="True" />
+            <LayoutGroup Id="FmFinPlanSubject" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="FmFinPlanSubjectDocFull_DetailView">
       <Items>
         <PropertyEditor Id="DocOperations" View="FmFinPlanBase_Operations_ListVariants" />
@@ -2573,7 +2680,7 @@
             <LayoutGroup Id="DocOperations" Index="2" />
             <LayoutGroup Id="Additions" IsNewNode="True">
               <LayoutItem Id="Journal" ViewItem="Journal" Index="0" IsNewNode="True" />
-              <LayoutItem Id="NdsRate" ViewItem="NdsRate" Index="1" IsNewNode="True" />
+              <LayoutItem Id="VatRate" Index="1" ViewItem="VatRate" IsNewNode="True" />
               <LayoutItem Id="Valuta" ViewItem="Valuta" Index="2" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>

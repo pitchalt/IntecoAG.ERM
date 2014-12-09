@@ -34,7 +34,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             _Journal.JournalTypeSourceSet(JournalTypeSource.FM_JTS_FINPLAN_DOC);
             CodeSet("ФПЗ" + ".Null");
             //
-            _TopLine = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_TOP, null, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+            _TopLine = new FmFinPlanDocLine(this.Session, this, FmFinPlanLineType.FMFPL_TOP, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
                 "Книга", "Книга", HrmStructItemType.HRM_STRUCT_UNKNOW);
         }
 

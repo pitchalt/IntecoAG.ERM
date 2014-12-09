@@ -125,18 +125,18 @@ namespace IntecoAG.ERM.Module {
         }
 
 /*
-        protected Month _MonthBegin;
+        protected month _MonthBegin;
         [Custom("Caption", "Месяц с")]
-        public Month MonthBegin {
+        public month MonthBegin {
             get { return _MonthBegin; }
-            set { SetPropertyValue<Month>("MonthBegin", ref _MonthBegin, value); }
+            set { SetPropertyValue<month>("MonthBegin", ref _MonthBegin, value); }
         }
 
-        protected Month _MonthEnd;
+        protected month _MonthEnd;
         [Custom("Caption", "Месяц по")]
-        public Month MonthEnd {
+        public month MonthEnd {
             get { return _MonthEnd; }
-            set { SetPropertyValue<Month>("MonthEnd", ref _MonthEnd, value); }
+            set { SetPropertyValue<month>("MonthEnd", ref _MonthEnd, value); }
         }
 
 
@@ -149,9 +149,9 @@ namespace IntecoAG.ERM.Module {
 
         protected int _Year;
         [Custom("Caption", "Год")]
-        public int Year {
+        public int year {
             get { return _Year; }
-            set { SetPropertyValue<int>("Year", ref _Year, value); }
+            set { SetPropertyValue<int>("year", ref _Year, value); }
         }
 */
         //private DealStates _DealState;
@@ -441,8 +441,8 @@ namespace IntecoAG.ERM.Module {
             }
 
             // Ограничение на год
-            if (this.Year != 0) {
-                CriteriaOperator criteriathisYear = new BinaryOperator("ObligationUnitYear", this.Year, BinaryOperatorType.Equal);
+            if (this.year != 0) {
+                CriteriaOperator criteriathisYear = new BinaryOperator("ObligationUnitYear", this.year, BinaryOperatorType.Equal);
                 ((GroupOperator)criteriaAND).Operands.Add(criteriathisYear);
             }
             */
@@ -735,7 +735,7 @@ namespace IntecoAG.ERM.Module {
             //this.StageTech = null;
             this.Subject = null;
             this.Valuta = null;
-            //this.Year = 0;
+            //this.year = 0;
             ////this.Department = null;
 
             if (LV != null) {

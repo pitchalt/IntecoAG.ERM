@@ -92,6 +92,8 @@ namespace IntecoAG.ERM.Win
         static void AuditTrailService_CustomizeAuditTrailSettings(object sender, CustomizeAuditTrailSettingsEventArgs e)
         {
             e.AuditTrailSettings.RemoveType(typeof(FM.AVT.fmCAVTBookBuhRecord));
+            e.AuditTrailSettings.RemoveType(typeof(FM.FinPlan.FmFinPlanDocLine));
+            e.AuditTrailSettings.RemoveType(typeof(FM.FinPlan.FmFinPlanDocTime));
             //e.AuditTrailSettings.AddType(typeof(FM.Order.fmCOrderExt), "Status");
             //e.AuditTrailSettings.AddType(typeof(FM.Order.fmCOrderManageDoc), "Status");
         }

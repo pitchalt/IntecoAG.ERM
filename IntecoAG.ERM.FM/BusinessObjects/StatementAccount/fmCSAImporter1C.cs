@@ -871,7 +871,7 @@ namespace IntecoAG.ERM.FM.StatementAccount {
             // Обработка секций документов. Считаем, что секция СекцияРасчСчет - КонецРасчСчет всегда имеется
             // Это нужно для объекта sr (непрерывной последовательности его работы)
 
-            //if (line.Contains("СекцияДокумент")) FirstDocumentSectionAchieved = true;
+            //if (line_doc.Contains("СекцияДокумент")) FirstDocumentSectionAchieved = true;
 
             //if (!FirstDocumentSectionAchieved) continue;
 
@@ -1158,16 +1158,16 @@ namespace IntecoAG.ERM.FM.StatementAccount {
             WriteLog("Платёжное поручение");
 
             while (!sr.EndOfStream) {
-                string line = sr.ReadLine();
+                string line_doc = sr.ReadLine();
                 LineNum++;
 
-                if (line == "КонецДокумента" && loadedDoc != null) {
+                if (line_doc == "КонецДокумента" && loadedDoc != null) {
                     break;
                 }
 
-                if (!line.Contains("=")) continue;
+                if (!line_doc.Contains("=")) continue;
 
-                CommonDocPart(loadedDoc, line); // , statementOfAccounts);
+                CommonDocPart(loadedDoc, line_doc); // , statementOfAccounts);
             }
             WriteLog("Завершена обработка Платёжного поручения");
             return loadedDoc;
@@ -1191,16 +1191,16 @@ namespace IntecoAG.ERM.FM.StatementAccount {
             WriteLog("Платёжное требование");
 
             while (sr.Peek() >= 0) {
-                string line = sr.ReadLine();
+                string line_doc = sr.ReadLine();
                 LineNum++;
 
-                if (line == "КонецДокумента" && loadedDoc != null) {
+                if (line_doc == "КонецДокумента" && loadedDoc != null) {
                     break;
                 }
 
-                if (!line.Contains("=")) continue;
+                if (!line_doc.Contains("=")) continue;
 
-                CommonDocPart(loadedDoc, line); ///, statementOfAccounts);
+                CommonDocPart(loadedDoc, line_doc); ///, statementOfAccounts);
             }
             WriteLog("Завершена обработка Платёжного требования");
             return loadedDoc;
@@ -1224,16 +1224,16 @@ namespace IntecoAG.ERM.FM.StatementAccount {
             WriteLog("Аккредитив");
 
             while (!sr.EndOfStream) {
-                string line = sr.ReadLine();
+                string line_doc = sr.ReadLine();
                 LineNum++;
 
-                if (line == "КонецДокумента" && loadedDoc != null) {
+                if (line_doc == "КонецДокумента" && loadedDoc != null) {
                     break;
                 }
 
-                if (!line.Contains("=")) continue;
+                if (!line_doc.Contains("=")) continue;
 
-                CommonDocPart(loadedDoc, line); // , statementOfAccounts);
+                CommonDocPart(loadedDoc, line_doc); // , statementOfAccounts);
             }
             WriteLog("Завершена обработка Аккредитива");
             return loadedDoc;
@@ -1257,16 +1257,16 @@ namespace IntecoAG.ERM.FM.StatementAccount {
             WriteLog("Инкассовое поручение");
 
             while (!sr.EndOfStream) {
-                string line = sr.ReadLine();
+                string line_doc = sr.ReadLine();
                 LineNum++;
 
-                if (line == "КонецДокумента" && loadedDoc != null) {
+                if (line_doc == "КонецДокумента" && loadedDoc != null) {
                     break;
                 }
 
-                if (!line.Contains("=")) continue;
+                if (!line_doc.Contains("=")) continue;
 
-                CommonDocPart(loadedDoc, line); //, statementOfAccounts);
+                CommonDocPart(loadedDoc, line_doc); //, statementOfAccounts);
             }
             WriteLog("Завершена обработка Инкассового поручения");
             return loadedDoc;
@@ -1293,20 +1293,20 @@ namespace IntecoAG.ERM.FM.StatementAccount {
             WriteLog("Документ Прочие");
 
             while (!sr.EndOfStream) {
-                string line = sr.ReadLine();
+                string line_doc = sr.ReadLine();
                 LineNum++;
 
-                if (line == "КонецДокумента" && loadedDoc != null) {
+                if (line_doc == "КонецДокумента" && loadedDoc != null) {
                     break;
                 }
 
-                if (!line.Contains("=")) continue;
+                if (!line_doc.Contains("=")) continue;
 
-                CommonDocPart(loadedDoc, line);  //, statementOfAccounts);
+                CommonDocPart(loadedDoc, line_doc);  //, statementOfAccounts);
                 
-                //int eqPos = line.IndexOf("=");
-                //string key = line.Substring(0, eqPos);
-                //string item = line.Substring(eqPos + 1);
+                //int eqPos = line_doc.IndexOf("=");
+                //string key = line_doc.Substring(0, eqPos);
+                //string item = line_doc.Substring(eqPos + 1);
 
                 //switch (key) {
                 //    case "СекцияДокумент":
@@ -1701,7 +1701,7 @@ namespace IntecoAG.ERM.FM.StatementAccount {
         /// <summary>
         /// Запись в журнал
         /// </summary>
-        /// <param name="line"></param>
+        /// <param name="line_doc"></param>
         public override void WriteLog(fmCSAImportResult importResult, string line) {
             if (importResult == null)
                 return;

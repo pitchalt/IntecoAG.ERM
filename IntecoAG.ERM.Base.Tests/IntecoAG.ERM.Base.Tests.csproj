@@ -8,7 +8,7 @@
     <ProjectGuid>{32E1DF47-E851-4991-8FEE-9349E0E22363}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IntecoAG.ERM.Base.Tests</RootNamespace>
+    <RootNamespace>IntecoAG.ERM.Tests</RootNamespace>
     <AssemblyName>IntecoAG.ERM.Base.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -57,9 +57,11 @@
     <Reference Include="DevExpress.Data.v11.2, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v11.2, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.2, Version=11.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\..\Npgsql\Mono.Security.dll</HintPath>
     </Reference>
@@ -72,6 +74,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -79,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTest.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="AutoBindingBaseTest.cs" />
     <Compile Include="AutoBindingAnalisys.cs" />
@@ -88,12 +92,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DealWithoutStageTests.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocFullTests.cs" />
     <Compile Include="TechicalTests.cs" />
     <Compile Include="DealWithStagePaymentMethodChangeTests.cs" />
     <Compile Include="DealWithoutStageLockDBTests.cs" />
     <Compile Include="DealWithoutStageMTATests.cs" />
     <Compile Include="DealWithStageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestApplication.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -104,6 +112,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <EmbeddedResource Include="TestData\FmFinPlanDocImportTest03.txt" />
+    <EmbeddedResource Include="TestData\FmFinPlanDocImportTest02.txt" />
+    <EmbeddedResource Include="TestData\FmFinPlanDocImportTest01.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />

@@ -59,7 +59,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
 
         public csValuta Valuta;
 
-        public csNDSRate NdsRate;
+        public csNDSRate VatRate;
 
         public void Clean() {
             foreach (var line in Lines) {

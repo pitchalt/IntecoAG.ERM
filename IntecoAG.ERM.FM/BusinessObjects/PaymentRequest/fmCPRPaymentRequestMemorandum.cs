@@ -734,7 +734,7 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         /// <summary>
         /// Период уплаты налога (сбора) - только месяц, квартал и т.д.
         /// </summary>
-        //[RuleRange("fmPaymentRequestMemorandum.PaymentTaxPeriodPart2.Month.Range", DefaultContexts.Save, 0, 12)]
+        //[RuleRange("fmPaymentRequestMemorandum.PaymentTaxPeriodPart2.month.Range", DefaultContexts.Save, 0, 12)]
         public Int16 PaymentTaxPeriodPart2 {
             get {
                 return _PaymentTaxPeriodPart2;
@@ -784,7 +784,7 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         /// <summary>
         /// Период уплаты налога (сбора) - только год
         /// </summary>
-        //[RuleRange("fmPaymentRequestMemorandum.PaymentTaxPeriodPart4.Month.Range", DefaultContexts.Save, 2000, 2100)]
+        //[RuleRange("fmPaymentRequestMemorandum.PaymentTaxPeriodPart4.month.Range", DefaultContexts.Save, 2000, 2100)]
         public Int16 PaymentTaxPeriodPart4 {
             get {
                 return _PaymentTaxPeriodPart4;

@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Xml;
 //
 using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
@@ -14,306 +14,305 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
+using IntecoAG.ERM.CS.Import;
+using IntecoAG.ERM.CS.Finance;
+using IntecoAG.ERM.CS.Measurement;
+using IntecoAG.ERM.CS.Nomenclature;
+using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.FM.Subject;
+using IntecoAG.ERM.HRM.Organization;
 
 namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
-    public class FmFinPlanSubjectDocXMLLoader {
+    public class FmFinPlanSubjectDocXMLLoader : Excel2003XmlReader {
 
-        protected enum ReadState {
-            READ_BOOK = 1,
-            READ_SHEET = 2,
-            READ_TABLE = 3,
-            READ_COLUMN = 4,
-            READ_ROW = 5,
-            READ_CELL = 6
-        }
-
-        protected NameTable NameTable = null;
-        protected object nBook;
-        protected object nSheet;
-        protected object nTable;
-        protected object nColumn;
-        protected object nRow;
-        protected object nCell;
-        protected object nData;
         protected IObjectSpace ObjectSpace;
         protected FmFinPlanSubjectDocFull TargetDoc;
-        protected XmlReader Reader;
 
-        protected ReadState CurState;
-        protected String CurSheet;
-        protected Int32 CurCol = 0;
-        protected Int32 CurRow = 0;
-
-
-        public FmFinPlanSubjectDocXMLLoader(IObjectSpace os, FmFinPlanSubjectDocFull doc, Stream stream) {
+        public FmFinPlanSubjectDocXMLLoader(IObjectSpace os, FmFinPlanSubjectDocFull doc, Stream stream)
+            : base(stream) {
             ObjectSpace = os;
             TargetDoc = doc;
-            NameTable = new NameTable();
-            nBook = NameTable.Add("Workbook");
-            nSheet = NameTable.Add("Worksheet");
-            nTable = NameTable.Add("Table");
-            nColumn = NameTable.Add("Column");
-            nRow = NameTable.Add("Row");
-            nCell = NameTable.Add("Cell");
-            nData = NameTable.Add("Data");
-            //
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.NameTable = NameTable;
-            Reader = XmlReader.Create(stream, settings);
+            NormLines();
+            FormatProvider = CultureInfo.InvariantCulture;
+            Valutas = ObjectSpace.GetObjects<csValuta>();
+            VatRates = ObjectSpace.GetObjects<csNDSRate>();
         }
 
-        public void Load() {
 
-            Reader.Read();
-            LoadBook();
-            Reader.Close();
+        protected override void ProcessCell(String sheet_name, Int32 row, Int32 column, String type, String value) {
+            //            System.Console.WriteLine("{0}({1},{2}) {3}:'{4}'", sheet, row, column, type, value);
+            //            if (sheet_name != "БСР")
+            if (sheet_name == "БСР" && row == 2 && column == 12) {
+                fmCOrder order = ObjectSpace.FindObject<fmCOrder>(
+                    new BinaryOperator("Code", value));
+                if (order == null || order.Subject != TargetDoc.Subject)
+                    throw new InvalidDataException("Заказ неверный или тема не соответствует заказу");
+                TargetDoc.Order = order;
+                return;
+            }
+            if (sheet_name == "БСР" && row == 2 && column == 16) {
+                TargetDoc.Valuta = Valutas.FirstOrDefault(x => x.Code == ValutaCodeConvert(value));
+                foreach (var line in TargetDoc.SubLines) {
+                    line.Valuta = TargetDoc.Valuta;
+                }
+            }
+            if (sheet_name == "БСР" && row == 4 && column == 9) {
+                BeginYear = (Int16)(Int32.Parse(value) - 1);
+            }
+            if (sheet_name == "БСР" && row == 4 && column == 16) {
+                TargetDoc.VatRate = VatRates.FirstOrDefault(x => x.Code == VatCodeConvert(value));
+                foreach (var line in TargetDoc.SubLines) {
+                    line.VatRate = TargetDoc.VatRate;
+                }
+            }
+            foreach (var line in TargetDoc.SubLines) {
+                if (line.LineName == sheet_name) {
+                    LoadTableCell(line, row, column, type, value);
+                    break;
+                }
+            }
         }
 
-        protected void LoadBook() {
-            if (Reader.IsEmptyElement) {
-                System.Console.WriteLine("WorkBook/");
-                Reader.ReadStartElement((String)nBook);
+
+        protected IDictionary<FmFinPlanSheetType, IList<FmFinPlanDocLine>> DocNormLines = new Dictionary<FmFinPlanSheetType, IList<FmFinPlanDocLine>>();
+
+        protected void NormLines() {
+            foreach (var line in TargetDoc.SubLines) {
+                DocNormLines[line.Sheet] = NormLines(line);
+            }
+        }
+        protected IList<FmFinPlanDocLine> NormLines(FmFinPlanDocLine line) {
+            IList<FmFinPlanDocLine> result = new List<FmFinPlanDocLine>();
+            NormLines(line, result);
+            return result;
+        }
+        protected void NormLines(FmFinPlanDocLine line, IList<FmFinPlanDocLine> norm_list) {
+            norm_list.Add(line);
+            foreach (var sub_line in line.SubLines)
+                NormLines(sub_line, norm_list);
+        }
+
+        protected void LoadTableCell(FmFinPlanDocLine top_line, Int32 row, Int32 column, String type, String value) {
+            // System.Console.WriteLine("{0}({1},{2}) {3}:'{4}'", table.LineCode, row, column, type, value);
+            IList<FmFinPlanDocLine> norm_list = DocNormLines[top_line.Sheet];
+            switch (top_line.Sheet) {
+                case FmFinPlanSheetType.FMFPS_COST:
+                    if (9 < row && row < 55 && 2 < column)
+                        LoadTimeCell(norm_list[row - 9], 3, column, type, value);
+                    break;
+                case FmFinPlanSheetType.FMFPS_CASH:
+                    if (9 < row && row < 39 && 2 < column)
+                        LoadTimeCell(norm_list[row - 9], 3, column, type, value);
+                    break;
+                case FmFinPlanSheetType.FMFPS_PARTY:
+                    if (row == 10)
+                        LoadTimeCell(top_line.SubLines[0].SubLines[0], 6, column, type, value);
+                    if (row == 11)
+                        LoadTimeCell(top_line.SubLines[0].SubLines[1], 6, column, type, value);
+                    if (row == 12)
+                        LoadTimeCell(top_line.SubLines[0].SubLines[1].SubLines[0], 6, column, type, value);
+                    if (row == 13)
+                        LoadTimeCell(top_line.SubLines[0].SubLines[1].SubLines[1], 6, column, type, value);
+                    if (13 < row && row < 814)
+                        LoadPartyCell(top_line, row, column, type, value);
+                    break;
+                case FmFinPlanSheetType.FMFPS_MATERIAL:
+                    if (9 < row && row < 31 && 2 < column)
+                        LoadTimeCell(norm_list[row - 9], 4, column, type, value);
+                    break;
+                case FmFinPlanSheetType.FMFPS_NORMATIV:
+                    if (9 < row && row < 22 && 2 < column)
+                        LoadTimeCell(norm_list[row - 9], 3, column, type, value);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected FmFinPlanDocLine[] PartyLines = new FmFinPlanDocLine[100];
+
+        protected String PartyCode;
+
+        protected IList<csValuta> Valutas;
+        protected IList<csNDSRate> VatRates;
+
+        protected String VatCodeConvert(String code) {
+            switch (code) { 
+                case "Без НДС":
+                    return "БЕЗ НДС";
+                case "18%":
+                    return "18%";
+                case "0% Экспорт":
+                    return "0%";
+                default:
+                    return null;
+            }
+        }
+        protected String ValutaCodeConvert(String code) {
+            switch (code) {
+                case "РУБ":
+                    return "RUB";
+                case "ДОЛ":
+                    return "USD";
+                case "ЕВР":
+                    return "EUR";
+                default:
+                    return null;
+            }
+        }
+
+        protected void LoadPartyCell(FmFinPlanDocLine top_line, Int32 row, Int32 column, String type, String value) {
+            Int32 line_num = (row - 14) / 8;
+            Int32 line_type = row - 14 - line_num * 8;
+            if (line_type == 0) {
+                if (column == 1)
+                    PartyCode = value;
+                if (column == 3) {
+                    if (!String.IsNullOrEmpty(value)) {
+                        PartyLines[line_num] = new FmFinPlanDocLine(((ObjectSpace)ObjectSpace).Session, FmFinPlanLineType.FMFPL_PARTY_PARTY, top_line, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                            PartyCode, value, HrmStructItemType.HRM_STRUCT_UNKNOW);
+                        PartyLines[line_num].PartyName = value;
+                    }
+                }
+            }
+            if (PartyLines[line_num] != null) {
+                if (column == 4) {
+                    if (line_type == 0) {
+                        PartyLines[line_num].DealNumber = value;
+                    }
+                    if (line_type == 1) {
+                        PartyLines[line_num].DealAddNumber = value;
+                    }
+                    if (line_type == 2) {
+                        PartyLines[line_num].Valuta = Valutas.FirstOrDefault(x => x.Code == ValutaCodeConvert(value));
+                    }
+                    if (line_type == 3) {
+                        PartyLines[line_num].VatRate = VatRates.FirstOrDefault(x => x.Code == VatCodeConvert(value));
+                    }
+                    if (line_type == 4) {
+                    }
+                    if (line_type == 5) {
+                    }
+                    if (line_type == 6) {
+                    }
+                    if (line_type == 7) {
+                    }
+                }
+                if (column > 5) {
+                    FmFinPlanDocLine line_time = null;
+                    if (line_type == 0)
+                        line_time = PartyLines[line_num].SubLines[0];
+                    if (line_type == 1)
+                        line_time = PartyLines[line_num].SubLines[1];
+                    if (line_type == 2)
+                        line_time = PartyLines[line_num].SubLines[1].SubLines[0];
+                    if (line_type == 3)
+                        line_time = PartyLines[line_num].SubLines[1].SubLines[1];
+                    if (line_type == 4)
+                        line_time = PartyLines[line_num].SubLines[2];
+                    if (line_type == 5)
+                        line_time = PartyLines[line_num].SubLines[3];
+                    if (line_type == 6)
+                        line_time = PartyLines[line_num].SubLines[3].SubLines[0];
+                    if (line_type == 7)
+                        line_time = PartyLines[line_num].SubLines[3].SubLines[1];
+                    LoadTimeCell(line_time, 6, column, type, value);
+                }
+            }
+        }
+
+        private Int16 BeginYear = 0;
+        private IFormatProvider FormatProvider;
+
+        protected void LoadTimeCell(FmFinPlanDocLine line_doc, Int32 start_column, Int32 column, String type, String value) {
+            Int16 year;
+            Int16 quarter;
+            Int16 month;
+
+            if (type != "Number")
+                return;
+            Decimal value_decimal = Decimal.Round(Decimal.Parse(value, FormatProvider), 3);
+            if (value_decimal == 0)
+                return;
+
+            if (start_column <= column && column <= start_column + 18) {
+                if (column < start_column + 6) {
+                    year = BeginYear;
+                    month = (Int16)(column - start_column + 8);
+                }
+                else {
+                    year = (Int16) (BeginYear + 1);
+                    month = (Int16)(column - start_column - 5);
+                }
+                quarter = (Int16)((month - 1) / 3 + 1);
+                if (month == 13) {
+                    quarter = 0;
+                    month = 0;
+                }
+            }
+            else if (start_column + 19 <= column && column <= start_column + 63) {
+                year = (Int16)((column - start_column - 19) / 5 + BeginYear + 2);
+                quarter = (Int16)(column - start_column - 18 - (year - BeginYear - 2) * 5);
+                if (quarter == 5)
+                    quarter = 0;
+                month = 0;
+            }
+            else if (start_column + 64 == column) {
+                year = 0;
+                quarter = 0;
+                month = 0;
+            }
+            else
+                return;
+            //            System.Console.WriteLine(line_doc.LineCode + " {5} {0}/{1}/{2} {3}:'{4}'", year, quarter, month, type, value, column);
+
+            FmFinPlanDocTime line_top = line_doc.LineTime;
+            FmFinPlanDocTime line_year = null;
+            FmFinPlanDocTime line_quarter = null;
+            FmFinPlanDocTime line_month = null;
+            FmFinPlanDocTime line_target = null;
+            if (year != 0) {
+                line_year = line_top.SubTimes.FirstOrDefault(x => x.Year == year);
+                if (line_year == null) {
+                    line_year = ObjectSpace.CreateObject<FmFinPlanDocTime>();
+                    line_top.SubTimes.Add(line_year);
+                    line_year.TimeTypeSet(FmFinPlanTimeType.FMFPT_YEAR);
+                    line_year.YearSet(year);
+                }
+                if (quarter != 0) {
+                    line_quarter = line_year.SubTimes.FirstOrDefault(x => x.Quarter == quarter);
+                    if (line_quarter == null) {
+                        line_quarter = ObjectSpace.CreateObject<FmFinPlanDocTime>();
+                        line_year.SubTimes.Add(line_quarter);
+                        line_quarter.TimeTypeSet(FmFinPlanTimeType.FMFPT_QUARTER);
+                        line_quarter.YearSet(year);
+                        line_quarter.QuarterSet(quarter);
+                    }
+                    if (month != 0) {
+                        line_month = line_quarter.SubTimes.FirstOrDefault(x => x.Month == month);
+                        if (line_month == null) {
+                            line_month = ObjectSpace.CreateObject<FmFinPlanDocTime>();
+                            line_quarter.SubTimes.Add(line_month);
+                            line_month.TimeTypeSet(FmFinPlanTimeType.FMFPT_MONTH);
+                            line_month.YearSet(year);
+                            line_month.QuarterSet(quarter);
+                            line_month.MonthSet(month);
+                        }
+                        line_target = line_month;
+                    }
+                    else {
+                        line_target = line_quarter;
+                    }
+                }
+                else {
+                    line_target = line_year;
+                }
             }
             else {
-                System.Console.WriteLine("WorkBook");
-                Reader.ReadStartElement((String)nBook);
-                while (Reader.Read()) {
-                    if (Reader.NodeType == XmlNodeType.Element || Reader.NodeType == XmlNodeType.EndElement) {
-                        object LocalName = Reader.LocalName;
-                        if (LocalName == nSheet) {
-                            LoadSheet();
-                            continue;
-                        }
-                        if (LocalName == nBook) {
-                            System.Console.WriteLine("/WorkBook");
-                            Reader.ReadEndElement();
-                            break;
-                        }
-                    }
-                }
+                line_target = line_top;
             }
-        }
-
-        protected void LoadSheet() {
-            String SheetName = Reader.GetAttribute("Name", "urn:schemas-microsoft-com:office:spreadsheet");
-            if (Reader.IsEmptyElement) {
-                System.Console.WriteLine("Worksheet/ " + SheetName);
-                Reader.ReadStartElement((String)nSheet);
-            }
-            else {
-                System.Console.WriteLine("Worksheet " + SheetName);
-                switch (SheetName) {
-                    case "БСР":
-                        LoadSheetCost();
-                        break;
-                    case "БДДС":
-                        LoadSheetUnknow();
-                        break;
-                    case "Соисполнители":
-                        LoadSheetUnknow();
-                        break;
-                    case "ТМЦ":
-                        LoadSheetUnknow();
-                        break;
-                    case "Нормативы":
-                        LoadSheetUnknow();
-                        break;
-                    default:
-                        LoadSheetUnknow();
-                        break;
-                }
-            }
-        }
-
-        protected void LoadSheetUnknow() {
-            Reader.ReadStartElement((String)nSheet);
-            System.Console.WriteLine("Load Sheet Unknow");
-            Boolean IsWorkSheet = true;
-            Boolean IsTable = false;
-            while (Reader.Read()) {
-                if (Reader.NodeType != XmlNodeType.Element && Reader.NodeType != XmlNodeType.EndElement)
-                    continue;
-                object LocalName = Reader.LocalName;
-                if (IsWorkSheet) {
-                    if (LocalName == nSheet) {
-                        if (Reader.NodeType == XmlNodeType.EndElement) {
-                            System.Console.WriteLine("/Worksheet");
-                            Reader.ReadEndElement();
-                            break;
-                        }
-                        else
-                            throw new XmlException("Wait /Worksheet");
-                    }
-                    if (LocalName == nTable && Reader.NodeType == XmlNodeType.Element) {
-                        if (Reader.IsEmptyElement) {
-                            System.Console.WriteLine("Table/");
-                            Reader.ReadStartElement();
-                            continue;
-                        }
-                        else {
-                            System.Console.WriteLine("Table");
-                            Reader.ReadStartElement((String)nTable);
-                            IsWorkSheet = false;
-                            IsTable = true;
-                            continue;
-                        }
-                    }
-                }
-                if (IsTable) {
-                    if (LocalName == nTable) {
-                        if (Reader.NodeType == XmlNodeType.EndElement) {
-                            System.Console.WriteLine("/Table");
-                            Reader.ReadEndElement();
-                            IsWorkSheet = true;
-                            IsTable = false;
-                            continue;
-                        }
-                        else
-                            throw new XmlException("Wait /Table");
-                    }
-                }
-            }
-        }
-
-        protected void LoadSheetCost() {
-            Reader.ReadStartElement((String)nSheet);
-            System.Console.WriteLine("Load Sheet Unknow");
-//            ReadState current_state = ReadState.READ_SHEET;
-            String index = null;
-            String merge = null;
-            String type = null;
-            String value = null;
-            while (Reader.Read()) {
-                if (Reader.NodeType != XmlNodeType.Element && Reader.NodeType != XmlNodeType.EndElement)
-                    continue;
-                object LocalName = Reader.LocalName;
-                switch (CurState) {
-                    case ReadState.READ_SHEET:
-                        if (LocalName == nSheet) {
-                            if (Reader.NodeType == XmlNodeType.EndElement) {
-                                System.Console.WriteLine("/Worksheet");
-                                Reader.ReadEndElement();
-                                return;
-                            }
-                            else
-                                throw new XmlException("Wait /Worksheet");
-                        }
-                        if (LocalName == nTable) {
-                            if (Reader.IsEmptyElement) {
-                                System.Console.WriteLine("Table/");
-                                Reader.ReadStartElement();
-                            }
-                            else {
-                                System.Console.WriteLine("Table");
-                                Reader.ReadStartElement((String)nTable);
-                                CurRow = 0;
-                                CurState = ReadState.READ_TABLE;
-                            }
-                            continue;
-                        }
-                        break;
-                    case ReadState.READ_TABLE:
-                        if (LocalName == nColumn) {
-                            Reader.ReadStartElement((String)nColumn);
-                            continue;
-                        }
-                        if (LocalName == nRow) {
-                            index = Reader.GetAttribute("Index", "urn:schemas-microsoft-com:office:spreadsheet");
-                            if (index == null)
-                                CurRow++;
-                            else
-                                CurRow = Int32.Parse(index);
-                            if (Reader.IsEmptyElement) {
-                                System.Console.WriteLine("Row/ " + CurRow.ToString());
-                                Reader.ReadStartElement((String)nRow);
-                            }
-                            else {
-                                System.Console.WriteLine("Row " + CurRow.ToString());
-                                Reader.ReadStartElement((String)nRow);
-                                CurCol = 0;
-                                CurState = ReadState.READ_ROW;
-                            }
-                            continue;
-                        }
-                        if (LocalName == nTable) {
-                            System.Console.WriteLine("/Table");
-                            Reader.ReadEndElement();
-                            CurState = ReadState.READ_SHEET;
-                            continue;
-                        }
-                        break;
-                    case ReadState.READ_ROW:
-                        if (LocalName == nCell) {
-                            index = Reader.GetAttribute("Index", "urn:schemas-microsoft-com:office:spreadsheet");
-                            merge = Reader.GetAttribute("MergeAcross", "urn:schemas-microsoft-com:office:spreadsheet");
-                            if (index == null)
-                                CurCol++;
-                            else
-                                CurCol = Int32.Parse(index);
-                            if (Reader.IsEmptyElement) {
-                                Reader.ReadStartElement((String)nCell);
-                            }
-                            else {
-                                Reader.ReadStartElement((String)nCell);
-                                CurState = ReadState.READ_CELL;
-                            }
-                            if (merge != null)
-                                CurCol += Int32.Parse(merge);
-                            continue;
-                        }
-                        if (LocalName == nRow) {
-                            Reader.ReadEndElement();
-                            CurState = ReadState.READ_TABLE;
-                            continue;
-                        }
-                        break;
-                    case ReadState.READ_CELL:
-                        if (LocalName == nData) {
-//                            if (Reader.NamespaceURI != "")
-//                                continue;
-                            if (Reader.NodeType == XmlNodeType.Element) {
-                                type = Reader.GetAttribute("Type", "urn:schemas-microsoft-com:office:spreadsheet");
-                                Reader.ReadStartElement((String)nData, "urn:schemas-microsoft-com:office:spreadsheet");
-                                value = Reader.ReadString();
-                                ProcessCell(CurRow, CurCol, type, value);
-//                                Reader.ReadEndElement();
-//                                current_state = ReadState.READ_ROW;
-                            }
-                            continue;
-                        }
-                        if (LocalName == nCell) {
-                            Reader.ReadEndElement();
-                            CurState = ReadState.READ_ROW;
-                            continue;
-                        }
-                        break;
-                }
-            }
-        }
-        protected void ProcessCell(Int32 row, Int32 column, String type, String value) {
-            System.Console.WriteLine("({0},{1}):{2}:'{3}'", row, column, type, value);
-        }
-        protected void LoadDocRow(FmFinPlanDocLine line, Int32 column) {
-            if (Reader.IsEmptyElement) {
-                System.Console.WriteLine("Row/ " + column.ToString());
-                Reader.ReadStartElement((String)nRow);
-            }
-            else {
-                System.Console.WriteLine("Row " + column.ToString());
-                Reader.ReadStartElement((String)nRow);
-                while (Reader.Read()) {
-                    if (Reader.NodeType != XmlNodeType.Element && Reader.NodeType != XmlNodeType.EndElement)
-                        continue;
-                    object LocalName = Reader.LocalName;
-                    if (LocalName == nRow) {
-                        if (Reader.NodeType == XmlNodeType.EndElement) {
-                            Reader.ReadEndElement();
-                            break;
-                        }
-                    }
-                }
-            }
+            line_target.ValueManual = value_decimal;
         }
     }
 

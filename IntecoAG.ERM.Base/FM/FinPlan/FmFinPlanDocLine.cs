@@ -85,12 +85,34 @@ namespace IntecoAG.ERM.FM.FinPlan {
         FMFPL_CASH_OUT_PARTY_PRE_TOTAL = 228,
         FMFPL_CASH_OUT_PARTY_POST_TOTAL = 229,
         FMFPL_PARTY_TOP = 300,
+        FMFPL_PARTY_TOTAL = 310,
+        FMFPL_PARTY_TOTAL_COST = 311,
+        FMFPL_PARTY_TOTAL_PAY = 315,
+        FMFPL_PARTY_TOTAL_PAY_PRE = 316,
+        FMFPL_PARTY_TOTAL_PAY_POST = 317,
+        FMFPL_PARTY_PARTY = 320,
+        FMFPL_PARTY_PARTY_VAL_COST = 330,
+        FMFPL_PARTY_PARTY_VAL_PAY = 335,
+        FMFPL_PARTY_PARTY_VAL_PAY_PRE = 336,
+        FMFPL_PARTY_PARTY_VAL_PAY_POST = 337,
+        FMFPL_PARTY_PARTY_RUB_COST = 340,
+        FMFPL_PARTY_PARTY_RUB_PAY = 345,
+        FMFPL_PARTY_PARTY_RUB_PAY_PRE = 346,
+        FMFPL_PARTY_PARTY_RUB_PAY_POST = 347,
         FMFPL_MATERIAL_TOP = 400,
-        FMFPL_NORMATIV_TOP = 500
-        //FMFPL_CASH = 2,
-        //FMFPL_PARTY = 3,
-        //FMFPL_MATERIAL = 4,
-        //FMFPL_NORMATIV = 5
+//        FMFPL_MATERIAL_TOTAL = 410,
+        FMFPL_MATERIAL_BAY = 420,
+        FMFPL_MATERIAL_BAY_PAY = 421,
+        FMFPL_MATERIAL_BAY_ITEM_COST = 430,
+        FMFPL_MATERIAL_BAY_ITEM_PAY = 440,
+        FMFPL_MATERIAL_BUILD = 450,
+        FMFPL_MATERIAL_BUILD_ITEM = 451,
+        FMFPL_NORMATIV_TOP = 500,
+        FMFPL_NORMATIV_VALUTA = 510,
+        FMFPL_NORMATIV_VALUTA_ITEM = 511,
+        FMFPL_NORMATIV_EXPONENT = 520,
+        FMFPL_NORMATIV_COST_COMPONENTS = 530,
+        FMFPL_NORMATIV_COST_ITEM = 531,
     }
 
     [Appearance("", AppearanceItemType.ViewItem, "IsError", TargetItems="*", BackColor = "Red")]
@@ -131,10 +153,24 @@ namespace IntecoAG.ERM.FM.FinPlan {
             }
             UpdateSubLines();
         }
+        public FmFinPlanDocLine(Session session, FmFinPlanDoc doc, FmFinPlanLineType line_type,
+            FmFinPlanTotalType total_type, String code, String name, HrmStructItemType struct_item)
+                : base(session) {
+            FinPlanDoc = doc;
+            _LineType = line_type;
+//            TopLine = top_line;
+            TotalType = total_type;
+            LineCode = code;
+            LineName = name;
+            DepStruct = struct_item;
+            _Sheet = FmFinPlanSheetType.FMFPS_UNKNOW;
+            UpdateSubLines();
+        }
         public override void AfterConstruction() {
             base.AfterConstruction();
-            TotalType = FmFinPlanTotalType.FMFPT_NOTOTAL;
+//            TotalType = FmFinPlanTotalType.FMFPT_NOTOTAL;
             _LineTime = new FmFinPlanDocTime(this.Session);
+            LineTimes.Add(_LineTime);
             _LineTime.TimeTypeSet(FmFinPlanTimeType.FMFPT_TOTAL);
         }
 
@@ -203,6 +239,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
         }
 
         [Association("FmFinPlanDocLine-FmFinPlanDocTime"), Aggregated]
+        [Browsable(false)]
         public XPCollection<FmFinPlanDocTime> LineTimes {
             get { return GetCollection<FmFinPlanDocTime>("LineTimes"); }
         }
@@ -220,7 +257,15 @@ namespace IntecoAG.ERM.FM.FinPlan {
         [Size(1024)]
         public String PartyName {
             get { return _PartyName; }
-            set { SetPropertyValue<String>("PartyName", ref _PartyName, value); }
+            set { 
+                SetPropertyValue<String>("PartyName", ref _PartyName, value);
+                if (!IsLoading && !String.IsNullOrEmpty(value)) { 
+                    XPCollection<crmCParty> partys = new XPCollection<crmCParty>(this.Session, new BinaryOperator("Name", value));
+                    if (partys.Count == 1) {
+                        Party = partys[0];
+                    }
+                }
+            }
         }
 
         private crmCParty _Party;
@@ -231,9 +276,35 @@ namespace IntecoAG.ERM.FM.FinPlan {
             }
         }
 
+        private String _DealNumber;
+        [Size(255)]
+        public String DealNumber {
+            get { return _DealNumber; }
+            set {
+                SetPropertyValue<String>("DealNumber", ref _DealNumber, value);
+            }
+        }
+
+        private String _DealAddNumber;
+        [Size(255)]
+        public String DealAddNumber {
+            get { return _DealAddNumber; }
+            set {
+                SetPropertyValue<String>("DealAddNumber", ref _DealAddNumber, value);
+            }
+        }
+
+        private crmContractDeal _Deal;
+        public crmContractDeal Deal {
+            get { return _Deal; }
+            set {
+                SetPropertyValue<crmContractDeal>("Deal", ref _Deal, value);
+            }
+        }
+
         public csValuta Valuta;
 
-        public csNDSRate NdsRate;
+        public csNDSRate VatRate;
 
         public fmPRPayType PayType;
 
@@ -253,13 +324,20 @@ namespace IntecoAG.ERM.FM.FinPlan {
             }
         }
 
+        [PersistentAlias("LineTime.SubTimes")]
+        public XPCollection<FmFinPlanDocTime> SubTimes {
+            get {
+                return LineTime.SubTimes;
+            }
+        }
+
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]
         public Boolean IsError {
             get { return false; }
         }
         public override string ToString() {
-            return LineCode;
+            return LineCode + " " + LineName;
         }
 
         [Browsable(false)]
@@ -267,7 +345,6 @@ namespace IntecoAG.ERM.FM.FinPlan {
             get { return SubLines; }
         }
 
-        [Browsable(false)]
         public String Name {
             get { return ToString(); }
         }
@@ -289,19 +366,19 @@ namespace IntecoAG.ERM.FM.FinPlan {
                 case FmFinPlanLineType.FMFPL_UNKNOW:
                     break;
                 case FmFinPlanLineType.FMFPL_TOP:
-                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_COST_TOP, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL, 
-                        "Л1", "Затраты", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_COST_TOP, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "Л1", "БСР", HrmStructItemType.HRM_STRUCT_UNKNOW);
                     sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_CASH_TOP, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
-                        "Л2", "ДДС", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                        "Л2", "БДДС", HrmStructItemType.HRM_STRUCT_UNKNOW);
                     sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_TOP, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
-                        "Л3", "Смежники", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                        "Л3", "Соисполнители", HrmStructItemType.HRM_STRUCT_UNKNOW);
                     sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_TOP, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
-                        "Л4", "Материалы", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                        "Л4", "ТМЦ", HrmStructItemType.HRM_STRUCT_UNKNOW);
                     sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_TOP, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
                         "Л5", "Нормативы", HrmStructItemType.HRM_STRUCT_UNKNOW);
                     break;
                 case FmFinPlanLineType.FMFPL_COST_TOP:
-                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_COST_SALE, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_COST_SALE, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
                         "1", "Выручка", HrmStructItemType.HRM_STRUCT_UNKNOW);
                     sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_COST_TOTAL, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
                         "2", "Совокупные затраты", HrmStructItemType.HRM_STRUCT_UNKNOW);
@@ -508,6 +585,132 @@ namespace IntecoAG.ERM.FM.FinPlan {
                     break;
                 case FmFinPlanLineType.FMFPL_CASH_OUT_PARTY_PRE_TOTAL:
                 case FmFinPlanLineType.FMFPL_CASH_OUT_PARTY_POST_TOTAL:
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_TOP:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_TOTAL, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1", "Работы соисполнителей (руб), в том числе:", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_TOTAL:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_TOTAL_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "ТЗ", "Затраты", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_TOTAL_PAY, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "ТО", "Оплата", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_TOTAL_PAY:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_TOTAL_PAY_PRE, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "А", "Аванс", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_TOTAL_PAY_POST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "Р", "Расчет", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_TOTAL_COST:
+                case FmFinPlanLineType.FMFPL_PARTY_TOTAL_PAY_PRE:
+                case FmFinPlanLineType.FMFPL_PARTY_TOTAL_PAY_POST:
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "ВЗ", "Затраты", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "ВО", "Оплата", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "РЗ", "Затраты", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "РО", "Оплата", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY_PRE, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "А", "Аванс", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line.PayType = fmPRPayType.PREPAYMENT;
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY_POST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "Р", "Расчет", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line.PayType = fmPRPayType.POSTPAYMENT;
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY_PRE, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "А", "Аванс", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line.PayType = fmPRPayType.PREPAYMENT;
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY_POST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "Р", "Расчет", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line.PayType = fmPRPayType.POSTPAYMENT;
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_COST:
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_COST:
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY_PRE:
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY_POST:
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY_PRE:
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY_POST:
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_TOP:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1", "Оплаты и затраты ТМЦ (покупные) в том числе:", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BUILD, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "2", "ТМЦ собственного производства в том числе:", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BAY:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_PAY, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.0", "Оплата", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.1", "Черные металлы, подшипники, метизы", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.2", "Цветные металлы", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.3", "Кабельно-проводная продукция, ЭРИ и электроматериалы", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.4", "Химикаты, ЛКП, спирт, резина, пластмасса, полимеры, ткани", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.5", "Штамповки (поковки)", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.6", "ПКИ (кроме крупных дорогостоящих)", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.7", "Инструмент и оснастка", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "1.8", "Прочие ТМЦ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_PAY, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                         this.LineCode + ".О", "Оплата", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BUILD:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BUILD_ITEM, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "2.1", "ПКИ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_MATERIAL_BUILD_ITEM, this, FmFinPlanTotalType.FMFPT_HIERARCHICAL,
+                        "2.2", "Оснастка", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_PAY:
+                case FmFinPlanLineType.FMFPL_MATERIAL_BUILD_ITEM:
+                    break;
+                case FmFinPlanLineType.FMFPL_NORMATIV_TOP:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_VALUTA, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "1", "Курсы валют", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_EXPONENT, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "2", "Пересчет в единиц", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_COST_COMPONENTS, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "3", "Коэффициенты ФОТ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_NORMATIV_VALUTA:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_VALUTA_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "1.1", "РУБ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_VALUTA_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "1.2", "ДОЛ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_VALUTA_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "1.3", "ЕВР", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_VALUTA_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "1.4", " ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_NORMATIV_COST_COMPONENTS:
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_COST_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "3.1", "НормЦФ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_COST_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "3.2", "Накладные", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_COST_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "3.3", "СоцСтрах.", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_COST_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "3.4", "Стоим.Часа без ЦФ", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    sub_line = new FmFinPlanDocLine(this.Session, FmFinPlanLineType.FMFPL_NORMATIV_COST_ITEM, this, FmFinPlanTotalType.FMFPT_NOTOTAL,
+                        "3.5", "Стоим.Часа возм услуг", HrmStructItemType.HRM_STRUCT_UNKNOW);
+                    break;
+                case FmFinPlanLineType.FMFPL_NORMATIV_EXPONENT:
+                case FmFinPlanLineType.FMFPL_NORMATIV_VALUTA_ITEM:
+                case FmFinPlanLineType.FMFPL_NORMATIV_COST_ITEM:
                     break;
             }
         }

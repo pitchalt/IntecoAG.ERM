@@ -112,7 +112,7 @@ namespace IntecoAG.ERM.Trw.Budget.Period {
                         Decimal delta = summ_bsr * 1000 - summ_deal;
                         rsp[order].OtherBayDealLine[i] += delta;
                         summ_deal += delta;
-                        System.Console.WriteLine("Order: " + order.Code + " Month: " + i.ToString() + " Delta: " + delta.ToString() + "");
+                        System.Console.WriteLine("Order: " + order.Code + " month: " + i.ToString() + " Delta: " + delta.ToString() + "");
                         //foreach (var line_deal in rsp[order].DealLines) {
                         //    if (line_deal.TrwSubjectDealBay != null && 
                         //        line_deal.TrwSubjectDealBay.DealType == TrwSubjectDealType.TRW_SUBJECT_DEAL_CONS_OTHER) {

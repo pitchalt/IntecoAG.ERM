@@ -58,7 +58,7 @@ namespace IntecoAG.ERM.CRM.Counters {
         private int _Year;
         public int Year {
             get { return _Year; }
-            set { SetPropertyValue<int>("Year", ref _Year, value); }
+            set { SetPropertyValue<int>("year", ref _Year, value); }
         }
 
         private hrmDepartment _Department;
@@ -117,8 +117,8 @@ namespace IntecoAG.ERM.CRM.Counters {
             IObjectSpace objectSpace = new ObjectSpace((UnitOfWork)(this.Session));
             CollectionSource csb = new CollectionSource(objectSpace, typeof(RegistrationLogDocNumberGenerator), true, CollectionSourceMode.Normal);
 
-            CriteriaOperator criteriaYear = new BinaryOperator("Year", Year, BinaryOperatorType.Equal);
-            csb.Criteria.Add("Year", criteriaYear);
+            CriteriaOperator criteriaYear = new BinaryOperator("year", year, BinaryOperatorType.Equal);
+            csb.Criteria.Add("year", criteriaYear);
 
             CriteriaOperator criteriaDepartment = null;
             if (Department != null) {
@@ -126,7 +126,7 @@ namespace IntecoAG.ERM.CRM.Counters {
                 csb.Criteria.Add("Department", criteriaDepartment);
             }
 
-            CriteriaOperator criteriaOid = new BinaryOperator("Oid", Year, BinaryOperatorType.LessOrEqual);
+            CriteriaOperator criteriaOid = new BinaryOperator("Oid", year, BinaryOperatorType.LessOrEqual);
             csb.Criteria.Add("Oid", criteriaOid);
 
             csb.Reload();
@@ -147,7 +147,7 @@ namespace IntecoAG.ERM.CRM.Counters {
             //criteria = new GroupOperator();
             //((GroupOperator)criteria).OperatorType = GroupOperatorType.And;
 
-            CriteriaOperator criteriaYear = new BinaryOperator("Year", Year, BinaryOperatorType.Equal);
+            CriteriaOperator criteriaYear = new BinaryOperator("year", year, BinaryOperatorType.Equal);
             //((GroupOperator)criteria).Operands.Add(criteriaYear);
 
             //CriteriaOperator criteriaDocNumberDepartment = null;
@@ -167,7 +167,7 @@ namespace IntecoAG.ERM.CRM.Counters {
             IObjectSpace objectSpace = new ObjectSpace((UnitOfWork)(this.Session));
 
             CollectionSource csb = new CollectionSource(objectSpace, typeof(RegistrationLogDocNumberGenerator), true, CollectionSourceMode.Normal);
-            csb.Criteria.Add("Year", criteriaYear);
+            csb.Criteria.Add("year", criteriaYear);
             csb.Criteria.Add("Department", criteriaDepartment);
             csb.Sorting.Add(new SortProperty("Oid", DevExpress.Xpo.DB.SortingDirection.Descending));
             csb.TopReturnedObjects = 1;

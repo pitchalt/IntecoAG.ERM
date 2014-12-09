@@ -23,22 +23,6 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
-            this.ImportAction = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
-            // 
-            // ImportAction
-            // 
-            this.ImportAction.Caption = "FmFinPlanSubjectDocVC_ImportAction";
-            this.ImportAction.ConfirmationMessage = null;
-            this.ImportAction.Id = "FmFinPlanSubjectDocVC_ImportAction";
-            this.ImportAction.ImageName = null;
-            this.ImportAction.Shortcut = null;
-            this.ImportAction.Tag = null;
-            this.ImportAction.TargetObjectsCriteria = null;
-            this.ImportAction.TargetViewId = null;
-            this.ImportAction.ToolTip = null;
-            this.ImportAction.TypeOfView = null;
-            this.ImportAction.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.ImportAction_Execute);
             // 
             // FmFinPlanSubjectDocVC
             // 
@@ -50,6 +34,5 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
         #endregion
 
-        private DevExpress.ExpressApp.Actions.SimpleAction ImportAction;
     }
 }

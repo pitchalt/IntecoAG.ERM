@@ -367,8 +367,8 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
                 }
             }
 
-            //foreach (fmCPRRepaymentTaskLine line in this.RepaymentTaskLines) {
-            //    fmCPRPaymentRequest request = line.PaymentRequest;
+            //foreach (fmCPRRepaymentTaskLine line_doc in this.RepaymentTaskLines) {
+            //    fmCPRPaymentRequest request = line_doc.PaymentRequest;
             //    if (request != null) {
             //        int PRCount = AllRequests.Where(p => p.PaymentRequest == request).Count();
             //        if (PRCount == 0) {
@@ -888,7 +888,7 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         }
 
         private void CreateCFRegisterRecord(fmCPRRepaymentTaskLine line, crmCParty ourParty) {
-            //if (line.IsCashFlowRegister)
+            //if (line_doc.IsCashFlowRegister)
             //    return;
             if (paymentRequestObligationList.Contains(line.LevelObject)) {
                 return;
@@ -943,12 +943,12 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
 
             // В валюте обязательств
             if (this.PaymentDocument.PaymentReceiverRequisites.INN == ourParty.INN) {   // && this.PaymentDocument.PaymentReceiverRequisites.StatementOfAccount.BankAccount == this.BankAccount) {
-                //cfr.SumObligationIn = Math.Round(cfr.SumIn * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation), 4);   //line.RequestSum;
-                cfr.SumObligationIn = cfr.SumIn * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation);   //line.RequestSum;
+                //cfr.SumObligationIn = Math.Round(cfr.SumIn * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation), 4);   //line_doc.RequestSum;
+                cfr.SumObligationIn = cfr.SumIn * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation);   //line_doc.RequestSum;
             }
             if (this.PaymentDocument.PaymentPayerRequisites.INN == ourParty.INN) {   // && this.PaymentDocument.PaymentPayerRequisites.StatementOfAccount.BankAccount == this.BankAccount) {
-                //cfr.SumObligationOut = Math.Round(cfr.SumOut * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation), 4);   //line.RequestSum;
-                cfr.SumObligationOut = cfr.SumOut * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation);   //line.RequestSum;
+                //cfr.SumObligationOut = Math.Round(cfr.SumOut * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation), 4);   //line_doc.RequestSum;
+                cfr.SumObligationOut = cfr.SumOut * csCNMValutaCourse.GetCrossCourceOnDate(Session, this.PaymentDocument.GetAccountDateChange(), cfr.ValutaPayment, cfr.ValutaObligation);   //line_doc.RequestSum;
             }
 
             // В рублях
@@ -968,7 +968,7 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
 
             cfr.PaymentRequestObligationGUID = line.LevelObject.Oid;
 
-            //line.IsCashFlowRegister = true;
+            //line_doc.IsCashFlowRegister = true;
             if (!paymentRequestObligationList.Contains(line.LevelObject)) {
                 paymentRequestObligationList.Add(line.LevelObject);
             }

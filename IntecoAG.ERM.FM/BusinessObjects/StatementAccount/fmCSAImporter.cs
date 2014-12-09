@@ -174,7 +174,7 @@ namespace IntecoAG.ERM.FM.StatementAccount {
         /// <summary>
         /// Запись в журнал
         /// </summary>
-        /// <param name="line"></param>
+        /// <param name="line_doc"></param>
         public virtual void WriteLog(fmCSAImportResult result, string line) {
         }
 

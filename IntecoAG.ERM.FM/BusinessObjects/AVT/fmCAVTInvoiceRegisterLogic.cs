@@ -148,7 +148,7 @@ namespace IntecoAG.ERM.FM.AVT {
                     register.InLines.Add(line);
                 }
                 line.SequenceNumber = seq_num++;
-                //                line.DateTransfer = invoice.Date;
+                //                line_doc.DateTransfer = invoice.Date;
                 line.Invoice = invoice;
                 line.TransferType = inv_transfer_types.Where(rec => rec.Code == "1").FirstOrDefault();
                 if (String.IsNullOrEmpty(imp_rec.SF_TRANS_DATE.Trim())) {
@@ -347,7 +347,7 @@ namespace IntecoAG.ERM.FM.AVT {
                     register.InLines.Add(line);
                 }
                 line.SequenceNumber = seq_num++;
-                //                line.DateTransfer = invoice.Date;
+                //                line_doc.DateTransfer = invoice.Date;
                 line.Invoice = invoice;
                 line.TransferType = inv_transfer_types.Where(rec => rec.Code == "1").FirstOrDefault();
                 line.DateTransfer = invrec.Select(rec => rec.BuhDocDate).Min();

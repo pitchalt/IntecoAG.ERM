@@ -31,7 +31,7 @@ namespace IntecoAG.ERM.Trw.Budget {
         private Int16 _Month;
         public Int16 Month {
             get { return _Month; }
-            set { SetPropertyValue<Int16>("Month", ref _Month, value); }
+            set { SetPropertyValue<Int16>("month", ref _Month, value); }
         }
 
         public String Name {
