@@ -70,6 +70,9 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                 return Journal.Operations;
             }
         }
+        public void DocOperationsClean() {
+            Session.Delete(DocOperations);
+        }
 
         protected override CriteriaOperator OperationsCriteria {
             get {

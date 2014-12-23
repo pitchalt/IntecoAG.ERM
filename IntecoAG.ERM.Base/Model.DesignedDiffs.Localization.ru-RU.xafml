@@ -750,6 +750,47 @@
     <Class Name="IntecoAG.ERM.FM.Docs.csCDocRCB" Caption="Платежный документ" />
     <Class Name="IntecoAG.ERM.FM.FinAccount.fmCFAAccount" Caption="Фин.Счет" />
     <Class Name="IntecoAG.ERM.FM.FinAccount.fmCFAAccountSystem" Caption="План счетов" />
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanBase">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Journal" Caption="Журнал" />
+        <Member Name="Operations" Caption="Операции" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDoc">
+      <OwnMembers>
+        <Member Name="SubLines" Caption="Строчки" />
+        <Member Name="Valuta" Caption="Валюта" />
+        <Member Name="VatRate" Caption="Ставка НДС" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDocLine">
+      <OwnMembers>
+        <Member Name="Deal" Caption="Сделка" />
+        <Member Name="DealAddNumber" Caption="Сделка Номер Доп." />
+        <Member Name="DealNumber" Caption="Сделка номер" />
+        <Member Name="DepStruct" Caption="Структура" />
+        <Member Name="FinPlanDoc" Caption="Фин.План." />
+        <Member Name="IsError" Caption="Ошибка" />
+        <Member Name="LineCode" Caption="Код строки" />
+        <Member Name="LineName" Caption="Строка наименование" />
+        <Member Name="LineTime" Caption="Время" />
+        <Member Name="LineType" Caption="Тип строки" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="Party" Caption="Партнер" />
+        <Member Name="PartyName" Caption="Наименование партнера" />
+        <Member Name="PayType" Caption="Тип расчетов" />
+        <Member Name="Sheet" Caption="Лист" />
+        <Member Name="SubLines" Caption="Строчки" />
+        <Member Name="SubTimes" Caption="Время" />
+        <Member Name="TopLine" Caption="Верхняя строка" />
+        <Member Name="TotalType" Caption="Тип итога" />
+        <Member Name="ValueAutomatic" Caption="Автоматическое значение" />
+        <Member Name="ValueManual" Caption="Введенное значение" />
+        <Member Name="Valuta" Caption="Валюта" />
+        <Member Name="VatRate" Caption="Ставка НДС" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.fmCostItem" Caption="Статья ДДС">
       <OwnMembers>
         <Member Name="Code" Caption="Код" />
@@ -769,6 +810,35 @@
         <Member Name="ManagerGroupOfSignAccountDepartment" Caption="Подписанты Бухгалтерии" />
         <Member Name="ManagerGroupOfSignPlanDepartment" Caption="Подписанты Планового Отдела" />
         <Member Name="ManagerGroupOfSubject" Caption="Менеджеры тем" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.FmJournalOperation">
+      <OwnMembers>
+        <Member Name="BalanceSumma" Caption="Балансовая Сумма" />
+        <Member Name="BalanceValuta" Caption="Валюта баланса" />
+        <Member Name="BuhAccount" Caption="Бух.Субсчет" />
+        <Member Name="CostItem" Caption="Статья" />
+        <Member Name="Date" Caption="Дата" />
+        <Member Name="Deal" Caption="Сделка" />
+        <Member Name="Department" Caption="Подразделение" />
+        <Member Name="DepartmentStructItem" Caption="Структура" />
+        <Member Name="FinAccount" Caption="Упр.Субсчет" />
+        <Member Name="FinAccountBalanceType" Caption="Тип баланса субсчета" />
+        <Member Name="FinAccountType" Caption="Тип субсчета" />
+        <Member Name="FinIndex" Caption="Индекс" />
+        <Member Name="FinOperationType" Caption="Тип операции" />
+        <Member Name="Journal" Caption="Журнал" />
+        <Member Name="JournalCode" Caption="Код журнала" />
+        <Member Name="Month" Caption="Месяц" />
+        <Member Name="ObligationSumma" Caption="Сумма обязательств" />
+        <Member Name="ObligationValuta" Caption="Валюта обязательств" />
+        <Member Name="Order" Caption="Фин.Заказ" />
+        <Member Name="Party" Caption="Партнер" />
+        <Member Name="PayType" Caption="Тип Расчетов" />
+        <Member Name="Person" Caption="Лицо партнера" />
+        <Member Name="Subject" Caption="Тема" />
+        <Member Name="Year" Caption="Год" />
+        <Member Name="YearMonth" Caption="Год/месяц" />
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Order.fmCOrder" Caption="Заказ" ObjectCaptionFormat="({0:Code}) {0:Name}">

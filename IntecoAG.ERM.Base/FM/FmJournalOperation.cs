@@ -10,12 +10,14 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
+using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CS.Nomenclature;
 
 using IntecoAG.ERM.FM;
 using IntecoAG.ERM.FM.FinAccount;
 using IntecoAG.ERM.FM.FinIndex;
 using IntecoAG.ERM.FM.Order;
+using IntecoAG.ERM.FM.PaymentRequest;
 using IntecoAG.ERM.FM.Subject;
 
 using IntecoAG.ERM.CRM.Party;
@@ -24,6 +26,21 @@ using IntecoAG.ERM.CRM.Contract.Deal;
 using IntecoAG.ERM.HRM.Organization;
 
 namespace IntecoAG.ERM.FM {
+
+    public enum FinAccountType {
+        ACC_A_CASH              = 101,
+        ACC_A_PREPAY_SUPPLIER   = 102,
+        ACC_A_PAY_CUSTOMER      = 103,
+        ACC_A_BAY = 121,
+        ACC_O_PAY_SUPPLIER      = 201,
+        ACC_O_PREPAY_CUSTOMER   = 202
+//        ACC_O_PAY_SUPPLIER   = 201,
+    }
+
+    public enum FinOperationType { 
+        DEBET   = 1,
+        CREDIT  = 2
+    }
 
     /// <summary>
     /// 
@@ -189,6 +206,13 @@ namespace IntecoAG.ERM.FM {
             get { return _FinAccount; }
             set { SetPropertyValue<fmCFAAccount>("FinAccount", ref _FinAccount, value); }
         }
+
+        public FinAccountType FinAccountType;
+
+        public FinOperationType FinOperationType;
+        public FinOperationType FinAccountBalanceType;
+        public fmPRPayType PayType;
+
 
         private Decimal _BalanceSumma;
         public Decimal BalanceSumma {

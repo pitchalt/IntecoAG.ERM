@@ -61,12 +61,11 @@ namespace IntecoAG.ERM.FM.FinPlan {
 
         public csNDSRate VatRate;
 
-        public void Clean() {
+        public void LinesClean() {
             foreach (var line in Lines) {
                 line.Clean();
             }
         }
-
     }
 
 }

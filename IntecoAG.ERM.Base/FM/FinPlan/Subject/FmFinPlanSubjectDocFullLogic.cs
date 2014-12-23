@@ -138,7 +138,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         protected IList<csNDSRate> VatRates;
 
         protected String VatCodeConvert(String code) {
-            switch (code) { 
+            switch (code) {
                 case "Без НДС":
                     return "БЕЗ НДС";
                 case "18%":
@@ -229,10 +229,16 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             Int16 year;
             Int16 quarter;
             Int16 month;
-
+            Decimal value_decimal = 0;
             if (type != "Number")
                 return;
-            Decimal value_decimal = Decimal.Round(Decimal.Parse(value, FormatProvider), 3);
+            try {
+                Double dval = Double.Parse(value, FormatProvider);
+                value_decimal = Decimal.Round(new Decimal(dval), 3);
+            }
+            catch (FormatException e) {
+                throw new FormatException(String.Format("Лист: {0}, Колонка: {1}/{2}, Строка: {3}, Значение {4}", line_doc.Sheet, start_column, column, line_doc.LineCode, value), e);
+            }
             if (value_decimal == 0)
                 return;
 
@@ -242,7 +248,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                     month = (Int16)(column - start_column + 8);
                 }
                 else {
-                    year = (Int16) (BeginYear + 1);
+                    year = (Int16)(BeginYear + 1);
                     month = (Int16)(column - start_column - 5);
                 }
                 quarter = (Int16)((month - 1) / 3 + 1);
@@ -316,18 +322,238 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
         }
     }
 
+    public class FmFinPlanSubjectDocTransactLocal {
+        protected IObjectSpace ObjectSpace;
+        protected FmFinPlanSubjectDocFull Document;
+        private IList<fmCostItem> _CostItems;
+        protected IList<fmCostItem> CostItems {
+            get {
+                return _CostItems;
+            }
+        }
+        public FmFinPlanSubjectDocTransactLocal(IObjectSpace os, FmFinPlanSubjectDocFull doc) {
+            ObjectSpace = os;
+            _CostItems = os.GetObjects<fmCostItem>();
+            Document = doc;
+        }
 
-    public static class FmFinPlanSubjectDocFullLogic {
+        public void TransactLocal() {
+            OperationFill();
+        }
+        protected void OperationFill() {
+            OperationFill(Document.SubLines);
+        }
+        protected void OperationFill(XPCollection<FmFinPlanDocLine> lines) {
+            foreach (var line in lines) {
+                OperationFill(line);
+                OperationFill(line.SubLines);
+            }
+        }
 
-        public static void LoadDocFromXML(IObjectSpace os, FmFinPlanSubjectDocFull doc, Stream stream) {
-            FmFinPlanSubjectDocXMLLoader loader = new FmFinPlanSubjectDocXMLLoader(os, doc, stream);
+        protected void OperationFill(FmFinPlanDocLine line) {
+            OperationFill(line, line.SubTimes);
+        }
 
-            doc.Clean();
-            loader.Load();
+        protected void OperationFill(FmFinPlanDocLine line, XPCollection<FmFinPlanDocTime> times) {
+            foreach (var time in times) {
+                OperationFill(line, time);
+                OperationFill(line, time.SubTimes);
+            }
+        }
+        protected void OperationFill(FmFinPlanDocLine line, FmFinPlanDocTime time) {
+            if (time.TimeType == FmFinPlanTimeType.FMFPT_TOTAL ||
+                time.SubTimes.Count != 0 ||
+                time.ValueManual == 0)
+                return;
+            //            FmJournalOperation oper = os.CreateObject<FmJournalOperation>();
+            //            doc.DocOperations.Add(oper);
+            switch (line.Sheet) {
+                case FmFinPlanSheetType.FMFPS_COST:
+                    MakeLineCostOperations(line, time);
+                    break;
+                case FmFinPlanSheetType.FMFPS_CASH:
+                    break;
+                case FmFinPlanSheetType.FMFPS_PARTY:
+                    MakeLinePartyOperations(line, time);
+                    break;
+                case FmFinPlanSheetType.FMFPS_NORMATIV:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void OperationFillDate(FmJournalOperation oper, FmFinPlanDocTime time) {
+            switch (time.TimeType) {
+                case FmFinPlanTimeType.FMFPT_YEAR:
+                    oper.Date = new DateTime(time.Year, 12, 31);
+                    break;
+                case FmFinPlanTimeType.FMFPT_QUARTER:
+                    oper.Date = new DateTime(time.Year, time.Quarter * 3, 1).AddMonths(1).AddDays(-1);
+                    break;
+                case FmFinPlanTimeType.FMFPT_MONTH:
+                    oper.Date = new DateTime(time.Year, time.Month, 1).AddMonths(1).AddDays(-1);
+                    break;
+                default:
+                    oper.Date = new DateTime(1899, 12, 31);
+                    break;
+            }
+        }
+
+        protected FmJournalOperation MakeOperation(FmFinPlanDocLine line, FmFinPlanDocTime time) {
+            FmJournalOperation oper = ObjectSpace.CreateObject<FmJournalOperation>();
+            Document.DocOperations.Add(oper);
+            OperationFillDate(oper, time);
+            return oper;
+        }
+
+        protected void MakeLineCostOperations(FmFinPlanDocLine line, FmFinPlanDocTime time) {
+            //            FmJournalOperation oper = null;
+            switch (line.LineType) {
+                case FmFinPlanLineType.FMFPL_COST_SALE:
+                    break;
+                //                    oper = MakeOperation(os, doc, line, time);
+                //                    oper.DepartmentStructItem =  
+                //                    break;
+            }
 
         }
 
+        protected void MakeLinePartyOperations(FmFinPlanDocLine line, FmFinPlanDocTime time) {
+            FmJournalOperation oper = null;
+            switch (line.LineType) {
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_COST:
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_O_PAY_SUPPLIER;
+                    oper.FinOperationType = FinOperationType.CREDIT;
+                    oper.FinAccountBalanceType = FinOperationType.CREDIT;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.BalanceSumma = time.ValueManual;
+                    oper.BalanceValuta = line.TopLine.Valuta;
+                    oper.Party = line.TopLine.Party;
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY_POST:
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_O_PAY_SUPPLIER;
+                    oper.FinOperationType = FinOperationType.DEBET;
+                    oper.FinAccountBalanceType = FinOperationType.CREDIT;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.BalanceSumma = time.ValueManual;
+                    oper.BalanceValuta = line.TopLine.TopLine.Valuta;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    //
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_A_CASH;
+                    oper.FinOperationType = FinOperationType.CREDIT;
+                    oper.FinAccountBalanceType = FinOperationType.DEBET;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.BalanceSumma = time.ValueManual;
+                    oper.BalanceValuta = line.TopLine.TopLine.Valuta;
+                    oper.PayType = PaymentRequest.fmPRPayType.POSTPAYMENT;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_RUB_PAY_PRE:
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_A_PREPAY_SUPPLIER;
+                    oper.FinOperationType = FinOperationType.DEBET;
+                    oper.FinAccountBalanceType = FinOperationType.DEBET;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.BalanceSumma = time.ValueManual;
+                    oper.BalanceValuta = line.TopLine.TopLine.Valuta;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    //
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_A_CASH;
+                    oper.FinOperationType = FinOperationType.CREDIT;
+                    oper.FinAccountBalanceType = FinOperationType.DEBET;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.BalanceSumma = time.ValueManual;
+                    oper.BalanceValuta = line.TopLine.TopLine.Valuta;
+                    oper.PayType = PaymentRequest.fmPRPayType.PREPAYMENT;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_COST:
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_O_PAY_SUPPLIER;
+                    oper.FinOperationType = FinOperationType.CREDIT;
+                    oper.FinAccountBalanceType = FinOperationType.CREDIT;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.ObligationSumma = time.ValueManual;
+                    oper.ObligationValuta = line.TopLine.Valuta;
+                    oper.Party = line.TopLine.Party;
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY_POST:
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_O_PAY_SUPPLIER;
+                    oper.FinOperationType = FinOperationType.DEBET;
+                    oper.FinAccountBalanceType = FinOperationType.CREDIT;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.ObligationValuta = line.TopLine.TopLine.Valuta;
+                    oper.ObligationSumma = time.ValueManual;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    //
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_A_CASH;
+                    oper.FinOperationType = FinOperationType.CREDIT;
+                    oper.FinAccountBalanceType = FinOperationType.DEBET;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.ObligationValuta = line.TopLine.TopLine.Valuta;
+                    oper.ObligationSumma = time.ValueManual;
+                    oper.PayType = PaymentRequest.fmPRPayType.POSTPAYMENT;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    break;
+                case FmFinPlanLineType.FMFPL_PARTY_PARTY_VAL_PAY_PRE:
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_A_PREPAY_SUPPLIER;
+                    oper.FinOperationType = FinOperationType.DEBET;
+                    oper.FinAccountBalanceType = FinOperationType.DEBET;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.ObligationValuta = line.TopLine.TopLine.Valuta;
+                    oper.ObligationSumma = time.ValueManual;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    //
+                    oper = MakeOperation(line, time);
+                    oper.FinAccountType = FinAccountType.ACC_A_CASH;
+                    oper.FinOperationType = FinOperationType.CREDIT;
+                    oper.FinAccountBalanceType = FinOperationType.DEBET;
+                    oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    oper.ObligationValuta = line.TopLine.TopLine.Valuta;
+                    oper.ObligationSumma = time.ValueManual;
+                    oper.PayType = PaymentRequest.fmPRPayType.PREPAYMENT;
+                    oper.Party = line.TopLine.TopLine.Party;
+                    break;
+            }
 
+        }
+    }
+
+    public static class FmFinPlanSubjectDocFullLogic {
+
+        public static void ReLoadDocFromXML(IObjectSpace os, FmFinPlanSubjectDocFull doc, Stream stream) {
+            LoadDocFromXML(os, doc, stream);
+            TransactLocal(os, doc);
+        }
+
+        public static void ReMakeOperations(IObjectSpace os, FmFinPlanSubjectDocFull doc) {
+            TransactLocal(os, doc);
+        }
+
+        public static void LoadDocFromXML(IObjectSpace os, FmFinPlanSubjectDocFull doc, Stream stream) {
+            FmFinPlanSubjectDocXMLLoader loader = new FmFinPlanSubjectDocXMLLoader(os, doc, stream);
+            doc.LinesClean();
+            loader.Load();
+        }
+
+        public static void TransactLocal(IObjectSpace os, FmFinPlanSubjectDocFull doc) {
+            FmFinPlanSubjectDocTransactLocal transact = new FmFinPlanSubjectDocTransactLocal(os, doc);
+            doc.DocOperationsClean();
+            transact.TransactLocal();
+        }
+
+        public static void TransactToSubject(IObjectSpace os, FmFinPlanSubjectDocFull doc) {
+            FmFinPlanSubjectLogic.TransactPlan0(os, doc.FinPlanSubject, doc);
+//            doc.FinPlanSubject.Transact(doc);
+        }
 
     }
 }

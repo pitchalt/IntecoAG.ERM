@@ -51,7 +51,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
         public override void Import(IObjectSpace os, String file_name) {
             using (Stream stream = new FileStream(file_name, FileMode.Open)) {
-                FmFinPlanSubjectDocFullLogic.LoadDocFromXML(os, this, stream);
+                FmFinPlanSubjectDocFullLogic.ReLoadDocFromXML(os, this, stream);
             }
         }
     }

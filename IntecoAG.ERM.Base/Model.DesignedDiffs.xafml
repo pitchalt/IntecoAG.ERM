@@ -2615,6 +2615,11 @@
       </Columns>
     </ListView>
     <DetailView Id="FmFinPlanSubject_DetailView">
+      <Items>
+        <PropertyEditor Id="Operations" View="FmFinPlanBase_Operations_ListVariants" />
+        <PropertyEditor Id="PlanFullOperations" View="FmFinPlanBase_Operations_ListVariants" />
+        <PropertyEditor Id="PlanYearOperations" View="FmFinPlanBase_Operations_ListVariants" />
+      </Items>
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">

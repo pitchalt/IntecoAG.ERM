@@ -110,6 +110,10 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                     );
             }
         }
+
+        public void Transact(FmFinPlanSubjectDocFull doc) { 
+            FmFinPlanSubjectLogic.TransactPlan0(ObjectSpace.FindObjectSpaceByObject(this), this, doc);
+        }
     }
 
 }

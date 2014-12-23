@@ -475,6 +475,7 @@
     </Compile>
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocYear.cs" />
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDoc.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectLogic.cs" />
     <Compile Include="FM\FmAccounting.cs" />
     <Compile Include="FM\FmJournal.cs" />
     <Compile Include="FM\FmJournalOperation.cs" />
