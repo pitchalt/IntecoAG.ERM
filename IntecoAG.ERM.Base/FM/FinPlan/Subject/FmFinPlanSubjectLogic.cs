@@ -41,6 +41,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
 //                os.Delete(fin_plan_subject.PlanFullOperations.Where(x => x.Order == doc.Order));
             }
             foreach (var doc_oper in doc.DocOperations) {
+
                 FmJournalOperation oper = MakeOperationPlan0(os, fin_plan_subject);
                 oper.BalanceSumma = doc_oper.BalanceSumma;
                 oper.BalanceValuta = doc_oper.BalanceValuta;
