@@ -486,7 +486,7 @@ namespace IntecoAG.ERM.CRM.Contract
             criteria = new GroupOperator();
             ((GroupOperator)criteria).OperatorType = GroupOperatorType.And;
 
-            CriteriaOperator criteriaYear = new BinaryOperator("year", DocNumberYear, BinaryOperatorType.Equal);
+            CriteriaOperator criteriaYear = new BinaryOperator("Year", DocNumberYear, BinaryOperatorType.Equal);
             ((GroupOperator)criteria).Operands.Add(criteriaYear);
 
             CriteriaOperator criteriaDepartment = null;

@@ -115,7 +115,7 @@ namespace IntecoAG.ERM.FM.FinPlan {
             get { return _Year; }
         }
         public void YearSet(Int16 value) {
-            SetPropertyValue<Int16>("year", ref _Year, value);
+            SetPropertyValue<Int16>("Year", ref _Year, value);
         }
 
         [Persistent("Quarter")]

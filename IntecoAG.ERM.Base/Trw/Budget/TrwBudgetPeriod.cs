@@ -25,7 +25,7 @@ namespace IntecoAG.ERM.Trw.Budget {
         private Int16 _Year;
         public Int16 Year {
             get { return _Year; }
-            set { SetPropertyValue<Int16>("year", ref _Year, value); }
+            set { SetPropertyValue<Int16>("Year", ref _Year, value); }
         }
 
         public String Code {

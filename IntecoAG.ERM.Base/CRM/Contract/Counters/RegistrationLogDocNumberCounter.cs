@@ -58,7 +58,7 @@ namespace IntecoAG.ERM.CRM.Counters {
         private int _Year;
         public int Year {
             get { return _Year; }
-            set { SetPropertyValue<int>("year", ref _Year, value); }
+            set { SetPropertyValue<int>("Year", ref _Year, value); }
         }
 
         private hrmDepartment _Department;
