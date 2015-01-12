@@ -7,6 +7,7 @@ using DevExpress.Persistent.Base;
 //using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 //
+using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Party;
 
 namespace IntecoAG.ERM.FM.AVT {
@@ -51,9 +52,26 @@ namespace IntecoAG.ERM.FM.AVT {
 
         private fmCAVTBookBuhImport _BookBuhImport;
         [Association("fmAVTBookBuhImport-fmAVTBookBuhRecords")]
+        [Browsable(false)]
         public fmCAVTBookBuhImport BookBuhImport {
             get { return _BookBuhImport; }
             set { SetPropertyValue<fmCAVTBookBuhImport>("BookBuhImport", ref _BookBuhImport, value); }
+        }
+
+        private fmCAVTBookBuhStruct _BookBuhStruct;
+        [Association("fmAVTBookBuhStruct-fmAVTBookBuhRecords")]
+        [Browsable(false)]
+        public fmCAVTBookBuhStruct BookBuhStruct {
+            get { return _BookBuhStruct; }
+            set { SetPropertyValue<fmCAVTBookBuhStruct>("BookBuhStruct", ref _BookBuhStruct, value); }
+        }
+
+        public csCCodedComponent BookBuh {
+            get { 
+                if (BookBuhImport != null) return BookBuhImport;
+                if (BookBuhStruct != null) return BookBuhStruct;
+                return null; 
+            }
         }
 
         [Size(6)]

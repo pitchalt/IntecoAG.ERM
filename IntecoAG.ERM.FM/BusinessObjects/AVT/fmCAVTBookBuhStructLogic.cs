@@ -2,10 +2,14 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 //
+using DevExpress.Data.Filtering;
+using DevExpress.Data.Linq;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 //
@@ -213,6 +217,77 @@ namespace IntecoAG.ERM.FM.AVT {
             return struct_book;
         }
 
+        public static fmCAVTBookBuhStruct Process(fmCAVTBookBuhStruct struct_book, IObjectSpace os) {
+            foreach (var record in struct_book.InInvoiceRecords) {
+                ProcessRecord(struct_book, os, record);
+            }
+            foreach (var record in struct_book.OutInvoiceRecords) {
+                ProcessRecord(struct_book, os, record);
+            }
+            return struct_book;
+        }
+
+        private static void ProcessRecord(fmCAVTBookBuhStruct struct_book, IObjectSpace os, fmCAVTBookBuhStructRecord record) {
+            crmCParty party;
+            if (String.IsNullOrEmpty(record.PartnerInn))
+                return;
+            //                    crmCLegalPerson leg_person;
+            //                    crmCLegalPersonUnit legunit_person;
+            //                    person = os.GetObjects<crmCPerson>(new BinaryOperator("INN", record.PartnerInn)).FirstOrDefault();
+            if (String.IsNullOrEmpty(record.PartnerKpp)) {
+                crmCBusinessman person = os.GetObjects<crmCBusinessman>(new BinaryOperator("INN", record.PartnerInn), true).FirstOrDefault();
+                //                         phys_person = 
+                if (person == null) {
+                    person = os.CreateObject<crmCBusinessman>();
+                    person.INN = record.PartnerInn;
+                    String [] name_comps = record.PartnerName.Split();
+                    if (name_comps.Length == 2)
+                        person.LastName = name_comps[1];
+                    else
+                        person.LastName = "-";
+                    if (name_comps.Length == 3)
+                        person.FirstName = name_comps[2];
+                    else
+                        person.FirstName = "-";
+                    person.Name = record.PartnerName;
+                    person.NameHandmake = record.PartnerName;
+                    person.AddressLegal.City = record.PartnerSity;
+                    person.AddressLegal.AddressHandmake = "性 " + record.PartnerSity + " " + record.PartnerAddress;
+                    person.AddressFact.City = record.PartnerSity;
+                    person.AddressFact.AddressHandmake = "性 " + record.PartnerSity + " " + record.PartnerAddress;
+                }
+                party = person.Party;
+            }
+            else {
+                crmCLegalPerson person = os.GetObjects<crmCLegalPerson>(new BinaryOperator("INN", record.PartnerInn), true).FirstOrDefault();
+                if (person == null) {
+                    person = os.CreateObject<crmCLegalPerson>();
+                    person.INN = record.PartnerInn;
+                    person.KPP = record.PartnerKpp;
+                    person.Name = record.PartnerName;
+                    person.AddressLegal.City = record.PartnerSity;
+                    person.AddressLegal.AddressHandmake = "性 " + record.PartnerSity + " " + record.PartnerAddress;
+                    person.AddressFact.City = record.PartnerSity;
+                    person.AddressFact.AddressHandmake = "性 " + record.PartnerSity + " " + record.PartnerAddress;
+                    party = person.Party;
+                }
+                if (person.KPP == record.PartnerKpp) 
+                    party = person.Party;
+                else {
+                    crmCLegalPersonUnit unit = person.LegalPersonUnits.FirstOrDefault(x => x.KPP == record.PartnerKpp);
+                    if (unit == null) {
+                        unit = os.CreateObject<crmCLegalPersonUnit>();
+                        unit.KPP = record.PartnerKpp;
+                        unit.Name = record.PartnerName;
+                        unit.AddressFact.City = record.PartnerSity;
+                        unit.AddressFact.AddressHandmake = "性 " + record.PartnerSity + " " + record.PartnerAddress;
+                    }
+                    party = unit.Party;
+                }
+                //                        person = os.GetObjects<crmCPerson>(new BinaryOperator("INN", record.PartnerInn)).FirstOrDefault()
+            }
+            record.PartnerParty = party;
+        }
     }
 
 }

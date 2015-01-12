@@ -13,10 +13,12 @@ using IntecoAG.ERM.CRM.Party;
 
 namespace IntecoAG.ERM.FM.AVT {
 
-    //    [VisibleInReports]
+    [VisibleInReports]
     [NavigationItem("AVT")]
     [Persistent("fmAVTBookBuhStruct")]
+//    [MapInheritance(MapInheritanceType.ParentTable)]
     public class fmCAVTBookBuhStruct : csCCodedComponent, csIImportSupport {
+//        fmCAVTBookBuh, csIImportSupport {
 
         public fmCAVTBookBuhStruct(Session session) : base(session) { }
 
@@ -35,9 +37,25 @@ namespace IntecoAG.ERM.FM.AVT {
             get { return GetCollection<fmCAVTBookBuhStructRecord>("OutInvoiceRecords"); }
         }
 
+        [Aggregated]
+        [Association("fmAVTBookBuhStruct-fmAVTBookBuhRecords")]
+        public XPCollection<fmCAVTBookBuhRecord> BookBuhRecords {
+            get { return GetCollection<fmCAVTBookBuhRecord>("BookBuhRecords"); }
+        }
+
         public void Import(IObjectSpace os, string file_name) {
             using (Stream stream = new FileStream(file_name, FileMode.Open)) {
                 fmCAVTBookBuhStructLogic.Import(this, os, stream);
+            }
+        }
+
+        [Action()]
+        public void Process() {
+            IObjectSpace ObjectSpace = CommonMethods.FindObjectSpaceByObject(this);
+            using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
+                fmCAVTBookBuhStruct book_struct = os.GetObject<fmCAVTBookBuhStruct>(this);
+                fmCAVTBookBuhStructLogic.Process(book_struct, os);
+                os.CommitChanges();
             }
         }
     }

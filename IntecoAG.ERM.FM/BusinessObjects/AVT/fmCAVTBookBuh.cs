@@ -15,11 +15,9 @@ namespace IntecoAG.ERM.FM.AVT {
     [NavigationItem("AVT")]
     [VisibleInReports]
     [Persistent("fmAVTBookBuhImport")]
-//    [MapInheritance(MapInheritanceType.ParentTable)]
-    public class fmCAVTBookBuhImport :  csCCodedComponent {
-//        fmCAVTBookBuh {
+    public abstract class fmCAVTBookBuh : csCCodedComponent {
 
-        public fmCAVTBookBuhImport(Session session) : base(session) { }
+        public fmCAVTBookBuh(Session session) : base(session) { }
 
         public override void AfterConstruction() {
             base.AfterConstruction();
@@ -28,7 +26,7 @@ namespace IntecoAG.ERM.FM.AVT {
         [Aggregated]
         [Association("fmAVTBookBuhImport-fmAVTBookBuhRecords")]
         public XPCollection<fmCAVTBookBuhRecord> BookBuhRecords {
-            get { return GetCollection<fmCAVTBookBuhRecord>("BookBuhRecords"); }
+            get { return GetCollection<fmCAVTBookBuhRecord>("BookBuhRecords"); }            
         }
     }
 

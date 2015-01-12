@@ -61,6 +61,12 @@ namespace IntecoAG.ERM.FM.AVT {
 
         public DateTime TransferDate;
 
+        private crmCParty _PartnerParty;
+        public crmCParty PartnerParty {
+            get { return _PartnerParty; }
+            set { SetPropertyValue<crmCParty>("", ref _PartnerParty, value); }
+        }
+
         [Size(12)]
         public String PartnerInn;
         [Size(9)]
