@@ -197,6 +197,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\AVT\fmCAVTBookBuhStructLogic.cs" />
     <Compile Include="BusinessObjects\AVT\fmCAVTBookBuhStruct.cs" />
     <Compile Include="BusinessObjects\AVT\fmCAVTBookBuhStructRecord.cs" />
     <Compile Include="BusinessObjects\AVT\fmCAVTBookVATLogic.cs" />

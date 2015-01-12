@@ -10,7 +10,7 @@
   </CreatableItems>
   <Options UIType="TabbedMDI" />
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="11.2.13.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.13.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="11.2.14.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.14.0" IsNewNode="True" />
   </SchemaModules>
 </Application>

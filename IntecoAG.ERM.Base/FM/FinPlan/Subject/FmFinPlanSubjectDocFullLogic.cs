@@ -39,7 +39,6 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             VatRates = ObjectSpace.GetObjects<csNDSRate>();
         }
 
-
         protected override void ProcessCell(String sheet_name, Int32 row, Int32 column, String type, String value) {
             //            System.Console.WriteLine("{0}({1},{2}) {3}:'{4}'", sheet, row, column, type, value);
             //            if (sheet_name != "БСР")

@@ -7,12 +7,13 @@ using DevExpress.Persistent.Base;
 //using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 //
+using IntecoAG.ERM.CS.Finance;
 using IntecoAG.ERM.CRM.Party;
 
 namespace IntecoAG.ERM.FM.AVT {
 
-    [VisibleInReports]
-    [Persistent("fmCAVTBookBuhStructRecord")]
+//    [VisibleInReports]
+    [Persistent("fmAVTBookBuhStructRecord")]
     public class fmCAVTBookBuhStructRecord : XPObject {
 
         public fmCAVTBookBuhStructRecord(Session session) : base(session) { }
@@ -21,94 +22,103 @@ namespace IntecoAG.ERM.FM.AVT {
             base.AfterConstruction();
         }
 
-        private fmCAVTBookBuhImport _BookBuhImport;
-        [Association("fmAVTBookBuhImport-fmAVTBookBuhRecords")]
-        public fmCAVTBookBuhImport BookBuhImport {
-            get { return _BookBuhImport; }
-            set { SetPropertyValue<fmCAVTBookBuhImport>("BookBuhImport", ref _BookBuhImport, value); }
+        private fmCAVTBookBuhStruct _InInvoiceStructRecord;
+        [Association("fmAVTBookBuhStruct-InInvoiceStructRecords")]
+        [Browsable(false)]
+        public fmCAVTBookBuhStruct InInvoiceStructRecord {
+            get { return _InInvoiceStructRecord; }
+            set { SetPropertyValue<fmCAVTBookBuhStruct>("InInvoiceStructRecord", ref _InInvoiceStructRecord, value); }
+        }
+        private fmCAVTBookBuhStruct _OutInvoiceStructRecord;
+        [Association("fmAVTBookBuhStruct-OutInvoiceStructRecords")]
+        [Browsable(false)]
+        public fmCAVTBookBuhStruct OutInvoiceStructRecord {
+            get { return _OutInvoiceStructRecord; }
+            set { SetPropertyValue<fmCAVTBookBuhStruct>("OutInvoiceStructRecord", ref _OutInvoiceStructRecord, value); }
         }
 
-        [Size(6)]
-        public String PeriodBuhgal;
-        [Size(6)]
-        public String PeriodOtchet;
-        [Size(5)]
-        public String BuhProvCode;
-        [Size(5)]
-        public String BuhProvOrigCode;
-        [Size(5)]
-        public String BuhPckCode;
-        [Size(6)]
-        public String BuhDocNumber;
-        public DateTime BuhDocDate;
-        //
-        private String _AccSubDebetCode;
-        [Size(5)]
-        public String AccSubDebetCode {
-            get { return _AccSubDebetCode; }
-            set { SetPropertyValue<String>("AccSubDebetCode", ref _AccSubDebetCode, value); }
-        }
-        private String _AccSubCreditCode;
-        [Size(5)]
-        public String AccSubCreditCode {
-            get { return _AccSubCreditCode; }
-            set { SetPropertyValue<String>("AccSubCreditCode", ref _AccSubCreditCode, value); }
-        }
-        [Size(5)]
-        public String AVTInvoicePartyCode;
-        [Size(3)]
-        public String AVTInvoiceType;
+        public Int32 RowNumber;
         [Size(20)]
-        public String AVTInvoiceNumber;
+        public String InvoiceRegNumber;
+        [Size(3)]
+        public String InvoiceType;
+        [Size(1)]
+        public String TransferType;
+        [Size(2)]
+        public String OperationType;
         [Size(20)]
-        public String AVTInvoiceRegNumber;
-        public DateTime AVTInvoiceDate;
+        public String InvoiceNumber;
+        public DateTime InvoiceDate;
+        [Size(20)]
+        public String InvoiceChangeNumber;
+        public DateTime InvoiceChangeDate;
+        [Size(20)]
+        public String InvoiceCorrectNumber;
+        public DateTime InvoiceCorrectDate;
+        [Size(20)]
+        public String InvoiceCorrectChangeNumber;
+        public DateTime InvoiceCorrectChangeDate;
 
-        [Size(3)]
-        public String PayDocType;
-        [Size(10)]
-        public String PayDocNumber;
-        public DateTime PayDocDate;
+        public DateTime TransferDate;
 
-        [Size(3)]
-        public String RecordSummType;
-
-        private Decimal _RecordSumm;
-
-        [Custom("DisplayFormat", "### ### ### ###.00")]
-        public Decimal RecordSumm {
-            get { return _RecordSumm; }
-            set { SetPropertyValue<Decimal>("RecordSumm", ref _RecordSumm, Decimal.Round(value, 2)); }
-        }
+        [Size(12)]
+        public String PartnerInn;
+        [Size(9)]
+        public String PartnerKpp;
+        [Size(150)]
+        public String PartnerName;
+        [Size(30)]
+        public String PartnerCountry;
+        [Size(150)]
+        public String PartnerSity;
+        [Size(150)]
+        public String PartnerAddress;
 
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SummCost;
         [Custom("DisplayFormat", "### ### ### ##0.00")]
-        public Decimal SummVATIn;
-        [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SummVAT;
-        [Custom("DisplayFormat", "### ### ### ##0.00")]
-        public Decimal SummVATCost;
-        [Custom("DisplayFormat", "### ### ### ##0.00")]
-        public Decimal SummVATExp;
-        [Custom("DisplayFormat", "### ### ### ##0.00")]
-        public Decimal SummVATNoInvoice;
-        [Custom("DisplayFormat", "### ### ### ##0.00")]
-        public Decimal SummVATCrdOther;
-        [Custom("DisplayFormat", "### ### ### ##0.00")]
-        public Decimal SummVATControl;
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SummAll;
 
-        [Size(1)]
-        public String BookType;
-        [Size(3)]
-        public String RecordType;
-        [Size(8)]
-        public String FiscalLetLine;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummIncCost;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummIncVAT;
 
-        [Size(6)]
-        public String NDSRate;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummDecCost;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummDecVAT;
+
+        public DateTime SaleDate;
+        public csNDSRate SaleVATRate;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SaleSummAll;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SaleSummVAT;
+
+        private String _SaleAccCode;
+        [Size(5)]
+        public String SaleAccCode {
+            get { return _SaleAccCode; }
+            set { SetPropertyValue<String>("SaleAccCode", ref _SaleAccCode, value); }
+        }
+
+        public DateTime BayDate;
+        public csNDSRate BayVATRate;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal BaySummAll;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal BaySummVAT;
+
+        private String _BayAccCode;
+        [Size(5)]
+        public String BayAccCode {
+            get { return _BayAccCode; }
+            set { SetPropertyValue<String>("BayAccCode", ref _BayAccCode, value); }
+        }
+
     }
 
 }

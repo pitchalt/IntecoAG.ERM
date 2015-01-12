@@ -32,10 +32,21 @@
           <Item Id="fmCOrderManageDoc_ListView" Index="4" ObjectKey="" ViewId="fmCOrderManageDoc_ListView" IsNewNode="True" />
           <Item Id="@280da940-4c2e-469a-847a-897f0a02a38a" Index="6" ViewId="fmCPRPaymentRequestSingleIn_ListView" IsNewNode="True" />
           <Item Id="FmFinPlanSubjectFull_ListView" ViewId="FmFinPlanSubjectFull_ListView" ObjectKey="" Index="7" IsNewNode="True" />
-          <Item Id="FmDocsFmInData_ListView" Index="8" />
+          <Item Id="FmDocsFmInData_ListView" Index="8" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="AVT" Index="3" IsNewNode="True" />
+      <Item Id="AVT" Index="3" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="fmCAVTInvoiceBase_ListView" Index="0" IsNewNode="True" />
+          <Item Id="fmCAVTBookVAT_ListView" Index="1" IsNewNode="True" />
+          <Item Id="fmCAVTInvoiceRegister_ListView" Index="2" IsNewNode="True" />
+          <Item Id="fmCAVTBookBuhImport_ListView" Index="3" IsNewNode="True" />
+          <Item Id="fmCAVTBookBuhStruct_ListView" Index="4" IsNewNode="True" />
+          <Item Id="fmCAVTInvoiceType_ListView" Index="5" IsNewNode="True" />
+          <Item Id="fmCAVTInvoiceOperationType_ListView" Index="6" IsNewNode="True" />
+          <Item Id="fmCAVTInvoiceTransferType_ListView" Index="7" IsNewNode="True" />
+        </Items>
+      </Item>
       <Item Id="Sale" Index="4">
         <Items>
           <Item Id="fmCFJSaleOperation_ListView" Index="0" />
