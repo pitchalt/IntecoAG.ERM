@@ -23,7 +23,9 @@ namespace IntecoAG.ERM.FM.AVT {
             PAY_MAIN = 1,
             BAY_MAIN = 2,
             PAY_ADD  = 5,
-            BAY_ADD  = 6
+            BAY_ADD  = 6,
+            PAY_2014 = 14,
+            BAY_2014 = 15
         }
 
         public fmCAVTBookVAT(Session session) : base(session) { }

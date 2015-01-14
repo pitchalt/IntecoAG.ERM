@@ -43,9 +43,9 @@ namespace IntecoAG.ERM.FM.AVT {
         [Size(3)]
         public String InvoiceType;
         [Size(1)]
-        public String TransferType;
+        public fmCAVTInvoiceTransferType TransferType;
         [Size(2)]
-        public String OperationType;
+        public fmCAVTInvoiceOperationType OperationType;
         [Size(20)]
         public String InvoiceNumber;
         public DateTime InvoiceDate;
@@ -58,6 +58,12 @@ namespace IntecoAG.ERM.FM.AVT {
         [Size(20)]
         public String InvoiceCorrectChangeNumber;
         public DateTime InvoiceCorrectChangeDate;
+
+        private fmCAVTInvoiceBase _Invoice;
+        public fmCAVTInvoiceBase Invoice {
+            get { return _Invoice; }
+            set { SetPropertyValue<fmCAVTInvoiceBase>("Invoice", ref _Invoice, value); }
+        }
 
         public DateTime TransferDate;
 

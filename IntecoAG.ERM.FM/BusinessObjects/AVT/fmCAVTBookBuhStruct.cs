@@ -43,6 +43,12 @@ namespace IntecoAG.ERM.FM.AVT {
             get { return GetCollection<fmCAVTBookBuhRecord>("BookBuhRecords"); }
         }
 
+        private crmCParty _Party;
+        public crmCParty Party {
+            get { return _Party; }
+            set { SetPropertyValue<crmCParty>("Party", ref _Party, value); }
+        }
+
         public void Import(IObjectSpace os, string file_name) {
             using (Stream stream = new FileStream(file_name, FileMode.Open)) {
                 fmCAVTBookBuhStructLogic.Import(this, os, stream);
@@ -54,7 +60,8 @@ namespace IntecoAG.ERM.FM.AVT {
             IObjectSpace ObjectSpace = CommonMethods.FindObjectSpaceByObject(this);
             using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
                 fmCAVTBookBuhStruct book_struct = os.GetObject<fmCAVTBookBuhStruct>(this);
-                fmCAVTBookBuhStructLogic.Process(book_struct, os);
+                fmCAVTBookBuhStructLogic logic = new fmCAVTBookBuhStructLogic(os);
+                logic.Process(book_struct, os);
                 os.CommitChanges();
             }
         }

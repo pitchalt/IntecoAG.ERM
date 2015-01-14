@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -24,12 +25,16 @@ namespace IntecoAG.ERM.FM.AVT {
         protected IObjectSpace ObjectSpace;
         protected fmCAVTBookBuhStruct StructBook;
         private IFormatProvider FormatProvider;
+        private IList<fmCAVTInvoiceTransferType> _TransferTypes;
+        private IList<fmCAVTInvoiceOperationType> _OperationTypes;
 
         public fmCAVTBookBuhStructXMLLoader(IObjectSpace os, fmCAVTBookBuhStruct struct_book, Stream stream)
             : base(stream) {
             ObjectSpace = os;
             StructBook = struct_book;
             FormatProvider = CultureInfo.InvariantCulture;
+            _TransferTypes = os.GetObjects<fmCAVTInvoiceTransferType>();
+            _OperationTypes = os.GetObjects<fmCAVTInvoiceOperationType>();
             //            Valutas = ObjectSpace.GetObjects<csValuta>();
             //            VatRates = ObjectSpace.GetObjects<csNDSRate>();
         }
@@ -70,10 +75,10 @@ namespace IntecoAG.ERM.FM.AVT {
                         CurRecord.InvoiceType = value;
                         break;
                     case 3:
-                        CurRecord.TransferType = value;
+                        CurRecord.TransferType = _TransferTypes.Where(rec => rec.Code == value).FirstOrDefault();
                         break;
                     case 4:
-                        CurRecord.OperationType = value;
+                        CurRecord.OperationType = _OperationTypes.Where(rec => rec.Code == value).FirstOrDefault();
                         break;
                     case 5:
                         CurRecord.InvoiceNumber = value;
@@ -207,8 +212,19 @@ namespace IntecoAG.ERM.FM.AVT {
     }
 
     //    [VisibleInReports]
-    public static class fmCAVTBookBuhStructLogic {
+    public class fmCAVTBookBuhStructLogic {
 
+        private IObjectSpace _ObjectSpace;
+        private IList<fmCAVTInvoiceType> _InvoiceTypes; 
+        private IList<fmCAVTInvoiceTransferType> _InvoiceTransferTypes; 
+        private IList<fmCAVTInvoiceOperationType> _InvoiceOperationTypes;
+
+        public fmCAVTBookBuhStructLogic(IObjectSpace os) {
+            _ObjectSpace = os;
+            _InvoiceTypes = os.GetObjects<fmCAVTInvoiceType>();
+            _InvoiceTransferTypes = os.GetObjects<fmCAVTInvoiceTransferType>();
+            _InvoiceOperationTypes = os.GetObjects<fmCAVTInvoiceOperationType>();
+        }
         public static fmCAVTBookBuhStruct Import(fmCAVTBookBuhStruct struct_book, IObjectSpace os, Stream stream) {
             fmCAVTBookBuhStructXMLLoader loader = new fmCAVTBookBuhStructXMLLoader(os, struct_book, stream);
             os.Delete(struct_book.InInvoiceRecords);
@@ -216,18 +232,22 @@ namespace IntecoAG.ERM.FM.AVT {
             loader.Load();
             return struct_book;
         }
+        enum InvoiceType {
+            InvoiceIn,
+            InvoiceOut
+        }
 
-        public static fmCAVTBookBuhStruct Process(fmCAVTBookBuhStruct struct_book, IObjectSpace os) {
+        public fmCAVTBookBuhStruct Process(fmCAVTBookBuhStruct struct_book, IObjectSpace os) {
             foreach (var record in struct_book.InInvoiceRecords) {
-                ProcessRecord(struct_book, os, record);
+                ProcessRecord(struct_book, os, record, InvoiceType.InvoiceIn);
             }
             foreach (var record in struct_book.OutInvoiceRecords) {
-                ProcessRecord(struct_book, os, record);
+                ProcessRecord(struct_book, os, record, InvoiceType.InvoiceOut);
             }
             return struct_book;
         }
 
-        private static void ProcessRecord(fmCAVTBookBuhStruct struct_book, IObjectSpace os, fmCAVTBookBuhStructRecord record) {
+        private void ProcessRecord(fmCAVTBookBuhStruct struct_book, IObjectSpace os, fmCAVTBookBuhStructRecord record, InvoiceType invoice_type) {
             crmCParty party;
             if (String.IsNullOrEmpty(record.PartnerInn))
                 return;
@@ -287,6 +307,38 @@ namespace IntecoAG.ERM.FM.AVT {
                 //                        person = os.GetObjects<crmCPerson>(new BinaryOperator("INN", record.PartnerInn)).FirstOrDefault()
             }
             record.PartnerParty = party;
+            fmCAVTInvoiceBase invoice;
+            if (invoice_type == InvoiceType.InvoiceOut) {
+                invoice = os.FindObject<fmCAVTInvoiceBase>(
+                    CriteriaOperator.And(new BinaryOperator("RegNumber", record.InvoiceRegNumber),
+                                         new BinaryOperator("Date", record.InvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
+                                         new BinaryOperator("Date", record.InvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
+                                         new BinaryOperator("Supplier", struct_book.Party),
+                                         new BinaryOperator("Customer", record.PartnerParty)
+                                         ), true
+                                         );
+                if (invoice == null && (record.InvoiceType == "явт" || record.InvoiceType == "сод" || record.InvoiceType == "ярд" || record.InvoiceType == "ятю")) {
+                    invoice = os.CreateObject<fmCAVTInvoiceBase>();
+                    invoice.RegNumber = record.InvoiceRegNumber;
+                    invoice.Number = record.InvoiceNumber;
+                    invoice.Date = record.InvoiceDate;
+                    invoice.Supplier = struct_book.Party;
+                    invoice.Customer = record.PartnerParty;
+                }
+                if (invoice != null) {
+                    if (invoice.InvoiceType == null && invoice.Number != null && invoice.Number.Length > 0) {
+                        foreach (fmCAVTInvoiceType inv_type in _InvoiceTypes) {
+                            if (inv_type.InvoiceDirection == fmAVTInvoiceDirection.AVTInvoiceOut &&
+                                inv_type.Prefix == invoice.Number.Substring(0, 1))
+                                invoice.InvoiceType = inv_type;
+                        }
+                    }
+                    invoice.SummCost = record.SummCost;
+                    invoice.SummAVT = record.SummVAT;
+                    record.Invoice = invoice;
+                }
+            }
+
         }
     }
 
