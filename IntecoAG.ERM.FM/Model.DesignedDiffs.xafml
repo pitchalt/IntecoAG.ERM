@@ -303,7 +303,6 @@
     </ListView>
     <ListView Id="fmCAVTBookBuhImport_BookBuhRecords_Analise_ListView" ClassName="IntecoAG.ERM.FM.AVT.fmCAVTBookBuhRecord" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" IsNewNode="True">
       <Columns IsNewNode="True">
-        <ColumnInfo Id="BookBuhImport" PropertyName="BookBuhImport" Width="70" Index="-1" IsNewNode="True" />
         <ColumnInfo Id="AccSubDebetCode" PropertyName="AccSubDebetCode" Width="70" Index="0" IsNewNode="True" />
         <ColumnInfo Id="AccSubCreditCode" PropertyName="AccSubCreditCode" Width="70" Index="1" IsNewNode="True" />
         <ColumnInfo Id="RecordSumm" PropertyName="RecordSumm" Width="50" Index="2" IsNewNode="True" />

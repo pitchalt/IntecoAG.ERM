@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 //
 using DevExpress.ExpressApp;
+using DC=DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
@@ -13,11 +15,17 @@ using IntecoAG.ERM.CRM.Party;
 
 namespace IntecoAG.ERM.FM.AVT {
 
+    [VisibleInReports]
+    [DC.DomainComponent]
+    public interface IBookPay20144 {
+        IList<IBookPay20144Record> Records { get; }
+    }
+
     [NavigationItem("AVT")]
     [VisibleInReports]
     [Persistent("fmAVTBookVAT")]
     [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "Party;BookVATType;Period;Number")]
-    public class fmCAVTBookVAT : csCCodedComponent {
+    public class fmCAVTBookVAT : csCCodedComponent, IBookPay20144 {
 
         public enum fmCAVTBookVATType { 
             PAY_MAIN = 1,
@@ -140,6 +148,10 @@ namespace IntecoAG.ERM.FM.AVT {
             }
         }
 
+
+        IList<IBookPay20144Record> IBookPay20144.Records {
+            get { return new ListConverter<IBookPay20144Record, fmCAVTBookVATRecord>(BookVATRecords); }
+        }
     }
 
 }

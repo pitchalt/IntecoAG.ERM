@@ -72,7 +72,6 @@
         <Member Name="AVTInvoicePartyCode" Caption="Счет-факт. Контрагент код" />
         <Member Name="AVTInvoiceRegNumber" Caption="Счет-факт. Рег. Номер" />
         <Member Name="AVTInvoiceType" Caption="Счет-факт. Тип" />
-        <Member Name="BookBuhImport" Caption="Импортировано" />
         <Member Name="BookType" Caption="Книга" />
         <Member Name="BuhDocDate" Caption="Бухг. Док. Дата" />
         <Member Name="BuhDocNumber" Caption="Бухг. Док. Номер" />
@@ -237,6 +236,8 @@
         <Member Name="VersionNumber" Caption="Номер редакции" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.AVT.IBookPay20144" Caption="Книга продаж 20144" />
+    <Class Name="IntecoAG.ERM.FM.AVT.IBookPay20144Record" Caption="Книга продаж 20144 Строки" />
     <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCache" Caption="Кассовый документ">
       <OwnMembers>
         <Member Name="AccountCredit" Caption="Субсчет Кредита" />

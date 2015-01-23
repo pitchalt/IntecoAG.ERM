@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 //
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
@@ -10,11 +12,25 @@ using IntecoAG.ERM.CRM.Party;
 //
 namespace IntecoAG.ERM.FM.AVT {
 
+    [DomainComponent]
+    public interface IBookPay20144Record {
+        UInt32 C1_SequenceNumber { get; }
+        fmCAVTInvoiceOperationType C2_OperationType { get; }
+        String C3_InvoceNumberDate { get; }
+        String C4_InvoiceChangeNumberDate { get; }
+        String C5_CorrectionNumberDate { get; }
+        String C6_CorrectionChangeNumberDate { get; }
+        String C7_PartyName { get; }
+        String C8_PartyInnKpp { get; }
+
+    }
+
+
     [VisibleInReports]
     [Persistent("fmAVTBookVATRecord")]
 //    [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "BookVAT;SequenceNumber")]
     [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "BookVAT;Invoice;RecordType;BuhRecordType")]
-    public class fmCAVTBookVATRecord : XPLiteObject {
+    public class fmCAVTBookVATRecord : XPLiteObject, IBookPay20144Record {
 
         public enum fmCAVTBookVATRecordType {
             MAIN = 1,
@@ -70,6 +86,15 @@ namespace IntecoAG.ERM.FM.AVT {
         public fmCAVTBookVATRecordType RecordType {
             get { return _RecordType; }
             set { SetPropertyValue<fmCAVTBookVATRecordType>("RecordType", ref _RecordType, value); }
+        }
+
+        private fmCAVTInvoiceOperationType _OperationType;
+        /// <summary>
+        /// 
+        /// </summary>
+        public fmCAVTInvoiceOperationType OperationType {
+            get { return _OperationType; }
+            set { SetPropertyValue<fmCAVTInvoiceOperationType>("OperationType", ref _OperationType, value); }
         }
         /// <summary>
         /// 
@@ -276,6 +301,39 @@ namespace IntecoAG.ERM.FM.AVT {
             }
         }
 
+
+
+        uint IBookPay20144Record.C1_SequenceNumber {
+            get { return SequenceNumber; }
+        }
+
+        fmCAVTInvoiceOperationType IBookPay20144Record.C2_OperationType {
+            get { return OperationType; }
+        }
+
+        string IBookPay20144Record.C3_InvoceNumberDate {
+            get { return InvoiceText; }
+        }
+
+        string IBookPay20144Record.C4_InvoiceChangeNumberDate {
+            get { return InvoiceVersionText; }
+        }
+
+        string IBookPay20144Record.C5_CorrectionNumberDate {
+            get { return CorrectionInvoiceText; }
+        }
+
+        string IBookPay20144Record.C6_CorrectionChangeNumberDate {
+            get { return CorrectionInvoiceVersionText; }
+        }
+
+        string IBookPay20144Record.C7_PartyName {
+            get { return Party.Name; }
+        }
+
+        string IBookPay20144Record.C8_PartyInnKpp {
+            get { return Party.INN + " / " + Party.KPP; }
+        }
     }
 
 }
