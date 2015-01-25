@@ -8,21 +8,41 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 //
+using IntecoAG.ERM.CS.Nomenclature;
 using IntecoAG.ERM.CRM.Party;
 //
 namespace IntecoAG.ERM.FM.AVT {
 
-    [DomainComponent]
+    [NonPersistentDc]
     public interface IBookPay20144Record {
-        UInt32 C1_SequenceNumber { get; }
-        fmCAVTInvoiceOperationType C2_OperationType { get; }
-        String C3_InvoceNumberDate { get; }
-        String C4_InvoiceChangeNumberDate { get; }
-        String C5_CorrectionNumberDate { get; }
-        String C6_CorrectionChangeNumberDate { get; }
-        String C7_PartyName { get; }
-        String C8_PartyInnKpp { get; }
-
+        UInt32 C01_SequenceNumber { get; }
+        String C02_OperationTypes { get; }
+        String C03_InvoceNumberDate { get; }
+        String C04_InvoiceChangeNumberDate { get; }
+        String C05_CorrectionNumberDate { get; }
+        String C06_CorrectionChangeNumberDate { get; }
+        String C07_PartyName { get; }
+        String C08_PartyInnKpp { get; }
+        String C09_IntermediatePartyName { get; }
+        String C10_IntermediatePartyInnKpp { get; }
+        String C11_PayDocNumberDate { get; }
+        String C12_ValutaCodeName { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C13A_SummAllValuta { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C13B_SummAllRub { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C14_SummCost18 { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C15_SummCost10 { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C16_SummCost0 { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C17_SummVat18 { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C18_SummVat10 { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal C19_SummNoVat { get; }
     }
 
 
@@ -115,6 +135,7 @@ namespace IntecoAG.ERM.FM.AVT {
 
         public crmCParty Party;
         public DateTime PayDate;
+        public String PayNumber;
         public DateTime BuhDate;
 
 
@@ -216,6 +237,17 @@ namespace IntecoAG.ERM.FM.AVT {
         /// <summary>
         /// 
         /// </summary>
+        public String PayText {
+            get {
+                if (String.IsNullOrEmpty(PayNumber))
+                    return String.Empty;
+                else
+                    return PayNumber + PayDate.ToString("dd.MM.yyyy");
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public String CorrectionInvoiceVersionText {
             get {
                 return String.Empty;
@@ -264,6 +296,14 @@ namespace IntecoAG.ERM.FM.AVT {
                     return default(DateTime);
             }
         }
+        private csValuta _Valuta;
+        /// <summary>
+        /// 
+        /// </summary>
+        public csValuta Valuta {
+            get { return _Valuta; }
+            set { SetPropertyValue<csValuta>("Valuta", ref _Valuta, value); }
+        }
         //
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SummVAT_10;
@@ -301,38 +341,104 @@ namespace IntecoAG.ERM.FM.AVT {
             }
         }
 
-
-
-        uint IBookPay20144Record.C1_SequenceNumber {
+        public UInt32 C01_SequenceNumber {
             get { return SequenceNumber; }
         }
 
-        fmCAVTInvoiceOperationType IBookPay20144Record.C2_OperationType {
-            get { return OperationType; }
+        public String C02_OperationTypes {
+            get { return OperationType != null ? OperationType.Code : String.Empty;  }
         }
 
-        string IBookPay20144Record.C3_InvoceNumberDate {
+        public String C03_InvoceNumberDate {
             get { return InvoiceText; }
         }
 
-        string IBookPay20144Record.C4_InvoiceChangeNumberDate {
+        public String C04_InvoiceChangeNumberDate {
             get { return InvoiceVersionText; }
         }
 
-        string IBookPay20144Record.C5_CorrectionNumberDate {
+        public String C05_CorrectionNumberDate {
             get { return CorrectionInvoiceText; }
         }
 
-        string IBookPay20144Record.C6_CorrectionChangeNumberDate {
+        public String C06_CorrectionChangeNumberDate {
             get { return CorrectionInvoiceVersionText; }
         }
 
-        string IBookPay20144Record.C7_PartyName {
-            get { return Party.Name; }
+        public String C07_PartyName {
+            get { return Party != null ? Party.Name : String.Empty; }
         }
 
-        string IBookPay20144Record.C8_PartyInnKpp {
-            get { return Party.INN + " / " + Party.KPP; }
+        public String C08_PartyInnKpp {
+            get { return Party != null ? Party.INN + " / " + Party.KPP : String.Empty; }
+        }
+
+
+        public String C09_IntermediatePartyName {
+            get { return String.Empty; }
+        }
+
+        public String C10_IntermediatePartyInnKpp {
+            get { return String.Empty; }
+        }
+
+        public String C11_PayDocNumberDate {
+            get { return PayText; }
+        }
+
+        public String C12_ValutaCodeName {
+            get {
+                if (Valuta != null)
+                    return Valuta.NameShort + " " + Valuta.Code;
+                else
+                    return String.Empty;
+            }
+        }
+
+        public Decimal C13A_SummAllValuta {
+            get {
+                if (Invoice != null)
+                    return Invoice.SummAll;
+                else
+                    return SummAll;
+            }
+        }
+
+        public Decimal C13B_SummAllRub {
+            get {
+                if (Invoice != null)
+                    return Invoice.SummAll;
+                else
+                    return SummAll;
+            }
+        }
+
+        public Decimal C14_SummCost18 {
+            get {
+                return SummCost_18_Correct;
+            }
+        }
+
+        public Decimal C15_SummCost10 {
+            get {
+                return SummCost_10; 
+            }
+        }
+
+        public Decimal C16_SummCost0 {
+            get { return SummCost_0; }
+        }
+
+        public Decimal C17_SummVat18 {
+            get { return SummVAT_18; }
+        }
+
+        public Decimal C18_SummVat10 {
+            get { return SummVAT_10; }
+        }
+
+        public Decimal C19_SummNoVat {
+            get { return 0; }
         }
     }
 

@@ -16,7 +16,7 @@ using IntecoAG.ERM.CRM.Party;
 namespace IntecoAG.ERM.FM.AVT {
 
     [VisibleInReports]
-    [DC.DomainComponent]
+    [DC.NonPersistentDc]
     public interface IBookPay20144 {
         IList<IBookPay20144Record> Records { get; }
     }
@@ -148,9 +148,14 @@ namespace IntecoAG.ERM.FM.AVT {
             }
         }
 
+        public IBookPay20144 BookPay20144 {
+            get { return this; }
+        }
 
         IList<IBookPay20144Record> IBookPay20144.Records {
-            get { return new ListConverter<IBookPay20144Record, fmCAVTBookVATRecord>(BookVATRecords); }
+            get { 
+                return new ListConverter<IBookPay20144Record, fmCAVTBookVATRecord>(BookVATRecords); 
+            }
         }
     }
 

@@ -574,6 +574,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <None Include="ReportLayouts\fmAVTBookVAT03.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ReportLayouts\fmAVTInvoice02.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
