@@ -17,6 +17,7 @@
     </ActionToContainerMapping>
   </ActionDesign>
   <BOModel>
+    <Class Name="IntecoAG.ERM.FM.AVT.fmCAVTBookBuhStructRecord" FriendlyKeyProperty="" />
     <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCache">
       <OwnMembers>
         <Member Name="CashierStaff" Caption="" />
@@ -359,6 +360,39 @@
               <LayoutItem Id="Description" ViewItem="Description" Index="0" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="AuditTrail" Index="3" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fmCAVTBookBuhStruct_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Header" Index="0" Direction="Horizontal" CaptionLocation="Top" IsNewNode="True">
+            <LayoutItem Id="Code" ViewItem="Code" ShowCaption="" Index="0" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="1" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutItem Id="Party" ViewItem="Party" ShowCaption="" Index="0" IsNewNode="True" />
+          <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
+            <LayoutGroup Id="csCCodedComponent">
+              <LayoutItem Id="Code" Removed="True" />
+              <LayoutItem Id="Name" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="csCComponent" Removed="True" />
+            <LayoutGroup Id="fmCAVTBookBuhStruct">
+              <LayoutItem Id="Party" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="2" Removed="True">
+            <LayoutItem Id="Description" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="3">
+            <LayoutGroup Id="InInvoiceRecords" Index="0" />
+            <LayoutGroup Id="OutInvoiceRecords" Index="1" />
+            <LayoutGroup Id="Others" Index="2" IsNewNode="True">
+              <LayoutItem Id="Description" ViewItem="Description" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="BookBuhRecords" Index="3" />
+            <LayoutGroup Id="AuditTrail" Index="4" />
           </TabbedGroup>
         </LayoutGroup>
       </Layout>

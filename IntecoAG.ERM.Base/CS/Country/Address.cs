@@ -91,7 +91,7 @@ namespace IntecoAG.ERM.CS.Country
         /// <summary>
         /// Description - описание
         /// </summary>
-        [Size(30)]
+        [Size(50)]
         public string Region {
             get { return _Region == null? String.Empty : _Region; }
             set { 
@@ -103,7 +103,7 @@ namespace IntecoAG.ERM.CS.Country
         /// <summary>
         /// Description - описание
         /// </summary>
-        [Size(30)]
+        [Size(50)]
         public string StateProvince {
             get { return _StateProvince == null? String.Empty : _StateProvince; }
             set { 
@@ -128,7 +128,7 @@ namespace IntecoAG.ERM.CS.Country
         /// <summary>
         /// Description - описание
         /// </summary>
-        [Size(30)]
+        [Size(50)]
         [RuleRequiredField(TargetCriteria = "!IsEmpty")]
         public string City {
             get { return _City == null ? String.Empty : _City; }

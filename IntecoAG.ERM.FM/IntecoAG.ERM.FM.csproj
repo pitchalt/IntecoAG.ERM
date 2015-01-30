@@ -567,6 +567,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ReadMe.txt" />
+    <None Include="ReportLayouts\fmAVTBookVAT04.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ReportLayouts\fmAVTBookVAT01.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

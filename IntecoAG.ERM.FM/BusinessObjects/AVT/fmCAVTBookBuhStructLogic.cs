@@ -17,6 +17,7 @@ using DevExpress.Xpo;
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CS.Import;
 using IntecoAG.ERM.CRM.Party;
+using IntecoAG.ERM.CS.Finance;
 
 namespace IntecoAG.ERM.FM.AVT {
 
@@ -27,6 +28,7 @@ namespace IntecoAG.ERM.FM.AVT {
         private IFormatProvider FormatProvider;
         private IList<fmCAVTInvoiceTransferType> _TransferTypes;
         private IList<fmCAVTInvoiceOperationType> _OperationTypes;
+        private IList<csNDSRate> _VatRates;
 
         public fmCAVTBookBuhStructXMLLoader(IObjectSpace os, fmCAVTBookBuhStruct struct_book, Stream stream)
             : base(stream) {
@@ -35,6 +37,7 @@ namespace IntecoAG.ERM.FM.AVT {
             FormatProvider = CultureInfo.InvariantCulture;
             _TransferTypes = os.GetObjects<fmCAVTInvoiceTransferType>();
             _OperationTypes = os.GetObjects<fmCAVTInvoiceOperationType>();
+            _VatRates = os.GetObjects<csNDSRate>();
             //            Valutas = ObjectSpace.GetObjects<csValuta>();
             //            VatRates = ObjectSpace.GetObjects<csNDSRate>();
         }
@@ -78,6 +81,8 @@ namespace IntecoAG.ERM.FM.AVT {
                         CurRecord.TransferType = _TransferTypes.Where(rec => rec.Code == value).FirstOrDefault();
                         break;
                     case 4:
+                        if (value.Length == 1)
+                            value = '0' + value;
                         CurRecord.OperationType = _OperationTypes.Where(rec => rec.Code == value).FirstOrDefault();
                         break;
                     case 5:
@@ -108,15 +113,11 @@ namespace IntecoAG.ERM.FM.AVT {
                         CurRecord.TransferDate = DateTime.Parse(value, FormatProvider);
                         break;
                     case 14:
-                        String inn = value.Trim();
-                        if (inn.Length != 10 && inn.Length != 12 && inn != "-")
-                            throw new FormatException("Некорректная длина ИНН");
+                        String inn = value == null ? String.Empty : value.Trim();
                         CurRecord.PartnerInn = inn;
                         break;
                     case 15:
                         String kpp = value == null ? String.Empty : value.Trim();
-                        if (kpp.Length != 9 && kpp != "-")
-                            throw new FormatException("Некорректная длина КПП");
                         CurRecord.PartnerKpp = value;
                         break;
                     case 16:
@@ -139,12 +140,12 @@ namespace IntecoAG.ERM.FM.AVT {
                     case 21:
                         value_double = Double.Parse(value, FormatProvider);
                         value_decimal = Decimal.Round(new Decimal(value_double), 2);
-                        CurRecord.SummAll = value_decimal;
+                        CurRecord.SummCost = value_decimal;
                         break;
                     case 22:
                         value_double = Double.Parse(value, FormatProvider);
                         value_decimal = Decimal.Round(new Decimal(value_double), 2);
-                        CurRecord.SummAll = value_decimal;
+                        CurRecord.SummVAT = value_decimal;
                         break;
                     case 23:
                         value_double = Double.Parse(value, FormatProvider);
@@ -170,7 +171,17 @@ namespace IntecoAG.ERM.FM.AVT {
                         CurRecord.BayDate = DateTime.Parse(value, FormatProvider);
                         break;
                     case 28:
-                        CurRecord.BayVATRate = null;
+                        switch (value) {
+                            case "3":
+                                CurRecord.BayVATRate = _VatRates.FirstOrDefault(x => x.Code == "10%");
+                                break;
+                            case "4":
+                                CurRecord.BayVATRate = _VatRates.FirstOrDefault(x => x.Code == "0%");
+                                break;
+                            default:
+                                CurRecord.BayVATRate = _VatRates.FirstOrDefault(x => x.Code == "18%");
+                                break;
+                        }
                         break;
                     case 29:
                         value_double = Double.Parse(value, FormatProvider);
@@ -189,7 +200,18 @@ namespace IntecoAG.ERM.FM.AVT {
                         CurRecord.SaleDate = DateTime.Parse(value, FormatProvider);
                         break;
                     case 33:
-                        CurRecord.SaleVATRate = null;
+//                        CurRecord.SaleVATRate = null;
+                        switch (value) {
+                            case "3":
+                                CurRecord.SaleVATRate = _VatRates.FirstOrDefault(x => x.Code == "10%");
+                                break;
+                            case "4":
+                                CurRecord.SaleVATRate = _VatRates.FirstOrDefault(x => x.Code == "0%");
+                                break;
+                            default:
+                                CurRecord.SaleVATRate = _VatRates.FirstOrDefault(x => x.Code == "18%");
+                                break;
+                        }
                         break;
                     case 34:
                         value_double = Double.Parse(value, FormatProvider);
@@ -205,7 +227,8 @@ namespace IntecoAG.ERM.FM.AVT {
                         CurRecord.SaleSummVAT = value_decimal;
                         break;
                 }
-            } catch (FormatException e) {
+            }
+            catch (FormatException e) {
                 throw new FormatException(String.Format("Лист: {0}, Строка: {1}, Колонка: {2}, Значение '{3}'", sheet, row, column, value), e);
             }
         }
@@ -215,8 +238,8 @@ namespace IntecoAG.ERM.FM.AVT {
     public class fmCAVTBookBuhStructLogic {
 
         private IObjectSpace _ObjectSpace;
-        private IList<fmCAVTInvoiceType> _InvoiceTypes; 
-        private IList<fmCAVTInvoiceTransferType> _InvoiceTransferTypes; 
+        private IList<fmCAVTInvoiceType> _InvoiceTypes;
+        private IList<fmCAVTInvoiceTransferType> _InvoiceTransferTypes;
         private IList<fmCAVTInvoiceOperationType> _InvoiceOperationTypes;
 
         public fmCAVTBookBuhStructLogic(IObjectSpace os) {
@@ -230,6 +253,7 @@ namespace IntecoAG.ERM.FM.AVT {
             os.Delete(struct_book.InInvoiceRecords);
             os.Delete(struct_book.OutInvoiceRecords);
             loader.Load();
+            struct_book.StatusSet(fmCAVTBookBuhStructStatus.BUH_STRUCT_IMPORTED);
             return struct_book;
         }
         enum InvoiceType {
@@ -238,150 +262,200 @@ namespace IntecoAG.ERM.FM.AVT {
         }
 
         public fmCAVTBookBuhStruct Process(fmCAVTBookBuhStruct struct_book, IObjectSpace os) {
+            if (struct_book.Party == null)
+                throw new InvalidDataException("Заполните головную организацию");
             foreach (var record in struct_book.InInvoiceRecords) {
                 ProcessRecord(struct_book, os, record, InvoiceType.InvoiceIn);
             }
             foreach (var record in struct_book.OutInvoiceRecords) {
                 ProcessRecord(struct_book, os, record, InvoiceType.InvoiceOut);
             }
+            struct_book.StatusSet(fmCAVTBookBuhStructStatus.BUH_STRUCT_PROCESSED);
             return struct_book;
         }
 
         private void ProcessRecord(fmCAVTBookBuhStruct struct_book, IObjectSpace os, fmCAVTBookBuhStructRecord record, InvoiceType invoice_type) {
             crmCParty party;
             if (String.IsNullOrEmpty(record.PartnerInn))
-                return;
+                throw new InvalidDataException("Незаполнен ИНН Рег: " + record.InvoiceRegNumber);
             //                    crmCLegalPerson leg_person;
             //                    crmCLegalPersonUnit legunit_person;
             //                    person = os.GetObjects<crmCPerson>(new BinaryOperator("INN", record.PartnerInn)).FirstOrDefault();
-            if (String.IsNullOrEmpty(record.PartnerKpp)) {
-                crmCBusinessman person = os.GetObjects<crmCBusinessman>(new BinaryOperator("INN", record.PartnerInn), true).FirstOrDefault();
-                //                         phys_person = 
-                if (person == null) {
-                    person = os.CreateObject<crmCBusinessman>();
-                    person.INN = record.PartnerInn;
-                    String [] name_comps = record.PartnerName.Split();
-                    if (name_comps.Length == 2)
-                        person.LastName = name_comps[1];
-                    else
-                        person.LastName = "-";
-                    if (name_comps.Length == 3)
-                        person.FirstName = name_comps[2];
-                    else
-                        person.FirstName = "-";
-                    person.Name = record.PartnerName;
-                    person.NameHandmake = record.PartnerName;
-                    person.AddressLegal.City = record.PartnerSity;
-                    person.AddressLegal.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
-                    person.AddressFact.City = record.PartnerSity;
-                    person.AddressFact.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
-                }
-                party = person.Party;
-            }
-            else {
-                crmCLegalPerson person;
-                if (record.PartnerInn == "-") {
-                    if (invoice_type == InvoiceType.InvoiceIn)
-                        person = os.GetObjects<crmCLegalPerson>(new BinaryOperator("Party.Code", "12581")).FirstOrDefault();
-                    else
-                        if (invoice_type == InvoiceType.InvoiceOut)
-                            person = os.GetObjects<crmCLegalPerson>(new BinaryOperator("Party.Code", "12582")).FirstOrDefault();
-                        else
-                            person = null;
-                    record.InvoiceType = "СФЗ";
+            if (invoice_type == InvoiceType.InvoiceOut && record.SaleDate < new DateTime(1990, 01, 01) && record.SaleSummVAT != 0)
+                record.SaleDate = record.TransferDate;
+            if (record.PartnerParty == null) {
+                if (record.InvoiceType == "ГТД") {
+                    party = os.GetObjects<crmCParty>(new BinaryOperator("Code", record.PartnerInn)).FirstOrDefault();
                 }
                 else
-                    person = os.GetObjects<crmCLegalPerson>(new BinaryOperator("INN", record.PartnerInn), true).FirstOrDefault();
-                if (person == null) {
-                    person = os.CreateObject<crmCLegalPerson>();
-                    person.INN = record.PartnerInn;
-                    person.KPP = record.PartnerKpp;
-                    person.Name = record.PartnerName;
-                    person.AddressLegal.City = record.PartnerSity;
-                    person.AddressLegal.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
-                    person.AddressFact.City = record.PartnerSity;
-                    person.AddressFact.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
-                    party = person.Party;
-                }
-                if (person.KPP == record.PartnerKpp || person.Party.Code == "2706") 
+                    if (record.PartnerInn == "-") {
+                        if (record.InvoiceType == "СФЗ" || record.PartnerName.Trim().ToUpper() == "НАСЕЛЕНИЕ") {
+                            party = os.GetObjects<crmCParty>(new BinaryOperator("Code", "2706")).FirstOrDefault();
+                            //                    record.InvoiceType = "СФЗ";
+                        }
+                        else {
+                            String[] fio = record.PartnerName.Split(' ');
+                            if (fio.Length != 3)
+                                throw new InvalidDataException("Незаполнен ФИО физического лица '" + fio + "' Рег: " + record.InvoiceRegNumber);
+                            crmCPhysicalParty person = os.GetObjects<crmCPhysicalParty>(
+                                new BinaryOperator("LastName", fio[0]) &
+                                new BinaryOperator("FirstName", fio[1]) &
+                                new BinaryOperator("MiddleName", fio[2])
+                                , true).FirstOrDefault();
+                            if (person == null) {
+                                person = os.CreateObject<crmCPhysicalParty>();
+                                person.INN = "-";
+                                person.Name = record.PartnerName;
+                                person.NameHandmake = record.PartnerName;
+                                person.LastName = fio[0];
+                                person.FirstName = fio[1];
+                                person.MiddleName = fio[2];
+                                person.AddressLegal.City = record.PartnerSity;
+                                person.AddressLegal.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
+                                //                        person.AddressFact.City = record.PartnerSity;
+                                //                        person.AddressFact.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
+                                //                        party = person.Party;
+                            }
 
-                    party = person.Party;
-                else {
-                    crmCLegalPersonUnit unit = person.LegalPersonUnits.FirstOrDefault(x => x.KPP == record.PartnerKpp);
-                    if (unit == null) {
-                        unit = os.CreateObject<crmCLegalPersonUnit>();
-                        unit.KPP = record.PartnerKpp;
-                        unit.Name = record.PartnerName;
-                        unit.AddressFact.City = record.PartnerSity;
-                        unit.AddressFact.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
-                    }
-                    party = unit.Party;
-                }
-                //                        person = os.GetObjects<crmCPerson>(new BinaryOperator("INN", record.PartnerInn)).FirstOrDefault()
-            }
-            record.PartnerParty = party;
-            fmCAVTInvoiceBase invoice;
-            if (invoice_type == InvoiceType.InvoiceOut) {
-                invoice = os.FindObject<fmCAVTInvoiceBase>(
-                    CriteriaOperator.And(new BinaryOperator("RegNumber", record.InvoiceRegNumber),
-                                         new BinaryOperator("Date", record.InvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
-                                         new BinaryOperator("Date", record.InvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
-                                         new BinaryOperator("Supplier", struct_book.Party),
-                                         new BinaryOperator("Customer", record.PartnerParty)
-                                         ), true
-                                         );
-                if (invoice == null && (record.InvoiceType == "СЧФ" || record.InvoiceType == "УПД" || record.InvoiceType == "СТД" || record.InvoiceType == "СФА")) {
-                    invoice = os.CreateObject<fmCAVTInvoiceBase>();
-                    invoice.RegNumber = record.InvoiceRegNumber;
-                    invoice.Number = record.InvoiceNumber;
-                    invoice.Date = record.InvoiceDate;
-                    invoice.Supplier = struct_book.Party;
-                    invoice.Customer = record.PartnerParty;
-                }
-                if (invoice != null) {
-                    if (invoice.InvoiceType == null && invoice.Number != null && invoice.Number.Length > 0) {
-                        foreach (fmCAVTInvoiceType inv_type in _InvoiceTypes) {
-                            if (inv_type.InvoiceDirection == fmAVTInvoiceDirection.AVTInvoiceOut &&
-                                inv_type.Prefix == invoice.Number.Substring(0, 1))
-                                invoice.InvoiceType = inv_type;
+                            party = person.Party;
                         }
                     }
-                    invoice.SummCost = record.SummCost;
-                    invoice.SummAVT = record.SummVAT;
-                    record.Invoice = invoice;
-                }
-            }
-            if (invoice_type == InvoiceType.InvoiceIn) {
-                invoice = os.FindObject<fmCAVTInvoiceBase>(
-                    CriteriaOperator.And(new BinaryOperator("RegNumber", record.InvoiceRegNumber),
-                                         new BinaryOperator("Date", record.InvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
-                                         new BinaryOperator("Date", record.InvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
-                                         new BinaryOperator("Supplier", record.PartnerParty),
-                                         new BinaryOperator("Customer", struct_book.Party)
-                                         ), true
-                                         );
-                if (invoice == null && (record.InvoiceType == "СЧФ" || record.InvoiceType == "УПД" || record.InvoiceType == "СТД" || record.InvoiceType == "СФА")) {
-                    invoice = os.CreateObject<fmCAVTInvoiceBase>();
-                    invoice.RegNumber = record.InvoiceRegNumber;
-                    invoice.Number = record.InvoiceNumber;
-                    invoice.Date = record.InvoiceDate;
-                    invoice.Supplier = record.PartnerParty;
-                    invoice.Customer = struct_book.Party;
-                }
-                if (invoice != null) {
-                    if (invoice.InvoiceType == null && invoice.Number != null && invoice.Number.Length > 0) {
-                        foreach (fmCAVTInvoiceType inv_type in _InvoiceTypes) {
-                            if (inv_type.InvoiceDirection == fmAVTInvoiceDirection.AVTInvoiceOut &&
-                                inv_type.Prefix == invoice.Number.Substring(0, 1))
-                                invoice.InvoiceType = inv_type;
+                    else {
+                        if (String.IsNullOrEmpty(record.PartnerKpp) || record.PartnerKpp == "-") {
+                            if (record.PartnerInn.Length != 12)
+                                throw new FormatException("Некорректная длина ИНН Рег: " + record.InvoiceRegNumber);
+                            crmCBusinessman person = os.GetObjects<crmCBusinessman>(new BinaryOperator("INN", record.PartnerInn), true).FirstOrDefault();
+                            //                         phys_person = 
+                            if (person == null) {
+                                person = os.CreateObject<crmCBusinessman>();
+                                person.INN = record.PartnerInn;
+                                String[] name_comps = record.PartnerName.Split(' ');
+                                if (name_comps.Length >= 2)
+                                    person.LastName = name_comps[1];
+                                else
+                                    person.LastName = "-";
+                                if (name_comps.Length >= 3)
+                                    person.FirstName = name_comps[2];
+                                else
+                                    person.FirstName = "-";
+                                if (name_comps.Length == 4)
+                                    person.MiddleName = name_comps[3];
+                                else
+                                    person.MiddleName = "-";
+                                person.Name = record.PartnerName;
+                                person.NameHandmake = record.PartnerName;
+                                person.AddressLegal.City = record.PartnerSity;
+                                person.AddressLegal.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
+                                person.AddressFact.City = record.PartnerSity;
+                                person.AddressFact.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
+                            }
+                            party = person.Party;
                         }
+                        else {
+                            if (record.PartnerInn.Length != 10)
+                                throw new FormatException("Некорректная длина ИНН Рег: " + record.InvoiceRegNumber);
+                            if (record.PartnerKpp.Length != 9)
+                                throw new FormatException("Некорректная длина КПП Рег: " + record.InvoiceRegNumber);
+                            party = os.GetObjects<crmCParty>(new BinaryOperator("INN", record.PartnerInn) &
+                                                            new BinaryOperator("KPP", record.PartnerKpp), true).FirstOrDefault();
+                            if (party == null) {
+                                crmCLegalPerson person;
+                                person = os.GetObjects<crmCLegalPerson>(new BinaryOperator("INN", record.PartnerInn), true).FirstOrDefault();
+                                if (person == null) {
+                                    person = os.CreateObject<crmCLegalPerson>();
+                                    person.INN = record.PartnerInn;
+                                    person.KPP = record.PartnerKpp;
+                                    person.Name = record.PartnerName;
+                                    person.AddressLegal.City = record.PartnerSity;
+                                    person.AddressLegal.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
+                                    person.AddressFact.City = record.PartnerSity;
+                                    person.AddressFact.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
+                                    party = person.Party;
+                                }
+                                if (person.Party.KPP == record.PartnerKpp) {
+                                    party = person.Party;
+                                }
+                                else {
+                                    crmCLegalPersonUnit unit = person.LegalPersonUnits.FirstOrDefault(x => x.KPP == record.PartnerKpp);
+                                    if (unit == null) {
+                                        unit = os.CreateObject<crmCLegalPersonUnit>();
+                                        person.LegalPersonUnits.Add(unit);
+                                        unit.KPP = record.PartnerKpp;
+                                        unit.Name = record.PartnerName;
+                                        unit.AddressFact.City = record.PartnerSity;
+                                        unit.AddressFact.AddressHandmake = "РФ " + record.PartnerSity + " " + record.PartnerAddress;
+                                    }
+                                    party = unit.Party;
+                                }
+                            }
+                        }
+                        //                        person = os.GetObjects<crmCPerson>(new BinaryOperator("INN", record.PartnerInn)).FirstOrDefault()
                     }
-                    invoice.SummCost = record.SummCost;
-                    invoice.SummAVT = record.SummVAT;
-                    record.Invoice = invoice;
+                record.PartnerParty = party;
+            }
+            if (record.InvoiceType == "СЧФ" || record.InvoiceType == "УПД" || record.InvoiceType == "СФА") {
+                fmCAVTInvoiceBase invoice;
+
+                if (invoice_type == InvoiceType.InvoiceOut) {
+                    invoice = os.FindObject<fmCAVTInvoiceBase>(
+                        CriteriaOperator.And(new BinaryOperator("RegNumber", record.InvoiceRegNumber),
+                                             new BinaryOperator("Date", record.InvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
+                                             new BinaryOperator("Date", record.InvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
+                                             new BinaryOperator("Supplier", struct_book.Party)
+                        //                                         new BinaryOperator("Customer", record.PartnerParty)
+                                             ), true
+                                             );
+                    if (invoice == null) {
+                        invoice = os.CreateObject<fmCAVTInvoiceBase>();
+                        invoice.RegNumber = record.InvoiceRegNumber;
+                        invoice.Number = record.InvoiceNumber;
+                        invoice.Date = record.InvoiceDate;
+                        invoice.Supplier = struct_book.Party;
+                        invoice.Customer = record.PartnerParty;
+                    }
+                    if (invoice != null) {
+                        if (invoice.Customer != record.PartnerParty ||
+                            invoice.Supplier != struct_book.Party)
+                            throw new InvalidDataException("Счет фактура с регистрационным номером " + record.InvoiceRegNumber + " уже зарегистрирован с другим партнером " + invoice.Customer.Name);
+                        if (invoice.InvoiceType == null && invoice.Number != null && invoice.Number.Length > 0) {
+                            foreach (fmCAVTInvoiceType inv_type in _InvoiceTypes) {
+                                if (inv_type.InvoiceDirection == fmAVTInvoiceDirection.AVTInvoiceOut &&
+                                    inv_type.Prefix == invoice.Number.Substring(0, 1))
+                                    invoice.InvoiceType = inv_type;
+                            }
+                        }
+                        invoice.SummCost = record.SummCost;
+                        invoice.SummAVT = record.SummVAT;
+                        record.Invoice = invoice;
+                    }
+                }
+                if (invoice_type == InvoiceType.InvoiceIn) {
+                    invoice = os.FindObject<fmCAVTInvoiceBase>(
+                        CriteriaOperator.And(new BinaryOperator("RegNumber", record.InvoiceRegNumber),
+                                             new BinaryOperator("Date", record.InvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
+                                             new BinaryOperator("Date", record.InvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
+                        //                                         new BinaryOperator("Supplier", record.PartnerParty),
+                                             new BinaryOperator("Customer", struct_book.Party)
+                                             ), true
+                                             );
+                    if (invoice == null) {
+                        invoice = os.CreateObject<fmCAVTInvoiceBase>();
+                        invoice.RegNumber = record.InvoiceRegNumber;
+                        invoice.Number = record.InvoiceNumber;
+                        invoice.Date = record.InvoiceDate;
+                        invoice.Supplier = record.PartnerParty;
+                        invoice.Customer = struct_book.Party;
+                    }
+                    if (invoice != null) {
+                        if (invoice.Supplier != record.PartnerParty ||
+                            invoice.Customer != struct_book.Party)
+                            throw new InvalidDataException("Счет фактура с регистрационным номером " + record.InvoiceRegNumber + " уже зарегистрирован с другим партнером " + invoice.Supplier.Name);
+                        invoice.SummCost = record.SummCost;
+                        invoice.SummAVT = record.SummVAT;
+                        record.Invoice = invoice;
+                    }
                 }
             }
-
         }
     }
 

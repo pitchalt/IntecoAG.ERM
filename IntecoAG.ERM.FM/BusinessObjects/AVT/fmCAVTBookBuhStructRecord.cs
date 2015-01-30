@@ -4,6 +4,7 @@ using System.ComponentModel;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Validation;
 //using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 //
@@ -20,6 +21,17 @@ namespace IntecoAG.ERM.FM.AVT {
 
         public override void AfterConstruction() {
             base.AfterConstruction();
+        }
+
+        [Browsable(false)]
+        public Boolean IsProcessed {
+            get {
+//                return false;
+                return InInvoiceStructRecord != null && 
+                    InInvoiceStructRecord.Status == fmCAVTBookBuhStructStatus.BUH_STRUCT_PROCESSED ||
+                    OutInvoiceStructRecord != null && 
+                    OutInvoiceStructRecord.Status == fmCAVTBookBuhStructStatus.BUH_STRUCT_PROCESSED;
+            }
         }
 
         private fmCAVTBookBuhStruct _InInvoiceStructRecord;
@@ -46,31 +58,33 @@ namespace IntecoAG.ERM.FM.AVT {
         public fmCAVTInvoiceTransferType TransferType;
         [Size(2)]
         public fmCAVTInvoiceOperationType OperationType;
-        [Size(20)]
+        [Size(50)]
         public String InvoiceNumber;
         public DateTime InvoiceDate;
-        [Size(20)]
+        [Size(50)]
         public String InvoiceChangeNumber;
         public DateTime InvoiceChangeDate;
-        [Size(20)]
+        [Size(50)]
         public String InvoiceCorrectNumber;
         public DateTime InvoiceCorrectDate;
-        [Size(20)]
+        [Size(50)]
         public String InvoiceCorrectChangeNumber;
         public DateTime InvoiceCorrectChangeDate;
 
         private fmCAVTInvoiceBase _Invoice;
+        [RuleRequiredField(TargetCriteria = "IsProcessed && (InvoiceType == 'явт' || InvoiceType == 'ятю' || InvoiceType == 'сод')")]
         public fmCAVTInvoiceBase Invoice {
             get { return _Invoice; }
             set { SetPropertyValue<fmCAVTInvoiceBase>("Invoice", ref _Invoice, value); }
         }
 
         public DateTime TransferDate;
-
+        
         private crmCParty _PartnerParty;
+        [RuleRequiredField(TargetCriteria = "IsProcessed")]
         public crmCParty PartnerParty {
             get { return _PartnerParty; }
-            set { SetPropertyValue<crmCParty>("", ref _PartnerParty, value); }
+            set { SetPropertyValue<crmCParty>("PartnerParty", ref _PartnerParty, value); }
         }
 
         [Size(12)]
@@ -103,7 +117,12 @@ namespace IntecoAG.ERM.FM.AVT {
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SummDecVAT;
 
-        public DateTime SaleDate;
+        private DateTime _SaleDate;
+        [RuleRequiredField(TargetCriteria = "IsProcessed && SaleSummVAT != 0")]
+        public DateTime SaleDate {
+            get { return _SaleDate; }
+            set { SetPropertyValue<DateTime>("SaleDate", ref _SaleDate, value); }
+        }
         public csNDSRate SaleVATRate;
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SaleSummAll;
@@ -117,7 +136,13 @@ namespace IntecoAG.ERM.FM.AVT {
             set { SetPropertyValue<String>("SaleAccCode", ref _SaleAccCode, value); }
         }
 
-        public DateTime BayDate;
+        private DateTime _BayDate;
+        [RuleRequiredField(TargetCriteria = "IsProcessed && BaySummVAT != 0")]
+        public DateTime BayDate {
+            get { return _BayDate; }
+            set { SetPropertyValue<DateTime>("BayDate", ref _BayDate, value); }
+        }
+
         public csNDSRate BayVATRate;
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal BaySummAll;

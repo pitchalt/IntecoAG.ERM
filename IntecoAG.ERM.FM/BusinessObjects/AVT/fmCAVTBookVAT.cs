@@ -16,7 +16,7 @@ using IntecoAG.ERM.CRM.Party;
 namespace IntecoAG.ERM.FM.AVT {
 
     [VisibleInReports]
-    [DC.NonPersistentDc]
+    [DC.DomainComponent]
     public interface IBookPay20144 {
         IList<IBookPay20144Record> Records { get; }
     }
@@ -147,12 +147,29 @@ namespace IntecoAG.ERM.FM.AVT {
                 }
             }
         }
+        [Action()]
+        public void ReNumber() {
+            using (IObjectSpace os = CommonMethods.FindObjectSpaceByObject(this).CreateNestedObjectSpace()) {
+                fmCAVTBookVAT book = os.GetObject<fmCAVTBookVAT>(this);
+                fmCAVTBookVATLogic.ReNumber(os, book);
+                os.CommitChanges();
+            }
+        }
+        
+        [Action()]
+        public void Clear() {
+            using (IObjectSpace os = CommonMethods.FindObjectSpaceByObject(this).CreateNestedObjectSpace()) {
+                fmCAVTBookVAT book = os.GetObject<fmCAVTBookVAT>(this);
+                fmCAVTBookVATLogic.Clear(os, book);
+                os.CommitChanges();
+            }
+        }
 
         public IBookPay20144 BookPay20144 {
             get { return this; }
         }
 
-        IList<IBookPay20144Record> IBookPay20144.Records {
+        public IList<IBookPay20144Record> Records {
             get { 
                 return new ListConverter<IBookPay20144Record, fmCAVTBookVATRecord>(BookVATRecords); 
             }

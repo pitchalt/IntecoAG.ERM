@@ -13,7 +13,7 @@ using IntecoAG.ERM.CRM.Party;
 //
 namespace IntecoAG.ERM.FM.AVT {
 
-    [NonPersistentDc]
+    [DomainComponent]
     public interface IBookPay20144Record {
         UInt32 C01_SequenceNumber { get; }
         String C02_OperationTypes { get; }
@@ -99,6 +99,12 @@ namespace IntecoAG.ERM.FM.AVT {
         public fmCAVTBookVAT BookVAT {
             get { return _BookVAT; }
             set { SetPropertyValue<fmCAVTBookVAT>("BookVAT", ref _BookVAT, value); }
+        }
+
+        private fmCAVTBookBuhStruct _BookBuhStruct;
+        public fmCAVTBookBuhStruct BookBuhStruct {
+            get { return _BookBuhStruct; }
+            set { SetPropertyValue<fmCAVTBookBuhStruct>("BookBuhStruct", ref _BookBuhStruct, value); }
         }
         /// <summary>
         /// 
@@ -242,7 +248,7 @@ namespace IntecoAG.ERM.FM.AVT {
                 if (String.IsNullOrEmpty(PayNumber))
                     return String.Empty;
                 else
-                    return PayNumber + PayDate.ToString("dd.MM.yyyy");
+                    return PayNumber + " " + PayDate.ToString("dd.MM.yyyy");
             }
         }
         /// <summary>
@@ -335,12 +341,21 @@ namespace IntecoAG.ERM.FM.AVT {
 
 
         [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummAll_Correct;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummAll_Valuta;
+
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SummAll {
-            get { 
-                return SummVAT_10 + SummCost_10 + SummVAT_18 + SummCost_18 + SummVAT_20 + SummCost_20 + SummCost_0 + SummCost_NoVAT;
+            get {
+                if (SummAll_Correct == 0)
+                    return SummVAT_10 + SummCost_10 + SummVAT_18 + SummCost_18 + SummVAT_20 + SummCost_20 + SummCost_0 + SummCost_NoVAT;
+                else
+                    return SummAll_Correct;
             }
         }
 
+        [PersistentAlias("SequenceNumber")]
         public UInt32 C01_SequenceNumber {
             get { return SequenceNumber; }
         }
@@ -397,10 +412,7 @@ namespace IntecoAG.ERM.FM.AVT {
 
         public Decimal C13A_SummAllValuta {
             get {
-                if (Invoice != null)
-                    return Invoice.SummAll;
-                else
-                    return SummAll;
+                    return SummAll_Valuta;
             }
         }
 

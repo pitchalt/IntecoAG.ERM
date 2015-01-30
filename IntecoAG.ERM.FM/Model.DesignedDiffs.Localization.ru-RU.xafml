@@ -99,6 +99,57 @@
         <Member Name="SummVATNoInvoice" Caption="НДС Нет Счет-фактуры" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.AVT.fmCAVTBookBuhStruct" Caption="Таблицы структур">
+      <OwnMembers>
+        <Member Name="BookBuhRecords" Caption="Бухгалтерские записи" />
+        <Member Name="InInvoiceRecords" Caption="Входящие счет-фактуры" />
+        <Member Name="OutInvoiceRecords" Caption="Исходящие счет-фактуры" />
+        <Member Name="Party" Caption="Основное юр.лицо" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.AVT.fmCAVTBookBuhStructRecord" Caption="Операция по книге">
+      <OwnMembers>
+        <Member Name="BayAccCode" Caption="Покупки кор.счет" />
+        <Member Name="BayDate" Caption="Покупки дата отнесения" />
+        <Member Name="BaySummAll" Caption="Покупки всего" />
+        <Member Name="BaySummVAT" Caption="Покупки сумма НДС" />
+        <Member Name="BayVATRate" Caption="Покупки ставка НДС" />
+        <Member Name="Invoice" Caption="Счет-фактура" />
+        <Member Name="InvoiceChangeDate" Caption="Дата изменения" />
+        <Member Name="InvoiceChangeNumber" Caption="Номер изменения" />
+        <Member Name="InvoiceCorrectChangeDate" Caption="Дата Изм. Кор. Счет-фактуры" />
+        <Member Name="InvoiceCorrectChangeNumber" Caption="Номер Изм. Кор. Счет-фактуры" />
+        <Member Name="InvoiceCorrectDate" Caption="Дата Кор. Счет-фактуры" />
+        <Member Name="InvoiceCorrectNumber" Caption="Номер Кор. Счет-фактуры" />
+        <Member Name="InvoiceDate" Caption="Дата Счет-фактуры" />
+        <Member Name="InvoiceNumber" Caption="Номер Счет-фактуры" />
+        <Member Name="InvoiceRegNumber" Caption="Регистрационный номер " />
+        <Member Name="InvoiceType" Caption="Тип документа " />
+        <Member Name="OperationType" Caption="Тип операции" />
+        <Member Name="PartnerAddress" Caption="Адрес контрагента" />
+        <Member Name="PartnerCountry" Caption="Страна контрагента" />
+        <Member Name="PartnerInn" Caption="ИНН" />
+        <Member Name="PartnerKpp" Caption="КПП" />
+        <Member Name="PartnerName" Caption="Наименование контрагента" />
+        <Member Name="PartnerParty" Caption="Контрагент" />
+        <Member Name="PartnerSity" Caption="Город регистрации" />
+        <Member Name="RowNumber" Caption="Номер строки" />
+        <Member Name="SaleAccCode" Caption="Продажи субсчет" />
+        <Member Name="SaleDate" Caption="Продажи дата отнесения" />
+        <Member Name="SaleSummAll" Caption="Продажи сумма всего" />
+        <Member Name="SaleSummVAT" Caption="Продажи сумма НДС" />
+        <Member Name="SaleVATRate" Caption="Продажи ставка НДС" />
+        <Member Name="SummAll" Caption="Всего по Счет-фактуре" />
+        <Member Name="SummCost" Caption="Стоимость по Счет-фактуре" />
+        <Member Name="SummDecCost" Caption="Уменьшение стоимости по Кор.Счет-фактуре" />
+        <Member Name="SummDecVAT" Caption="Уменьшение НДС по Кор.Счет-фактуре" />
+        <Member Name="SummIncCost" Caption="Увеличение стоимости  по Кор.Счет-фактуре" />
+        <Member Name="SummIncVAT" Caption="Увеличение НДС по Кор.Счет-фактуре" />
+        <Member Name="SummVAT" Caption="Сумма НДС" />
+        <Member Name="TransferDate" Caption="Дата получения/отпраки" />
+        <Member Name="TransferType" Caption="Способ передачи" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.AVT.fmCAVTBookVAT" Caption="Книги Продаж/Покупок">
       <OwnMembers>
         <Member Name="BookVATRecords" Caption="Строки" />
@@ -236,8 +287,6 @@
         <Member Name="VersionNumber" Caption="Номер редакции" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.AVT.IBookPay20144" Caption="Книга продаж 20144" />
-    <Class Name="IntecoAG.ERM.FM.AVT.IBookPay20144Record" Caption="Книга продаж 20144 Строки" />
     <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCache" Caption="Кассовый документ">
       <OwnMembers>
         <Member Name="AccountCredit" Caption="Субсчет Кредита" />

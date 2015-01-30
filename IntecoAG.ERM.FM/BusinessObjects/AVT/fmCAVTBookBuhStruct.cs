@@ -13,6 +13,12 @@ using IntecoAG.ERM.CRM.Party;
 
 namespace IntecoAG.ERM.FM.AVT {
 
+    public enum fmCAVTBookBuhStructStatus {
+        BUH_STRUCT_CREATED = 1,
+        BUH_STRUCT_IMPORTED = 2,
+        BUH_STRUCT_PROCESSED = 3
+    }
+
     [VisibleInReports]
     [NavigationItem("AVT")]
     [Persistent("fmAVTBookBuhStruct")]
@@ -24,6 +30,18 @@ namespace IntecoAG.ERM.FM.AVT {
 
         public override void AfterConstruction() {
             base.AfterConstruction();
+            StatusSet(fmCAVTBookBuhStructStatus.BUH_STRUCT_CREATED);
+        }
+
+        [Persistent("Status")]
+        private fmCAVTBookBuhStructStatus _Status;
+        [PersistentAlias("_Status")]
+        public fmCAVTBookBuhStructStatus Status {
+            get { return _Status; }
+//            set { SetPropertyValue<fmCAVTBookBuhStructStatus>("Status", ref _Status, value); }
+        }
+        public void StatusSet(fmCAVTBookBuhStructStatus value) { 
+            SetPropertyValue<fmCAVTBookBuhStructStatus>("Status", ref _Status, value); 
         }
 
         [Aggregated]
