@@ -371,9 +371,13 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                     MakeLineCostOperations(line, time);
                     break;
                 case FmFinPlanSheetType.FMFPS_CASH:
+                    MakeLineCashOperations(line, time);
                     break;
                 case FmFinPlanSheetType.FMFPS_PARTY:
                     MakeLinePartyOperations(line, time);
+                    break;
+                case FmFinPlanSheetType.FMFPS_MATERIAL:
+                    MakeLineMaterialOperations(line, time);
                     break;
                 case FmFinPlanSheetType.FMFPS_NORMATIV:
                     break;
@@ -410,6 +414,27 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             //            FmJournalOperation oper = null;
             switch (line.LineType) {
                 case FmFinPlanLineType.FMFPL_COST_SALE:
+                    break;
+                //                    oper = MakeOperation(os, doc, line, time);
+                //                    oper.DepartmentStructItem =  
+                //                    break;
+            }
+
+        }
+
+        protected void MakeLineCashOperations(FmFinPlanDocLine line, FmFinPlanDocTime time) {
+            FmJournalOperation oper = null;
+            switch (line.LineType) {
+                case FmFinPlanLineType.FMFPL_CASH_IN_RUB_CASH:
+                    //oper = MakeOperation(line, time);
+                    //oper.FinAccountType = FinAccountType.ACC_O_PAY_SUPPLIER;
+                    //oper.FinOperationType = FinOperationType.CREDIT;
+                    //oper.FinAccountBalanceType = FinOperationType.CREDIT;
+                    //oper.CostItem = CostItems.FirstOrDefault(x => x.Code == "7001");
+                    //oper.BalanceSumma = time.ValueManual;
+                    //oper.BalanceValuta = line.TopLine.Valuta;
+                    //oper.Party = line.TopLine.Party;
+                    //break;
                     break;
                 //                    oper = MakeOperation(os, doc, line, time);
                 //                    oper.DepartmentStructItem =  
@@ -520,6 +545,26 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                     oper.ObligationSumma = time.ValueManual;
                     oper.PayType = PaymentRequest.fmPRPayType.PREPAYMENT;
                     oper.Party = line.TopLine.TopLine.Party;
+                    break;
+            }
+
+        }
+        protected void MakeLineMaterialOperations(FmFinPlanDocLine line, FmFinPlanDocTime time) {
+            //            FmJournalOperation oper = null;
+            switch (line.LineType) {
+                case FmFinPlanLineType.FMFPL_MATERIAL_TOP:
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BAY:
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_COST:
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BAY_ITEM_PAY:
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BAY_PAY:
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BUILD:
+                    break;
+                case FmFinPlanLineType.FMFPL_MATERIAL_BUILD_ITEM:
                     break;
             }
 

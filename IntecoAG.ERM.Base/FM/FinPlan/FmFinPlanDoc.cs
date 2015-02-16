@@ -24,6 +24,13 @@ namespace IntecoAG.ERM.FM.FinPlan {
             base.AfterConstruction();
         }
 
+        String _Version;
+        public String Version {
+            get { return _Version; }
+            set {
+                SetPropertyValue<String>("Version", ref _Version, value);
+            }
+        }
         //[Persistent("Journal")]
         //[Aggregated]
         //protected FmJournal _Journal;

@@ -25,6 +25,12 @@ namespace IntecoAG.ERM.FM.AVT {
             base.AfterConstruction();
         }
 
+        private Boolean _IsNotUse;
+        public Boolean IsNotUse {
+            get { return _IsNotUse; }
+            set { SetPropertyValue<Boolean>("IsNotUse", ref _IsNotUse, value); }
+        }
+
         [Aggregated]
         [Association("fmAVTBookBuhImport-fmAVTBookBuhRecords")]
         public XPCollection<fmCAVTBookBuhRecord> BookBuhRecords {

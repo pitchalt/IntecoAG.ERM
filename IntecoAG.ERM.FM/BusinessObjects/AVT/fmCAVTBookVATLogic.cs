@@ -125,10 +125,10 @@ namespace IntecoAG.ERM.FM.AVT {
             os.Delete(book.BookVATRecords);
             IList<fmCAVTBookBuhRecord> buhrecs = os.GetObjects<fmCAVTBookBuhRecord>(
                 XPQuery<fmCAVTBookBuhRecord>.TransformExpression(((ObjectSpace)os).Session,
-                rec => rec.BookType == "P" && (
+                rec => rec.BookBuhImport.IsNotUse == false && rec.BookType == "P" && (
                        rec.PeriodOtchet == period_m1 ||
                        rec.PeriodOtchet == period_m2 ||
-                       rec.PeriodOtchet == period_m3
+                       rec.PeriodOtchet == period_m3 
                     //                       &&
                     //                       (rec.RecordType != "AON" ||
                     //                        rec.RecordType == "AON" &&
