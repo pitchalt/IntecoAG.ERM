@@ -45,12 +45,34 @@ namespace IntecoAG.ERM.FM.AVT {
         Decimal C19_SummNoVat { get; }
     }
 
+    [DomainComponent]
+    public interface IBookBay20144Record {
+        UInt32 C01_SequenceNumber { get; }
+        String C02_OperationTypes { get; }
+        String C03_InvoceNumberDate { get; }
+        String C04_InvoiceChangeNumberDate { get; }
+        String C05_CorrectionNumberDate { get; }
+        String C06_CorrectionChangeNumberDate { get; }
+        String B07_PayDocNumberDate { get; }
+        DateTime B08_BuhDate { get; }
+        String B09_PartyName { get; }
+        String B10_PartyInnKpp { get; }
+        String B11_IntermediatePartyName { get; }
+        String B12_IntermediatePartyInnKpp { get; }
+        String B13_CustomsDeclarationNumber { get; }
+        String B14_ValutaCodeName { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal B15_SummAllValuta { get; }
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        Decimal B16_SummVat { get; }
+    }
+
 
     [VisibleInReports]
     [Persistent("fmAVTBookVATRecord")]
 //    [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "BookVAT;SequenceNumber")]
     [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "BookVAT;Invoice;RecordType;BuhRecordType")]
-    public class fmCAVTBookVATRecord : XPLiteObject, IBookPay20144Record {
+    public class fmCAVTBookVATRecord : XPLiteObject, IBookPay20144Record, IBookBay20144Record {
 
         public enum fmCAVTBookVATRecordType {
             MAIN = 1,
@@ -133,9 +155,9 @@ namespace IntecoAG.ERM.FM.AVT {
         public String BuhRecordType;
         [Size(3)]
         public String VATInvoiceType;
-        [Size(20)]
+        [Size(50)]
         public String VATInvoiceNumber;
-        [Size(20)]
+        [Size(50)]
         public String VATInvoiceRegNumber;
         public DateTime VATInvoiceDate;
 
@@ -349,7 +371,8 @@ namespace IntecoAG.ERM.FM.AVT {
         public Decimal SummAll {
             get {
                 if (SummAll_Correct == 0)
-                    return SummVAT_10 + SummCost_10 + SummVAT_18 + SummCost_18 + SummVAT_20 + SummCost_20 + SummCost_0 + SummCost_NoVAT;
+                    return SummVAT_10 + SummCost_10 + SummVAT_18 + SummCost_18 + SummVAT_20 + SummCost_20 + SummCost_0 + SummCost_NoVAT + 
+                        SummBayVatDeduction + SummBayVatInCost + SummBayCost;
                 else
                     return SummAll_Correct;
             }
@@ -452,6 +475,74 @@ namespace IntecoAG.ERM.FM.AVT {
         public Decimal C19_SummNoVat {
             get { return 0; }
         }
+
+        public String B07_PayDocNumberDate {
+            get { return PayText; }
+        }
+
+        public DateTime B08_BuhDate {
+            get { return BuhDate.Date; }
+        }
+
+        public String B09_PartyName {
+            get { return Party != null ? Party.Name : String.Empty; }
+        }
+
+        public String B10_PartyInnKpp {
+            get { return Party != null ? Party.INN + " / " + Party.KPP : String.Empty; }
+        }
+
+        public String B11_IntermediatePartyName {
+            get { return String.Empty; }
+        }
+
+        public String B12_IntermediatePartyInnKpp {
+            get { return String.Empty; }
+        }
+
+        public String B13_CustomsDeclarationNumber {
+            get { return String.Empty; }
+        }
+
+        public String B14_ValutaCodeName {
+            get {
+                if (Valuta != null)
+                    return Valuta.NameShort + " " + Valuta.Code;
+                else
+                    return String.Empty;
+            }
+        }
+
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal B15_SummAllValuta {
+            get {
+                if (Invoice != null)
+                    return Invoice.SummAll;
+                else
+                    return SummAll;
+            }
+        }
+
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal B16_SummVat {
+            get {
+                return SummBayVatDeduction;
+            }
+        }
+
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummBayVatDeduction;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummBayVatCharge;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummBayVatInCost;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummBayVatExp;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummBayVatOtherCredit;
+        [Custom("DisplayFormat", "### ### ### ##0.00")]
+        public Decimal SummBayCost;
+
     }
 
 }

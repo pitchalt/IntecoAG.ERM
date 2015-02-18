@@ -61,6 +61,14 @@ namespace IntecoAG.ERM.FM.AVT {
             get { return GetCollection<fmCAVTBookBuhRecord>("BookBuhRecords"); }
         }
 
+        private Decimal _BayNorma;
+        [Custom("DisplayFormat", "### ### ### ##0.000000")]
+        [Custom("EditMask", "### ### ### ##0.000000")]
+        public Decimal BayNorma {
+            get { return _BayNorma; }
+            set { SetPropertyValue<Decimal>("BayNorma", ref _BayNorma, value); }
+        }
+
         private crmCParty _Party;
         public crmCParty Party {
             get { return _Party; }

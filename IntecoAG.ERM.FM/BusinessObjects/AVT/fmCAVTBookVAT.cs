@@ -21,11 +21,17 @@ namespace IntecoAG.ERM.FM.AVT {
         IList<IBookPay20144Record> Records { get; }
     }
 
+    [VisibleInReports]
+    [DC.DomainComponent]
+    public interface IBookBay20144 {
+        IList<IBookBay20144Record> BayRecords { get; }
+    }
+
     [NavigationItem("AVT")]
     [VisibleInReports]
     [Persistent("fmAVTBookVAT")]
     [RuleCombinationOfPropertiesIsUnique("", DefaultContexts.Save, "Party;BookVATType;Period;Number")]
-    public class fmCAVTBookVAT : csCCodedComponent, IBookPay20144 {
+    public class fmCAVTBookVAT : csCCodedComponent, IBookPay20144, IBookBay20144 {
 
         public enum fmCAVTBookVATType { 
             PAY_MAIN = 1,
@@ -172,6 +178,16 @@ namespace IntecoAG.ERM.FM.AVT {
         public IList<IBookPay20144Record> Records {
             get { 
                 return new ListConverter<IBookPay20144Record, fmCAVTBookVATRecord>(BookVATRecords); 
+            }
+        }
+
+        public IBookBay20144 BookBay20144 {
+            get { return this; }
+        }
+
+        public IList<IBookBay20144Record> BayRecords {
+            get {
+                return new ListConverter<IBookBay20144Record, fmCAVTBookVATRecord>(BookVATRecords);
             }
         }
     }

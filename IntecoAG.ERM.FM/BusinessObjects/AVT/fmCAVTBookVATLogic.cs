@@ -26,6 +26,8 @@ namespace IntecoAG.ERM.FM.AVT {
                 ImportBookPayMain2014(os, book);
             if (book.BookVATType == fmCAVTBookVAT.fmCAVTBookVATType.BAY_MAIN)
                 ImportBookBayMain(os, book);
+            if (book.BookVATType == fmCAVTBookVAT.fmCAVTBookVATType.BAY_2014)
+                ImportBookBayMain2014(os, book);
         }
 
         static public void ImportBookPayMain(IObjectSpace os, fmCAVTBookVAT book) {
@@ -339,6 +341,7 @@ namespace IntecoAG.ERM.FM.AVT {
                 }
                 rec.SequenceNumber = seq_num++;
                 book.BookVATRecords.Add(rec);
+
                 switch (invoice_buhrec.Key.RecordType) {
                     case "PAY":
                         break;
@@ -358,6 +361,151 @@ namespace IntecoAG.ERM.FM.AVT {
                         break;
                 }
             }
+        }
+        static public void ImportBookBayMain2014(IObjectSpace os, fmCAVTBookVAT book) {
+            Int32 kvartal = Int32.Parse(book.PeriodKV);
+            String period_m1 = book.PeriodYYYY + ((kvartal - 1) * 3 + 1).ToString("00");
+            String period_m2 = book.PeriodYYYY + ((kvartal - 1) * 3 + 2).ToString("00");
+            String period_m3 = book.PeriodYYYY + ((kvartal - 1) * 3 + 3).ToString("00");
+            IList<fmCAVTInvoiceOperationType> oper_types = os.GetObjects<fmCAVTInvoiceOperationType>();
+            os.Delete(book.BookVATRecords);
+            UInt32 seq_num = 1;
+            IList<fmCAVTBookBuhRecord> buhrecs = os.GetObjects<fmCAVTBookBuhRecord>(
+                XPQuery<fmCAVTBookBuhRecord>.TransformExpression(((ObjectSpace)os).Session,
+                rec => rec.BookBuhImport.IsNotUse == false && rec.BookType == "B" && (
+                       rec.PeriodOtchet == period_m1 ||
+                       rec.PeriodOtchet == period_m2 ||
+                       rec.PeriodOtchet == period_m3
+                    //&& (rec.RecordType != "AON" ||
+                    // rec.RecordType == "AON" &&
+                    // rec.RecordSummType == "NDS" &&
+                    // rec.SummVAT != 0)
+                        )
+                ));
+            var invoice_buhrecs = buhrecs.GroupBy(rec => new {
+//                rec.RecordType,
+                rec.AVTInvoicePartyCode,
+                rec.AVTInvoiceType,
+                rec.AVTInvoiceRegNumber,
+                rec.AVTInvoiceNumber,
+                rec.AVTInvoiceDate
+            }).OrderBy(key => key.Key.AVTInvoicePartyCode);
+            //
+            foreach (var invoice_buhrec in invoice_buhrecs) {
+                if (String.IsNullOrEmpty(invoice_buhrec.Key.AVTInvoiceType.Trim())) continue;
+                if (invoice_buhrec.Key.AVTInvoiceType.Trim() == "ÒÄ") continue;
+                fmCAVTBookVATRecord rec = os.CreateObject<fmCAVTBookVATRecord>();
+                crmCParty party = os.GetObjects<crmCParty>(new BinaryOperator("Code", invoice_buhrec.Key.AVTInvoicePartyCode)).FirstOrDefault();
+                 rec.BuhRecordType = 
+                    invoice_buhrec.Select(x => x.RecordType).Distinct().OrderBy(x => x).Aggregate( (x, y) => x + ";" + y);
+                rec.Party = party;
+                rec.VATInvoiceType = invoice_buhrec.Key.AVTInvoiceType;
+                rec.VATInvoiceRegNumber = invoice_buhrec.Key.AVTInvoiceRegNumber;
+                rec.VATInvoiceNumber = invoice_buhrec.Key.AVTInvoiceNumber;
+                rec.VATInvoiceDate = invoice_buhrec.Key.AVTInvoiceDate;
+                rec.Invoice = os.FindObject<fmCAVTInvoiceBase>(
+                        CriteriaOperator.And(new BinaryOperator("Number", invoice_buhrec.Key.AVTInvoiceNumber),
+                                             new BinaryOperator("Date", invoice_buhrec.Key.AVTInvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
+                                             new BinaryOperator("Date", invoice_buhrec.Key.AVTInvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
+                                             new BinaryOperator("Supplier", party)));
+                rec.PayDate = invoice_buhrec.Select(buhrec => buhrec.PayDocDate).Max();
+                rec.BuhDate = invoice_buhrec.Select(buhrec => buhrec.BuhDocDate).Min();
+                //Decimal SummNoVAT_18;
+                //Decimal SummNoVAT_10;
+                //rec.SummVAT_18 = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "2").Sum(buhrec => buhrec.SummVAT);
+                //SummNoVAT_18 = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "2").Sum(buhrec => buhrec.SummVATCost);
+                //rec.SummVAT_10 = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "3").Sum(buhrec => buhrec.SummVAT);
+                //SummNoVAT_10 = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "3").Sum(buhrec => buhrec.SummVATCost);
+                //rec.SummCost_NoVAT = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "5").Sum(buhrec => buhrec.SummAll);
+                //rec.SummCost_18 = Decimal.Round(rec.SummVAT_18 * 100m / 18m, 2);
+                //rec.SummCost_10 = Decimal.Round(rec.SummVAT_10 * 100m / 10m, 2);
+                //rec.SummCost_NoVAT = rec.SummCost_NoVAT +
+                //    Decimal.Round(SummNoVAT_18 * 118m / 18m, 2) +
+                //    Decimal.Round(SummNoVAT_10 * 110m / 10m, 2);
+                rec.SummBayCost = invoice_buhrec.Sum(buhrec => buhrec.SummCost);
+                rec.SummBayVatCharge = invoice_buhrec.Sum(buhrec => buhrec.SummVATIn);
+                rec.SummBayVatDeduction = invoice_buhrec.Sum(buhrec => buhrec.SummVAT);
+                rec.SummBayVatInCost = invoice_buhrec.Sum(buhrec => buhrec.SummVATCost);
+                rec.SummBayVatExp = invoice_buhrec.Sum(buhrec => buhrec.SummVATExp);
+                rec.SummBayVatOtherCredit= invoice_buhrec.Sum(buhrec => buhrec.SummVATCrdOther);
+                rec.SummBayVatOtherCredit += invoice_buhrec.Sum(buhrec => buhrec.SummVATNoInvoice);
+
+                if (rec.SummBayVatDeduction == 0) {
+                    os.Delete(rec);
+                    continue;
+                }
+                rec.SequenceNumber = seq_num++;
+                switch (rec.BuhRecordType) {
+                    case "PAY":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "01");
+                        break;
+                    case "BAY":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "01");
+                        break;
+                    case "AIN":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "02");
+                        break;
+                    case "AON":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "02");
+                        break;
+                    case "EAT":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "01");
+                        break;
+                    case "EXP":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "01");
+                        break;
+                    case "SMN":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "01");
+                        break;
+                    case "SPC":
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "01");
+                        break;
+                    default:
+                        rec.OperationType = oper_types.FirstOrDefault(x => x.Code == "01");
+                        break;
+                }
+                book.BookVATRecords.Add(rec);
+            }
+            IList<fmCAVTBookBuhStruct> book_structs = os.GetObjects<fmCAVTBookBuhStruct>();
+            foreach (var book_struct in book_structs) {
+                foreach (var record in book_struct.InInvoiceRecords) {
+                    if (book.DatePeriodStart.Date <= record.BayDate.Date && record.BayDate.Date <= book.DatePeriodStop.Date) {
+                        if (record.BaySummAll == 0 || record.BaySummVAT == 0 && record.BayVATRate.Code != "0%")
+                            continue;
+                        fmCAVTBookVATRecord book_rec = os.CreateObject<fmCAVTBookVATRecord>();
+                        //                        rec.BuhRecordType = invoice_buhrec.Key.RecordType;
+                        book_rec.BookBuhStruct = book_struct;
+                        book_rec.OperationType = record.OperationType;
+                        if (record.InvoiceType == "ÑÔÀ")
+                            book_rec.BuhRecordType = "AIN";
+                        else
+                            book_rec.BuhRecordType = "BAY";
+                        book_rec.Party = record.PartnerParty;
+                        book_rec.VATInvoiceRegNumber = record.InvoiceRegNumber;
+                        book_rec.VATInvoiceType = record.InvoiceType;
+                        book_rec.VATInvoiceNumber = record.InvoiceNumber;
+                        book_rec.VATInvoiceDate = record.InvoiceDate;
+                        book_rec.Invoice = record.Invoice;
+                        if (record.Invoice != null)
+                            book_rec.InvoiceVersion = record.Invoice.Current;
+                        book_rec.PayDate = record.SaleDate;
+                        book_rec.BuhDate = record.SaleDate;
+
+                        book_rec.SummBayVatCharge = record.BaySummVAT;
+                        book_rec.SummBayVatDeduction = Decimal.Round(book_rec.SummBayVatCharge * book_struct.BayNorma, 2);
+                        book_rec.SummBayVatInCost = book_rec.SummBayVatCharge - book_rec.SummBayVatDeduction;
+
+                        book_rec.SummBayCost = record.BaySummAll - record.BaySummVAT;
+                        //                        if (record.InvoiceType == "ÑÔÇ") book_rec.PayDate = book_rec.BuhDate;
+                        //                        if (record.Nds)
+                        //                        book_rec.SummVAT_18 = invoice_buhrec.Where(buhrec => buhrec.NDSRate == "2").Sum(buhrec => buhrec.SummVAT);
+                        book_rec.SequenceNumber = seq_num++;
+                        book.BookVATRecords.Add(book_rec);
+                    }
+                }
+            }
+            ReNumber(os, book);
+
         }
 
         static public fmCAVTBookVAT LocateBook(IObjectSpace os, crmCParty organ, fmCAVTBookVAT.fmCAVTBookVATType type, String period) {

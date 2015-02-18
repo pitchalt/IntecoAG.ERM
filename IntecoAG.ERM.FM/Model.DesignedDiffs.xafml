@@ -369,8 +369,9 @@
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" CaptionLocation="Top" IsNewNode="True">
-            <LayoutItem Id="Code" ViewItem="Code" Index="0" IsNewNode="True" />
-            <LayoutItem Id="Name" ViewItem="Name" Index="1" IsNewNode="True" />
+            <LayoutItem Id="Code" ViewItem="Code" Index="0" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Name" ViewItem="Name" Index="1" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="BayNorma" ViewItem="BayNorma" CaptionLocation="Top" IsNewNode="True" />
           </LayoutGroup>
           <LayoutItem Id="Party" ViewItem="Party" Index="0" IsNewNode="True" />
           <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">

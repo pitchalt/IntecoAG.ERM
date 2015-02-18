@@ -178,6 +178,9 @@ namespace IntecoAG.ERM.FM.AVT {
                             case "4":
                                 CurRecord.BayVATRate = _VatRates.FirstOrDefault(x => x.Code == "0%");
                                 break;
+                            case "5":
+                                CurRecord.BayVATRate = _VatRates.FirstOrDefault(x => x.Code == "аег мдя");
+                                break;
                             default:
                                 CurRecord.BayVATRate = _VatRates.FirstOrDefault(x => x.Code == "18%");
                                 break;
