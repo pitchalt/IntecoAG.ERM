@@ -202,6 +202,7 @@
       <OwnMembers>
         <Member Name="AVTInvoiceVersions" Caption="Редакции" />
         <Member Name="Consigner" Caption="Грузополучатель" />
+        <Member Name="Current" Caption="Текущая Редакция" />
         <Member Name="Customer" Caption="Покупатель" />
         <Member Name="Date" Caption="Дата" />
         <Member Name="InvoiceType" Caption="Тип Счета-Фактуры" />

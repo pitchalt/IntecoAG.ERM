@@ -138,6 +138,8 @@ namespace IntecoAG.ERM.FM.AVT {
                     invoice.SummCost = Decimal.Parse(imp_rec.SUMM_COST.Trim().Replace('.', ','));
                 }
                 else {
+                    invoice.SummAVT = Decimal.Parse(imp_rec.SUMM_NDS.Trim().Replace('.', ','));
+                    invoice.SummCost = Decimal.Parse(imp_rec.SUMM_COST.Trim().Replace('.', ','));
                     fmCAVTInvoiceRegisterLine line_check = os.FindObject<fmCAVTInvoiceRegisterLine>(
                             CriteriaOperator.And(new BinaryOperator("InvoiceVersion", invoice.Current)), true);
                     if (line_check != null) continue;

@@ -78,8 +78,8 @@ namespace IntecoAG.ERM.FM.AVT {
     [VisibleInReports]
     [Persistent("fmAVTInvoiceVersion")]
     [DefaultProperty("InvoiceVersionName")]
-    [MiniNavigation("This", "Версия Счет-фактуры", TargetWindow.Default, 1)]
-    [MiniNavigation("AVTInvoice", "Счет-фактура", TargetWindow.Current, 2)]
+//    [MiniNavigation("This", "Версия Счет-фактуры", TargetWindow.Default, 1)]
+//    [MiniNavigation("AVTInvoice", "Счет-фактура", TargetWindow.Current, 2)]
     public class fmCAVTInvoiceVersion : csCComponent {
         public fmCAVTInvoiceVersion (Session ses): base(ses) {
         }

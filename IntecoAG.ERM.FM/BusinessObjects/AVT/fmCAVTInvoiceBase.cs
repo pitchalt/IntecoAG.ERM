@@ -178,7 +178,7 @@ namespace IntecoAG.ERM.FM.AVT {
         /// <summary>
         /// Текущая редакция счета фактуры
         /// </summary>
-        [Browsable(false)]
+        [DataSourceProperty("AVTInvoiceVersions")]
         public fmCAVTInvoiceVersion Current {
             get { return _Current; }
             set { SetPropertyValue<fmCAVTInvoiceVersion>("Current", ref _Current, value); }

@@ -16,7 +16,7 @@ using IntecoAG.ERM.FM.Subject;
 namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
     [MapInheritance(MapInheritanceType.ParentTable)]
-    public class FmFinPlanSubjectDocYear : FmFinPlanSubjectDoc {
+    public abstract class FmFinPlanSubjectDocYear : FmFinPlanSubjectDoc {
         public FmFinPlanSubjectDocYear(Session session) : base(session) { }
 
         public override void AfterConstruction() {

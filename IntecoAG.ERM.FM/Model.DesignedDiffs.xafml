@@ -18,6 +18,11 @@
   </ActionDesign>
   <BOModel>
     <Class Name="IntecoAG.ERM.FM.AVT.fmCAVTBookBuhStructRecord" FriendlyKeyProperty="" />
+    <Class Name="IntecoAG.ERM.FM.AVT.fmCAVTInvoiceBase">
+      <OwnMembers>
+        <Member Name="RegNumber" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.Docs.Cache.fmIDocCache">
       <OwnMembers>
         <Member Name="CashierStaff" Caption="" />
@@ -459,8 +464,9 @@
           <LayoutGroup Id="Header" Index="0" Direction="Horizontal" IsNewNode="True">
             <LayoutItem Id="InvoiceIntType" ViewItem="InvoiceIntType" Index="0" CaptionLocation="Top" IsNewNode="True" />
             <LayoutItem Id="InvoiceType" ViewItem="InvoiceType" Index="1" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
-            <LayoutItem Id="Number" ViewItem="Number" Index="2" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
-            <LayoutItem Id="Date" ViewItem="Date" Index="3" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
+            <LayoutItem Id="RegNumber" ViewItem="RegNumber" Index="2" CaptionLocation="Top" IsNewNode="True" />
+            <LayoutItem Id="Number" ViewItem="Number" Index="3" CaptionLocation="Top" RelativeSize="40" IsNewNode="True" />
+            <LayoutItem Id="Date" ViewItem="Date" Index="4" CaptionLocation="Top" RelativeSize="20" IsNewNode="True" />
           </LayoutGroup>
           <LayoutGroup Id="SimpleEditors" Index="1" Removed="True">
             <LayoutGroup Id="csCComponent" Removed="True" />
@@ -525,7 +531,10 @@
             </LayoutGroup>
             <LayoutGroup Id="Lines" Index="1" />
             <LayoutGroup Id="Corrections" Index="2" />
-            <LayoutGroup Id="AVTInvoiceVersions" Index="3" />
+            <LayoutGroup Id="AVTInvoiceVersions" Index="3">
+              <LayoutItem Id="Current" Index="0" ViewItem="Current" IsNewNode="True" />
+              <LayoutItem Id="AVTInvoiceVersions" Index="1" />
+            </LayoutGroup>
             <LayoutGroup Id="AuditTrail" Index="4" />
             <LayoutGroup Id="PaymentsList" Removed="True" />
           </TabbedGroup>

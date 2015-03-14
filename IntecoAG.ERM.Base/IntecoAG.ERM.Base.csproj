@@ -473,8 +473,10 @@
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocVC.Designer.cs">
       <DependentUpon>FmFinPlanSubjectDocVC.cs</DependentUpon>
     </Compile>
-    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocYear.cs" />
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDoc.cs" />
+    <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectDocYear.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FM\FinPlan\Subject\FmFinPlanSubjectLogic.cs" />
     <Compile Include="FM\FmAccounting.cs" />
     <Compile Include="FM\FmJournal.cs" />

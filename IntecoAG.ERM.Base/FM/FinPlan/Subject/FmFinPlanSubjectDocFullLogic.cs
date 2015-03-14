@@ -550,7 +550,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
 
         }
         protected void MakeLineMaterialOperations(FmFinPlanDocLine line, FmFinPlanDocTime time) {
-            //            FmJournalOperation oper = null;
+            FmJournalOperation oper = null;
             switch (line.LineType) {
                 case FmFinPlanLineType.FMFPL_MATERIAL_TOP:
                     break;

@@ -151,17 +151,41 @@ namespace IntecoAG.ERM.FM.AVT {
             get { return _SequenceNumber; }
             set { SetPropertyValue<UInt32>("SequenceNumber", ref _SequenceNumber, value); }
         }
+        private String _BuhRecordType;
         [Size(10)]
-        public String BuhRecordType;
+        public String BuhRecordType {
+            get { return _BuhRecordType; }
+            set { SetPropertyValue<String>("BuhRecordType", ref _BuhRecordType, value); }
+        }
+        private String _VATInvoiceType;
         [Size(3)]
-        public String VATInvoiceType;
+        public String VATInvoiceType {
+            get { return _VATInvoiceType; }
+            set { SetPropertyValue<String>("VATInvoiceType", ref _VATInvoiceType, value); }
+        }
+        private String _VATInvoiceNumber;
         [Size(50)]
-        public String VATInvoiceNumber;
+        public String VATInvoiceNumber {
+            get { return _VATInvoiceNumber; }
+            set { SetPropertyValue<String>("VATInvoiceNumber", ref _VATInvoiceNumber, value); }
+        }
+        private String _VATInvoiceRegNumber;
         [Size(50)]
-        public String VATInvoiceRegNumber;
-        public DateTime VATInvoiceDate;
+        public String VATInvoiceRegNumber {
+            get { return _VATInvoiceRegNumber; }
+            set { SetPropertyValue<String>("VATInvoiceRegNumber", ref _VATInvoiceRegNumber, value); }
+        }
+        private DateTime _VATInvoiceDate;
+        public DateTime VATInvoiceDate {
+            get { return _VATInvoiceDate; }
+            set { SetPropertyValue<DateTime>("VATInvoiceDate", ref _VATInvoiceDate, value); }
+        }
 
-        public crmCParty Party;
+        private crmCParty _Party;
+        public crmCParty Party {
+            get { return _Party; }
+            set { SetPropertyValue<crmCParty>("Party", ref _Party, value); }
+        }
         public DateTime PayDate;
         public String PayNumber;
         public DateTime BuhDate;
@@ -362,8 +386,13 @@ namespace IntecoAG.ERM.FM.AVT {
         }
 
 
+        private Decimal _SummAll_Correct;
         [Custom("DisplayFormat", "### ### ### ##0.00")]
-        public Decimal SummAll_Correct;
+        public Decimal SummAll_Correct {
+            get { return _SummAll_Correct; }
+            set { SetPropertyValue<Decimal>("SummAll_Correct", ref _SummAll_Correct, value); }
+        }
+
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal SummAll_Valuta;
 
@@ -516,10 +545,11 @@ namespace IntecoAG.ERM.FM.AVT {
         [Custom("DisplayFormat", "### ### ### ##0.00")]
         public Decimal B15_SummAllValuta {
             get {
+                if (SummAll_Correct != 0)
+                    return SummAll_Correct;
                 if (Invoice != null)
                     return Invoice.SummAll;
-                else
-                    return SummAll;
+                return SummAll;
             }
         }
 

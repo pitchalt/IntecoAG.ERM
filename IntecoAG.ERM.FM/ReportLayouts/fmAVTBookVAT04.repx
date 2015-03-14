@@ -169,11 +169,6 @@ namespace XtraReportSerialization {
         private DevExpress.XtraReports.UI.XRTable table3;
         private DevExpress.XtraReports.UI.XRTableRow tableRow4;
         private DevExpress.XtraReports.UI.XRTableCell tableCell60;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell61;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell62;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell63;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell64;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell15;
         private DevExpress.XtraReports.UI.XRTableCell tableCell66;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
         private DevExpress.XtraReports.UI.XRTable table6;
@@ -220,11 +215,6 @@ namespace XtraReportSerialization {
         }
         private void InitializeComponent() {
             DevExpress.XtraReports.UI.XRSummary summary1 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary summary2 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary summary3 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary summary4 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary summary5 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary summary6 = new DevExpress.XtraReports.UI.XRSummary();
             this.detailBand1 = new DevExpress.XtraReports.UI.DetailBand();
             this.pageFooterBand1 = new DevExpress.XtraReports.UI.PageFooterBand();
             this.topMarginBand1 = new DevExpress.XtraReports.UI.TopMarginBand();
@@ -331,11 +321,6 @@ namespace XtraReportSerialization {
             this.tableCell56 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell60 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell61 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell62 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell64 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.table6 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow11 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -418,7 +403,7 @@ namespace XtraReportSerialization {
                         this.Detail,
                         this.ReportHeader,
                         this.ReportFooter});
-            this.DetailReport.DataMember = "BookPay20144.Records";
+            this.DetailReport.DataMember = "BookBay20144.BayRecords";
             this.DetailReport.Dpi = 254F;
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
@@ -657,7 +642,7 @@ namespace XtraReportSerialization {
             // tableCell18
             // 
             this.tableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C01_SequenceNumber")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.C01_SequenceNumber")});
             this.tableCell18.Dpi = 254F;
             this.tableCell18.Name = "tableCell18";
             this.tableCell18.Text = "1";
@@ -666,7 +651,7 @@ namespace XtraReportSerialization {
             // tableCell19
             // 
             this.tableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C02_OperationTypes")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.C02_OperationTypes")});
             this.tableCell19.Dpi = 254F;
             this.tableCell19.Name = "tableCell19";
             this.tableCell19.Text = "2";
@@ -675,7 +660,7 @@ namespace XtraReportSerialization {
             // tableCell22
             // 
             this.tableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C03_InvoceNumberDate")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.C03_InvoceNumberDate")});
             this.tableCell22.Dpi = 254F;
             this.tableCell22.Name = "tableCell22";
             this.tableCell22.Text = "3";
@@ -684,7 +669,7 @@ namespace XtraReportSerialization {
             // tableCell24
             // 
             this.tableCell24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C04_InvoiceChangeNumberDate")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.C04_InvoiceChangeNumberDate")});
             this.tableCell24.Dpi = 254F;
             this.tableCell24.Name = "tableCell24";
             this.tableCell24.Text = "4";
@@ -693,7 +678,7 @@ namespace XtraReportSerialization {
             // tableCell25
             // 
             this.tableCell25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C05_CorrectionNumberDate")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.C05_CorrectionNumberDate")});
             this.tableCell25.Dpi = 254F;
             this.tableCell25.Name = "tableCell25";
             this.tableCell25.Text = "5";
@@ -702,7 +687,7 @@ namespace XtraReportSerialization {
             // tableCell27
             // 
             this.tableCell27.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C06_CorrectionChangeNumberDate")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.C06_CorrectionChangeNumberDate")});
             this.tableCell27.Dpi = 254F;
             this.tableCell27.Name = "tableCell27";
             this.tableCell27.Text = "6";
@@ -710,6 +695,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell28
             // 
+            this.tableCell28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B07_PayDocNumberDate")});
             this.tableCell28.Dpi = 254F;
             this.tableCell28.Name = "tableCell28";
             this.tableCell28.Text = "7";
@@ -717,6 +704,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell29
             // 
+            this.tableCell29.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B08_BuhDate", "{0:dd.MM.yyyy}")});
             this.tableCell29.Dpi = 254F;
             this.tableCell29.Name = "tableCell29";
             this.tableCell29.Text = "8";
@@ -724,6 +713,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell42
             // 
+            this.tableCell42.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B09_PartyName")});
             this.tableCell42.Dpi = 254F;
             this.tableCell42.Name = "tableCell42";
             this.tableCell42.Text = "9";
@@ -731,6 +722,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell44
             // 
+            this.tableCell44.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B10_PartyInnKpp")});
             this.tableCell44.Dpi = 254F;
             this.tableCell44.Name = "tableCell44";
             this.tableCell44.Text = "10";
@@ -738,6 +731,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell45
             // 
+            this.tableCell45.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B11_IntermediatePartyName")});
             this.tableCell45.Dpi = 254F;
             this.tableCell45.Name = "tableCell45";
             this.tableCell45.Text = "11";
@@ -745,6 +740,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell47
             // 
+            this.tableCell47.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B12_IntermediatePartyInnKpp")});
             this.tableCell47.Dpi = 254F;
             this.tableCell47.Name = "tableCell47";
             this.tableCell47.Text = "12";
@@ -752,6 +749,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell48
             // 
+            this.tableCell48.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B13_CustomsDeclarationNumber")});
             this.tableCell48.Dpi = 254F;
             this.tableCell48.Name = "tableCell48";
             this.tableCell48.Text = "11";
@@ -759,6 +758,8 @@ namespace XtraReportSerialization {
             // 
             // tableCell49
             // 
+            this.tableCell49.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B14_ValutaCodeName")});
             this.tableCell49.Dpi = 254F;
             this.tableCell49.Name = "tableCell49";
             this.tableCell49.Text = "12";
@@ -766,17 +767,25 @@ namespace XtraReportSerialization {
             // 
             // tableCell67
             // 
+            this.tableCell67.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B15_SummAllValuta", "{0:### ### ### ##0.00}")});
             this.tableCell67.Dpi = 254F;
             this.tableCell67.Multiline = true;
             this.tableCell67.Name = "tableCell67";
+            this.tableCell67.StylePriority.UseTextAlignment = false;
             this.tableCell67.Text = "13\r\n";
+            this.tableCell67.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.tableCell67.Weight = 0.36498790610759146;
             // 
             // tableCell68
             // 
+            this.tableCell68.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B16_SummVat", "{0:### ### ### ##0.00}")});
             this.tableCell68.Dpi = 254F;
             this.tableCell68.Name = "tableCell68";
+            this.tableCell68.StylePriority.UseTextAlignment = false;
             this.tableCell68.Text = "14";
+            this.tableCell68.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.tableCell68.Weight = 0.27881046306768675;
             // 
             // table1
@@ -1219,14 +1228,14 @@ namespace XtraReportSerialization {
             // 
             this.tableCell40.Dpi = 254F;
             this.tableCell40.Name = "tableCell40";
-            this.tableCell40.Text = "11";
+            this.tableCell40.Text = "13";
             this.tableCell40.Weight = 0.20900223278523933;
             // 
             // tableCell41
             // 
             this.tableCell41.Dpi = 254F;
             this.tableCell41.Name = "tableCell41";
-            this.tableCell41.Text = "12";
+            this.tableCell41.Text = "14";
             this.tableCell41.Weight = 0.10138559808760073;
             // 
             // tableCell43
@@ -1234,14 +1243,14 @@ namespace XtraReportSerialization {
             this.tableCell43.Dpi = 254F;
             this.tableCell43.Multiline = true;
             this.tableCell43.Name = "tableCell43";
-            this.tableCell43.Text = "13\r\n";
+            this.tableCell43.Text = "15";
             this.tableCell43.Weight = 0.36498790610759146;
             // 
             // tableCell46
             // 
             this.tableCell46.Dpi = 254F;
             this.tableCell46.Name = "tableCell46";
-            this.tableCell46.Text = "14";
+            this.tableCell46.Text = "16";
             this.tableCell46.Weight = 0.27881046306768675;
             // 
             // table5
@@ -1358,11 +1367,6 @@ namespace XtraReportSerialization {
             // 
             this.tableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
                         this.tableCell60,
-                        this.tableCell61,
-                        this.tableCell62,
-                        this.tableCell63,
-                        this.tableCell64,
-                        this.tableCell15,
                         this.tableCell66});
             this.tableRow4.Dpi = 254F;
             this.tableRow4.Name = "tableRow4";
@@ -1374,84 +1378,22 @@ namespace XtraReportSerialization {
             // 
             this.tableCell60.Dpi = 254F;
             this.tableCell60.Name = "tableCell60";
-            this.tableCell60.Weight = 1.9516726845460553;
-            // 
-            // tableCell61
-            // 
-            this.tableCell61.CanShrink = true;
-            this.tableCell61.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C14_SummCost18")});
-            this.tableCell61.Dpi = 254F;
-            this.tableCell61.Name = "tableCell61";
-            summary1.FormatString = "{0:#0.00}";
-            summary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.tableCell61.Summary = summary1;
-            this.tableCell61.Text = "tableCell61";
-            this.tableCell61.Weight = 0.17742492686094732;
-            // 
-            // tableCell62
-            // 
-            this.tableCell62.CanShrink = true;
-            this.tableCell62.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C15_SummCost10")});
-            this.tableCell62.Dpi = 254F;
-            this.tableCell62.Name = "tableCell62";
-            summary2.FormatString = "{0:#0.00}";
-            summary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.tableCell62.Summary = summary2;
-            this.tableCell62.Text = "tableCell62";
-            this.tableCell62.Weight = 0.10138560840107763;
-            // 
-            // tableCell63
-            // 
-            this.tableCell63.CanShrink = true;
-            this.tableCell63.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C16_SummCost0")});
-            this.tableCell63.Dpi = 254F;
-            this.tableCell63.Name = "tableCell63";
-            summary3.FormatString = "{0:#0.00}";
-            summary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.tableCell63.Summary = summary3;
-            this.tableCell63.Text = "tableCell63";
-            this.tableCell63.Weight = 0.20277145916886241;
-            // 
-            // tableCell64
-            // 
-            this.tableCell64.CanShrink = true;
-            this.tableCell64.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C17_SummVat18")});
-            this.tableCell64.Dpi = 254F;
-            this.tableCell64.Name = "tableCell64";
-            summary4.FormatString = "{0:#0.00}";
-            summary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.tableCell64.Summary = summary4;
-            this.tableCell64.Text = "tableCell64";
-            this.tableCell64.Weight = 0.17742431578744136;
-            // 
-            // tableCell15
-            // 
-            this.tableCell15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C18_SummVat10")});
-            this.tableCell15.Dpi = 254F;
-            this.tableCell15.Name = "tableCell15";
-            summary5.FormatString = "{0:#.00}";
-            summary5.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.tableCell15.Summary = summary5;
-            this.tableCell15.Text = "tableCell15";
-            this.tableCell15.Weight = 0.10138584307358491;
+            this.tableCell60.Weight = 2.5954712097058503;
             // 
             // tableCell66
             // 
             this.tableCell66.CanShrink = true;
             this.tableCell66.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookPay20144.Records.C19_SummNoVat")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "BookBay20144.BayRecords.B16_SummVat")});
             this.tableCell66.Dpi = 254F;
             this.tableCell66.Name = "tableCell66";
-            summary6.FormatString = "{0:#0.00}";
-            summary6.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.tableCell66.Summary = summary6;
+            this.tableCell66.StylePriority.UseTextAlignment = false;
+            summary1.FormatString = "{0:### ### ### ##0.00}";
+            summary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            this.tableCell66.Summary = summary1;
             this.tableCell66.Text = "tableCell66";
-            this.tableCell66.Weight = 0.16221676661560486;
+            this.tableCell66.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell66.Weight = 0.27881039474772329;
             // 
             // table6
             // 
@@ -1579,14 +1521,14 @@ namespace XtraReportSerialization {
             // 
             this.tableCell137.Dpi = 254F;
             this.tableCell137.Name = "tableCell137";
-            this.tableCell137.Text = "11";
+            this.tableCell137.Text = "13";
             this.tableCell137.Weight = 0.20900223278523933;
             // 
             // tableCell138
             // 
             this.tableCell138.Dpi = 254F;
             this.tableCell138.Name = "tableCell138";
-            this.tableCell138.Text = "12";
+            this.tableCell138.Text = "14";
             this.tableCell138.Weight = 0.10138559808760073;
             // 
             // tableCell139
@@ -1594,14 +1536,14 @@ namespace XtraReportSerialization {
             this.tableCell139.Dpi = 254F;
             this.tableCell139.Multiline = true;
             this.tableCell139.Name = "tableCell139";
-            this.tableCell139.Text = "13\r\n";
+            this.tableCell139.Text = "15";
             this.tableCell139.Weight = 0.36498790610759146;
             // 
             // tableCell140
             // 
             this.tableCell140.Dpi = 254F;
             this.tableCell140.Name = "tableCell140";
-            this.tableCell140.Text = "14";
+            this.tableCell140.Text = "16";
             this.tableCell140.Weight = 0.27881046306768675;
             // 
             // label2

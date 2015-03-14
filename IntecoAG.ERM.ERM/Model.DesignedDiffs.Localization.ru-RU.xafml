@@ -71,6 +71,7 @@
           </Item>
         </Items>
       </Item>
+      <Item Id="FinPlan" Caption="ФинПланы" />
       <Item Id="Settings" Caption="Настройки">
         <Items>
           <Item Id="ERMCurrentUser" Caption="Мои данные" />

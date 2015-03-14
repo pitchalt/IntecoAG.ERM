@@ -203,6 +203,11 @@
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.CS.Security.csCSecurityRole" DefaultLookupEditorMode="AllItems" />
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDocTime">
+      <OwnMembers>
+        <Member Name="Year" DataSourceCriteria="" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.fmCSettingsFinance">
       <OwnMembers>
         <Member Name="ManagerGroupOfSignPlanDepartment" DataSourcePropertyIsNullCriteria="" DataSourceCriteria="" />
@@ -2691,12 +2696,6 @@
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
-    </DetailView>
-    <DetailView Id="FmFinPlanSubjectDocYear_DetailView">
-      <Items>
-        <PropertyEditor Id="DocOperations" View="FmFinPlanBase_Operations_ListVariants" />
-        <PropertyEditor Id="Operations" View="FmFinPlanBase_Operations_ListVariants" />
-      </Items>
     </DetailView>
     <DetailView Id="fmIDirection_DetailView">
       <Layout>

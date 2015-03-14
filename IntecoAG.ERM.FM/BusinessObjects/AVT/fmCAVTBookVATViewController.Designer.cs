@@ -25,6 +25,7 @@ namespace IntecoAG.ERM.FM.AVT {
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.ImportAction = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
+            this.ImportSummAllAction = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
             // 
             // ImportAction
             // 
@@ -42,6 +43,22 @@ namespace IntecoAG.ERM.FM.AVT {
             this.ImportAction.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
             this.ImportAction.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.ImportAction_Execute);
             // 
+            // ImportSummAllAction
+            // 
+            this.ImportSummAllAction.Caption = "ImportSummAll";
+            this.ImportSummAllAction.ConfirmationMessage = null;
+            this.ImportSummAllAction.Id = "fmCAVTBookVATViewController_ImportSummAllAction";
+            this.ImportSummAllAction.ImageName = null;
+            this.ImportSummAllAction.Shortcut = null;
+            this.ImportSummAllAction.Tag = null;
+            this.ImportSummAllAction.TargetObjectsCriteria = null;
+            this.ImportSummAllAction.TargetViewId = null;
+            this.ImportSummAllAction.TargetViewNesting = DevExpress.ExpressApp.Nesting.Root;
+            this.ImportSummAllAction.TargetViewType = DevExpress.ExpressApp.ViewType.DetailView;
+            this.ImportSummAllAction.ToolTip = null;
+            this.ImportSummAllAction.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
+            this.ImportSummAllAction.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.ImportSummAllAction_Execute);
+            // 
             // fmCAVTBookVATViewController
             // 
             this.TargetObjectType = typeof(IntecoAG.ERM.FM.AVT.fmCAVTBookVAT);
@@ -51,5 +68,6 @@ namespace IntecoAG.ERM.FM.AVT {
         #endregion
 
         private DevExpress.ExpressApp.Actions.SimpleAction ImportAction;
+        private DevExpress.ExpressApp.Actions.SimpleAction ImportSummAllAction;
     }
 }

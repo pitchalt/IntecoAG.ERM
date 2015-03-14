@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
+//using System.Windows.Forms;
 //
 using DevExpress.Data.Filtering;
 using DevExpress.Data.Linq;
@@ -14,10 +15,127 @@ using DevExpress.Xpo;
 //
 using IntecoAG.ERM.CS;
 using IntecoAG.ERM.CRM.Party;
+//
+using FileHelpers;
+using FileHelpers.DataLink;
 
 namespace IntecoAG.ERM.FM.AVT {
 
     static public class fmCAVTBookVATLogic {
+
+        [FixedLengthRecord]
+        public class InvoiceInfo {
+            [FieldFixedLength(6)]
+            public String vo_code;
+            [FieldFixedLength(3)]
+            public String sf_type;
+            [FieldFixedLength(3)]
+            public String sf_type_orig;
+            [FieldFixedLength(20)]
+            public String sf_intnum;
+            [FieldFixedLength(50)]
+            public String sf_number;
+            [FieldFixedLength(8)]
+            public String sf_date;
+            [FieldFixedLength(6)]
+            public String reg_vo_code;
+            [FieldFixedLength(8)]
+            public String reg_sf_date;
+            [FieldFixedLength(17)]
+            public String cost_full;
+            [FieldFixedLength(17)]
+            public String cost_calc;
+            [FieldFixedLength(17)]
+            public String cost_crd;
+            [FieldFixedLength(17)]
+            public String cost_nocrd;
+            [FieldFixedLength(17)]
+            public String vat_19_deb;
+            [FieldFixedLength(17)]
+            public String vat_19_deb_71;
+            [FieldFixedLength(17)]
+            public String vat_19_deb_98;
+            [FieldFixedLength(17)]
+            public String vat_virtual;
+            [FieldFixedLength(17)]
+            public String vat_19_crd_68;
+            [FieldFixedLength(17)]
+            public String vat_19_crd_cost;
+            [FieldFixedLength(17)]
+            public String vat_19_ost;
+            [FieldFixedLength(17)]
+            public String vat_68_deb;
+        }
+
+        static public void ImportSummAll_Correct(IObjectSpace os, fmCAVTBookVAT book, String file_name) {
+//            OpenFileDialog dialog = new OpenFileDialog();
+//            if (dialog.ShowDialog() == DialogResult.OK) {
+            FixedFileEngine engine = new FixedFileEngine(typeof(InvoiceInfo));
+            InvoiceInfo[] imp_res = (InvoiceInfo[])engine.ReadFile(file_name);
+            foreach (var line in book.BookVATRecords) {
+                if (line.BookBuhStruct != null)
+                    continue;
+                InvoiceInfo info = imp_res.FirstOrDefault(
+                    x => x.sf_intnum.Trim() == line.VATInvoiceRegNumber &&
+                        x.sf_number.Trim() == line.VATInvoiceNumber &&
+                        x.sf_date == line.VATInvoiceDate.ToString("yyyyMMdd") &&
+                        x.vo_code.Trim() == line.Party.Code
+                    );
+                if (info == null) {
+                    info = imp_res.FirstOrDefault(
+                                        x => x.sf_intnum.Trim() == line.VATInvoiceRegNumber &&
+                                            x.sf_number.Trim() == line.VATInvoiceNumber &&
+                                            x.reg_sf_date == line.VATInvoiceDate.ToString("yyyyMMdd") &&
+                                            x.vo_code.Trim() == line.Party.Code
+                                        );
+                }
+                if (info == null) {
+                    info = imp_res.FirstOrDefault(
+                        x => x.sf_intnum.Trim() == line.VATInvoiceRegNumber &&
+                            x.sf_intnum.Trim() == line.VATInvoiceNumber &&
+                            x.sf_date == line.VATInvoiceDate.ToString("yyyyMMdd") &&
+                            x.vo_code.Trim() == line.Party.Code
+                        );
+                    if (info != null) {
+                        line.VATInvoiceNumber = info.sf_number.Trim();
+                    }
+                }
+                if (info == null) {
+                    info = imp_res.FirstOrDefault(
+                    x => x.sf_intnum.Trim() == line.VATInvoiceNumber &&
+                        String.IsNullOrEmpty(line.VATInvoiceRegNumber) &&
+                        x.sf_date == line.VATInvoiceDate.ToString("yyyyMMdd") &&
+                        x.vo_code.Trim() == line.Party.Code
+                    );
+                    if (info != null) { 
+                        line.VATInvoiceRegNumber = info.sf_intnum.Trim();
+                        line.VATInvoiceNumber = info.sf_number.Trim();
+                    }
+                }
+                if (info != null) { 
+                    Decimal vat = Decimal.Parse(info.vat_19_deb.Trim().Replace('.', ',')) + 
+                            Decimal.Parse(info.vat_19_deb_71.Trim().Replace('.', ','))  + 
+                            Decimal.Parse(info.vat_19_deb_98.Trim().Replace('.', ','))  + 
+                            Decimal.Parse(info.vat_virtual.Trim().Replace('.', ','));
+                    Decimal cost_full = Decimal.Parse(info.cost_full.Trim().Replace('.', ','));
+                    Decimal cost_crd = Decimal.Parse(info.cost_crd.Trim().Replace('.', ','));
+                    Decimal cost_nocrd = Decimal.Parse(info.cost_nocrd.Trim().Replace('.', ','));
+                    Decimal cost_calc = Decimal.Parse(info.cost_calc.Trim().Replace('.', ','));
+                    if (cost_full != 0) {
+                        line.SummAll_Correct = cost_full;
+                    }
+                    else if (cost_crd >= cost_nocrd + cost_calc) {
+                        line.SummAll_Correct = cost_crd + vat;
+                    }
+                    else {
+                        line.SummAll_Correct = cost_nocrd + cost_calc + vat;
+                    }
+                }
+                else {
+                }
+            }
+        }
+
 
         static public void ImportBuhData(IObjectSpace os, fmCAVTBookVAT book) {
             if (book.BookVATType == fmCAVTBookVAT.fmCAVTBookVATType.PAY_MAIN)
@@ -408,6 +526,13 @@ namespace IntecoAG.ERM.FM.AVT {
                                              new BinaryOperator("Date", invoice_buhrec.Key.AVTInvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
                                              new BinaryOperator("Date", invoice_buhrec.Key.AVTInvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
                                              new BinaryOperator("Supplier", party)));
+                if (invoice_buhrec.Key.AVTInvoiceType == "—‘¿" && rec.Invoice == null) {
+                    rec.Invoice = os.FindObject<fmCAVTInvoiceBase>(
+                            CriteriaOperator.And(new BinaryOperator("Number", invoice_buhrec.Key.AVTInvoiceNumber),
+                                                 new BinaryOperator("Date", invoice_buhrec.Key.AVTInvoiceDate.Date, BinaryOperatorType.GreaterOrEqual),
+                                                 new BinaryOperator("Date", invoice_buhrec.Key.AVTInvoiceDate.Date.AddDays(1), BinaryOperatorType.Less),
+                                                 new BinaryOperator("Customer", party)));
+                }
                 rec.PayDate = invoice_buhrec.Select(buhrec => buhrec.PayDocDate).Max();
                 rec.BuhDate = invoice_buhrec.Select(buhrec => buhrec.BuhDocDate).Min();
                 //Decimal SummNoVAT_18;
@@ -433,6 +558,9 @@ namespace IntecoAG.ERM.FM.AVT {
                 if (rec.SummBayVatDeduction == 0) {
                     os.Delete(rec);
                     continue;
+                }
+                if (rec.SummBayCost == 0) {
+                    rec.SummBayCost = Decimal.Round((rec.SummBayVatDeduction + rec.SummBayVatInCost) * 100 / 18, 2);
                 }
                 rec.SequenceNumber = seq_num++;
                 switch (rec.BuhRecordType) {

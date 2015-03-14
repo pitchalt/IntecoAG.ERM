@@ -68,7 +68,7 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="Trw" ChildItemsDisplayStyle="List">
+      <Item Id="Trw" ChildItemsDisplayStyle="List" Index="6">
         <Items>
           <Item Id="TrwContragents" Index="0" IsNewNode="True">
             <Items IsNewNode="True">
@@ -76,6 +76,11 @@
               <Item Id="@52ec9235-0012-478a-b657-0b56a4c64ef4" ViewId="crmBankAccount_Trw_Type1_ListView" IsNewNode="True" />
             </Items>
           </Item>
+        </Items>
+      </Item>
+      <Item Id="FinPlan" Index="7">
+        <Items>
+          <Item Id="FmFinPlanSubjectFull_ListView" Removed="True" />
         </Items>
       </Item>
       <Item Id="Settings" Index="8" ChildItemsDisplayStyle="List" IsNewNode="True">
@@ -164,11 +169,6 @@
           <Item Id="fmCPaymentKBK_ListView" IsNewNode="True" Removed="True" />
           <Item Id="fmCPaymentKind_ListView" IsNewNode="True" Removed="True" />
           <Item Id="fmCPaymentTaxPeriod_ListView" IsNewNode="True" Removed="True" />
-        </Items>
-      </Item>
-      <Item Id="FinPlan">
-        <Items>
-          <Item Id="FmFinPlanSubjectFull_ListView" Removed="True" />
         </Items>
       </Item>
       <Item Id="KPI" Removed="True" />

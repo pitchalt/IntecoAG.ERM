@@ -750,21 +750,22 @@
     <Class Name="IntecoAG.ERM.FM.Docs.csCDocRCB" Caption="Платежный документ" />
     <Class Name="IntecoAG.ERM.FM.FinAccount.fmCFAAccount" Caption="Фин.Счет" />
     <Class Name="IntecoAG.ERM.FM.FinAccount.fmCFAAccountSystem" Caption="План счетов" />
-    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanBase">
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanBase" Caption="БазовыйФинПлан">
       <OwnMembers>
         <Member Name="Code" Caption="Код" />
         <Member Name="Journal" Caption="Журнал" />
         <Member Name="Operations" Caption="Операции" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDoc">
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDoc" Caption="Документ Фин.Плана">
       <OwnMembers>
         <Member Name="SubLines" Caption="Строчки" />
         <Member Name="Valuta" Caption="Валюта" />
         <Member Name="VatRate" Caption="Ставка НДС" />
+        <Member Name="Version" Caption="Версия" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDocLine">
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDocLine" Caption="Строка документа ФинПлан">
       <OwnMembers>
         <Member Name="Deal" Caption="Сделка" />
         <Member Name="DealAddNumber" Caption="Сделка Номер Доп." />
@@ -791,10 +792,55 @@
         <Member Name="VatRate" Caption="Ставка НДС" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanDocTime" Caption="Строка Документа Время">
+      <OwnMembers>
+        <Member Name="Date" Caption="Дата" />
+        <Member Name="DocLine" Caption="Строка документа" />
+        <Member Name="IsError" Caption="Ошибка" />
+        <Member Name="IsExpanded" Caption="Развернутый" />
+        <Member Name="Month" Caption="Месяц" />
+        <Member Name="Name" Caption="Наименование" />
+        <Member Name="Quarter" Caption="Квартал" />
+        <Member Name="SubTimes" Caption="Детализация" />
+        <Member Name="TimeType" Caption="Тип записи" />
+        <Member Name="TopTime" Caption="Входит в" />
+        <Member Name="ValueAutomatic" Caption="Значение автоматическое" />
+        <Member Name="ValueManual" Caption="Значение ручное" />
+        <Member Name="Year" Caption="Год" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.FinPlan.FmFinPlanPlan" Caption="ФинПлан Сводный" />
+    <Class Name="IntecoAG.ERM.FM.FinPlan.Subject.FmFinPlanSubject" Caption="ФинПлан Темы">
+      <OwnMembers>
+        <Member Name="FinPlanSubjectDocs" Caption="Документы ФинПлана" />
+        <Member Name="JournalPlanYear" Caption="Журнал План года" />
+        <Member Name="PlanFullOperations" Caption="План операций полностью" />
+        <Member Name="PlanYearOperations" Caption="План операций годовой" />
+        <Member Name="Subject" Caption="Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.FinPlan.Subject.FmFinPlanSubjectDoc" Caption="ФинПлан Документ темы">
+      <OwnMembers>
+        <Member Name="DocOperations" Caption="Операции документа" />
+        <Member Name="FinPlanSubject" Caption="ФинПлан Темы" />
+        <Member Name="Order" Caption="Заказ" />
+        <Member Name="Subject" Caption="Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.FinPlan.Subject.FmFinPlanSubjectDocFull" Caption="Документ ФинПлан темы полностью" />
+    <Class Name="IntecoAG.ERM.FM.FmAccounting" Caption="Учет процедур">
+      <OwnMembers>
+        <Member Name="Code" Caption="Код" />
+        <Member Name="Journal" Caption="Журнал" />
+        <Member Name="Operations" Caption="Операции" />
+        <Member Name="Person" Caption="Владелец" />
+      </OwnMembers>
+    </Class>
     <Class Name="IntecoAG.ERM.FM.fmCostItem" Caption="Статья ДДС">
       <OwnMembers>
         <Member Name="Code" Caption="Код" />
         <Member Name="Description" Caption="Описание" />
+        <Member Name="IsSelectabled" Caption="Можно использовать" />
         <Member Name="Name" Caption="Наименование" />
       </OwnMembers>
     </Class>
@@ -812,7 +858,23 @@
         <Member Name="ManagerGroupOfSubject" Caption="Менеджеры тем" />
       </OwnMembers>
     </Class>
-    <Class Name="IntecoAG.ERM.FM.FmJournalOperation">
+    <Class Name="IntecoAG.ERM.FM.FmJournal" Caption="Журнал операций">
+      <OwnMembers>
+        <Member Name="Accounting" Caption="Учет" />
+        <Member Name="Code" Caption="Код" />
+        <Member Name="FinPlan" Caption="ФинПлан" />
+        <Member Name="FinPlanDoc" Caption="Документ ФинПлана" />
+        <Member Name="JournalTypeAccounting" Caption="Журнал Тип Учета" />
+        <Member Name="JournalTypeLegal" Caption="Журнал Тип Персоны" />
+        <Member Name="JournalTypeObject" Caption="Журнал Тип Объекта" />
+        <Member Name="JournalTypePeriod" Caption="Журнал Тип Периода" />
+        <Member Name="JournalTypeSource" Caption="Журнал Тип Источника" />
+        <Member Name="Operations" Caption="Операции" />
+        <Member Name="Order" Caption="Заказ" />
+        <Member Name="Subject" Caption="Тема" />
+      </OwnMembers>
+    </Class>
+    <Class Name="IntecoAG.ERM.FM.FmJournalOperation" Caption="Финансовая операция">
       <OwnMembers>
         <Member Name="BalanceSumma" Caption="Балансовая Сумма" />
         <Member Name="BalanceValuta" Caption="Валюта баланса" />
@@ -829,6 +891,10 @@
         <Member Name="FinOperationType" Caption="Тип операции" />
         <Member Name="Journal" Caption="Журнал" />
         <Member Name="JournalCode" Caption="Код журнала" />
+        <Member Name="JournalTypeLegal" Caption="Журнал Тип Персоны" />
+        <Member Name="JournalTypeObject" Caption="Журнал Тип Объекта" />
+        <Member Name="JournalTypePeriod" Caption="Журнал Тип Периода" />
+        <Member Name="JournalTypeSource" Caption="Журнал Тип Источника" />
         <Member Name="Month" Caption="Месяц" />
         <Member Name="ObligationSumma" Caption="Сумма обязательств" />
         <Member Name="ObligationValuta" Caption="Валюта обязательств" />
