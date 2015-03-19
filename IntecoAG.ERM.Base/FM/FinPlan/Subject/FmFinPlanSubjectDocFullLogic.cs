@@ -87,7 +87,8 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             return result;
         }
         protected void NormLines(FmFinPlanDocLine line, IList<FmFinPlanDocLine> norm_list) {
-            norm_list.Add(line);
+            if (line.LineType != FmFinPlanLineType.FMFPL_CASH_OUT_INTERNAL_WORK_ITEM_TOTAL)
+                norm_list.Add(line);
             foreach (var sub_line in line.SubLines)
                 NormLines(sub_line, norm_list);
         }
@@ -233,7 +234,7 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
                 return;
             try {
                 Double dval = Double.Parse(value, FormatProvider);
-                value_decimal = Decimal.Round(new Decimal(dval), 3);
+                value_decimal = Decimal.Round(new Decimal(dval), 5);
             }
             catch (FormatException e) {
                 throw new FormatException(String.Format("Лист: {0}, Колонка: {1}/{2}, Строка: {3}, Значение {4}", line_doc.Sheet, start_column, column, line_doc.LineCode, value), e);
