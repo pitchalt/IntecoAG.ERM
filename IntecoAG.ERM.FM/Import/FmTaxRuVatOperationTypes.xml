@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Pavel Uzorin</Author>
+  <LastAuthor>Pavel Uzorin</LastAuthor>
+  <Created>2015-04-06T15:46:41Z</Created>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>14085</WindowHeight>
+  <WindowWidth>27870</WindowWidth>
+  <WindowTopX>930</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:CharSet="204" x:Family="Swiss" ss:Size="11"
+    ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s83">
+   <Interior/>
+  </Style>
+  <Style ss:ID="s92">
+   <Font ss:FontName="Calibri" x:CharSet="204" x:Family="Swiss" ss:Size="11"/>
+  </Style>
+  <Style ss:ID="s95">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s96">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial"/>
+  </Style>
+  <Style ss:ID="s97">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s98">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial"/>
+  </Style>
+  <Style ss:ID="s99">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s100">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:CharSet="204" x:Family="Swiss" ss:Size="11"/>
+  </Style>
+  <Style ss:ID="s101">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s102">
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s103">
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="27" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:Width="26.25"/>
+   <Column ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="427.5"/>
+   <Column ss:Width="44.25"/>
+   <Row ss:Height="51">
+    <Cell ss:StyleID="s95"><Data ss:Type="String">N п/п</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">Наименование вида операции</Data></Cell>
+    <Cell ss:StyleID="s95"><Data ss:Type="String">Код вида операции</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Отгрузка (передача) или приобретение товаров, работ, услуг (включая посреднические услуги), имущественных прав, за исключением операций, перечисленных по кодам 03, 04, 06, 10, 11, 13</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Оплата, частичная оплата (полученная или переданная) в счет предстоящих поставок товаров (выполнения работ, оказания услуг (включая посреднические услуги)), передачи имущественных прав, за исключением операций, перечисленных по кодам 05, 06, 12</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Возврат покупателем товаров продавцу или получение продавцом возвращенных покупателем товаров</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s99"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">Отгрузка (передача) или приобретение товаров, работ, услуг (за исключением посреднических услуг), имущественных прав на основе договора комиссии (агентского договора, в случае, если агент совершает действия от своего имени), за исключением операций, перечисленных по коду 06</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="Number">4</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s99"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">Оплата, частичная оплата (полученная или переданная) в счет предстоящих поставок товаров (выполнения работ, оказания услуг (за исключением посреднических услуг)), передачи имущественных прав на основе договора комиссии (агентского договора, в случае, если агент совершает действия от своего имени), за исключением операций, перечисленных по коду 06</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25" ss:StyleID="s83">
+    <Cell ss:StyleID="s99"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">Операции, совершаемые налоговыми агентами, перечисленными в статье 161 Налогового кодекса Российской Федерации (Собрание законодательства Российской Федерации, 2000, N 32, ст. 3340; 2011, N 50, ст. 7359)</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="Number">6</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Операции, перечисленные в подпункте 2 пункта 1 статьи 146 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">7</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Операции, перечисленные в подпункте 3 пункта 1 статьи 146 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">8</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Получение сумм, указанных в статье 162 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">9</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Отгрузка (передача) или получение товаров, работ, услуг, имущественных прав на безвозмездной основе</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">10</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Отгрузка (передача) или приобретение товаров, имущественных прав, перечисленных в пунктах 3, 4, 5.1 статьи 154, в подпунктах 1 - 4 статьи 155 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">11</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Оплата, частичная оплата (полученная или переданная) в счет предстоящих поставок товаров, передачи имущественных прав, перечисленных в пунктах 3, 4, 5.1 статьи 154, в подпунктах 1 - 4 статьи 155 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">12</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Проведение подрядными организациями (застройщиками или техническими заказчиками) капитального строительства, модернизации (реконструкции) объектов недвижимости</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">13</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">Получение продавцом товаров, возвращенных покупателем, не являющимся налогоплательщиком налога на добавленную стоимость, за исключением операций, перечисленных по коду 17</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="Number">16</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Получение продавцом товаров, возвращенных покупателем - физическим лицом, оплаченных наличным расчетом</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="Number">17</Data></Cell>
+   </Row>
+   <Row ss:Height="63.75">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Составление или получение корректировочного счета-фактуры в связи с изменением стоимости отгруженных товаров (работ, услуг), переданных имущественных прав в сторону уменьшения, в том числе в случае уменьшения цен (тарифов) и (или) уменьшения количества (объема) отгруженных товаров (работ, услуг), переданных имущественных прав</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="Number">18</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Ввоз товаров на территорию Российской Федерации и иные территории, находящиеся под ее юрисдикцией, с территории государств Евразийского экономического союза</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">19</Data></Cell>
+   </Row>
+   <Row ss:Height="51">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Ввоз товаров на территорию Российской Федерации и иные территории, находящиеся под ее юрисдикцией, в таможенных процедурах выпуска для внутреннего потребления, переработки для внутреннего потребления, временного ввоза и переработки вне таможенной территории</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">20</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Операции по восстановлению сумм налога, перечисленные в пункте 8 статьи 145, пункте 3 статьи 170, статье 171.1 Налогового кодекса Российской Федерации, а также при совершении операций, облагаемых по налоговой ставке 0 процентов</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="Number">21</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Операции по возврату авансовых платежей в случаях, перечисленных в абзаце втором пункта 5 статьи 171, а также операции, перечисленные в пункте 6 статьи 172 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">22</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">Приобретение услуг, оформленных бланками строгой отчетности в случаях, предусмотренных пунктом 7 статьи 171 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">23</Data></Cell>
+   </Row>
+   <Row ss:Height="25.5">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Регистрация счетов-фактур в книге покупок в случаях, предусмотренных абзацем вторым пункта 9 статьи 165 и пунктом 10 статьи 171 Налогового кодекса Российской Федерации</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">24</Data></Cell>
+   </Row>
+   <Row ss:Height="38.25">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Регистрация счетов-фактур в книге покупок в отношении сумм налога, ранее восстановленных при совершении операций, облагаемых по налоговой ставке 0 процентов</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">25</Data></Cell>
+   </Row>
+   <Row ss:Height="51">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Составление первичных учетных документов при реализации товаров (работ, услуг), имущественных прав лицам, не являющимся налогоплательщиками налога на добавленную стоимость, и налогоплательщикам, освобожденным от исполнения обязанностей налогоплательщика, связанной с исчислением и уплатой налога</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">26</Data></Cell>
+   </Row>
+   <Row ss:Height="51">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Составление счета-фактуры на основании двух и более счетов-фактур при реализации и (или) приобретении товаров (работ, услуг), имущественных прав в случае, предусмотренном пунктом 3.1 статьи 169 Налогового кодекса Российской Федерации, а также получение указанного счета-фактуры налогоплательщиком</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">27</Data></Cell>
+   </Row>
+   <Row ss:Height="63.75">
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Составление счета-фактуры на основании двух и более счетов-фактур при получении оплаты, частичной оплаты в счет предстоящих поставок товаров (работ, услуг), имущественных прав, в случае, предусмотренном пунктом 3.1 статьи 169 Налогового кодекса Российской Федерации, а также получение указанного счета-фактуры налогоплательщиком</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="Number">28</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <RangeSelection>R1C1:R27C3</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
