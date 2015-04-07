@@ -633,6 +633,7 @@
       <DependentUpon>XafExtBpmnAcceptableObjectController.cs</DependentUpon>
     </Compile>
     <Compile Include="XafExt\Bpmn\XafExtBpmnIAcceptableObject.cs" />
+    <Compile Include="XafExt\DC\EntityBase.cs" />
     <Compile Include="XafExt\ObjectSpaceHelper.cs" />
     <Compile Include="XafExt\TaskAnalysis1LayoutUpdaterBase.cs">
       <SubType>Code</SubType>

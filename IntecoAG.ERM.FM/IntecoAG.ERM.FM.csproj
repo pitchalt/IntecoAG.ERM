@@ -436,6 +436,8 @@
     <Compile Include="Controllers\fmRepaymentTaskLineViewController.Designer.cs">
       <DependentUpon>fmRepaymentTaskLineViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseUpdate\FmTaxRuVatOperationTypesImpoter.cs" />
+    <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_238.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_234.cs" />
     <Compile Include="DatabaseUpdate\UpdaterDB_1_1_1_232.cs" />
@@ -448,6 +450,72 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="SumInWord.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\ValidationMethods.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\ДокПдтвОпл.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\ДокПдтвУпл.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнигаПокуп.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнигаПокупДЛ.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнигаПрод.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнигаПродДЛ.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнПокДЛСтр.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнПокСтр.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнПокСтрБаз.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнПродДЛСтр.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнПродСтр.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\КнПродСтрБаз.cs" />
+    <Compile Include="Tax\RuVat\RU_V5_04\СвУчСделки.cs" />
+    <Compile Include="Tax\RuVat\TestDataGenerator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tax\RuVat\TestDataGenerator.Designer.cs">
+      <DependentUpon>TestDataGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tax\RuVat\ВалютаОКВ.cs" />
+    <Compile Include="Tax\RuVat\ВидОперации.cs" />
+    <Compile Include="Tax\RuVat\ДекларацияНДС.cs" />
+    <Compile Include="Tax\RuVat\ДекларацияНДСДокумент.cs" />
+    <Compile Include="Tax\RuVat\Книга.cs" />
+    <Compile Include="Tax\RuVat\КнигаДокумент.cs" />
+    <Compile Include="Tax\RuVat\КнигаДокументДопЛист.cs" />
+    <Compile Include="Tax\RuVat\КнигаДокументОсновная.cs" />
+    <Compile Include="Tax\RuVat\КнигаДокументОсновнаяVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tax\RuVat\КнигаДокументОсновнаяVC.Designer.cs">
+      <DependentUpon>КнигаДокументОсновнаяVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tax\RuVat\КнигаДокументСтрока.cs" />
+    <Compile Include="Tax\RuVat\КнигаПокупок.cs" />
+    <Compile Include="Tax\RuVat\КнигаПокупокДокументСтрока.cs" />
+    <Compile Include="Tax\RuVat\КнигаПокупокСтрока.cs" />
+    <Compile Include="Tax\RuVat\КнигаПродаж.cs" />
+    <Compile Include="Tax\RuVat\КнигаПродажДокументСтрока.cs" />
+    <Compile Include="Tax\RuVat\КнигаПродажСтрока.cs" />
+    <Compile Include="Tax\RuVat\КнигаСтрока.cs" />
+    <Compile Include="Tax\RuVat\ЛицоНДС.cs" />
+    <Compile Include="Tax\RuVat\Операция.cs" />
+    <Compile Include="Tax\RuVat\ОперацияКонтейнер.cs" />
+    <Compile Include="Tax\RuVat\ОперацияКонтРучные.cs" />
+    <Compile Include="Tax\RuVat\Основание.cs" />
+    <Compile Include="Tax\RuVat\ОснованиеVC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tax\RuVat\ОснованиеVC.Designer.cs">
+      <DependentUpon>ОснованиеVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tax\RuVat\ОснованиеДокумент.cs" />
+    <Compile Include="Tax\RuVat\ОснованиеЛогика.cs" />
+    <Compile Include="Tax\RuVat\ПериодБУ.cs" />
+    <Compile Include="Tax\RuVat\ПериодНДС.cs" />
+    <Compile Include="Tax\RuVat\ПериодНДСЛогика.cs" />
+    <Compile Include="Tax\Декларация.cs" />
+    <Compile Include="Tax\ДекларацияДокумент.cs" />
+    <Compile Include="Tax\Лицо.cs" />
+    <Compile Include="Tax\Налог.cs" />
+    <Compile Include="Tax\Налогоплательщик.cs" />
+    <Compile Include="Tax\Период.cs" />
+    <Compile Include="Tax\Регистр.cs" />
+    <Compile Include="Tax\Ставка.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BusinessObjects\AVT\fmCAVTBookBuhImportController.resx">
@@ -520,6 +588,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Tax\RuVat\TestDataGenerator.resx">
+      <DependentUpon>TestDataGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tax\RuVat\КнигаДокументОсновнаяVC.resx">
+      <DependentUpon>КнигаДокументОсновнаяVC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tax\RuVat\ОснованиеVC.resx">
+      <DependentUpon>ОснованиеVC.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml">
@@ -636,6 +713,18 @@
     <None Include="ReportLayouts\Список оплаченных счетов.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Tax\RuVat\RU_V5_04\XSD\NO_NDS.81_1_003_02_05_04_01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Tax\RuVat\RU_V5_04\XSD\NO_NDS.8_1_003_01_05_04_01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Tax\RuVat\RU_V5_04\XSD\NO_NDS.91_1_003_04_05_04_01.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Tax\RuVat\RU_V5_04\XSD\NO_NDS.9_1_003_03_05_04_01.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -662,8 +751,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BusinessObjects\StatementAccount\ReadMe.txt" />
+    <Content Include="Import\FmTaxRuVatOperationTypes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

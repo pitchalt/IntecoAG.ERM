@@ -569,6 +569,7 @@ namespace IntecoAG.ERM.FM.PaymentRequest {
         /// <summary>
         /// Комментарий
         /// </summary>
+        [Size(512)]
         public string Comment {
             get { return _Comment; }
             set { SetPropertyValue<string>("Comment", ref _Comment, value); }

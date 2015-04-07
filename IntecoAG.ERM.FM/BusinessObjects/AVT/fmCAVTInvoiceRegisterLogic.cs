@@ -37,7 +37,7 @@ namespace IntecoAG.ERM.FM.AVT {
             public String SF_PERIOD;
             [FieldFixedLength(20)]
             public String SF_REGNUM;
-            [FieldFixedLength(20)]
+            [FieldFixedLength(250)]
             public String SF_NUMBER;
             [FieldFixedLength(9)]
             public String SF_DATE;

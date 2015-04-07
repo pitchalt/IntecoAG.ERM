@@ -1,0 +1,126 @@
+﻿<#@ template language="C#" debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="System.Windows.Forms" #>
+<#@ Assembly Name="System" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="$(ProjectDir)\..\Xsd.Structure\bin\Debug\Xsd.Structure.dll" #>
+<#@ import namespace="Xsd.Structure" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+using System;
+using System.Linq;
+using System.Text;
+using DevExpress.Xpo;
+using DevExpress.ExpressApp;
+using System.ComponentModel;
+using DevExpress.ExpressApp.DC;
+using System.Xml;
+using System.Xml.Linq;
+using IntecoAG.XafExt.DC;
+using DevExpress.Data.Filtering;
+using DevExpress.Persistent.Base;
+using System.Collections.Generic;
+using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.BaseImpl;
+using DevExpress.Persistent.Validation;
+<#
+		    String path1 = "C:\\XSD\\NO_NDS.8_1_003_01_05_04_01.xsd";
+            String path2 = "C:\\XSD\\NO_NDS.81_1_003_02_05_04_01.xsd";
+            String path3 = "C:\\XSD\\NO_NDS.9_1_003_03_05_04_01.xsd";
+            String path4 = "C:\\XSD\\NO_NDS.91_1_003_04_05_04_01.xsd";
+            IList<String> xsd_paths = new List<String>();
+            xsd_paths.Add(path1);
+            xsd_paths.Add(path2);
+            xsd_paths.Add(path3);
+            xsd_paths.Add(path4);
+            var model = Generator.BuildXSDModel(xsd_paths);
+			IDictionary<String, Entity> books = new Dictionary<String, Entity>();
+			IDictionary<String, Entity> pages = new Dictionary<String, Entity>();
+
+			books.Add("КнигаПокуп", model.DictEnt["КнигаПокуп"]);
+			books.Add("КнигаПрод", model.DictEnt["КнигаПрод"]);
+			books.Add("КнигаПокупДЛ", model.DictEnt["КнигаПокупДЛ"]);
+			books.Add("КнигаПродДЛ", model.DictEnt["КнигаПродДЛ"]);
+
+			pages.Add("КнПокСтр", model.DictEnt["КнПокСтр"]);
+			pages.Add("КнПокДЛСтр", model.DictEnt["КнПокДЛСтр"]);
+			pages.Add("КнПродСтр", model.DictEnt["КнПродСтр"]);
+			pages.Add("КнПродДЛСтр", model.DictEnt["КнПродДЛСтр"]);
+			#>//
+namespace <#= "IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04" #> {
+<# foreach (var ent in model.Entities) { #>
+	/// <summary>
+    /// <#= ent.Description.Replace("\n", " ")#>
+	/// </summary>
+	<# if (ent.IsAbstract)  { #>[NonPersistent]<# } else { #>[Persistent("<#="FmTaxRuVatV504" + ent.Name #>")]<# } #> 
+	public <# if(ent.IsAbstract) { #>abstract<# } #> partial class <#= ent.Name #> <# if (!books.ContainsKey(ent.Name) && !pages.ContainsKey(ent.Name)) { #><#= ": BaseEntity" #><#}#> {
+		public <#= ent.Name #> (Session session): base(session) { } 
+		<# if (ent.isText){#>
+		private String _Значение;
+		public String Значение{get {return _Значение;}
+					set {
+				if (!IsLoading) OnChanging("Значение", value); 
+				SetPropertyValue<String>("Значение", ref _Значение, value); 
+			}
+		}
+		<#}#>
+		<# foreach(Property propert in ent.Properties){ #>
+		<# string correct_type = (propert.TType == null || propert.TType == string.Empty) ? propert.Restriction.DotNetType : propert.TType;#>
+		<# if (propert.MaxOccurs == "1"){#>
+		private <#= correct_type #> _<#= propert.Name #>;
+		/// <summary>
+		/// <#= propert.Description.Replace("\n", " ")#>
+		/// </summary>
+		<# if(propert.Restriction != null && propert.Restriction.Pattern != ""){#>[RuleRegularExpression(DefaultContexts.Save,"<#=propert.Restriction.Pattern#>")]<#}#>
+		<# if(propert.Required == "required"){#>[RuleRequiredField(DefaultContexts.Save)]<#}#>
+		<#if (propert.Association != null && propert.Association != ""){ #> [Association("<#=propert.Association#>")]<#}#>
+		public <#= correct_type #> <#= propert.Name #> {
+			get { return _<#= propert.Name #>; }
+			set {
+				if (!IsLoading) OnChanging("<#=propert.Name#>", value); 
+				SetPropertyValue<<#= correct_type #>>("<#= propert.Name #>", ref _<#= propert.Name #>, value); 
+			}
+		}<#} else {#>
+		/// <summary>
+		/// <#= propert.Description.Replace("\n", " ")#>
+		/// </summary>
+		[Association("<#=propert.Association #>")]<#if (correct_type == "DateTime") correct_type = "ДатаУчТов";#>
+		public XPCollection<<#= correct_type #>><#= propert.Name#> { get { return GetCollection<<#= correct_type#>>("<#=propert.Name#>");}}
+		<#}#>
+		<#}/* конец форыча по пропертям */#>
+		<#if(model.DictEnt.ContainsKey(ent.Name) ) { 
+			Entity parsing_entity = model.DictEnt[ent.Name];#>
+		public XmlNode ToXmlGenerated(XmlDocument document, XmlNode last_node){
+				XmlNode result = document.CreateElement("<#=parsing_entity.Name#>");
+				last_node.AppendChild(result);
+				<# if(parsing_entity.isText) {#> result.InnerText = Значение; <#}#>
+				XmlAttribute attrib;
+				<#foreach(Property propert in parsing_entity.Properties){ #>
+					<#if(model.DictEnt.ContainsKey(propert.Name)){ #>
+						<# if (propert.MaxOccurs != "1"){#>
+						foreach(<#= propert.Name#> str in <#= propert.Name#>){
+							result.AppendChild(str.ToXmlGenerated(document, result));
+						}
+						<#}else if(propert.Association == ""){#>
+							if (<#=propert.Name#> != null) result.AppendChild(<#= propert.Name#>.ToXmlGenerated(document, result));
+						<# }/* конец проверки на то, было это коллекцией или нет */#>
+					<#} else {#>
+						attrib = document.CreateAttribute("<#= propert.Name#>");
+						attrib.Value = <#=propert.Name#>.ToString();
+						result.Attributes.Append(attrib);
+					<#}/* конец проверки на принадлежность к строкам */#>
+				<#}/* конец форыча по пропертям в классе */#>
+		return result; }
+		<# }/* конец сериализатора для книг */ #>
+		
+
+
+	}
+<#}/* конец форыча по классам */#>
+}
