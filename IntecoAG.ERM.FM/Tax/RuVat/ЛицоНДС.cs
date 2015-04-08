@@ -15,11 +15,12 @@ using IntecoAG.XafExt.DC;
 
 namespace IntecoAG.ERM.FM.Tax.RuVat {
     public enum ЛицоТип {
-        ТИП_НЕЗАДАН = 0,
-        ТИП_ЮЛ = 1,
-        ТИП_ИП = 2,
-        ТИП_ФЛ = 3,
-        ТИП_РОЗНИЦА = 4,
+        НЕЗАДАН = 0,
+        ЮР_ЛИЦО = 1,
+        ПРЕДПРИНИМАТЕЛЬ = 2,
+        ФИЗ_ЛИЦО = 3,
+        РОЗНИЦА = 4,
+        ИНО_ПАРТНЕР = 5
     }
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]

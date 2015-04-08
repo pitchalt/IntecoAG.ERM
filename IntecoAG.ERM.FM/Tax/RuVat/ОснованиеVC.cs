@@ -23,6 +23,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 ОснованиеЛогика.ImportInvoices(os, dialog.FileName);
                 os.CommitChanges();
             }
+            ObjectSpace.CommitChanges();
         }
     }
 }

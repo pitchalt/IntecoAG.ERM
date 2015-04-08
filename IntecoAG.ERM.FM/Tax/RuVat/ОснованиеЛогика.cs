@@ -108,7 +108,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             IList<fmCAVTInvoiceTransferType> inv_transfer_types = os.GetObjects<fmCAVTInvoiceTransferType>();
             IList<fmCAVTInvoiceOperationType> inv_oper_types = os.GetObjects<fmCAVTInvoiceOperationType>();
             Int32 count = 0;
-            UInt32 seq_num = 0;
+            fmCAVTInvoiceType sf_sfz_type = os.GetObjects<fmCAVTInvoiceType>().First(x => x.Prefix == "Z");
             foreach (InvoiceImport imp_rec in imp_res) {
                 imp_rec.SF_VO_CODE = imp_rec.SF_VO_CODE.Trim();
                 imp_rec.SF_INT_NUMBER = imp_rec.SF_INT_NUMBER.Trim();
@@ -120,8 +120,10 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 DateTime sf_date = default(DateTime);
                 DateTime.TryParseExact(imp_rec.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out sf_date);
                 crmCParty party = os.GetObjects<crmCParty>(new BinaryOperator("Code", imp_rec.SF_VO_CODE)).FirstOrDefault();
-                if (party == null)
+                if (party == null) {
+                    System.Console.WriteLine("SF " + imp_rec.SF_NUMBER + " party not found (" + imp_rec.SF_VO_CODE + ")");
                     continue;
+                }
                 //
                 Основание.ТипИсточника ts;
                 if (imp_rec.SF_IO_TYPE == "I")
@@ -129,9 +131,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 else if (imp_rec.SF_IO_TYPE == "O")
                     ts = Основание.ТипИсточника.ИСХОДЯЩИЙ;
                 else
-                    continue;
-                if (imp_rec.SF_TYPE == " ")
-                    continue;
+                    throw new ArgumentOutOfRangeException("SF " + imp_rec.SF_NUMBER + " неопределен тип входящий/исходящий");
                 Основание.ТипОснования tsf;
                 switch (imp_rec.SF_TYPE) { 
                     case "СЧФ":
@@ -162,29 +162,73 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                         tsf = Основание.ТипОснования.ЧЕК;
                         break;
                     default:
+                        System.Console.WriteLine("SF: " + imp_rec.SF_NUMBER + " странный тип (" + imp_rec.SF_TYPE + ")");
                         continue;
                 }
                 String inn = "";
                 String kpp = "";
-                ЛицоТип party_type = ЛицоТип.ТИП_НЕЗАДАН;
+                ЛицоТип party_type = ЛицоТип.НЕЗАДАН;
                 if (party.Person != null) {
-                    if (party.Person.ComponentType == typeof(crmCLegalPerson) ||
-                        party.Person.ComponentType == typeof(crmCLegalPersonUnit)) {
-                        party_type = ЛицоТип.ТИП_ЮЛ;
-                        inn = party.INN;
-                        kpp = party.KPP;
+                    if (party.Person.Address.Country.CodeAlfa2 == "RU") {
+//                        Type party.ComponentTypeComponentObject.GetType();
+                        if (party.ComponentType == typeof(crmCLegalPerson) ||
+                            party.ComponentType == typeof(crmCLegalPersonUnit)) {
+                            party_type = ЛицоТип.ЮР_ЛИЦО;
+                            inn = party.INN;
+                            if (inn.Length == 9)
+                                inn = "0" + inn;
+                            kpp = party.KPP;
+                            if (inn.Length == 8)
+                                kpp = "0" + kpp;
+                            if (inn.Length != 10) {
+                                System.Console.WriteLine("Party: " + party.Code + " fail INN (" + inn + ")");
+                                continue;
+                            }
+                            if (kpp.Length != 9) {
+                                System.Console.WriteLine("Party: " + party.Code + " fail KPP (" + kpp + ")");
+                                continue;
+                            }
+                        }
+                        else {
+                            if (party.ComponentType == typeof(crmCBusinessman)) {
+                                party_type = ЛицоТип.ПРЕДПРИНИМАТЕЛЬ;
+                                inn = party.INN;
+                                if (inn.Length == 11)
+                                    inn = "0" + inn;
+                                if (inn.Length != 12) {
+                                    System.Console.WriteLine("Party: " + party.Code + " fail INN (" + inn + ")");
+                                    continue;
+                                }
+                            }
+                            else
+                                if (party.ComponentType == typeof(crmCPhysicalParty)) {
+                                    party_type = ЛицоТип.ФИЗ_ЛИЦО;
+                                }
+                        }
                     }
-                    if (party.Person.ComponentType == typeof(crmCBusinessman)) {
-                        party_type = ЛицоТип.ТИП_ИП;
-                        inn = party.INN;
-                    }
-                    if (party.Person.ComponentType == typeof(crmCPhysicalParty)) {
-                        party_type = ЛицоТип.ТИП_ФЛ;
+                    else {
+                        party_type = ЛицоТип.ИНО_ПАРТНЕР;
+                        System.Console.WriteLine("Party: " + party.Code + " инопартнер ");
                     }
                 }
                 if (party.Code == "2706") {
-                    party_type = ЛицоТип.ТИП_РОЗНИЦА;
+                    party_type = ЛицоТип.РОЗНИЦА;
                 }
+                if (imp_rec.SF_NUMBER == "150200305" || 
+                    imp_rec.SF_NUMBER == "К0200001" ||
+                    imp_rec.SF_NUMBER == "150200651" ||
+                    imp_rec.SF_NUMBER == "150300200" ||
+                    imp_rec.SF_NUMBER == "93409/1" ||
+                    imp_rec.SF_NUMBER == "23535" ||
+                    imp_rec.SF_NUMBER == "23538" ||
+                    imp_rec.SF_NUMBER == "ОК2010344 487755" ||
+                    imp_rec.SF_NUMBER == "ЖМ2010190 469141" ||
+                    imp_rec.SF_NUMBER == "26653" ||
+                    imp_rec.SF_NUMBER == "К0200001" ||
+                    imp_rec.SF_NUMBER == "93409/1" ||
+                    imp_rec.SF_NUMBER == "140100722"
+                    )
+                    continue;
                 Основание sf = os.FindObject<Основание>(
                     XPQuery<Основание>.TransformExpression(
                     ((ObjectSpace)os).Session,
@@ -233,6 +277,10 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 }
                 sfdoc.ДатаИсправления = sfdoc_date;
                 sfdoc.РегНомер = imp_rec.SF_REGNUM.Trim();
+                if (sf.Тип == Основание.ТипОснования.СФЗ && String.IsNullOrEmpty(sfdoc.РегНомер)) {
+                    Int32 IntNumber = fmCAVTInvoiceNumberGenerator.GenerateNumber(((ObjectSpace)os).Session, sf.ДействующийДокумент.CID, sf_sfz_type, sf.Дата, 0);
+                    sfdoc.РегНомер = sf_sfz_type.Prefix + sf.Дата.ToString("yyyyMM").Substring(2, 4) + IntNumber.ToString("00000");
+                }
                 sfdoc.КодПартнера = party.Code;
                 sfdoc.НаименКонтрагента = party.Name;
                 sfdoc.СуммаВсего = summ_cost + summ_nds;

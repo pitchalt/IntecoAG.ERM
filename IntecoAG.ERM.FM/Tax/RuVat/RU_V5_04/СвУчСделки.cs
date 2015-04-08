@@ -57,7 +57,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         public XmlNode ToXmlGenerated(XmlDocument document, XmlNode last_node) {
             XmlNode result = null;
 
-            if (“ип == Ћицо“ип.“»ѕ_ёЋ) {
+            if (“ип == Ћицо“ип.ё–_Ћ»÷ќ) {
                 result = document.CreateElement("—ведёЋ");
                 last_node.AppendChild(result);
                 
@@ -69,7 +69,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 attrib.Value =  ѕѕ;
                 result.Attributes.Append(attrib);
             }
-            if (“ип == Ћицо“ип.“»ѕ_»ѕ) {
+            if (“ип == Ћицо“ип.ѕ–≈ƒѕ–»Ќ»ћј“≈Ћ№) {
                 result = document.CreateElement("—вед»ѕ");
                 last_node.AppendChild(result);
 
@@ -84,7 +84,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         public —в”ч—делки(Session session) : base(session) { }
         public override void AfterConstruction() { 
             base.AfterConstruction();
-            “ип = Ћицо“ип.“»ѕ_Ќ≈«јƒјЌ;
+            “ип = Ћицо“ип.Ќ≈«јƒјЌ;
         }
 
         public override void OnChanging(string propertyName, object newValue) {
@@ -117,9 +117,9 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 return;
             switch (propertyName) {
                 case "“ип":
-                    if (“ип != Ћицо“ип.“»ѕ_ёЋ && “ип != Ћицо“ип.“»ѕ_‘Ћ)
+                    if (“ип != Ћицо“ип.ё–_Ћ»÷ќ && “ип != Ћицо“ип.‘»«_Ћ»÷ќ)
                         »ЌЌ = null;
-                    if (“ип != Ћицо“ип.“»ѕ_ёЋ)
+                    if (“ип != Ћицо“ип.ё–_Ћ»÷ќ)
                          ѕѕ = null;
                     break;
             }

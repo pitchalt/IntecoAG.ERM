@@ -22,47 +22,61 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 
         [PersistentAlias("Основание.Источник")]
         public Основание.ТипИсточника Источник {
-            get { return Основание.Источник; }
+            get { return Основание != null ? Основание.Источник : 0; }
         }
 
         [PersistentAlias("Основание.Корректировка")]
         public Основание.ТипПодчиненности Корректировка {
-            get { return Основание.Корректировка; }
+            get { return Основание != null ? Основание.Корректировка : 0; }
         }
 
         [PersistentAlias("Основание.Тип")]
         public Основание.ТипОснования Тип {
-            get { return Основание.Тип; }
+            get { return Основание != null ? Основание.Тип : 0; }
         }
 
         [PersistentAlias("Основание.Номер")]
         public String Номер {
-            get { return Основание.Номер; }
+            get { return Основание != null ? Основание.Номер : null; }
         }
 
         [PersistentAlias("Основание.Дата")]
         public DateTime Дата {
-            get { return Основание.Дата; }
+            get { return Основание != null ? Основание.Дата : default(DateTime); }
         }
 
         [PersistentAlias("Основание.ЛицоТип")]
         public ЛицоТип ЛицоТип {
-            get { return Основание.ЛицоТип; }
+            get { return Основание != null ? Основание.ЛицоТип : 0; }
         }
 
         [PersistentAlias("Основание.ИНН")]
         public String ИНН {
-            get { return Основание.ИНН; }
+            get { return Основание != null ? Основание.ИНН: null; }
         }
 
         [PersistentAlias("Основание.КПП")]
         public String КПП {
-            get { return Основание.КПП; }
+            get { return Основание != null ? Основание.КПП: null; }
         }
 
         [Association("ОснованиеДокумент-Операция")]
         public XPCollection<Операция> Операции {
             get { return GetCollection<Операция>("Операции"); }
+        }
+
+        [Persistent("CID")]
+        private Guid _CID;
+//        [RuleRequiredField]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [PersistentAlias("_CID")]
+        public Guid CID {
+            get { return _CID; }
+            //set {
+            //    if (!IsLoading) OnChanging("CID", value);
+            //    SetPropertyValue<Guid>("CID", ref _CID, value);
+            //}
         }
 
         private String _РегНомер;
@@ -268,7 +282,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 
         public ОснованиеДокумент(Session session) : base(session) { }
         public override void AfterConstruction() { 
-            base.AfterConstruction(); 
+            base.AfterConstruction();
+            _CID = new Guid();
         }
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue) {
