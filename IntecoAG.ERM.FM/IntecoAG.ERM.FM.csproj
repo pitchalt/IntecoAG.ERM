@@ -600,6 +600,9 @@
     <EmbeddedResource Include="Tax\RuVat\КнигаДокументОсновнаяVC.resx">
       <DependentUpon>КнигаДокументОсновнаяVC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tax\RuVat\ОперацияКонтРучныеВК.resx">
+      <DependentUpon>ОперацияКонтРучныеВК.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tax\RuVat\ОснованиеVC.resx">
       <DependentUpon>ОснованиеVC.cs</DependentUpon>
     </EmbeddedResource>
