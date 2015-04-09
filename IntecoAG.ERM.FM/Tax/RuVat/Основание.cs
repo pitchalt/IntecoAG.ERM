@@ -18,7 +18,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 
     [NavigationItem("Налоги")]
     [Persistent("FmTaxRuVatОснование")]
-    [RuleCombinationOfPropertiesIsUnique(null, DefaultContexts.Save, "Источник;Корректировка;Тип;ЛицоТип;ИНН;Номер;Дата")]
+    [RuleCombinationOfPropertiesIsUnique(null, DefaultContexts.Save, "ИннПродавца;Номер;Дата")]
     public class Основание : BaseEntity {
         /// <summary>
         /// Тип документа основания для книги
@@ -196,6 +196,20 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 SetPropertyValue<ЛицоТип>("ЛицоТип", ref _ЛицоТип, value);
             }
         }
+        [Persistent("ИннПродавца")]
+        private String _ИннПродавца;
+        [Size(12)]
+        [VisibleInListView(false)]
+        [PersistentAlias("_ИннПродавца")]
+        [RuleRequiredField]
+        public String ИннПродавца {
+            get { return _ИннПродавца; }
+        }
+        public void ИннПродавцаУст(String value) {
+            if (!IsLoading) OnChanging("ИннПродавца", value);
+            SetPropertyValue<String>("ИннПродавца", ref _ИннПродавца, value);
+        }
+
 
         private String _ИНН;
         [Size(12)]
@@ -386,6 +400,13 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 case "БазовоеОснование":
                 case "Корректировка":
                     UpdateBaseDocument();
+                    break;
+                case "Источник":
+                case "ИНН":
+                    if (Источник == ТипИсточника.ВХОДЯЩИЙ)
+                        ИннПродавцаУст(ИНН);
+                    else
+                        ИннПродавцаУст("5012039795");
                     break;
             }
         }

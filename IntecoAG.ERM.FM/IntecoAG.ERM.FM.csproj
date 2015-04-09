@@ -496,6 +496,12 @@
     <Compile Include="Tax\RuVat\Операция.cs" />
     <Compile Include="Tax\RuVat\ОперацияКонтейнер.cs" />
     <Compile Include="Tax\RuVat\ОперацияКонтРучные.cs" />
+    <Compile Include="Tax\RuVat\ОперацияКонтРучныеВК.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tax\RuVat\ОперацияКонтРучныеВК.Designer.cs">
+      <DependentUpon>ОперацияКонтРучныеВК.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tax\RuVat\Основание.cs" />
     <Compile Include="Tax\RuVat\ОснованиеVC.cs">
       <SubType>Component</SubType>

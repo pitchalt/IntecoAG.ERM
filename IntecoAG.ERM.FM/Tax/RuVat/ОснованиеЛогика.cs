@@ -124,7 +124,6 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     System.Console.WriteLine("SF " + imp_rec.SF_NUMBER + " party not found (" + imp_rec.SF_VO_CODE + ")");
                     continue;
                 }
-                //
                 Основание.ТипИсточника ts;
                 if (imp_rec.SF_IO_TYPE == "I")
                     ts = Основание.ТипИсточника.ВХОДЯЩИЙ;
@@ -226,33 +225,37 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     imp_rec.SF_NUMBER == "26653" ||
                     imp_rec.SF_NUMBER == "К0200001" ||
                     imp_rec.SF_NUMBER == "93409/1" ||
-                    imp_rec.SF_NUMBER == "140100722"
+                    imp_rec.SF_NUMBER == "140100722" ||
+                    party.Code == "7630" || 
+                    party.Code == "7974" || 
+                    party.Code == "955" 
                     )
                     continue;
+                //
+                String sale_inn = "5012039795";
+                if (ts == Основание.ТипИсточника.ВХОДЯЩИЙ)
+                    sale_inn = inn;
                 Основание sf = os.FindObject<Основание>(
                     XPQuery<Основание>.TransformExpression(
                     ((ObjectSpace)os).Session,
                     rec => 
-                        rec.ЛицоТип == party_type &&
-                        rec.ИНН == party.INN &&
-                           rec.Источник == ts &&
-//                           rec.RegNumber == imp_rec.SF_INT_NUMBER &&
-                           rec.Номер == imp_rec.SF_NUMBER &&
-                           rec.Тип == tsf &&
-                           rec.Дата >= sf_date &&
-                           rec.Дата < sf_date.AddDays(1)
+                        rec.ИннПродавца == sale_inn &&
+                        rec.Номер == imp_rec.SF_NUMBER &&
+                        rec.Дата >= sf_date &&
+                        rec.Дата < sf_date.AddDays(1)
                     ));
                 if (sf == null) {
                     sf = os.CreateObject<Основание>();
                     sf.Источник = ts;
-                    sf.Корректировка = Основание.ТипПодчиненности.ОСНОВНОЙ;
-                    sf.Тип = tsf;
-                    sf.ЛицоТип = party_type;
                     sf.ИНН = inn;
                     sf.Номер = imp_rec.SF_NUMBER;
                     sf.Дата = sf_date;
                     sf.КПП = kpp;
                 }
+                sf.Корректировка = Основание.ТипПодчиненности.ОСНОВНОЙ;
+                sf.Источник = ts;
+                sf.Тип = tsf;
+                sf.ЛицоТип = party_type;
                 ОснованиеДокумент sfdoc = null;
                 String sfdoc_sver = imp_rec.SF_PRAV_NUMBER.Trim();
                 if (String.IsNullOrEmpty(sfdoc_sver))
