@@ -64,12 +64,12 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
-        private Decimal _СуммаНДС;
-        public Decimal СуммаНДС {
-            get { return _СуммаНДС; }
+        private Decimal _СуммаНДСБаза;
+        public Decimal СуммаНДСБаза {
+            get { return _СуммаНДСБаза; }
             set {
-                if (!IsLoading) OnChanging("СуммаНДС", value);
-                SetPropertyValue<Decimal>("СуммаНДС", ref _СуммаНДС, value);
+                if (!IsLoading) OnChanging("СуммаНДСБаза", value);
+                SetPropertyValue<Decimal>("СуммаНДСБаза", ref _СуммаНДСБаза, value);
             }
         }
 

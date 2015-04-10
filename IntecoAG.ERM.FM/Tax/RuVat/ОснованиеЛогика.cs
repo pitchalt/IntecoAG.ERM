@@ -213,28 +213,15 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 if (party.Code == "2706") {
                     party_type = ЛицоТип.РОЗНИЦА;
                 }
-                if (imp_rec.SF_NUMBER == "150200305" || 
-                    imp_rec.SF_NUMBER == "К0200001" ||
-                    imp_rec.SF_NUMBER == "150200651" ||
-                    imp_rec.SF_NUMBER == "150300200" ||
-                    imp_rec.SF_NUMBER == "93409/1" ||
-                    imp_rec.SF_NUMBER == "23535" ||
-                    imp_rec.SF_NUMBER == "23538" ||
-                    imp_rec.SF_NUMBER == "ОК2010344 487755" ||
-                    imp_rec.SF_NUMBER == "ЖМ2010190 469141" ||
-                    imp_rec.SF_NUMBER == "26653" ||
-                    imp_rec.SF_NUMBER == "К0200001" ||
-                    imp_rec.SF_NUMBER == "93409/1" ||
-                    imp_rec.SF_NUMBER == "140100722" ||
-                    party.Code == "7630" || 
-                    party.Code == "7974" || 
-                    party.Code == "955" 
-                    )
-                    continue;
                 //
                 String sale_inn = "5012039795";
                 if (ts == Основание.ТипИсточника.ВХОДЯЩИЙ)
                     sale_inn = inn;
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!
+                // Выбраковываем СФ
+                if (String.IsNullOrEmpty(sale_inn) || String.IsNullOrEmpty(imp_rec.SF_REGNUM.Trim()) && tsf != Основание.ТипОснования.СФЗ) 
+                    continue;
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!
                 Основание sf = os.FindObject<Основание>(
                     XPQuery<Основание>.TransformExpression(
                     ((ObjectSpace)os).Session,

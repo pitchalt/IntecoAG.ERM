@@ -15,7 +15,12 @@ using IntecoAG.XafExt.DC;
 
 namespace IntecoAG.ERM.FM.Tax.RuVat {
 
-
+    public enum СтавкаНДС { 
+        ОБЛ_18 = 2,
+        ОБЛ_10 = 3,
+        ОБЛ_0 = 4,
+        НЕОБЛ = 5
+    }
 
     [Persistent("FmTaxRuVatОперация")]
     public class Операция: BaseEntity {
@@ -188,6 +193,77 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
+        private СтавкаНДС _Ставка;
+        [RuleRequiredField]
+        public СтавкаНДС Ставка {
+            get { return _Ставка; }
+            set {
+                if (!IsLoading) OnChanging("Ставка", value);
+                SetPropertyValue<СтавкаНДС>("Ставка", ref _Ставка, value);
+            }
+        }
+
+        private String _Проводка;
+        [Size(5)]
+        public String Проводка {
+            get { return _Проводка; }
+            set {
+                if (!IsLoading) OnChanging("Проводка", value);
+                SetPropertyValue<String>("Проводка", ref _Проводка, value);
+            }
+        }
+
+        private String _КодПартнера;
+        [Size(5)]
+        public String КодПартнера {
+            get { return _КодПартнера; }
+            set {
+                if (!IsLoading) OnChanging("КодПартнера", value);
+                SetPropertyValue<String>("КодПартнера", ref _КодПартнера, value);
+            }
+        }
+
+        private String _ОснованиеРегНомер;
+        [Size(20)]
+        public String ОснованиеРегНомер {
+            get { return _ОснованиеРегНомер; }
+            set {
+                if (!IsLoading) OnChanging("ОснованиеРегНомер", value);
+                SetPropertyValue<String>("ОснованиеРегНомер", ref _ОснованиеРегНомер, value);
+            }
+        }
+
+        private String _СФТип;
+        [Size(3)]
+        public String СФТип {
+            get { return _СФТип; }
+            set {
+                if (!IsLoading) OnChanging("СФТип", value);
+                SetPropertyValue<String>("СФТип", ref _СФТип, value);
+            }
+        }
+
+        private String _СФНаим;
+        [Size(33)]
+        public String СФНаим {
+            get { return _СФНаим; }
+            set {
+                if (!IsLoading) OnChanging("СФНаим", value);
+                SetPropertyValue<String>("СФНаим", ref _СФНаим, value);
+            }
+        }
+
+        private String _ПДНаим;
+        [Size(33)]
+        public String ПДНаим {
+            get { return _ПДНаим; }
+            set {
+                if (!IsLoading) OnChanging("ПДНаим", value);
+                SetPropertyValue<String>("ПДНаим", ref _ПДНаим, value);
+            }
+        }
+
+
         private КнигаСтрока _КнигаСтрока;
         [Association("КнигаСтрока-Операция")]
         public КнигаСтрока КнигаСтрока {
@@ -200,7 +276,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 
         private Основание _Основание;
         [Association("Основание-Операция")]
-        [RuleRequiredField]
+        [RuleRequiredField(TargetCriteria="Ставка != 'НЕОБЛ' && Ставка != 'ОБЛ_0'")]
         public Основание Основание {
             get { return _Основание; }
             set {
@@ -210,13 +286,40 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 
         private ОснованиеДокумент _ОснованиеДокумент;
         [Association("ОснованиеДокумент-Операция")]
-        [RuleRequiredField]
+        [RuleRequiredField(TargetCriteria = "Ставка != 'НЕОБЛ' && Ставка != 'ОБЛ_0'")]
         [DataSourceProperty("Основание.Документы")]
         public ОснованиеДокумент ОснованиеДокумент {
             get { return _ОснованиеДокумент; }
             set {
                 if (!IsLoading) OnChanging("ОснованиеДокумент", value);
                 SetPropertyValue<ОснованиеДокумент>("ОснованиеДокумент", ref _ОснованиеДокумент, value);
+            }
+        }
+
+        private Decimal _СуммаВсего;
+        public Decimal СуммаВсего {
+            get { return _СуммаВсего; }
+            set {
+                if (!IsLoading) OnChanging("СуммаВсего", value);
+                SetPropertyValue<Decimal>("СуммаВсего", ref _СуммаВсего, value);
+            }
+        }
+
+        private Decimal _СуммаСтоимость;
+        public Decimal СуммаСтоимость {
+            get { return _СуммаСтоимость; }
+            set {
+                if (!IsLoading) OnChanging("СуммаСтоимость", value);
+                SetPropertyValue<Decimal>("СуммаСтоимость", ref _СуммаСтоимость, value);
+            }
+        }
+
+        private Decimal _СуммаНДСБаза;
+        public Decimal СуммаНДСБаза {
+            get { return _СуммаНДСБаза; }
+            set {
+                if (!IsLoading) OnChanging("СуммаНДСБаза", value);
+                SetPropertyValue<Decimal>("СуммаНДСБаза", ref _СуммаНДСБаза, value);
             }
         }
 
@@ -232,27 +335,68 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             base.OnChanged(propertyName, oldValue, newValue);
             if (IsLoading)
                 return;
-            switch (propertyName) { 
+            Decimal old_summa;
+            switch (propertyName) {
+                case "ОснованиеРегНомер":
+                    if (!String.IsNullOrEmpty(ОснованиеРегНомер)) {
+                        if (ОснованиеДокумент == null || ОснованиеРегНомер != ОснованиеДокумент.РегНомер) {
+                            ОснованиеДокумент = Session.FindObject<ОснованиеДокумент>(
+                                PersistentCriteriaEvaluationBehavior.InTransaction,
+                                new BinaryOperator("РегНомер", ОснованиеРегНомер));
+                            if (ОснованиеДокумент == null)
+                                Основание = null;
+                        }
+                    }
+                    else 
+                        Основание = null;
+                    break;
                 case "Контейнер":
                     if (Контейнер != null) {
                         ПериодБУ = Контейнер.ПериодБУ;
                         ПериодНДС = Контейнер.ПериодНДС;
                     }
                     break;
+                case "ТипКниги":
+                case "ПериодНДС":
+                    ОбновитьСтрокуКниги();
+                    break;
+                case "КнигаСтрока":
+                    КнигаСтрока old_str = (КнигаСтрока)oldValue;
+//                    ОбновитьСтрокуКниги();
+                    if (old_str != null)
+                        ОбновитьСтрокуКнигиВычесть(old_str);
+                    if (КнигаСтрока != null)
+                        ОбновитьСтрокуКнигиДобавить(КнигаСтрока);
+                    break;
                 case "Основание":
-                    if (Основание == null)
-                        ОснованиеДокумент = null;
+                    if (Основание != null) {
+                        if (ОснованиеДокумент == null || Основание != ОснованиеДокумент.Основание) {
+                            ОснованиеДокумент = Основание.ДействующийДокумент;
+                        }
+                        ОбновитьСтрокуКниги();
+                    }
                     else
-                        ОснованиеДокумент = Основание.ДействующийДокумент;
+                        ОснованиеДокумент = null;
+                    break;
+                case "ОснованиеДокумент":
+                    if (ОснованиеДокумент != null)
+                        Основание = ОснованиеДокумент.Основание;
                     break;
                 case "ДатаБУ":
                     if (Контейнер != null && Контейнер.ПериодБУ != null) {
                         ПериодБУ = Контейнер.ПериодБУ;
                     }
                     else {
-                        ПериодБУ = Session.FindObject<ПериодБУ>(
+                        if (ДатаБУ < new DateTime(2015, 1, 1))
+                            break;
+                        ПериодБУ = Session.FindObject<ПериодБУ>(PersistentCriteriaEvaluationBehavior.InTransaction,
                             new BinaryOperator("ДатаС", ДатаБУ, BinaryOperatorType.LessOrEqual) &
-                            new BinaryOperator("ДатаПо", ДатаБУ, BinaryOperatorType.GreaterOrEqual), true);
+                            new BinaryOperator("ДатаПо", ДатаБУ, BinaryOperatorType.GreaterOrEqual));
+                        if (ПериодБУ == null) {
+                            ПериодБУ = new ПериодБУ(Session);
+                            ПериодБУ.Налогоплательщик = Контейнер.Налогоплательщик;
+                            ПериодБУ.ДатаПериода = ДатаБУ;
+                        }
                     }
                     break;
                 case "ДатаНДС":
@@ -260,9 +404,16 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                         ПериодНДС = Контейнер.ПериодНДС;
                     }
                     else {
-                        ПериодНДС = Session.FindObject<ПериодНДС>(
+                        if (ДатаНДС < new DateTime(2000, 1, 1))
+                            break;
+                        ПериодНДС = Session.FindObject<ПериодНДС>(PersistentCriteriaEvaluationBehavior.InTransaction,
                             new BinaryOperator("ДатаС", ДатаНДС, BinaryOperatorType.LessOrEqual) &
-                            new BinaryOperator("ДатаПо", ДатаНДС, BinaryOperatorType.GreaterOrEqual), true);
+                            new BinaryOperator("ДатаПо", ДатаНДС, BinaryOperatorType.GreaterOrEqual));
+                        if (ПериодНДС == null) {
+                            ПериодНДС = new ПериодНДС(Session);
+                            ПериодНДС.Налогоплательщик = Контейнер.Налогоплательщик;
+                            ПериодНДС.ДатаПериода = ДатаНДС;
+                        }
                     }
                     break;
                 case "ТипОперВнутр":
@@ -277,7 +428,58 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 case "ТипДеятельности":
                     UpdateTypes();
                     break;
-           }
+                case "СуммаВсего":
+                    old_summa = (Decimal)oldValue;
+                    if (КнигаСтрока != null) {
+                        КнигаСтрока.СуммаВсего -= old_summa;
+                        КнигаСтрока.СуммаВсего += СуммаВсего;
+                    }
+                    break;
+                case "СуммаСтоимость":
+                    old_summa = (Decimal)oldValue;
+                    if (КнигаСтрока != null) {
+                        КнигаСтрока.СуммаСтоимость -= old_summa;
+                        КнигаСтрока.СуммаСтоимость += СуммаВсего;
+                    }
+                    break;
+                case "СуммаНДСБаза":
+                    old_summa = (Decimal)oldValue;
+                    if (КнигаСтрока != null) {
+                        КнигаСтрока.СуммаНДСБаза -= old_summa;
+                        КнигаСтрока.СуммаНДСБаза += СуммаВсего;
+                    }
+                    break;
+            }
+        }
+        protected void ОбновитьСтрокуКниги() {
+            if (ПериодНДС == null || Основание == null)
+                return;
+            if (ТипКниги == ТипКнигиТип.ПРОДАЖ) {
+                ПериодНДС.КнигаПродаж.Основания.Add(Основание);
+                КнигаСтрока = РазместитьОснованиеВКниге(ПериодНДС.КнигаПродаж, Основание);
+            }
+            if (ТипКниги == ТипКнигиТип.ПОКУПОК) {
+                ПериодНДС.КнигаПродаж.Основания.Add(Основание);
+                КнигаСтрока = РазместитьОснованиеВКниге(ПериодНДС.КнигаПокупок, Основание);
+            }
+        }
+        protected КнигаСтрока РазместитьОснованиеВКниге(Книга книга, Основание основание ) {
+            foreach (КнигаСтрока str in книга.СтрокиКниги) {
+                if (str.Основание == основание)
+                    return str;
+            }
+            return null;
+        }
+        protected void ОбновитьСтрокуКнигиВычесть(КнигаСтрока str) {
+            ОбновитьСтрокуКнигиДобавить(str, -1);
+        }
+        protected void ОбновитьСтрокуКнигиДобавить(КнигаСтрока str) {
+            ОбновитьСтрокуКнигиДобавить(str, 1);
+        }
+        private void ОбновитьСтрокуКнигиДобавить(КнигаСтрока str, Int32 k) {
+            str.СуммаВсего += k * СуммаВсего;
+            str.СуммаСтоимость += k * СуммаСтоимость;
+            str.СуммаНДСБаза += k * СуммаНДСБаза;
         }
 
         protected void UpdateTypes() {

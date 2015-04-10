@@ -23,9 +23,33 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
     [NavigationItem("Налоги")]
     [Persistent("FmTaxRuVatОперацияКонтейнер")]
     // Specify more UI options using a declarative approach (http://documentation.devexpress.com/#Xaf/CustomDocument2701).
+    [RuleCombinationOfPropertiesIsUnique(null, DefaultContexts.Save, "Налогоплательщик;Код")]
     public abstract class ОперацияКонтейнер : BaseEntity { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (http://documentation.devexpress.com/#Xaf/CustomDocument3146).
+        private Налогоплательщик _Налогоплательщик;
+        [RuleRequiredField]
+//        [VisibleInDetailView(true)]
+        [VisibleInListView(true)]
+        public Налогоплательщик Налогоплательщик {
+            get { return _Налогоплательщик; }
+            set {
+                if (!IsLoading) OnChanging("Налогоплательщик", value);
+                SetPropertyValue<Налогоплательщик>("Налогоплательщик", ref _Налогоплательщик, value);
+            }
+        }
+        private String _Код;
+//        [RuleRequiredField(TargetCriteria = "ПериодБУ == null")]
+        [RuleRequiredField]
+        [Size(32)]
+        public String Код {
+            get { return _Код; }
+            set {
+                if (!IsLoading) OnChanging("Код", value);
+                SetPropertyValue<String>("Код", ref _Код, value);
+            }
+        }
+        //
         private ПериодНДС _ПериодНДС;
-        [RuleRequiredField(TargetCriteria = "ПериодБУ == null")]
+        //[RuleRequiredField(TargetCriteria = "ПериодБУ == null")]
         public ПериодНДС ПериодНДС {
             get { return _ПериодНДС; }
             set {
@@ -35,7 +59,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         }
 
         private ПериодБУ _ПериодБУ;
-        [RuleRequiredField(TargetCriteria = "ПериодНДС == null")]
+        //[RuleRequiredField(TargetCriteria = "ПериодНДС == null")]
         public ПериодБУ ПериодБУ {
             get { return _ПериодБУ; }
             set {
