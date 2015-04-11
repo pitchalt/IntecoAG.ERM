@@ -510,14 +510,7 @@
       <DependentUpon>ОперацияКонтРучныеВК.cs</DependentUpon>
     </Compile>
     <Compile Include="Tax\RuVat\Основание.cs" />
-    <Compile Include="Tax\RuVat\ОснованиеVC.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Tax\RuVat\ОснованиеVC.Designer.cs">
-      <DependentUpon>ОснованиеVC.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tax\RuVat\ОснованиеДокумент.cs" />
-    <Compile Include="Tax\RuVat\ОснованиеЛогика.cs" />
     <Compile Include="Tax\RuVat\ПериодБУ.cs" />
     <Compile Include="Tax\RuVat\ПериодНДС.cs" />
     <Compile Include="Tax\RuVat\ПериодНДСЛогика.cs" />
@@ -612,9 +605,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tax\RuVat\ОперацияКонтРучныеВК.resx">
       <DependentUpon>ОперацияКонтРучныеВК.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tax\RuVat\ОснованиеVC.resx">
-      <DependentUpon>ОснованиеVC.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

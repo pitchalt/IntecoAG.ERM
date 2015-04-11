@@ -904,6 +904,7 @@
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Subject.fmCSubjectExt" Caption="Тема" />
+    <Class Name="IntecoAG.ERM.FM.Tax.RuVat.ДокИмпортОснований+СтрокаОснов" Caption="Строка Основ" />
     <Class Name="IntecoAG.ERM.GFM.gfmCAnalytic">
       <OwnMembers>
         <Member Name="DateBegin" Caption="Дата С" />

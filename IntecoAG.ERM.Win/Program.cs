@@ -94,6 +94,12 @@ namespace IntecoAG.ERM.Win
             e.AuditTrailSettings.RemoveType(typeof(FM.AVT.fmCAVTBookBuhRecord));
             e.AuditTrailSettings.RemoveType(typeof(FM.FinPlan.FmFinPlanDocLine));
             e.AuditTrailSettings.RemoveType(typeof(FM.FinPlan.FmFinPlanDocTime));
+            e.AuditTrailSettings.RemoveType(typeof(FM.Tax.RuVat.Основание));
+            e.AuditTrailSettings.RemoveType(typeof(FM.Tax.RuVat.ОснованиеДокумент));
+            e.AuditTrailSettings.RemoveType(typeof(FM.Tax.RuVat.ДокИмпортОснований.СтрокаОснов));
+            e.AuditTrailSettings.RemoveType(typeof(FM.Tax.RuVat.КнигаСтрока));
+            e.AuditTrailSettings.RemoveType(typeof(FM.Tax.RuVat.КнигаДокументСтрока));
+            e.AuditTrailSettings.RemoveType(typeof(FM.Tax.RuVat.Операция));
             //e.AuditTrailSettings.AddType(typeof(FM.Order.fmCOrderExt), "Status");
             //e.AuditTrailSettings.AddType(typeof(FM.Order.fmCOrderManageDoc), "Status");
         }

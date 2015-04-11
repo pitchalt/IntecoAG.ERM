@@ -192,6 +192,7 @@
         <Member Name="TypeIndicator" RowCount="0" />
       </OwnMembers>
     </Class>
+    <Class Name="IntecoAG.ERM.FM.Tax.RuVat.ДокИмпортОснований+СтрокаОснов" DefaultDetailView="ДокИмпортОснований+СтрокаОснов_DetailView" />
   </BOModel>
   <NavigationItems>
     <Items>
@@ -533,7 +534,7 @@
             <LayoutGroup Id="Corrections" Index="2" />
             <LayoutGroup Id="AVTInvoiceVersions" Index="3">
               <LayoutItem Id="Current" Index="0" ViewItem="Current" IsNewNode="True" />
-              <LayoutItem Id="AVTInvoiceVersions" Index="1" />
+              <LayoutItem Id="AVTInvoiceVersions" Index="1" ViewItem="AVTInvoiceVersions" />
             </LayoutGroup>
             <LayoutGroup Id="AuditTrail" Index="4" />
             <LayoutGroup Id="PaymentsList" Removed="True" />
