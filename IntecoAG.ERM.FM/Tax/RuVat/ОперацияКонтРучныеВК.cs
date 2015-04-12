@@ -34,12 +34,19 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         }
         [FixedLengthRecord]
         public class OperationImport {
+//0660 2 BOOK        (N1)
+//0670 2 DIR         (N1)
+//0680 2 WORK_TYPE   (N2)
+//0690 2 OPERATION   (N2)
+
             [FieldFixedLength(2)]
             public String BOOK;
+            [FieldFixedLength(2)]
+            public String DIR;
+            [FieldFixedLength(3)]
+            public String WORK_TYPE;
             [FieldFixedLength(3)]
             public String OPERATION;
-            [FieldFixedLength(3)]
-            public String VAT_MODE;
             [FieldFixedLength(2)]
             public String VAT_RATE;
             [FieldFixedLength(6)]
@@ -66,6 +73,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             public String PD_NUMBER;  
             [FieldFixedLength(8)]
             public String PD_DATE;    
+            //
             [FieldFixedLength(17)]
             public String SUMM_ALL;   
             [FieldFixedLength(17)]
@@ -75,9 +83,18 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             [FieldFixedLength(17)]
             public String SUMM_VAT_IN;
             [FieldFixedLength(17)]
+            public String SUMM_VAT_IN_USE;
+            [FieldFixedLength(17)]
             public String SUMM_VAT_COST;
             [FieldFixedLength(17)]
             public String SUMM_VAT_BAY;
+//0830 2 SUMM-ALL       (N13.2)
+//0840 2 SUMM-COST      (N13.2)
+//0850 2 SUMM-VAT-PAY   (N13.2)
+//0860 2 SUMM-VAT-IN    (N13.2)
+//0870 2 SUMM-VAT-IN-USE(N13.2)
+//0880 2 SUMM-VAT-COST  (N13.2)
+//0890 2 SUMM-VAT-BAY   (N13.2)
         }
 
         private void Import(IObjectSpace os, ОперацияКонтРучные конт, String file_name) {
@@ -104,7 +121,9 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 //                Decimal summ_cost = Decimal.Parse(imp_rec.SUMM_COST.Trim().Replace('.', ','));
 //                DateTime.TryParseExact(imp_rec.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out sfdoc_date);
                 oper.ТипКниги = (Операция.ТипКнигиТип) Int32.Parse(oper_imp.BOOK.Trim());
-                oper.ТипОперВнутр = (Операция.ТипОперВнутрТип) Int32.Parse(oper_imp.OPERATION.Trim());
+                oper.ТипДеятельности = (Операция.ТипДеятельностиТип)Int32.Parse(oper_imp.WORK_TYPE.Trim());
+                oper.ТипНапрОпер = (Операция.ТипНапрОперТип)Int32.Parse(oper_imp.DIR.Trim());
+                oper.ТипОперВнутр = (Операция.ТипОперВнутрТип)Int32.Parse(oper_imp.OPERATION.Trim());
                 String stavka = oper_imp.VAT_RATE.Trim();
                 if (String.IsNullOrEmpty(stavka) || stavka == "0")
                     stavka = "2";
@@ -119,23 +138,39 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 oper.КодПартнера = oper_imp.VO_CODE.Trim();
                 if (oper_imp.SF_TYPE.Trim() != "СФЗ")
                     oper.ОснованиеРегНомер = oper_imp.SF_REGNUM.Trim();
+                else
+                    oper.ОснованиеРегНомер = doc != null ? doc.РегНомер : null;
                 oper.СФТип = oper_imp.SF_TYPE.Trim();
-                oper.СФНаим = oper_imp.SF_TYPE_ORIG.Trim() + ' ' + oper_imp.SF_NUMBER.Trim() + ' ' + oper_imp.SF_DATE;
-                oper.ПДНаим = oper_imp.PD_TYPE.Trim() + ' ' + oper_imp.PD_NUMBER.Trim() + ' ' + oper_imp.PD_DATE;
+                oper.СФТипОриг = oper_imp.SF_TYPE_ORIG.Trim();
+                oper.СФНомер = oper_imp.SF_NUMBER.Trim() ;
+                DateTime.TryParseExact(oper_imp.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
+                oper.СФДата = date;
+                oper.ПДТип = oper_imp.PD_TYPE.Trim();
+                oper.ПДНомер = oper_imp.PD_NUMBER.Trim(); 
+                DateTime.TryParseExact(oper_imp.PD_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
+                oper.ПДДата = date;
                 oper.СуммаВсего = Decimal.Parse(oper_imp.SUMM_ALL.Trim().Replace('.', ','));
+                oper.СуммаСтоимость = Decimal.Parse(oper_imp.SUMM_COST.Trim().Replace('.', ','));
                 oper.СуммаНДСБаза = Decimal.Parse(oper_imp.SUMM_VAT_PAY.Trim().Replace('.', ','));
-                if (oper.СФТип != "СФВ") {
-                    oper.СуммаСтоимость = oper.СуммаВсего;
-                    oper.СуммаСтоимость += -oper.СуммаНДСБаза;
-                }
-                else {
-                    oper.СуммаСтоимость = Decimal.Round(oper.СуммаНДСБаза * 100 / 18, 2);
-                    oper.СуммаВсего = oper.СуммаСтоимость + oper.СуммаНДСБаза;
+                oper.СуммаНДСВычет = Decimal.Parse(oper_imp.SUMM_VAT_BAY.Trim().Replace('.', ','));
+                oper.СуммаНДССтоимость = Decimal.Parse(oper_imp.SUMM_VAT_COST.Trim().Replace('.', ','));
+                oper.СуммаНДС19Входящий = Decimal.Parse(oper_imp.SUMM_VAT_IN.Trim().Replace('.', ','));
+                oper.СуммаНДС19Списано = Decimal.Parse(oper_imp.SUMM_VAT_IN_USE.Trim().Replace('.', ','));
+                if (oper.ТипКниги == Операция.ТипКнигиТип.ПРОДАЖ) {
+                    if (oper.СФТип != "СФВ") {
+                        oper.СуммаСтоимость = oper.СуммаВсего;
+                        oper.СуммаСтоимость += -oper.СуммаНДСБаза;
+                    }
+                    else {
+                        oper.СуммаСтоимость = Decimal.Round(oper.СуммаНДСБаза * 100 / 18, 2);
+                        oper.СуммаВсего = oper.СуммаСтоимость + oper.СуммаНДСБаза;
+                    }
                 }
                 //oper_imp.SUMM_ALL;   
                 //oper_imp.SUMM_COST;  
                 //oper_imp.SUMM_VAT_PAY; 
                 //oper_imp.SUMM_VAT_IN;
+                //oper_imp.SUMM_VAT_IN_USE;
                 //oper_imp.SUMM_VAT_COST;
                 //oper_imp.SUMM_VAT_BAY;
                 //System.Console.WriteLine(oper_import.SUMM_ALL + "_" + oper_import.SUMM_VAT_PAY + "_" + oper_import.SUMM_VAT_BAY);

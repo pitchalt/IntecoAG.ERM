@@ -331,6 +331,10 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
 
             protected void ОбновитьСчетФактуру() {
+                if (ТипИсточника == Основание.ТипИсточника.ВХОДЯЩИЙ || String.IsNullOrEmpty(Номер) || Дата < new DateTime(2000, 1, 1) ||
+                    СчетФактура != null && СчетФактура.Number == Номер &&
+                    СчетФактура.Date >= Дата && СчетФактура.Date < Дата.AddDays(1))
+                    return;
                 СчетФактураУст(Session.FindObject<fmCAVTInvoiceBase>(
                                         XPQuery<fmCAVTInvoiceBase>.TransformExpression(Session,
                     rec =>

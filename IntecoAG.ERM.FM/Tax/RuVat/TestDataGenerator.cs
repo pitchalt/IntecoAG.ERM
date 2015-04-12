@@ -35,8 +35,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             using (IObjectSpace os = Application.ObjectSpaceProvider.CreateObjectSpace()) {
                 Налогоплательщик nlg = os.CreateObject<Налогоплательщик>(); 
                 nlg.Наименование = "АО ВПК \"НПО машиностроения\"";
-                nlg.ИНН = "1234567890";
-                nlg.КПП = "123456789";
+                nlg.ИНН = "5012039795";
+                nlg.КПП = "509950001";
 
 //                ВидОперации vid1 = os.CreateObject<ВидОперации>();
 //                vid1.Код = "01";

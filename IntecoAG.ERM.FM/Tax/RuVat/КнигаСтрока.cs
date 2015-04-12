@@ -55,12 +55,22 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
+
         private Decimal _СуммаВсего;
         public Decimal СуммаВсего {
             get { return _СуммаВсего; }
             set {
                 if (!IsLoading) OnChanging("СуммаВсего", value);
                 SetPropertyValue<Decimal>("СуммаВсего", ref _СуммаВсего, value);
+            }
+        }
+
+        private Decimal _СуммаСтоимость;
+        public Decimal СуммаСтоимость {
+            get { return _СуммаСтоимость; }
+            set {
+                if (!IsLoading) OnChanging("СуммаСтоимость", value);
+                SetPropertyValue<Decimal>("СуммаСтоимость", ref _СуммаСтоимость, value);
             }
         }
 
@@ -73,12 +83,39 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
-        private Decimal _СуммаСтоимость;
-        public Decimal СуммаСтоимость {
-            get { return _СуммаСтоимость; }
+        private Decimal _СуммаНДСВычет;
+        public Decimal СуммаНДСВычет {
+            get { return _СуммаНДСВычет; }
             set {
-                if (!IsLoading) OnChanging("СуммаСтоимость", value);
-                SetPropertyValue<Decimal>("СуммаСтоимость", ref _СуммаСтоимость, value);
+                if (!IsLoading) OnChanging("СуммаНДСВычет", value);
+                SetPropertyValue<Decimal>("СуммаНДСВычет", ref _СуммаНДСВычет, value);
+            }
+        }
+
+        private Decimal _СуммаНДССтоимость;
+        public Decimal СуммаНДССтоимость {
+            get { return _СуммаНДССтоимость; }
+            set {
+                if (!IsLoading) OnChanging("СуммаНДССтоимость", value);
+                SetPropertyValue<Decimal>("СуммаНДССтоимость", ref _СуммаНДССтоимость, value);
+            }
+        }
+
+        private Decimal _СуммаНДС19Входящий;
+        public Decimal СуммаНДС19Входящий {
+            get { return _СуммаНДС19Входящий; }
+            set {
+                if (!IsLoading) OnChanging("СуммаНДС19Входящий", value);
+                SetPropertyValue<Decimal>("СуммаНДС19Входящий", ref _СуммаНДС19Входящий, value);
+            }
+        }
+
+        private Decimal _СуммаНДС19Списано;
+        public Decimal СуммаНДС19Списано {
+            get { return _СуммаНДС19Списано; }
+            set {
+                if (!IsLoading) OnChanging("СуммаНДС19Списано", value);
+                SetPropertyValue<Decimal>("СуммаНДС19Списано", ref _СуммаНДС19Списано, value);
             }
         }
 

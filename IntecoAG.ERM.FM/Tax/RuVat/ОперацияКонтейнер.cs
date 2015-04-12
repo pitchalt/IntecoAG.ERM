@@ -81,7 +81,9 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             // Place your initialization code here (http://documentation.devexpress.com/#Xaf/CustomDocument2834).
         }
 
-
+        public override string ToString() {
+            return Код;
+        }
         //private string _PersistentProperty;
         //[XafDisplayName("My display name"), ToolTip("My hint message")]
         //[ModelDefault("EditMask", "(000)-00"), Index(0), VisibleInListView(false)]
