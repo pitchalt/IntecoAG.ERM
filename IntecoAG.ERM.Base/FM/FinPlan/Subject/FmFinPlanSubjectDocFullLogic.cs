@@ -73,7 +73,6 @@ namespace IntecoAG.ERM.FM.FinPlan.Subject {
             }
         }
 
-
         protected IDictionary<FmFinPlanSheetType, IList<FmFinPlanDocLine>> DocNormLines = new Dictionary<FmFinPlanSheetType, IList<FmFinPlanDocLine>>();
 
         protected void NormLines() {
