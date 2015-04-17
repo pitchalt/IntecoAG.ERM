@@ -351,7 +351,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         [Browsable(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента СтоимПродСФ при наличии (отсутствии) элемента СтоимПродОсв", UsedProperties = "СтоимПродСФ,СтоимПродОсв")]
         public Boolean СтоимПродСФ_СтоимПродОсв {
-            get { return (СтоимПродСФ != ValidationMethods._DECIMAL_NULL) == (СтоимПродОсв != ValidationMethods._DECIMAL_NULL); }
+            get { return СтоимПродСФ != ValidationMethods._DECIMAL_NULL || СтоимПродОсв != ValidationMethods._DECIMAL_NULL; }
         }
 
         [Browsable(false)]
@@ -386,7 +386,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 else
                     ДатаСчФПрод = ValidationMethods._DATE_NULL;
                 НомИспрСчФ = СчетФактура.НомерИсправления;
-                if (СчетФактура.ДатаИсправления > ValidationMethods._DATE_NULL)
+                if (НомИспрСчФ > 0 && СчетФактура.ДатаИсправления > ValidationMethods._DATE_NULL)
                     ДатаИспрСчФ = СчетФактура.ДатаИсправления;
                 else
                     ДатаИспрСчФ = ValidationMethods._DATE_NULL;
@@ -401,11 +401,13 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                     else
                         ДатаКСчФПрод = ValidationMethods._DATE_NULL;
                     НомИспрКСчФ = КорректировочныйСчетФактура.НомерИсправления;
-                    if (СчетФактура.ДатаИсправления > ValidationMethods._DATE_NULL)
+                    if (НомИспрКСчФ > 0 && СчетФактура.ДатаИсправления > ValidationMethods._DATE_NULL)
                         ДатаИспрКСчФ = КорректировочныйСчетФактура.ДатаИсправления;
                     else
                         ДатаИспрКСчФ = ValidationMethods._DATE_NULL;
                 }
+                this.СвПокупНаименование = ОснованиеДокумент.НаименКонтрагента;
+                this.СтоимПродСФ = ОснованиеДокумент.СуммаВсего;
             }
         }
     }

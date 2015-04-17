@@ -30,6 +30,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         /// Номер документа, подтверждающего оплату
         /// </summary>
         [RuleRequiredField]
+        [Size(20)]
         public String НомДокПдтвОпл {
             get { return _НомДокПдтвОпл; }
             set {

@@ -113,7 +113,9 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
             document.CreateXmlDeclaration("1.0", "windows-1251", "");
             document.AppendChild(file_node);
             XmlAttribute attribute_f1 = document.CreateAttribute("ИдФайл");
-            String fname = Книга.ПериодНДС.Код + ".КнигаПродаж.Основная.xml";
+            String fname = "NO_NDS.9" + '_' + "1111" + '_' + "2222" + '_' + Книга.ПериодНДС.Налогоплательщик.ИНН +
+                    Книга.ПериодНДС.Налогоплательщик.КПП + '_' + DateTime.Now.ToString("yyyyMMdd") + '_' + "QWERTY"
+                    ;
             attribute_f1.Value = fname;
             XmlAttribute attribute_f2 = document.CreateAttribute("ВерсПрог");
             attribute_f2.Value = "1.0";
@@ -126,7 +128,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
             XmlAttribute attribute_d1 = document.CreateAttribute("Индекс");
             attribute_d1.Value = "0000090";
             XmlAttribute attribute_d2 = document.CreateAttribute("НомКорр");
-            attribute_d2.Value = "1";
+            attribute_d2.Value = "0";
             file_node.AppendChild(doc_node);
             doc_node.Attributes.Append(attribute_d1);
             doc_node.Attributes.Append(attribute_d2);
@@ -135,14 +137,91 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 attribute_prizn_sved9.Value = "1";
                 doc_node.Attributes.Append(attribute_prizn_sved9);
             }
-            if ((attribute_prizn_sved9.Value) == "1") {
+//            if ((attribute_prizn_sved9.Value) == "1") {
                 doc_node.AppendChild(ToXmlGenerated(document, doc_node));
+//            }
+//            String exename = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+//            FileInfo fi = new FileInfo(exename);
+//            String folder = "KnigaProd\\" + DateTime.Now.ToString("dd.MM.yyyy") + "_" + DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "\\";
+//            String path = fi.Directory.FullName + "\\Export\\" + fname;
+            document.Save("S:\\" + fname + ".xml");
+        }
+
+        [Action]
+        public void Обновить() {
+            IObjectSpace os_cur = CommonMethods.FindObjectSpaceByObject(this);
+            using (IObjectSpace os = os_cur.CreateNestedObjectSpace()) {
+                КнигаПрод book = os.GetObject<КнигаПрод>(this);
+                Обновить(os, book);
+                os.CommitChanges();
             }
-            String exename = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            FileInfo fi = new FileInfo(exename);
-            String folder = "KnigaProd\\" + DateTime.Now.ToString("dd.MM.yyyy") + "_" + DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "\\";
-            String path = fi.Directory.FullName + "\\Export\\" + fname;
-            document.Save(path);
+        }
+
+        public static void Обновить(IObjectSpace os, КнигаПрод book) {
+            os.Delete(book.КнПродСтр);
+            Int32 cur_num = 1;
+            book.Книга.СтрокиКниги.Sorting.Add(new SortProperty("Основание.Дата",DevExpress.Xpo.DB.SortingDirection.Ascending));
+            foreach (var line in book.Книга.СтрокиКниги) {
+                КнПродСтр doc_line = os.CreateObject<КнПродСтр>();
+                book.КнПродСтр.Add(doc_line );
+                doc_line.КнигаСтрока = line;
+                doc_line.НомерПор = cur_num++;
+                foreach (Операция oper in line.Операции) {
+                    if (oper.Основание.Тип == Основание.ТипОснования.СФА) {
+                        ДокПдтвОпл pay_doc = null;
+                        foreach (ДокПдтвОпл doc in doc_line.ДокПдтвОпл) {
+                            if (doc.НомДокПдтвОпл == oper.ПДНомер && doc.ДатаДокПдтвОпл == oper.ПДДата) {
+                                pay_doc = doc;
+                                break;
+                            }
+                        }
+                        if (pay_doc == null) {
+                            pay_doc = os.CreateObject<ДокПдтвОпл>();
+                            doc_line.ДокПдтвОпл.Add(pay_doc);
+                            pay_doc.НомДокПдтвОпл = oper.ПДНомер;
+                            pay_doc.ДатаДокПдтвОпл = oper.ПДДата;
+                        }
+                    }
+                    if (oper.СуммаСтоимость != 0)
+                        doc_line.КодВидОпер = oper.ОфицВидОперации;
+                    if (oper.Ставка == СтавкаНДС.НЕОБЛ) {
+                    }
+                    if (oper.Ставка == СтавкаНДС.ОБЛ_0) {
+                        doc_line.СтоимПродСФ0 += oper.СуммаСтоимость;
+                    }
+                    if (oper.Ставка == СтавкаНДС.ОБЛ_10) {
+                        doc_line.СтоимПродСФ10 += oper.СуммаСтоимость;
+                        doc_line.СумНДССФ10 += oper.СуммаНДСБаза;
+                    }
+                    if (oper.Ставка == СтавкаНДС.ОБЛ_18) {
+                        doc_line.СтоимПродСФ18 += oper.СуммаСтоимость;
+                        doc_line.СумНДССФ18 += oper.СуммаНДСБаза;
+                    }
+                }
+                if (doc_line.СумНДССФ18 == 0 && doc_line.СтоимПродСФ18 == 0 &&
+                    doc_line.СтоимПродСФ10 == 0 && doc_line.СумНДССФ10 == 0 &&
+                    doc_line.СтоимПродСФ0 == 0) {
+                        os.Delete(doc_line);
+                        cur_num--;
+                }
+            }
+        }
+
+        [Action]
+        public void Перенумеровать() {
+            IObjectSpace os_cur = CommonMethods.FindObjectSpaceByObject(this);
+            using (IObjectSpace os = os_cur.CreateNestedObjectSpace()) {
+                КнигаПрод book = os.GetObject<КнигаПрод>(this);
+                Перенумеровать(os, book);
+                os.CommitChanges();
+            }
+        }
+        
+        public static void Перенумеровать(IObjectSpace os, КнигаПрод book) {
+            Int32 cur_num = 1;
+            foreach (var line in book.КнПродСтр.OrderBy( x => x.ДатаСчФПрод)) {
+                line.НомерПор = cur_num++;
+            }
         }
 
         /// <summary>

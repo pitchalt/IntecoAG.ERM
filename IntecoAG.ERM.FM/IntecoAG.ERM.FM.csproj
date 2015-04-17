@@ -450,6 +450,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="SumInWord.cs" />
+    <Compile Include="Tax\RuVat\ОперацияКонтИмпортСтруктур.cs" />
+    <Compile Include="Tax\НалогСубъект.cs" />
     <Compile Include="Tax\RuVat\ДокИмпортОснований.cs" />
     <Compile Include="Tax\RuVat\RU_V5_04\ValidationMethods.cs" />
     <Compile Include="Tax\RuVat\RU_V5_04\ДокПдтвОпл.cs" />
@@ -465,12 +467,6 @@
     <Compile Include="Tax\RuVat\RU_V5_04\КнПродСтр.cs" />
     <Compile Include="Tax\RuVat\RU_V5_04\КнПродСтрБаз.cs" />
     <Compile Include="Tax\RuVat\RU_V5_04\СвУчСделки.cs" />
-    <Compile Include="Tax\RuVat\TestDataGenerator.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Tax\RuVat\TestDataGenerator.Designer.cs">
-      <DependentUpon>TestDataGenerator.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tax\RuVat\ВалютаОКВ.cs" />
     <Compile Include="Tax\RuVat\ВидОперации.cs" />
     <Compile Include="Tax\RuVat\ДекларацияНДС.cs" />
@@ -522,6 +518,7 @@
     <Compile Include="Tax\Период.cs" />
     <Compile Include="Tax\Регистр.cs" />
     <Compile Include="Tax\Ставка.cs" />
+    <Compile Include="Tax\СтруктурноеПодразделение.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BusinessObjects\AVT\fmCAVTBookBuhImportController.resx">
@@ -594,9 +591,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Tax\RuVat\TestDataGenerator.resx">
-      <DependentUpon>TestDataGenerator.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Tax\RuVat\ДокИмпортОснованийВК.resx">
       <DependentUpon>ДокИмпортОснованийВК.cs</DependentUpon>
     </EmbeddedResource>

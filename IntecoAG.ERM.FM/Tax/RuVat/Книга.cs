@@ -39,7 +39,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             get { return GetCollection<КнигаДокумент>("КнигаДокументы"); } 
         }
 
-        [Association("Книга-КнигаДокументСтрока"), DevExpress.Xpo.Aggregated]
+        [Association("Книга-КнигаДокументСтрока")]
         public XPCollection<КнигаДокументСтрока> СтрокиДокументов {
             get { return GetCollection<КнигаДокументСтрока>("СтрокиДокументов"); } 
         }

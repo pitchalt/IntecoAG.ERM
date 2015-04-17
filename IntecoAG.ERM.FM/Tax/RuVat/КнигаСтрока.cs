@@ -33,6 +33,36 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
+        [PersistentAlias("Основание.СуммаВсего")]
+        public Decimal ОснованиеСуммаВсего {
+            get {
+                if (Основание == null)
+                    return 0;
+                else
+                    return Основание.СуммаВсего;
+
+            }
+        }
+        [PersistentAlias("Основание.СуммаНДС")]
+        public Decimal ОснованиеСуммаНДС {
+            get {
+                if (Основание == null)
+                    return 0;
+                else
+                    return Основание.СуммаНДС;
+
+            }
+        }
+        [PersistentAlias("Основание.Тип")]
+        public Основание.ТипОснования ТипОснования {
+            get {
+                if (Основание == null)
+                    return Основание.ТипОснования.Неопределен;
+                else
+                    return Основание.Тип;
+
+            }
+        }
         [Persistent]
         public Основание СчетФактура {
             get {
@@ -147,11 +177,12 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         }
 
         [Association("КнигаСтрока-Операция")]
-        XPCollection<Операция> Операции { 
+        public XPCollection<Операция> Операции { 
             get { return GetCollection<Операция>("Операции"); } 
         }
 
         public КнигаСтрока(Session session) : base(session) { }
         public override void AfterConstruction() { base.AfterConstruction(); }
+
     }
 }

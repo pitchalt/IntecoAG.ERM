@@ -63,6 +63,20 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     break;
             }
         }
+
+        [Action(TargetObjectsCriteria = "ОснованиеСуммаВсего == 0")]
+        public void ЗаполнитьСтоимостьВсего() {
+            if (ОснованиеСуммаВсего != 0 || Основание == null || Основание.ДействующийДокумент == null)
+                return;
+            ОснованиеДокумент doc = Основание.ДействующийДокумент;
+            doc.ТребуетсяПроверка = true;
+            doc.СуммаВсего = 0;
+            doc.СуммаНДС = 0;
+            foreach (var oper in Основание.Операции) {
+                doc.СуммаВсего += oper.СуммаВсего;
+                doc.СуммаНДС += oper.СуммаНДСБаза;
+            }
+        }
         //private string _PersistentProperty;
         //[XafDisplayName("My display name"), ToolTip("My hint message")]
         //[ModelDefault("EditMask", "(000)-00"), Index(0), VisibleInListView(false)]

@@ -148,7 +148,10 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 return;
             switch (propertyName) {
                 case "КнигаДокумент":
-                    Книга = КнигаДокумент.Книга;
+                    if (КнигаДокумент != null)
+                        Книга = КнигаДокумент.Книга;
+                    else
+                        Книга = null;
                     break;
                 case "КнигаСтрока":
                     if (КнигаСтрока != null)

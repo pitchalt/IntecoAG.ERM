@@ -20,6 +20,15 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
     [RuleCombinationOfPropertiesIsUnique(null, DefaultContexts.Save, "РегНомер")]
     public class ОснованиеДокумент : BaseEntity {
 
+        private Boolean _ТребуетсяПроверка;
+        public Boolean ТребуетсяПроверка {
+            get { return _ТребуетсяПроверка; }
+            set {
+                if (!IsLoading) OnChanging("ТребуетсяПроверка", value);
+                SetPropertyValue<Boolean>("ТребуетсяПроверка", ref _ТребуетсяПроверка, value);
+            }
+        }
+
         [PersistentAlias("Основание.Источник")]
         public Основание.ТипИсточника Источник {
             get { return Основание != null ? Основание.Источник : 0; }

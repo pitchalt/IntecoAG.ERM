@@ -123,6 +123,29 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             КОРРЕКТИРОВОЧНЫЙ = 2
         }
 
+        private Налогоплательщик _Налогоплательщик;
+        [RuleRequiredField]
+        //        [VisibleInDetailView(true)]
+        [VisibleInListView(true)]
+        public Налогоплательщик Налогоплательщик {
+            get { return _Налогоплательщик; }
+            set {
+                if (!IsLoading) OnChanging("Налогоплательщик", value);
+                SetPropertyValue<Налогоплательщик>("Налогоплательщик", ref _Налогоплательщик, value);
+            }
+        }
+
+        private СтруктурноеПодразделение _Подразделение;
+        [VisibleInListView(true)]
+        [DataSourceProperty("Налогоплательщик.Подразделения")]
+        public СтруктурноеПодразделение Подразделение {
+            get { return _Подразделение; }
+            set {
+                if (!IsLoading) OnChanging("Подразделение", value);
+                SetPropertyValue<СтруктурноеПодразделение>("Подразделение", ref _Подразделение, value);
+            }
+        }
+
         private Основание.ТипИсточника _Источник;
         [RuleRequiredField]
         public Основание.ТипИсточника Источник {

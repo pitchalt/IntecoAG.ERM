@@ -16,8 +16,9 @@ using IntecoAG.XafExt.DC;
 namespace IntecoAG.ERM.FM.Tax {
 
     [NavigationItem("Налоги")]
-    [Persistent("FmTaxНалогоплательщик")]
-    public class Налогоплательщик : BaseEntity {
+//    [Persistent("FmTaxНалогоплательщик")]
+    [MapInheritance(MapInheritanceType.ParentTable)]
+    public class Налогоплательщик : НалогСубъект {
 
         private String _ИНН;
         [Size(12)]
@@ -39,14 +40,19 @@ namespace IntecoAG.ERM.FM.Tax {
             }
         }
 
-        private String _Наименование;
-        [Size(256)]
-        [RuleRequiredField]
-        public String Наименование {
-            get { return _Наименование; }
-            set {
-                SetPropertyValue<String>("Наименование", ref _Наименование, value);
-            }
+        //private String _Наименование;
+        //[Size(256)]
+        //[RuleRequiredField]
+        //public String Наименование {
+        //    get { return _Наименование; }
+        //    set {
+        //        SetPropertyValue<String>("Наименование", ref _Наименование, value);
+        //    }
+        //}
+
+        [Association("FmTaxНалогоплательщик-FmTaxСтруктурноеПодразделение"), DevExpress.Xpo.Aggregated]
+        public XPCollection<СтруктурноеПодразделение> Подразделения {
+            get { return GetCollection<СтруктурноеПодразделение>("Подразделения"); }
         }
 
         [Association("Налогоплательщик-Период")]
@@ -58,7 +64,7 @@ namespace IntecoAG.ERM.FM.Tax {
         public override void AfterConstruction() { base.AfterConstruction(); }
 
         public override string ToString() {
-            return Наименование;
+            return '(' + ИНН + ") "+ Наименование;
         }
     }
 }

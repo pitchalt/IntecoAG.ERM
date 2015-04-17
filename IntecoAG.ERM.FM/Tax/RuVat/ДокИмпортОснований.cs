@@ -439,6 +439,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 else if (invoice.SF_IO_TYPE == "O")
                     строка.ТипИсточника = Основание.ТипИсточника.ИСХОДЯЩИЙ;
                 else
+//                    continue;
                     throw new ArgumentOutOfRangeException("SF " + invoice.SF_NUMBER + " неопределен тип входящий/исходящий");
                 строка.РегНомер = invoice.SF_REGNUM.Trim();
                 строка.Номер = invoice.SF_NUMBER.Trim();
@@ -608,6 +609,19 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 SetPropertyValue<Налогоплательщик>("Налогоплательщик", ref _Налогоплательщик, value);
             }
         }
+
+        private СтруктурноеПодразделение _Подразделение;
+        //        [VisibleInDetailView(true)]
+        [VisibleInListView(true)]
+        [DataSourceProperty("Налогоплательщик.Подразделения")]
+        public СтруктурноеПодразделение Подразделение {
+            get { return _Подразделение; }
+            set {
+                if (!IsLoading) OnChanging("Подразделение", value);
+                SetPropertyValue<СтруктурноеПодразделение>("Подразделение", ref _Подразделение, value);
+            }
+        }
+
         private String _Код;
         //        [RuleRequiredField(TargetCriteria = "ПериодБУ == null")]
         [RuleRequiredField]
@@ -657,6 +671,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             fmCAVTInvoiceType sf_sfz_type = os.GetObjects<fmCAVTInvoiceType>().First(x => x.Prefix == "Z");
             while ((line = reader.ReadLine()) != null) {
                 InvoiceImport data = (InvoiceImport)engine.ReadString(line)[0];
+                if (data.SF_IO_TYPE.Trim() == String.Empty)
+                    continue;
                 СтрокаОснов строка = os.CreateObject<СтрокаОснов>();
                 док.Основания.Add(строка);
                 строка.БуферУст(line);

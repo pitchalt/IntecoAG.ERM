@@ -36,6 +36,16 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 SetPropertyValue<Налогоплательщик>("Налогоплательщик", ref _Налогоплательщик, value);
             }
         }
+        private СтруктурноеПодразделение _Подразделение;
+        [VisibleInListView(true)]
+        [DataSourceProperty("Налогоплательщик.Подразделения")]
+        public СтруктурноеПодразделение Подразделение {
+            get { return _Подразделение; }
+            set {
+                if (!IsLoading) OnChanging("Подразделение", value);
+                SetPropertyValue<СтруктурноеПодразделение>("Подразделение", ref _Подразделение, value);
+            }
+        }
         private String _Код;
 //        [RuleRequiredField(TargetCriteria = "ПериодБУ == null")]
         [RuleRequiredField]
