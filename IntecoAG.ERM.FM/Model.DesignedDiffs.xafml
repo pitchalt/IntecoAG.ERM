@@ -193,6 +193,7 @@
       </OwnMembers>
     </Class>
     <Class Name="IntecoAG.ERM.FM.Tax.RuVat.ДокИмпортОснований+СтрокаОснов" DefaultDetailView="ДокИмпортОснований+СтрокаОснов_DetailView" />
+    <Class Name="IntecoAG.ERM.FM.Tax.RuVat.ОперацияКонтИмпортСтруктур+Документ" DefaultDetailView="ОперацияКонтИмпортСтруктур+Документ_DetailView" />
   </BOModel>
   <NavigationItems>
     <Items>

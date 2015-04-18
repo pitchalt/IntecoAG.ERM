@@ -277,7 +277,14 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                             }
                             Номер = СчетФактура.Number;
                             Дата = СчетФактура.Date;
-                            РегНомер = СчетФактура.RegNumber;
+                            if (ТипИсточника == RuVat.Основание.ТипИсточника.ИСХОДЯЩИЙ) { 
+                                String dates = СчетФактура.Date.ToString("yyyyMMdd");
+                                РегНомер = СчетФактура.RegNumber[0] + dates.Substring(2,2) + 
+                                    //+ dates[2] + dates[3] +
+                                    СчетФактура.RegNumber.Substring(1);
+                            }
+                            else
+                                РегНомер = СчетФактура.RegNumber;
                             ТипОснования = Основание.ТипОснования.Неопределен;
                         }
                         break;
@@ -386,6 +393,16 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
+        private DateTime _ДатаБУ;
+        [RuleRequiredField]
+        public DateTime ДатаБУ {
+            get { return _ДатаБУ; }
+            set {
+                if (!IsLoading) OnChanging("ДатаБУ", value);
+                SetPropertyValue<DateTime>("ДатаБУ", ref _ДатаБУ, value);
+            }
+        }
+
         private fmCAVTBookBuhStruct _ДанныеСтруктур;
         public fmCAVTBookBuhStruct ДанныеСтруктур {
             get { return _ДанныеСтруктур; }
@@ -397,7 +414,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 
         [Association("FmTaxRuVatКонтИмпортСтруктур-Документы"), DevExpress.Xpo.Aggregated]
         public XPCollection<Документ> Документы {
-            get { return GetCollection<Документ>("Доркументы"); }
+            get { return GetCollection<Документ>("Документы"); }
         }
 
         public ОперацияКонтИмпортСтруктур(Session session)
@@ -408,81 +425,25 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             // Place your initialization code here (http://documentation.devexpress.com/#Xaf/CustomDocument2834).
         }
 
-        //        static public void ImportLine(IObjectSpace os, СтрокаОснов строка, InvoiceImport invoice) {
-        //                //            OpenFileDialog dialog = new OpenFileDialog();
-        //                //            if (dialog.ShowDialog() == DialogResult.OK) {
-        //                //                FixedFileEngine engine = new FixedFileEngine(typeof(InvoiceImport));
-        //                //                InvoiceImport[] imp_res = (InvoiceImport[])engine.ReadFile(file_name);
-        //                //                IList<fmCAVTInvoiceType> inv_types = os.GetObjects<fmCAVTInvoiceType>();
-        //                //                IList<fmCAVTInvoiceTransferType> inv_transfer_types = os.GetObjects<fmCAVTInvoiceTransferType>();
-        //                //                IList<fmCAVTInvoiceOperationType> inv_oper_types = os.GetObjects<fmCAVTInvoiceOperationType>();
-        //                // Int32 count = 0;
-        //                // 
-        //                //                foreach (InvoiceImport imp_rec in imp_res) {
-        //                invoice.SF_VO_CODE = invoice.SF_VO_CODE.Trim();
-        //                invoice.SF_INT_NUMBER = invoice.SF_INT_NUMBER.Trim();
-        //                invoice.SF_NUMBER = invoice.SF_NUMBER.Trim();
-        //                //                    crmCParty party = 
-        //                //                    Основание.ТипИсточника ts;
-        //                if (invoice.SF_IO_TYPE == "I")
-        //                    строка.ТипИсточника = Основание.ТипИсточника.ВХОДЯЩИЙ;
-        //                else if (invoice.SF_IO_TYPE == "O")
-        //                    строка.ТипИсточника = Основание.ТипИсточника.ИСХОДЯЩИЙ;
-        //                else
-        ////                    continue;
-        //                    throw new ArgumentOutOfRangeException("SF " + invoice.SF_NUMBER + " неопределен тип входящий/исходящий");
-        //                строка.РегНомер = invoice.SF_REGNUM.Trim();
-        //                строка.Номер = invoice.SF_NUMBER.Trim();
-        //                DateTime date = default(DateTime);
-        //                DateTime.TryParseExact(invoice.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
-        //                строка.Дата = date;
-        //                //                    Основание.ТипОснования tsf;
-        //                строка.ТипОснования = Основание.ТипОснования.Неопределен;
-        //                switch (invoice.SF_TYPE) {
-        //                    case "СЧФ":
-        //                        строка.ТипОснования = Основание.ТипОснования.СЧФ;
-        //                        break;
-        //                    case "УПД":
-        //                        строка.ТипОснования = Основание.ТипОснования.УПД;
-        //                        break;
-        //                    case "СФА":
-        //                        строка.ТипОснования = Основание.ТипОснования.СФА;
-        //                        break;
-        //                    case "СФЗ":
-        //                        строка.ТипОснования = Основание.ТипОснования.СФЗ;
-        //                        break;
-        //                    case "СЧГ":
-        //                        строка.ТипОснования = Основание.ТипОснования.СЧГ;
-        //                        break;
-        //                    case "БЖД":
-        //                        строка.ТипОснования = Основание.ТипОснования.БЖД;
-        //                        break;
-        //                    case "СФВ":
-        //                        строка.ТипОснования = Основание.ТипОснования.СФВ;
-        //                        break;
-        //                    case "БСО":
-        //                        строка.ТипОснования = Основание.ТипОснования.БСО;
-        //                        break;
-        //                    case "ЧЕК":
-        //                        строка.ТипОснования = Основание.ТипОснования.ЧЕК;
-        //                        break;
-        //                    default:
-        //                        System.Console.WriteLine("SF: " + invoice.SF_NUMBER + " странный тип (" + invoice.SF_TYPE + ")");
-        //                        break;
-        //                    //                            continue;
-        //                }
-        //                //                    String inn = "";
-        //                //                    String kpp = "";
-        //                строка.Контрагент = os.GetObjects<crmCParty>(new BinaryOperator("Code", invoice.SF_VO_CODE)).FirstOrDefault();
-        //                if (строка.Контрагент == null) {
-        //                    System.Console.WriteLine("SF " + invoice.SF_NUMBER + " party not found (" + invoice.SF_VO_CODE + ")");
-        //                    return;
-        //                    //continue;
-        //                }
-        //                //                ЛицоТип party_type = ЛицоТип.НЕЗАДАН;
-        //                //
-        //                //                    String sale_inn = "5012039795";
-        //            }
+        protected override void OnChanged(string propertyName, object oldValue, object newValue) {
+            base.OnChanged(propertyName, oldValue, newValue);
+            if (IsLoading)
+                return;
+            switch (propertyName) {
+                case "ДатаБУ":
+                       if (ДатаБУ < new DateTime(2015, 1, 1))
+                            break;
+                        ПериодБУ = Session.FindObject<ПериодБУ>(PersistentCriteriaEvaluationBehavior.InTransaction,
+                            new BinaryOperator("ДатаС", ДатаБУ, BinaryOperatorType.LessOrEqual) &
+                            new BinaryOperator("ДатаПо", ДатаБУ, BinaryOperatorType.GreaterOrEqual));
+                        if (ПериодБУ == null) {
+                            ПериодБУ = new ПериодБУ(Session);
+                            ПериодБУ.Налогоплательщик = Налогоплательщик;
+                            ПериодБУ.ДатаПериода = ДатаБУ;
+                        }
+                     break;
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -517,11 +478,15 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 new BinaryOperator("Дата", строка.Дата.AddDays(1), BinaryOperatorType.Less));
             if (sf == null) {
                 sf = os.CreateObject<Основание>();
+                sf.Налогоплательщик = строка.Контейнер.Налогоплательщик;
+                sf.Подразделение = строка.Контейнер.Подразделение;
                 sf.Источник = строка.ТипИсточника;
                 sf.ИНН = строка.ИНН;
                 sf.Номер = строка.Номер;
                 sf.Дата = строка.Дата;
                 sf.КПП = строка.КПП;
+                sf.Налогоплательщик = строка.Контейнер.Налогоплательщик;
+                sf.Подразделение = строка.Контейнер.Подразделение;
             }
             строка.Основание = sf;
             sf.Корректировка = Основание.ТипПодчиненности.ОСНОВНОЙ;
@@ -535,7 +500,13 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 sfdoc_sver = "0";
             UInt16 sfdoc_ver = 0;
             UInt16.TryParse(sfdoc_sver, out sfdoc_ver);
-            DateTime sfdoc_date = строка.СчетФактура.Current.VersionDate;
+            DateTime sfdoc_date;
+            if (sfdoc_ver != 0) {
+                sfdoc_date = строка.СчетФактура.Current.VersionDate;
+            } 
+            else {
+                sfdoc_date = строка.СчетФактура.Date;
+            }
 //            DateTime sfdoc_date = default(DateTime);
 //            DateTime.TryParseExact(invoice.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out sfdoc_date);
             //Decimal summ_cost = Decimal.Parse(invoice.SUMM_COST.Trim().Replace('.', ','));
@@ -620,15 +591,16 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         }
 
         public static void Обновить(IObjectSpace os, ОперацияКонтИмпортСтруктур конт) {
+            os.Delete(конт.Операции);
             foreach (var запись in конт.ДанныеСтруктур.InInvoiceRecords) {
-                Обновить(os, конт, запись);
+                Обновить(os, конт, запись, конт.ДанныеСтруктур.BayNorma);
             }
             foreach (var запись in конт.ДанныеСтруктур.OutInvoiceRecords) {
-                Обновить(os, конт, запись);
+                Обновить(os, конт, запись, конт.ДанныеСтруктур.BayNorma);
             }
             //        public static void Обновить(IObjectSpace os, XPCollection<fmCAVTBookBuhStructRecord> записи) { 
         }
-        public static void Обновить(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, fmCAVTBookBuhStructRecord запись) {
+        public static void Обновить(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, fmCAVTBookBuhStructRecord запись, Decimal koeff) {
             Документ cur_doc = null;
             foreach (var doc in конт.Документы) {
                 if (doc.СчетФактура == запись.Invoice) {
@@ -640,102 +612,122 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 cur_doc = os.CreateObject<Документ>();
                 конт.Документы.Add(cur_doc);
                 cur_doc.СчетФактураУст(запись.Invoice);
+                cur_doc.ТипОснования = Основание.String2ТипОснования(запись.InvoiceType);
             }
             ProcessLine(os, cur_doc);
+            if (запись.OutInvoiceStructRecord != null)
+                ОбновитьОперациюПродаж(os, конт, cur_doc, запись, koeff);
+            if (запись.InInvoiceStructRecord != null)
+                ОбновитьОперациюПокупок(os, конт, cur_doc, запись, koeff);
         }
 
+        public static void ОбновитьОперациюПродаж(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, Документ doc, fmCAVTBookBuhStructRecord record, Decimal koeff) {
+            if (doc.Основание == null || record.SummAll == 0)
+                return;
+            Операция oper = os.CreateObject<Операция>();
+            конт.Операции.Add(oper);
+            oper.ОснованиеДокумент = doc.ОснованиеДокумент;
+            oper.ТипКниги = Операция.ТипКнигиТип.ПРОДАЖ;
+            oper.ТипДеятельности = Операция.ТипДеятельностиТип.ОБЛ_18;
+            oper.ТипОбъекта = Операция.ТипОбъектаТип.РЕАЛИЗАЦИЯ;
+            if (record.OperationType.Code == "01" || record.OperationType.Code == "1")
+                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ;
+            if (record.OperationType.Code == "02" || record.OperationType.Code == "2")
+                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.АВАНС;
+            oper.ТипОсновной = Операция.ТипОсновнойТип.НАЛ_БАЗА;
+//            oper.ОснованиеРегНомер = record.InvoiceRegNumber;
+            oper.СФТип = record.InvoiceType;
+            oper.СФНомер = record.InvoiceNumber;
+            oper.СФДата = record.InvoiceDate;
+            CS.Finance.csNDSRate rate = record.SaleVATRate;
+            if (rate == null)
+                rate = record.BayVATRate;
+            if (rate != null) {
+                if (rate.Code == "18%")
+                    oper.Ставка = СтавкаНДС.ОБЛ_18;
+                if (rate.Code == "10%")
+                    oper.Ставка = СтавкаНДС.ОБЛ_10;
+                if (rate.Code == "0%")
+                    oper.Ставка = СтавкаНДС.ОБЛ_0;
+                if (rate.Code == "БЕЗ НДС")
+                    oper.Ставка = СтавкаНДС.НЕОБЛ;
+            }
+            else
+                oper.Ставка = СтавкаНДС.ОБЛ_18;
 
-    //private void Import(IObjectSpace os, ОперацияКонтРучные конт, String file_name) {
-    //    os.Delete(конт.Операции);
-    //os.Delete()
-    //DateTime date = default(DateTime);
-    //foreach (OperationImport oper_imp in imp_res) {
-    //    ОснованиеДокумент doc = null;
-    //    if (oper_imp.SF_TYPE.Trim() != "СФЗ") {
-    //        doc = os.FindObject<ОснованиеДокумент>(new BinaryOperator("РегНомер", oper_imp.SF_REGNUM.Trim()), true);
-    //    }
-    //    else {
-    //        DateTime.TryParseExact(oper_imp.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
-    //        Основание осн = os.FindObject<Основание>(
-    //            new BinaryOperator("ИннПродавца", "5012039795") &
-    //            new BinaryOperator("Номер", oper_imp.SF_NUMBER.Trim()) &
-    //            new BinaryOperator("Дата", date, BinaryOperatorType.GreaterOrEqual) &
-    //            new BinaryOperator("Дата", date.AddDays(1), BinaryOperatorType.Less), true);
-    //        doc = осн != null ? осн.ДействующийДокумент : null;
-    //    }
-    //    Операция oper = os.CreateObject<Операция>();
-    //    конт.Операции.Add(oper);
-    //    //                Decimal summ_cost = Decimal.Parse(imp_rec.SUMM_COST.Trim().Replace('.', ','));
-    //    //                DateTime.TryParseExact(imp_rec.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out sfdoc_date);
-    //    oper.ТипКниги = (Операция.ТипКнигиТип)Int32.Parse(oper_imp.BOOK.Trim());
-    //    oper.ТипДеятельности = (Операция.ТипДеятельностиТип)Int32.Parse(oper_imp.WORK_TYPE.Trim());
-    //    oper.ТипНапрОпер = (Операция.ТипНапрОперТип)Int32.Parse(oper_imp.DIR.Trim());
-    //    oper.ТипОперВнутр = (Операция.ТипОперВнутрТип)Int32.Parse(oper_imp.OPERATION.Trim());
-    //    String stavka = oper_imp.VAT_RATE.Trim();
-    //    if (String.IsNullOrEmpty(stavka) || stavka == "0")
-    //        stavka = "2";
-    //    oper.Ставка = (СтавкаНДС)Int32.Parse(stavka);
-    //    //                oper_imp.VAT_MODE;
-    //    oper.Проводка = oper_imp.BUH_PROV.Trim();
-    //    DateTime.TryParseExact(oper_imp.BUH_DT.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
-    //    oper.ДатаБУ = date;
-    //    DateTime.TryParseExact(oper_imp.VAT_DT.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
-    //    oper.ДатаНДС = date;
-    //    oper.ОснованиеДокумент = doc;
-    //    oper.КодПартнера = oper_imp.VO_CODE.Trim();
-    //    if (oper_imp.SF_TYPE.Trim() != "СФЗ")
-    //        oper.ОснованиеРегНомер = oper_imp.SF_REGNUM.Trim();
-    //    else
-    //        oper.ОснованиеРегНомер = doc != null ? doc.РегНомер : null;
-    //    oper.СФТип = oper_imp.SF_TYPE.Trim();
-    //    oper.СФТипОриг = oper_imp.SF_TYPE_ORIG.Trim();
-    //    oper.СФНомер = oper_imp.SF_NUMBER.Trim();
-    //    DateTime.TryParseExact(oper_imp.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
-    //    oper.СФДата = date;
-    //    oper.ПДТип = oper_imp.PD_TYPE.Trim();
-    //    oper.ПДНомер = oper_imp.PD_NUMBER.Trim();
-    //    DateTime.TryParseExact(oper_imp.PD_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
-    //    oper.ПДДата = date;
-    //    oper.СуммаВсего = Decimal.Parse(oper_imp.SUMM_ALL.Trim().Replace('.', ','));
-    //    oper.СуммаСтоимость = Decimal.Parse(oper_imp.SUMM_COST.Trim().Replace('.', ','));
-    //    oper.СуммаНДСБаза = Decimal.Parse(oper_imp.SUMM_VAT_PAY.Trim().Replace('.', ','));
-    //    oper.СуммаНДСВычет = Decimal.Parse(oper_imp.SUMM_VAT_BAY.Trim().Replace('.', ','));
-    //    oper.СуммаНДССтоимость = Decimal.Parse(oper_imp.SUMM_VAT_COST.Trim().Replace('.', ','));
-    //    oper.СуммаНДС19Входящий = Decimal.Parse(oper_imp.SUMM_VAT_IN.Trim().Replace('.', ','));
-    //    oper.СуммаНДС19Списано = Decimal.Parse(oper_imp.SUMM_VAT_IN_USE.Trim().Replace('.', ','));
-    //    if (oper.ТипКниги == Операция.ТипКнигиТип.ПРОДАЖ) {
-    //        if (oper.СФТип != "СФВ") {
-    //            oper.СуммаСтоимость = oper.СуммаВсего;
-    //            oper.СуммаСтоимость += -oper.СуммаНДСБаза;
-    //        }
-    //        else {
-    //            oper.СуммаСтоимость = Decimal.Round(oper.СуммаНДСБаза * 100 / 18, 2);
-    //            oper.СуммаВсего = oper.СуммаСтоимость + oper.СуммаНДСБаза;
-    //        }
-    //    }
-    //    //oper_imp.SUMM_ALL;   
-    //    //oper_imp.SUMM_COST;  
-    //    //oper_imp.SUMM_VAT_PAY; 
-    //    //oper_imp.SUMM_VAT_IN;
-    //    //oper_imp.SUMM_VAT_IN_USE;
-    //    //oper_imp.SUMM_VAT_COST;
-    //    //oper_imp.SUMM_VAT_BAY;
-    //    //System.Console.WriteLine(oper_import.SUMM_ALL + "_" + oper_import.SUMM_VAT_PAY + "_" + oper_import.SUMM_VAT_BAY);
-    //}
-    //        }
-    //private string _PersistentProperty;
-    //[XafDisplayName("My display name"), ToolTip("My hint message")]
-    //[ModelDefault("EditMask", "(000)-00"), Index(0), VisibleInListView(false)]
-    //[Persistent("DatabaseColumnName"), RuleRequiredField(DefaultContexts.Save)]
-    //public string PersistentProperty {
-    //    get { return _PersistentProperty; }
-    //    set { SetPropertyValue("PersistentProperty", ref _PersistentProperty, value); }
-    //}
+            if (record.SaleDate > new DateTime(2000, 1, 1))
+                oper.ДатаНДС = record.SaleDate;
+            else
+                oper.ДатаНДС = record.InvoiceDate;
+            oper.ПериодБУ = конт.ПериодБУ;
+            oper.ДатаБУ = конт.ДатаБУ;
+            if (record.SaleSummAll != 0)
+                oper.СуммаВсего = record.SaleSummAll;
+            else
+                oper.СуммаВсего = record.SummAll;
+            if (record.SaleSummVAT != 0)
+                oper.СуммаНДСБаза = record.SaleSummVAT;
+            else
+                oper.СуммаНДСБаза = record.SummVAT;
+            oper.СуммаСтоимость = oper.СуммаВсего - oper.СуммаНДСБаза;
+        }
+        public static void ОбновитьОперациюПокупок(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, Документ doc, fmCAVTBookBuhStructRecord record, Decimal koeff) {
+            if (doc.Основание == null || record.SummAll == 0)
+                return;
+            Операция oper = os.CreateObject<Операция>();
+            конт.Операции.Add(oper);
+            oper.ОснованиеДокумент = doc.ОснованиеДокумент;
+            oper.ТипКниги = Операция.ТипКнигиТип.ПОКУПОК;
+            oper.ТипДеятельности = Операция.ТипДеятельностиТип.ОБЛ_18;
+            oper.ТипОбъекта = Операция.ТипОбъектаТип.РЕАЛИЗАЦИЯ;
+            if  (record.OperationType.Code == "01" || record.OperationType.Code == "1")
+                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ;
+            if (record.OperationType.Code == "02" || record.OperationType.Code == "2")
+                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.АВАНС_ЗАЧЕТ;
+            oper.ТипОсновной = Операция.ТипОсновнойТип.ВЫЧЕТ;
+            oper.СФТип = record.InvoiceType;
+            oper.СФНомер = record.InvoiceNumber;
+            oper.СФДата = record.InvoiceDate;
+            CS.Finance.csNDSRate rate = record.BayVATRate;
+            if (rate == null)
+                rate = record.SaleVATRate;
+            if (rate != null) {
+                if (rate.Code == "18%")
+                    oper.Ставка = СтавкаНДС.ОБЛ_18;
+                if (rate.Code == "10%")
+                    oper.Ставка = СтавкаНДС.ОБЛ_10;
+                if (rate.Code == "0%")
+                    oper.Ставка = СтавкаНДС.ОБЛ_0;
+                if (rate.Code == "БЕЗ НДС")
+                    oper.Ставка = СтавкаНДС.НЕОБЛ;
+            }
+            else
+                oper.Ставка = СтавкаНДС.ОБЛ_18;
+            oper.ПериодБУ = конт.ПериодБУ;
+            oper.ДатаБУ = конт.ДатаБУ;
+            oper.ДатаНДС = record.BayDate;
+            if (record.BayDate > new DateTime(2000, 1, 1))
+                oper.ДатаНДС = record.BayDate;
+            else
+                oper.ДатаНДС = oper.ДатаБУ;
+            if (record.SaleSummAll != 0)
+                oper.СуммаВсего = record.BaySummAll;
+            else
+                oper.СуммаВсего = record.SummAll;
+            if (record.SaleSummVAT != 0)
+                oper.СуммаНДСВычет = record.BaySummVAT;
+            else
+                oper.СуммаНДСВычет = record.SummVAT;
+            oper.СуммаСтоимость = oper.СуммаВсего - oper.СуммаНДСВычет;
+            if (oper.ТипОперВнутр == Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ) {
+                oper.СуммаНДС19Входящий = oper.СуммаНДСВычет;
+                oper.СуммаНДС19Списано = oper.СуммаНДСВычет;
+            }
+            if (koeff > 0) {
+                oper.СуммаНДССтоимость = Decimal.Round(oper.СуммаНДСВычет * koeff, 2);
+                oper.СуммаНДСВычет = oper.СуммаНДСВычет - oper.СуммаНДССтоимость;
+            }
+        }
 
-    //[Action(Caption = "My UI Action", ConfirmationMessage = "Are you sure?", ImageName = "Attention", AutoCommit = true)]
-    //public void ActionMethod() {
-    //    // Trigger a custom business logic for the current record in the UI (http://documentation.devexpress.com/#Xaf/CustomDocument2619).
-    //    this.PersistentProperty = "Paid";
-    //}
     }
 }

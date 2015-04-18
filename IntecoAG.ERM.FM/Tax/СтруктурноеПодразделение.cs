@@ -53,7 +53,7 @@ namespace IntecoAG.ERM.FM.Tax {
         }
 
         public override string ToString() {
-            return '(' + ИНН + '/' + КПП + ") " + Наименование;
+            return Наименование;
         }
 
     }

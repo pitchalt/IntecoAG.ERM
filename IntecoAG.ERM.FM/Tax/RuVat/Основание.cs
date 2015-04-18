@@ -60,7 +60,11 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             /// <summary>
             /// Чек покупки в розницу
             /// </summary>
-            ЧЕК = 9
+            ЧЕК = 9,
+            /// <summary>
+            /// Государственная таможенная декларация
+            /// </summary>
+            ГТД = 10
         }
 
         public static String ТипОснования2String(ТипОснования value) {
@@ -83,6 +87,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     return "УПД";
                 case ТипОснования.ЧЕК:
                     return "ЧЕК";
+                case ТипОснования.ГТД:
+                    return "ГТД";
                 default:
                     return "";
             }
@@ -190,6 +196,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         private String _Номер;
         [Size(1000)]
         [RuleRequiredField]
+        [VisibleInListView(true)]
         public String Номер {
             get { return _Номер; }
             set {
