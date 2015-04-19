@@ -221,7 +221,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         }
 
         private String _СФНомер;
-        [Size(20)]
+        [Size(256)]
         public String СФНомер {
             get { return _СФНомер; }
             set {

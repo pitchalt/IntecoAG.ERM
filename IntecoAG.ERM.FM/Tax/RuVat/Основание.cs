@@ -114,6 +114,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     return ТипОснования.УПД;
                 case "ЧЕК":
                     return ТипОснования.ЧЕК;
+                case "ГТД":
+                    return ТипОснования.ГТД;
                 default:
                     return ТипОснования.Неопределен;
             }

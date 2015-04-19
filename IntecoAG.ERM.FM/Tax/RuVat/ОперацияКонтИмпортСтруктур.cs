@@ -1,23 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
+//
 using DevExpress.Data.Filtering;
-using DevExpress.Persistent.Base;
-using System.Collections.Generic;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-
-using IntecoAG.XafExt.DC;
-
+using DevExpress.Xpo;
 //
 using IntecoAG.ERM.CRM.Party;
 using IntecoAG.ERM.FM.AVT;
+using IntecoAG.XafExt.DC;
 
 namespace IntecoAG.ERM.FM.Tax.RuVat {
     //[DefaultClassOptions]
@@ -32,6 +32,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         private const String _ИНН_ФЛ_Рег = "([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10}";
         private const String _КПП_Рек = "([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})([0-9]{2})([0-9A-Z]{2})([0-9]{3})";
 
+        [Appearance(null, AppearanceItemType.ViewItem, null, TargetItems = "*;ТипЛица;ИНН;КПП")]
         [Persistent("FmTaxRuVatОперКонтОснов")]
         public class Документ : BaseEntity {
 
@@ -142,6 +143,23 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     SetPropertyValue<DateTime>("Дата", ref _Дата, value);
                 }
             }
+            private UInt16 _НомерИсправления;
+            public UInt16 НомерИсправления {
+                get { return _НомерИсправления; }
+                set {
+                    if (!IsLoading) OnChanging("НомерИсправления", value);
+                    SetPropertyValue<UInt16>("НомерИсправления", ref _НомерИсправления, value);
+                }
+            }
+
+            private DateTime _ДатаИсправления;
+            public DateTime ДатаИсправления {
+                get { return _ДатаИсправления; }
+                set {
+                    if (!IsLoading) OnChanging("ДатаИсправления", value);
+                    SetPropertyValue<DateTime>("ДатаИсправления", ref _ДатаИсправления, value);
+                }
+            }
             //private DateTime _ДатаПолучения;
             [PersistentAlias("ОснованиеДокумент.ДатаПолучения")]
             public DateTime ДатаПолучения {
@@ -195,15 +213,15 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 }
             }
 
-            [Persistent("СчетФактура")]
-            private fmCAVTInvoiceBase _СчетФактура;
-            [PersistentAlias("_СчетФактура")]
-            public fmCAVTInvoiceBase СчетФактура {
-                get { return _СчетФактура; }
-            }
-            public void СчетФактураУст(fmCAVTInvoiceBase value) {
-                SetPropertyValue<fmCAVTInvoiceBase>("СчетФактура", ref _СчетФактура, value);
-            }
+            //[Persistent("СчетФактура")]
+            //private fmCAVTInvoiceBase _СчетФактура;
+            //[PersistentAlias("_СчетФактура")]
+            //public fmCAVTInvoiceBase СчетФактура {
+            //    get { return _СчетФактура; }
+            //}
+            //public void СчетФактураУст(fmCAVTInvoiceBase value) {
+            //    SetPropertyValue<fmCAVTInvoiceBase>("СчетФактура", ref _СчетФактура, value);
+            //}
 
 
             //private fmCAVTInvoiceBase _СчетФактура;
@@ -238,6 +256,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
             public override void AfterConstruction() {
                 base.AfterConstruction();
+                ТипОснования = RuVat.Основание.ТипОснования.Неопределен;
             }
 
             public override void OnChanging(string propertyName, object newValue) {
@@ -263,31 +282,30 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 //                        ОбновитьСчетФактуру();
                         break;
                     case "Контрагент":
-                        if (Контрагент != null)
-                            ОбновитьКонтрагента();
+                        ОбновитьКонтрагента();
                         break;
-                    case "СчетФактура":
-                        if (СчетФактура != null) {
-                            if (СчетФактура.Supplier.INN == Контейнер.Налогоплательщик.ИНН) {
-                                Контрагент = СчетФактура.Customer;
-                                ТипИсточника = RuVat.Основание.ТипИсточника.ИСХОДЯЩИЙ;
-                            } else {
-                                Контрагент = СчетФактура.Supplier;
-                                ТипИсточника = RuVat.Основание.ТипИсточника.ВХОДЯЩИЙ;
-                            }
-                            Номер = СчетФактура.Number;
-                            Дата = СчетФактура.Date;
-                            if (ТипИсточника == RuVat.Основание.ТипИсточника.ИСХОДЯЩИЙ) { 
-                                String dates = СчетФактура.Date.ToString("yyyyMMdd");
-                                РегНомер = СчетФактура.RegNumber[0] + dates.Substring(2,2) + 
-                                    //+ dates[2] + dates[3] +
-                                    СчетФактура.RegNumber.Substring(1);
-                            }
-                            else
-                                РегНомер = СчетФактура.RegNumber;
-                            ТипОснования = Основание.ТипОснования.Неопределен;
-                        }
-                        break;
+                    //case "СчетФактура":
+                    //    if (СчетФактура != null) {
+                    //        if (СчетФактура.Supplier.INN == Контейнер.Налогоплательщик.ИНН) {
+                    //            Контрагент = СчетФактура.Customer;
+                    //            ТипИсточника = RuVat.Основание.ТипИсточника.ИСХОДЯЩИЙ;
+                    //        } else {
+                    //            Контрагент = СчетФактура.Supplier;
+                    //            ТипИсточника = RuVat.Основание.ТипИсточника.ВХОДЯЩИЙ;
+                    //        }
+                    //        Номер = СчетФактура.Number;
+                    //        Дата = СчетФактура.Date;
+                    //        if (ТипИсточника == RuVat.Основание.ТипИсточника.ИСХОДЯЩИЙ) { 
+                    //            String dates = СчетФактура.Date.ToString("yyyyMMdd");
+                    //            РегНомер = СчетФактура.RegNumber[0] + dates.Substring(2,2) + 
+                    //                //+ dates[2] + dates[3] +
+                    //                СчетФактура.RegNumber.Substring(1);
+                    //        }
+                    //        else
+                    //            РегНомер = СчетФактура.RegNumber;
+                    //        ТипОснования = Основание.ТипОснования.Неопределен;
+                    //    }
+                    //    break;
                     case "Основание":
                         if (Основание != null) {
                             if (ОснованиеДокумент == null || ОснованиеДокумент.Основание != Основание)
@@ -374,15 +392,6 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
 
             }
             [Action]
-            public void Обработать() {
-                //                FixedFileEngine engine = new FixedFileEngine(typeof(InvoiceImport));
-                //                InvoiceImport data = (InvoiceImport)engine.ReadString(Буфер)[0];
-                IObjectSpace os = CommonMethods.FindObjectSpaceByObject(this);
-                fmCAVTInvoiceType sf_sfz_type = os.GetObjects<fmCAVTInvoiceType>().First(x => x.Prefix == "Z");
-//                ProcessLine(os, this, sf_sfz_type);
-                ProcessLine(os, this);
-            }
-            [Action]
             public void ЗаполнитьКонтр() {
                 IObjectSpace osbase = CommonMethods.FindObjectSpaceByObject(this);
                 using (IObjectSpace os = osbase.CreateNestedObjectSpace()) {
@@ -409,6 +418,17 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             set {
                 if (!IsLoading) OnChanging("ДанныеСтруктур", value);
                 SetPropertyValue<fmCAVTBookBuhStruct>("ДанныеСтруктур", ref _ДанныеСтруктур, value);
+            }
+        }
+
+        private Decimal _ДоляСтоимость;
+        [Custom("DisplayFormat", "### ### ### ##0.000000")]
+        [Custom("EditMask", "### ### ### ##0.000000")]
+        public Decimal ДоляСтоимость {
+            get { return _ДоляСтоимость; }
+            set {
+                if (!IsLoading) OnChanging("ДоляСтоимость", value);
+                SetPropertyValue<Decimal>("ДоляСтоимость", ref _ДоляСтоимость, value);
             }
         }
 
@@ -444,125 +464,6 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                      break;
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="os"></param>
-        /// <param name="строка"></param>
-        /// <param name="invoice"></param>
-        ///// <param name="sf_sfz_type"></param>
-        //static public void ProcessLine(IObjectSpace os, Документ строка, fmCAVTInvoiceType sf_sfz_type) {
-        static public void ProcessLine(IObjectSpace os, Документ строка) {
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!
-            // Выбраковываем СФ
-            if (строка.ТипОснования == Основание.ТипОснования.Неопределен ||
-                строка.ТипЛица == ЛицоТип.НЕЗАДАН ||
-                String.IsNullOrEmpty(строка.ИННПродавца) ||
-                String.IsNullOrEmpty(строка.РегНомер) && строка.ТипОснования != Основание.ТипОснования.СФЗ ||
-                String.IsNullOrEmpty(строка.Номер) ||
-                строка.Дата < new DateTime(2000, 1, 1) ||
-                строка.ТипЛица == ЛицоТип.ЮР_ЛИЦО &&
-                    (строка.ИНН.Length != 10 || !Regex.IsMatch(строка.ИНН, _ИНН_ЮЛ_Рег) ||
-                     строка.КПП.Length != 9 || !Regex.IsMatch(строка.КПП, _КПП_Рек)) ||
-                строка.ТипЛица == ЛицоТип.ПРЕДПРИНИМАТЕЛЬ &&
-                    (строка.ИНН.Length != 12 || !Regex.IsMatch(строка.ИНН, _ИНН_ФЛ_Рег))
-                )
-                return;
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!
-
-            Основание sf = os.FindObject<Основание>(
-                new BinaryOperator("ИннПродавца", строка.ИННПродавца) &
-                new BinaryOperator("Номер", строка.Номер) &
-                new BinaryOperator("Дата", строка.Дата, BinaryOperatorType.GreaterOrEqual) &
-                new BinaryOperator("Дата", строка.Дата.AddDays(1), BinaryOperatorType.Less));
-            if (sf == null) {
-                sf = os.CreateObject<Основание>();
-                sf.Налогоплательщик = строка.Контейнер.Налогоплательщик;
-                sf.Подразделение = строка.Контейнер.Подразделение;
-                sf.Источник = строка.ТипИсточника;
-                sf.ИНН = строка.ИНН;
-                sf.Номер = строка.Номер;
-                sf.Дата = строка.Дата;
-                sf.КПП = строка.КПП;
-                sf.Налогоплательщик = строка.Контейнер.Налогоплательщик;
-                sf.Подразделение = строка.Контейнер.Подразделение;
-            }
-            строка.Основание = sf;
-            sf.Корректировка = Основание.ТипПодчиненности.ОСНОВНОЙ;
-            //                sf.Источник = ts;
-            sf.Тип = строка.ТипОснования;
-            sf.ЛицоТип = строка.ТипЛица;
-            ОснованиеДокумент sfdoc = null;
-//            String sfdoc_sver = invoice.SF_PRAV_NUMBER.Trim();
-            String sfdoc_sver = строка.СчетФактура.Current.VersionNumber;
-            if (String.IsNullOrEmpty(sfdoc_sver))
-                sfdoc_sver = "0";
-            UInt16 sfdoc_ver = 0;
-            UInt16.TryParse(sfdoc_sver, out sfdoc_ver);
-            DateTime sfdoc_date;
-            if (sfdoc_ver != 0) {
-                sfdoc_date = строка.СчетФактура.Current.VersionDate;
-            } 
-            else {
-                sfdoc_date = строка.СчетФактура.Date;
-            }
-//            DateTime sfdoc_date = default(DateTime);
-//            DateTime.TryParseExact(invoice.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out sfdoc_date);
-            //Decimal summ_cost = Decimal.Parse(invoice.SUMM_COST.Trim().Replace('.', ','));
-            //Decimal summ_nds = Decimal.Parse(invoice.SUMM_NDS.Trim().Replace('.', ','));
-            //Decimal summ_sub_cost = Decimal.Parse(invoice.SUMM_SUB_COST.Trim().Replace('.', ','));
-            //Decimal summ_sub_nds = Decimal.Parse(invoice.SUMM_SUB_NDS.Trim().Replace('.', ','));
-            Decimal summ_cost = строка.СчетФактура.SummCost;
-            Decimal summ_nds = строка.СчетФактура.SummAVT;
-            Decimal summ_sub_cost = строка.СчетФактура.DeltaSummAllSub;
-            Decimal summ_sub_nds = строка.СчетФактура.DeltaSummAVTSub;
-            //if (sf.Источник == Основание.ТипИсточника.ИСХОДЯЩИЙ &&
-            //    sf.Тип != Основание.ТипОснования.Неопределен &&
-            //    sf.Тип != Основание.ТипОснования.СЧГ &&
-            //    sf.Тип != Основание.ТипОснования.БЖД &&
-            //    sf.Тип != Основание.ТипОснования.СФЗ) {
-            //    if (строка.СчетФактура != null) {
-            //        if (sfdoc_sver == "0" && !String.IsNullOrEmpty(строка.СчетФактура.Current.VersionNumber)) {
-            //            sfdoc_sver = строка.СчетФактура.Current.VersionNumber;
-            //            UInt16.TryParse(sfdoc_sver, out sfdoc_ver);
-            //            sfdoc_date = строка.СчетФактура.Current.VersionDate;
-            //        }
-            //        if (summ_cost == 0 && summ_nds == 0 && summ_sub_cost == 0 && summ_sub_nds == 0) {
-            //            summ_cost = строка.СчетФактура.SummAll - строка.СчетФактура.SummAVT;
-            //            summ_nds = строка.СчетФактура.SummAVT;
-            //        }
-            //    }
-            //}
-            foreach (ОснованиеДокумент doc in sf.Документы) {
-                if (doc.НомерИсправления == sfdoc_ver) {
-                    sfdoc = doc;
-                    break;
-                }
-            }
-            if (sfdoc == null) {
-                sfdoc = os.CreateObject<ОснованиеДокумент>();
-                sf.Документы.Add(sfdoc);
-                sfdoc.НомерИсправления = sfdoc_ver;
-                if (sf.ДействующийДокумент.НомерИсправления < sfdoc.НомерИсправления) {
-                    sf.ДействующийДокумент = sfdoc;
-                }
-            }
-            строка.ОснованиеДокумент = sfdoc;
-            sfdoc.ДатаИсправления = sfdoc_date;
-            sfdoc.РегНомер = строка.РегНомер;
-//            if (sf.Тип == Основание.ТипОснования.СФЗ && String.IsNullOrEmpty(sfdoc.РегНомер)) {
-//                Int32 IntNumber = fmCAVTInvoiceNumberGenerator.GenerateNumber(((ObjectSpace)os).Session, sf.ДействующийДокумент.CID, sf_sfz_type, sf.Дата, 0);
-//                sfdoc.РегНомер = sf_sfz_type.Prefix + sf.Дата.ToString("yyyyMM").Substring(2, 4) + IntNumber.ToString("00000");
-//                строка.РегНомер = sfdoc.РегНомер;
-//            }
-            sfdoc.КодПартнера = строка.Контрагент.Code;
-            sfdoc.НаименКонтрагента = строка.Контрагент.Name;
-            sfdoc.СуммаВсего = summ_cost + summ_nds;
-            sfdoc.СуммаНДС = summ_nds;
-            sfdoc.СуммаВсегоУвел = sfdoc.СуммаВсего + summ_sub_cost;
-            sfdoc.СуммаНДСУвел = sfdoc.СуммаНДС + summ_sub_nds;
-        }
 
 
         protected void ЗаполнитьКонтрагента(Документ строка_образец) {
@@ -593,17 +494,23 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
         public static void Обновить(IObjectSpace os, ОперацияКонтИмпортСтруктур конт) {
             os.Delete(конт.Операции);
             foreach (var запись in конт.ДанныеСтруктур.InInvoiceRecords) {
-                Обновить(os, конт, запись, конт.ДанныеСтруктур.BayNorma);
+                Обновить(os, конт, Основание.ТипИсточника.ВХОДЯЩИЙ, запись);
             }
             foreach (var запись in конт.ДанныеСтруктур.OutInvoiceRecords) {
-                Обновить(os, конт, запись, конт.ДанныеСтруктур.BayNorma);
+                Обновить(os, конт, Основание.ТипИсточника.ИСХОДЯЩИЙ, запись);
             }
             //        public static void Обновить(IObjectSpace os, XPCollection<fmCAVTBookBuhStructRecord> записи) { 
         }
-        public static void Обновить(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, fmCAVTBookBuhStructRecord запись, Decimal koeff) {
+        public static void Обновить(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, Основание.ТипИсточника источник, fmCAVTBookBuhStructRecord запись) {
             Документ cur_doc = null;
+            UInt16 change_number = 0;
+                if (!String.IsNullOrEmpty(запись.InvoiceChangeNumber))
+                    UInt16.TryParse(запись.InvoiceChangeNumber, out change_number);
             foreach (var doc in конт.Документы) {
-                if (doc.СчетФактура == запись.Invoice) {
+                if (doc.ТипИсточника == источник && 
+                    doc.Контрагент == запись.PartnerParty &&
+                    doc.Номер == запись.InvoiceNumber && doc.Дата == запись.InvoiceDate &&
+                    doc.НомерИсправления == change_number && doc.ДатаИсправления == запись.InvoiceChangeDate) {
                     cur_doc = doc;
                     break;
                 }
@@ -611,121 +518,258 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             if (cur_doc == null) {
                 cur_doc = os.CreateObject<Документ>();
                 конт.Документы.Add(cur_doc);
-                cur_doc.СчетФактураУст(запись.Invoice);
+                cur_doc.ТипИсточника = источник;
+                cur_doc.Контрагент = запись.PartnerParty;
+                cur_doc.Номер = запись.InvoiceNumber;
+                cur_doc.Дата = запись.InvoiceDate;
+                cur_doc.НомерИсправления = change_number;
+                cur_doc.ДатаИсправления = запись.InvoiceChangeDate; //                cur_doc.СчетФактураУст(запись.Invoice);
                 cur_doc.ТипОснования = Основание.String2ТипОснования(запись.InvoiceType);
+                if (источник == Основание.ТипИсточника.ВХОДЯЩИЙ || cur_doc.ТипОснования == Основание.ТипОснования.ГТД ||
+                    cur_doc.ТипОснования == Основание.ТипОснования.СФЗ ) {
+                    cur_doc.РегНомер = запись.InvoiceRegNumber;
+                }
+                else {
+                    String dates = запись.InvoiceDate.ToString("yyyyMMdd");
+                    cur_doc.РегНомер = запись.InvoiceNumber[0] + dates.Substring(2, 2) + запись.InvoiceNumber.Substring(1);
+//                    cur_doc.РегНомер = запись.InvoiceRegNumber;
+                }
             }
-            ProcessLine(os, cur_doc);
-            if (запись.OutInvoiceStructRecord != null)
-                ОбновитьОперациюПродаж(os, конт, cur_doc, запись, koeff);
-            if (запись.InInvoiceStructRecord != null)
-                ОбновитьОперациюПокупок(os, конт, cur_doc, запись, koeff);
+            ОбновитьДокумент(os, cur_doc, источник, запись);
+            if (источник == Основание.ТипИсточника.ИСХОДЯЩИЙ)
+                ОбновитьОперациюПродаж(os, конт, cur_doc, источник, запись);
+            if (источник == Основание.ТипИсточника.ВХОДЯЩИЙ)
+                ОбновитьОперациюПокупок(os, конт, cur_doc, источник, запись);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="os"></param>
+        /// <param name="строка"></param>
+        /// <param name="invoice"></param>
+        ///// <param name="sf_sfz_type"></param>
+        //static public void ProcessLine(IObjectSpace os, Документ строка, fmCAVTInvoiceType sf_sfz_type) {
+        static public void ОбновитьДокумент(IObjectSpace os, Документ строка, Основание.ТипИсточника источник, fmCAVTBookBuhStructRecord запись) {
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!
+            // Выбраковываем СФ
+            if (строка.ТипОснования == Основание.ТипОснования.Неопределен ||
+                строка.ТипЛица == ЛицоТип.НЕЗАДАН ||
+                String.IsNullOrEmpty(строка.ИННПродавца) ||
+                String.IsNullOrEmpty(строка.РегНомер) && строка.ТипОснования != Основание.ТипОснования.СФЗ ||
+                String.IsNullOrEmpty(строка.Номер) ||
+                строка.Дата < new DateTime(2000, 1, 1) ||
+                строка.ТипЛица == ЛицоТип.ЮР_ЛИЦО &&
+                    (строка.ИНН.Length != 10 || !Regex.IsMatch(строка.ИНН, _ИНН_ЮЛ_Рег) ||
+                     строка.КПП.Length != 9 || !Regex.IsMatch(строка.КПП, _КПП_Рек)) ||
+                строка.ТипЛица == ЛицоТип.ПРЕДПРИНИМАТЕЛЬ &&
+                    (строка.ИНН.Length != 12 || !Regex.IsMatch(строка.ИНН, _ИНН_ФЛ_Рег))
+                )
+                return;
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            Основание sf = os.FindObject<Основание>(
+                new BinaryOperator("ИннПродавца", строка.ИННПродавца) &
+                new BinaryOperator("Номер", строка.Номер) &
+                new BinaryOperator("Дата", строка.Дата, BinaryOperatorType.GreaterOrEqual) &
+                new BinaryOperator("Дата", строка.Дата.AddDays(1), BinaryOperatorType.Less), true);
+            if (sf == null) {
+                sf = os.CreateObject<Основание>();
+                sf.Налогоплательщик = строка.Контейнер.Налогоплательщик;
+                sf.Подразделение = строка.Контейнер.Подразделение;
+                sf.Источник = строка.ТипИсточника;
+                sf.ИНН = строка.ИНН;
+                sf.Номер = строка.Номер;
+                sf.Дата = строка.Дата;
+                sf.КПП = строка.КПП;
+//                sf.Налогоплательщик = строка.Контейнер.Налогоплательщик;
+//                sf.Подразделение = строка.Контейнер.Подразделение;
+            }
+            строка.Основание = sf;
+            sf.Корректировка = Основание.ТипПодчиненности.ОСНОВНОЙ;
+            //                sf.Источник = ts;
+            sf.Тип = строка.ТипОснования;
+            sf.ЛицоТип = строка.ТипЛица;
+            ОснованиеДокумент sfdoc = null;
+            //            String sfdoc_sver = invoice.SF_PRAV_NUMBER.Trim();
+            DateTime sfdoc_date;
+            if (строка.НомерИсправления != 0) {
+                sfdoc_date = строка.ДатаИсправления;
+            }
+            else {
+                sfdoc_date = строка.Дата;
+            }
+            //            DateTime sfdoc_date = default(DateTime);
+            //            DateTime.TryParseExact(invoice.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out sfdoc_date);
+            //Decimal summ_cost = Decimal.Parse(invoice.SUMM_COST.Trim().Replace('.', ','));
+            //Decimal summ_nds = Decimal.Parse(invoice.SUMM_NDS.Trim().Replace('.', ','));
+            //Decimal summ_sub_cost = Decimal.Parse(invoice.SUMM_SUB_COST.Trim().Replace('.', ','));
+            //Decimal summ_sub_nds = Decimal.Parse(invoice.SUMM_SUB_NDS.Trim().Replace('.', ','));
+            ////Decimal summ_cost = строка.СчетФактура.SummCost;
+            ////Decimal summ_nds = строка.СчетФактура.SummAVT;
+            ////Decimal summ_sub_cost = строка.СчетФактура.DeltaSummAllSub;
+            ////Decimal summ_sub_nds = строка.СчетФактура.DeltaSummAVTSub;
+            //if (sf.Источник == Основание.ТипИсточника.ИСХОДЯЩИЙ &&
+            //    sf.Тип != Основание.ТипОснования.Неопределен &&
+            //    sf.Тип != Основание.ТипОснования.СЧГ &&
+            //    sf.Тип != Основание.ТипОснования.БЖД &&
+            //    sf.Тип != Основание.ТипОснования.СФЗ) {
+            //    if (строка.СчетФактура != null) {
+            //        if (sfdoc_sver == "0" && !String.IsNullOrEmpty(строка.СчетФактура.Current.VersionNumber)) {
+            //            sfdoc_sver = строка.СчетФактура.Current.VersionNumber;
+            //            UInt16.TryParse(sfdoc_sver, out sfdoc_ver);
+            //            sfdoc_date = строка.СчетФактура.Current.VersionDate;
+            //        }
+            //        if (summ_cost == 0 && summ_nds == 0 && summ_sub_cost == 0 && summ_sub_nds == 0) {
+            //            summ_cost = строка.СчетФактура.SummAll - строка.СчетФактура.SummAVT;
+            //            summ_nds = строка.СчетФактура.SummAVT;
+            //        }
+            //    }
+            //}
+            foreach (ОснованиеДокумент doc in sf.Документы) {
+                if (doc.НомерИсправления == строка.НомерИсправления) {
+                    sfdoc = doc;
+                    break;
+                }
+            }
+            if (sfdoc == null) {
+                sfdoc = os.CreateObject<ОснованиеДокумент>();
+                sf.Документы.Add(sfdoc);
+                sfdoc.НомерИсправления = строка.НомерИсправления;
+                if (sf.ДействующийДокумент.НомерИсправления < sfdoc.НомерИсправления) {
+                    sf.ДействующийДокумент = sfdoc;
+                }
+            }
+            строка.ОснованиеДокумент = sfdoc;
+            sfdoc.ДатаИсправления = sfdoc_date;
+            sfdoc.РегНомер = строка.РегНомер;
+            //            if (sf.Тип == Основание.ТипОснования.СФЗ && String.IsNullOrEmpty(sfdoc.РегНомер)) {
+            //                Int32 IntNumber = fmCAVTInvoiceNumberGenerator.GenerateNumber(((ObjectSpace)os).Session, sf.ДействующийДокумент.CID, sf_sfz_type, sf.Дата, 0);
+            //                sfdoc.РегНомер = sf_sfz_type.Prefix + sf.Дата.ToString("yyyyMM").Substring(2, 4) + IntNumber.ToString("00000");
+            //                строка.РегНомер = sfdoc.РегНомер;
+            //            }
+            sfdoc.КодПартнера = строка.Контрагент.Code;
+            sfdoc.НаименКонтрагента = строка.Контрагент.Name;
+            sfdoc.СуммаВсего = запись.SummAll;
+            sfdoc.СуммаНДС = запись.SummVAT;
+            sfdoc.СуммаВсегоУвел = запись.SummIncCost + запись.SummIncVAT;
+            sfdoc.СуммаНДСУвел = запись.SummIncVAT;
+//            sfdoc.СуммаВсегоУвел = sfdoc.СуммаВсего + summ_sub_cost;
+//            sfdoc.СуммаНДСУвел = sfdoc.СуммаНДС + summ_sub_nds;
         }
 
-        public static void ОбновитьОперациюПродаж(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, Документ doc, fmCAVTBookBuhStructRecord record, Decimal koeff) {
-            if (doc.Основание == null || record.SummAll == 0)
+        public static void ОбновитьОперациюПродаж(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, Документ док, Основание.ТипИсточника источник, fmCAVTBookBuhStructRecord запись) {
+            if (док.Основание == null || запись.SummAll == 0)
                 return;
-            Операция oper = os.CreateObject<Операция>();
-            конт.Операции.Add(oper);
-            oper.ОснованиеДокумент = doc.ОснованиеДокумент;
-            oper.ТипКниги = Операция.ТипКнигиТип.ПРОДАЖ;
-            oper.ТипДеятельности = Операция.ТипДеятельностиТип.ОБЛ_18;
-            oper.ТипОбъекта = Операция.ТипОбъектаТип.РЕАЛИЗАЦИЯ;
-            if (record.OperationType.Code == "01" || record.OperationType.Code == "1")
-                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ;
-            if (record.OperationType.Code == "02" || record.OperationType.Code == "2")
-                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.АВАНС;
-            oper.ТипОсновной = Операция.ТипОсновнойТип.НАЛ_БАЗА;
-//            oper.ОснованиеРегНомер = record.InvoiceRegNumber;
-            oper.СФТип = record.InvoiceType;
-            oper.СФНомер = record.InvoiceNumber;
-            oper.СФДата = record.InvoiceDate;
-            CS.Finance.csNDSRate rate = record.SaleVATRate;
+            Операция опер = os.CreateObject<Операция>();
+            конт.Операции.Add(опер);
+            опер.ОснованиеДокумент = док.ОснованиеДокумент;
+            опер.ТипКниги = Операция.ТипКнигиТип.ПРОДАЖ;
+            опер.ТипДеятельности = Операция.ТипДеятельностиТип.ОБЛ_18;
+            опер.ТипОбъекта = Операция.ТипОбъектаТип.РЕАЛИЗАЦИЯ;
+            опер.ТипНапрОпер = Операция.ТипНапрОперТип.НОРМАЛЬНЫЙ;
+            if (запись.OperationType.Code == "01" || запись.OperationType.Code == "1")
+                опер.ТипОперВнутр = Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ;
+            if (запись.OperationType.Code == "02" || запись.OperationType.Code == "2")
+                опер.ТипОперВнутр = Операция.ТипОперВнутрТип.АВАНС;
+            опер.ТипОсновной = Операция.ТипОсновнойТип.НАЛ_БАЗА;
+            опер.ОснованиеРегНомер = док.РегНомер;
+            опер.СФТип = запись.InvoiceType;
+            опер.СФНомер = запись.InvoiceNumber;
+            опер.СФДата = запись.InvoiceDate;
+            CS.Finance.csNDSRate rate = запись.SaleVATRate;
             if (rate == null)
-                rate = record.BayVATRate;
+                rate = запись.BayVATRate;
             if (rate != null) {
                 if (rate.Code == "18%")
-                    oper.Ставка = СтавкаНДС.ОБЛ_18;
+                    опер.Ставка = СтавкаНДС.ОБЛ_18;
                 if (rate.Code == "10%")
-                    oper.Ставка = СтавкаНДС.ОБЛ_10;
+                    опер.Ставка = СтавкаНДС.ОБЛ_10;
                 if (rate.Code == "0%")
-                    oper.Ставка = СтавкаНДС.ОБЛ_0;
+                    опер.Ставка = СтавкаНДС.ОБЛ_0;
                 if (rate.Code == "БЕЗ НДС")
-                    oper.Ставка = СтавкаНДС.НЕОБЛ;
+                    опер.Ставка = СтавкаНДС.НЕОБЛ;
             }
             else
-                oper.Ставка = СтавкаНДС.ОБЛ_18;
+                опер.Ставка = СтавкаНДС.ОБЛ_18;
 
-            if (record.SaleDate > new DateTime(2000, 1, 1))
-                oper.ДатаНДС = record.SaleDate;
+            if (запись.SaleDate > new DateTime(2000, 1, 1))
+                опер.ДатаНДС = запись.SaleDate;
             else
-                oper.ДатаНДС = record.InvoiceDate;
-            oper.ПериодБУ = конт.ПериодБУ;
-            oper.ДатаБУ = конт.ДатаБУ;
-            if (record.SaleSummAll != 0)
-                oper.СуммаВсего = record.SaleSummAll;
+                опер.ДатаНДС = запись.InvoiceDate;
+            опер.ПериодБУ = конт.ПериодБУ;
+            опер.ДатаБУ = конт.ДатаБУ;
+            if (запись.SaleSummAll != 0)
+                опер.СуммаВсего = запись.SaleSummAll;
             else
-                oper.СуммаВсего = record.SummAll;
-            if (record.SaleSummVAT != 0)
-                oper.СуммаНДСБаза = record.SaleSummVAT;
+                опер.СуммаВсего = запись.SummAll;
+            if (запись.SaleSummVAT != 0)
+                опер.СуммаНДСБаза = запись.SaleSummVAT;
             else
-                oper.СуммаНДСБаза = record.SummVAT;
-            oper.СуммаСтоимость = oper.СуммаВсего - oper.СуммаНДСБаза;
+                опер.СуммаНДСБаза = запись.SummVAT;
+            опер.СуммаСтоимость = опер.СуммаВсего - опер.СуммаНДСБаза;
         }
-        public static void ОбновитьОперациюПокупок(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, Документ doc, fmCAVTBookBuhStructRecord record, Decimal koeff) {
-            if (doc.Основание == null || record.SummAll == 0)
+        public static void ОбновитьОперациюПокупок(IObjectSpace os, ОперацияКонтИмпортСтруктур конт, Документ док, Основание.ТипИсточника источник, fmCAVTBookBuhStructRecord запись) {
+            if (док.Основание == null || запись.SummAll == 0)
                 return;
-            Операция oper = os.CreateObject<Операция>();
-            конт.Операции.Add(oper);
-            oper.ОснованиеДокумент = doc.ОснованиеДокумент;
-            oper.ТипКниги = Операция.ТипКнигиТип.ПОКУПОК;
-            oper.ТипДеятельности = Операция.ТипДеятельностиТип.ОБЛ_18;
-            oper.ТипОбъекта = Операция.ТипОбъектаТип.РЕАЛИЗАЦИЯ;
-            if  (record.OperationType.Code == "01" || record.OperationType.Code == "1")
-                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ;
-            if (record.OperationType.Code == "02" || record.OperationType.Code == "2")
-                oper.ТипОперВнутр = Операция.ТипОперВнутрТип.АВАНС_ЗАЧЕТ;
-            oper.ТипОсновной = Операция.ТипОсновнойТип.ВЫЧЕТ;
-            oper.СФТип = record.InvoiceType;
-            oper.СФНомер = record.InvoiceNumber;
-            oper.СФДата = record.InvoiceDate;
-            CS.Finance.csNDSRate rate = record.BayVATRate;
+            Операция опер = os.CreateObject<Операция>();
+            конт.Операции.Add(опер);
+            опер.ОснованиеДокумент = док.ОснованиеДокумент;
+            опер.ТипКниги = Операция.ТипКнигиТип.ПОКУПОК;
+            опер.ТипДеятельности = Операция.ТипДеятельностиТип.ОБЛ_18;
+            опер.ТипОбъекта = Операция.ТипОбъектаТип.РЕАЛИЗАЦИЯ;
+            опер.ТипНапрОпер = Операция.ТипНапрОперТип.НОРМАЛЬНЫЙ;
+            if (запись.OperationType == null)
+                throw new ArgumentNullException("Незадан Тип операции для " + опер.ОснованиеДокумент);
+            if (запись.OperationType.Code == "01" || запись.OperationType.Code == "1")
+                опер.ТипОперВнутр = Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ;
+            if (запись.OperationType.Code == "02" || запись.OperationType.Code == "2")
+                опер.ТипОперВнутр = Операция.ТипОперВнутрТип.АВАНС_ЗАЧЕТ;
+            опер.ТипОсновной = Операция.ТипОсновнойТип.ВЫЧЕТ;
+            опер.ОснованиеРегНомер = док.РегНомер;
+            опер.СФТип = запись.InvoiceType;
+            опер.СФНомер = запись.InvoiceNumber;
+            опер.СФДата = запись.InvoiceDate;
+            CS.Finance.csNDSRate rate = запись.BayVATRate;
             if (rate == null)
-                rate = record.SaleVATRate;
+                rate = запись.SaleVATRate;
             if (rate != null) {
                 if (rate.Code == "18%")
-                    oper.Ставка = СтавкаНДС.ОБЛ_18;
+                    опер.Ставка = СтавкаНДС.ОБЛ_18;
                 if (rate.Code == "10%")
-                    oper.Ставка = СтавкаНДС.ОБЛ_10;
+                    опер.Ставка = СтавкаНДС.ОБЛ_10;
                 if (rate.Code == "0%")
-                    oper.Ставка = СтавкаНДС.ОБЛ_0;
+                    опер.Ставка = СтавкаНДС.ОБЛ_0;
                 if (rate.Code == "БЕЗ НДС")
-                    oper.Ставка = СтавкаНДС.НЕОБЛ;
+                    опер.Ставка = СтавкаНДС.НЕОБЛ;
             }
             else
-                oper.Ставка = СтавкаНДС.ОБЛ_18;
-            oper.ПериодБУ = конт.ПериодБУ;
-            oper.ДатаБУ = конт.ДатаБУ;
-            oper.ДатаНДС = record.BayDate;
-            if (record.BayDate > new DateTime(2000, 1, 1))
-                oper.ДатаНДС = record.BayDate;
+                опер.Ставка = СтавкаНДС.ОБЛ_18;
+            опер.ПериодБУ = конт.ПериодБУ;
+            опер.ДатаБУ = конт.ДатаБУ;
+            опер.ДатаНДС = запись.BayDate;
+            if (запись.BayDate > new DateTime(2000, 1, 1))
+                опер.ДатаНДС = запись.BayDate;
             else
-                oper.ДатаНДС = oper.ДатаБУ;
-            if (record.SaleSummAll != 0)
-                oper.СуммаВсего = record.BaySummAll;
+                if (запись.BaySummVAT != 0)
+                    throw new ArgumentOutOfRangeException("Незадана дата отнесения для покупок ");
+//            опер.ДатаНДС = опер.ДатаБУ;
+            if (запись.SaleSummAll != 0)
+                опер.СуммаВсего = запись.BaySummAll;
             else
-                oper.СуммаВсего = record.SummAll;
-            if (record.SaleSummVAT != 0)
-                oper.СуммаНДСВычет = record.BaySummVAT;
+                опер.СуммаВсего = запись.SummAll;
+            if (запись.SaleSummVAT != 0)
+                опер.СуммаНДСВычет = запись.BaySummVAT;
             else
-                oper.СуммаНДСВычет = record.SummVAT;
-            oper.СуммаСтоимость = oper.СуммаВсего - oper.СуммаНДСВычет;
-            if (oper.ТипОперВнутр == Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ) {
-                oper.СуммаНДС19Входящий = oper.СуммаНДСВычет;
-                oper.СуммаНДС19Списано = oper.СуммаНДСВычет;
+                опер.СуммаНДСВычет = запись.SummVAT;
+            опер.СуммаСтоимость = опер.СуммаВсего - опер.СуммаНДСВычет;
+            if (опер.ТипОперВнутр == Операция.ТипОперВнутрТип.РЕАЛИЗАЦИЯ) {
+                опер.СуммаНДС19Входящий = опер.СуммаНДСВычет;
+                опер.СуммаНДС19Списано = опер.СуммаНДСВычет;
             }
-            if (koeff > 0) {
-                oper.СуммаНДССтоимость = Decimal.Round(oper.СуммаНДСВычет * koeff, 2);
-                oper.СуммаНДСВычет = oper.СуммаНДСВычет - oper.СуммаНДССтоимость;
+            if (док.Контейнер != null && док.Контейнер.ДоляСтоимость > 0) {
+                опер.СуммаНДССтоимость = Decimal.Round(опер.СуммаНДСВычет * док.Контейнер.ДоляСтоимость, 2);
+                опер.СуммаНДСВычет = опер.СуммаНДСВычет - опер.СуммаНДССтоимость;
             }
         }
 
