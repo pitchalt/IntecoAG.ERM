@@ -47,6 +47,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             public String WORK_TYPE;
             [FieldFixedLength(3)]
             public String OPERATION;
+            [FieldFixedLength(6)]
+            public String VAT_ACC;
             [FieldFixedLength(2)]
             public String VAT_RATE;
             [FieldFixedLength(6)]
@@ -130,6 +132,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 oper.Ставка = (СтавкаНДС) Int32.Parse(stavka);
                 //                oper_imp.VAT_MODE;
                 oper.Проводка = oper_imp.BUH_PROV.Trim();
+                oper.СубсчетНДС = oper_imp.VAT_ACC.Trim();
                 DateTime.TryParseExact(oper_imp.BUH_DT.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
                 oper.ДатаБУ = date;
                 DateTime.TryParseExact(oper_imp.VAT_DT.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);

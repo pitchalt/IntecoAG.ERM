@@ -35,5 +35,22 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
 
         }
+
+        private void UpdateAction_Execute(object sender, SimpleActionExecuteEventArgs e) {
+            ДокИмпортОснований док = View.CurrentObject as ДокИмпортОснований;
+            if (док == null)
+                return;
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+            using (IObjectSpace os = ObjectSpace.CreateNestedObjectSpace()) {
+                using (StreamReader reader = new StreamReader(dialog.FileName, Encoding.GetEncoding(1251))) {
+                    док = os.GetObject<ДокИмпортОснований>(док);
+                    ДокИмпортОснований.UpdateInvoices(os, док, reader);
+                    reader.Close();
+                }
+                os.CommitChanges();
+            }
+            
+        }
     }
 }

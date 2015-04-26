@@ -224,6 +224,18 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 SetPropertyValue<DateTime>("ДатаИспрКСчФ", ref _ДатаИспрКСчФ, value);
             }
         }
+        public String ПлатежиСтрока {
+            get {
+                String result = String.Empty;
+                foreach (var плат in ДокПдтвУпл) {
+                    if (result == String.Empty)
+                        result = плат.НомДокПдтвУпл + " " + плат.ДатаДокПдтвУпл.ToString("dd.MM.yyyy");
+                    else
+                        result = result + "; " + плат.НомДокПдтвУпл + " " + плат.ДатаДокПдтвУпл.ToString("dd.MM.yyyy");
+                }
+                return result;
+            }
+        }
         private String _НомТД;
         /// <summary>
         /// Номер таможенной декларации
@@ -372,6 +384,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                     else
                         ДатаИспрКСчФ = ValidationMethods._DATE_NULL;
                 }
+                this.СвПродНаименование = ОснованиеДокумент.НаименКонтрагента;
+                this.СтоимПокупВ = ОснованиеДокумент.СуммаВсего;
             }
         }
 

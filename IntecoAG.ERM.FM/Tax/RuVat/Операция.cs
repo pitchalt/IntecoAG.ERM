@@ -190,6 +190,16 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
+        private String _СубсчетНДС;
+        [Size(5)]
+        public String СубсчетНДС {
+            get { return _СубсчетНДС; }
+            set {
+                if (!IsLoading) OnChanging("СубсчетНДС", value);
+                SetPropertyValue<String>("СубсчетНДС", ref _СубсчетНДС, value);
+            }
+        }
+
         private String _КодПартнера;
         [Size(5)]
         public String КодПартнера {
@@ -595,8 +605,11 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 return;
             if (
                 ТипОперВнутр == ТипОперВнутрТип.РЕАЛИЗАЦИЯ && ТипНапрОпер == ТипНапрОперТип.НОРМАЛЬНЫЙ) {
-                    if (ТипКниги == ТипКнигиТип.ПОКУПОК && (Основание.Тип == Основание.ТипОснования.БСО || Основание.Тип == Основание.ТипОснования.СЧГ)) {
-                        ОфицВидОперации = Session.FindObject<ВидОперации>(new BinaryOperator("Код", "22"));
+                    if (ТипКниги == ТипКнигиТип.ПОКУПОК && 
+                        (Основание.Тип == Основание.ТипОснования.БСО || 
+                        Основание.Тип == Основание.ТипОснования.БЖД || 
+                        Основание.Тип == Основание.ТипОснования.СЧГ)) {
+                        ОфицВидОперации = Session.FindObject<ВидОперации>(new BinaryOperator("Код", "23"));
                     }
                     else {
                         ОфицВидОперации = Session.FindObject<ВидОперации>(new BinaryOperator("Код", "01"));

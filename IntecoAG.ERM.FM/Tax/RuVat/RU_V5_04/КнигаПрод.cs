@@ -109,13 +109,15 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
 
         public override void ToXml() {
             XmlDocument document = new XmlDocument();
+            document.AppendChild(document.CreateXmlDeclaration("1.0", "windows-1251", ""));
             XmlNode file_node = document.CreateElement("Файл");
-            document.CreateXmlDeclaration("1.0", "windows-1251", "");
             document.AppendChild(file_node);
             XmlAttribute attribute_f1 = document.CreateAttribute("ИдФайл");
-            String fname = "NO_NDS.9" + '_' + "1111" + '_' + "2222" + '_' + Книга.ПериодНДС.Налогоплательщик.ИНН +
-                    Книга.ПериодНДС.Налогоплательщик.КПП + '_' + DateTime.Now.ToString("yyyyMMdd") + '_' + "QWERTY"
+            String fname = "NO_NDS.9" + '_' + "5099" + '_' + "5099" + '_' + Книга.ПериодНДС.Налогоплательщик.ИНН +
+                    Книга.ПериодНДС.Налогоплательщик.КПП + '_' + DateTime.Now.ToString("yyyyMMdd") + '_' + "000001"
                     ;
+            //
+            //
             attribute_f1.Value = fname;
             XmlAttribute attribute_f2 = document.CreateAttribute("ВерсПрог");
             attribute_f2.Value = "1.0";
@@ -125,12 +127,12 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
             file_node.Attributes.Append(attribute_f2);
             file_node.Attributes.Append(attribute_f3);
             XmlNode doc_node = document.CreateElement("Документ");
+            file_node.AppendChild(doc_node);
             XmlAttribute attribute_d1 = document.CreateAttribute("Индекс");
             attribute_d1.Value = "0000090";
+            doc_node.Attributes.Append(attribute_d1);
             XmlAttribute attribute_d2 = document.CreateAttribute("НомКорр");
             attribute_d2.Value = "0";
-            file_node.AppendChild(doc_node);
-            doc_node.Attributes.Append(attribute_d1);
             doc_node.Attributes.Append(attribute_d2);
             XmlAttribute attribute_prizn_sved9 = document.CreateAttribute("ПризнСвед9");
             if (!(attribute_d2.Value == "0")) {
@@ -190,11 +192,13 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                         doc_line.СтоимПродСФ0 += oper.СуммаСтоимость;
                     }
                     if (oper.Ставка == СтавкаНДС.ОБЛ_10) {
-                        doc_line.СтоимПродСФ10 += oper.СуммаСтоимость;
+                        if (oper.Основание != null && oper.Основание.Тип != Основание.ТипОснования.СФА)
+                            doc_line.СтоимПродСФ10 += oper.СуммаСтоимость;
                         doc_line.СумНДССФ10 += oper.СуммаНДСБаза;
                     }
                     if (oper.Ставка == СтавкаНДС.ОБЛ_18) {
-                        doc_line.СтоимПродСФ18 += oper.СуммаСтоимость;
+                        if (oper.Основание != null && oper.Основание.Тип != Основание.ТипОснования.СФА)
+                            doc_line.СтоимПродСФ18 += oper.СуммаСтоимость;
                         doc_line.СумНДССФ18 += oper.СуммаНДСБаза;
                     }
                 }
@@ -203,6 +207,25 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                     doc_line.СтоимПродСФ0 == 0) {
                         os.Delete(doc_line);
                         cur_num--;
+                }
+            }
+        }
+        [Action]
+        public void ФизЛица26() {
+            foreach (var line in КнПродСтр) {
+                if (line.Основание.ЛицоТип == ЛицоТип.ФИЗ_ЛИЦО ||
+                    line.Основание.ЛицоТип == ЛицоТип.РОЗНИЦА) { 
+                    line.КодВидОпер = Session.FindObject<ВидОперации>(new BinaryOperator("Код", "26"));
+                }
+            }
+        }
+
+        [Action]
+        public void СФПокупИНН() {
+            foreach (var line in КнПродСтр) {
+                if (line.Основание.Источник == Основание.ТипИсточника.ВХОДЯЩИЙ) {
+                    line.СвПокупИНН = line.Основание.Налогоплательщик.ИНН;
+                    line.СвПокупКПП = line.Основание.Налогоплательщик.КПП;
                 }
             }
         }

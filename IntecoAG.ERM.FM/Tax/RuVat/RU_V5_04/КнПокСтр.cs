@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Xml;
+//using System.Globalization;
 //using System.Xml.Linq;
 using DevExpress.Xpo;
 using DevExpress.ExpressApp;
@@ -87,7 +88,7 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
             if (ДатаУчТов != ValidationMethods._DATE_NULL) {
                 XmlNode date = document.CreateElement("ДатаУчТов");
                 result.AppendChild(date);
-                date.Value = ДатаУчТов.ToString("dd.MM.yyyy");
+                date.InnerText = ДатаУчТов.ToString("dd.MM.yyyy");
             }
             XmlNode node = null;
             XmlNode node2 = null;
@@ -97,8 +98,6 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 node2.AppendChild(node);
                 result.AppendChild(node2);
             }
-            if (node != null)
-                result.AppendChild(node);
             if (СвПос != null) {
                 node = СвПос.ToXmlGenerated(document, result);
                 if (node != null) {
@@ -159,10 +158,10 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 result.Attributes.Append(attrib);
             }
             attrib = document.CreateAttribute("СтоимПокупВ");
-            attrib.Value = СтоимПокупВ.ToString("F");
+            attrib.Value = СтоимПокупВ.ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
             result.Attributes.Append(attrib);
             attrib = document.CreateAttribute("СумНДСВыч");
-            attrib.Value = СумНДСВыч.ToString("F");
+            attrib.Value = СумНДСВыч.ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
             result.Attributes.Append(attrib);
             return result;
         }

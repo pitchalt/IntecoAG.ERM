@@ -94,6 +94,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation {
     [RuleCriteria("crmDeliveryItem.FullCheck", DefaultContexts.Save, "SummCost + SummNDS == SummFull", "SummFull must be equal SummCost + SummNDS ")]
     //[RuleCriteria("crmDeliveryItem.NDSRateRequired2", DefaultContexts.Save, "NDSRate == 'Null'", "NDSRate Required", TargetCriteria="!IsNoCost")]
     [MapInheritance(MapInheritanceType.ParentTable)]
+    [NavigationItem("Contract")]
     [VisibleInReports]
     public abstract partial class crmDeliveryItem : crmObligationTransfer {
         public crmDeliveryItem(Session session) : base(session) { }

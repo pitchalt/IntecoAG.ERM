@@ -238,6 +238,19 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
                 SetPropertyValue<DateTime>("ДатаИспрКСчФ", ref _ДатаИспрКСчФ, value);
             }
         }
+
+        public String ПлатежиСтрока {
+            get {
+                String result = String.Empty;
+                foreach (var плат in ДокПдтвОпл) {
+                    if (result == String.Empty)
+                        result = плат.НомДокПдтвОпл + " " + плат.ДатаДокПдтвОпл.ToString("dd.MM.yyyy"); 
+                    else
+                        result = result + "; " + плат.НомДокПдтвОпл + " " + плат.ДатаДокПдтвОпл.ToString("dd.MM.yyyy"); 
+                }
+                return result;
+            }
+        }
         private String _ОКВ;
         /// <summary>
         /// Код валюты по ОКВ
@@ -321,25 +334,37 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         [Browsable(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомИспрСчФ/ДатаИспрСчФ при наличии элемента ДатаИспрСчФ/НомИспрСчФ", UsedProperties = "НомИспрСчФ,ДатаИспрСчФ")]
         public Boolean НомИспрСчФ_ДатаИспрСчФ {
-            get { return (НомИспрСчФ == ValidationMethods._UINT16_NULL) == (ДатаИспрСчФ == ValidationMethods._DATE_NULL); }
+            get {
+                return true;
+                //                return (НомИспрСчФ == ValidationMethods._UINT16_NULL) == (ДатаИспрСчФ == ValidationMethods._DATE_NULL); 
+            }
         }
 
         [Browsable(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомИспрКСчФ при наличии элемента ДатаИспрКСчФ", UsedProperties = "НомИспрКСчФ,ДатаКСчФПрод")]
         public Boolean НомИспрКСчФ_ДатаИспрКСчФ {
-            get { return (НомИспрКСчФ == ValidationMethods._UINT16_NULL) == (ДатаИспрКСчФ == ValidationMethods._DATE_NULL); }
+            get {
+                return true;
+//                return (НомИспрКСчФ == ValidationMethods._UINT16_NULL) == (ДатаИспрКСчФ == ValidationMethods._DATE_NULL); 
+            }
         }
 
         [Browsable(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомКСчФПрод при наличии одного из элементов: ДатаКСчФПрод или НомИспрКСчФ или ДатаИспрКСчФ", UsedProperties = "НомКСчФПрод,ДатаИспрКСчФ,НомИспрКСчФ")]
         public Boolean НомКСчФПрод_ДатаКСчфПрод_ДатаИспрКСчФ {
-            get { return (!String.IsNullOrEmpty(НомКСчФПрод)) == (ДатаИспрКСчФ != ValidationMethods._DATE_NULL || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); }
+            get {
+                return true;
+                //return (!String.IsNullOrEmpty(НомКСчФПрод)) == (ДатаИспрКСчФ != ValidationMethods._DATE_NULL || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); 
+            }
         }
 
         [Browsable(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента ДатаКСчФПрод при наличии одного из элементов: НомКСчФПрод или НомИспрКСчФ или ДатаИспрКСчФ", UsedProperties = "ДатаКСчФПрод,НомКСчФПрод,ДатаИспрКСчФ")]
         public Boolean НомИспрКСчФ_ДатаКСчфПрод_ДатаИспрКСчФ {
-            get { return (ДатаКСчФПрод != ValidationMethods._DATE_NULL) == (!String.IsNullOrEmpty(НомКСчФПрод) || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); }
+            get {
+                return true;
+//                return (ДатаКСчФПрод != ValidationMethods._DATE_NULL) == (!String.IsNullOrEmpty(НомКСчФПрод) || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); 
+            }
         }
 
         [Browsable(false)]
@@ -357,13 +382,14 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         [Browsable(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента СумНДССФ18 при наличии (отсутствии) элемента СтоимПродСФ18", UsedProperties = "СумНДССФ18,СтоимПродСФ18")]
         public Boolean СумНДССФ18_СтоимПродСФ18 {
-            get { return СумНДССФ18 == ValidationMethods._DECIMAL_NULL || СтоимПродСФ18 != ValidationMethods._DECIMAL_NULL; }
+            get { return СтоимПродСФ18 == ValidationMethods._DECIMAL_NULL || СумНДССФ18 != ValidationMethods._DECIMAL_NULL; }
         }
 
         [Browsable(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента СумНДССФ10 при наличии (отсутствии) элемента СтоимПродСФ10", UsedProperties = "СумНДССФ10,СтоимПродСФ10")]
         public Boolean СумНДССФ10_СтоимПродСФ10 {
-            get { return СумНДССФ10 == ValidationMethods._DECIMAL_NULL || СтоимПродСФ10 != ValidationMethods._DECIMAL_NULL; }
+            get {
+                return СтоимПродСФ10 == ValidationMethods._DECIMAL_NULL || СумНДССФ10 != ValidationMethods._DECIMAL_NULL; }
         }
 
         public КнПродСтрБаз(Session session) : base(session) { }

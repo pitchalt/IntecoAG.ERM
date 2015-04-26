@@ -58,7 +58,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
 
         private XPDelayedProperty _DealVersion = new XPDelayedProperty();
 //        [Association("crmDealVersion-DeliveryPlans")]
-        [Browsable(false)]
+//        [Browsable(false)]
         [Delayed("_DealVersion", true)]
         public crmDealVersion DealVersion {
             get { return (crmDealVersion)_DealVersion.Value; }

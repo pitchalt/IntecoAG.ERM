@@ -96,6 +96,19 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             public String SUMM_SUB_ALL;
         }
 
+        [DelimitedRecord(";")]
+        public class ImportUpdateInvoice {
+            public String   VO_CODE;
+            public String   SF_REGNUM;
+            public String   SF_NUMBER;
+            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            public DateTime SF_DATE;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public Decimal  SUMM_ALL;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public Decimal  SUMM_VAT;
+        }
+
         [Persistent("FmTaxRuVatДокИмпОснСтр")]
         public class СтрокаОснов : BaseEntity {
             private const String _ИНН_ЮЛ_Рег = "([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8}";
@@ -447,40 +460,10 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 DateTime.TryParseExact(invoice.SF_DATE.Trim(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
                 строка.Дата = date;
                 //                    Основание.ТипОснования tsf;
-                строка.ТипОснования = Основание.ТипОснования.Неопределен;
-                switch (invoice.SF_TYPE) {
-                    case "СЧФ":
-                        строка.ТипОснования = Основание.ТипОснования.СЧФ;
-                        break;
-                    case "УПД":
-                        строка.ТипОснования = Основание.ТипОснования.УПД;
-                        break;
-                    case "СФА":
-                        строка.ТипОснования = Основание.ТипОснования.СФА;
-                        break;
-                    case "СФЗ":
-                        строка.ТипОснования = Основание.ТипОснования.СФЗ;
-                        break;
-                    case "СЧГ":
-                        строка.ТипОснования = Основание.ТипОснования.СЧГ;
-                        break;
-                    case "БЖД":
-                        строка.ТипОснования = Основание.ТипОснования.БЖД;
-                        break;
-                    case "СФВ":
-                        строка.ТипОснования = Основание.ТипОснования.СФВ;
-                        break;
-                    case "БСО":
-                        строка.ТипОснования = Основание.ТипОснования.БСО;
-                        break;
-                    case "ЧЕК":
-                        строка.ТипОснования = Основание.ТипОснования.ЧЕК;
-                        break;
-                    default:
-                        System.Console.WriteLine("SF: " + invoice.SF_NUMBER + " странный тип (" + invoice.SF_TYPE + ")");
-                        break;
-                    //                            continue;
-                }
+
+                строка.ТипОснования = Основание.String2ТипОснования(invoice.SF_TYPE.Trim());
+                if (строка.ТипОснования  == Основание.ТипОснования.Неопределен)
+                   System.Console.WriteLine("SF: " + invoice.SF_NUMBER + " странный тип (" + invoice.SF_TYPE + ")");
                 //                    String inn = "";
                 //                    String kpp = "";
                 строка.Контрагент = os.GetObjects<crmCParty>(new BinaryOperator("Code", invoice.SF_VO_CODE)).FirstOrDefault();
@@ -687,6 +670,24 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 СтрокаОснов.ProcessLine(os, строка, data, sf_sfz_type);
             }
             reader.Close();
+        }
+
+        static public void UpdateInvoices(IObjectSpace os, ДокИмпортОснований док, TextReader reader) {
+            FileHelperEngine<ImportUpdateInvoice> engine = new FileHelperEngine<ImportUpdateInvoice>();
+            engine.Options.IgnoreFirstLines = 1;
+            ImportUpdateInvoice[] invoices = engine.ReadStream(reader);
+            foreach (ImportUpdateInvoice invoice in invoices) {
+                foreach (var doc in док.Основания) {
+                    if (doc.Основание == null)
+                        continue;
+                    if (doc.РегНомер == invoice.SF_REGNUM.Trim() &&
+                        doc.Дата == invoice.SF_DATE) {
+                            doc.СуммаВсего = invoice.SUMM_ALL;
+                            doc.СуммаНДС = invoice.SUMM_VAT;
+                            break;
+                    }
+                }
+            }
         }
 
     }

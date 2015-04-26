@@ -531,7 +531,12 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                 }
                 else {
                     String dates = запись.InvoiceDate.ToString("yyyyMMdd");
-                    cur_doc.РегНомер = запись.InvoiceNumber[0] + dates.Substring(2, 2) + запись.InvoiceNumber.Substring(1);
+                    // !!!!!!!!!!!!!!!!
+                    // Ошибочные номера счетов-фактур выставленных
+                    if (запись.InvoiceNumber[0] == '0')
+                        cur_doc.РегНомер = запись.InvoiceRegNumber[0] + dates.Substring(2, 2) + запись.InvoiceRegNumber.Substring(1);
+                    else
+                        cur_doc.РегНомер = запись.InvoiceNumber[0] + dates.Substring(2, 2) + запись.InvoiceNumber.Substring(1);
 //                    cur_doc.РегНомер = запись.InvoiceRegNumber;
                 }
             }

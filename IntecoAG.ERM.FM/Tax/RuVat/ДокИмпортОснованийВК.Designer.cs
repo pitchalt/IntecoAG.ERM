@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.ImportAction = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
+            this.UpdateAction = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
             // 
             // ImportAction
             // 
@@ -43,6 +44,20 @@
             this.ImportAction.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
             this.ImportAction.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.ImportAction_Execute);
             // 
+            // UpdateAction
+            // 
+            this.UpdateAction.Caption = "Обновить из файла";
+            this.UpdateAction.ConfirmationMessage = null;
+            this.UpdateAction.Id = "FmTaxRuVatДокИмпортОснованийВК_UpdateAction";
+            this.UpdateAction.ImageName = null;
+            this.UpdateAction.Shortcut = null;
+            this.UpdateAction.Tag = null;
+            this.UpdateAction.TargetObjectsCriteria = null;
+            this.UpdateAction.TargetViewId = null;
+            this.UpdateAction.ToolTip = null;
+            this.UpdateAction.TypeOfView = null;
+            this.UpdateAction.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.UpdateAction_Execute);
+            // 
             // ДокИмпортОснованийВК
             // 
             this.TargetObjectType = typeof(IntecoAG.ERM.FM.Tax.RuVat.ДокИмпортОснований);
@@ -52,5 +67,6 @@
         #endregion
 
         private DevExpress.ExpressApp.Actions.SimpleAction ImportAction;
+        private DevExpress.ExpressApp.Actions.SimpleAction UpdateAction;
     }
 }

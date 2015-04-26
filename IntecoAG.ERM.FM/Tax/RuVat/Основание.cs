@@ -15,7 +15,6 @@ using DevExpress.Persistent.Validation;
 
 namespace IntecoAG.ERM.FM.Tax.RuVat {
 
-
     [NavigationItem("Налоги")]
     [Persistent("FmTaxRuVatОснование")]
     [RuleCombinationOfPropertiesIsUnique(null, DefaultContexts.Save, "ИннПродавца;Номер;Дата")]
@@ -64,7 +63,11 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             /// <summary>
             /// Государственная таможенная декларация
             /// </summary>
-            ГТД = 10
+            ГТД = 10,
+            /// <summary>
+            /// Государственная таможенная декларация
+            /// </summary>
+            СТД = 11
         }
 
         public static String ТипОснования2String(ТипОснования value) {
@@ -89,6 +92,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     return "ЧЕК";
                 case ТипОснования.ГТД:
                     return "ГТД";
+                case ТипОснования.СТД:
+                    return "СТД";
                 default:
                     return "";
             }
@@ -116,6 +121,8 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     return ТипОснования.ЧЕК;
                 case "ГТД":
                     return ТипОснования.ГТД;
+                case "СТД":
+                    return ТипОснования.СТД;
                 default:
                     return ТипОснования.Неопределен;
             }
@@ -279,6 +286,11 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
+        [Association("БазовоеОснование-Основание")]
+        public XPCollection<Основание> Корректировки {
+            get { return GetCollection<Основание>("Корректировки"); }
+        }
+
         private ОснованиеДокумент _ДействующийДокумент;
         [RuleRequiredField]
         [ExplicitLoading(1)]
@@ -291,10 +303,6 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             }
         }
 
-        [Association("БазовоеОснование-Основание"), DevExpress.Xpo.Aggregated]
-        public XPCollection<Основание> Корректировки {
-            get { return GetCollection<Основание>("Корректировки"); }
-        }
 
         [Association("Основание-ОснованиеДокумент"), DevExpress.Xpo.Aggregated]
         public XPCollection<ОснованиеДокумент> Документы { 
