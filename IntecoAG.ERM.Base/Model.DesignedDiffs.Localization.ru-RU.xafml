@@ -1943,6 +1943,23 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="crmDeliveryItem_Analitic_ListView" Caption="План завершения работ/поставок">
+      <Columns>
+        <ColumnInfo Id="Order.Subject.Code" Caption="КодТемы" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.Customer.Party.Person" Caption="Заказчик" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.Supplier.Party.Person" Caption="Исполнитель" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.Supplier.Party.Person.PersonInScience" Caption="ПризнакНаучных" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.DealDocument.Contract.Document" Caption="Договор" />
+        <ColumnInfo Id="DeliveryUnit.DatePlane" Caption="Дата Завершения" />
+        <ColumnInfo Id="DeliveryUnit.DatePlaneYYYY" Caption="Год завершения" />
+        <ColumnInfo Id="DeliveryUnit.DatePlaneMM" Caption="Месяц завершения" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmDeliveryItem_VariantView" Caption="План завершения работ/поставок">
+      <Variants>
+        <Variant Id="@e14d0620-ab8c-46a5-9b95-5e33d7d100ce" Caption="Исходные данные" />
+      </Variants>
+    </ListView>
     <DetailView Id="crmDeliveryMaterial_DetailView">
       <Layout>
         <LayoutGroup Id="Main">

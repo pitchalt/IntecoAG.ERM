@@ -190,7 +190,7 @@ namespace IntecoAG.ERM.CRM.Contract.Obligation
         ////[Association("crmStage-DeliveryUnits")]
         //[DataSourceProperty("DealVersion.StageStructure.Stages")]
         public override crmStage Stage {
-            get { return  this.DeliveryPlan.Stage; }
+            get { return this.DeliveryPlan != null ? this.DeliveryPlan.Stage : null; }
         }
 
         public override fmCostItem CostItem {

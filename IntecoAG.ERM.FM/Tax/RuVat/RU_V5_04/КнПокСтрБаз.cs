@@ -275,6 +275,14 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
             }
         }
 
+        [VisibleInLookupListView(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомСчФПрод/ДатаСчФПрод при наличии элемента ДатаСчФПрод/НомСчФПрод", UsedProperties = "ДатаСчФПрод,НомСчФПрод")]
+        public Boolean НомСчФПрод_ДатаСчФПрод {
+            get { return (String.IsNullOrEmpty(НомСчФПрод)) == (ДатаСчФПрод == ValidationMethods._DATE_NULL); }
+        }
+
         /// <summary>
         /// Контроль  обязательности  присутствия  НомИспрСчФ в  зависимости  от наличия  ДатаИспрСчФ
         /// Контроль  обязательности  присутствия  ДатаИспрСчФ в  зависимости  от наличия  НомИспрСчФ
@@ -293,28 +301,10 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         [VisibleInLookupListView(false)]
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]
-        [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомКСчФПрод при наличии одного из элементов: ДатаКСчФПрод или НомИспрКСчФ или ДатаИспрКСчФ", UsedProperties = "НомКСчФПрод")]
+        [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомКСчФПрод при наличии одного из элементов: ДатаКСчФПрод/НомКСчФПрод", UsedProperties = "ДатаКСчФПрод,НомКСчФПрод")]
         public Boolean НомКСчФПрод_ДатаКСчФПрод_НомИспрКСчФ_ДатаИспрКСчФ {
-            get { return (!String.IsNullOrEmpty(НомКСчФПрод)) == (ДатаИспрКСчФ != ValidationMethods._DATE_NULL || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); }
-        }
-
-        /// <summary>
-        /// Контроль  обязательности  присутствия  ДатаКСчФПрод в  зависимости  от наличия  НомКСчФПрод или НомИспрКСчФ или ДатаИспрКСчФ
-        /// </summary>
-        [VisibleInLookupListView(false)]
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента ДатаКСчФПрод при наличии одного из элементов: НомКСчФПрод или НомИспрКСчФ или ДатаИспрКСчФ", UsedProperties = "ДатаКСчФПрод")]
-        public Boolean ДатаКСчФПрод_НомКСчФПрод_НомИспрКСчФ_ДатаИспрКСчФ {
-            get { return (ДатаКСчФПрод != ValidationMethods._DATE_NULL) == (!String.IsNullOrEmpty(НомКСчФПрод) || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); }
-        }
-
-        [VisibleInLookupListView(false)]
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомСчФПрод/ДатаСчФПрод при наличии элемента ДатаСчФПрод/НомСчФПрод", UsedProperties = "ДатаСчФПрод,НомСчФПрод")]
-        public Boolean НомСчФПрод_ДатаСчФПрод {
-            get { return (String.IsNullOrEmpty(НомСчФПрод)) == (ДатаСчФПрод == ValidationMethods._DATE_NULL); }
+//            get { return (!String.IsNullOrEmpty(НомКСчФПрод)) == (ДатаИспрКСчФ != ValidationMethods._DATE_NULL || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); }
+            get { return String.IsNullOrEmpty(НомКСчФПрод) == (ДатаКСчФПрод <= ValidationMethods._DATE_NULL); }
         }
 
         /// <summary>
@@ -326,8 +316,21 @@ namespace IntecoAG.ERM.FM.Tax.RuVat.RU_V5_04 {
         [VisibleInListView(false)]
         [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента НомИспрКСчФ/ДатаИспрКСчФ при наличии элемента ДатаИспрКСчФ/НомИспрКСчФ", UsedProperties = "ДатаИспрКСчФ,НомИспрКСчФ")]
         public Boolean НомИспрКСчФ_ДатаИспрКСчФ {
-            get { return (НомИспрКСчФ == ValidationMethods._UINT16_NULL) == (ДатаИспрКСчФ == ValidationMethods._DATE_NULL); }
+            get { return (НомИспрКСчФ == ValidationMethods._UINT16_NULL) == (ДатаИспрКСчФ <= ValidationMethods._DATE_NULL); }
         }
+
+
+//        /// <summary>
+//        /// Контроль  обязательности  присутствия  ДатаКСчФПрод в  зависимости  от наличия  НомКСчФПрод или НомИспрКСчФ или ДатаИспрКСчФ
+//        /// </summary>
+//        [VisibleInLookupListView(false)]
+//        [VisibleInDetailView(false)]
+//        [VisibleInListView(false)]
+//        [RuleFromBoolProperty(null, DefaultContexts.Save, CustomMessageTemplate = "Не выполнено условие присутствия (отсутствия) элемента ДатаКСчФПрод при наличии одного из элементов: НомКСчФПрод или НомИспрКСчФ или ДатаИспрКСчФ", UsedProperties = "ДатаКСчФПрод")]
+//        public Boolean ДатаКСчФПрод_НомКСчФПрод_НомИспрКСчФ_ДатаИспрКСчФ {
+////            get { return (ДатаКСчФПрод != ValidationMethods._DATE_NULL) == (!String.IsNullOrEmpty(НомКСчФПрод) || НомИспрКСчФ != ValidationMethods._UINT16_NULL || ДатаИспрКСчФ != ValidationMethods._DATE_NULL); }
+//            get { return (String.IsNullOrEmpty(НомСчФПрод)) == (ДатаСчФПрод == ValidationMethods._DATE_NULL); }
+//        }
 
         /// <summary>
         /// Контроль  обязательности  присутствия  СвПрод в зависимости  от значения КодВидОпер

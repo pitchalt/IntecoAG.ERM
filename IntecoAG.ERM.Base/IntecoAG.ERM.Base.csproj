@@ -527,6 +527,12 @@
       <DependentUpon>MainForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="PM\ProjectWork.cs" />
+    <Compile Include="ReadOnlyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReadOnlyController.Designer.cs">
+      <DependentUpon>ReadOnlyController.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportHelper\ReportHelper.cs" />
     <Compile Include="Sync\SyncISyncObject.cs" />
     <Compile Include="Trw\Budget\Period\TrwBudgetPeriodDocDealLogic.cs" />
@@ -729,12 +735,6 @@
     </Compile>
     <Compile Include="RefreshMDITabsController.Designer.cs">
       <DependentUpon>RefreshMDITabsController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReadOnlyController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ReadOnlyController.Designer.cs">
-      <DependentUpon>ReadOnlyController.cs</DependentUpon>
     </Compile>
     <Compile Include="ERMBaseModule.cs">
       <SubType>Component</SubType>

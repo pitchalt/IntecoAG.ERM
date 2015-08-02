@@ -533,9 +533,9 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
                     String dates = запись.InvoiceDate.ToString("yyyyMMdd");
                     // !!!!!!!!!!!!!!!!
                     // Ошибочные номера счетов-фактур выставленных
-                    if (запись.InvoiceNumber[0] == '0')
-                        cur_doc.РегНомер = запись.InvoiceRegNumber[0] + dates.Substring(2, 2) + запись.InvoiceRegNumber.Substring(1);
-                    else
+//                    if (запись.InvoiceNumber[0] == '0')
+//                        cur_doc.РегНомер = запись.InvoiceRegNumber[0] + dates.Substring(2, 2) + запись.InvoiceRegNumber.Substring(1);
+//                    else
                         cur_doc.РегНомер = запись.InvoiceNumber[0] + dates.Substring(2, 2) + запись.InvoiceNumber.Substring(1);
 //                    cur_doc.РегНомер = запись.InvoiceRegNumber;
                 }
@@ -756,8 +756,9 @@ namespace IntecoAG.ERM.FM.Tax.RuVat {
             if (запись.BayDate > new DateTime(2000, 1, 1))
                 опер.ДатаНДС = запись.BayDate;
             else
-                if (запись.BaySummVAT != 0)
-                    throw new ArgumentOutOfRangeException("Незадана дата отнесения для покупок ");
+                опер.ДатаНДС = опер.Контейнер.ПериодНДС != null ? опер.Контейнер.ПериодНДС.ДатаПо : default(DateTime);
+//                if (запись.BaySummVAT != 0)
+//                    throw new ArgumentOutOfRangeException("Незадана дата отнесения для покупок ");
 //            опер.ДатаНДС = опер.ДатаБУ;
             if (запись.SaleSummAll != 0)
                 опер.СуммаВсего = запись.BaySummAll;

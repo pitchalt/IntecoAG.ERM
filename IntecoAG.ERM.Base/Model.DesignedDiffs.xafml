@@ -300,6 +300,11 @@
         </Items>
       </Item>
       <Item Id="State Machine" Index="6" />
+      <Item Id="Contract">
+        <Items>
+          <Item Id="crmDeliveryItem_ListView" ViewId="crmDeliveryItem_VariantView" />
+        </Items>
+      </Item>
       <Item Id="Default" Removed="True" />
       <Item Id="Trw.Budget" Removed="True" />
       <Item Id="Trw.Codif.References" Removed="True" />
@@ -1545,7 +1550,158 @@
       </Columns>
     </ListView>
     <ListView Id="crmDebtorCreditorDebtRegister_ListView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Win.PivotGridListEditor" AllowDelete="False" AllowNew="False" IsGroupPanelVisible="True" />
-    <DetailView Id="crmDeliveryMaterial_DetailView">
+    <ListView Id="crmDeliveryItem_Analitic_ListView" ClassName="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryItem" AllowDelete="False" AllowNew="False" DetailViewID="crmDeliveryItem_ReadOnly_DetailView" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Order.Subject.Code" PropertyName="Order.Subject.Code" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.Customer.Party.Person" PropertyName="DeliveryUnit.DeliveryPlan.DealVersion.Customer.Party.Person" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.Supplier.Party.Person" PropertyName="DeliveryUnit.DeliveryPlan.DealVersion.Supplier.Party.Person" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.Supplier.Party.Person.PersonInScience" PropertyName="DeliveryUnit.DeliveryPlan.DealVersion.Supplier.Party.Person.PersonInScience" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.DealDocument.Contract.Document" PropertyName="DeliveryUnit.DeliveryPlan.DealVersion.DealDocument.Contract.ContractDocument" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DeliveryPlan.DealVersion.TRVContractor" PropertyName="DeliveryUnit.DeliveryPlan.DealVersion.TRVContractor" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Stage" PropertyName="Stage" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DatePlane" PropertyName="DeliveryUnit.DatePlane" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DatePlaneYYYY" PropertyName="DeliveryUnit.DatePlaneYYYY" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="DeliveryUnit.DatePlaneMM" PropertyName="DeliveryUnit.DatePlaneMM" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Order.Subject" PropertyName="Order.Subject" LookupProperty="Code" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Order" PropertyName="Order" Width="70" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="Order.AnalitycWorkType" PropertyName="Order.AnalitycWorkType" Index="11" IsNewNode="True" />
+        <ColumnInfo Id="CostItem" PropertyName="CostItem" Width="70" Index="12" IsNewNode="True" />
+        <ColumnInfo Id="TrwSaleNomenclature" PropertyName="TrwSaleNomenclature" Width="70" Index="13" IsNewNode="True" />
+        <ColumnInfo Id="CountValue" PropertyName="CountValue" Width="50" Index="14" IsNewNode="True" />
+        <ColumnInfo Id="CountUnit" PropertyName="CountUnit" Width="70" Index="15" IsNewNode="True" />
+        <ColumnInfo Id="CostModel" PropertyName="CostModel" Width="70" Index="16" IsNewNode="True" />
+        <ColumnInfo Id="Valuta" PropertyName="Valuta" Width="70" Index="17" IsNewNode="True" />
+        <ColumnInfo Id="NDSRate" PropertyName="NDSRate" Width="70" Index="18" IsNewNode="True" />
+        <ColumnInfo Id="SummCost" PropertyName="SummCost" Width="50" Index="19" IsNewNode="True" />
+        <ColumnInfo Id="SummNDS" PropertyName="SummNDS" Width="50" Index="20" IsNewNode="True" />
+        <ColumnInfo Id="SummFull" PropertyName="SummFull" Width="50" Index="21" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="crmDeliveryItem_Analitic_ListView_Copy" ClassName="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryItem" AllowDelete="False" AllowNew="False" DetailViewID="crmDeliveryItem_ReadOnly_DetailView" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Stage" PropertyName="Stage" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Order" PropertyName="Order" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="TrwSaleNomenclature" PropertyName="TrwSaleNomenclature" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="CostItem" PropertyName="CostItem" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="CountValue" PropertyName="CountValue" Width="50" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="CountUnit" PropertyName="CountUnit" Width="70" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="CostModel" PropertyName="CostModel" Width="70" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Valuta" PropertyName="Valuta" Width="70" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="NDSRate" PropertyName="NDSRate" Width="70" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="SummCost" PropertyName="SummCost" Width="50" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="SummNDS" PropertyName="SummNDS" Width="50" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="SummFull" PropertyName="SummFull" Width="50" Index="11" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="12" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="crmDeliveryItem_DetailView" AllowDelete="False" AllowNew="False" />
+    <DetailView Id="crmDeliveryItem_ReadOnly_DetailView" ClassName="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryItem" AllowDelete="False" AllowNew="False" AllowEdit="False" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="AuditTrail" PropertyName="AuditTrail" View="csCComponent_AuditTrail_ListView" IsNewNode="True" />
+        <PropertyEditor Id="ComponentType" PropertyName="ComponentType" IsNewNode="True" />
+        <PropertyEditor Id="CostCalculateMethod" PropertyName="CostCalculateMethod" IsNewNode="True" />
+        <PropertyEditor Id="CostItem" PropertyName="CostItem" IsNewNode="True" />
+        <PropertyEditor Id="CostModel" PropertyName="CostModel" IsNewNode="True" />
+        <PropertyEditor Id="CountUnit" PropertyName="CountUnit" IsNewNode="True" />
+        <PropertyEditor Id="CountValue" PropertyName="CountValue" IsNewNode="True" />
+        <PropertyEditor Id="Description" PropertyName="Description" IsNewNode="True" />
+        <PropertyEditor Id="FullCalculateMethod" PropertyName="FullCalculateMethod" IsNewNode="True" />
+        <PropertyEditor Id="IsLoading" PropertyName="IsLoading" IsNewNode="True" />
+        <PropertyEditor Id="IsNoCost" PropertyName="IsNoCost" IsNewNode="True" />
+        <PropertyEditor Id="IsNoCount" PropertyName="IsNoCount" IsNewNode="True" />
+        <PropertyEditor Id="NDSCalculateMethod" PropertyName="NDSCalculateMethod" IsNewNode="True" />
+        <PropertyEditor Id="NDSRate" PropertyName="NDSRate" IsNewNode="True" />
+        <PropertyEditor Id="Nomenclature" PropertyName="Nomenclature" IsNewNode="True" />
+        <PropertyEditor Id="NomenclatureName" PropertyName="NomenclatureName" IsNewNode="True" />
+        <PropertyEditor Id="Order" PropertyName="Order" IsNewNode="True" />
+        <PropertyEditor Id="OrderSource" PropertyName="OrderSource" View="crmObligation_OrderSource_ListView" IsNewNode="True" />
+        <PropertyEditor Id="Price" PropertyName="Price" IsNewNode="True" />
+        <PropertyEditor Id="Stage" PropertyName="Stage" IsNewNode="True" />
+        <PropertyEditor Id="SummCost" PropertyName="SummCost" IsNewNode="True" />
+        <PropertyEditor Id="SummFull" PropertyName="SummFull" IsNewNode="True" />
+        <PropertyEditor Id="SummNDS" PropertyName="SummNDS" IsNewNode="True" />
+        <PropertyEditor Id="TrwSaleNomenclature" PropertyName="TrwSaleNomenclature" IsNewNode="True" />
+        <PropertyEditor Id="Valuta" PropertyName="Valuta" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+            <LayoutGroup Id="crmObligation" Index="0" Direction="Horizontal" ShowCaption="True" Caption="crm Obligation" IsNewNode="True">
+              <LayoutGroup Id="crmObligation_col1" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="Order" ViewItem="Order" Index="0" IsNewNode="True" />
+                <LayoutItem Id="CostItem" ViewItem="CostItem" Index="1" IsNewNode="True" />
+                <LayoutItem Id="Stage" ViewItem="Stage" Index="2" IsNewNode="True" />
+                <LayoutItem Id="Valuta" ViewItem="Valuta" Index="3" IsNewNode="True" />
+                <LayoutItem Id="CostModel" ViewItem="CostModel" Index="4" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmObligation_col2" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="NDSRate" ViewItem="NDSRate" Index="0" IsNewNode="True" />
+                <LayoutItem Id="SummCost" ViewItem="SummCost" Index="1" IsNewNode="True" />
+                <LayoutItem Id="SummNDS" ViewItem="SummNDS" Index="2" IsNewNode="True" />
+                <LayoutItem Id="SummFull" ViewItem="SummFull" Index="3" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="crmObligationTransfer" Index="1" ShowCaption="False" IsNewNode="True">
+              <LayoutItem Id="Nomenclature" ViewItem="Nomenclature" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="crmDeliveryItem" Index="2" Direction="Horizontal" ShowCaption="True" Caption="crm Delivery Item" IsNewNode="True">
+              <LayoutGroup Id="crmDeliveryItem_col1" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="CostCalculateMethod" ViewItem="CostCalculateMethod" Index="0" IsNewNode="True" />
+                <LayoutItem Id="NDSCalculateMethod" ViewItem="NDSCalculateMethod" Index="1" IsNewNode="True" />
+                <LayoutItem Id="FullCalculateMethod" ViewItem="FullCalculateMethod" Index="2" IsNewNode="True" />
+                <LayoutItem Id="IsNoCount" ViewItem="IsNoCount" Index="3" IsNewNode="True" />
+                <LayoutItem Id="IsNoCost" ViewItem="IsNoCost" Index="4" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="crmDeliveryItem_col2" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="CountValue" ViewItem="CountValue" Index="0" IsNewNode="True" />
+                <LayoutItem Id="CountUnit" ViewItem="CountUnit" Index="1" IsNewNode="True" />
+                <LayoutItem Id="Price" ViewItem="Price" Index="2" IsNewNode="True" />
+                <LayoutItem Id="NomenclatureName" ViewItem="NomenclatureName" Index="3" IsNewNode="True" />
+                <LayoutItem Id="TrwSaleNomenclature" ViewItem="TrwSaleNomenclature" Index="4" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="2" IsNewNode="True">
+            <LayoutGroup Id="OrderSource" Index="0" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="OrderSource" ViewItem="OrderSource" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="SizeableEditors" Index="1" ShowCaption="False" IsNewNode="True">
+              <LayoutItem Id="Description" ViewItem="Description" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="AuditTrail" Index="2" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="crmDeliveryItem_VariantView" ClassName="IntecoAG.ERM.CRM.Contract.Obligation.crmDeliveryItem" AllowDelete="False" AllowNew="False" DetailViewID="crmDeliveryItem_ReadOnly_DetailView" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="ComponentType" PropertyName="ComponentType" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="CostItem" PropertyName="CostItem" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="CostModel" PropertyName="CostModel" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="IsLoading" PropertyName="IsLoading" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="NDSRate" PropertyName="NDSRate" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Nomenclature" PropertyName="Nomenclature" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Order" PropertyName="Order" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Stage" PropertyName="Stage" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SummCost" PropertyName="SummCost" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SummFull" PropertyName="SummFull" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="SummNDS" PropertyName="SummNDS" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Valuta" PropertyName="Valuta" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="CountValue" PropertyName="CountValue" Width="50" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="CountUnit" PropertyName="CountUnit" Width="70" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Price" PropertyName="Price" Width="50" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="TrwSaleNomenclature" PropertyName="TrwSaleNomenclature" Width="70" Index="10" IsNewNode="True" />
+      </Columns>
+      <Variants Current="@e14d0620-ab8c-46a5-9b95-5e33d7d100ce" IsNewNode="True">
+        <Variant Id="@e14d0620-ab8c-46a5-9b95-5e33d7d100ce" ViewID="crmDeliveryItem_Analitic_ListView" Index="0" IsNewNode="True" />
+        <Variant Id="@b2576178-ddbb-4be0-8f41-5f24400703df" ViewID="crmDeliveryItem_Analitic_ListView_Copy" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <DetailView Id="crmDeliveryMaterial_DetailView" AllowDelete="False" AllowNew="False">
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="SimpleEditors">
@@ -1664,7 +1820,7 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <DetailView Id="crmDeliveryService_DetailView">
+    <DetailView Id="crmDeliveryService_DetailView" AllowDelete="False" AllowNew="False">
       <Layout>
         <LayoutGroup Id="Main" Index="0" Direction="Vertical" ShowCaption="False" IsNewNode="True" Removed="True">
           <LayoutGroup Id="SimpleEditors" Index="0" Direction="Vertical" ShowCaption="False" IsNewNode="True">
